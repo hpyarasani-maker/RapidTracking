@@ -27,7 +27,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RapidTrackingMultithread", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RapidTrackingSingleThread", "RapidTrackingProxiesAndServerIPs\RapidTrackingSingleThread\RapidTrackingSingleThread\RapidTrackingSingleThread.csproj", "{58522B09-1CEA-4C6B-85CF-B06C08559994}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bing", "Bing", "{43FDC851-9700-4C4B-997A-B4A9BC905A77}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BingTracking", "BingTracking", "{43FDC851-9700-4C4B-997A-B4A9BC905A77}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingMultiThreadProxies", "Bing\BingMultiThreadProxies\BingMultiThreadProxies\BingMultiThreadProxies.csproj", "{F9D76B2A-F842-4F61-8563-9E48BDC25AC4}"
 EndProject

@@ -1,0 +1,184 @@
+﻿using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Text;
+using Newtonsoft.Json;
+using System.Xml;
+using System.Data.SqlClient;
+using System.Data;
+
+namespace Oxylabs_BulkKeywords
+{
+    class SendingKeywordRequest
+    {        
+        public string strConn()
+        {
+            try
+            {
+                XmlDocument xml = new XmlDocument();
+                string fileName = @"C:\Inetpub\wwwroot\Callback_TrackingTrending.xml";
+
+                // You'll need to put the correct path to your xml file here
+                xml.Load(fileName);
+
+                // Select a specific node
+                XmlNode node = xml.SelectSingleNode("ConnectionString/con");
+
+                // Get its value
+                string name = node.InnerText;
+
+                return name;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+           
+        private void SendToDb(int seid, string response)
+        {
+            string date = DateTime.Today.ToString("yyyy-MM-dd");
+            StringBuilder sb = new StringBuilder();
+
+            JObject jo = JObject.Parse(response);
+            var links = from p in jo["queries"] select p;
+
+            var datetime = DateTime.Today.ToString("yyyy-MM-dd");
+            foreach (JToken link in links)
+            {
+                string kw = link["query"].Value<string>();
+                string jobid = link["id"].Value<string>();
+
+                string qry = "insert into dashboard_data_sending (date, name, seid, jobid) values('" + datetime + "', N'" + kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "'); ";
+                sb.Append(qry);
+            }
+
+            try
+            {
+                if (!string.IsNullOrEmpty(sb.ToString()))
+                {
+                    using (SqlConnection con = new SqlConnection(strConn()))
+                    {
+                        con.Open();
+                        using (SqlCommand comm = new SqlCommand(sb.ToString(), con))
+                        {
+                            comm.CommandTimeout = 0;
+                            comm.ExecuteNonQuery();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private void GetOxylabsWebDataSources(SearchProperties sp)
+        {            
+            Uri queryUri = new Uri("https://data.oxylabs.io/v1/queries/batch");
+            string username = "gpidatametrics";
+            string password = "sdV5X3fcX6";
+            string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
+
+            string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking other desktop
+            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking other mobile
+            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
+            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobilehotel/";
+
+            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackuk503desktoptemp";
+            //string callbackURL = "http://seresults.azurewebsites.net/api/trackingtrending/";
+
+            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58
+            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackuk106mobile/";       // 106
+            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackus1desktop/";     // 1            
+            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackus102mobile/";     // 102
+            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackotherdesktop/";  // other desktop
+            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackothermobile/";  // other mobile
+
+            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackimages/"; // images
+            //string callbackURL = "http://seresults.azurewebsites.net/api/callbacknews/"; // news
+
+            //string callbackURL = "http://previous.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking other desktop
+            //string callbackURL = "http://previous.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
+            //string callbackURL = "http://previous.azurewebsites.net/api/callbackrapidtrackingmobilehotel/";
+            //string callbackURL = "http://previous.azurewebsites.net/api/callbackrapidtrackingmobile/";
+            //string callbackURL = "http://previous.azurewebsites.net/api/callbackrapidtrackingdesktop/";
+           // string callbackURL = "http://previous.azurewebsites.net/api/callbackus1desktop/";     // 1 2019-10-10
+
+            OxyParams op = new OxyParams()
+            {
+                source = "google_search",
+                domain = sp.domain,
+                query = sp.query.Split(','),
+                limit = 100,
+                pages = 1,
+                locale = sp.locale,
+                callback_url = callbackURL,  
+                geo_location = sp.geo_location,
+                parse = 1, 
+                user_agent_type = sp.device,   
+                context = new List<Context> {
+                    new Context("tbm", sp.tbm),
+                    new Context("safe_search", 0)     
+                }
+            };                  
+            
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(queryUri);
+            req.Headers.Clear();
+
+            req.Method = "POST";
+            req.ContentType = "application/json";            
+            req.Headers.Add(HttpRequestHeader.Authorization, "Basic " + authInfo);
+
+            using (var streamWriter = new StreamWriter(req.GetRequestStream()))
+            {
+                var json = JsonConvert.SerializeObject(op, new JsonSerializerSettings
+                {
+                    Formatting = Newtonsoft.Json.Formatting.Indented,
+                });
+               
+                streamWriter.Write(json);
+            }
+
+            string response;
+
+            try
+            {
+                HttpWebResponse res = (HttpWebResponse)req.GetResponse();
+                using (StreamReader reader = new StreamReader(res.GetResponseStream()))
+                {
+                    response = reader.ReadToEnd();
+                }
+                res.Close();
+
+                SendToDb(sp.seid, response);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }              
+        }
+        
+        public void getTop100(string keyword, int seid)
+        {
+            try
+            {
+                SearchProperties sp = SearchParams.searches.Where(s => s.seid == seid).SingleOrDefault();
+                sp.query = keyword;
+                if(sp != null)
+                    GetOxylabsWebDataSources(sp);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+    }
+}
+
+

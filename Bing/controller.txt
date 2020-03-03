@@ -1,0 +1,5 @@
+http://previous.azurewebsites.net/api/callbackbingcomma/
+
+http://previous.azurewebsites.net/api/callbackbingdesktop/
+
+http://previous.azurewebsites.net/api/callbackbingmobile/

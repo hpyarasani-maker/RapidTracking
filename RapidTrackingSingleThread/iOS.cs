@@ -1066,7 +1066,6 @@ namespace RapidTrackingSingleThread
                     if (hn == null)
                         hn = nd1.SelectSingleNode(".//div[@class='hfac6d']");
                     string title = hn.InnerText;
-                    //if(!url.Contains("search?num=100"))
                     s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                 }
             }
@@ -1081,8 +1080,7 @@ namespace RapidTrackingSingleThread
                     url = nd1.Attributes["href"].Value;
                     HtmlNode hn = nd1.SelectSingleNode(".//div[@class='oyj2db']");
                     string title1 = hn.InnerText;
-                    //if (!url.Contains("search?num=100"))
-                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title1) + "\" />");
+                    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title1) + "\" />");
                 }
             }
             string caitems = GetCarouselURLs();
@@ -1108,17 +1106,13 @@ namespace RapidTrackingSingleThread
                 {
                     if (!url.Contains("google.com"))
                     {
-                       // if (!url.Contains("search?num=100"))
-                       // {
-                            if (url.StartsWith("http") || url.StartsWith("https"))
-                            {
-
-                                int n = url.IndexOf("?");
-                                if (n > 0)
-                                    url = url.Remove(n);
-                                s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(text) + "\" />");
-                            }
-                       // }
+                        if (url.StartsWith("http") || url.StartsWith("https"))
+                        {
+                            int n = url.IndexOf("?");
+                            if (n > 0)
+                                url = url.Remove(n);
+                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(text) + "\" />");
+                        }
                     }
                 }
             }
@@ -1831,14 +1825,14 @@ namespace RapidTrackingSingleThread
                         return "Maps";
 
                 // changes on 08-07-2019
-                nd = node.SelectSingleNode(".//img[@alt='map image']");
+                nd = node.SelectSingleNode(".//img[@alt='map image']|.//img[@alt='Affected area map']");  // 13-03-2020 
                 if (nd != null)
                     return "Maps";
             }
 
             nd = node.SelectSingleNode(".//div[@class='JVrfPc']");
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='bUNBRd mnr-c']"); //include on 2019-06-24
+                nd = node.SelectSingleNode(".//div[@class='bUNBRd mnr-c']|.//div[@class='HnYYW i8lZMc']"); //13-03-2020 //include on 2019-06-24
             if (nd != null)
             {
                 if (nd.InnerText.Contains("Twitter"))
@@ -1881,7 +1875,8 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@class='kp-blk c2xzTb OJXvsb']") != null
                 || (node.SelectSingleNode(".//div[@class='kp-blk cUnQKe OJXvsb']") != null
                 && node.SelectSingleNode(".//div[@class='answered-question']") != null)
-                || node.SelectSingleNode(".//div[@class='vkc_np kkww4d']") != null)     // changed on 05-07-2019
+                || node.SelectSingleNode(".//div[@class='vkc_np kkww4d']") != null    // changed on 05-07-2019
+                || node.SelectSingleNode(".//div[@class='UDZeY fAgajc']") != null)     // 13-03-2020
 
                 return "AnswerCard";
 
@@ -2142,7 +2137,7 @@ namespace RapidTrackingSingleThread
                 url = url.Replace("\0", "%00");
 
             if ((url.StartsWith("https://") || url.StartsWith("http://")) && (!url.Contains("/aclk?") && !url.Contains("search?num=100"))) //18-02-2020 and 24-02-2020 included condition
-            return url;
+                return url;
 
             return string.Empty;
 

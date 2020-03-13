@@ -39,6 +39,8 @@ namespace RapidTrackingSingleThread
                 nodeCol = doc.DocumentNode.SelectNodes("//div[@class='bkWMgd']");
             if (nodeCol == null)
                 nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");
+            if (nodeCol == null)
+                nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div"); //13-03-2020
 
             //if (nodeCol == null) throw new Exception("No block found.");
             if (nodeCol == null) return string.Empty;                      
@@ -85,7 +87,7 @@ namespace RapidTrackingSingleThread
             return string.Empty;
 
         }
-     
+
         private string GetRightStuff(HtmlDocument doc)
         {
             StringBuilder s = new StringBuilder();
@@ -369,7 +371,7 @@ namespace RapidTrackingSingleThread
         private string ProcessOrganic(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
-            if (node.HasClass("_NId") || node.HasClass("bkWMgd"))
+            if (node.HasClass("_NId") || node.HasClass("bkWMgd") || node.HasClass("srg") || node.HasClass("g")) // 13-03-2020
             {
                 HtmlNodeCollection nds = node.SelectNodes(".//div[@class='g']");
                 if (nds == null)
@@ -790,6 +792,8 @@ namespace RapidTrackingSingleThread
                     string title = "";
                     HtmlNode n = nd.SelectSingleNode(".//div[@class='y9oXvf rrBdId']");
                     if (n == null)
+                        n = nd.SelectSingleNode(".//div[@class='y9oXvf']"); // 13-03-2020
+                    if (n == null)
                         n = nd.SelectSingleNode(".//div[@class='mRnBbe QgUve jBgGLd']");
                     if (n == null)
                         n = nd.SelectSingleNode(".//div[@class='mRnBbe QgUve nDgy9d']");
@@ -943,6 +947,8 @@ namespace RapidTrackingSingleThread
             nd = node.SelectSingleNode(".//div[@class='DUU6i']");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='LnbJhc']");  //16-01-2020  //Included selector for Image block
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@jscontroller='IkchZc']");//13-03-2020
             if (nd != null)
             {
                 return "Images";
@@ -1072,7 +1078,8 @@ namespace RapidTrackingSingleThread
 
         private bool IsOrganic(HtmlNode node)
         {
-            return (node.SelectSingleNode(".//h3[@class='r']") != null || node.SelectSingleNode(".//div[@class='r']") != null);
+            return (node.SelectSingleNode(".//h3[@class='r']") != null || node.SelectSingleNode(".//div[@class='r']") != null
+               || node.SelectSingleNode(".//div[@class='zTpPx']") != null);    // 13-03-2020
         }
 
 
@@ -1123,6 +1130,7 @@ namespace RapidTrackingSingleThread
             url = GetRedirectedUrl(WebUtility.HtmlDecode(url).Trim());
             if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e"))
                 url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
+
             return WebUtility.HtmlEncode(url); //.Replace("&", "&amp;").Replace("&nbsp", "");
         }
 

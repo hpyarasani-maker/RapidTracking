@@ -49,6 +49,8 @@ namespace TrendingDesktopSingleThread
             if (nodeCol == null)
                 nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");
             if (nodeCol == null)
+                nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div"); //13-03-2020
+            if (nodeCol == null)
             {
                 organicurls = 0;
                 return string.Empty;
@@ -378,7 +380,7 @@ namespace TrendingDesktopSingleThread
         private string ProcessOrganic(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
-            if (node.HasClass("_NId") || node.HasClass("bkWMgd"))
+            if (node.HasClass("_NId") || node.HasClass("bkWMgd") || node.HasClass("srg") || node.HasClass("g")) // 13-03-2020
             {
                 HtmlNodeCollection nds = node.SelectNodes(".//div[@class='g']");
                 if (nds == null)
@@ -799,6 +801,8 @@ namespace TrendingDesktopSingleThread
                     string title = "";
                     HtmlNode n = nd.SelectSingleNode(".//div[@class='y9oXvf rrBdId']");
                     if (n == null)
+                        n = nd.SelectSingleNode(".//div[@class='y9oXvf']"); // 13-03-2020
+                    if (n == null)
                         n = nd.SelectSingleNode(".//div[@class='mRnBbe QgUve jBgGLd']");
                     if (n == null)
                         n = nd.SelectSingleNode(".//div[@class='mRnBbe QgUve nDgy9d']");
@@ -952,6 +956,8 @@ namespace TrendingDesktopSingleThread
             nd = node.SelectSingleNode(".//div[@class='DUU6i']");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='LnbJhc']");  //16-01-2020  //Included selector for Image block
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@jscontroller='IkchZc']");//13-03-2020
             if (nd != null)
             {
                 return "Images";
@@ -1081,7 +1087,8 @@ namespace TrendingDesktopSingleThread
 
         private bool IsOrganic(HtmlNode node)
         {
-            return (node.SelectSingleNode(".//h3[@class='r']") != null || node.SelectSingleNode(".//div[@class='r']") != null);
+            return (node.SelectSingleNode(".//h3[@class='r']") != null || node.SelectSingleNode(".//div[@class='r']") != null
+               || node.SelectSingleNode(".//div[@class='zTpPx']") != null);    // 13-03-2020
         }
 
 

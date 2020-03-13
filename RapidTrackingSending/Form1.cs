@@ -137,7 +137,7 @@ namespace Oxylabs_BulkKeywords
 
             //string strQry = "exec [dbo].[GetBulkDesktop_58_2] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkMobile_102_2] '" + myDate + "'";
-            string strQry = "exec [dbo].[GetBulkDesktop_1] '" + myDate + "'";
+            string strQry = "exec [dbo].[GetBulkDesktop_2] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkMobile_2] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkDesktop_1_2] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkMobile_Hotel] '" + myDate + "'";

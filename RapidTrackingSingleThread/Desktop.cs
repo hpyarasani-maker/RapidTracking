@@ -17,7 +17,7 @@ namespace RapidTrackingSingleThread
         { 
             //03-03-2020
             count = 0;
-            //if (doc == null) throw new Exception("No source found.");
+            if (doc == null) throw new Exception("No source found.");
             HtmlNode htmlNode = doc.DocumentNode.SelectSingleNode("//table[@id='mn']");
             if (htmlNode != null)
             {
@@ -42,8 +42,8 @@ namespace RapidTrackingSingleThread
             if (nodeCol == null)
                 nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div"); //13-03-2020
 
-            //if (nodeCol == null) throw new Exception("No block found.");
-            if (nodeCol == null) return string.Empty;                      
+            if (nodeCol == null) throw new Exception("No block found.");
+            //if (nodeCol == null) return string.Empty;                      
             //if (nodeCol == null) goto BOTTOMSTUFF; 
 
             foreach (HtmlNode node in nodeCol)
@@ -316,6 +316,8 @@ namespace RapidTrackingSingleThread
                 }
             }
 
+
+
             // text ads
             HtmlNode colt = doc.DocumentNode.SelectSingleNode("//div[@id='tvcap']");  //20-01-2020 included select text Ads
             if (colt != null)
@@ -351,6 +353,39 @@ namespace RapidTrackingSingleThread
                 s.Append("</block>");
             }
 
+            //18-03-2020
+            colt = doc.DocumentNode.SelectSingleNode("//div[@id='taw']");
+            if (colt != null)
+            {
+                HtmlNode kg = colt.SelectSingleNode(".//div[@class='NFQFxe mod']");
+                if (kg != null)
+                {
+                    s.Append("<block type=\"knowledgeGraph\" url=\"\" />");
+                }
+
+                HtmlNode ts = colt.SelectSingleNode(".//div[@class='rSr7Wd']");
+                if (ts != null)
+                {
+                    s.Append("<block type=\"topStories\" url=\"\">");
+                    s.Append(GetTopStories(ts));
+                    s.Append("</block>");
+                }
+
+                HtmlNodeCollection map = colt.SelectNodes(".//g-tray-header[@class='XvZKZb ndEm3b']/div/span");
+                if (map != null)
+                {
+                    foreach (var node in map)
+                    {
+                        if (node.InnerText == "Affected area")
+                        {
+                            s.Append("<block type=\"maps\" url=\"\"></block>");
+                            break;
+                        }
+                    }
+                }
+            }
+            //end of 18-03-2020
+
             return s.ToString();
         }
 
@@ -371,7 +406,8 @@ namespace RapidTrackingSingleThread
         private string ProcessOrganic(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
-            if (node.HasClass("_NId") || node.HasClass("bkWMgd") || node.HasClass("srg") || node.HasClass("g")) // 13-03-2020
+            if (node.HasClass("_NId") || node.HasClass("bkWMgd") || node.HasClass("srg")
+               || node.HasClass("g") || node.SelectNodes(".//div[@class='g']") != null) // 18-03-2020 // 13-03-2020
             {
                 HtmlNodeCollection nds = node.SelectNodes(".//div[@class='g']");
                 if (nds == null)
@@ -1023,7 +1059,8 @@ namespace RapidTrackingSingleThread
                                                                                                    //|| node.SelectSingleNode(".//span[@data-original-name='People also ask']") != null  // people also ask
                 || node.SelectSingleNode(".//h3[@class='_DM']") != null || node.SelectSingleNode(".//div[@id='imagebox_bigimages']") != null   // images
                 || node.SelectSingleNode(".//div[@class='e2BEnf']/h3") != null // videos
-                || node.SelectSingleNode(".//div[@class='e2BEnf U7izfe']/h3") != null); // videos
+                || node.SelectSingleNode(".//div[@class='e2BEnf U7izfe']/h3") != null // videos
+                || node.SelectSingleNode(".//div[@id='knowledge-finance-wholepage__entity-summary']") != null); // 18-03-2020
 
             if (bVal == true)//2019-09-11
             {
@@ -1043,7 +1080,7 @@ namespace RapidTrackingSingleThread
             {
                 HtmlNode nd = node.SelectSingleNode(".//h3");
                 if (nd != null)
-                    if (nd.InnerText == "Top stories")
+                    if (nd.InnerText == "Top stories" || nd.InnerText == "Videos")  // 18-03-2020
                         return true;
 
                 // changes in map block on 19-06-2019.

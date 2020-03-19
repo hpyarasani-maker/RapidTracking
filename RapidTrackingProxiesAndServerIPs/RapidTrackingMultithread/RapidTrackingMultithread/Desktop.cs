@@ -159,24 +159,62 @@ namespace RapidTrackingMultithread
             StringBuilder s = new StringBuilder();
 
             // Ads
-            HtmlNode colb = doc.DocumentNode.SelectSingleNode("//div[@id='bottomads']");   //20-01-2020
+            HtmlNode colb = doc.DocumentNode.SelectSingleNode("//div[@id='bottomads']");   //20-01-2020 included selectors for Ads
             if (colb != null)
             {
-                HtmlNodeCollection col = colb.SelectNodes(".//div[@id='tadsb']/ol/li");   //20-01-2020
+                HtmlNodeCollection col = colb.SelectNodes(".//div[@id='tadsb']/ol/li");   //20-01-2020 included selectors for Ads
                 if (col == null) return s.ToString();   //20-01-2020
-
                 s.Append("<block type=\"adwords\" url=\"\">");
                 foreach (HtmlNode nd in col)
                 {
                     HtmlNode n = nd.SelectSingleNode(".//h3/a[2]|.//div[@class='ad_cclk']/a[2]");
                     if (n != null)
                     {
+                        //if (!n.Attributes["href"].Value.StartsWith("/"))
+                        //    s.Append("<item url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(n.InnerText) + "\" />");
+                        //else
+                        //{
+                        //    string title = n.InnerText;
+                        //    n = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite");
+                        //    if (n != null)
+                        //        s.Append("<item url=\"" + SetUrl(n.InnerText) + "\" title=\"" + SetTitle(title) + "\" />");
+                        //}
+
                         HtmlNode tittlenode = n.SelectSingleNode(".//h3");
                         if (!n.Attributes["href"].Value.StartsWith("/"))
                             s.Append("<item url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(tittlenode.InnerText) + "\" />");
                         else
                         {
                             string title = tittlenode.InnerText;
+                            n = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite");
+                            if (n != null)
+                                s.Append("<item url=\"" + SetUrl(n.InnerText) + "\" title=\"" + SetTitle(title) + "\" />");
+                        }
+                    }
+                }
+                s.Append("</block>");
+            }
+
+            return s.ToString();
+        }
+
+        private string GetAds(HtmlDocument doc)
+        {
+            StringBuilder s = new StringBuilder();
+            HtmlNodeCollection col = doc.DocumentNode.SelectNodes("//div[@id='tads']/ol/li");
+            if (col != null)
+            {
+                s.Append("<block type=\"adwords\" url=\"\">");
+                foreach (HtmlNode nd in col)
+                {
+                    HtmlNode n = nd.SelectSingleNode(".//h3/a[2]");
+                    if (n != null)
+                    {
+                        if (!n.Attributes["href"].Value.StartsWith("/"))
+                            s.Append("<item url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(n.InnerText) + "\" />");
+                        else
+                        {
+                            string title = n.InnerText;
                             n = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite");
                             if (n != null)
                                 s.Append("<item url=\"" + SetUrl(n.InnerText) + "\" title=\"" + SetTitle(title) + "\" />");
@@ -249,8 +287,8 @@ namespace RapidTrackingMultithread
                 HtmlNode h3 = pla.SelectSingleNode(".//div[@class='dxR8gf']/h3");
                 if (h3 != null)
                 {
-                    if (pla.SelectSingleNode(".//div[contains(@class, 'commercial-unit-desktop-top')]") != null
-                        || pla.SelectSingleNode(".//div[contains(@class, 'top-pla-group-inner')]") != null)  // 13-02-2020 
+                    if (pla.SelectSingleNode(".//div[contains(@class, 'commercial-unit-desktop-top')]") != null)
+                    //if (h3.InnerText.StartsWith("Shop for") || h3.InnerText.StartsWith("See ") || h3.InnerText.StartsWith("zwarte "))
                     {
                         s.Append("<block type=\"productListedAds\" url=\"\">");
 
@@ -275,13 +313,14 @@ namespace RapidTrackingMultithread
                 }
             }
 
+
+
             // text ads
-            HtmlNode colt = doc.DocumentNode.SelectSingleNode("//div[@id='tvcap']");  //20-01-2020
+            HtmlNode colt = doc.DocumentNode.SelectSingleNode("//div[@id='tvcap']");  //20-01-2020 included select text Ads
             if (colt != null)
             {
-                HtmlNodeCollection col = colt.SelectNodes(".//div[@id='tads']/ol/li|.//div[@id='tadsb']/ol/li");  //20-01-2020 
+                HtmlNodeCollection col = colt.SelectNodes(".//div[@id='tads']/ol/li|.//div[@id='tadsb']/ol/li");  //20-01-2020 included select text Ads
                 if (col == null) return s.ToString();  //20-01-2020
-
                 s.Append("<block type=\"adwords\" url=\"\">");
                 foreach (HtmlNode nd in col)
                 {
@@ -311,6 +350,39 @@ namespace RapidTrackingMultithread
                 s.Append("</block>");
             }
 
+            //18-03-2020
+            colt = doc.DocumentNode.SelectSingleNode("//div[@id='taw']");
+            if (colt != null)
+            {
+                HtmlNode kg = colt.SelectSingleNode(".//div[@class='NFQFxe mod']");
+                if (kg != null)
+                {
+                    s.Append("<block type=\"knowledgeGraph\" url=\"\" />");
+                }
+
+                HtmlNode ts = colt.SelectSingleNode(".//div[@class='rSr7Wd']");
+                if (ts != null)
+                {
+                    s.Append("<block type=\"topStories\" url=\"\">");
+                    s.Append(GetTopStories(ts));
+                    s.Append("</block>");
+                }
+
+                HtmlNodeCollection map = colt.SelectNodes(".//g-tray-header[@class='XvZKZb ndEm3b']/div/span");
+                if (map != null)
+                {
+                    foreach (var node in map)
+                    {
+                        if (node.InnerText == "Affected area")
+                        {
+                            s.Append("<block type=\"maps\" url=\"\"></block>");
+                            break;
+                        }
+                    }
+                }
+            }
+            //end of 18-03-2020
+
             return s.ToString();
         }
 
@@ -331,7 +403,8 @@ namespace RapidTrackingMultithread
         private string ProcessOrganic(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
-            if (node.HasClass("_NId") || node.HasClass("bkWMgd") || node.HasClass("srg") || node.HasClass("g")) // 13-03-2020
+            if (node.HasClass("_NId") || node.HasClass("bkWMgd") || node.HasClass("srg")
+               || node.HasClass("g") || node.SelectNodes(".//div[@class='g']") != null) // 18-03-2020 // 13-03-2020
             {
                 HtmlNodeCollection nds = node.SelectNodes(".//div[@class='g']");
                 if (nds == null)
@@ -349,7 +422,7 @@ namespace RapidTrackingMultithread
                         HtmlNode img = nd.SelectSingleNode(".//img");
                         if (img != null)
                         {
-                            if (Regex.IsMatch(nd.OuterHtml, "id=\"vidthumb\\d*\"")) // 17-01-2020
+                            if (Regex.IsMatch(nd.OuterHtml, "id=\"vidthumb\\d*\"")) // 17-01-2020 //Replaced selector for video block
                             {
                                 var urls = n.Attributes["href"].Value;
                                 if (urls.StartsWith("http") || urls.StartsWith("https"))
@@ -371,7 +444,6 @@ namespace RapidTrackingMultithread
                             else if (orgLinks < 100)
                             {
                                 var urls = n.Attributes["href"].Value;
-                                urls = SetUrl(urls);    // 20-12-2019
                                 if (urls.StartsWith("http") || urls.StartsWith("https"))
                                 {
                                     int indx = urls.LastIndexOf("http://");
@@ -399,8 +471,6 @@ namespace RapidTrackingMultithread
                                     t = title.InnerText;
                                 else
                                     t = n.InnerText;
-
-                                urls = SetUrl(urls);    // 20-12-2019
                                 if (urls.StartsWith("http") || urls.StartsWith("https"))
                                 {
                                     int indx = urls.LastIndexOf("http://");
@@ -865,8 +935,6 @@ namespace RapidTrackingMultithread
             nd = node.SelectSingleNode(".//div[@class='KNcnob']/g-img");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='fn6bCb']");
-            if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='qmv19b']");    // 09-12-2019
             if (nd != null)
                 return "topstories";
             if (nd == null)
@@ -883,13 +951,11 @@ namespace RapidTrackingMultithread
             {
                 return "Twitters";
             }
-
             nd = node.SelectSingleNode(".//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']"); //11-02-2020
             if (nd != null)
             {
                 return "PeopleAlsoAsk"; //11-02-2020
             }
-
             nd = node.SelectSingleNode(".//div[@class='_OKe']");
             if (nd != null)
             {
@@ -897,26 +963,25 @@ namespace RapidTrackingMultithread
                 if (nd != null)
                     return "Event";
 
-                return "AnswerCard";
+                return "AnswerCard";     //updated code 11-02-2020
             }
 
-
-            if (node.SelectSingleNode(".//div[@id='imso-root']") != null || node.SelectSingleNode(".//div[@class='k9uN1c kfn9hb']") != null
-                || node.SelectSingleNode(".//div[@class='HaXvv kfn9hb']") != null)//07-02-2020
+            if (node.SelectSingleNode(".//div[@id='imso-root']") != null || node.SelectSingleNode(".//div[@class='k9uN1c kfn9hb']") != null //24-10-2019
+                || node.SelectSingleNode(".//div[@class='HaXvv kfn9hb']") != null)//07-02-2020 included selector for Event Block
                 return "Event";
 
             if (node.SelectSingleNode(".//div[@id='cwmcwd']") != null || node.SelectSingleNode(".//div[@class='ifM9O']") != null
                 || node.SelectSingleNode(".//div[@class='vk_ard']") != null)    // changes on 09-07-2019
             {
-                return "AnswerCard";
+
+                return "AnswerCard";   //updated code 11-02-2020
             }
 
             nd = node.SelectSingleNode(".//div[@class='DUU6i']");
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='LnbJhc']");  //16-01-2020
+                nd = node.SelectSingleNode(".//div[@class='LnbJhc']");  //16-01-2020  //Included selector for Image block
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@jscontroller='IkchZc']");//13-03-2020
-
             if (nd != null)
             {
                 return "Images";
@@ -984,15 +1049,15 @@ namespace RapidTrackingMultithread
                 || node.SelectSingleNode(".//div[@class='Brgz0 tw-res']") != null   // twitters                
                 || node.SelectSingleNode(".//div[@class='_OKe']") != null   // answer card / people also ask
                 || node.SelectSingleNode(".//div[@class='k9uN1c kfn9hb']") != null//24-10-2019
-                || node.SelectSingleNode(".//div[@class='HaXvv kfn9hb']") != null//07-02-2020
+                 || node.SelectSingleNode(".//div[@class='HaXvv kfn9hb']") != null//07-02-2020 included selector people also ask block
                 || (node.SelectSingleNode(".//div[@class='ifM9O']") != null && node.SelectSingleNode(".//div[@class='Wnoohf OJXvsb']") == null)   // answer card  
                 || node.SelectSingleNode(".//div[@id='cwmcwd']") != null  // answer card 
-                                                                          //|| node.SelectSingleNode(".//div[@class='vk_c card-section']") != null // answer card                
-                || node.SelectSingleNode(".//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']") != null  // people also ask // 11-02-2020
-                                                                                                  //|| node.SelectSingleNode(".//span[@data-original-name='People also ask']") != null  // people also ask
+                 || node.SelectSingleNode(".//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']") != null  // people also ask // 11-02-2020 included selector
+                                                                                                   //|| node.SelectSingleNode(".//span[@data-original-name='People also ask']") != null  // people also ask
                 || node.SelectSingleNode(".//h3[@class='_DM']") != null || node.SelectSingleNode(".//div[@id='imagebox_bigimages']") != null   // images
                 || node.SelectSingleNode(".//div[@class='e2BEnf']/h3") != null // videos
-                || node.SelectSingleNode(".//div[@class='e2BEnf U7izfe']/h3") != null); // videos
+                || node.SelectSingleNode(".//div[@class='e2BEnf U7izfe']/h3") != null // videos
+                || node.SelectSingleNode(".//div[@id='knowledge-finance-wholepage__entity-summary']") != null); // 18-03-2020
 
             if (bVal == true)//2019-09-11
             {
@@ -1012,7 +1077,7 @@ namespace RapidTrackingMultithread
             {
                 HtmlNode nd = node.SelectSingleNode(".//h3");
                 if (nd != null)
-                    if (nd.InnerText == "Top stories")
+                    if (nd.InnerText == "Top stories" || nd.InnerText == "Videos")  // 18-03-2020
                         return true;
 
                 // changes in map block on 19-06-2019.
@@ -1048,7 +1113,13 @@ namespace RapidTrackingMultithread
         private bool IsOrganic(HtmlNode node)
         {
             return (node.SelectSingleNode(".//h3[@class='r']") != null || node.SelectSingleNode(".//div[@class='r']") != null
-                || node.SelectSingleNode(".//div[@class='zTpPx']") != null);    // 13-03-2020
+               || node.SelectSingleNode(".//div[@class='zTpPx']") != null);    // 13-03-2020
+        }
+
+
+        internal object GetOxylabsWebDataSources_Nws_Images(string kw, string v1, string v2, string v3, string v4, string v5)
+        {
+            throw new NotImplementedException();
         }
 
         //07-11-2019
@@ -1069,12 +1140,9 @@ namespace RapidTrackingMultithread
 
             if (url.Contains("&amp;grqid="))
                 url = url.Remove(url.IndexOf("&amp;grqid="));
-            //13-12-2019
-            if (url.Contains("&grqid="))
-                url = url.Remove(url.IndexOf("&grqid="));
 
-            if (url.Contains("\0"))
-                url = url.Replace("\0", "%00");
+            if (url.Contains("\0&"))
+                url = url.Replace("\0&", "%00&");
 
             if ((url.StartsWith("https://") || url.StartsWith("http://")) && !url.Contains("/aclk?"))
                 return url;
@@ -1097,7 +1165,7 @@ namespace RapidTrackingMultithread
             if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e"))
                 url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
 
-            return WebUtility.HtmlEncode(url.Replace("\x00", "%00")).Replace("\\\\u003d", "=");
+            return WebUtility.HtmlEncode(url); //.Replace("&", "&amp;").Replace("&nbsp", "");
         }
 
     }

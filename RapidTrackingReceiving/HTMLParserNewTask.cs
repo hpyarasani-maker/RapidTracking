@@ -29,18 +29,18 @@ namespace Oxylabs_BulkKeywords
 
             Thread t1 = new Thread(new ThreadStart(StartProcess))
             {
-               // Name = "All_5"
+                Name = "All_1"
                // Name = "Mobile_102_10"
-               Name = "CommaKeywords_3"
+               //Name = "CommaKeywords_1"
             };
             t1.Start();
         }
 
         private void StartProcess()
         {
-           //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking desktop
+           string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking desktop and all keywords
             //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking mobile
-            string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
+            //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
             //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobilehotel/";  // rapid tracking mobile
 
             //string url = "http://seresults.azurewebsites.net/api/callbackuk503desktoptemp/";
@@ -235,7 +235,7 @@ namespace Oxylabs_BulkKeywords
 
             try
             {
-                if(urlcount > 0)
+                if(urlcount > 20)
                     SendXmlToAPI(seid, kw, result);
 
                 SendToDB(seid, kw, result, jobid, urlcount);
@@ -390,13 +390,13 @@ namespace Oxylabs_BulkKeywords
 
                         comm.ExecuteNonQuery();
 
-                        //if (urlcount < 20)
-                        //{
-                        //    string qry = "exec [InsertLessthan20] '" + myDate + "',N'" + keyword.Replace("'", "''") + "'," + seid + ",N''," + urlcount + ",'" + jobid + "'";
-                        //    comm.CommandText = qry;
-                        //    comm.CommandType = CommandType.Text;
-                        //    comm.ExecuteNonQuery();
-                        //}
+                        if (urlcount < 20)
+                        {
+                            string qry = "exec [InsertLessthan20] '" + myDate + "',N'" + keyword.Replace("'", "''") + "'," + seid + ",N''," + urlcount + ",'" + jobid + "'";
+                            comm.CommandText = qry;
+                            comm.CommandType = CommandType.Text;
+                            comm.ExecuteNonQuery();
+                        }
                     }
                 }
 

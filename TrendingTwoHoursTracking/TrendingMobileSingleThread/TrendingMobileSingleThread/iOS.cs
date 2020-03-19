@@ -1687,6 +1687,8 @@ namespace TrendingMobileSingleThread
             if (nd == null)
                 nd = node.SelectSingleNode(".//g-tray-header[@class='kno-fb-ctx lQckZe gsrt ieGFJe ndEm3b']");  // 21-02-2020 included selector for videos block
             if (nd == null)
+                nd = node.SelectSingleNode(".//g-tray-header[@class='kno-fb-ctx Gq01wc zbA8Me ndEm3b']");//19-03-2020
+            if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='qDSRad']");  // changes on 05-07-2019
             if (nd != null)
             {
@@ -1719,6 +1721,18 @@ namespace TrendingMobileSingleThread
                 || node.SelectSingleNode(".//div[@class='nA3Vyd SBFvB']") != null || node.SelectSingleNode(".//div[@class='nJXhWc nA3Vyd']") != null) // 05-11-2019 // 07-02-2020  included selector for event block
                 return "Event";
 
+            //swapped 19-03-2020
+            nd = node.SelectSingleNode(".//div[contains(@class, ' knowledge-panel ')]");
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='oLO3I']");
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='kp-wholepage EyBRub ss6qqb mnr-c kp-wholepage-osrp']");//16-09-2019
+            if (nd != null)
+            {
+                return "KnowledgePanel";
+            }
+            //swapped 19-03-2020
+
 
             // 30-10-2019
             nd = node.SelectSingleNode(".//div[@class='_ELb']/a");
@@ -1742,16 +1756,7 @@ namespace TrendingMobileSingleThread
             {
                 return "AnswerCard";
             }
-            //swapped code 26-6-2019
-            nd = node.SelectSingleNode(".//div[contains(@class, ' knowledge-panel ')]");
-            if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='oLO3I']");
-            if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='kp-wholepage EyBRub ss6qqb mnr-c kp-wholepage-osrp']");//16-09-2019
-            if (nd != null)
-            {
-                return "KnowledgePanel";
-            }
+
 
             // changes on 15-07-2019
             nd = node.SelectSingleNode(".//div[@class='qs-io aig-lst']");
@@ -1896,6 +1901,8 @@ namespace TrendingMobileSingleThread
 
             // changes on 05-07-2019
             nd = node.SelectSingleNode(".//div[@class='rKFBM gsrt wp-ms']/div");
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='rKFBM gsrt iows2d wp-ms']/div");  //19-03-2020
             if (nd != null)
             {
                 if (node.SelectSingleNode(".//g-scrolling-carousel") != null)
@@ -1916,6 +1923,8 @@ namespace TrendingMobileSingleThread
                 nd = node.SelectSingleNode(".//div[@class='bUNBRd mnr-c']/g-tray-header/div[@class='N60dNb i8lZMc']/a");    //17-02-2020 included selector for images
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='gID6df']");
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='GNxIwf']");  // 18-03-2020
             if (nd != null)
             {
                 //if (nd.InnerText == "Images" || nd.InnerText == "Immagini"|| nd.InnerText == "Im?genes")

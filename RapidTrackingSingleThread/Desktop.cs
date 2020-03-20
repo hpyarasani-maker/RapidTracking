@@ -34,13 +34,26 @@ namespace RapidTrackingSingleThread
             ndText = topStuff;
             sb.Append(topStuff);
 
-            HtmlNodeCollection nodeCol = doc.DocumentNode.SelectNodes("//div[@class='_NId']");
+            HtmlNodeCollection nodeCol = doc.DocumentNode.SelectNodes("//div[@class='rso']");
+            //HtmlNodeCollection nodeCol = doc.DocumentNode.SelectNodes("//div[@class='rso']/div");
+
+            //if (nodeCol == null)
+            //    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='bkWMgd']");
+            //if (nodeCol == null)
+            //    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='xVtsMb']"); //22-03-2020
             if (nodeCol == null)
-                nodeCol = doc.DocumentNode.SelectNodes("//div[@class='bkWMgd']");
-            if (nodeCol == null)
-                nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");
-            if (nodeCol == null)
-                nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div"); //13-03-2020
+                nodeCol = doc.DocumentNode.SelectNodes("//div[@class='vC5Ym DhKAUb']/div"); //22-03-2020
+            //if (nodeCol == null)
+            //    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='vC5Ym DhKAUb']"); //22-03-2020
+
+            //if (nodeCol == null)
+            //nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");
+            //if (nodeCol == null)
+            //    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']"); //13-03-2020
+            //if (nodeCol != null)
+            //    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']|//div[@class='vC5Ym DhKAUb']/div");
+
+            //
 
             if (nodeCol == null) throw new Exception("No block found.");
             //if (nodeCol == null) return string.Empty;                      
@@ -829,6 +842,7 @@ namespace RapidTrackingSingleThread
                     HtmlNode n = nd.SelectSingleNode(".//div[@class='y9oXvf rrBdId']");
                     if (n == null)
                         n = nd.SelectSingleNode(".//div[@class='y9oXvf']"); // 13-03-2020
+                  
                     if (n == null)
                         n = nd.SelectSingleNode(".//div[@class='mRnBbe QgUve jBgGLd']");
                     if (n == null)
@@ -851,7 +865,8 @@ namespace RapidTrackingSingleThread
                         s.Append("<item url=\"" + SetUrl(nd.Attributes["href"].Value) + "\" title=\"" + SetTitle(nd.InnerText) + "\" />");
                     }
             }
-            return s.ToString();
+             return s.ToString();
+            //return string.Empty;
         }
 
         // 23-10-2019

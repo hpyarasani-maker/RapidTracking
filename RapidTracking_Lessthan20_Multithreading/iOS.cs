@@ -1274,6 +1274,12 @@ namespace TrackingTrending
                 nd = node.SelectSingleNode(".//div[@class='oLO3I']");
             if (nd == null)//16-09-2019
                 nd = node.SelectSingleNode(".//div[@class='kp-wholepage EyBRub ss6qqb mnr-c kp-wholepage-osrp']");//16-09-2019
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='NFQFxe viOShc LKPcQc mod']");  //20-03-2020
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='NFQFxe XbtRGb qxsd a84NUc CQKTwc mod']");  //20-03-2020
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='c94Vsf Y1mqLe kp-rgc']");  // 20-03-2020
             if (nd != null)
             {
                 string hdr = "";
@@ -1691,8 +1697,9 @@ namespace TrackingTrending
                     {
                         if (n.InnerText.ToLower().Trim() == "videos" || n.InnerText.ToLower().Trim() == "video" || n.InnerText.Trim() == "فيديوهات")  // 16-12-2019
                             return "Videos";
-                        if (n.InnerText.ToLower().Trim() == "recipes")  // 18-12-2019
+                        if (n.InnerText.ToLower().Trim() == "recipes" || n.InnerText.ToLower().Trim() == "ricette")  // 20-03-2020 // 18-12-2019
                             return "Carousel";
+
                     }
                 }
                 if (ts)
@@ -1703,15 +1710,19 @@ namespace TrackingTrending
                 || node.SelectSingleNode(".//div[@class='nA3Vyd SBFvB']") != null || node.SelectSingleNode(".//div[@class='nJXhWc nA3Vyd']") != null) // 05-11-2019 // 07-02-2020  included selector for event block
                 return "Event";
 
-            //swapped 19-03-2020
-            nd = node.SelectSingleNode(".//div[contains(@class, ' knowledge-panel ')]");
+            //swapped 19-03-2020            
+            nd = node.SelectSingleNode(".//div[@class='kp-wholepage EyBRub ss6qqb mnr-c kp-wholepage-osrp']");//16-09-2019
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='oLO3I']");
+                nd = node.SelectSingleNode(".//div[@class='NFQFxe viOShc LKPcQc mod']");  //20-03-2020
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='kp-wholepage EyBRub ss6qqb mnr-c kp-wholepage-osrp']");//16-09-2019
+                nd = node.SelectSingleNode(".//div[@class='NFQFxe XbtRGb qxsd a84NUc CQKTwc mod']");  //20-03-2020
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='c94Vsf Y1mqLe kp-rgc']");  // 20-03-2020
             if (nd != null)
             {
-                return "KnowledgePanel";
+                nd = node.SelectSingleNode(".//div[@class='kp-blk nGydZ Wnoohf OJXvsb']");  // 20-03-2020
+                if (nd == null)
+                    return "KnowledgePanel";
             }
             //swapped 19-03-2020
 

@@ -46,7 +46,7 @@ namespace RapidTrackingSingleThread
         private void frmSingleThread_Load(object sender, EventArgs e)
         {
             
-            this.Text = "RapidTracking_SingleThread_102_GT20_WC";
+            this.Text = "RapidTracking_SingleThread_CoronaKeywords-2_102_GT20_WC";
             //this.Text = "RapidTracking_SingleThread_P_A_WOC_10-09-2019";
 
             Thread t = new Thread(new ThreadStart(StartProcess));
@@ -96,7 +96,6 @@ namespace RapidTrackingSingleThread
                             string device = src[3];
                             //File.WriteAllText(@"C:\inetpub\wwwroot\"+jobid+"_"+keyword+".html", html, Encoding.UTF8);
                             //File.WriteAllText(@"C:\inetpub\wwwroot\"+jobid+"_withOut filter_"+".html", html, Encoding.UTF8);
-
                             result = true;
                             doc = new HtmlAgilityPack.HtmlDocument();
                             doc.LoadHtml(html);
@@ -104,7 +103,7 @@ namespace RapidTrackingSingleThread
                             int count = 0;
                             try { 
                                     if (device == "desktop")
-                                    {
+                                   {
                                         Desktop clsDesktop = new Desktop();
                                         res = clsDesktop.ProcessDocument(seid, keyword, doc, out count);
                                     
@@ -290,7 +289,7 @@ namespace RapidTrackingSingleThread
                 //lstKWs.Items.Add("106:romeo and juliet tickets");
                 //lstKWs.Items.Add("160:malmö ff");
                 //lstKWs.Items.Add("102:terry crews");
-                //lstKWs.Items.Add("102:18k gold watch mens");
+                //lstKWs.Items.Add("1:coronavirus symptoms");
             });
             //return;
 
@@ -403,7 +402,7 @@ namespace RapidTrackingSingleThread
 
                     //throw new Exception(errorMessage);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     //throw ex;
                 }

@@ -96,7 +96,6 @@ namespace RapidTrackingSingleThread
                             string device = src[3];
                             //File.WriteAllText(@"C:\inetpub\wwwroot\"+jobid+"_"+keyword+".html", html, Encoding.UTF8);
                             //File.WriteAllText(@"C:\inetpub\wwwroot\"+jobid+"_withOut filter_"+".html", html, Encoding.UTF8);
-
                             result = true;
                             doc = new HtmlAgilityPack.HtmlDocument();
                             doc.LoadHtml(html);

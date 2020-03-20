@@ -31,7 +31,7 @@ namespace Oxylabs_BulkKeywords
             {
                 Name = "All_1"
                // Name = "Mobile_102_10"
-               //Name = "CommaKeywords_1"
+               //Name = "CommaKeywords_3"
             };
             t1.Start();
         }
@@ -40,7 +40,7 @@ namespace Oxylabs_BulkKeywords
         {
            string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking desktop and all keywords
             //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking mobile
-            //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
+           // string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
             //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobilehotel/";  // rapid tracking mobile
 
             //string url = "http://seresults.azurewebsites.net/api/callbackuk503desktoptemp/";

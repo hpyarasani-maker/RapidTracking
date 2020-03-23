@@ -62,7 +62,7 @@ namespace RapidTrackingSingleThread
                 //string myDate = "2019-11-20";
 
 
-                string kwQry = "[Tracking_DB_Keywords_Seid_104] '" + myDate + "'";               
+                string kwQry = "[Tracking_DB_Keywords_Seid_102] '" + myDate + "'";               
                 //string kwQry = "[Tracking_DB_Keywords_Seid_103p] '" + myDate + "'";               
                 //string kwQry = "[GetCommaKeywordsP] '" + myDate + "'";               
 
@@ -94,7 +94,7 @@ namespace RapidTrackingSingleThread
                             string html = obj["results"][0]["content"].Value<string>();
                             string jobid = src[2];
                             string device = src[3];
-                            //File.WriteAllText(@"C:\inetpub\wwwroot\"+jobid+"_"+keyword+".html", html, Encoding.UTF8);
+                            File.WriteAllText(@"C:\inetpub\wwwroot\"+jobid+"_"+keyword+".html", html, Encoding.UTF8);
                             //File.WriteAllText(@"C:\inetpub\wwwroot\"+jobid+"_withOut filter_"+".html", html, Encoding.UTF8);
                             result = true;
                             doc = new HtmlAgilityPack.HtmlDocument();
@@ -116,17 +116,17 @@ namespace RapidTrackingSingleThread
 
                                 if (!string.IsNullOrEmpty(res))
                                 {
-                                   // if (count > 0)
-                                   // {
+                                    if (count > 20)
+                                    {
                                         SendToAPI(seid, keyword, res, jobid);
                                         SendToDB(seid, keyword, res, jobid, count);
-                                  //  }
+                                    }
                                 }
-                                else
-                                {
-                                    SendToAPI(seid, keyword, res, jobid);
-                                    SendToDB(seid, keyword, res, jobid, count);
-                                }
+                                //else
+                                //{
+                                //    SendToAPI(seid, keyword, res, jobid);
+                                //    SendToDB(seid, keyword, res, jobid, count);
+                                //}
 
                             }
                             catch (Exception ex)
@@ -177,23 +177,23 @@ namespace RapidTrackingSingleThread
       
         private void SendToAPI(string seid, string kw, string res, string jobid)
        {
-            if (res == string.Empty)
-            {
-                XmlDocument xd = new XmlDocument();
-                res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
-                res += "<searchResult searchEngine =\"" + seid + "\" keyword=\"" + kw + "\" date =\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\">";
-                res += "<section col = \"main\" /> <section col=\"right\" /> </searchResult> ";
-                xd.LoadXml(res);
-                xd.Save(xmlPath);
-            }
-            else
-            {
+            //if (res == string.Empty)
+            //{
+            //    XmlDocument xd = new XmlDocument();
+            //    res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
+            //    res += "<searchResult searchEngine =\"" + seid + "\" keyword=\"" + kw + "\" date =\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\">";
+            //    res += "<section col = \"main\" /> <section col=\"right\" /> </searchResult> ";
+            //    xd.LoadXml(res);
+            //    xd.Save(xmlPath);
+            //}
+            //else
+            //{
                 XmlDocument xd = new XmlDocument();
                 res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + res;
                 xd.LoadXml(res);
                 xd.Save(xmlPath);
 
-            }
+           // }
             //SendToURL
 
 
@@ -289,9 +289,9 @@ namespace RapidTrackingSingleThread
                 //lstKWs.Items.Add("106:romeo and juliet tickets");
                 //lstKWs.Items.Add("160:malmö ff");
                 //lstKWs.Items.Add("102:terry crews");
-                //lstKWs.Items.Add("102:18k gold watch mens");
+                lstKWs.Items.Add("65:aab 89ers news");
             });
-            //return;
+            return;
 
             try
             {
@@ -402,7 +402,7 @@ namespace RapidTrackingSingleThread
 
                     //throw new Exception(errorMessage);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     //throw ex;
                 }

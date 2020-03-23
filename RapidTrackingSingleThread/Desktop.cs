@@ -1188,7 +1188,7 @@ namespace RapidTrackingSingleThread
         public string SetTitle(string unicodestring)
         {
             //return WebUtility.HtmlEncode(WebUtility.HtmlDecode(unicodestring));
-            return WebUtility.HtmlEncode(WebUtility.HtmlDecode(unicodestring)).Replace("\\x27", "'").Replace("\\\\u0026", "&amp;").Replace("\\\\\\x22", "&quot;");
+            return WebUtility.HtmlEncode(WebUtility.HtmlDecode(unicodestring)).Replace("\\x27", "'").Replace("\\\\u0026", "&amp;").Replace("\\\\\\x22", "&quot;").Replace("\x0C", "");
         }
 
         public string SetUrl(string url)
@@ -1198,7 +1198,7 @@ namespace RapidTrackingSingleThread
             if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e"))
                 url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
 
-            return WebUtility.HtmlEncode(url); //.Replace("&", "&amp;").Replace("&nbsp", "");
+            return WebUtility.HtmlEncode(url.Replace("\x0C", "")); //.Replace("&", "&amp;").Replace("&nbsp", "");
         }
 
     }

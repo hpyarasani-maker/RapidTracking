@@ -41,6 +41,8 @@ namespace RapidTrackingSingleThread
                 nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");
             if (nodeCol == null)
                 nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div"); //13-03-2020
+            if (nodeCol == null)
+                nodeCol = doc.DocumentNode.SelectNodes("//div[@class='vC5Ym DhKAUb']/div"); //23-03-2020 updated selector for corona keywords
 
             //if (nodeCol == null) throw new Exception("No block found.");
             if (nodeCol == null) return string.Empty;                      

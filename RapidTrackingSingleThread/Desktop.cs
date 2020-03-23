@@ -15,9 +15,11 @@ namespace RapidTrackingSingleThread
         string html;
         public string ProcessDocument(string seid, string keyword, HtmlDocument doc, out int count)
         { 
+
+            //updated class file - 23-03-2020
             //03-03-2020
             count = 0;
-            //if (doc == null) throw new Exception("No source found.");
+            if (doc == null) throw new Exception("No source found.");
             HtmlNode htmlNode = doc.DocumentNode.SelectSingleNode("//table[@id='mn']");
             if (htmlNode != null)
             {
@@ -40,8 +42,9 @@ namespace RapidTrackingSingleThread
             if (nodeCol == null)
                 nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");
             if (nodeCol == null)
-                nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div"); //13-03-2020
-                     
+                nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div"); //13-03-2020  
+
+            
 
             foreach (HtmlNode node in nodeCol)
             {
@@ -82,10 +85,8 @@ namespace RapidTrackingSingleThread
                 }
             }
             // 23-03-2020
-
             if (nodeCol == null) throw new Exception("No block found.");
-
-            //if (nodeCol == null) return string.Empty;                      
+            //if (nodeCol == null) return string.Empty;
             //if (nodeCol == null) goto BOTTOMSTUFF; 
 
             //if (orgLinks < count)
@@ -1105,7 +1106,9 @@ namespace RapidTrackingSingleThread
 
             if (!bVal)
             {
+               
                 HtmlNode nd = node.SelectSingleNode(".//h3|.//div[@class='HnYYW i8lZMc']");  // 23-03-2020
+
                 if (nd != null)
                     if (nd.InnerText == "Top stories" || nd.InnerText == "Videos")  // 18-03-2020
                         return true;

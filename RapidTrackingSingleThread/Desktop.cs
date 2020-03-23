@@ -15,6 +15,8 @@ namespace RapidTrackingSingleThread
         string html;
         public string ProcessDocument(string seid, string keyword, HtmlDocument doc, out int count)
         { 
+
+            //updated class file - 23-03-2020
             //03-03-2020
             count = 0;
             if (doc == null) throw new Exception("No source found.");

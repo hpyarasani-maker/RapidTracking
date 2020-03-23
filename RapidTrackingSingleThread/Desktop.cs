@@ -17,7 +17,7 @@ namespace RapidTrackingSingleThread
         { 
             //03-03-2020
             count = 0;
-            //if (doc == null) throw new Exception("No source found.");
+            if (doc == null) throw new Exception("No source found.");
             HtmlNode htmlNode = doc.DocumentNode.SelectSingleNode("//table[@id='mn']");
             if (htmlNode != null)
             {
@@ -40,16 +40,16 @@ namespace RapidTrackingSingleThread
             if (nodeCol == null)
                 nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");
             if (nodeCol == null)
-                nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div"); //13-03-2020
-            if (nodeCol == null)
-                nodeCol = doc.DocumentNode.SelectNodes("//div[@class='vC5Ym DhKAUb']/div"); //23-03-2020 updated selector for corona keywords
+                nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div"); //13-03-2020  
 
-            //if (nodeCol == null) throw new Exception("No block found.");
-            if (nodeCol == null) return string.Empty;                      
-            //if (nodeCol == null) goto BOTTOMSTUFF; 
+            
 
             foreach (HtmlNode node in nodeCol)
             {
+                if (node.HasClass("kp-wholepage")) // 23-03-2020
+                {
+                    continue;
+                }
                 try
                 {
                     if (node.InnerHtml != "")
@@ -63,6 +63,29 @@ namespace RapidTrackingSingleThread
                 catch { }
             }
 
+            // 23-03-2020
+            if (string.IsNullOrEmpty(ndText))
+            {
+                nodeCol = doc.DocumentNode.SelectNodes("//div[@class='xVtsMb i6u2Cc']|//div[@class='xVtsMb']/div/div");
+                foreach (HtmlNode node in nodeCol)
+                {
+                    try
+                    {
+                        if (node.InnerHtml != "")
+                        {
+                            string s = ProcessNode(node);
+                            ndText += s;
+                            if (s.Length > 0)
+                                sb.Append(s);
+                        }
+                    }
+                    catch { }
+                }
+            }
+            // 23-03-2020
+            if (nodeCol == null) throw new Exception("No block found.");
+            //if (nodeCol == null) return string.Empty;
+            //if (nodeCol == null) goto BOTTOMSTUFF; 
 
             //if (orgLinks < count)
             //    return string.Empty;
@@ -1053,6 +1076,7 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@class='_Zfh']") != null   // twitters
                 || node.SelectSingleNode(".//div[@class='Brgz0 tw-res']") != null   // twitters                
                 || node.SelectSingleNode(".//div[@class='_OKe']") != null   // answer card / people also ask
+                || node.SelectSingleNode(".//div[@class='vkc_np kkww4d']") != null   // 23-03-2020
                 || node.SelectSingleNode(".//div[@class='k9uN1c kfn9hb']") != null//24-10-2019
                  || node.SelectSingleNode(".//div[@class='HaXvv kfn9hb']") != null//07-02-2020 included selector people also ask block
                 || (node.SelectSingleNode(".//div[@class='ifM9O']") != null && node.SelectSingleNode(".//div[@class='Wnoohf OJXvsb']") == null)   // answer card  
@@ -1080,7 +1104,9 @@ namespace RapidTrackingSingleThread
 
             if (!bVal)
             {
-                HtmlNode nd = node.SelectSingleNode(".//h3");
+               
+                HtmlNode nd = node.SelectSingleNode(".//h3|.//div[@class='HnYYW i8lZMc']");  // 23-03-2020
+
                 if (nd != null)
                     if (nd.InnerText == "Top stories" || nd.InnerText == "Videos")  // 18-03-2020
                         return true;

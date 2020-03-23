@@ -137,9 +137,9 @@ namespace Oxylabs_BulkKeywords
 
             //string strQry = "exec [dbo].[GetBulkDesktop_58_2] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkMobile_102_2] '" + myDate + "'";
-            string strQry = "exec [dbo].[GetBulkDesktop_2] '" + myDate + "'";
+            //string strQry = "exec [dbo].[GetBulkDesktop_2] '" + myDate + "'";
            //string strQry = "exec [dbo].[GetBulkMobile_1] '" + myDate + "'";
-            //string strQry = "exec [dbo].[GetBulkDesktop_1_2] '" + myDate + "'";
+            string strQry = "exec [dbo].[GetBulkDesktop_1_2] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkMobile_Hotel] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetCommaKeywords_Hotel] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkMobile_NotHotel] '" + myDate + "'";
@@ -149,7 +149,7 @@ namespace Oxylabs_BulkKeywords
             SqlConnection objCon = null;
             SqlDataReader objData = null;
 
-            try
+            trys
             {               
                 objCon = new SqlConnection(strConn());
                 objCon.Open();

@@ -57,6 +57,10 @@ namespace Oxylabs_BulkKeywords
 
             foreach (HtmlNode node in nodeCol)
             {
+                if (node.HasClass("kp-wholepage")) // 23-03-2020
+                {
+                    continue;
+                }
                 try
                 {
                     if (node.InnerHtml != "")
@@ -69,7 +73,26 @@ namespace Oxylabs_BulkKeywords
                 }
                 catch { }
             }
-
+            // 23-03-2020
+            if (string.IsNullOrEmpty(ndText))
+            {
+                nodeCol = doc.DocumentNode.SelectNodes("//div[@class='xVtsMb i6u2Cc']|//div[@class='xVtsMb']/div/div");
+                foreach (HtmlNode node in nodeCol)
+                {
+                    try
+                    {
+                        if (node.InnerHtml != "")
+                        {
+                            string s = ProcessNode(node);
+                            ndText += s;
+                            if (s.Length > 0)
+                                sb.Append(s);
+                        }
+                    }
+                    catch { }
+                }
+            }
+            // 23-03-2020
 
             //if (orgLinks < count)
             //    return string.Empty;
@@ -1058,6 +1081,7 @@ namespace Oxylabs_BulkKeywords
                 || node.SelectSingleNode(".//div[@class='_Zfh']") != null   // twitters
                 || node.SelectSingleNode(".//div[@class='Brgz0 tw-res']") != null   // twitters                
                 || node.SelectSingleNode(".//div[@class='_OKe']") != null   // answer card / people also ask
+                 || node.SelectSingleNode(".//div[@class='vkc_np kkww4d']") != null   // 23-03-2020
                 || node.SelectSingleNode(".//div[@class='k9uN1c kfn9hb']") != null//24-10-2019
                  || node.SelectSingleNode(".//div[@class='HaXvv kfn9hb']") != null//07-02-2020 included selector people also ask block
                 || (node.SelectSingleNode(".//div[@class='ifM9O']") != null && node.SelectSingleNode(".//div[@class='Wnoohf OJXvsb']") == null)   // answer card  
@@ -1085,7 +1109,7 @@ namespace Oxylabs_BulkKeywords
 
             if (!bVal)
             {
-                HtmlNode nd = node.SelectSingleNode(".//h3");
+                HtmlNode nd = node.SelectSingleNode(".//h3|.//div[@class='HnYYW i8lZMc']");  // 23-03-2020
                 if (nd != null)
                     if (nd.InnerText == "Top stories" || nd.InnerText == "Videos")  // 18-03-2020
                         return true;

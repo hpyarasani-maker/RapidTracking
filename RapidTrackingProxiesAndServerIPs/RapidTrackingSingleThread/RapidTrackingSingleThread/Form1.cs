@@ -23,7 +23,7 @@ namespace RapidTrackingSingleThread
 
         ArrayList seresults = new ArrayList();
 
-        string xmlPath = "C:\\inetpub\\wwwroot\\Remaining_103_WC_Proxies.xml";
+        string xmlPath = "C:\\inetpub\\wwwroot\\Remaining_103_WOC_Proxies.xml";
 
 
         public string myDate = string.Empty;
@@ -76,7 +76,7 @@ namespace RapidTrackingSingleThread
             date_picker.CustomFormat = "yyyy-MM-dd";
             string myDate = date_picker.Text;
             //return;
-            string strSql = "exec [dbo].[Tracking_DB_Keywords_SEID_102] '" + myDate + "'";//changes        
+            string strSql = "exec [dbo].[Tracking_DB_Keywords_SEID_103] '" + myDate + "'";//changes        
 
             SqlConnection objCon = null;
             SqlDataReader objData = null;
@@ -209,22 +209,19 @@ namespace RapidTrackingSingleThread
                 sw.Write(seresults[0]); //updated to string array [0] //20-01-2020
                 sw.Close();
             }
+           
 
             if (myDate != "")
             {
                 try
                 {
                     int rescount2 = int.Parse(seresults[1]);
-                    if (rescount2 > 20)
-                    {
+                   // if (rescount2 > 0)
+                   // {
                         SendToAPI(seid, kn, seresults[0]);
                         SendToDB(seid, kn, seresults[0], int.Parse(seresults[1]));
-                    }
-                    //else
-                    //{
-                    //    SendToAPI(seid, kn, seresults[0]);
-                    //    SendToDB(seid, kn, seresults[0], int.Parse(seresults[1]));
-                    //}
+                   // }
+                    
                 }
                 catch (Exception ex)
                 {
@@ -268,22 +265,22 @@ namespace RapidTrackingSingleThread
 
         private void SendToAPI(string seid, string kw, string res)
         {
-            //if (res == string.Empty)
-            //{
-            //    XmlDocument xd = new XmlDocument();
-            //    res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
-            //    res += "<searchResult searchEngine =\"" + seid + "\" keyword=\"" + kw + "\" date =\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\">";
-            //    res += "<section col = \"main\" /> <section col=\"right\" /> </searchResult> ";
-            //    xd.LoadXml(res);
-            //    xd.Save(xmlPath);
-            //}
-            //else
-            //{
+            if (res == string.Empty)
+            {
+                XmlDocument xd = new XmlDocument();
+                res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
+                res += "<searchResult searchEngine =\"" + seid + "\" keyword=\"" + kw + "\" date =\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\">";
+                res += "<section col = \"main\" /> <section col=\"right\" /> </searchResult> ";
+                xd.LoadXml(res);
+                xd.Save(xmlPath);
+            }
+            else
+            {
                 XmlDocument xd = new XmlDocument();
                 res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + res;
                 xd.LoadXml(res);
                 xd.Save(xmlPath);
-            //}
+            }
             //SendToURL
             //return;
             string submitURL = readAPI();

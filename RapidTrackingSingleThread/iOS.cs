@@ -16,7 +16,7 @@ namespace RapidTrackingSingleThread
         {
             count = 0;
 
-            if (doc == null) throw new Exception("No source found.");
+            //if (doc == null) throw new Exception("No source found.");
 
             orgLinks = 0;
             string ndText = "";
@@ -40,8 +40,8 @@ namespace RapidTrackingSingleThread
             //if (nodeCol == null)
             //    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");
 
-            if (nodeCol == null) throw new Exception("No block found.");
-            //if (nodeCol == null) return string.Empty; 
+            //if (nodeCol == null) throw new Exception("No block found.");
+            if (nodeCol == null) return string.Empty; 
             //if (nodeCol == null) goto BOTTOMSTUFF;             
 
             foreach (HtmlNode node in nodeCol)

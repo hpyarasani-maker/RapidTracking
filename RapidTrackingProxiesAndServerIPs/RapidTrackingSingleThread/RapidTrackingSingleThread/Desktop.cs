@@ -17,7 +17,7 @@ namespace RapidTrackingSingleThread
         public string ProcessDocument(string seid, string keyword, HtmlDocument doc)
         {
             count = 0;
-            if (doc == null) throw new Exception("No source found.");
+            //if (doc == null) throw new Exception("No source found.");
 
             HtmlNode htmlNode = doc.DocumentNode.SelectSingleNode("//table[@id='mn']");
             if (htmlNode != null)
@@ -44,8 +44,8 @@ namespace RapidTrackingSingleThread
             if (nodeCol == null)
                 nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div"); //13-03-2020
 
-            if (nodeCol == null) throw new Exception("No block found.");
-
+            //if (nodeCol == null) throw new Exception("No block found.");
+            if (nodeCol == null) return string.Empty;
             //if (nodeCol == null) goto BOTTOMSTUFF; 
 
             try

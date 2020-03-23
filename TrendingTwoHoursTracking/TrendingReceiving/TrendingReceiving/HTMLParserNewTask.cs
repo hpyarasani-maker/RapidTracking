@@ -26,15 +26,15 @@ namespace TrendingReceiving
 
             Thread t1 = new Thread(new ThreadStart(StartProcess))
             {
-                Name = "twd_1"
+                Name = "twm_2"
             };
             t1.Start();
         }
 
         private void StartProcess()
         {
-            string url = "http://seresults.azurewebsites.net/api/callbacktrendingdesktop/";       // Desktop
-            //string url = "http://seresults.azurewebsites.net/api/callbacktrendingmobile/";       // Mobile
+            //string url = "http://seresults.azurewebsites.net/api/callbacktrendingdesktop/";       // Desktop
+            string url = "http://seresults.azurewebsites.net/api/callbacktrendingmobile/";       // Mobile
 
 
             WebClient client = new WebClient();

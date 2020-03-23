@@ -113,7 +113,7 @@ namespace TrendingDesktopSingleThread
 
                                 if (!string.IsNullOrEmpty(res))
                                 {
-                                   // if (count > 0)
+                                   // if (count > 0)  // for remaining keywords
                                    // {
                                         SendDesktopToAPI1(seid, keyword, res);
                                         SendToDB(seid, keyword, res);

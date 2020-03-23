@@ -111,15 +111,16 @@ namespace TrendingMobileSingleThread
 
                             if (!string.IsNullOrEmpty(res))
                             {
-                                if (count > 0)
-                                {
+                               // if (count > 0)   //condition is for remaining keywords
+                               // {
                                     SendiOSToAPI(seid, keyword, res);
                                     SendToDB(seid, keyword, res);
-                                }
+                               // }
                             }
                             
+
+                            }
                         }
-                    }
                     catch (Exception ex)
                     {
                         this.Invoke((MethodInvoker)delegate ()

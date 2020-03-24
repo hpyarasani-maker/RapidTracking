@@ -19,7 +19,7 @@ namespace RapidTrackingSingleThread
 {
     public partial class frmSingleThread : Form
     {
-        string xmlPath = "C:\\inetpub\\wwwroot\\rapidtracking_singlethread_104_503_WOC.xml";        
+        string xmlPath = "C:\\inetpub\\wwwroot\\rapidtracking_singlethread_102_GT20_WC.xml";        
 
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
        
@@ -46,7 +46,7 @@ namespace RapidTrackingSingleThread
         private void frmSingleThread_Load(object sender, EventArgs e)
         {
             
-            this.Text = "RapidTracking_SingleThread_104_503_WOC";
+            this.Text = "RapidTracking_SingleThread_102_GT20_WC";
             //this.Text = "RapidTracking_SingleThread_P_A_WOC_10-09-2019";
 
             Thread t = new Thread(new ThreadStart(StartProcess));
@@ -94,7 +94,7 @@ namespace RapidTrackingSingleThread
                             string html = obj["results"][0]["content"].Value<string>();
                             string jobid = src[2];
                             string device = src[3];
-                            File.WriteAllText(@"C:\inetpub\wwwroot\"+jobid+"_"+keyword+".html", html, Encoding.UTF8);
+                            //File.WriteAllText(@"C:\inetpub\wwwroot\"+jobid+"_"+keyword+".html", html, Encoding.UTF8);
                             //File.WriteAllText(@"C:\inetpub\wwwroot\"+jobid+"_withOut filter_"+".html", html, Encoding.UTF8);
                             result = true;
                             doc = new HtmlAgilityPack.HtmlDocument();
@@ -289,9 +289,9 @@ namespace RapidTrackingSingleThread
                 //lstKWs.Items.Add("106:romeo and juliet tickets");
                 //lstKWs.Items.Add("160:malmö ff");
                 //lstKWs.Items.Add("102:terry crews");
-                lstKWs.Items.Add("1:Coronavirus disease 2020");
+                //lstKWs.Items.Add("1:Coronavirus disease 2020");
             });
-            return;
+            //return;
 
             try
             {

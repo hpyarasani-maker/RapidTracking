@@ -84,7 +84,7 @@ namespace Oxylabs_BulkKeywords
             string password = "sdV5X3fcX6";
             string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
 
-            string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking other desktop
+            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking other desktop
             //string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking other mobile
             //string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
             //string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobilehotel/";
@@ -94,7 +94,7 @@ namespace Oxylabs_BulkKeywords
 
             //string callbackURL = "http://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58
             //string callbackURL = "http://seresults.azurewebsites.net/api/callbackuk106mobile/";       // 106
-            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackus1desktop/";     // 1            
+            string callbackURL = "http://seresults.azurewebsites.net/api/callbackus1desktop/";     // 1            
             //string callbackURL = "http://seresults.azurewebsites.net/api/callbackus102mobile/";     // 102
             //string callbackURL = "http://seresults.azurewebsites.net/api/callbackotherdesktop/";  // other desktop
             //string callbackURL = "http://seresults.azurewebsites.net/api/callbackothermobile/";  // other mobile

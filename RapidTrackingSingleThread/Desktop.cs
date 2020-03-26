@@ -1162,7 +1162,7 @@ namespace RapidTrackingSingleThread
             if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e"))
                 url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
 
-            return WebUtility.HtmlEncode((url.Replace("\x00", "%00")).Replace("\\\\u003d", "=");
+            return WebUtility.HtmlEncode(url.Replace("\x00", "%00")).Replace("\\\\u003d", "=");
         }
 
         public static string CleanInvalidXmlChars(string text)

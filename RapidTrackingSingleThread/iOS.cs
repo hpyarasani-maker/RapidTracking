@@ -14,11 +14,9 @@ namespace RapidTrackingSingleThread
         string html;
         public string ProcessDocument(string seid, string keyword, HtmlDocument doc, out int count)
         {
-
-            //development branch
             count = 0;
 
-            //if (doc == null) throw new Exception("No source found.");
+            if (doc == null) throw new Exception("No source found.");
 
             orgLinks = 0;
             string ndText = "";
@@ -42,8 +40,8 @@ namespace RapidTrackingSingleThread
             //if (nodeCol == null)
             //    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");
 
-            //if (nodeCol == null) throw new Exception("No block found.");
-            if (nodeCol == null) return string.Empty; 
+            if (nodeCol == null) throw new Exception("No block found.");
+            //if (nodeCol == null) return string.Empty; 
             //if (nodeCol == null) goto BOTTOMSTUFF;             
 
             foreach (HtmlNode node in nodeCol)
@@ -2181,15 +2179,6 @@ namespace RapidTrackingSingleThread
                 url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
 
             return WebUtility.HtmlEncode(url.Replace("\x00", "%00")).Replace("\\\\u003d", "=");
-        }
-
-        public static string CleanInvalidXmlChars(string text)
-        {
-            // From xml spec valid chars: 
-            // #x9 | #xA | #xD | [#x20-#xD7FF] | [#xE000-#xFFFD] | [#x10000-#x10FFFF]     
-            // any Unicode character, excluding the surrogate blocks, FFFE, and FFFF. 
-            string re = @"[^\x09\x0A\x0D\x20-\xD7FF\xE000-\xFFFD\x10000-x10FFFF]";
-            return Regex.Replace(text, re, "");
         }
 
     }

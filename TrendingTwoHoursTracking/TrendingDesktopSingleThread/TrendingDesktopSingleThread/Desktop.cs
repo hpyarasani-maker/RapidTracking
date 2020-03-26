@@ -1162,17 +1162,11 @@ namespace TrendingDesktopSingleThread
             if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e"))
                 url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
 
-            return WebUtility.HtmlEncode(url.Replace("\x00", "%00")).Replace("\\\\u003d", "=");
+            return WebUtility.HtmlEncode(url.Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Trim();  //26-03-2020
+
         }
 
-        public static string CleanInvalidXmlChars(string text)
-        {
-            // From xml spec valid chars: 
-            // #x9 | #xA | #xD | [#x20-#xD7FF] | [#xE000-#xFFFD] | [#x10000-#x10FFFF]     
-            // any Unicode character, excluding the surrogate blocks, FFFE, and FFFF. 
-            string re = @"[^\x09\x0A\x0D\x20-\xD7FF\xE000-\xFFFD\x10000-x10FFFF]";
-            return Regex.Replace(text, re, "");
-        }
+
 
     }
 }

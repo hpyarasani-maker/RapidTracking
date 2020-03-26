@@ -1164,7 +1164,8 @@ namespace Oxylabs_BulkKeywords
             if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e"))
                 url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
 
-            return WebUtility.HtmlEncode(url.Replace("\x00", "%00")).Replace("\\\\u003d", "=");
+            return WebUtility.HtmlEncode(url.Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Trim();  //26-03-2020
+
         }
 
     }

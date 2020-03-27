@@ -34,11 +34,11 @@ namespace Oxylabs_BulkKeywords
                
         private void Form1_Load(object sender, EventArgs e)
         {
-            Text = "D_Oxylabs_TrackingTrending_KwdSending_106_2";
+            //Text = "D_Oxylabs_TrackingTrending_KwdSending_106_2";
             //Text = "D_Oxylabs_TrackingTrending_KwdSending_102_2";
             //Text = "D_Oxylabs_TrackingTrending_KwdSending_OtherMobile_2";
             // Text = "D_Oxylabs_TrackingTrending_KwdSending_OtherDesktop_2";
-            //Text = "D_Oxylabs_RapidTracking_KwdSending_Desktop_2";
+            Text = "D_Oxylabs_RapidTracking_RecieveDesktop_1";
 
             //Text = "D_Oxylabs_TrackingTrending_KwdSending_58_2";
 

@@ -32,7 +32,7 @@ namespace Oxylabs_BulkKeywords
                // Name = "All_1"
                // Name = "Mobile_102_10"
                //Name = "CommaKeywords_3"
-               Name = "GoogleUK_20"
+               Name = "GoogleUS_1"
             };
             t1.Start();
         }
@@ -47,9 +47,9 @@ namespace Oxylabs_BulkKeywords
             //string url = "http://seresults.azurewebsites.net/api/callbackuk503desktoptemp/";
             //string url = "http://seresults.azurewebsites.net/api/trackingtrending/";
 
-            string url = "http://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58
+            //string url = "http://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58
             //string url = "http://seresults.azurewebsites.net/api/callbackuk106mobile/";      // 106
-            //string url = "http://seresults.azurewebsites.net/api/callbackus1desktop/";     // 1
+            string url = "http://seresults.azurewebsites.net/api/callbackus1desktop/";     // 1
             //string url = "http://seresults.azurewebsites.net/api/callbackus102mobile/";      // 102
             //string url = "http://seresults.azurewebsites.net/api/callbackotherdesktop/";  // other desktop
             //string url = "http://seresults.azurewebsites.net/api/callbackothermobile/";   // other mobiles

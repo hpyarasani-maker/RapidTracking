@@ -16,7 +16,7 @@ namespace RapidTrackingSingleThread
         {
             count = 0;
 
-            if (doc == null) throw new Exception("No source found.");
+            //if (doc == null) throw new Exception("No source found.");
 
             orgLinks = 0;
             string ndText = "";
@@ -40,8 +40,8 @@ namespace RapidTrackingSingleThread
             //if (nodeCol == null)
             //    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");
 
-            if (nodeCol == null) throw new Exception("No block found.");
-            //if (nodeCol == null) return string.Empty; 
+            //if (nodeCol == null) throw new Exception("No block found.");
+            if (nodeCol == null) return string.Empty; 
             //if (nodeCol == null) goto BOTTOMSTUFF;             
 
             foreach (HtmlNode node in nodeCol)
@@ -2178,7 +2178,9 @@ namespace RapidTrackingSingleThread
             if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e"))
                 url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
 
-            return WebUtility.HtmlEncode(url.Replace("\x00", "%00")).Replace("\\\\u003d", "=");
+            //return WebUtility.HtmlEncode(url.Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\f', ' ').Trim();
+            return WebUtility.HtmlEncode(url.Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim();  //26-03-2020 updated converting hexadecimal codes
+
         }
 
     }

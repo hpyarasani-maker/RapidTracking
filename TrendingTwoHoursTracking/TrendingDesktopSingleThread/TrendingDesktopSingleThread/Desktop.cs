@@ -60,6 +60,10 @@ namespace TrendingDesktopSingleThread
 
             foreach (HtmlNode node in nodeCol)
             {
+                if (node.HasClass("kp-wholepage"))
+                {
+                    continue;
+                }
                 try
                 {
                     if (node.InnerHtml != "")

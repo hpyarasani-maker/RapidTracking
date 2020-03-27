@@ -34,15 +34,15 @@ namespace Oxylabs_BulkKeywords
                
         private void Form1_Load(object sender, EventArgs e)
         {
-            //Text = "D_Oxylabs_TrackingTrending_KwdSending_106_1";
+            //Text = "D_Oxylabs_TrackingTrending_KwdSending_106_2";
             //Text = "D_Oxylabs_TrackingTrending_KwdSending_102_2";
             //Text = "D_Oxylabs_TrackingTrending_KwdSending_OtherMobile_2";
-            // Text = "D_Oxylabs_TrackingTrending_KwdSending_OtherDesktop_1";
-            //Text = "D_Oxylabs_RapidTracking_KwdSending_Desktop_1";
+            // Text = "D_Oxylabs_TrackingTrending_KwdSending_OtherDesktop_2";
+            Text = "D_Oxylabs_RapidTracking_RecieveDesktop_1";
 
             //Text = "D_Oxylabs_TrackingTrending_KwdSending_58_2";
 
-            Text = "D_Oxylabs_TrackingTrending_KwdSending_All";
+            //Text = "D_Oxylabs_TrackingTrending_KwdSending_All";
             //Text = "D_Oxylabs_RapidTracking_KwdSending_Mobile_Yesterdays";
             //Text = "D_Oxylabs_RapidTracking_KwdSending_CommaKeywordsMobile_Hotels_1";
             //Text = "D_Oxylabs_RapidTracking_KwdSending_Mobile_Hotels_1";
@@ -135,17 +135,18 @@ namespace Oxylabs_BulkKeywords
             //string strQry = "exec [dbo].[GetBulkUKDesktop_Temp_1] '" + myDate + "'";    // seid: 503
             //string strQry = "exec [dbo].[GetBulk_All] '" + myDate + "'";
 
-            //string strQry = "exec [dbo].[GetBulkDesktop_58_2] '" + myDate + "'";
+           // string strQry = "exec [dbo].[GetBulkDesktop_58_2] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkMobile_102_2] '" + myDate + "'";
-           // string strQry = "exec [dbo].[GetBulkDesktop_2] '" + myDate + "'";
-           //string strQry = "exec [dbo].[GetBulkMobile_1] '" + myDate + "'";
-            string strQry = "exec [dbo].[GetBulkDesktop_1_1] '" + myDate + "'";
+            string strQry = "exec [dbo].[GetBulkMobile_106_2] '" + myDate + "'";
+            //string strQry = "exec [dbo].[GetBulkDesktop_2] '" + myDate + "'";
+            //string strQry = "exec [dbo].[GetBulkMobile_2] '" + myDate + "'";
+            // string strQry = "exec [dbo].[GetBulkDesktop_1_2] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkMobile_Hotel] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetCommaKeywords_Hotel] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkMobile_NotHotel] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetCommaKeywords] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulk_All] '" + myDate + "'";
-                       
+
             SqlConnection objCon = null;
             SqlDataReader objData = null;
 
@@ -234,7 +235,7 @@ namespace Oxylabs_BulkKeywords
                     progress_lbl.Refresh();
                     lblIP.Text = ts.TotalSeconds.ToString();
                });
-               //Thread.Sleep(60000);
+               Thread.Sleep(45000);
             }
         }
         

@@ -40,9 +40,13 @@ namespace RapidTrackingMultithread
                 nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");
             if (nodeCol == null)
                 nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div"); //13-03-2020
-          
+
             foreach (HtmlNode node in nodeCol)
             {
+                if (node.HasClass("kp-wholepage"))
+                {
+                    continue;
+                }
                 try
                 {
                     if (node.InnerHtml != "")

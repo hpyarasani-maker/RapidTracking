@@ -44,13 +44,16 @@ namespace RapidTrackingSingleThread
             if (nodeCol == null)
                 nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div"); //13-03-2020
 
-            
 
-            try
+
+            foreach (HtmlNode node in nodeCol)
             {
-                foreach (HtmlNode node in nodeCol)
+                if (node.HasClass("kp-wholepage"))
                 {
-
+                    continue;
+                }
+                try
+                {
                     if (node.InnerHtml != "")
                     {
                         string s = ProcessNode(node);
@@ -59,8 +62,8 @@ namespace RapidTrackingSingleThread
                             sb.Append(s);
                     }
                 }
+                catch { }
             }
-            catch { }
 
             // 23-03-2020
             if (string.IsNullOrEmpty(ndText))

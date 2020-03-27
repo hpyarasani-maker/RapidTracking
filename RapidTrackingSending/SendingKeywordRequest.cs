@@ -93,8 +93,8 @@ namespace Oxylabs_BulkKeywords
             //string callbackURL = "http://seresults.azurewebsites.net/api/trackingtrending/";
 
             //string callbackURL = "http://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58
-            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackuk106mobile/";       // 106
-            string callbackURL = "http://seresults.azurewebsites.net/api/callbackus1desktop/";     // 1            
+            string callbackURL = "http://seresults.azurewebsites.net/api/callbackuk106mobile/";       // 106
+            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackus1desktop/";     // 1            
             //string callbackURL = "http://seresults.azurewebsites.net/api/callbackus102mobile/";     // 102
             //string callbackURL = "http://seresults.azurewebsites.net/api/callbackotherdesktop/";  // other desktop
             //string callbackURL = "http://seresults.azurewebsites.net/api/callbackothermobile/";  // other mobile

@@ -29,16 +29,17 @@ namespace Oxylabs_BulkKeywords
 
             Thread t1 = new Thread(new ThreadStart(StartProcess))
             {
-                Name = "All_1"
+               // Name = "All_1"
                // Name = "Mobile_102_10"
                //Name = "CommaKeywords_3"
+               Name = "GoogleUK_20"
             };
             t1.Start();
         }
 
         private void StartProcess()
         {
-           string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking desktop and all keywords
+            // string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking desktop and all keywords
             //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking mobile
            // string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
             //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobilehotel/";  // rapid tracking mobile
@@ -46,7 +47,7 @@ namespace Oxylabs_BulkKeywords
             //string url = "http://seresults.azurewebsites.net/api/callbackuk503desktoptemp/";
             //string url = "http://seresults.azurewebsites.net/api/trackingtrending/";
 
-            //string url = "http://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58
+            string url = "http://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58
             //string url = "http://seresults.azurewebsites.net/api/callbackuk106mobile/";      // 106
             //string url = "http://seresults.azurewebsites.net/api/callbackus1desktop/";     // 1
             //string url = "http://seresults.azurewebsites.net/api/callbackus102mobile/";      // 102

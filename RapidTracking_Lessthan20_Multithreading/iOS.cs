@@ -1280,6 +1280,8 @@ namespace TrackingTrending
                 nd = node.SelectSingleNode(".//div[@class='NFQFxe XbtRGb qxsd a84NUc CQKTwc mod']");  //20-03-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='c94Vsf Y1mqLe kp-rgc']");  // 20-03-2020
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='Uyhxfe ZdjxGf']");  // 30-03-2020
             if (nd != null)
             {
                 string hdr = "";
@@ -1291,6 +1293,8 @@ namespace TrackingTrending
                     hdrNode = nd.SelectSingleNode(".//div[@class='gsrt TCmnBf']");
                 if (hdrNode == null)//26-09-2019
                     hdrNode = nd.SelectSingleNode(".//div[@class='SPZz6b']/div");//26-09-2019
+                if (hdrNode == null)
+                    hdrNode = nd.SelectSingleNode(".//div[@class='cX4Std B7U7kd']"); //30-03-2020
                 if (hdrNode != null)
                     hdr = hdrNode.InnerText;
 
@@ -1718,6 +1722,8 @@ namespace TrackingTrending
                 nd = node.SelectSingleNode(".//div[@class='NFQFxe XbtRGb qxsd a84NUc CQKTwc mod']");  //20-03-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='c94Vsf Y1mqLe kp-rgc']");  // 20-03-2020
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='Uyhxfe ZdjxGf']");  // 30-03-2020
             if (nd != null)
             {
                 nd = node.SelectSingleNode(".//div[@class='kp-blk nGydZ Wnoohf OJXvsb']");  // 20-03-2020
@@ -1982,6 +1988,9 @@ namespace TrackingTrending
                 nd = node.SelectSingleNode(".//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']");
             if (nd != null)
             {
+                //30-03-2020
+                if (node.SelectSingleNode(".//div[@class='g card-section jiwmWe']") != null)
+                    return false;
                 return true;
             }
 

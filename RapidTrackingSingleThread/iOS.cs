@@ -1992,6 +1992,9 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']");
             if (nd != null)
             {
+                //30-03-2020
+                if (node.SelectSingleNode(".//div[@class='g card-section jiwmWe']") != null)
+                    return false;
                 return true;
             }
 

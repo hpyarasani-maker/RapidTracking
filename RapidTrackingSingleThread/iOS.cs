@@ -485,10 +485,13 @@ namespace RapidTrackingSingleThread
                             n = nd.SelectSingleNode(".//div[@class='d5oMvf KJDcUb WzRKRb']/a");  // 29-11-2019
                         if (n == null)
                             n = nd.SelectSingleNode(".//div/a[@class='V0MxL']");    // changes on 28-06-2019
+                        if (n == null)
+                            n = nd.SelectSingleNode(".//a[@jsname='wOJZib']");  // 01-04-2020
                         if (n != null)
                         {
                             string title = (n.SelectSingleNode(".//h3") != null) ? n.SelectSingleNode(".//h3").InnerText
                                 : (n.SelectSingleNode(".//div[@role='heading']") != null) ? n.SelectSingleNode(".//div[@role='heading']").InnerText
+                                : (n.SelectSingleNode(".//div[@class='mdzVfb gAWudd']") != null) ? n.SelectSingleNode(".//div[@class='mdzVfb gAWudd']").InnerText  // 01-04-2020
                                 : n.InnerText;
 
                             if (!n.Attributes["href"].Value.StartsWith("/"))

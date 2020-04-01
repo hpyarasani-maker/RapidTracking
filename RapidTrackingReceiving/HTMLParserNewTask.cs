@@ -15,12 +15,13 @@ namespace Oxylabs_BulkKeywords
 {
     class HTMLParserNewTask
     {
-        Desktop desktop ;
-        iOS ios ;
+        Desktop desktop;
+        iOS ios;
         string statusCode = string.Empty;
         readonly string myDate = DateTime.Today.ToString("yyyy-MM-dd");
 
         public event KeywordDone OnKeywordDone;
+        double apitime, dbtime;    // 31-03-2020
 
         public HTMLParserNewTask()
         {
@@ -29,27 +30,25 @@ namespace Oxylabs_BulkKeywords
 
             Thread t1 = new Thread(new ThreadStart(StartProcess))
             {
-               // Name = "All_1"
-               // Name = "Mobile_102_10"
-               //Name = "CommaKeywords_3"
-               Name = "GoogleUS_1"
+                Name = "All_1"
+                // Name = "Mobile_102_10"
+                //Name = "CommaKeywords_3"
             };
             t1.Start();
         }
 
         private void StartProcess()
         {
-            // string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking desktop and all keywords
-            //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking mobile
+            string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking desktop and all keywords
+           //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking mobile
            // string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
             //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobilehotel/";  // rapid tracking mobile
-
             //string url = "http://seresults.azurewebsites.net/api/callbackuk503desktoptemp/";
             //string url = "http://seresults.azurewebsites.net/api/trackingtrending/";
 
             //string url = "http://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58
             //string url = "http://seresults.azurewebsites.net/api/callbackuk106mobile/";      // 106
-            string url = "http://seresults.azurewebsites.net/api/callbackus1desktop/";     // 1
+            //string url = "http://seresults.azurewebsites.net/api/callbackus1desktop/";     // 1
             //string url = "http://seresults.azurewebsites.net/api/callbackus102mobile/";      // 102
             //string url = "http://seresults.azurewebsites.net/api/callbackotherdesktop/";  // other desktop
             //string url = "http://seresults.azurewebsites.net/api/callbackothermobile/";   // other mobiles
@@ -64,26 +63,26 @@ namespace Oxylabs_BulkKeywords
             Uri ul = new Uri(url);
             WebClient client = new WebClient();
             while (true)
-            {                
+            {
                 try
                 {
                     statusCode = string.Empty;
-                    string response = string.Empty; 
+                    string response = string.Empty;
                     client.Encoding = Encoding.UTF8;
-                  
-                    response = client.DownloadString(url);                   
+
+                    response = client.DownloadString(url);
                     if (response != "null")
                         DoProcess(response);
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("# EXCEPTION #  " + ex.Message);                    
+                    Console.WriteLine("# EXCEPTION #  " + ex.Message);
                 }
-            }            
+            }
         }
 
         private void DoProcess(string resp)
-        {         
+        {
             JObject job = JObject.Parse(resp);
             string status = job["status"].Value<string>();
             string kw = job["query"].Value<string>();
@@ -96,7 +95,7 @@ namespace Oxylabs_BulkKeywords
             try
             {
                 string username = "gpidatametrics";
-                string password = "sdV5X3fcX6";                
+                string password = "sdV5X3fcX6";
 
                 if (status == "done")
                 {
@@ -104,7 +103,7 @@ namespace Oxylabs_BulkKeywords
                     HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(resURL);
                     string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
                     httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
-                    HttpWebResponse res = (HttpWebResponse) httpWebRequest.GetResponse();
+                    HttpWebResponse res = (HttpWebResponse)httpWebRequest.GetResponse();
                     Stream resStream = res.GetResponseStream();
                     StreamReader reader = new StreamReader(resStream, Encoding.UTF8);
                     string response = reader.ReadToEnd();
@@ -125,15 +124,19 @@ namespace Oxylabs_BulkKeywords
                         else
                             result = ios.ProcessDocument(seid, kw, response, out orgUrls);
                     }
-                    catch (Exception ex )
+                    catch (Exception ex)
                     {
                         throw ex;
                     }
 
+                    // 31-03-2020
+                    apitime = 0.0;
+                    dbtime = 0.0;
+
                     if (!string.IsNullOrEmpty(seid))
                         ProcessResults(result, kw, seid, jobid, orgUrls);
 
-                    OnKeywordDone.Invoke(seid + ":  " + kw + ",  " + orgUrls + "^" + statusCode);
+                    OnKeywordDone.Invoke(seid + ":  " + kw + ",  " + orgUrls + "^" + statusCode + "^" + apitime + "^" + dbtime);    // 31-03-2020
                 }
             }
             catch (Exception ex)
@@ -150,7 +153,7 @@ namespace Oxylabs_BulkKeywords
                     }
                     finally { }
                 }
-                OnKeywordDone.Invoke("Error:  seid: " + seid + ",  keyword: " + kw + ",  jobid: " + jobid + "\r\n\t" + ex.Message + "^" + statusCode);                
+                OnKeywordDone.Invoke("Error:  seid: " + seid + ",  keyword: " + kw + ",  jobid: " + jobid + "\r\n\t" + ex.Message + "^" + statusCode + "^" + apitime + "^" + dbtime);    // 31-03-2020                
             }
         }
 
@@ -228,24 +231,34 @@ namespace Oxylabs_BulkKeywords
         }
 
         private void ProcessResults(string result, string kw, string seid, string jobid, int urlcount)
-        {                           
+        {
             if (string.IsNullOrEmpty(result))
             {
-                throw new Exception("No result."); 
+                throw new Exception("No result.");
             }
 
             try
             {
-                if(urlcount > 20)
+                // 31-03-2020
+                if (urlcount > 20)
+                {
+                    DateTime st = DateTime.Now;
                     SendXmlToAPI(seid, kw, result);
+                    DateTime ed = DateTime.Now;
+                    apitime = (ed - st).TotalSeconds;
 
-                SendToDB(seid, kw, result, jobid, urlcount);
+                    DateTime st1 = DateTime.Now;
+                    SendToDB(seid, kw, result, jobid, urlcount);
+                    DateTime ed1 = DateTime.Now;
+                    dbtime = (ed1 - st1).TotalSeconds;
+                    //end of 31-03-2020
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
-        }      
+        }
 
         private void SendXmlToAPI(string seid, string kw, string res)
         {
@@ -256,7 +269,7 @@ namespace Oxylabs_BulkKeywords
             res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + res;
             xd.LoadXml(res);
             xd.Save(path);
-                 
+
 
             string submitURL = ReadAPI();
 
@@ -312,10 +325,10 @@ namespace Oxylabs_BulkKeywords
                 response.Close();
             }
             catch (WebException ex)
-            {                             
+            {
                 string errorMsg = string.Empty;
                 using (WebResponse response = ex.Response)
-                {                    
+                {
                     HttpWebResponse httpResponse = (HttpWebResponse)response;
                     statusCode = httpResponse.StatusCode.ToString();
                     errorMsg = string.Format("API Error: StatusCode {0}", statusCode);
@@ -325,7 +338,7 @@ namespace Oxylabs_BulkKeywords
                     {
                         errorMsg += "\r\n" + reader.ReadToEnd();
                     }
-                }                    
+                }
 
                 throw new Exception(errorMsg);
 
@@ -370,7 +383,7 @@ namespace Oxylabs_BulkKeywords
         }
 
         private void SendToDB(string seid, string keyword, string xml, string jobid, int urlcount)
-        {             
+        {
             try
             {
                 using (SqlConnection con = new SqlConnection(StrConn()))
@@ -385,7 +398,7 @@ namespace Oxylabs_BulkKeywords
                         comm.Parameters.Add("Date", SqlDbType.DateTime).Value = myDate;
                         comm.Parameters.Add("Name", SqlDbType.NVarChar).Value = keyword; //.Replace("'", "''");
                         comm.Parameters.Add("Seid", SqlDbType.Int).Value = seid;
-                        comm.Parameters.Add("JobId", SqlDbType.NVarChar).Value = jobid;   
+                        comm.Parameters.Add("JobId", SqlDbType.NVarChar).Value = jobid;
                         comm.Parameters.Add("Count", SqlDbType.Int).Value = urlcount;
                         comm.Parameters.Add("XmlData", SqlDbType.Xml).Value = xml.Replace("'", "''");
 
@@ -422,7 +435,7 @@ namespace Oxylabs_BulkKeywords
                 throw ex;
             }
         }
-        
+
     }
 }
 

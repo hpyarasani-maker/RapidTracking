@@ -216,15 +216,14 @@ namespace TrendingReceiving
                     SendXmlToAPI(seid, kw, result);
                     DateTime ed = DateTime.Now;
                     apitime = (ed - st).TotalSeconds;
-
-                    DateTime st1 = DateTime.Now;
-                    SendToDB(seid, kw, result, urlcount);
-                    DateTime ed1 = DateTime.Now;
-                    dbtime = (ed1 - st1).TotalSeconds;
-                    //end of 31-03-2020
                 }
+                DateTime st1 = DateTime.Now;
+                SendToDB(seid, kw, result, urlcount);
+                DateTime ed1 = DateTime.Now;
+                dbtime = (ed1 - st1).TotalSeconds;
+                //end of 31-03-2020
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }

@@ -469,6 +469,8 @@ namespace RapidTrackingSingleThread
                     col = crNode.SelectNodes(".//div[@id='tadsb']/ol/li"); // 21-02-2020 included selector for the text ads block
                 if (col == null)
                     col = doc.DocumentNode.SelectNodes("//div[@id='tads']/ol/li");
+                if (col == null)
+                    col = doc.DocumentNode.SelectNodes("//div[@class='WcsE3 dJMePd']/div");//01-04-2020
                 if (col != null)
                 {
                     s.Append("<block type=\"adwords\" url=\"\">");

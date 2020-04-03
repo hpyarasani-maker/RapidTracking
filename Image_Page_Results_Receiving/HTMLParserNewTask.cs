@@ -41,7 +41,7 @@ namespace Image_Page_Results_Receiving
 
             //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingimagedesktop/"; // image urls
             string url = "http://seresults.azurewebsites.net/api/callback74images/"; // page urls
-                                                                                     //string url = "http://seresults.azurewebsites.net/api/callbacknews/";      // news         140
+            //string url = "http://seresults.azurewebsites.net/api/callbacknews/";      // news         140
 
 
 

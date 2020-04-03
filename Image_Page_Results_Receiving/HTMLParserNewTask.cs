@@ -773,8 +773,11 @@ namespace Image_Page_Results_Receiving
                     node = doc.DocumentNode.SelectNodes("//a[@class=\"VFACy kGQAp\"]");
                     if (node == null)
                         node = doc.DocumentNode.SelectNodes("//a[@class=\"VFACy\"]");
-                }
+                    //*03-04-2020
+                    if (node == null)
+                        node = doc.DocumentNode.SelectNodes("//div[@class=\"rg_meta notranslate\"]");//*03-04-2020  
 
+                }
                 if (node != null)
                 {
                     foreach (HtmlNode links in node)
@@ -802,6 +805,18 @@ namespace Image_Page_Results_Receiving
 
                                 }
                             }
+                            //*03-04-2020
+                            else if (urlType == "PageLinks")
+                            {
+                                try
+                                {
+                                    url = JObject.Parse(links.InnerText)["ru"].Value<string>();
+                                }
+                                catch
+                                {
+                                    url = links.Attributes["href"].Value;
+                                }
+                            }//*03-04-2020
                             else
                                 url = links.Attributes["href"].Value;
 

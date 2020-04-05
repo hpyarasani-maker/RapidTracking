@@ -12,15 +12,15 @@ namespace Oxylabs_BulkKeywords
         //HTMLParserNewTaskHotels WOWS = new HTMLParserNewTaskHotels();
 
 
-        Timer timer = new Timer();                
+        Timer timer = new Timer();
 
         public Form1()
         {
             InitializeComponent();
             WOWS.OnKeywordDone += WOWS_OnKeywordDone;
-            //TimerExit();
+            TimerExit();
             //cnt = GetOxyCount();
-        }     
+        }
 
         void TimerExit()
         {
@@ -72,7 +72,7 @@ namespace Oxylabs_BulkKeywords
         private void WOWS_OnKeywordDone(string value)
         {
             this.Invoke((MethodInvoker)delegate
-            {                 
+            {
                 string[] msg = value.Split('^');
                 if (msg[0].StartsWith("Error:"))
                 {
@@ -84,18 +84,21 @@ namespace Oxylabs_BulkKeywords
 
                 lblStatusCode.Text = msg[1];
                 lblCount.Text = cntr++.ToString();
+                //31-03-2020
+                lblAPITime.Text = msg[2] + " sec";
+                lblDBTime.Text = msg[3] + " sec";
             });
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             //Text = "D_Oxylabs_TrackingTrending_DesktopRecieve_503_10";
-            //Text = "D_Oxylabs_TrackingTrending_All_1";
+            Text = "D_Oxylabs_TrackingTrending_All_1";
             //Text = "D_Oxylabs_RapidTracking_RecieveDesktop_20";
             //Text = "D_Oxylabs_TrackingTrending_MobileRecieve_102_10";
             //Text = "D_Oxylabs_RapidTracking_RecieveMobile_20";
             //Text = "D_Oxylabs_TrackingTrending_RecieveOtherMobile_15";  
-            Text = "D_Oxylabs_TrackingTrending_Recieve_CommaKeywords_1";
+            //Text = "D_Oxylabs_TrackingTrending_Recieve_CommaKeywords_3";
             //Text = "D_Oxylabs_TrackingTrending_Recieve_HotelKeywords_4_WC";
             //Text = "D_Oxylabs_TrackingTrending_Yesterdays";
             //Text = "D_Oxylabs_TrackingTrending_ReceiveOtherDesktop_3_P";
@@ -109,7 +112,7 @@ namespace Oxylabs_BulkKeywords
         {
             Environment.Exit(Environment.ExitCode);
         }
-                
+
         public string StrConn()
         {
             try
@@ -126,7 +129,7 @@ namespace Oxylabs_BulkKeywords
 
                 return name;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }

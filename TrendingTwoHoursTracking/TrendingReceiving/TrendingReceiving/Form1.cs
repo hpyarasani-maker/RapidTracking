@@ -71,22 +71,31 @@ namespace TrendingReceiving
         {
             this.Invoke((MethodInvoker)delegate
             {
-                if (value.StartsWith("Error:"))
+                string[] msg = value.Split('^');
+                if (msg[0].StartsWith("Error:"))
                 {
-                    txtErrors.Text += value + "\r\n\r\n";
+                    txtErrors.Text += msg[0] + "\r\n\r\n";
                     lblErrors.Text = errors++.ToString();
                 }
+                //if (value.StartsWith("Error:"))
+                //{
+                //    txtErrors.Text += value + "\r\n\r\n";
+                //    lblErrors.Text = errors++.ToString();
+                //}
                 else
                     lblCompletedKw.Text = value;
 
                 lblCount.Text = cntr++.ToString();
+                //31-03-2020
+                lblAPITime.Text = msg[2] + " sec";
+                lblDBTime.Text = msg[3] + " sec";
             });
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //Text = "D_Oxylabs_CallbackTrendingDesktopRecieve_1";
-            Text = "D_Oxylabs_CallbackTrendingMobileRecieve_2";                
+            Text = "D_Oxylabs_CallbackTrendingDesktopRecieve_1";
+            //Text = "D_Oxylabs_CallbackTrendingMobileRecieve_2";                
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)

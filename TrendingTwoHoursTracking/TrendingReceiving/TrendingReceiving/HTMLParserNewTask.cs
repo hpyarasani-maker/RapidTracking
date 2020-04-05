@@ -18,7 +18,7 @@ namespace TrendingReceiving
 
         string myDate = DateTime.Today.ToString("yyyy-MM-dd");
         public event KeywordDone OnKeywordDone;
-
+        double apitime, dbtime;    // 31-03-2020
         public HTMLParserNewTask()
         {
             desktop = new Desktop();
@@ -26,15 +26,15 @@ namespace TrendingReceiving
 
             Thread t1 = new Thread(new ThreadStart(StartProcess))
             {
-                Name = "twm_2"
+                Name = "twd_1"
             };
             t1.Start();
         }
 
         private void StartProcess()
         {
-            //string url = "http://seresults.azurewebsites.net/api/callbacktrendingdesktop/";       // Desktop
-            string url = "http://seresults.azurewebsites.net/api/callbacktrendingmobile/";       // Mobile
+            string url = "http://seresults.azurewebsites.net/api/callbacktrendingdesktop/";       // Desktop
+            //string url = "http://seresults.azurewebsites.net/api/callbacktrendingmobile/";       // Mobile
 
 
             WebClient client = new WebClient();
@@ -123,7 +123,8 @@ namespace TrendingReceiving
                     }
                     finally { }
                 }
-                OnKeywordDone.Invoke("Error:  seid: " + seid + ",  keyword: " + kw + ",  jobid: " + jobid + "\r\n\t" + ex.Message);                
+                OnKeywordDone.Invoke("Error:  seid: " + seid + ",  keyword: " + kw + ",  jobid: " + jobid + apitime + "^" + dbtime + "\r\n\t" + ex.Message);        
+
             }
         }
 
@@ -209,11 +210,20 @@ namespace TrendingReceiving
             {
                 if (urlcount > 20)
                 {
+                    //SendXmlToAPI(seid, kw, result);
+                    //SendToDB(seid, kw, result, urlcount);
+                    DateTime st = DateTime.Now;
                     SendXmlToAPI(seid, kw, result);
-                    SendToDB(seid, kw, result, urlcount);
+                    DateTime ed = DateTime.Now;
+                    apitime = (ed - st).TotalSeconds;
                 }
+                DateTime st1 = DateTime.Now;
+                SendToDB(seid, kw, result, urlcount);
+                DateTime ed1 = DateTime.Now;
+                dbtime = (ed1 - st1).TotalSeconds;
+                //end of 31-03-2020
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }

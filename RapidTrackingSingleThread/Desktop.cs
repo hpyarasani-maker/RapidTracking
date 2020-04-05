@@ -63,7 +63,9 @@ namespace RapidTrackingSingleThread
             // 23-03-2020
             if (string.IsNullOrEmpty(ndText))
             {
-                nodeCol = doc.DocumentNode.SelectNodes("//div[@class='xVtsMb i6u2Cc']|//div[@class='xVtsMb']/div/div");
+                nodeCol = doc.DocumentNode.SelectNodes("//div[@class='vC5Ym DhKAUb']/div");  // 03-04-2020
+                if (nodeCol == null)
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='xVtsMb i6u2Cc']|//div[@class='xVtsMb']/div/div");
                 foreach (HtmlNode node in nodeCol)
                 {
                     try

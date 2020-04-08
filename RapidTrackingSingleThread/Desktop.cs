@@ -61,11 +61,12 @@ namespace RapidTrackingSingleThread
             }
 
             // 23-03-2020
-            if (string.IsNullOrEmpty(ndText))
+            if (string.IsNullOrEmpty(ndText) || orgLinks == 0)//08-04-2020
             {
-                nodeCol = doc.DocumentNode.SelectNodes("//div[@class='vC5Ym DhKAUb']/div");  // 03-04-2020
+
+                nodeCol = doc.DocumentNode.SelectNodes("//div[@class='xVtsMb i6u2Cc']|//div[@class='xVtsMb']/div/div");//swapped 08-04-2020
                 if (nodeCol == null)
-                    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='xVtsMb i6u2Cc']|//div[@class='xVtsMb']/div/div");
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='vC5Ym DhKAUb']/div");  // 03-04-2020
                 foreach (HtmlNode node in nodeCol)
                 {
                     try

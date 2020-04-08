@@ -1082,8 +1082,8 @@ namespace RapidTrackingSingleThread
             {
                 HtmlNode nd = node.SelectSingleNode(".//h3|.//div[@class='HnYYW i8lZMc']");  // 23-03-2020
                 if (nd != null)
-                    if (nd.InnerText == "Top stories" || nd.InnerText == "Videos")  // 18-03-2020
-                        return true;
+                        if (nd.InnerText == "Top stories" || nd.InnerText == "Videos" || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws") // 18-03-2020  // 08-04-2020
+                            return true;
 
                 // changes in map block on 19-06-2019.
                 nd = node.SelectSingleNode(".//g-img/img");

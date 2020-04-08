@@ -1041,7 +1041,8 @@ namespace RapidTrackingSingleThread
 
         private bool IsBlock(HtmlNode node)
         {
-            bool bVal = (node.SelectSingleNode(".//h3[@class='zQlLed']") != null  // top stories                
+            bool bVal = (node.SelectSingleNode(".//h3[@class='zQlLed']") != null  // top stories       
+                || node.SelectSingleNode(".//div[@class='wXlZre B03h3d V14nKc ptcLIOszQJu__wholepage-card wp-msss']") != null//topstories 08-04-2020
                 || node.SelectSingleNode(".//table[@class='nrgt']") != null      // site links
                 || node.SelectSingleNode(".//img[@id='lu_map']") != null      // maps
                 || node.SelectSingleNode(".//div[@class='xERobd']") != null //  maps    //changed on 26-06-2019

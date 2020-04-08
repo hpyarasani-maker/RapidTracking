@@ -310,7 +310,8 @@ namespace RapidTrackingSingleThread
             HtmlNode colt = doc.DocumentNode.SelectSingleNode("//div[@id='tvcap']");  //20-01-2020
             if (colt != null)
             {
-                HtmlNodeCollection col = colt.SelectNodes(".//div[@id='tads']/ol/li|.//div[@id='tadsb']/ol/li");  //20-01-2020 
+                HtmlNodeCollection col = colt.SelectNodes(".//div[@id='tads']/ol/li|.//div[@id='tadsb']/ol/li|.//div[@id='tads']");  //20-01-2020 //08-04-2020
+
                 if (col != null) //return s.ToString();  //20-01-2020
                 {
                     s.Append("<block type=\"adwords\" url=\"\">");

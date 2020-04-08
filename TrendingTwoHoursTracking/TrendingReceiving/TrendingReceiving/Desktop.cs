@@ -68,9 +68,11 @@ namespace TrendingReceiving
                 catch { }
             }
             // 23-03-2020
-            if (string.IsNullOrEmpty(ndText))
+            if (string.IsNullOrEmpty(ndText) || orgLinks == 0)//08-04-2020
             {
-                nodeCol = doc.DocumentNode.SelectNodes("//div[@class='xVtsMb i6u2Cc']|//div[@class='xVtsMb']/div/div");
+                nodeCol = doc.DocumentNode.SelectNodes("//div[@class='xVtsMb i6u2Cc']|//div[@class='xVtsMb']/div/div");//swapped 08-04-2020
+                if (nodeCol == null)
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='vC5Ym DhKAUb']/div");  // 03-04-2020
                 foreach (HtmlNode node in nodeCol)
                 {
                     try
@@ -312,7 +314,8 @@ namespace TrendingReceiving
             HtmlNode colt = doc.DocumentNode.SelectSingleNode("//div[@id='tvcap']");  //20-01-2020
             if (colt != null)
             {
-                HtmlNodeCollection col = colt.SelectNodes(".//div[@id='tads']/ol/li|.//div[@id='tadsb']/ol/li");  //20-01-2020 
+                HtmlNodeCollection col = colt.SelectNodes(".//div[@id='tads']/ol/li|.//div[@id='tads']/div/ol/li|.//div[@id='tadsb']/ol/li"); //20-01-2020 //08-04-2020
+
                 if (col != null) //return s.ToString();  //20-01-2020
                 {
                     s.Append("<block type=\"adwords\" url=\"\">");
@@ -1042,7 +1045,8 @@ namespace TrendingReceiving
 
         private bool IsBlock(HtmlNode node)
         {
-            bool bVal = (node.SelectSingleNode(".//h3[@class='zQlLed']") != null  // top stories                
+            bool bVal = (node.SelectSingleNode(".//h3[@class='zQlLed']") != null  // top stories       
+                || node.SelectSingleNode(".//div[@class='wXlZre B03h3d V14nKc ptcLIOszQJu__wholepage-card wp-msss']") != null//topstories 08-04-2020
                 || node.SelectSingleNode(".//table[@class='nrgt']") != null      // site links
                 || node.SelectSingleNode(".//img[@id='lu_map']") != null      // maps
                 || node.SelectSingleNode(".//div[@class='xERobd']") != null //  maps    //changed on 26-06-2019
@@ -1082,7 +1086,7 @@ namespace TrendingReceiving
             {
                 HtmlNode nd = node.SelectSingleNode(".//h3|.//div[@class='HnYYW i8lZMc']");  // 23-03-2020
                 if (nd != null)
-                    if (nd.InnerText == "Top stories" || nd.InnerText == "Videos")  // 18-03-2020
+                    if (nd.InnerText == "Top stories" || nd.InnerText == "Videos" || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws") // 18-03-2020  // 08-04-2020
                         return true;
 
                 // changes in map block on 19-06-2019.
@@ -1167,7 +1171,7 @@ namespace TrendingReceiving
             if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e"))
                 url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
 
-            return WebUtility.HtmlEncode(url.Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim();  //26-03-2020
+            return WebUtility.HtmlEncode(url.Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim();  //26-03-2020 updated converting hexadecimal codes
         }
 
     }

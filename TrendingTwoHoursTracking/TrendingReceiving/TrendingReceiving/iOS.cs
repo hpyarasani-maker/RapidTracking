@@ -471,7 +471,9 @@ namespace TrendingReceiving
                 if (col == null)
                     col = crNode.SelectNodes(".//div[@id='tadsb']/ol/li"); // 21-02-2020 included selector for the text ads block
                 if (col == null)
-                    col = doc.DocumentNode.SelectNodes("//div[@id='tads']/ol/li");
+                    col = doc.DocumentNode.SelectNodes("//div[@id='tads']/div/ol/li"); //08-04-2020
+                if (col == null)
+                    col = doc.DocumentNode.SelectNodes("//div[@class='WcsE3 dJMePd']/div");  // 01-04-2020
                 if (col != null)
                 {
                     s.Append("<block type=\"adwords\" url=\"\">");
@@ -486,10 +488,13 @@ namespace TrendingReceiving
                             n = nd.SelectSingleNode(".//div[@class='d5oMvf KJDcUb WzRKRb']/a");  // 29-11-2019
                         if (n == null)
                             n = nd.SelectSingleNode(".//div/a[@class='V0MxL']");    // changes on 28-06-2019
+                        if (n == null)
+                            n = nd.SelectSingleNode(".//a[@jsname='wOJZib']");  // 01-04-2020
                         if (n != null)
                         {
                             string title = (n.SelectSingleNode(".//h3") != null) ? n.SelectSingleNode(".//h3").InnerText
                                 : (n.SelectSingleNode(".//div[@role='heading']") != null) ? n.SelectSingleNode(".//div[@role='heading']").InnerText
+                                : (n.SelectSingleNode(".//div[@class='mdzVfb gAWudd']") != null) ? n.SelectSingleNode(".//div[@class='mdzVfb gAWudd']").InnerText  // 01-04-2020
                                 : n.InnerText;
 
                             if (!n.Attributes["href"].Value.StartsWith("/"))
@@ -1815,7 +1820,7 @@ namespace TrendingReceiving
                         return "Videos";
                     else if (nd.InnerHtml.ToLower().StartsWith("top stories") || nd.InnerHtml.Contains("Interesting finds")) // 18-12-2019)
                         return "Topstories";
-                    HtmlNode nd1 = node.SelectSingleNode(".//div[@class='UDZeY fAgajc']");  //21-02-2020 included selector for AnswerCard block
+                    HtmlNode nd1 = node.SelectSingleNode(".//div[@class='UDZeY fAgajc']|.//div[@class='rKFBM gsrt CAd2fd wp-ms']");  //31-03-2020
                     if (nd1 != null)
                     {
                         return "AnswerCard";
@@ -2195,3 +2200,4 @@ namespace TrendingReceiving
 
     }
 }
+

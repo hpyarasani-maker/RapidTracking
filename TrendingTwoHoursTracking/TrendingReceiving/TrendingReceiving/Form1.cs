@@ -83,7 +83,7 @@ namespace TrendingReceiving
                 //    lblErrors.Text = errors++.ToString();
                 //}
                 else
-                    lblCompletedKw.Text = value;
+                    lblCompletedKw.Text = msg[0];
 
                 lblCount.Text = cntr++.ToString();
                 //31-03-2020

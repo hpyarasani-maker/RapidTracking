@@ -106,7 +106,9 @@ namespace TrendingReceiving
                     if (!string.IsNullOrEmpty(seid))
                         ProcessResults(result, kw, seid, jobid, orgUrls);
 
-                    OnKeywordDone.Invoke(seid + ":  " + kw + ",  " + orgUrls);
+                    // OnKeywordDone.Invoke(seid + ":  " + kw + ",  " + orgUrls);
+                    OnKeywordDone.Invoke(seid + ":  " + kw + ",  " + orgUrls + "^" +  apitime + "^" + dbtime);    // 31-03-2020
+
                 }
             }
             catch (Exception ex)

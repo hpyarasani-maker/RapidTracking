@@ -87,8 +87,8 @@ namespace TrendingReceiving
 
                 lblCount.Text = cntr++.ToString();
                 //31-03-2020
-                lblAPITime.Text = msg[2] + " sec";
-                lblDBTime.Text = msg[3] + " sec";
+                lblAPITime.Text = msg[1] + " sec";
+                lblDBTime.Text = msg[2] + " sec";
             });
         }
 

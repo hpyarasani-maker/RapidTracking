@@ -116,7 +116,7 @@ namespace RapidTrackingSingleThread
 
                                 if (!string.IsNullOrEmpty(res))
                                 {
-                                    if (count > 20)
+                                    if (count > 0)
                                     {
                                         SendToAPI(seid, keyword, res, jobid);
                                         SendToDB(seid, keyword, res, jobid, count);
@@ -289,9 +289,9 @@ namespace RapidTrackingSingleThread
                 //lstKWs.Items.Add("106:romeo and juliet tickets");
                 //lstKWs.Items.Add("160:malmö ff");
                 //lstKWs.Items.Add("102:terry crews");
-                lstKWs.Items.Add("57:corona");
+               /// lstKWs.Items.Add("106:tangled music");
             });
-            return;
+           // return;
 
             try
             {

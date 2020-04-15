@@ -30,7 +30,7 @@ namespace Oxylabs_BulkKeywords
 
             Thread t1 = new Thread(new ThreadStart(StartProcess))
             {
-                Name = "All_5"
+                Name = "All_1"
                 // Name = "Mobile_102_10"
                 //Name = "CommaKeywords_3"
             };
@@ -240,7 +240,7 @@ namespace Oxylabs_BulkKeywords
             try
             {
                 // 31-03-2020
-                if (urlcount > 0)
+                if (urlcount > 20)
                 {
                     DateTime st = DateTime.Now;
                     SendXmlToAPI(seid, kw, result);
@@ -403,13 +403,13 @@ namespace Oxylabs_BulkKeywords
 
                         comm.ExecuteNonQuery();
 
-                        //if (urlcount < 20)
-                        //{
-                        //    string qry = "exec [InsertLessthan20] '" + myDate + "',N'" + keyword.Replace("'", "''") + "'," + seid + ",N''," + urlcount + ",'" + jobid + "'";
-                        //    comm.CommandText = qry;
-                        //    comm.CommandType = CommandType.Text;
-                        //    comm.ExecuteNonQuery();
-                        //}
+                        if (urlcount < 20)
+                        {
+                            string qry = "exec [InsertLessthan20] '" + myDate + "',N'" + keyword.Replace("'", "''") + "'," + seid + ",N''," + urlcount + ",'" + jobid + "'";
+                            comm.CommandText = qry;
+                            comm.CommandType = CommandType.Text;
+                            comm.ExecuteNonQuery();
+                        }
                     }
                 }
 

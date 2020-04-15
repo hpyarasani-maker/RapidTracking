@@ -94,8 +94,8 @@ namespace TrendingReceiving
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Text = "D_Oxylabs_CallbackTrendingDesktopRecieve_1";
-            //Text = "D_Oxylabs_CallbackTrendingMobileRecieve_2";                
+            //Text = "D_Oxylabs_CallbackTrendingDesktopRecieve_2";
+            Text = "D_Oxylabs_CallbackTrendingMobileRecieve_1";                
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)

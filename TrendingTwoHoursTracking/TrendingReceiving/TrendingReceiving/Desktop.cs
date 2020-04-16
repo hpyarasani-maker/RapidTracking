@@ -202,6 +202,8 @@ namespace TrendingReceiving
             if (colb != null)
             {
                 HtmlNodeCollection col = colb.SelectNodes(".//div[@id='tadsb']/ol/li");   //20-01-2020
+                if (col == null)
+                    col = colb.SelectNodes(".//div[@id='tadsb']/div/ol/li");   //16-04-2020
                 if (col == null) return s.ToString();   //20-01-2020
 
                 s.Append("<block type=\"adwords\" url=\"\">");

@@ -17,7 +17,9 @@ namespace RapidTrackingSingleThread
         public string ProcessDocument(string seid, string keyword, HtmlDocument doc)
         {
             count = 0;
-            if (doc == null) throw new Exception("No source found.");
+            //if (doc == null) throw new Exception("No source found.");
+            if (string.IsNullOrEmpty(doc.ToString())) return string.Empty;
+
 
             HtmlNode htmlNode = doc.DocumentNode.SelectSingleNode("//table[@id='mn']");
             if (htmlNode != null)
@@ -92,9 +94,11 @@ namespace RapidTrackingSingleThread
             }
             // 23-03-2020
 
-            if (nodeCol == null) throw new Exception("No block found.");
+            //if (nodeCol == null) throw new Exception("No block found.");
 
-            //if (nodeCol == null) return string.Empty;                      
+            //if (nodeCol == null) return string.Empty; 
+            if (string.IsNullOrEmpty(nodeCol.ToString())) return string.Empty;
+
             //if (nodeCol == null) goto BOTTOMSTUFF; 
             //if (orgLinks < count)
             //    return string.Empty;

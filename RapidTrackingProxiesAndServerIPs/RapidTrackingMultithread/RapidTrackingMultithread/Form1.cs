@@ -23,10 +23,17 @@ namespace RapidTrackingMultithread
     public partial class Form1 : Form
     {
         ServerIP server0 = new ServerIP();
+        //OxylabsProxies server0 = new OxylabsProxies();
 
-        string xmlPath1 = "C:\\inetpub\\wwwroot\\RapidTracking_s_1.xml";
-        string xmlPath2 = "C:\\inetpub\\wwwroot\\RapidTracking_s_2.xml";
-        string xmlPath3 = "C:\\inetpub\\wwwroot\\RapidTracking_s_3.xml";
+        string xmlPath1 = "C:\\inetpub\\wwwroot\\RapidTracking_1_GT0.xml";
+        string xmlPath2 = "C:\\inetpub\\wwwroot\\RapidTracking_2_GT0.xml";
+        string xmlPath3 = "C:\\inetpub\\wwwroot\\RapidTracking_3_GT0.xml";
+
+        //string xmlPath1 = "C:\\inetpub\\wwwroot\\Multithread_Proxies_1_1.xml";
+        //string xmlPath2 = "C:\\inetpub\\wwwroot\\Multithread_Proxies_2_1.xml";
+        //string xmlPath3 = "C:\\inetpub\\wwwroot\\Multithread_Proxies_3_1.xml";
+
+
 
         string strCon = string.Empty;
         string liveurl = string.Empty;
@@ -41,7 +48,7 @@ namespace RapidTrackingMultithread
         public Form1()
         {
             InitializeComponent();
-            timerExit();
+            //timerExit();
             strCon = strConn();
             liveurl = readAPI();
         }
@@ -110,8 +117,9 @@ namespace RapidTrackingMultithread
                     sw1.WriteLine(server0.x + " : " + server0.dtIPs.Rows[server0.x][1].ToString() + " : " + DateTime.Now);
                     sw1.Close();
 
-                    this.Text = "D_TrackingTrending_(1-2-3)_Server-1_" + server0.dtIPs.Rows[server0.x][1].ToString();
-                    
+                    this.Text = "D_TrackingTrending_(1-2-3)_Server-6_GT0" + server0.dtIPs.Rows[server0.x][1].ToString();
+                    //this.Text = "D_TrackingTrending_(1-2-3)_GT20_Proxies";
+
                 }
             }
         }
@@ -128,8 +136,10 @@ namespace RapidTrackingMultithread
             date_picker.CustomFormat = "yyyy-MM-dd";
             myDate = date_picker.Text;
             //return;
-            string strSql = "exec [dbo].[GetKeywordsAdult_1] '" + myDate + "'";
-       
+            //string strSql = "exec [dbo].[GetKeywordsAdult_1] '" + myDate + "'";
+            string strSql = "exec [dbo].[GetAllKeywords_ServerIPs_1] '" + myDate + "'";
+
+
             SqlConnection objCon = null;
             SqlDataReader objData = null;
             try
@@ -187,8 +197,10 @@ namespace RapidTrackingMultithread
             date_picker.CustomFormat = "yyyy-MM-dd";
             myDate = date_picker.Text;
             //return;
-            string strSql = "exec [dbo].[GetKeywordsAdult_2] '" + myDate + "'";
-           
+            //string strSql = "exec [dbo].[GetKeywordsAdult_2] '" + myDate + "'";
+            string strSql = "exec [dbo].[GetAllKeywords_ServerIPs_2] '" + myDate + "'";
+
+
             SqlConnection objCon = null;
             SqlDataReader objData = null;
             try
@@ -245,7 +257,9 @@ namespace RapidTrackingMultithread
             date_picker.CustomFormat = "yyyy-MM-dd";
             myDate = date_picker.Text;
             //return;
-            string strSql = "exec [dbo].[GetKeywordsAdult_3] '" + myDate + "'";
+            //string strSql = "exec [dbo].[GetKeywordsAdult_3] '" + myDate + "'";
+            string strSql = "exec [dbo].[GetAllKeywords_ServerIPs_3] '" + myDate + "'";
+
 
             SqlConnection objCon = null;
             SqlDataReader objData = null;
@@ -403,7 +417,7 @@ namespace RapidTrackingMultithread
                     try
                     {
                         int rescount1 = int.Parse(seresults[1]);
-                        if (rescount1 > 50)
+                        if (rescount1 > 0)
                         {
                             SendToAPI1(seid, kn, seresults[0]);
                             SendToDB(seid, kn, seresults[0], int.Parse(seresults[1]));
@@ -511,7 +525,7 @@ namespace RapidTrackingMultithread
                 try
                 {
                     int rescount2 = int.Parse(seresults[1]);
-                    if (rescount2 > 50)
+                    if (rescount2 > 0)
                     {
                         SendToAPI2(seid, kn, seresults[0]);
                         SendToDB(seid, kn, seresults[0], int.Parse(seresults[1]));
@@ -617,7 +631,7 @@ namespace RapidTrackingMultithread
                     try
                     {
                         int rescount3 = int.Parse(seresults[1]);
-                        if (rescount3 > 50)
+                        if (rescount3 > 0)
                         {
                             SendToAPI3(seid, kn, seresults[0]);
                             SendToDB(seid, kn, seresults[0], int.Parse(seresults[1]));
@@ -787,31 +801,32 @@ namespace RapidTrackingMultithread
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //this.Invoke((MethodInvoker)(delegate ()
+            //{
+            //    date_picker.Value = DateTime.Today;
+            //}));
+
+            //liveurl = readAPI();
+            //if (File.Exists("index.txt"))
+            //{
+            //    StreamReader sw = new StreamReader("index.txt");
+            //    string val = sw.ReadLine();
+            //    sw.Close();
+
+            //    if (Convert.ToInt32(val) >= 0) server0.x = Convert.ToInt32(val);
+            //}
+
+
+            //if (server0.x >= server0.dtIPs.Rows.Count)
+            //{
+            //    server0.x = 0;
+            //}
+
             this.Invoke((MethodInvoker)(delegate ()
             {
-                date_picker.Value = DateTime.Today;
-            }));
+                this.Text = "D_TrackingTrending_(1-2-3)_Server-6_GT0" + server0.dtIPs.Rows[server0.x][1].ToString();
+                //this.Text = "D_TrackingTrending_(1-2-3)_GT20_Proxies";
 
-            liveurl = readAPI();
-            if (File.Exists("index.txt"))
-            {
-                StreamReader sw = new StreamReader("index.txt");
-                string val = sw.ReadLine();
-                sw.Close();
-
-                if (Convert.ToInt32(val) >= 0) server0.x = Convert.ToInt32(val);
-            }
-
-
-            if (server0.x >= server0.dtIPs.Rows.Count)
-            {
-                server0.x = 0;
-            }
-
-            this.Invoke((MethodInvoker)(delegate ()
-            {
-                this.Text = "D_TrackingTrending_(1-2-3)_Server-1_" + server0.dtIPs.Rows[server0.x][1].ToString();
-                
             }));
 
             Thread myThread2 = new Thread(new ThreadStart(mainLoop2));

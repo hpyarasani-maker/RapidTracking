@@ -23,7 +23,7 @@ namespace RapidTrackingSingleThread
 
         ArrayList seresults = new ArrayList();
 
-        string xmlPath = "C:\\inetpub\\wwwroot\\Remaining_103_WC_Proxies.xml";
+        string xmlPath = "C:\\inetpub\\wwwroot\\Remaining_103_WOC_Proxies.xml";
 
 
         public string myDate = string.Empty;
@@ -76,7 +76,7 @@ namespace RapidTrackingSingleThread
             date_picker.CustomFormat = "yyyy-MM-dd";
             string myDate = date_picker.Text;
             //return;
-            string strSql = "exec [dbo].[Tracking_DB_Keywords_SEID_102] '" + myDate + "'";//changes        
+            string strSql = "exec [dbo].[Tracking_DB_Keywords_SEID_103] '" + myDate + "'";//changes        
 
             SqlConnection objCon = null;
             SqlDataReader objData = null;
@@ -220,11 +220,11 @@ namespace RapidTrackingSingleThread
                         SendToAPI(seid, kn, seresults[0]);
                         SendToDB(seid, kn, seresults[0], int.Parse(seresults[1]));
                     }
-                    //else
-                    //{
-                    //    SendToAPI(seid, kn, seresults[0]);
-                    //    SendToDB(seid, kn, seresults[0], int.Parse(seresults[1]));
-                    //}
+                    else
+                    {
+                        SendToAPI(seid, kn, seresults[0]);
+                        SendToDB(seid, kn, seresults[0], int.Parse(seresults[1]));
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -268,22 +268,22 @@ namespace RapidTrackingSingleThread
 
         private void SendToAPI(string seid, string kw, string res)
         {
-            //if (res == string.Empty)
-            //{
-            //    XmlDocument xd = new XmlDocument();
-            //    res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
-            //    res += "<searchResult searchEngine =\"" + seid + "\" keyword=\"" + kw + "\" date =\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\">";
-            //    res += "<section col = \"main\" /> <section col=\"right\" /> </searchResult> ";
-            //    xd.LoadXml(res);
-            //    xd.Save(xmlPath);
-            //}
-            //else
-            //{
+            if (res == string.Empty)
+            {
+                XmlDocument xd = new XmlDocument();
+                res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
+                res += "<searchResult searchEngine =\"" + seid + "\" keyword=\"" + kw + "\" date =\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\">";
+                res += "<section col = \"main\" /> <section col=\"right\" /> </searchResult> ";
+                xd.LoadXml(res);
+                xd.Save(xmlPath);
+            }
+            else
+            {
                 XmlDocument xd = new XmlDocument();
                 res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + res;
                 xd.LoadXml(res);
                 xd.Save(xmlPath);
-            //}
+            }
             //SendToURL
             //return;
             string submitURL = readAPI();
@@ -425,8 +425,8 @@ namespace RapidTrackingSingleThread
             {
                 //date_picker.Value = DateTime.Today.AddDays(-2);
 
-                //this.Text = "D_RapidTracking_102_Remaining_Proxies_GT0";//changes
-                this.Text = "D_RapidTracking_103_WOC_Remaining_Proxies";
+                this.Text = "D_RapidTracking_103_Remaining_Proxies_WOC";//changes
+                //this.Text = "D_RapidTracking_103_WOC_Remaining_Proxies";
             }));
             Thread myThread = new Thread(new ThreadStart(mainLoop));
             generateWorklist();

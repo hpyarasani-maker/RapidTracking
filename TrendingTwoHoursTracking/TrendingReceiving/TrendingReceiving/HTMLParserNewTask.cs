@@ -26,15 +26,15 @@ namespace TrendingReceiving
 
             Thread t1 = new Thread(new ThreadStart(StartProcess))
             {
-                Name = "twd_1"
+                Name = "twm_1"
             };
             t1.Start();
         }
 
         private void StartProcess()
         {
-            string url = "http://seresults.azurewebsites.net/api/callbacktrendingdesktop/";       // Desktop
-            //string url = "http://seresults.azurewebsites.net/api/callbacktrendingmobile/";       // Mobile
+            //string url = "http://seresults.azurewebsites.net/api/callbacktrendingdesktop/";       // Desktop
+            string url = "http://seresults.azurewebsites.net/api/callbacktrendingmobile/";       // Mobile
 
 
             WebClient client = new WebClient();
@@ -85,6 +85,11 @@ namespace TrendingReceiving
                     res.Close();
                     string result = string.Empty;
                     int orgUrls = 0;
+
+                    //15-04-2020
+                    apitime = 0.0;
+                    dbtime = 0.0;
+
                     try
                     {
                         JObject obj = JObject.Parse(response);
@@ -125,7 +130,7 @@ namespace TrendingReceiving
                     }
                     finally { }
                 }
-                OnKeywordDone.Invoke("Error:  seid: " + seid + ",  keyword: " + kw + ",  jobid: " + jobid + apitime + "^" + dbtime + "\r\n\t" + ex.Message);        
+                OnKeywordDone.Invoke("Error:  seid: " + seid + ",  keyword: " + kw + ",  jobid: " + jobid + "\r\n\t" + ex.Message + "^" + apitime + "^" + dbtime); //  15-04-2020     
 
             }
         }
@@ -212,8 +217,6 @@ namespace TrendingReceiving
             {
                 if (urlcount > 20)
                 {
-                    //SendXmlToAPI(seid, kw, result);
-                    //SendToDB(seid, kw, result, urlcount);
                     DateTime st = DateTime.Now;
                     SendXmlToAPI(seid, kw, result);
                     DateTime ed = DateTime.Now;

@@ -67,6 +67,10 @@ namespace RapidTrackingSingleThread
                 nodeCol = doc.DocumentNode.SelectNodes("//div[@class='xVtsMb i6u2Cc']|//div[@class='xVtsMb']/div/div");//swapped 08-04-2020
                 if (nodeCol == null)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@class='vC5Ym DhKAUb']/div");  // 03-04-2020
+                if (nodeCol == null)
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div"); //15-04-2020
+                if (nodeCol == null)
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='WvKfwe a3spGf']/div");  // 15-04-2020
                 foreach (HtmlNode node in nodeCol)
                 {
                     try
@@ -194,6 +198,8 @@ namespace RapidTrackingSingleThread
             if (colb != null)
             {
                 HtmlNodeCollection col = colb.SelectNodes(".//div[@id='tadsb']/ol/li");   //20-01-2020
+                if (col == null)
+                    col = colb.SelectNodes(".//div[@id='tadsb']/div/ol/li");   //16-04-2020
                 if (col == null) return s.ToString();   //20-01-2020
 
                 s.Append("<block type=\"adwords\" url=\"\">");

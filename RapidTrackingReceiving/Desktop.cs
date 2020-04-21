@@ -132,6 +132,8 @@ namespace Oxylabs_BulkKeywords
             if (rcNode == null)
                 rcNode = doc.DocumentNode.SelectSingleNode("//div[@id='rhs']"); // 18-11-2019
             if (rcNode == null)
+                rcNode = doc.DocumentNode.SelectSingleNode("//div[contains(@class, 'rhscol col')]"); // 21-04-2020
+            if (rcNode == null)
                 return string.Empty;
 
             // product listed ads

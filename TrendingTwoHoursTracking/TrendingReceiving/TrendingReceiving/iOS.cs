@@ -1304,6 +1304,8 @@ namespace TrendingReceiving
                 nd = node.SelectSingleNode(".//div[@class='c94Vsf Y1mqLe kp-rgc']");  // 20-03-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='Uyhxfe ZdjxGf']");  // 30-03-2020
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='Y37F6d Nn2Stf']");  // 21-04-2020
             if (nd != null)
             {
                 string hdr = "";

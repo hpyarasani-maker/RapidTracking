@@ -1306,6 +1306,8 @@ namespace TrackingTrending
                     hdrNode = nd.SelectSingleNode(".//div[@class='SPZz6b']/div");//26-09-2019
                 if (hdrNode == null)
                     hdrNode = nd.SelectSingleNode(".//div[@class='cX4Std B7U7kd']"); //30-03-2020
+                if (hdrNode == null)
+                    hdrNode = node.SelectSingleNode(".//div[@class='HnYYW FIdh1']"); //21-04-2020  
                 if (hdrNode != null)
                     hdr = hdrNode.InnerText;
 

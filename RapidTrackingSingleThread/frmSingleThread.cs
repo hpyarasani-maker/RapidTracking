@@ -285,13 +285,13 @@ namespace RapidTrackingSingleThread
             {
                 lstKWs.Items.Clear();
                 //lstKWs.Items.Add("58:praivat medicashe insh");
-                //lstKWs.Items.Add("442:red dress");
+                lstKWs.Items.Add("1:covid 19");
                 //lstKWs.Items.Add("106:romeo and juliet tickets");
                 //lstKWs.Items.Add("160:malmö ff");
                 //lstKWs.Items.Add("102:terry crews");
                /// lstKWs.Items.Add("106:tangled music");
             });
-           // return;
+            return;
 
             try
             {

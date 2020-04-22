@@ -266,6 +266,7 @@ namespace RapidTrackingSingleThread
                     using (var reader = new StreamReader(data))
                     {
                         errorMsg += "\r\n" + reader.ReadToEnd();
+                        txtError.Text = errorMsg;
                     }
                 }                
 

@@ -133,6 +133,8 @@ namespace Oxylabs_BulkKeywords
             if (rcNode == null)
                 rcNode = doc.DocumentNode.SelectSingleNode("//div[@id='rhs']"); // 18-11-2019
             if (rcNode == null)
+                rcNode = doc.DocumentNode.SelectSingleNode("//div[contains(@class, 'rhscol col')]"); // 21-04-2020
+            if (rcNode == null)
                 return string.Empty;
 
             // product listed ads
@@ -185,6 +187,8 @@ namespace Oxylabs_BulkKeywords
                 node = rcNode.SelectSingleNode(".//div[@class='iKidV']");//22-10-2019
             if (node == null)
                 node = rcNode.SelectSingleNode(".//div[@class='kp-wholepage EyBRub kp-wholepage-osrp HSryR']");  // 06-11-2019
+            if (node == null)
+                node = rcNode.SelectSingleNode(".//div[@class='Y37F6d Nn2Stf']");  // 21-04-2020
 
             if (node != null)     //'kp-blk knowledge-panel _Rqb _RJe']") != null) //|.//div[@role='heading']/div[1]/span
             {

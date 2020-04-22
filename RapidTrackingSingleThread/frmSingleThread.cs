@@ -266,6 +266,7 @@ namespace RapidTrackingSingleThread
                     using (var reader = new StreamReader(data))
                     {
                         errorMsg += "\r\n" + reader.ReadToEnd();
+                        txtError.Text = errorMsg;
                     }
                 }                
 
@@ -285,13 +286,13 @@ namespace RapidTrackingSingleThread
             {
                 lstKWs.Items.Clear();
                 //lstKWs.Items.Add("58:praivat medicashe insh");
-                //lstKWs.Items.Add("442:red dress");
+                //lstKWs.Items.Add("106:st.vincent discography");
                 //lstKWs.Items.Add("106:romeo and juliet tickets");
                 //lstKWs.Items.Add("160:malmö ff");
                 //lstKWs.Items.Add("102:terry crews");
-               /// lstKWs.Items.Add("106:tangled music");
+                 lstKWs.Items.Add("189:covid-19");
             });
-           // return;
+            return;
 
             try
             {

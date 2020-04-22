@@ -1291,6 +1291,8 @@ namespace TrackingTrending
                 nd = node.SelectSingleNode(".//div[@class='c94Vsf Y1mqLe kp-rgc']");  // 20-03-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='Uyhxfe ZdjxGf']");  // 30-03-2020
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='Y37F6d Nn2Stf']");  // 21-04-2020
             if (nd != null)
             {
                 string hdr = "";
@@ -1304,6 +1306,8 @@ namespace TrackingTrending
                     hdrNode = nd.SelectSingleNode(".//div[@class='SPZz6b']/div");//26-09-2019
                 if (hdrNode == null)
                     hdrNode = nd.SelectSingleNode(".//div[@class='cX4Std B7U7kd']"); //30-03-2020
+                if (hdrNode == null)
+                    hdrNode = node.SelectSingleNode(".//div[@class='HnYYW FIdh1']"); //21-04-2020  
                 if (hdrNode != null)
                     hdr = hdrNode.InnerText;
 
@@ -1733,6 +1737,8 @@ namespace TrackingTrending
                 nd = node.SelectSingleNode(".//div[@class='c94Vsf Y1mqLe kp-rgc']");  // 20-03-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='Uyhxfe ZdjxGf']");  // 30-03-2020
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='Y37F6d Nn2Stf']");  // 21-04-2020
             if (nd != null)
             {
                 nd = node.SelectSingleNode(".//div[@class='kp-blk nGydZ Wnoohf OJXvsb']");  // 20-03-2020
@@ -1760,6 +1766,8 @@ namespace TrackingTrending
                 nd = node.SelectSingleNode(".//div[@class='qDOt0b']");    //26-11-2019
             if (nd == null)
                 nd = node.SelectSingleNode(".//div/a[@class='B1uW2d ellip PZPZlf']");    //21-02-2020 included selector for AnswerCard block
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='F7SFG']");  //21-04-2020
             if (nd != null)
             {
                 return "AnswerCard";
@@ -2186,7 +2194,8 @@ namespace TrackingTrending
             if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e"))
                 url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
 
-            return WebUtility.HtmlEncode(url.Replace("\x00", "%00")).Replace("\\\\u003d", "=");
+            return WebUtility.HtmlEncode(url.Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim(); //22-04-2020
+
         }
 
     }

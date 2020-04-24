@@ -220,7 +220,8 @@ namespace RapidTrackingSingleThread
 
             // Ads  added or condition
             // HtmlNodeCollection col = doc.DocumentNode.SelectNodes("//div[@id='tadsb']/ol/li|//div[@id='tads']/ol/li");
-            HtmlNodeCollection col = doc.DocumentNode.SelectNodes("//div[@id='tadsb'][@class='C4eCVc c']/ol/li");  // 21-02-2020   included class selector
+            //HtmlNodeCollection col = doc.DocumentNode.SelectNodes("//div[@id='tadsb'][@class='C4eCVc c']/ol/li");  // 21-02-2020   included class selector
+            HtmlNodeCollection col = doc.DocumentNode.SelectNodes("//div[@id='tadsb']/div[@class='C4eCVc c']/ol/li");  // 24-04-2020   included class selector
             if (col != null)
             {
                 s.Append("<block type=\"adwords\" url=\"\">");

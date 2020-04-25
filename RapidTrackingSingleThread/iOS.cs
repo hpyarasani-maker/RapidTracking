@@ -607,7 +607,9 @@ namespace RapidTrackingSingleThread
                 nds = node.SelectNodes(".//div[@jscontroller='iht5n']/div");
             else
             {
-                nds = node.SelectNodes(".//div[@class='mnr-c waTp2e xpd O9g5cc uUPGi']");   //20-01-2020 selector changed for two classic links
+                // nds = node.SelectNodes(".//div[@class='mnr-c waTp2e xpd O9g5cc uUPGi']");   //20-01-2020 selector changed for two classic links
+                nds = node.SelectNodes(".//div[@class='mnr-c waTp2e xpd O9g5cc uUPGi']|.//div[@class='mnr-c xpd O9g5cc uUPGi']");   //20-01-2020 selector changed for two classic links
+                                                                                                                                    ////25-04-2020 classical links  element is different
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='mnr-c O9g5cc uUPGi']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='HD8Pae mnr-c xpd O9g5cc uUPGi']|.//div/g-card[@class='XqIXXe']|.//g-card[@id='tscffb']|.//g-card[@class='g F6CFcc']");
                 if (nds == null)
@@ -1253,7 +1255,8 @@ namespace RapidTrackingSingleThread
                     //if (c == null) continue;
                     //foreach (HtmlNode a in c)
                     //{
-                    s.Append("<item url=\"" + SetUrl(nd.Attributes["href"].Value) + "\" title=\"" + SetTitle(nd.InnerText) + "\" />");
+                    if (!nd.InnerHtml.Contains("span id"))//25-04-2020   
+                        s.Append("<item url=\"" + SetUrl(nd.Attributes["href"].Value) + "\" title=\"" + SetTitle(nd.InnerText) + "\" />");
                     //    }
                 }
                 s.Append("</block>");
@@ -2015,8 +2018,8 @@ namespace RapidTrackingSingleThread
                 else if (nd.InnerText == "More results" || nd.InnerText == "Top results" || nd.InnerText == "Toppresultater"
                     || nd.InnerText == "Fler resultat" || nd.InnerText == "Flere resultater" || nd.InnerText == "Plus de résultats")    // 13-12-2019
                     return false;
-            }
-            //17-01-2020
+                        }
+//17-01-2020
             nd = node.SelectSingleNode(".//div[@class='Lgnr0e J88qA BmP5tf']");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']");
@@ -2024,6 +2027,8 @@ namespace RapidTrackingSingleThread
             {
                 //30-03-2020
                 if (node.SelectSingleNode(".//div[@class='g card-section jiwmWe']") != null)
+                    return false;
+                if (node.SelectSingleNode(".//div[@class='MUxGbd v0nnCb lyLwlc']") != null)//25-04-2020
                     return false;
                 return true;
             }

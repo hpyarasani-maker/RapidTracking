@@ -223,7 +223,9 @@ namespace TrendingReceiving
 
             // Ads  added or condition
             // HtmlNodeCollection col = doc.DocumentNode.SelectNodes("//div[@id='tadsb']/ol/li|//div[@id='tads']/ol/li");
-            HtmlNodeCollection col = doc.DocumentNode.SelectNodes("//div[@id='tadsb'][@class='C4eCVc c']/ol/li");  // 21-02-2020   included class selector
+            //HtmlNodeCollection col = doc.DocumentNode.SelectNodes("//div[@id='tadsb'][@class='C4eCVc c']/ol/li");  // 21-02-2020   included class selector
+            HtmlNodeCollection col = doc.DocumentNode.SelectNodes("//div[@id='tadsb']/div[@class='C4eCVc c']/ol/li");  // 24-04-2020   included class selector
+
             if (col != null)
             {
                 s.Append("<block type=\"adwords\" url=\"\">");
@@ -1754,6 +1756,12 @@ namespace TrendingReceiving
                 nd = node.SelectSingleNode(".//div[@class='Y37F6d Nn2Stf']");  // 21-04-2020
             if (nd != null)
             {
+                // 24-04-2020
+                nd = node.SelectSingleNode(".//h2");
+                if (nd != null)
+                    if (nd.InnerText.ToLower().Trim() == "recipes" || nd.InnerText.ToLower().Trim() == "ricette")
+                        return "Carousel";
+                // 24-04-2020
                 nd = node.SelectSingleNode(".//div[@class='kp-blk nGydZ Wnoohf OJXvsb']");  // 20-03-2020
                 if (nd == null)
                     return "KnowledgePanel";

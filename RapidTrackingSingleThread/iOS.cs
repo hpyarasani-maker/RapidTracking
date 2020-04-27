@@ -608,7 +608,7 @@ namespace RapidTrackingSingleThread
             else
             {
                 // nds = node.SelectNodes(".//div[@class='mnr-c waTp2e xpd O9g5cc uUPGi']");   //20-01-2020 selector changed for two classic links
-                nds = node.SelectNodes(".//div[@class='mnr-c waTp2e xpd O9g5cc uUPGi']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='HD8Pae mnr-c xpd O9g5cc uUPGi']");
+                nds = node.SelectNodes(".//div[@class='mnr-c waTp2e xpd O9g5cc uUPGi']|.//div[@class='mnr-c xpd O9g5cc uUPGi']");
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='mnr-c O9g5cc uUPGi']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='HD8Pae mnr-c xpd O9g5cc uUPGi']|.//div/g-card[@class='XqIXXe']|.//g-card[@id='tscffb']|.//g-card[@class='g F6CFcc']");
                 if (nds == null)

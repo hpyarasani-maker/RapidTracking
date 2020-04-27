@@ -95,7 +95,7 @@ namespace RapidTrackingSingleThread
                         string heading = n.InnerText;
                         sb.Append("<block type=\"knowledgeGraph\" url=\"\" title=\"" + SetTitle(heading) + "\" />");
                     }
-                    if (node.SelectSingleNode(".//div[@class='mnr-c xpd O9g5cc uUPGi']") == null)
+                    //if (node.SelectSingleNode(".//div[@class='mnr-c xpd O9g5cc uUPGi']") == null)
                         continue;
                 }
                 try
@@ -607,8 +607,8 @@ namespace RapidTrackingSingleThread
                 nds = node.SelectNodes(".//div[@jscontroller='iht5n']/div");
             else
             {
-                 nds = node.SelectNodes(".//div[@class='mnr-c waTp2e xpd O9g5cc uUPGi']");   //20-01-2020 selector changed for two classic links
-                                                                                                                                    
+                // nds = node.SelectNodes(".//div[@class='mnr-c waTp2e xpd O9g5cc uUPGi']");   //20-01-2020 selector changed for two classic links
+                nds = node.SelectNodes(".//div[@class='mnr-c waTp2e xpd O9g5cc uUPGi']|.//div[@class='mnr-c xpd O9g5cc uUPGi']");
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='mnr-c O9g5cc uUPGi']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='HD8Pae mnr-c xpd O9g5cc uUPGi']|.//div/g-card[@class='XqIXXe']|.//g-card[@id='tscffb']|.//g-card[@class='g F6CFcc']");
                 if (nds == null)
@@ -1254,7 +1254,7 @@ namespace RapidTrackingSingleThread
                     //if (c == null) continue;
                     //foreach (HtmlNode a in c)
                     //{
-                    
+                    if (!nd.InnerHtml.Contains("span id"))//25-04-2020 
                         s.Append("<item url=\"" + SetUrl(nd.Attributes["href"].Value) + "\" title=\"" + SetTitle(nd.InnerText) + "\" />");
                     //    }
                 }
@@ -2026,6 +2026,8 @@ namespace RapidTrackingSingleThread
             {
                 //30-03-2020
                 if (node.SelectSingleNode(".//div[@class='g card-section jiwmWe']") != null)
+                    return false;
+                if (node.SelectSingleNode(".//div[@class='MUxGbd v0nnCb lyLwlc']") != null)//25-04-2020
                     return false;
                 return true;
             }

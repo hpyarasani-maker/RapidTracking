@@ -95,7 +95,7 @@ namespace RapidTrackingSingleThread
                         string heading = n.InnerText;
                         sb.Append("<block type=\"knowledgeGraph\" url=\"\" title=\"" + SetTitle(heading) + "\" />");
                     }
-                    //if (node.SelectSingleNode(".//div[@class='mnr-c xpd O9g5cc uUPGi']") == null)
+                    if (node.SelectSingleNode(".//div[@class='mnr-c xpd O9g5cc uUPGi']") == null) //25-04-2020 
                         continue;
                 }
                 try

@@ -290,7 +290,7 @@ namespace RapidTrackingSingleThread
                 //lstKWs.Items.Add("106:romeo and juliet tickets");
                 //lstKWs.Items.Add("160:malmö ff");
                 //lstKWs.Items.Add("102:terry crews");
-                 lstKWs.Items.Add("247:ig");
+                 lstKWs.Items.Add("106:donald trump");
             });
             return;
 

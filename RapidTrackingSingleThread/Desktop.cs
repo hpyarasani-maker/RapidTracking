@@ -486,12 +486,16 @@ namespace RapidTrackingSingleThread
                                     t = n.InnerText;
 
                                 urls = SetUrl(urls);    // 20-12-2019
-                                if (urls.StartsWith("http") || urls.StartsWith("https"))
+                                if (urls.StartsWith("http") || urls.StartsWith("https") || urls.StartsWith("ftp")) //30-04-2020
                                 {
                                     int indx = urls.LastIndexOf("http://");
                                     if (indx < 0)
                                     {
                                         indx = urls.LastIndexOf("https://");
+                                    }
+                                    if (indx < 0)
+                                    {
+                                        indx = urls.LastIndexOf("ftp://");  //30-04-2020
                                     }
                                     urls = urls.Remove(0, indx);
                                     // string links1= HttpUtility.UrlDecode(urls);

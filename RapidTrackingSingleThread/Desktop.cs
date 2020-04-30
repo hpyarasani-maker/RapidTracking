@@ -1146,7 +1146,7 @@ namespace RapidTrackingSingleThread
             return (node.SelectSingleNode(".//h3[@class='r']") != null || node.SelectSingleNode(".//div[@class='r']") != null
                 || node.SelectSingleNode(".//div[@class='zTpPx']") != null);    // 13-03-2020
         }
-
+        //Surendra comments
         //07-11-2019
         private string GetRedirectedUrl(string url)
         {

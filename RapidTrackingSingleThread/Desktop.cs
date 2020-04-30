@@ -429,7 +429,7 @@ namespace RapidTrackingSingleThread
                             if (Regex.IsMatch(nd.OuterHtml, "id=\"vidthumb\\d*\"")) // 17-01-2020
                             {
                                 var urls = n.Attributes["href"].Value;
-                                if (urls.StartsWith("http") || urls.StartsWith("https"))
+                                if (urls.StartsWith("http") || urls.StartsWith("https") || urls.StartsWith("ftp")) //30-04-2020
                                 {
                                     int indx = urls.LastIndexOf("http://");
                                     if (indx < 0)

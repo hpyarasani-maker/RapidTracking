@@ -518,12 +518,16 @@ namespace RapidTrackingSingleThread
                         u = u.Substring(0, u.IndexOf("&sa="));
                     if (orgLinks < 100)
                     {
-                        if (u.StartsWith("http") || u.StartsWith("https"))
+                        if (u.StartsWith("http") || u.StartsWith("https") || u.StartsWith("ftp")) //30-04-2020
                         {
                             int indx = u.LastIndexOf("http://");
                             if (indx < 0)
                             {
                                 indx = u.LastIndexOf("https://");
+                            }
+                            if (indx < 0)
+                            {
+                                indx = u.LastIndexOf("ftp://");  //30-04-2020
                             }
                             u = u.Remove(0, indx);
                             // string links1 = HttpUtility.UrlDecode(u);

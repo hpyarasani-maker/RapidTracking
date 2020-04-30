@@ -902,39 +902,6 @@ namespace RapidTrackingSingleThread
                                     }
                                 }
 
-
-
-                                //else
-                                //{
-                                //    if (orgLinks < 100)
-                                //    {
-                                //        HtmlNode n = nd.SelectSingleNode(".//h3[@class='r']/a");
-                                //        //if (n == null)//25-09-2019
-                                //        //    n = nd.SelectSingleNode("//div[@class='mnr-c xpd O9g5cc uUPGi']/div/a");//25-09-2019
-                                //        var u = n.Attributes["href"].Value;
-                                //        if (u.StartsWith("http") || u.StartsWith("https"))
-                                //        {
-                                //            int indx = u.LastIndexOf("http://");
-                                //            if (indx < 0)
-                                //            {
-                                //                indx = u.LastIndexOf("https://");
-                                //            }
-                                //            u = u.Remove(0, indx);
-                                //            //  string links1 = HttpUtility.UrlDecode(u);
-                                //            s.Append("<item url=\"" + SetUrl(u) + "\"  title=\"" + SetTitle(n.InnerText) + "\" />"); // 
-                                //            orgLinks++;
-                                //        }
-                                //    }
-                                //    //else
-                                //    //{
-                                //    //   if (orgLinks >= 100)
-                                //    //   {
-                                //    //       break;
-                                //    //   }
-                                //    // }
-                                //}
-
-
                             }
                             else if (nd.Attributes["class"].Value == "g mnr-c srg")
                             {

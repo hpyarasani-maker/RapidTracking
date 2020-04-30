@@ -840,7 +840,8 @@ namespace RapidTrackingSingleThread
             HtmlNodeCollection nds = node.SelectNodes(".//g-inner-card/a");
 
             if (nds == null)
-                nds = node.SelectNodes(".//div[@class='dbsr']/a");
+                 nds = node.SelectNodes(".//div[@class='dbsr']/a");
+
 
             if (nds != null)
                 foreach (HtmlNode nd in nds)
@@ -865,6 +866,7 @@ namespace RapidTrackingSingleThread
             else
             {
                 nds = node.SelectNodes(".//g-card-section/a");
+              
                 if (nds != null)
                     foreach (HtmlNode nd in nds)
                     {

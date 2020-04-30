@@ -433,12 +433,16 @@ namespace Oxylabs_BulkKeywords
                             if (Regex.IsMatch(nd.OuterHtml, "id=\"vidthumb\\d*\"")) // 17-01-2020
                             {
                                 var urls = n.Attributes["href"].Value;
-                                if (urls.StartsWith("http") || urls.StartsWith("https"))
+                                if (urls.StartsWith("http") || urls.StartsWith("https") || urls.StartsWith("ftp")) //30-04-2020
                                 {
                                     int indx = urls.LastIndexOf("http://");
                                     if (indx < 0)
                                     {
                                         indx = urls.LastIndexOf("https://");
+                                    }
+                                    if (indx < 0)
+                                    {
+                                        indx = urls.LastIndexOf("ftp://");  //30-04-2020
                                     }
                                     urls = urls.Remove(0, indx);
                                     // video block.
@@ -453,12 +457,16 @@ namespace Oxylabs_BulkKeywords
                             {
                                 var urls = n.Attributes["href"].Value;
                                 urls = SetUrl(urls);    // 20-12-2019
-                                if (urls.StartsWith("http") || urls.StartsWith("https"))
+                                if (urls.StartsWith("http") || urls.StartsWith("https") || urls.StartsWith("ftp")) //30-04-2020
                                 {
                                     int indx = urls.LastIndexOf("http://");
                                     if (indx < 0)
                                     {
                                         indx = urls.LastIndexOf("https://");
+                                    }
+                                    if (indx < 0)
+                                    {
+                                        indx = urls.LastIndexOf("ftp://");  //30-04-2020
                                     }
                                     urls = urls.Remove(0, indx);
                                     // string links1= HttpUtility.UrlDecode(urls);
@@ -482,12 +490,16 @@ namespace Oxylabs_BulkKeywords
                                     t = n.InnerText;
 
                                 urls = SetUrl(urls);    // 20-12-2019
-                                if (urls.StartsWith("http") || urls.StartsWith("https"))
+                                if (urls.StartsWith("http") || urls.StartsWith("https") || urls.StartsWith("ftp")) //30-04-2020
                                 {
                                     int indx = urls.LastIndexOf("http://");
                                     if (indx < 0)
                                     {
                                         indx = urls.LastIndexOf("https://");
+                                    }
+                                    if (indx < 0)
+                                    {
+                                        indx = urls.LastIndexOf("ftp://");  //30-04-2020
                                     }
                                     urls = urls.Remove(0, indx);
                                     // string links1= HttpUtility.UrlDecode(urls);
@@ -510,12 +522,16 @@ namespace Oxylabs_BulkKeywords
                         u = u.Substring(0, u.IndexOf("&sa="));
                     if (orgLinks < 100)
                     {
-                        if (u.StartsWith("http") || u.StartsWith("https"))
+                        if (u.StartsWith("http") || u.StartsWith("https") || u.StartsWith("ftp")) //30-04-2020
                         {
                             int indx = u.LastIndexOf("http://");
                             if (indx < 0)
                             {
                                 indx = u.LastIndexOf("https://");
+                            }
+                            if (indx < 0)
+                            {
+                                indx = u.LastIndexOf("ftp://");  //30-04-2020
                             }
                             u = u.Remove(0, indx);
                             // string links1 = HttpUtility.UrlDecode(u);
@@ -1149,7 +1165,8 @@ namespace Oxylabs_BulkKeywords
 
             Regex rx = new Regex("http[\\w]?://(.*)", RegexOptions.Singleline);
             if (!rx.Match(url).Success && !url.Contains("/aclk?"))
-                url = "http://" + url;
+                if (!url.Contains("://")) // 30-04-2020
+                    url = "http://" + url;
 
             if (url.Contains("&amp;grqid="))
                 url = url.Remove(url.IndexOf("&amp;grqid="));
@@ -1160,7 +1177,7 @@ namespace Oxylabs_BulkKeywords
             if (url.Contains("\0"))
                 url = url.Replace("\0", "%00");
 
-            if ((url.StartsWith("https://") || url.StartsWith("http://")) && !url.Contains("/aclk?"))
+            if ((url.StartsWith("https://") || url.StartsWith("http://") || url.StartsWith("ftp://")) && !url.Contains("/aclk?"))  // 30-04-2020
                 return url;
 
             return string.Empty;

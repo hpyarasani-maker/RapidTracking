@@ -30,7 +30,11 @@ namespace RapidTrackingSingleThread
             ndText = topStuff;
             sb.Append(topStuff);
 
-            HtmlNodeCollection nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-card|//div[@id='taw']/div[@class='med']/div[2]/div|//div[@id='rso']/nav");
+            HtmlNodeCollection nodeCol = doc.DocumentNode.SelectNodes("//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']/div[@class='MUxGbd v0nnCb lyLwlc']|//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']/div/div[@class='MUxGbd v0nnCb lyLwlc']");   //29-04-2020
+            if (nodeCol != null)
+                nodeCol = nodeCol[nodeCol.Count - 1].SelectNodes("a/div");  //28-04-2020
+            if (nodeCol == null)
+                nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-card|//div[@id='taw']/div[@class='med']/div[2]/div|//div[@id='rso']/nav");   //28-04-2020
             if (nodeCol != null && nodeCol.Count == 1)
                 nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@class='vC5Ym DhKAUb']/div");    //17-09-2019
             if (nodeCol == null)
@@ -220,7 +224,6 @@ namespace RapidTrackingSingleThread
 
             // Ads  added or condition
             // HtmlNodeCollection col = doc.DocumentNode.SelectNodes("//div[@id='tadsb']/ol/li|//div[@id='tads']/ol/li");
-            //HtmlNodeCollection col = doc.DocumentNode.SelectNodes("//div[@id='tadsb'][@class='C4eCVc c']/ol/li");  // 21-02-2020   included class selector
             HtmlNodeCollection col = doc.DocumentNode.SelectNodes("//div[@id='tadsb']/div[@class='C4eCVc c']/ol/li");  // 24-04-2020   included class selector
             if (col != null)
             {
@@ -696,12 +699,16 @@ namespace RapidTrackingSingleThread
                                             string url = vdo.Attributes["href"].Value;
                                             //string title = vdo.SelectSingleNode(".//div[1]").InnerText; // vdo.InnerText.Replace("'", "").Replace("\"", "");
                                             string title = vdo.SelectSingleNode(".//div[@class='MUxGbd v0nnCb']|.//div[@class='zlBHuf MUxGbd v0nnCb']").InnerText;  //24-09-2019
-                                            if (url.StartsWith("http") || url.StartsWith("https"))
+                                            if (url.StartsWith("http") || url.StartsWith("https") || url.StartsWith("ftp")) //30-04-2020
                                             {
                                                 int indx = url.LastIndexOf("http://");
                                                 if (indx < 0)
                                                 {
                                                     indx = url.LastIndexOf("https://");
+                                                }
+                                                if (indx < 0)
+                                                {
+                                                    indx = url.LastIndexOf("ftp://");  //30-04-2020
                                                 }
                                                 url = url.Remove(0, indx);
                                                 s.Append("<block type=\"video\" url=\"\">");
@@ -751,13 +758,16 @@ namespace RapidTrackingSingleThread
 
                                 if (orgLinks < 100)
                                 {
-                                    if (u.StartsWith("http") || u.StartsWith("https"))
+                                    if (u.StartsWith("http") || u.StartsWith("https") || u.StartsWith("ftp")) //30-04-2020
                                     {
                                         int indx = u.LastIndexOf("http://");
                                         if (indx < 0)
                                         {
                                             indx = u.LastIndexOf("https://");
-                                            u = u.Remove(0, indx);
+                                        }
+                                        if (indx < 0)
+                                        {
+                                            indx = u.LastIndexOf("ftp://");  //30-04-2020
                                         }
                                         //string links1 = HttpUtility.UrlDecode(u);
 
@@ -813,12 +823,16 @@ namespace RapidTrackingSingleThread
                                             //28-10-2019
                                             if (n.SelectSingleNode(".//div[@role='heading']") != null)
                                                 title = n.SelectSingleNode(".//div[@role='heading']").InnerText;
-                                            if (url.StartsWith("http") || url.StartsWith("https"))
+                                            if (url.StartsWith("http") || url.StartsWith("https") || url.StartsWith("ftp")) //30-04-2020
                                             {
                                                 int indx = url.LastIndexOf("http://");
                                                 if (indx < 0)
                                                 {
                                                     indx = url.LastIndexOf("https://");
+                                                }
+                                                if (indx < 0)
+                                                {
+                                                    indx = url.LastIndexOf("ftp://");  //30-04-2020
                                                 }
                                                 url = url.Remove(0, indx);
                                                 s.Append("<block type=\"video\" url=\"\">");
@@ -869,13 +883,16 @@ namespace RapidTrackingSingleThread
                                     if (orgLinks < 100)
                                     {
                                         u = SetUrl(u);
-                                        if (u.StartsWith("http") || u.StartsWith("https"))
+                                        if (u.StartsWith("http") || u.StartsWith("https") || u.StartsWith("ftp")) //30-04-2020
                                         {
                                             int indx = u.LastIndexOf("http://");
                                             if (indx < 0)
                                             {
                                                 indx = u.LastIndexOf("https://");
-                                                u = u.Remove(0, indx);
+                                            }
+                                            if (indx < 0)
+                                            {
+                                                indx = u.LastIndexOf("ftp://");  //30-04-2020
                                             }
                                             //string links1 = HttpUtility.UrlDecode(u);
 
@@ -928,12 +945,16 @@ namespace RapidTrackingSingleThread
                                     if (orgLinks < 100)
                                     {
                                         var u = n.Attributes["href"].Value;
-                                        if (u.StartsWith("http") || u.StartsWith("https"))
+                                        if (u.StartsWith("http") || u.StartsWith("https") || u.StartsWith("ftp")) //30-04-2020
                                         {
                                             int indx = u.LastIndexOf("http://");
                                             if (indx < 0)
                                             {
                                                 indx = u.LastIndexOf("https://");
+                                            }
+                                            if (indx < 0)
+                                            {
+                                                indx = u.LastIndexOf("ftp://");  //30-04-2020
                                             }
                                             u = u.Remove(0, indx);
                                             // string links1 = HttpUtility.UrlDecode(u);
@@ -1253,7 +1274,8 @@ namespace RapidTrackingSingleThread
                     //if (c == null) continue;
                     //foreach (HtmlNode a in c)
                     //{
-                    s.Append("<item url=\"" + SetUrl(nd.Attributes["href"].Value) + "\" title=\"" + SetTitle(nd.InnerText) + "\" />");
+                    if (!nd.InnerHtml.Contains("span id"))//25-04-2020   
+                        s.Append("<item url=\"" + SetUrl(nd.Attributes["href"].Value) + "\" title=\"" + SetTitle(nd.InnerText) + "\" />");
                     //    }
                 }
                 s.Append("</block>");
@@ -1758,6 +1780,7 @@ namespace RapidTrackingSingleThread
                     if (nd.InnerText.ToLower().Trim() == "recipes" || nd.InnerText.ToLower().Trim() == "ricette")
                         return "Carousel";
                 // 24-04-2020
+
                 nd = node.SelectSingleNode(".//div[@class='kp-blk nGydZ Wnoohf OJXvsb']");  // 20-03-2020
                 if (nd == null)
                     return "KnowledgePanel";
@@ -2025,6 +2048,8 @@ namespace RapidTrackingSingleThread
                 //30-03-2020
                 if (node.SelectSingleNode(".//div[@class='g card-section jiwmWe']") != null)
                     return false;
+                if (node.SelectSingleNode(".//div[@class='MUxGbd v0nnCb lyLwlc']") != null)//25-04-2020
+                    return false;
                 return true;
             }
 
@@ -2177,7 +2202,8 @@ namespace RapidTrackingSingleThread
 
             Regex rx = new Regex("http[\\w]?://(.*)", RegexOptions.Singleline);
             if (!rx.Match(url).Success && !url.Contains("/aclk?"))
-                url = "http://" + url;
+                if (!url.Contains("://")) // 30-04-2020
+                    url = "http://" + url;
 
             if (url.Contains("&amp;grqid="))
                 url = url.Remove(url.IndexOf("&amp;grqid="));
@@ -2189,7 +2215,7 @@ namespace RapidTrackingSingleThread
             if (url.Contains("\0"))
                 url = url.Replace("\0", "%00");
 
-            if ((url.StartsWith("https://") || url.StartsWith("http://")) && (!url.Contains("/aclk?") && !url.Contains("search?num=100"))) //18-02-2020 and 24-02-2020 included condition
+            if ((url.StartsWith("https://") || url.StartsWith("http://") || url.StartsWith("ftp://")) && (!url.Contains("/aclk?") && !url.Contains("search?num=100")))  // 30-04-2020 //18-02-2020 and 24-02-2020 included condition
                 return url;
 
             return string.Empty;
@@ -2216,3 +2242,4 @@ namespace RapidTrackingSingleThread
 
     }
 }
+

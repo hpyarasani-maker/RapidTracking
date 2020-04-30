@@ -436,6 +436,10 @@ namespace RapidTrackingSingleThread
                                     {
                                         indx = urls.LastIndexOf("https://");
                                     }
+                                    if (indx < 0)
+                                    {
+                                        indx = urls.LastIndexOf("ftp://");  //30-04-2020
+                                    }
                                     urls = urls.Remove(0, indx);
                                     // video block.
                                     s.Append("<block type=\"video\" url=\"\">");

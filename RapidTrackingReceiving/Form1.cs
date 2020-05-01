@@ -97,7 +97,7 @@ namespace Oxylabs_BulkKeywords
             //Text = "D_Oxylabs_RapidTracking_RecieveDesktop_20";
             //Text = "D_Oxylabs_TrackingTrending_MobileRecieve_102_12";
             //Text = "D_Oxylabs_TrackingTrending_MobileRecieve_106_20";
-            //Text = "D_Oxylabs_RapidTracking_RecieveMobile_20";
+            Text = "D_Oxylabs_RapidTracking_RecieveMobile_9";
             //Text = "D_Oxylabs_TrackingTrending_RecieveOtherMobile_15";  
             //Text = "D_Oxylabs_TrackingTrending_Recieve_CommaKeywords_1";
             //Text = "D_Oxylabs_TrackingTrending_Recieve_HotelKeywords_4_WC";
@@ -107,7 +107,7 @@ namespace Oxylabs_BulkKeywords
             //Text = "Comma Keywords P Results-11-14_Mobile_2";
             //27th what is bitcoin
             //Text = "D_Oxylabs_TrackingTrending_DesktopRecieve_1_12";
-            Text = "D_Oxylabs_TrackingTrending_DesktopRecieve_58_16";
+            //Text = "D_Oxylabs_TrackingTrending_DesktopRecieve_58_20";
 
         }
 

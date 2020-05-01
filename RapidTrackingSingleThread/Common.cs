@@ -7,12 +7,7 @@ namespace RapidTrackingSingleThread
 {
     class Common
     {
-        //public const string serv1DbCon = "Data Source=82.136.46.2;User ID=sa;Password = Brisbane007;initial catalog = buffalo;TransparentNetworkIPResolution=false";
-        //public const string serv1DbCon = "Data Source=82.136.42.2;User ID=sa;Password = brisbane007;initial catalog = TrackingKeywords;TransparentNetworkIPResolution=false";
-
-        //public const string DbCon = "Data Source=82.136.46.2;User ID=sa;Password=Brisbane007;initial catalog=TrendingLive;TransparentNetworkIPResolution=false;";
-        //public const string DbConazure = "Server=tcp:googlefirstpage.database.windows.net,1433;Initial Catalog=TrendingLive;User ID=hemachander@googlefirstpage;Password=Brisbane007;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30";
-
+      
 
         internal static string ReadConnection()
         {

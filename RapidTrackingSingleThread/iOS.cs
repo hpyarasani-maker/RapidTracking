@@ -1851,6 +1851,8 @@ namespace RapidTrackingSingleThread
             nd = node.SelectSingleNode(".//*[@id='rXuTZe']");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='I2lQic']");//05-11-2019
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='utyL0c']");//01-05-2020
             if (nd != null)
             {
                 return "Maps";

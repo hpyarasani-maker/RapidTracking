@@ -841,7 +841,8 @@ namespace RapidTrackingSingleThread
 
             if (nds == null)
                  nds = node.SelectNodes(".//div[@class='dbsr']/a");
-
+            if (nds == null)
+                nds = node.SelectNodes(".//g-inner-card/div/a");   //01-05-2020
 
             if (nds != null)
                 foreach (HtmlNode nd in nds)
@@ -856,6 +857,8 @@ namespace RapidTrackingSingleThread
                         n = nd.SelectSingleNode(".//div[@class='mRnBbe QgUve nDgy9d']");
                     if (n == null)
                         n = nd.SelectSingleNode(".//div[@class='nDgy9d']");     // changes on 02-07-2019
+                    if (n == null)
+                        n = nd.SelectSingleNode(".//div[@class='mCBkyc jBgGLd']");   //01-05-2020
                     if (n != null)
                         title = n.InnerText;
                     else

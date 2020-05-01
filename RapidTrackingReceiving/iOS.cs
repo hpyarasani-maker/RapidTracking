@@ -1858,7 +1858,7 @@ namespace Oxylabs_BulkKeywords
                         return "Maps";
 
                 // changes on 08-07-2019
-                nd = node.SelectSingleNode(".//img[@alt='map image']|.//img[@alt='Affected area map']");  // 13-03-2020 
+                nd = node.SelectSingleNode(".//img[@alt='map image']|.//img[@alt='Affected area map']|.//img[contains(@alt,'Map of ')]");  // 13-03-2020 //01-05-2020
                 if (nd != null)
                     return "Maps";
             }

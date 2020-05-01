@@ -46,7 +46,8 @@ namespace Oxylabs_BulkKeywords
             if (nodeCol == null)
                 nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");
             if (nodeCol == null)
-                nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div"); //13-03-2020
+                nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-section-with-header");//13-03-2020  //01-05-2020         
+
             if (nodeCol == null)
             {
                 organicurls = 0;
@@ -83,6 +84,8 @@ namespace Oxylabs_BulkKeywords
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div"); //15-04-2020
                 if (nodeCol == null)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@class='WvKfwe a3spGf']/div");  // 15-04-2020
+                if (nodeCol == null)
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='WvKfwe a3spGf']/div|//div[@class='WvKfwe a3spGf']/g-section-with-header");  // 15-04-2020    //01-05-2020");  // 15-04-2020
                 foreach (HtmlNode node in nodeCol)
                 {
                     try

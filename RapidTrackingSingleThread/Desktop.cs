@@ -860,7 +860,7 @@ namespace RapidTrackingSingleThread
                     if (n == null)
                         n = nd.SelectSingleNode(".//div[@class='nDgy9d']");     // changes on 02-07-2019
                     if (n == null)
-                        n = nd.SelectSingleNode(".//div[@class='mCBkyc jBgGLd']");   //01-05-2020
+                        n = nd.SelectSingleNode(".//div[@class='mCBkyc jBgGLd']|.//div[@class='mCBkyc nDgy9d']");   //01-05-2020
                     if (n != null)
                         title = n.InnerText;
                     else

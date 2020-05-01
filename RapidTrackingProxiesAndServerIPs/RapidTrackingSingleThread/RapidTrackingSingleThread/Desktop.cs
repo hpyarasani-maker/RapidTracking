@@ -42,9 +42,7 @@ namespace RapidTrackingSingleThread
             if (nodeCol == null)
                 nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");
             if (nodeCol == null)
-                nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div"); //13-03-2020
-
-
+                nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-section-with-header");//13-03-2020  //01-05-2020         
 
             foreach (HtmlNode node in nodeCol)
             {
@@ -74,7 +72,7 @@ namespace RapidTrackingSingleThread
                 if (nodeCol == null)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div"); //15-04-2020
                 if (nodeCol == null)
-                    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='WvKfwe a3spGf']/div");  // 15-04-2020
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='WvKfwe a3spGf']/div|//div[@class='WvKfwe a3spGf']/g-section-with-header");  // 15-04-2020    //01-05-2020");  // 15-04-2020
                 foreach (HtmlNode node in nodeCol)
                 {
                     try
@@ -843,6 +841,8 @@ namespace RapidTrackingSingleThread
 
             if (nds == null)
                 nds = node.SelectNodes(".//div[@class='dbsr']/a");
+            if (nds == null)
+                nds = node.SelectNodes(".//g-inner-card/div/a");   //01-05-2020
 
             if (nds != null)
                 foreach (HtmlNode nd in nds)
@@ -857,6 +857,8 @@ namespace RapidTrackingSingleThread
                         n = nd.SelectSingleNode(".//div[@class='mRnBbe QgUve nDgy9d']");
                     if (n == null)
                         n = nd.SelectSingleNode(".//div[@class='nDgy9d']");     // changes on 02-07-2019
+                    if (n == null)
+                        n = nd.SelectSingleNode(".//div[@class='mCBkyc jBgGLd']|.//div[@class='mCBkyc nDgy9d']");   //01-05-2020
                     if (n != null)
                         title = n.InnerText;
                     else
@@ -867,6 +869,7 @@ namespace RapidTrackingSingleThread
             else
             {
                 nds = node.SelectNodes(".//g-card-section/a");
+
                 if (nds != null)
                     foreach (HtmlNode nd in nds)
                     {
@@ -957,7 +960,7 @@ namespace RapidTrackingSingleThread
             {
                 return "VideoCard";
             }
-            nd = node.SelectSingleNode(".//div[@class='KNcnob']/g-img");
+            nd = node.SelectSingleNode(".//div[@class='KNcnob']/g-img|.//div[@class='YEMaTe']/g-img");   //01-05-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='fn6bCb']");
             if (nd == null)
@@ -1108,7 +1111,7 @@ namespace RapidTrackingSingleThread
 
             if (!bVal)
             {
-                HtmlNode nd = node.SelectSingleNode(".//h3|.//div[@class='HnYYW i8lZMc']");  // 23-03-2020
+                HtmlNode nd = node.SelectSingleNode(".//h3|.//div[@class='HnYYW i8lZMc']|.//div[@class='e2BEnf U7izfe']/div");  // 23-03-2020    //01-05-2020
                 if (nd != null)
                     if (nd.InnerText == "Top stories" || nd.InnerText == "Videos" || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws") // 18-03-2020  // 08-04-2020
                         return true;

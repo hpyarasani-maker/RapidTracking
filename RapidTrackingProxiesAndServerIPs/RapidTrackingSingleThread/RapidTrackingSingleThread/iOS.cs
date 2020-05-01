@@ -1774,6 +1774,8 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div/a[@class='B1uW2d ellip PZPZlf']");    //21-02-2020 included selector for AnswerCard block
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='F7SFG']");  //21-04-2020
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='Nhsae']");//01-05-2020
             if (nd != null)
             {
                 return "AnswerCard";
@@ -1848,6 +1850,8 @@ namespace RapidTrackingSingleThread
             nd = node.SelectSingleNode(".//*[@id='rXuTZe']");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='I2lQic']");//05-11-2019
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='utyL0c']");//01-05-2020
             if (nd != null)
             {
                 return "Maps";

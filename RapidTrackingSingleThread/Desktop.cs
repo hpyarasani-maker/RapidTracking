@@ -921,8 +921,9 @@ namespace RapidTrackingSingleThread
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title1) + "\" />");
                     }
             }
-            //string caitems = GetCarouselURLs();
-            //s.Append(caitems);
+            // 11-05-2020 uncommented.
+            string caitems = GetCarouselURLs();
+            s.Append(caitems);
             return s.ToString();
         }
 

@@ -889,6 +889,8 @@ namespace RapidTrackingSingleThread
             HtmlNodeCollection nd = node.SelectNodes(".//div[@class='nsEy4b']/div/g-inner-card/g-link/a");  //26-11-2019
             if (nd == null)
                 nd = node.SelectNodes(".//div[@jsname='WUSFrc']/g-link/a");
+            if (nd == null)
+                nd = node.SelectNodes(".//div[@class='v1uiFd']/g-link/a");  // 11-05-2020
             string url = "";
             if (nd != null)
             {

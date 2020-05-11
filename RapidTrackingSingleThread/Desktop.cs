@@ -586,7 +586,7 @@ namespace RapidTrackingSingleThread
                 case "carousel":
                     //s.Append("<block type=\"carousel\" url=\"\"></block>");
                     s.Append("<block type=\"carousel\" url=\"\">");
-                    //s.Append(GetCarousel(node));
+                    s.Append(GetCarousel(node)); //11-05-2020 removed uncommented
                     s.Append("</block>");
                     break;
                 case "finance":

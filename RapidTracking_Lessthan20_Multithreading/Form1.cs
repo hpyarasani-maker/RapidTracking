@@ -119,7 +119,9 @@ namespace TrackingTrending
                                 iOS clsiOS = new iOS();
                                 res = clsiOS.ProcessDocument(seid, keyword, doc, out count);
                             }
-
+                            this.Invoke((MethodInvoker)delegate () {
+                                lblcount1.Text = "Count: " + count;
+                            });
                             if (!string.IsNullOrEmpty(res))
                             {
                                 if (count > 20)
@@ -199,7 +201,9 @@ namespace TrackingTrending
                                 iOS clsiOS = new iOS();
                                 res = clsiOS.ProcessDocument(seid, keyword, doc, out count);
                             }
-
+                            this.Invoke((MethodInvoker)delegate () {
+                                lblcount2.Text = "Count: " + count;
+                            });
                             if (!string.IsNullOrEmpty(res))
                             {
                                 if (count > 20)
@@ -279,7 +283,9 @@ namespace TrackingTrending
                                 iOS clsiOS = new iOS();
                                 res = clsiOS.ProcessDocument(seid, keyword, doc, out count);
                             }
-
+                            this.Invoke((MethodInvoker)delegate () {
+                                lblcount3.Text = "Count: " + count;
+                            });
                             if (!string.IsNullOrEmpty(res))
                             {
                                 if (count > 20)
@@ -855,13 +861,14 @@ namespace TrackingTrending
             string username = "gpidatametrics";
             string password = "sdV5X3fcX6";
             string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
+            string[] kwd = { sp.query };
 
             OxyParams op = new OxyParams()
             {
                 source = "google_search",
                 domain = sp.domain,
-                query = sp.query.Split(','),
-                //query=keyword,
+               //query = sp.query.Split(','),
+                query=kwd,
                 limit = 100,
                 pages = 1,
                 locale = sp.locale,

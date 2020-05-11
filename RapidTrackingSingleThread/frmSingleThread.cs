@@ -19,7 +19,7 @@ namespace RapidTrackingSingleThread
 {
     public partial class frmSingleThread : Form
     {
-        string xmlPath = "C:\\inetpub\\wwwroot\\rapidtracking_singlethread_104_503_WOC.xml";        
+        string xmlPath = "C:\\inetpub\\wwwroot\\rapidtracking_singlethread_102_GT0_WC.xml";        
 
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
        
@@ -46,7 +46,7 @@ namespace RapidTrackingSingleThread
         private void frmSingleThread_Load(object sender, EventArgs e)
         {
             
-            this.Text = "RapidTracking_SingleThread_104_503_WOC";
+            this.Text = "RapidTracking_SingleThread_102_GT0_WC";
             //this.Text = "RapidTracking_SingleThread_P_A_WOC_10-09-2019";
 
             Thread t = new Thread(new ThreadStart(StartProcess));
@@ -62,7 +62,7 @@ namespace RapidTrackingSingleThread
                 //string myDate = "2019-11-20";
 
 
-                string kwQry = "[Tracking_DB_Keywords_Seid_104] '" + myDate + "'";               
+                string kwQry = "[Tracking_DB_Keywords_Seid_102] '" + myDate + "'";               
                 //string kwQry = "[Tracking_DB_Keywords_Seid_103p] '" + myDate + "'";               
                 //string kwQry = "[GetCommaKeywordsP] '" + myDate + "'";               
 
@@ -94,7 +94,7 @@ namespace RapidTrackingSingleThread
                             string html = obj["results"][0]["content"].Value<string>();
                             string jobid = src[2];
                             string device = src[3];
-                            //File.WriteAllText(@"D:\source\"+jobid+"_"+keyword+".html", html, Encoding.UTF8);
+                            File.WriteAllText(@"D:\source\"+jobid+"_"+keyword+".html", html, Encoding.UTF8);
                             //File.WriteAllText(@"C:\inetpub\wwwroot\"+jobid+"_withOut filter_"+".html", html, Encoding.UTF8);
                             result = true;
                             doc = new HtmlAgilityPack.HtmlDocument();
@@ -116,17 +116,17 @@ namespace RapidTrackingSingleThread
 
                                 if (!string.IsNullOrEmpty(res))
                                 {
-                                  //  if (count > 0)
-                                  //  {
+                                    if (count > 0)
+                                    {
                                         SendToAPI(seid, keyword, res, jobid);
                                         SendToDB(seid, keyword, res, jobid, count);
-                                  //  }
+                                    }
                                 }
-                                else
-                                {
-                                    SendToAPI(seid, keyword, res, jobid);
-                                    SendToDB(seid, keyword, res, jobid, count);
-                                }
+                                //else
+                                //{
+                                //    SendToAPI(seid, keyword, res, jobid);
+                                //    SendToDB(seid, keyword, res, jobid, count);
+                                //}
 
                             }
                             catch (Exception ex)

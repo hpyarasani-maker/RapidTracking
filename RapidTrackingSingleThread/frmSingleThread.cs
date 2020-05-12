@@ -22,9 +22,10 @@ namespace RapidTrackingSingleThread
         string xmlPath = "C:\\inetpub\\wwwroot\\rapidtracking_singlethread_102_GT20_WC.xml";        
 
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
-       
-        //int count; 
 
+        //int count; 
+        string submitURL;  // 12-05-2020
+        string strCon;  // 12-05-2020
         public frmSingleThread()
         {
             InitializeComponent();
@@ -200,7 +201,7 @@ namespace RapidTrackingSingleThread
             //SendToURL
 
 
-            string submitURL = ReadAPI();
+           // string submitURL = ReadAPI();
            
             string user = "pisoftware";
             string pwd = "r00t123456";

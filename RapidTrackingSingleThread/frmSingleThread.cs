@@ -49,6 +49,9 @@ namespace RapidTrackingSingleThread
             this.Text = "RapidTracking_SingleThread_CoronaKeywords-2_102_GT20_WC";
             //this.Text = "RapidTracking_SingleThread_P_A_WOC_10-09-2019";
 
+            submitURL = ReadAPI();  // 12-05-2020
+            strCon = Common.ReadConnection();  // 12-05-2020
+
             Thread t = new Thread(new ThreadStart(StartProcess));
             t.SetApartmentState(ApartmentState.STA);
             t.Start();

@@ -300,7 +300,7 @@ namespace RapidTrackingSingleThread
 
             try
             {
-                using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
+                using (SqlConnection con = new SqlConnection(strCon))  // 12-05-2020
                 {
                     con.Open();
                     using (SqlCommand comm = new SqlCommand(qry, con))
@@ -375,7 +375,7 @@ namespace RapidTrackingSingleThread
             string qryOld = "insert into dashboard_oldgooglepage (date, keyword, seid, jobid) values('" + DateTime.Now + "', N'" +
                  kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "' )";
 
-            using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
+            using (SqlConnection con = new SqlConnection(strCon))  // 12-05-2020
             {
                 try
                 {
@@ -440,7 +440,7 @@ namespace RapidTrackingSingleThread
                 string myDate = DateTime.Today.ToString("yyyy-MM-dd");
                 //string myDate = "2019-11-20";
                
-                using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
+                using (SqlConnection con = new SqlConnection(strCon))  // 12-05-2020
                 {
                     con.Open();
 

@@ -265,13 +265,14 @@ namespace Oxylabs_BulkKeywords
 
         private void SendXmlToAPI(string seid, string kw, string res)
         {
-            string tname = Thread.CurrentThread.Name;
-            string path = @"C:\Inetpub\wwwroot\rapidtracking_" + tname + ".xml";
+            // 13-05-2020 
+            //string tname = Thread.CurrentThread.Name;
+            //string path = @"C:\Inetpub\wwwroot\rapidtracking_" + tname + ".xml";
 
-            XmlDocument xd = new XmlDocument();
+            //XmlDocument xd = new XmlDocument();
             res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + res;
-            xd.LoadXml(res);
-            xd.Save(path);
+            //xd.LoadXml(res);
+            //xd.Save(path);
 
 
            // string submitURL = ReadAPI(); //commented on 12-05-2020
@@ -288,8 +289,8 @@ namespace Oxylabs_BulkKeywords
                 httpWReq.CookieContainer = new CookieContainer();
 
                 Encoding encoding = new UTF8Encoding();
-                string postData = GetTextFromXMLFile(path);
-                byte[] data = encoding.GetBytes(postData);
+                //string postData = GetTextFromXMLFile(path);   // 13-05-2020 
+                byte[] data = encoding.GetBytes(res); // 13-05-2020
 
                 httpWReq.ProtocolVersion = HttpVersion.Version11;
                 httpWReq.Method = "POST";

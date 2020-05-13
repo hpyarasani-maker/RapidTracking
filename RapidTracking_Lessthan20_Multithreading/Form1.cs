@@ -20,9 +20,9 @@ namespace TrackingTrending
     public partial class Form1 : Form
     {
 
-        string xmlPath1 = @"C:\inetpub\wwwroot\trackingtrending_lt20_43.xml";
-        string xmlPath2 = @"C:\inetpub\wwwroot\trackingtrending_lt20_44.xml";
-        string xmlPath3 = @"C:\inetpub\wwwroot\trackingtrending_lt20_45.xml";
+        string xmlPath1 = @"C:\inetpub\wwwroot\trackingtrending_lt20_1.xml";
+        string xmlPath2 = @"C:\inetpub\wwwroot\trackingtrending_lt20_2.xml";
+        string xmlPath3 = @"C:\inetpub\wwwroot\trackingtrending_lt20_3.xml";
 
         //string xmlPath1 = @"C:\inetpub\wwwroot\trackingtrending_remaining_1.xml";
         //string xmlPath2 = @"C:\inetpub\wwwroot\trackingtrending_remaining_2.xml";
@@ -56,7 +56,7 @@ namespace TrackingTrending
 
         private void Form1_Load_1(object sender, EventArgs e)
         {
-            this.Text = "TrackingTrending Lessthan20_(43-44-45)";
+            this.Text = "TrackingTrending Lessthan20_(1-2-3)";
 
             dtPicker1.Value = DateTime.Today;
             myDate = dtPicker1.Value.ToString("yyyy-MM-dd");
@@ -79,7 +79,7 @@ namespace TrackingTrending
             while (true)
             {
                 //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
-                string kwQry = "GetLessthan20Keywords_43 '" + myDate + "'";
+                string kwQry = "GetLessthan20Keywords_1 '" + myDate + "'";
                 //string kwQry = "GetAllKeywords_1 '" + myDate + "'";     
 
                 GetKeywords1(kwQry);
@@ -119,7 +119,9 @@ namespace TrackingTrending
                                 iOS clsiOS = new iOS();
                                 res = clsiOS.ProcessDocument(seid, keyword, doc, out count);
                             }
-
+                            this.Invoke((MethodInvoker)delegate () { //13-05-2020
+                                lblcount1.Text = "Count: " + count;
+                            });
                             if (!string.IsNullOrEmpty(res))
                             {
                                 if (count > 20)
@@ -160,7 +162,7 @@ namespace TrackingTrending
             while (true)
             {
                 //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
-                string kwQry = "GetLessthan20Keywords_44 '" + myDate + "'";
+                string kwQry = "GetLessthan20Keywords_2 '" + myDate + "'";
                 //string kwQry = "GetAllKeywords_2 '" + myDate + "'";     
 
                 GetKeywords2(kwQry);
@@ -199,7 +201,9 @@ namespace TrackingTrending
                                 iOS clsiOS = new iOS();
                                 res = clsiOS.ProcessDocument(seid, keyword, doc, out count);
                             }
-
+                            this.Invoke((MethodInvoker)delegate () { //13-05-2020
+                                lblcount2.Text = "Count: " + count;
+                            });
                             if (!string.IsNullOrEmpty(res))
                             {
                                 if (count > 20)
@@ -240,7 +244,7 @@ namespace TrackingTrending
             while (true)
             {
                 //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
-                string kwQry = "GetLessthan20Keywords_45 '" + myDate + "'";
+                string kwQry = "GetLessthan20Keywords_3 '" + myDate + "'";
                 //string kwQry = "GetAllKeywords_3 '" + myDate + "'";     
 
                 GetKeywords3(kwQry);
@@ -279,7 +283,9 @@ namespace TrackingTrending
                                 iOS clsiOS = new iOS();
                                 res = clsiOS.ProcessDocument(seid, keyword, doc, out count);
                             }
-
+                            this.Invoke((MethodInvoker)delegate () { //13-05-2020
+                                lblcount3.Text = "Count: " + count;
+                            });
                             if (!string.IsNullOrEmpty(res))
                             {
                                 if (count > 20)
@@ -855,13 +861,14 @@ namespace TrackingTrending
             string username = "gpidatametrics";
             string password = "sdV5X3fcX6";
             string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
+            string[] kwd = { sp.query };  //13-05-2020
 
             OxyParams op = new OxyParams()
             {
                 source = "google_search",
                 domain = sp.domain,
-                query = sp.query.Split(','),
-                //query=keyword,
+                //query = sp.query.Split(','),
+                query=kwd,   //13-05-2020
                 limit = 100,
                 pages = 1,
                 locale = sp.locale,

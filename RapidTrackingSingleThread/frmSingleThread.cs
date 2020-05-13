@@ -24,8 +24,7 @@ namespace RapidTrackingSingleThread
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
         //int count; 
-        string submitURL;  // 12-05-2020
-        string strCon;  // 12-05-2020
+
         public frmSingleThread()
         {
             InitializeComponent();
@@ -50,8 +49,6 @@ namespace RapidTrackingSingleThread
             this.Text = "RapidTracking_SingleThread_CoronaKeywords-2_102_GT20_WC";
             //this.Text = "RapidTracking_SingleThread_P_A_WOC_10-09-2019";
 
-            submitURL = ReadAPI();  // 12-05-2020
-            strCon = Common.ReadConnection();  // 12-05-2020
 
             Thread t = new Thread(new ThreadStart(StartProcess));
             t.SetApartmentState(ApartmentState.STA);
@@ -201,7 +198,7 @@ namespace RapidTrackingSingleThread
             //SendToURL
 
 
-           // string submitURL = ReadAPI();
+            string submitURL = ReadAPI();
            
             string user = "pisoftware";
             string pwd = "r00t123456";
@@ -294,13 +291,13 @@ namespace RapidTrackingSingleThread
                 //lstKWs.Items.Add("106:romeo and juliet tickets");
                 //lstKWs.Items.Add("160:malmö ff");
                 //lstKWs.Items.Add("102:terry crews");
-                 lstKWs.Items.Add("58:checken korma");
+                 lstKWs.Items.Add("154:convertisseur température");
             });
             return;
 
             try
             {
-                using (SqlConnection con = new SqlConnection(strCon))  // 12-05-2020
+                using (SqlConnection con = new SqlConnection(Common.ReadConnection()))  // 12-05-2020
                 {
                     con.Open();
                     using (SqlCommand comm = new SqlCommand(qry, con))
@@ -375,7 +372,7 @@ namespace RapidTrackingSingleThread
             string qryOld = "insert into dashboard_oldgooglepage (date, keyword, seid, jobid) values('" + DateTime.Now + "', N'" +
                  kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "' )";
 
-            using (SqlConnection con = new SqlConnection(strCon))  // 12-05-2020
+            using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
             {
                 try
                 {
@@ -440,7 +437,7 @@ namespace RapidTrackingSingleThread
                 string myDate = DateTime.Today.ToString("yyyy-MM-dd");
                 //string myDate = "2019-11-20";
                
-                using (SqlConnection con = new SqlConnection(strCon))  // 12-05-2020
+                using (SqlConnection con = new SqlConnection(Common.ReadConnection()))  // 12-05-2020
                 {
                     con.Open();
 

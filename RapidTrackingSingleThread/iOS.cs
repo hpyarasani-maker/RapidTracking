@@ -1551,7 +1551,7 @@ namespace RapidTrackingSingleThread
                 {
                     foreach (HtmlNode nd in nds)
                     {
-                        if (nd.SelectSingleNode(".//div[@class='poMUXd']") != null)
+                        if (nd.SelectSingleNode(".//div[@class='poMUXd']") != null || nd.SelectSingleNode(".//div[@class='mCBkyc nDgy9d']") != null)   //14-05-2020
                         {
                             HtmlNode title = nd.SelectSingleNode(".//div[@class='poMUXd']");
                             string url = nd.Attributes["href"].Value;

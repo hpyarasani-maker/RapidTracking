@@ -22,15 +22,15 @@ namespace Oxylabs_BulkKeywords
 
         public event KeywordDone OnKeywordDone;
         double apitime, dbtime;    // 31-03-2020
-        string submitURL;  // 12-05-2020
-        string strCon;  // 12-05-2020
+        //string submitURL;  // 12-05-2020
+        //string strCon;  // 12-05-2020
         public HTMLParserNewTask()
         {
             desktop = new Desktop();
             ios = new iOS();
 
-            submitURL = ReadAPI();  // 12-05-2020
-            strCon = StrConn();  // 12-05-2020
+            //submitURL = ReadAPI();  // 12-05-2020
+            //strCon = StrConn();  // 12-05-2020
 
             Thread t1 = new Thread(new ThreadStart(StartProcess))
             {
@@ -169,7 +169,7 @@ namespace Oxylabs_BulkKeywords
             string qryOld = "insert into dashboard_oldgooglepage (date, keyword, seid, jobid) values('" + DateTime.Now + "', N'" +
                  kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "' )";
 
-            using (SqlConnection con = new SqlConnection(strCon)) //12-05-2020
+            using (SqlConnection con = new SqlConnection(StrConn())) //12-05-2020
             {
                 try
                 {
@@ -266,16 +266,16 @@ namespace Oxylabs_BulkKeywords
         private void SendXmlToAPI(string seid, string kw, string res)
         {
             // 13-05-2020 
-            //string tname = Thread.CurrentThread.Name;
-            //string path = @"C:\Inetpub\wwwroot\rapidtracking_" + tname + ".xml";
+            string tname = Thread.CurrentThread.Name;
+            string path = @"C:\Inetpub\wwwroot\rapidtracking_" + tname + ".xml";
 
-            //XmlDocument xd = new XmlDocument();
+            XmlDocument xd = new XmlDocument();
             res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + res;
-            //xd.LoadXml(res);
-            //xd.Save(path);
+            xd.LoadXml(res);
+            xd.Save(path);
 
 
-           // string submitURL = ReadAPI(); //commented on 12-05-2020
+            string submitURL = ReadAPI(); //commented on 12-05-2020
 
             string user = "pisoftware";
             string pwd = "r00t123456";
@@ -390,7 +390,7 @@ namespace Oxylabs_BulkKeywords
         {
             try
             {
-                using (SqlConnection con = new SqlConnection(strCon)) //12-05-2020
+                using (SqlConnection con = new SqlConnection(StrConn())) //12-05-2020
                 {
                     con.Open();
 

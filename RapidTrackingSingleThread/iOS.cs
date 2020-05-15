@@ -1798,8 +1798,8 @@ namespace RapidTrackingSingleThread
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@jsname='GDPwke']"); // 18-10-2019
             if (nd != null)
-                //if (node.Attributes.Contains(".//div[@jsname='pudyke']")) //start 13-11-2019             
-                return "Carousel";
+                if (node.SelectSingleNode(".//img[contains(@alt,'Map of ')]") == null) //15-05-2020
+                    return "Carousel";
 
             nd = node.SelectSingleNode(".//div[@class='TyzpY']");
             if (nd == null)

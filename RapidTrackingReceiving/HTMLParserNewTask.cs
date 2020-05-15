@@ -41,12 +41,11 @@ namespace Oxylabs_BulkKeywords
         private void StartProcess()
         {
             string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking desktop and all keywords
-           //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking mobile
-           // string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
+          //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking mobile
+            // string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
             //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobilehotel/";  // rapid tracking mobile
             //string url = "http://seresults.azurewebsites.net/api/callbackuk503desktoptemp/";
             //string url = "http://seresults.azurewebsites.net/api/trackingtrending/";
-
             //string url = "http://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58
             //string url = "http://seresults.azurewebsites.net/api/callbackuk106mobile/";      // 106
             //string url = "http://seresults.azurewebsites.net/api/callbackus1desktop/";     // 1

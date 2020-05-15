@@ -220,41 +220,7 @@ namespace TrendingReceiving
         private string GetBottomStuff(HtmlDocument doc)
         {
             StringBuilder s = new StringBuilder();
-
-            // Ads  added or condition
-            // HtmlNodeCollection col = doc.DocumentNode.SelectNodes("//div[@id='tadsb']/ol/li|//div[@id='tads']/ol/li");
-            HtmlNodeCollection col = doc.DocumentNode.SelectNodes("//div[@id='tadsb']/div[@class='C4eCVc c']/ol/li");  // 24-04-2020   included class selector
-            if (col != null)
-            {
-                s.Append("<block type=\"adwords\" url=\"\">");
-                foreach (HtmlNode nd in col)
-                {
-                    HtmlNode n = nd.SelectSingleNode(".//div[@class='d5oMvf KJDcUb']/a");
-                    if (n == null)
-                        n = nd.SelectSingleNode(".//div[@class='d5oMvf KJDcUb WzRKRb']/a"); // 17-12-2019
-                    if (n == null)
-                        n = nd.SelectSingleNode(".//div/a[2]|.//div/div/div[@class='d5oMvf']/a");
-                    if (n != null)
-                    {
-                        string title = n.SelectSingleNode(".//h3|.//div[@role='heading']").InnerText;
-                        if (!n.Attributes["href"].Value.StartsWith("/"))
-                        {
-                            var url = n.Attributes["href"].Value.Trim();
-                            url = GetRedirectedUrl(url);
-                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
-                        }
-                        else
-                        {
-                            n = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite");
-                            if (n != null)
-                                s.Append("<item url=\"" + SetUrl(n.InnerText) + "\" title=\"" + SetTitle(title) + "\" />");
-                        }
-                    }
-                }
-                s.Append("</block>");
-
-            }
-            //25-09-2019
+            //25-09-2019                        //swaped productlistedads 14-05-2020
             if (doc.DocumentNode.SelectSingleNode("//div[@class='mnr-c IGtt6d imgac']") != null)
             {
                 HtmlNode pla = doc.DocumentNode.SelectSingleNode(".//div[contains(@class, 'commercial-unit-mobile-top')]");
@@ -330,6 +296,40 @@ namespace TrendingReceiving
                     }
                 }
             }//25-09-2019
+            // Ads  added or condition
+            // HtmlNodeCollection col = doc.DocumentNode.SelectNodes("//div[@id='tadsb']/ol/li|//div[@id='tads']/ol/li");
+            HtmlNodeCollection col = doc.DocumentNode.SelectNodes("//div[@id='tadsb']/div[@class='C4eCVc c']/ol/li");  // 24-04-2020   included class selector
+            if (col != null)
+            {
+                s.Append("<block type=\"adwords\" url=\"\">");
+                foreach (HtmlNode nd in col)
+                {
+                    HtmlNode n = nd.SelectSingleNode(".//div[@class='d5oMvf KJDcUb']/a");
+                    if (n == null)
+                        n = nd.SelectSingleNode(".//div[@class='d5oMvf KJDcUb WzRKRb']/a"); // 17-12-2019
+                    if (n == null)
+                        n = nd.SelectSingleNode(".//div/a[2]|.//div/div/div[@class='d5oMvf']/a");
+                    if (n != null)
+                    {
+                        string title = n.SelectSingleNode(".//h3|.//div[@role='heading']").InnerText;
+                        if (!n.Attributes["href"].Value.StartsWith("/"))
+                        {
+                            var url = n.Attributes["href"].Value.Trim();
+                            url = GetRedirectedUrl(url);
+                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                        }
+                        else
+                        {
+                            n = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite");
+                            if (n != null)
+                                s.Append("<item url=\"" + SetUrl(n.InnerText) + "\" title=\"" + SetTitle(title) + "\" />");
+                        }
+                    }
+                }
+                s.Append("</block>");
+
+            }
+
 
             return s.ToString();
         }
@@ -1550,9 +1550,11 @@ namespace TrendingReceiving
                 {
                     foreach (HtmlNode nd in nds)
                     {
-                        if (nd.SelectSingleNode(".//div[@class='poMUXd']") != null)
+                        if (nd.SelectSingleNode(".//div[@class='poMUXd']") != null || nd.SelectSingleNode(".//div[@class='mCBkyc nDgy9d']") != null)   //14-05-2020
                         {
                             HtmlNode title = nd.SelectSingleNode(".//div[@class='poMUXd']");
+                            if (title == null)
+                                title = nd.SelectSingleNode(".//div[@class='mCBkyc nDgy9d']");    //14-05-2020
                             string url = nd.Attributes["href"].Value;
                             s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title.InnerText) + "\" />");
                         }
@@ -1795,8 +1797,8 @@ namespace TrendingReceiving
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@jsname='GDPwke']"); // 18-10-2019
             if (nd != null)
-                //if (node.Attributes.Contains(".//div[@jsname='pudyke']")) //start 13-11-2019             
-                return "Carousel";
+                if (node.SelectSingleNode(".//img[contains(@alt,'Map of ')]") == null) //15-05-2020
+                    return "Carousel";
 
             nd = node.SelectSingleNode(".//div[@class='TyzpY']");
             if (nd == null)
@@ -1929,6 +1931,8 @@ namespace TrendingReceiving
             nd = node.SelectSingleNode(".//div[@class='rKFBM gsrt wp-ms']/div");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='rKFBM gsrt iows2d wp-ms']/div");  //19-03-2020
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='JNkvid gsrt wp-ms']/div");  //15-05-2020
             if (nd != null)
             {
                 if (node.SelectSingleNode(".//g-scrolling-carousel") != null)

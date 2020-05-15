@@ -1115,7 +1115,8 @@ namespace TrackingTrending
             {
                 HtmlNode nd = node.SelectSingleNode(".//h3|.//div[@class='HnYYW i8lZMc']|.//div[@class='e2BEnf U7izfe']/div");  // 23-03-2020    //01-05-2020
                 if (nd != null)
-                    if (nd.InnerText == "Top stories" || nd.InnerText == "Videos" || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws") // 18-03-2020  // 08-04-2020
+                    if (nd.InnerText == "Top stories" || nd.InnerText == "Noticias principales" || nd.InnerText == "Videos" || nd.InnerText == "Vídeos" || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws") // 15-05-2020 
+
                         return true;
 
                 // changes in map block on 19-06-2019.

@@ -52,7 +52,6 @@ namespace Oxylabs_BulkKeywords
             //string url = "http://seresults.azurewebsites.net/api/callbackus102mobile/";      // 102
             //string url = "http://seresults.azurewebsites.net/api/callbackotherdesktop/";  // other desktop
             //string url = "http://seresults.azurewebsites.net/api/callbackothermobile/";   // other mobiles
-
             //string url = "http://seresults.azurewebsites.net/api/callbackimagesdesktop/";       // images desktop
             //string url = "http://seresults.azurewebsites.net/api/callbackimagesmobile/";      // images mobilse
             //string url = "http://seresults.azurewebsites.net/api/callback74images/";

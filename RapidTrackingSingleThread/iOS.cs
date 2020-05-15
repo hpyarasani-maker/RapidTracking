@@ -1932,6 +1932,8 @@ namespace RapidTrackingSingleThread
             nd = node.SelectSingleNode(".//div[@class='rKFBM gsrt wp-ms']/div");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='rKFBM gsrt iows2d wp-ms']/div");  //19-03-2020
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='JNkvid gsrt wp-ms']/div");  //15-05-2020
             if (nd != null)
             {
                 if (node.SelectSingleNode(".//g-scrolling-carousel") != null)

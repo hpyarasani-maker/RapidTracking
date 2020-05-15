@@ -22,21 +22,18 @@ namespace Oxylabs_BulkKeywords
 
         public event KeywordDone OnKeywordDone;
         double apitime, dbtime;    // 31-03-2020
-        //string submitURL;  // 12-05-2020
-        //string strCon;  // 12-05-2020
+
         public HTMLParserNewTask()
         {
             desktop = new Desktop();
             ios = new iOS();
 
-            //submitURL = ReadAPI();  // 12-05-2020
-            //strCon = StrConn();  // 12-05-2020
-
             Thread t1 = new Thread(new ThreadStart(StartProcess))
             {
-                Name = "All_1"
+                //Name = "All_5"
                 // Name = "Mobile_102_10"
-                //Name = "CommaKeywords_3"
+                ///Name = "CommaKeywords_1"
+                Name = "ODesktop_20"
             };
             t1.Start();
         }
@@ -44,11 +41,11 @@ namespace Oxylabs_BulkKeywords
         private void StartProcess()
         {
             string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking desktop and all keywords
-           //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking mobile
-           // string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
-            //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobilehotel/";  // rapid tracking mobile
-            //string url = "http://seresults.azurewebsites.net/api/callbackuk503desktoptemp/";
-            //string url = "http://seresults.azurewebsites.net/api/trackingtrending/";
+                                                                                                  //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking mobile
+                                                                                                  // string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
+                                                                                                  //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobilehotel/";  // rapid tracking mobile
+                                                                                                  //string url = "http://seresults.azurewebsites.net/api/callbackuk503desktoptemp/";
+                                                                                                  //string url = "http://seresults.azurewebsites.net/api/trackingtrending/";
 
             //string url = "http://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58
             //string url = "http://seresults.azurewebsites.net/api/callbackuk106mobile/";      // 106
@@ -169,7 +166,7 @@ namespace Oxylabs_BulkKeywords
             string qryOld = "insert into dashboard_oldgooglepage (date, keyword, seid, jobid) values('" + DateTime.Now + "', N'" +
                  kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "' )";
 
-            using (SqlConnection con = new SqlConnection(StrConn())) //12-05-2020
+            using (SqlConnection con = new SqlConnection(StrConn()))
             {
                 try
                 {
@@ -265,7 +262,6 @@ namespace Oxylabs_BulkKeywords
 
         private void SendXmlToAPI(string seid, string kw, string res)
         {
-            // 13-05-2020 
             string tname = Thread.CurrentThread.Name;
             string path = @"C:\Inetpub\wwwroot\rapidtracking_" + tname + ".xml";
 
@@ -275,7 +271,7 @@ namespace Oxylabs_BulkKeywords
             xd.Save(path);
 
 
-            string submitURL = ReadAPI(); //commented on 12-05-2020
+            string submitURL = ReadAPI();
 
             string user = "pisoftware";
             string pwd = "r00t123456";
@@ -289,8 +285,8 @@ namespace Oxylabs_BulkKeywords
                 httpWReq.CookieContainer = new CookieContainer();
 
                 Encoding encoding = new UTF8Encoding();
-                //string postData = GetTextFromXMLFile(path);   // 13-05-2020 
-                byte[] data = encoding.GetBytes(res); // 13-05-2020
+                string postData = GetTextFromXMLFile(path);
+                byte[] data = encoding.GetBytes(postData);
 
                 httpWReq.ProtocolVersion = HttpVersion.Version11;
                 httpWReq.Method = "POST";
@@ -390,7 +386,7 @@ namespace Oxylabs_BulkKeywords
         {
             try
             {
-                using (SqlConnection con = new SqlConnection(StrConn())) //12-05-2020
+                using (SqlConnection con = new SqlConnection(StrConn()))
                 {
                     con.Open();
 

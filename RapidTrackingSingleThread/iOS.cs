@@ -635,7 +635,7 @@ namespace RapidTrackingSingleThread
                             continue;
                         }
                         //21-02-2020  included selector for the Apps Block
-                        if (nd.SelectSingleNode(".//div[@class='ki5rnd']") != null)
+                        if (nd.SelectSingleNode(".//div[@class='ki5rnd']|.//div[@class='yR4jwc']") != null) //20-05-2020
                         {
                             s.Append(GetApps(nd));
                             continue;

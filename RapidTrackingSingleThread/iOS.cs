@@ -346,7 +346,11 @@ namespace RapidTrackingSingleThread
             {
                 // if (crNode.SelectSingleNode(".//div[@id='sh_uid_1']") != null)
                 if (crNode.SelectSingleNode(".//sticky-header[@class='pA48Db']") != null || crNode.SelectSingleNode(".//div[@id='sh_uid_1']") != null || crNode.SelectSingleNode(".//div[@class='KkEU2']") != null)    //21-05-2020 carousel block
-                    s.Append("<block type=\"carousel\" url=\"\"></block>");
+                {
+                    s.Append("<block type=\"carousel\" url=\"\">");
+                    s.Append(GetCarousel(crNode));
+                    s.Append("</ block >");
+                }
 
             }
 

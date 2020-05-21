@@ -1085,6 +1085,8 @@ namespace RapidTrackingSingleThread
                 {
                     url = nd1.Attributes["href"].Value;
                     HtmlNode hn = nd1.SelectSingleNode(".//div[@class='oyj2db']");
+                    if (hn == null)
+                        hn = nd1.SelectSingleNode(".//div[@class='wfg6Pb']");    //21-05-2020
                     string title1 = hn.InnerText;
                     s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title1) + "\" />");
                 }

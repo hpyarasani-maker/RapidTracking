@@ -1997,6 +1997,8 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[@class='dDoNo vk_bk gsrt']");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='aviV4d']");
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='rbR0cd y yi']"); //21-05-2020 finance block included selector
             if (nd != null)
             {
                 return "Finance";

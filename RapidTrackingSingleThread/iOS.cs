@@ -1078,6 +1078,8 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectNodes(".//a[@class='ttwCMe']");
                 if (nd == null)
                     nd = node.SelectNodes(".//a[@class='ttwCMe hide-focus-ring']");
+                if (nd == null)
+                    nd = node.SelectNodes(".//div[@class='uais2d']/a");  //21-05-2020
 
                 foreach (HtmlNode nd1 in nd)
                 {

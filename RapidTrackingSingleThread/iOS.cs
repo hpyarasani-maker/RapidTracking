@@ -785,7 +785,7 @@ namespace RapidTrackingSingleThread
                             if (nd.Attributes.Count == 0 || nd.Attributes["class"].Value == "mnr-c" || nd.Attributes["class"].Value == "mnr-c xpd O9g5cc uUPGi"
                              || nd.Attributes["class"].Value == "mnr-c O9g5cc uUPGi" || nd.Attributes["class"].Value == "mnr-c waTp2e xpd O9g5cc uUPGi"
                              || nd.Attributes["class"].Value == "MGqjK" || nd.Attributes["class"].Value == "setTDc" || nd.Attributes["class"].Value == "khgTR lWEpfd"   // 20-05-2020
-                             || node.Attributes["class"].Value == "mnr-c xpd O9g5cc uUPGi") //20-01-2020 // selectors for two classic links block
+                             || node.Attributes["class"]?.Value == "mnr-c xpd O9g5cc uUPGi") //20-01-2020 // selectors for two classic links block
                             {
                                 //17-10-2019
                                 string vdos = string.Empty;

@@ -188,6 +188,8 @@ namespace TrendingDesktopSingleThread
             if (node == null)
                 node = rcNode.SelectSingleNode(".//div[@class='kp-wholepage EyBRub kp-wholepage-osrp HSryR']");  // 06-11-2019
             if (node == null)
+                node = rcNode.SelectSingleNode(".//div[@class='kp-wholepage kp-wholepage-osrp HSryR EyBRub']");  // 11-05-2020
+            if (node == null)
                 node = rcNode.SelectSingleNode(".//div[@class='Y37F6d Nn2Stf']");  // 21-04-2020
 
             if (node != null)     //'kp-blk knowledge-panel _Rqb _RJe']") != null) //|.//div[@role='heading']/div[1]/span
@@ -589,7 +591,7 @@ namespace TrendingDesktopSingleThread
                 case "carousel":
                     //s.Append("<block type=\"carousel\" url=\"\"></block>");
                     s.Append("<block type=\"carousel\" url=\"\">");
-                    //s.Append(GetCarousel(node));
+                    s.Append(GetCarousel(node)); //11-05-2020 removed uncommented
                     s.Append("</block>");
                     break;
                 case "finance":
@@ -892,6 +894,8 @@ namespace TrendingDesktopSingleThread
             HtmlNodeCollection nd = node.SelectNodes(".//div[@class='nsEy4b']/div/g-inner-card/g-link/a");  //26-11-2019
             if (nd == null)
                 nd = node.SelectNodes(".//div[@jsname='WUSFrc']/g-link/a");
+            if (nd == null)
+                nd = node.SelectNodes(".//div[@class='v1uiFd']/g-link/a");  // 11-05-2020
             string url = "";
             if (nd != null)
             {
@@ -922,6 +926,7 @@ namespace TrendingDesktopSingleThread
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title1) + "\" />");
                     }
             }
+            // uncommented.
             //string caitems = GetCarouselURLs();
             //s.Append(caitems);
             return s.ToString();
@@ -1118,7 +1123,7 @@ namespace TrendingDesktopSingleThread
             {
                 HtmlNode nd = node.SelectSingleNode(".//h3|.//div[@class='HnYYW i8lZMc']|.//div[@class='e2BEnf U7izfe']/div");  // 23-03-2020    //01-05-2020
                 if (nd != null)
-                    if (nd.InnerText == "Top stories" || nd.InnerText == "Videos" || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws") // 18-03-2020  // 08-04-2020
+                    if (nd.InnerText == "Top stories" || nd.InnerText == "Noticias principales" || nd.InnerText == "Videos" || nd.InnerText == "Vídeos" || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws") // 15-05-2020 
                         return true;
 
                 // changes in map block on 19-06-2019.

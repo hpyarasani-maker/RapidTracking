@@ -30,9 +30,10 @@ namespace Oxylabs_BulkKeywords
 
             Thread t1 = new Thread(new ThreadStart(StartProcess))
             {
-                Name = "All_1"
+                //Name = "All_5"
                 // Name = "Mobile_102_10"
-                //Name = "CommaKeywords_3"
+                ///Name = "CommaKeywords_1"
+                Name = "ODesktop_20"
             };
             t1.Start();
         }
@@ -40,12 +41,11 @@ namespace Oxylabs_BulkKeywords
         private void StartProcess()
         {
             string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking desktop and all keywords
-           //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking mobile
-           // string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
+          //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking mobile
+            // string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
             //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobilehotel/";  // rapid tracking mobile
             //string url = "http://seresults.azurewebsites.net/api/callbackuk503desktoptemp/";
             //string url = "http://seresults.azurewebsites.net/api/trackingtrending/";
-
             //string url = "http://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58
             //string url = "http://seresults.azurewebsites.net/api/callbackuk106mobile/";      // 106
             //string url = "http://seresults.azurewebsites.net/api/callbackus1desktop/";     // 1
@@ -322,6 +322,14 @@ namespace Oxylabs_BulkKeywords
                 }
                 reader.Close();
                 response.Close();
+
+                // 18-05-2020
+                XmlDocument xml = new XmlDocument();
+                xml.LoadXml(xmlResponse);
+                XmlNode node = xml.SelectSingleNode("response/warnings/warning/code");
+                if (node?.InnerText == "111")
+                    throw new Exception(xmlResponse);
+                // 18-05-2020
             }
             catch (WebException ex)
             {

@@ -321,6 +321,14 @@ namespace Oxylabs_BulkKeywords
                 }
                 reader.Close();
                 response.Close();
+
+                // 18-05-2020
+                XmlDocument xml = new XmlDocument();
+                xml.LoadXml(xmlResponse);
+                XmlNode node = xml.SelectSingleNode("response/warnings/warning/code");
+                if (node?.InnerText == "111")
+                    throw new Exception(xmlResponse);
+                // 18-05-2020
             }
             catch (WebException ex)
             {

@@ -70,7 +70,7 @@ namespace RapidTrackingSingleThread
                 if (nodeCol == null)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div"); //15-04-2020
                 if (nodeCol == null)
-                    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='WvKfwe a3spGf']/div|//div[@class='WvKfwe a3spGf']/g-section-with-header");  // 15-04-2020    //01-05-2020");  // 15-04-2020
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='WvKfwe a3spGf']/div|//div[@class='WvKfwe a3spGf']/g-section-with-header|//div[@class='a3spGf WvKfwe']/div|//div[@class='a3spGf WvKfwe']/g-section-with-header");  // 15-04-2020    //01-05-2020");  // 15-04-2020//22-05-2020
                 foreach (HtmlNode node in nodeCol)
                 {
                     try
@@ -1118,7 +1118,7 @@ namespace RapidTrackingSingleThread
             {
                 HtmlNode nd = node.SelectSingleNode(".//h3|.//div[@class='HnYYW i8lZMc']|.//div[@class='e2BEnf U7izfe']/div");  // 23-03-2020    //01-05-2020
                 if (nd != null)
-                    if (nd.InnerText == "Top stories" || nd.InnerText == "Noticias principales" || nd.InnerText == "Videos" || nd.InnerText == "Vídeos" || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws") // 15-05-2020 
+                    if (nd.InnerText == "Top stories" || nd.InnerText == "Videos" || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws") // 18-03-2020  // 08-04-2020
                         return true;
 
                 // changes in map block on 19-06-2019.

@@ -19,10 +19,10 @@ namespace RapidTrackingSingleThread
 {
     public partial class frmSingleThread : Form
     {
-        string xmlPath = "C:\\inetpub\\wwwroot\\rapidtracking_singlethread_102_GT0_WC.xml";        
+        string xmlPath = "C:\\inetpub\\wwwroot\\rapidtracking_singlethread_102_GT20_WC.xml";        
 
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
-       
+
         //int count; 
 
         public frmSingleThread()
@@ -46,8 +46,9 @@ namespace RapidTrackingSingleThread
         private void frmSingleThread_Load(object sender, EventArgs e)
         {
             
-            this.Text = "RapidTracking_SingleThread_102_GT0_WC";
+            this.Text = "RapidTracking_SingleThread_CoronaKeywords-2_102_GT20_WC";
             //this.Text = "RapidTracking_SingleThread_P_A_WOC_10-09-2019";
+
 
             Thread t = new Thread(new ThreadStart(StartProcess));
             t.SetApartmentState(ApartmentState.STA);
@@ -94,8 +95,8 @@ namespace RapidTrackingSingleThread
                             string html = obj["results"][0]["content"].Value<string>();
                             string jobid = src[2];
                             string device = src[3];
-                            File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
-                            //File.WiteAllText(@"C:\inetpub\wwwroot\"+jobid+"_withOut filter_"+".html", html, Encoding.UTF8);
+                            File.WriteAllText(@"C:\inetpub\wwwroot\html\"+jobid+"_"+keyword+".html", html, Encoding.UTF8);
+                            //File.WriteAllText(@"C:\inetpub\wwwroot\"+jobid+"_withOut filter_"+".html", html, Encoding.UTF8);
                             result = true;
                             doc = new HtmlAgilityPack.HtmlDocument();
                             doc.LoadHtml(html);
@@ -192,7 +193,6 @@ namespace RapidTrackingSingleThread
                 res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + res;
                 xd.LoadXml(res);
                 xd.Save(xmlPath);
-               // File.WriteAllText(@"D:\source\" + seid + "_" + jobid + "_" + kw + ".xml", res);
 
             //}
             //SendToURL
@@ -291,13 +291,13 @@ namespace RapidTrackingSingleThread
                 //lstKWs.Items.Add("106:romeo and juliet tickets");
                 //lstKWs.Items.Add("160:malmö ff");
                 //lstKWs.Items.Add("102:terry crews");
-                lstKWs.Items.Add("106:fat freddys drop tour");
+                 lstKWs.Items.Add("102:aud usd");
             });
             return;
 
             try
             {
-                using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
+                using (SqlConnection con = new SqlConnection(Common.ReadConnection()))  // 12-05-2020
                 {
                     con.Open();
                     using (SqlCommand comm = new SqlCommand(qry, con))
@@ -437,7 +437,7 @@ namespace RapidTrackingSingleThread
                 string myDate = DateTime.Today.ToString("yyyy-MM-dd");
                 //string myDate = "2019-11-20";
                
-                using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
+                using (SqlConnection con = new SqlConnection(Common.ReadConnection()))  // 12-05-2020
                 {
                     con.Open();
 

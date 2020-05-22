@@ -1744,7 +1744,7 @@ namespace RapidTrackingSingleThread
                 // 24-04-2020
                 nd = node.SelectSingleNode(".//h2");
                 if (nd != null)
-                    if (nd.InnerText.ToLower().Trim() == "recipes" || nd.InnerText.ToLower().Trim() == "ricette" || nd.InnerText.ToLower().Trim() == "recetas")
+                    if (nd.InnerText.ToLower().Trim() == "recipes" || nd.InnerText.ToLower().Trim() == "ricette" || nd.InnerText.ToLower().Trim() == "recetas") //22-05-2020 receipes language included
                         return "Carousel";
                 // 24-04-2020
 

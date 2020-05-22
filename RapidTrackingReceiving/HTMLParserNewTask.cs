@@ -30,10 +30,10 @@ namespace Oxylabs_BulkKeywords
 
             Thread t1 = new Thread(new ThreadStart(StartProcess))
             {
-                //Name = "All_5"
+                Name = "All_5"
                 // Name = "Mobile_102_10"
                 ///Name = "CommaKeywords_1"
-                Name = "ODesktop_20"
+                //Name = "ODesktop_20"
             };
             t1.Start();
         }
@@ -240,7 +240,7 @@ namespace Oxylabs_BulkKeywords
             try
             {
                 // 31-03-2020
-                if (urlcount > 0)
+                if (urlcount > 20)
                 {
                     DateTime st = DateTime.Now;
                     SendXmlToAPI(seid, kw, result);
@@ -322,14 +322,6 @@ namespace Oxylabs_BulkKeywords
                 }
                 reader.Close();
                 response.Close();
-
-                // 18-05-2020
-                XmlDocument xml = new XmlDocument();
-                xml.LoadXml(xmlResponse);
-                XmlNode node = xml.SelectSingleNode("response/warnings/warning/code");
-                if (node?.InnerText == "111")
-                    throw new Exception(xmlResponse);
-                // 18-05-2020
             }
             catch (WebException ex)
             {
@@ -411,13 +403,13 @@ namespace Oxylabs_BulkKeywords
 
                         comm.ExecuteNonQuery();
 
-                        //if (urlcount < 20)
-                        //{
-                        //    string qry = "exec [InsertLessthan20] '" + myDate + "',N'" + keyword.Replace("'", "''") + "'," + seid + ",N''," + urlcount + ",'" + jobid + "'";
-                        //    comm.CommandText = qry;
-                        //    comm.CommandType = CommandType.Text;
-                        //    comm.ExecuteNonQuery();
-                        //}
+                        if (urlcount < 20)
+                        {
+                            string qry = "exec [InsertLessthan20] '" + myDate + "',N'" + keyword.Replace("'", "''") + "'," + seid + ",N''," + urlcount + ",'" + jobid + "'";
+                            comm.CommandText = qry;
+                            comm.CommandType = CommandType.Text;
+                            comm.ExecuteNonQuery();
+                        }
                     }
                 }
 

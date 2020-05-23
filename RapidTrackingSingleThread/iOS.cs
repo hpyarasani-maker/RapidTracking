@@ -1089,11 +1089,11 @@ namespace RapidTrackingSingleThread
                 foreach (HtmlNode nd1 in nd)
                 {
                     url = nd1.Attributes["href"].Value;
-                    HtmlNode hn = nd1.SelectSingleNode(".//div[@class='oyj2db']");
+                    HtmlNode hn = nd1.SelectSingleNode(".//div[@class='oyj2db']"); //S20Xzc
                     if (hn == null)
-                        hn = nd1.SelectSingleNode(".//div[@class='wfg6Pb']");    //21-05-2020
+                        hn = nd1.SelectSingleNode(".//div[@class='S20Xzc']");    //23-05-2020
                     if (hn == null)
-                        hn = nd1.SelectSingleNode(".//div[@class='JjtOHd Bgg9M']");  //23-05-2020
+                        hn = nd1.SelectSingleNode(".//div[@class='JjtOHd Bgg9M']");  //23-05-2020 
                     string title1 = hn.InnerText;
                     s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title1) + "\" />");
                 }

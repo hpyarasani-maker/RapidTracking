@@ -291,7 +291,8 @@ namespace RapidTrackingSingleThread
                 //lstKWs.Items.Add("106:romeo and juliet tickets");
                 //lstKWs.Items.Add("160:malmö ff");
                 //lstKWs.Items.Add("102:terry crews");
-                 lstKWs.Items.Add("102:aud usd");
+                lstKWs.Items.Add("106:life simulation games");
+                //lstKWs.Items.Add("106:pantone books");
             });
             return;
 
@@ -583,8 +584,9 @@ namespace RapidTrackingSingleThread
                         string[] reslt = { "", "", "", "" };
                         response = "";
 
-                        Uri uri = new Uri(cbUrl[1]);
-                        if (cbUrl[2] == "done" && cbUrl[3] == "no")
+                    Uri uri = new Uri(cbUrl[1]);
+                    //Uri uri = new Uri("http://data.oxylabs.io/v1/queries/6669414835207292929/results");
+                    if (cbUrl[2] == "done" && cbUrl[3] == "no")
                         {
                             try
                             {

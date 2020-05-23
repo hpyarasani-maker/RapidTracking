@@ -1083,7 +1083,7 @@ namespace RapidTrackingSingleThread
                 if (nd == null)
                     nd = node.SelectNodes(".//div[@class='uais2d']/a");  //21-05-2020
                 if (nd == null)
-                    nd = node.SelectNodes(".//div[@class='Z8r5Gb']/a");
+                    nd = node.SelectNodes(".//div[@class='Z8r5Gb']/a"); //23-05-2020
                 if (nd == null)
                     return string.Empty;
                 foreach (HtmlNode nd1 in nd)
@@ -1093,7 +1093,7 @@ namespace RapidTrackingSingleThread
                     if (hn == null)
                         hn = nd1.SelectSingleNode(".//div[@class='wfg6Pb']");    //21-05-2020
                     if (hn == null)
-                        hn = nd1.SelectSingleNode(".//div[@class='JjtOHd Bgg9M']");
+                        hn = nd1.SelectSingleNode(".//div[@class='JjtOHd Bgg9M']");  //23-05-2020
                     string title1 = hn.InnerText;
                     s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title1) + "\" />");
                 }

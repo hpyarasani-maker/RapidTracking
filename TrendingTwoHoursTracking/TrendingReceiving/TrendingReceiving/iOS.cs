@@ -347,7 +347,7 @@ namespace TrendingReceiving
                 if (crNode.SelectSingleNode(".//sticky-header[@class='pA48Db']") != null || crNode.SelectSingleNode(".//div[@id='sh_uid_1']") != null || crNode.SelectSingleNode(".//div[@class='K1fSEd']") != null)//23-05-2020 commented this line getting object reference|| crNode.SelectSingleNode(".//div[@class='KkEU2']") != null)    //21-05-2020 carousel block
                 {
                     s.Append("<block type=\"carousel\" url=\"\">");
-                    s.Append(GetCarousel(crNode));
+                    //s.Append(GetCarousel(crNode)); //23-05-2020 commented because if item urls are empty then display empty block
                     s.Append("</block>");
                 }
 

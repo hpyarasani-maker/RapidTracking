@@ -344,11 +344,11 @@ namespace TrendingReceiving
             if (crNode != null)
             {
                 // if (crNode.SelectSingleNode(".//div[@id='sh_uid_1']") != null)
-                if (crNode.SelectSingleNode(".//sticky-header[@class='pA48Db']") != null || crNode.SelectSingleNode(".//div[@id='sh_uid_1']") != null)//23-05-2020 commented this line getting object reference|| crNode.SelectSingleNode(".//div[@class='KkEU2']") != null)    //21-05-2020 carousel block
+                if (crNode.SelectSingleNode(".//sticky-header[@class='pA48Db']") != null || crNode.SelectSingleNode(".//div[@id='sh_uid_1']") != null || crNode.SelectSingleNode(".//div[@class='K1fSEd']") != null)//23-05-2020 commented this line getting object reference|| crNode.SelectSingleNode(".//div[@class='KkEU2']") != null)    //21-05-2020 carousel block
                 {
                     s.Append("<block type=\"carousel\" url=\"\">");
                     s.Append(GetCarousel(crNode));
-                    s.Append("</ block >");
+                    s.Append("</block>");
                 }
 
             }

@@ -28,11 +28,16 @@ namespace TrackingTrending
             string topStuff = GetTopStuff(doc);
             sb.Append(topStuff);
 
-            HtmlNodeCollection nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-card|//div[@id='taw']/div[@class='med']/div[2]/div");
-            if (nodeCol.Count == 1)
+            HtmlNodeCollection nodeCol = doc.DocumentNode.SelectNodes("//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']/div[@class='MUxGbd v0nnCb lyLwlc']|//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']/div/div[@class='MUxGbd v0nnCb lyLwlc']");   //29-04-2020
+            if (nodeCol != null)
+                nodeCol = nodeCol[nodeCol.Count - 1].SelectNodes("a/div");  //28-04-2020
+            if (nodeCol == null)
+                nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-card|//div[@id='taw']/div[@class='med']/div[2]/div|//div[@id='rso']/nav");   //28-04-2020
+            if (nodeCol != null && nodeCol.Count == 1)
                 nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@class='vC5Ym DhKAUb']/div");    //17-09-2019
             if (nodeCol == null)
-                nodeCol = doc.DocumentNode.SelectNodes("//div[@id='tscffb']");
+                nodeCol = doc.DocumentNode.SelectNodes("//*[@id='tscffb']");
+            //if (nodeCol == null)
             //if (nodeCol == null)
             //    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");
 
@@ -115,17 +120,19 @@ namespace TrackingTrending
                     {
                         if (node.HasClass("kp-wholepage") || node.SelectNodes(".//div[contains(@class, 'kp-wholepage')]") != null)
                         {
-                            HtmlNodeCollection nc = node.SelectNodes(".//div[@id='kp-wp-tab-overview']/div"); //22-01-2020 included selector for page block
+                            HtmlNodeCollection nc = node.SelectNodes(".//div[@id='kp-wp-tab-overview']/div"); //22-01-2020
                             if (nc == null)
-                                nc = node.SelectNodes(".//div[@class='WvKfwe']/div|.//div[@class='WvKfwe a3spGf']/div");  //15-04-2020
-                            if (nc == null)
+                                nc = node.SelectNodes(".//div[@class='WvKfwe']/div|.//div[@class='WvKfwe a3spGf']/div");  //15-04-2020     
+                            if (nc == null) //|.//div[@class='a3spGf WvKfwe']/div //23-05-2020
                                 nc = node.SelectNodes(".//div[@class='Kot7x eXEBMb Znsfnf']/div[@class='GhpATe pttBJc']"); //15-04-2020
-                            if (nc == null)
-                                nc = node.SelectNodes(".//div[@class='UDZeY']/div|.//div[@class='vC5Ym']/div|.//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']"); // 23-12-2019
+                            if (nc == null)//|.//div[@class='kp-blk c2xzTb OJXvsb']//23-05-2020
+                                nc = node.SelectNodes(".//div[@class='UDZeY']/div|.//div[@class='vC5Ym']/div|.//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']");       //23-05-2020
                             if (nc == null)
                                 nc = node.SelectNodes(".//div[@class='MRWHue']");
                             if (nc == null)
-                                nc = node.SelectNodes(".//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']/div"); //22-01-2020 included selector for page block
+                                nc = node.SelectNodes(".//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']/div"); //22-01-2020
+                            if (nc == null)
+                                nc = node.SelectNodes(".//div[@class='a3spGf WvKfwe']");
                             foreach (HtmlNode nd in nc)
                             {
                                 if (nd.InnerHtml != "")
@@ -1070,10 +1077,12 @@ namespace TrackingTrending
                     nd = node.SelectNodes(".//div[@class='uais2d']/a");  //21-05-2020
                 if (nd == null)
                     nd = node.SelectNodes(".//div[@class='Z8r5Gb']/a"); //23-05-2020
+                if (nd == null)
+                    return string.Empty;
                 foreach (HtmlNode nd1 in nd)
                 {
                     url = nd1.Attributes["href"].Value;
-                    HtmlNode hn = nd1.SelectSingleNode(".//div[@class='oyj2db']");
+                    HtmlNode hn = nd1.SelectSingleNode(".//div[@class='oyj2db']"); //S20Xzc
                     if (hn == null)
                         hn = nd1.SelectSingleNode(".//div[@class='wfg6Pb']");    //21-05-2020
                     if (hn == null)

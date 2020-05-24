@@ -69,15 +69,14 @@ namespace TrackingTrending
                             break;
                         }
                     }
-                    catch (Exception ex) { }
+                    catch { }
 
                 }
-
                 //changes on 06-08-2019
-                if ((node.SelectSingleNode(".//div[@id='knowledge-finance-wholepage__entity-summary']") != null || node.InnerText.Contains("Finance results")) && node.SelectSingleNode(".//div[@class='srg']") != null)
+                if ((node.SelectSingleNode(".//div[@id='knowledge-finance-wholepage__entity-summary']") != null
+                    || node.InnerText.Contains("Finance results")) && node.SelectSingleNode(".//div[@class='srg']") != null)
                 {
                     sb.Append("<block type=\"finance\" url=\"\"></block>");
-
                 }
 
                 if (node.HasClass("kp-wholepage") || node.SelectNodes(".//div[contains(@class, 'kp-wholepage')]") != null)
@@ -91,12 +90,13 @@ namespace TrackingTrending
                     if (n == null)
                         n = node.SelectSingleNode(".//div[@class='PyJv1b gsmt PZPZlf lV8Nyd']/span[@role='heading']"); // 11-11-2019
                     if (n == null)
-                        n = node.SelectSingleNode(".//div[@class='Ftghae iirjIb']");//16-09-2019
+                        n = node.SelectSingleNode(".//div[@class='Ftghae iirjIb']");//16-09-2019 //
                     if (n != null)
                     {
                         string heading = n.InnerText;
                         sb.Append("<block type=\"knowledgeGraph\" url=\"\" title=\"" + SetTitle(heading) + "\" />");
                     }
+
                     continue;
                 }
                 try
@@ -109,7 +109,8 @@ namespace TrackingTrending
                             sb.Append(s);
                     }
                 }
-                catch(Exception ex) { }
+                catch
+                { }
             }
 
             if (string.IsNullOrEmpty(ndText.Trim()) || orgLinks == 0)
@@ -137,7 +138,12 @@ namespace TrackingTrending
                             {
                                 if (nd.InnerHtml != "")
                                 {
-                                    string s = ProcessNode(nd);
+                                    string s = string.Empty;
+                                    try
+                                    {
+                                        s = ProcessNode(nd);
+                                    }
+                                    catch { }
                                     ndText += s;
                                     if (s.Length > 0)
                                         sb.Append(s);
@@ -146,10 +152,7 @@ namespace TrackingTrending
                             break;
                         }
                     }
-                    catch (WebException ex)
-                    {
-                        return ex.Message.ToString();
-                    }
+                    catch(WebException ex) { return ex.Message.ToString(); }
                 }
             }
 

@@ -739,6 +739,8 @@ namespace RapidTrackingSingleThread
                 HtmlNodeCollection nds = node.SelectNodes(".//g-inner-card/div/div[2]/div/g-link/a");
                 if (nds == null)
                     nds = node.SelectNodes(".//g-inner-card/div/div[1]/a");
+                if (nds == null)
+                    nds = node.SelectNodes(".//a[@class='h4kbcd']"); //27-05-2020 twitterCard item URLs included selector
                 if (nds != null)
                     foreach (HtmlNode nd in nds)
                     {

@@ -421,6 +421,8 @@ namespace TrackingTrending
                         HtmlNode n = nd.SelectSingleNode(".//h3[@class='r']/a");
                         if (n == null)
                             n = nd.SelectSingleNode(".//div[@class='r']/a");
+                        if (n == null)
+                            n = nd.SelectSingleNode(".//div[@class='r']/div/a"); //28-05-2020
                         if (n != null)
                             title = n.SelectSingleNode(".//h3");
 

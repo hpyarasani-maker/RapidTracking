@@ -486,6 +486,8 @@ namespace RapidTrackingSingleThread
                             {
                                 if (n == null)
                                     n = nd.SelectSingleNode(".//g-link/a");
+                                if (n == null)
+                                    n = nd.SelectSingleNode(".//div[@class='r']/div/a");  // 28-05-2020
                                 var urls = n.Attributes["href"].Value;
                                 string t;
                                 if (title != null)

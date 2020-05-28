@@ -430,8 +430,6 @@ namespace TrendingReceiving
                         HtmlNode n = nd.SelectSingleNode(".//h3[@class='r']/a");
                         if (n == null)
                             n = nd.SelectSingleNode(".//div[@class='r']/a");
-                        if (n == null)
-                            n = nd.SelectSingleNode(".//div[@class='r']/div/a"); //28-05-2020
                         if (n != null)
                             title = n.SelectSingleNode(".//h3");
 
@@ -1170,7 +1168,7 @@ namespace TrendingReceiving
         private bool IsOrganic(HtmlNode node)
         {
             return (node.SelectSingleNode(".//h3[@class='r']") != null || node.SelectSingleNode(".//div[@class='r']") != null
-                || node.SelectSingleNode(".//div[@class='zTpPx']") != null);    // 13-03-2020
+                || node.SelectSingleNode(".//div[@class='zTpPx']") != null || node.SelectSingleNode(".//div[@class='zTpPx']/g-link/a") != null);    // 28-05-2020   // 13-03-2020
         }
         //Surendra comments
         //07-11-2019

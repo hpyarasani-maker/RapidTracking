@@ -193,6 +193,8 @@ namespace TrendingDesktopSingleThread
                 node = rcNode.SelectSingleNode(".//div[@class='kp-wholepage kp-wholepage-osrp HSryR EyBRub']");  // 11-05-2020
             if (node == null)
                 node = rcNode.SelectSingleNode(".//div[@class='Y37F6d Nn2Stf']");  // 21-04-2020
+            if (node == null)
+                node = rcNode.SelectSingleNode(".//div[@class='UDZeY fAgajc OTFaAf']");  // 27-05-2020
 
             if (node != null)     //'kp-blk knowledge-panel _Rqb _RJe']") != null) //|.//div[@role='heading']/div[1]/span
             {
@@ -429,6 +431,8 @@ namespace TrendingDesktopSingleThread
                         HtmlNode n = nd.SelectSingleNode(".//h3[@class='r']/a");
                         if (n == null)
                             n = nd.SelectSingleNode(".//div[@class='r']/a");
+                        if (n == null)
+                            n = nd.SelectSingleNode(".//div[@class='r']/div/a"); //28-05-2020
                         if (n != null)
                             title = n.SelectSingleNode(".//h3");
 
@@ -487,6 +491,8 @@ namespace TrendingDesktopSingleThread
                             {
                                 if (n == null)
                                     n = nd.SelectSingleNode(".//g-link/a");
+                                if (n == null)
+                                    n = nd.SelectSingleNode(".//div[@class='r']/div/a");  // 28-05-2020 twitter class link included selector
                                 var urls = n.Attributes["href"].Value;
                                 string t;
                                 if (title != null)
@@ -742,6 +748,8 @@ namespace TrendingDesktopSingleThread
                 HtmlNodeCollection nds = node.SelectNodes(".//g-inner-card/div/div[2]/div/g-link/a");
                 if (nds == null)
                     nds = node.SelectNodes(".//g-inner-card/div/div[1]/a");
+                if (nds == null)
+                    nds = node.SelectNodes(".//a[@class='h4kbcd']"); //27-05-2020 twitterCard item URLs included selector
                 if (nds != null)
                     foreach (HtmlNode nd in nds)
                     {
@@ -1125,7 +1133,7 @@ namespace TrendingDesktopSingleThread
             {
                 HtmlNode nd = node.SelectSingleNode(".//h3|.//div[@class='HnYYW i8lZMc']|.//div[@class='e2BEnf U7izfe']/div");  // 23-03-2020    //01-05-2020
                 if (nd != null)
-                    if (nd.InnerText == "Top stories" || nd.InnerText == "Noticias principales" || nd.InnerText == "Videos" || nd.InnerText == "Vídeos" || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws") // 15-05-2020 
+                    if (nd.InnerText == "Top stories" || nd.InnerText == "Huvudnyheter" || nd.InnerText == "Videos" || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws") // 27-05-2020  // 18-03-2020  // 08-04-2020
                         return true;
 
                 // changes in map block on 19-06-2019.

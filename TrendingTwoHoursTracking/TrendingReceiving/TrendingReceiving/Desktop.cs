@@ -523,6 +523,8 @@ namespace TrendingReceiving
             else
             {
                 HtmlNodeCollection col = node.SelectNodes(".//h3[@class='r']/a");
+                if (col == null)
+                    col = node.SelectNodes(".//div[@class='zTpPx']/g-link/a");  //28-05-2020
                 foreach (HtmlNode nd in col)
                 {
                     string u = nd.Attributes["href"].Value.Replace("/url?q=", "").Replace("&amp;", "&").Replace("&", "&#38;");

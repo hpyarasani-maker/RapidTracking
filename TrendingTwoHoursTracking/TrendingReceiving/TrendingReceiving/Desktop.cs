@@ -490,6 +490,8 @@ namespace TrendingReceiving
                             {
                                 if (n == null)
                                     n = nd.SelectSingleNode(".//g-link/a");
+                                if (n == null)
+                                    n = nd.SelectSingleNode(".//div[@class='r']/div/a");  // 28-05-2020 twitter class link included selector
                                 var urls = n.Attributes["href"].Value;
                                 string t;
                                 if (title != null)
@@ -521,6 +523,8 @@ namespace TrendingReceiving
             else
             {
                 HtmlNodeCollection col = node.SelectNodes(".//h3[@class='r']/a");
+                if (col == null)
+                    col = node.SelectNodes(".//div[@class='zTpPx']/g-link/a");  //28-05-2020
                 foreach (HtmlNode nd in col)
                 {
                     string u = nd.Attributes["href"].Value.Replace("/url?q=", "").Replace("&amp;", "&").Replace("&", "&#38;");
@@ -1166,7 +1170,7 @@ namespace TrendingReceiving
         private bool IsOrganic(HtmlNode node)
         {
             return (node.SelectSingleNode(".//h3[@class='r']") != null || node.SelectSingleNode(".//div[@class='r']") != null
-                || node.SelectSingleNode(".//div[@class='zTpPx']") != null);    // 13-03-2020
+                || node.SelectSingleNode(".//div[@class='zTpPx']") != null || node.SelectSingleNode(".//div[@class='zTpPx']/g-link/a") != null);    // 28-05-2020   // 13-03-2020
         }
         //Surendra comments
         //07-11-2019

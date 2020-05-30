@@ -524,6 +524,8 @@ namespace RapidTrackingSingleThread
             {
                 HtmlNodeCollection col = node.SelectNodes(".//h3[@class='r']/a");
                 if (col == null)
+                    col = node.SelectNodes(".//h3[@class='r dO0Ag']/a");  //29-05-2020
+                if (col == null)
                     col = node.SelectNodes(".//div[@class='zTpPx']/g-link/a");  //28-05-2020
                 foreach (HtmlNode nd in col)
                 {

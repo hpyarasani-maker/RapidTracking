@@ -419,6 +419,8 @@ namespace RapidTrackingSingleThread
                 HtmlNodeCollection nds = node.SelectNodes(".//div[@class='g']");
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='rc']");
+                if (nds == null)
+                    nds = node.SelectNodes(".//div[@class='gG0TJc']");  //29-05-2020
                 if (nds != null)
                     foreach (HtmlNode nd in nds)
                     {

@@ -1764,6 +1764,8 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[@class='Uyhxfe ZdjxGf']");  // 30-03-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='Y37F6d Nn2Stf']");  // 21-04-2020
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='HnYYW FIdh1']");  // 01-06-2020
             if (nd != null)
             {
                 // 24-04-2020

@@ -1159,7 +1159,8 @@ namespace RapidTrackingSingleThread
                     {
                         try
                         {
-                            if (n.Attributes["class"].Value.Contains("obcontainer"))  //node.SelectSingleNode(".//div[@id='cwmcwd']") != null)
+                            if (n.Attributes["class"] != null)   //01-06-2020
+                                if (n.Attributes["class"].Value.Contains("obcontainer"))  //node.SelectSingleNode(".//div[@id='cwmcwd']") != null)
                             {
                                 bVal = true;
                                 break;

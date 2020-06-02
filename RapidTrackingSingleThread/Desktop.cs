@@ -427,6 +427,25 @@ namespace RapidTrackingSingleThread
                 if (nds != null)
                     foreach (HtmlNode nd in nds)
                     {
+                        // 02-06-2020
+                        if (nd.SelectSingleNode(".//table[@class='nrgt']") != null)
+                        {
+                            s.Append(GetSiteLinks(nd));
+                            continue;
+                        }
+
+                        if (nd.SelectSingleNode(".//h3[@role='heading']") != null)
+                        {
+                            if (nd.SelectSingleNode(".//h3[@role='heading']").InnerText == "Videos")
+                            {
+                                s.Append("<block type=\"videos\" url=\"\">");
+                                //get video urls;
+                                s.Append(GetVideos(nd));
+                                s.Append("</block>");
+                                continue;
+                            }
+                        } // End 02-06-2020
+
                         HtmlNode title = null;  // 18-11-2019
                         HtmlNode n = nd.SelectSingleNode(".//h3[@class='r']/a");
                         if (n == null)

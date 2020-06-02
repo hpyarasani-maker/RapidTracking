@@ -416,7 +416,8 @@ namespace RapidTrackingSingleThread
         {
             StringBuilder s = new StringBuilder();
             if (node.HasClass("_NId") || node.HasClass("bkWMgd") || node.HasClass("srg")
-                || node.HasClass("g") || node.SelectNodes(".//div[@class='g']") != null) // 18-03-2020
+                || node.HasClass("g") || node.SelectNodes(".//div[@class='g']") != null // 18-03-2020
+                || node.SelectNodes(".//div[@class='g GjRtuc']") != null) // 02-06-2020
             {
                 HtmlNodeCollection nds = node.SelectNodes(".//div[@class='g']");
                 if (nds == null)

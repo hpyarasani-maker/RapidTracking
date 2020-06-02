@@ -7,18 +7,16 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 
-namespace RapidTrackingMultithread
+namespace RapidTrackingJobIDResults
 {
-    public class Desktop 
+    public class Desktop
     {
-        public int orgLinks;
+        int orgLinks;
         string html;
-        public string ProcessDocument(string seid, string keyword, HtmlDocument doc)
+        public string ProcessDocument(string seid, string keyword, HtmlDocument doc, out int count)
         {
-            //count = 0;
-            //if (doc == null) throw new Exception("No source found.");
-            if (string.IsNullOrEmpty(doc.ToString())) return string.Empty;
-
+            count = 0;
+            if (doc == null) throw new Exception("No source found.");
             HtmlNode htmlNode = doc.DocumentNode.SelectSingleNode("//table[@id='mn']");
             if (htmlNode != null)
             {
@@ -28,7 +26,7 @@ namespace RapidTrackingMultithread
             string ndText = "";
 
             html = doc.DocumentNode.OuterHtml;
-            StringBuilder sb = new StringBuilder();            
+            StringBuilder sb = new StringBuilder();
             sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" date=\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\" >");
             sb.Append("<section col=\"main\">");
             string topStuff = GetTopStuff(doc);
@@ -61,9 +59,11 @@ namespace RapidTrackingMultithread
                 }
                 catch { }
             }
+
             // 23-03-2020
             if (string.IsNullOrEmpty(ndText) || orgLinks == 0)//08-04-2020
             {
+
                 nodeCol = doc.DocumentNode.SelectNodes("//div[@class='xVtsMb i6u2Cc']|//div[@class='xVtsMb']/div/div");//swapped 08-04-2020
                 if (nodeCol == null)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@class='vC5Ym DhKAUb']/div");  // 03-04-2020
@@ -90,11 +90,11 @@ namespace RapidTrackingMultithread
             }
             // 23-03-2020
 
-            //if (nodeCol == null) throw new Exception("No block found.");
-            //if (nodeCol == null) return string.Empty;  
-            if (string.IsNullOrEmpty(nodeCol.ToString())) return string.Empty;
+            if (nodeCol == null) throw new Exception("No block found.");
 
+            //if (nodeCol == null) return string.Empty;                      
             //if (nodeCol == null) goto BOTTOMSTUFF; 
+
 
             //if (orgLinks < count)
             //    return string.Empty;
@@ -114,7 +114,7 @@ namespace RapidTrackingMultithread
 
             if (ndText.Length > 0)
             {
-                //count = orgLinks;
+                count = orgLinks;
                 return sb.ToString();
             }
 

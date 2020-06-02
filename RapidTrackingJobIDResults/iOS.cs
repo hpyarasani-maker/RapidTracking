@@ -1,31 +1,33 @@
 ﻿using HtmlAgilityPack;
 using System;
 using System.Collections;
-using System.Globalization;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 
-namespace TrackingTrending
+namespace RapidTrackingJobIDResults
 {
-    class iOS 
+    class iOS
     {
         int orgLinks;
         string html;
-
         public string ProcessDocument(string seid, string keyword, HtmlDocument doc, out int count)
         {
             count = 0;
 
-            if (doc == null)  return string.Empty;           
+            if (doc == null) throw new Exception("No source found.");
 
             orgLinks = 0;
+            string ndText = "";
+
             html = doc.DocumentNode.OuterHtml;
             StringBuilder sb = new StringBuilder();
             sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" date=\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\" >");
+
             sb.Append("<section col=\"main\">");
             string topStuff = GetTopStuff(doc);
+            ndText = topStuff;
             sb.Append(topStuff);
 
             HtmlNodeCollection nodeCol = doc.DocumentNode.SelectNodes("//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']/div[@class='MUxGbd v0nnCb lyLwlc']|//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']/div/div[@class='MUxGbd v0nnCb lyLwlc']");   //29-04-2020
@@ -38,12 +40,13 @@ namespace TrackingTrending
             if (nodeCol == null)
                 nodeCol = doc.DocumentNode.SelectNodes("//*[@id='tscffb']");
             //if (nodeCol == null)
+            //    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='mnr-c IGtt6d imgac']");
             //if (nodeCol == null)
             //    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");
 
-            if (nodeCol == null) return string.Empty; 
-
-            string ndText = "";
+            if (nodeCol == null) throw new Exception("No block found.");
+            //if (nodeCol == null) return string.Empty; 
+            //if (nodeCol == null) goto BOTTOMSTUFF;             
 
             foreach (HtmlNode node in nodeCol)
             {
@@ -123,11 +126,11 @@ namespace TrackingTrending
                         {
                             HtmlNodeCollection nc = node.SelectNodes(".//div[@id='kp-wp-tab-overview']/div"); //22-01-2020
                             if (nc == null)
-                                nc = node.SelectNodes(".//div[@class='WvKfwe']/div|.//div[@class='WvKfwe a3spGf']/div|.//div[@class='ChlgHf']|.//div[@class='UDZeY mf8UVb']");  //01-06-2020");  //15-04-2020     
+                                nc = node.SelectNodes(".//div[@class='WvKfwe']/div|.//div[@class='WvKfwe a3spGf']/div");  //15-04-2020     
                             if (nc == null) //|.//div[@class='a3spGf WvKfwe']/div //23-05-2020
-                                nc = node.SelectNodes(".//div[@class='Kot7x eXEBMb Znsfnf']/div[@class='GhpATe pttBJc']|.//div[@class='a3spGf WvKfwe']/div"); //15-04-2020
+                                nc = node.SelectNodes(".//div[@class='Kot7x eXEBMb Znsfnf']/div[@class='GhpATe pttBJc']"); //15-04-2020
                             if (nc == null)//|.//div[@class='kp-blk c2xzTb OJXvsb']//23-05-2020
-                                nc = node.SelectNodes(".//div[@class='UDZeY']/div|.//div[@class='vC5Ym']/div|.//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']|.//div[@class='kp-blk c2xzTb OJXvsb']");       //23-05-2020
+                                nc = node.SelectNodes(".//div[@class='UDZeY']/div|.//div[@class='vC5Ym']/div|.//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']");       //23-05-2020
                             if (nc == null)
                                 nc = node.SelectNodes(".//div[@class='MRWHue']");
                             if (nc == null)
@@ -152,16 +155,19 @@ namespace TrackingTrending
                             break;
                         }
                     }
-                    catch(WebException ex) { return ex.Message.ToString(); }
+                    catch { }
                 }
             }
 
+            //BOTTOMSTUFF:
             string bottomStuff = GetBottomStuff(doc);
+            ndText += bottomStuff;
             sb.Append(bottomStuff);
             sb.Append("</section>");
 
             sb.Append("<section col=\"right\">");
             string rightStuff = GetRightStuff(doc);
+            ndText += rightStuff;
             sb.Append(rightStuff);
             sb.Append("</section>");
             sb.Append("</searchResult>");
@@ -171,7 +177,7 @@ namespace TrackingTrending
                 count = orgLinks;
                 return sb.ToString();
             }
-            
+
             return string.Empty;
 
         }
@@ -1308,8 +1314,6 @@ namespace TrackingTrending
                 nd = node.SelectSingleNode(".//div[@class='Uyhxfe ZdjxGf']");  // 30-03-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='Y37F6d Nn2Stf']");  // 21-04-2020
-            if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='HnYYW FIdh1']");  // 01-06-2020
             if (nd != null)
             {
                 string hdr = "";
@@ -1758,8 +1762,6 @@ namespace TrackingTrending
                 nd = node.SelectSingleNode(".//div[@class='Uyhxfe ZdjxGf']");  // 30-03-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='Y37F6d Nn2Stf']");  // 21-04-2020
-            if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='HnYYW FIdh1']");  // 01-06-2020
             if (nd != null)
             {
                 // 24-04-2020

@@ -70,7 +70,7 @@ namespace TrackingTrending
                 if (nodeCol == null)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@class='WvKfwe a3spGf']/div|//div[@class='WvKfwe a3spGf']/g-section-with-header");  // 15-04-2020    //01-05-2020");  // 15-04-2020//22-05-2020
                 if (nodeCol == null)
-                    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='a3spGf WvKfwe']/div|//div[@class='a3spGf WvKfwe']/g-section-with-header");
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='a3spGf WvKfwe']/div|//div[@class='a3spGf WvKfwe']/g-section-with-header|.//div[@class='UDZeY OTFaAf']");  // 01-06-2020
                 foreach (HtmlNode node in nodeCol)
                 {
                     try
@@ -185,6 +185,8 @@ namespace TrackingTrending
                 node = rcNode.SelectSingleNode(".//div[@class='Y37F6d Nn2Stf']");  // 21-04-2020
             if (node == null)
                 node = rcNode.SelectSingleNode(".//div[@class='UDZeY fAgajc OTFaAf']");  // 27-05-2020
+            if (node == null)
+                node = rcNode.SelectSingleNode(".//div[@class='NFQFxe mod']");  // 01-06-2020
 
             if (node != null)     //'kp-blk knowledge-panel _Rqb _RJe']") != null) //|.//div[@role='heading']/div[1]/span
             {
@@ -409,14 +411,36 @@ namespace TrackingTrending
         {
             StringBuilder s = new StringBuilder();
             if (node.HasClass("_NId") || node.HasClass("bkWMgd") || node.HasClass("srg")
-                || node.HasClass("g") || node.SelectNodes(".//div[@class='g']") != null) // 18-03-2020
+                || node.HasClass("g") || node.SelectNodes(".//div[@class='g']") != null // 18-03-2020
+                || node.SelectNodes(".//div[@class='g GjRtuc']") != null) // 02-06-2020
             {
                 HtmlNodeCollection nds = node.SelectNodes(".//div[@class='g']");
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='rc']");
+                if (nds == null)
+                    nds = node.SelectNodes(".//div[@class='gG0TJc']");  //29-05-2020
                 if (nds != null)
                     foreach (HtmlNode nd in nds)
                     {
+                        // 02-06-2020
+                        if (nd.SelectSingleNode(".//table[@class='nrgt']") != null)
+                        {
+                            s.Append(GetSiteLinks(nd));
+                            continue;
+                        }
+
+                        if (nd.SelectSingleNode(".//h3[@role='heading']") != null)
+                        {
+                            if (nd.SelectSingleNode(".//h3[@role='heading']").InnerText == "Videos")
+                            {
+                                s.Append("<block type=\"videos\" url=\"\">");
+                                //get video urls;
+                                s.Append(GetVideos(nd));
+                                s.Append("</block>");
+                                continue;
+                            }
+                        } // End 02-06-2020
+
                         HtmlNode title = null;  // 18-11-2019
                         HtmlNode n = nd.SelectSingleNode(".//h3[@class='r']/a");
                         if (n == null)
@@ -483,6 +507,8 @@ namespace TrackingTrending
                                     n = nd.SelectSingleNode(".//g-link/a");
                                 if (n == null)
                                     n = nd.SelectSingleNode(".//div[@class='r']/div/a");  // 28-05-2020 twitter class link included selector
+                                if (n == null)
+                                    n = nd.SelectSingleNode(".//h3[@class='r dO0Ag']/a");  //29-05-2020
                                 var urls = n.Attributes["href"].Value;
                                 string t;
                                 if (title != null)
@@ -514,6 +540,10 @@ namespace TrackingTrending
             else
             {
                 HtmlNodeCollection col = node.SelectNodes(".//h3[@class='r']/a");
+                if (col == null)
+                    col = node.SelectNodes(".//div[@class='r']/a"); // 02-06-2020
+                if (col == null)
+                    col = node.SelectNodes(".//h3[@class='r dO0Ag']/a");  //29-05-2020
                 if (col == null)
                     col = node.SelectNodes(".//div[@class='zTpPx']/g-link/a");  //28-05-2020
                 foreach (HtmlNode nd in col)
@@ -644,6 +674,8 @@ namespace TrackingTrending
                             n = nd.SelectSingleNode(".//div[@class='KiGY3d mB12kf JRhSae ZyAH8d']");
                         if (n == null)
                             n = nd.SelectSingleNode(".//div[@class='wCIBKb']/div");
+                        if (n == null)
+                            n = nd.SelectSingleNode(".//div[@class='CwxNSe']/div"); // 02-06-2020
 
                         try
                         {
@@ -680,7 +712,7 @@ namespace TrackingTrending
                 s.Append("<block type=\"siteLinks\" url=\"\">");
                 foreach (HtmlNode nd in nds)
                 {
-                    HtmlNodeCollection c = nd.SelectNodes(".//h3[@class='r']/a");
+                    HtmlNodeCollection c = nd.SelectNodes(".//h3[@class='r']/a|.//h3[@class='r t9dkOd']/a"); //01-06-2020 updated selector for sitelinks
                     if (c == null) continue;
                     foreach (HtmlNode a in c)
                     {
@@ -740,6 +772,8 @@ namespace TrackingTrending
                 HtmlNodeCollection nds = node.SelectNodes(".//g-inner-card/div/div[2]/div/g-link/a");
                 if (nds == null)
                     nds = node.SelectNodes(".//g-inner-card/div/div[1]/a");
+                if (nds == null)
+                    nds = node.SelectNodes(".//g-inner-card/div/div/div[1]/a[1]");  //02-06-2020
                 if (nds == null)
                     nds = node.SelectNodes(".//a[@class='h4kbcd']"); //27-05-2020 twitterCard item URLs included selector
                 if (nds != null)
@@ -983,6 +1017,8 @@ namespace TrackingTrending
                 nd = node.SelectSingleNode(".//span[@class='qB1pae']");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='BFJZOc']/div");
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='LMMXP i8lZMc']");  // 02-06-2020
             if (nd != null)
                 return "videos";
 
@@ -1086,6 +1122,7 @@ namespace TrackingTrending
         {
             bool bVal = (node.SelectSingleNode(".//h3[@class='zQlLed']") != null  // top stories       
                 || node.SelectSingleNode(".//div[@class='wXlZre B03h3d V14nKc ptcLIOszQJu__wholepage-card wp-msss']") != null//topstories 08-04-2020
+                || node.SelectSingleNode(".//div[@class='e2BEnf U7izfe']") != null//topstories 01-06-2020
                 || node.SelectSingleNode(".//table[@class='nrgt']") != null      // site links
                 || node.SelectSingleNode(".//img[@id='lu_map']") != null      // maps
                 || node.SelectSingleNode(".//div[@class='xERobd']") != null //  maps    //changed on 26-06-2019
@@ -1117,15 +1154,19 @@ namespace TrackingTrending
                         if (node.SelectSingleNode(".//div[@class='Brgz0 tw-res']") == null)
                             bVal = false;
                     }
+                    // 02-06-2020
+                    if (node.SelectSingleNode(".//div[@class='a3spGf WvKfwe']|.//div[@class='HnYYW i8lZMc']") != null
+                        && node.SelectSingleNode(".//div[@class='Brgz0 tw-res']|.//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']") == null)
+                        bVal = false;
                 }
                 catch { }
             }
 
             if (!bVal)
             {
-                HtmlNode nd = node.SelectSingleNode(".//h3|.//div[@class='HnYYW i8lZMc']|.//div[@class='e2BEnf U7izfe']/div");  // 23-03-2020    //01-05-2020
+                HtmlNode nd = node.SelectSingleNode(".//h3|.//div[@class='HnYYW i8lZMc']|.//div[@class='LMMXP i8lZMc']|.//div[@class='e2BEnf U7izfe']/div");  // 02-06-2020    //01-05-2020
                 if (nd != null)
-                    if (nd.InnerText == "Top stories" || nd.InnerText == "Huvudnyheter" || nd.InnerText == "Videos" || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws") // 27-05-2020  // 18-03-2020  // 08-04-2020
+                    if (nd.InnerText == "Top stories" || nd.InnerText == "Huvudnyheter" || nd.InnerText == "Videos" || nd.InnerText == "Video" || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws") // 02-06-2020  // 08-04-2020
                         return true;
 
                 // changes in map block on 19-06-2019.
@@ -1145,11 +1186,12 @@ namespace TrackingTrending
                     {
                         try
                         {
-                            if (n.Attributes["class"].Value.Contains("obcontainer"))  //node.SelectSingleNode(".//div[@id='cwmcwd']") != null)
-                            {
-                                bVal = true;
-                                break;
-                            }
+                            if (n.Attributes["class"] != null)   //01-06-2020
+                                if (n.Attributes["class"].Value.Contains("obcontainer"))  //node.SelectSingleNode(".//div[@id='cwmcwd']") != null)
+                                {
+                                    bVal = true;
+                                    break;
+                                }
                         }
                         catch
                         { }
@@ -1161,7 +1203,8 @@ namespace TrackingTrending
         private bool IsOrganic(HtmlNode node)
         {
             return (node.SelectSingleNode(".//h3[@class='r']") != null || node.SelectSingleNode(".//div[@class='r']") != null
-                || node.SelectSingleNode(".//div[@class='zTpPx']") != null || node.SelectSingleNode(".//div[@class='zTpPx']/g-link/a") != null);    // 28-05-2020   // 13-03-2020
+                || node.SelectSingleNode(".//div[@class='zTpPx']") != null || node.SelectSingleNode(".//div[@class='zTpPx']/g-link/a") != null    // 28-05-2020   // 13-03-2020
+                || node.SelectSingleNode(".//h3[@class='r dO0Ag']") != null);   //29-05-2020
         }
         //Surendra comments
         //07-11-2019

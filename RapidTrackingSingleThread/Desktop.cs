@@ -1157,6 +1157,10 @@ namespace RapidTrackingSingleThread
                         if (node.SelectSingleNode(".//div[@class='Brgz0 tw-res']") == null)
                             bVal = false;
                     }
+                    // 02-06-2020
+                    if (node.SelectSingleNode(".//div[@class='a3spGf WvKfwe']|.//div[@class='HnYYW i8lZMc']") != null
+                        && node.SelectSingleNode(".//div[@class='Brgz0 tw-res']|.//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']") == null)
+                        bVal = false;
                 }
                 catch { }
             }

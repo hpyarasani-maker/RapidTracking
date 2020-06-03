@@ -1058,7 +1058,8 @@ namespace RapidTrackingSingleThread
                 return "Event";
 
             if (node.SelectSingleNode(".//div[@id='cwmcwd']") != null || node.SelectSingleNode(".//div[@class='ifM9O']") != null
-                || node.SelectSingleNode(".//div[@class='vk_ard']") != null)    // changes on 09-07-2019
+                || node.SelectSingleNode(".//div[@class='vk_ard']") != null || node.SelectSingleNode(".//div[@class='d7sCQ kp-header']") != null   //03-06-2020
+                || node.SelectSingleNode(".//div[@class='pcCUmf vCOSGb']") != null)   //03-06-2020
             {
                 return "AnswerCard";
             }

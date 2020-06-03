@@ -1558,9 +1558,9 @@ namespace RapidTrackingSingleThread
                 foreach (HtmlNode nd in nds)
                 {
                     //changes on 28-06-2019
-                    HtmlNode title = nd.SelectSingleNode(".//div[@role='heading']");
+                    HtmlNode title = nd.SelectSingleNode(".//div[@class='d4FON']"); // 03-06-2020 swapped from below line.
                     if (title == null)
-                        title = nd.SelectSingleNode(".//div[@class='d4FON']");
+                        title = nd.SelectSingleNode(".//div[@role='heading']");
                     if (title == null)
                         title = nd.SelectSingleNode(".//div[@class='nDgy9d']");   //changes on 05-07-2019
 

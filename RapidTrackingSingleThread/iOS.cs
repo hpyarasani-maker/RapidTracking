@@ -1775,7 +1775,7 @@ namespace RapidTrackingSingleThread
                         return "Carousel";
                 // 24-04-2020
 
-                nd = node.SelectSingleNode(".//div[@class='kp-blk nGydZ Wnoohf OJXvsb']");  // 20-03-2020
+                nd = node.SelectSingleNode(".//div[@class='kp-blk nGydZ Wnoohf OJXvsb']|.//div[@class='NFQFxe XbtRGb qxsd xsZWvb EfDVh WDjuKe mod']");  //03-06-2020  // 20-03-2020
                 if (nd == null)
                     return "KnowledgePanel";
             }

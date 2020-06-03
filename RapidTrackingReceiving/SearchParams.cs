@@ -1578,13 +1578,11 @@ namespace Oxylabs_BulkKeywords
             },
             new SearchProperties()
             {
-                seid =459, domain ="co.uk", geo_location="Northamptonshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICInTm9ydGhhbXB0b25zaGlyZSxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t", device="desktop"
-
+                seid =459, domain ="co.uk", geo_location="Northampton,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIiTm9ydGhhbXB0b24sRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==", device="desktop"
             },
             new SearchProperties()
             {
-                seid =460, domain ="co.uk", geo_location="Northamptonshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICInTm9ydGhhbXB0b25zaGlyZSxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t", device="mobile_android"
-
+                seid =460, domain ="co.uk", geo_location="Northampton,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIiTm9ydGhhbXB0b24sRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==", device="mobile_android"
             },
             new SearchProperties()
             {

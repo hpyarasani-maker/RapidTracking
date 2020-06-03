@@ -1644,7 +1644,7 @@ namespace RapidTrackingMultithread
             },
             new SearchProperties()
             {
-                seid =468, domain ="co.uk", geo_location="SW1V,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIbU1cxVixFbmdsYW5kLFVuaXRlZCBLaW5nZG9t", device="mobile"
+                seid =468, domain ="co.uk", geo_location="SW1V,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIbU1cxVixFbmdsYW5kLFVuaXRlZCBLaW5nZG9t", device="mobile_android"
             }
         };
     }

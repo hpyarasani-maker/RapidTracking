@@ -1481,7 +1481,148 @@ namespace Oxylabs_BulkKeywords
             {
                 seid =442, domain ="co.uk", geo_location="Newcastle upon Tyne,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIqTmV3Y2FzdGxlIHVwb24gVHluZSxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t", device="mobile_android"
 
+            },
+            new SearchProperties()
+            {
+                seid =443, domain ="co.uk", geo_location="E1,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIZRTEsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==", device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =444, domain ="co.uk", geo_location="E1,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIZRTEsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==", device="mobile_android"
+            },
+
+            new SearchProperties()
+            {
+                seid =445, domain ="co.uk", geo_location="NW1,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIaTlcxLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=", device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =446, domain ="co.uk", geo_location="NW1,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIaTlcxLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=", device="mobile_android"
+            },
+
+            new SearchProperties()
+            {
+                seid =447, domain ="co.uk", geo_location="SE1,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIaU0UxLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=", device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =448, domain ="co.uk", geo_location="SE1,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIaU0UxLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=", device="mobile_android"
+            },
+
+            new SearchProperties()
+            {
+                seid =445, domain ="co.uk", geo_location="NW1,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIaTlcxLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=", device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =446, domain ="co.uk", geo_location="NW1,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIaTlcxLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=", device="mobile_android"
+            },
+
+            new SearchProperties()
+            {
+                seid =447, domain ="co.uk", geo_location="SE1,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIaU0UxLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=", device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =448, domain ="co.uk", geo_location="SE1,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIaU0UxLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=", device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =449, domain ="co.uk", geo_location="Aberdeen,Scotland,United Kingdom", locale= "en-gb", uule = "w+CAIQICIgQWJlcmRlZW4sU2NvdGxhbmQsVW5pdGVkIEtpbmdkb20=", device="desktop"
+
+            },
+            new SearchProperties()
+            {
+                seid =450, domain ="co.uk", geo_location="Aberdeen,Scotland,United Kingdom", locale= "en-gb", uule = "w+CAIQICIgQWJlcmRlZW4sU2NvdGxhbmQsVW5pdGVkIEtpbmdkb20=", device="mobile_android"
+
+            },
+            new SearchProperties()
+            {
+                seid =451, domain ="co.uk", geo_location="Bolton,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIdQm9sdG9uLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=", device="desktop"
+
+            },
+            new SearchProperties()
+            {
+                seid =452, domain ="co.uk", geo_location="Bolton,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIdQm9sdG9uLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=", device="mobile_android"
+
+            },
+            new SearchProperties()
+            {
+                seid =453, domain ="co.uk", geo_location="Bournemouth,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIiQm91cm5lbW91dGgsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==", device="desktop"
+
+            },
+            new SearchProperties()
+            {
+                seid =454, domain ="co.uk", geo_location="Bournemouth,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIiQm91cm5lbW91dGgsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==", device="mobile_android"
+
+            },
+            new SearchProperties()
+            {
+                seid =455, domain ="co.uk", geo_location="Coventry,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIfQ292ZW50cnksRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==", device="desktop"
+
+            },
+            new SearchProperties()
+            {
+                seid =456, domain ="co.uk", geo_location="Coventry,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIfQ292ZW50cnksRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==", device="mobile_android"
+
+            },
+            new SearchProperties()
+            {
+                seid =457, domain ="co.uk", geo_location="Croydon,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIeQ3JveWRvbixFbmdsYW5kLFVuaXRlZCBLaW5nZG9t", device="desktop"
+
+            },
+            new SearchProperties()
+            {
+                seid =458, domain ="co.uk", geo_location="Croydon,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIeQ3JveWRvbixFbmdsYW5kLFVuaXRlZCBLaW5nZG9t", device="mobile_android"
+
+            },
+            new SearchProperties()
+            {
+                seid =459, domain ="co.uk", geo_location="Northampton,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIiTm9ydGhhbXB0b24sRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==", device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =460, domain ="co.uk", geo_location="Northampton,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIiTm9ydGhhbXB0b24sRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==", device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =461, domain ="co.uk", geo_location="Norwich,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIeTm9yd2ljaCxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t", device="desktop"
+
+            },
+            new SearchProperties()
+            {
+                seid =462, domain ="co.uk", geo_location="Norwich,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIeTm9yd2ljaCxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t", device="mobile_android"
+
+            },
+            new SearchProperties()
+            {
+                seid =463, domain ="co.uk", geo_location="Slough,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIdU2xvdWdoLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=", device="desktop"
+
+            },
+            new SearchProperties()
+            {
+                seid =464, domain ="co.uk", geo_location="Slough,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIdU2xvdWdoLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=", device="mobile_android"
+
+            },
+            new SearchProperties()
+            {
+                seid =465, domain ="co.uk", geo_location="Watford,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIeV2F0Zm9yZCxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t", device="desktop"
+
+            },
+            new SearchProperties()
+            {
+                seid =466, domain ="co.uk", geo_location="Watford,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIeV2F0Zm9yZCxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t", device="mobile_android"
+
+            },
+            new SearchProperties()
+            {
+                seid =467, domain ="co.uk", geo_location="SW1V,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIbU1cxVixFbmdsYW5kLFVuaXRlZCBLaW5nZG9t", device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =468, domain ="co.uk", geo_location="SW1V,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIbU1cxVixFbmdsYW5kLFVuaXRlZCBLaW5nZG9t", device="mobile_android"
             }
+
         };
         
 

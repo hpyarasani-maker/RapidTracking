@@ -423,7 +423,8 @@ namespace Oxylabs_BulkKeywords
         {
             StringBuilder s = new StringBuilder();
             if (node.HasClass("_NId") || node.HasClass("bkWMgd") || node.HasClass("srg")
-                || node.HasClass("g") || node.SelectNodes(".//div[@class='g']") != null) // 18-03-2020
+                || node.HasClass("g") || node.SelectNodes(".//div[@class='g']") != null // 18-03-2020
+                || node.SelectNodes(".//div[@class='g GjRtuc']") != null) // 02-06-2020
             {
                 HtmlNodeCollection nds = node.SelectNodes(".//div[@class='g']");
                 if (nds == null)
@@ -433,6 +434,25 @@ namespace Oxylabs_BulkKeywords
                 if (nds != null)
                     foreach (HtmlNode nd in nds)
                     {
+                        // 02-06-2020
+                        if (nd.SelectSingleNode(".//table[@class='nrgt']") != null)
+                        {
+                            s.Append(GetSiteLinks(nd));
+                            continue;
+                        }
+
+                        if (nd.SelectSingleNode(".//h3[@role='heading']") != null)
+                        {
+                            if (nd.SelectSingleNode(".//h3[@role='heading']").InnerText == "Videos")
+                            {
+                                s.Append("<block type=\"videos\" url=\"\">");
+                                //get video urls;
+                                s.Append(GetVideos(nd));
+                                s.Append("</block>");
+                                continue;
+                            }
+                        } // End 02-06-2020
+
                         HtmlNode title = null;  // 18-11-2019
                         HtmlNode n = nd.SelectSingleNode(".//h3[@class='r']/a");
                         if (n == null)
@@ -532,6 +552,8 @@ namespace Oxylabs_BulkKeywords
             else
             {
                 HtmlNodeCollection col = node.SelectNodes(".//h3[@class='r']/a");
+                if (col == null)
+                    col = node.SelectNodes(".//div[@class='r']/a"); // 02-06-2020
                 if (col == null)
                     col = node.SelectNodes(".//h3[@class='r dO0Ag']/a");  //29-05-2020
                 if (col == null)
@@ -664,6 +686,8 @@ namespace Oxylabs_BulkKeywords
                             n = nd.SelectSingleNode(".//div[@class='KiGY3d mB12kf JRhSae ZyAH8d']");
                         if (n == null)
                             n = nd.SelectSingleNode(".//div[@class='wCIBKb']/div");
+                        if (n == null)
+                            n = nd.SelectSingleNode(".//div[@class='CwxNSe']/div"); // 02-06-2020
 
                         try
                         {
@@ -760,6 +784,8 @@ namespace Oxylabs_BulkKeywords
                 HtmlNodeCollection nds = node.SelectNodes(".//g-inner-card/div/div[2]/div/g-link/a");
                 if (nds == null)
                     nds = node.SelectNodes(".//g-inner-card/div/div[1]/a");
+                if (nds == null)
+                    nds = node.SelectNodes(".//g-inner-card/div/div/div[1]/a[1]");  //02-06-2020
                 if (nds == null)
                     nds = node.SelectNodes(".//a[@class='h4kbcd']"); //27-05-2020 twitterCard item URLs included selector
                 if (nds != null)
@@ -1003,6 +1029,8 @@ namespace Oxylabs_BulkKeywords
                 nd = node.SelectSingleNode(".//span[@class='qB1pae']");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='BFJZOc']/div");
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='LMMXP i8lZMc']");  // 02-06-2020
             if (nd != null)
                 return "videos";
 
@@ -1138,15 +1166,19 @@ namespace Oxylabs_BulkKeywords
                         if (node.SelectSingleNode(".//div[@class='Brgz0 tw-res']") == null)
                             bVal = false;
                     }
+                    // 02-06-2020
+                    if (node.SelectSingleNode(".//div[@class='a3spGf WvKfwe']|.//div[@class='HnYYW i8lZMc']") != null
+                        && node.SelectSingleNode(".//div[@class='Brgz0 tw-res']|.//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']") == null)
+                        bVal = false;
                 }
                 catch { }
             }
 
             if (!bVal)
             {
-                HtmlNode nd = node.SelectSingleNode(".//h3|.//div[@class='HnYYW i8lZMc']|.//div[@class='e2BEnf U7izfe']/div");  // 23-03-2020    //01-05-2020
+                HtmlNode nd = node.SelectSingleNode(".//h3|.//div[@class='HnYYW i8lZMc']|.//div[@class='LMMXP i8lZMc']|.//div[@class='e2BEnf U7izfe']/div");  // 02-06-2020    //01-05-2020
                 if (nd != null)
-                    if (nd.InnerText == "Top stories" || nd.InnerText == "Huvudnyheter" || nd.InnerText == "Videos" || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws") // 27-05-2020  // 18-03-2020  // 08-04-2020
+                    if (nd.InnerText == "Top stories" || nd.InnerText == "Huvudnyheter" || nd.InnerText == "Videos" || nd.InnerText == "Video" || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws") // 02-06-2020  // 08-04-2020
                         return true;
 
                 // changes in map block on 19-06-2019.

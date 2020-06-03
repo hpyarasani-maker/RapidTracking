@@ -318,7 +318,7 @@ namespace RapidTrackingMultithread
                 {
                     seresults = getTop100Desktop(keyword, seid, out sIP, value.domain, value.locale, value.uule, value.device);
                 }
-                else if (value.device == "mobile")
+                else if (value.device == "mobile_android")
                 {
                     seresults = getTop100Mobile(keyword, seid, out sIP, value.domain, value.locale, value.uule, value.device);
                 }

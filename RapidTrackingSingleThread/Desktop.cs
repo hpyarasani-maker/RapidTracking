@@ -91,7 +91,7 @@ namespace RapidTrackingSingleThread
             // 23-03-2020
 
             if (nodeCol == null) throw new Exception("No block found.");
-
+            //if (nodeCol == null & string.IsNullOrEmpty(ndText)) throw new Exception("No block found."); // 03-06-2020
             //if (nodeCol == null) return string.Empty;                      
             //if (nodeCol == null) goto BOTTOMSTUFF; 
 

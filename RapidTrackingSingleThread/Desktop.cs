@@ -947,6 +947,8 @@ namespace RapidTrackingSingleThread
                     HtmlNode hn = nd1.SelectSingleNode(".//div[@class='mB12kf JRhSae nDgy9d']");
                     if (hn == null)
                         hn = nd1.SelectSingleNode(".//div[@class='hfac6d']");
+                    if (hn == null)
+                        hn = nd1.SelectSingleNode(".//div[@class='hfac6d oz3cqf vH5Lmd']");//04-06-2020
                     string title = hn.InnerText;
                     s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
 

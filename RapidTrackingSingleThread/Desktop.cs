@@ -73,6 +73,7 @@ namespace RapidTrackingSingleThread
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@class='WvKfwe a3spGf']/div|//div[@class='WvKfwe a3spGf']/g-section-with-header");  // 15-04-2020    //01-05-2020");  // 15-04-2020//22-05-2020
                 if (nodeCol == null)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@class='a3spGf WvKfwe']/div|//div[@class='a3spGf WvKfwe']/g-section-with-header|.//div[@class='UDZeY OTFaAf']");  // 01-06-2020
+                //if (nodeCol != null)  // 03-06-2020
                 foreach (HtmlNode node in nodeCol)
                 {
                     try
@@ -91,7 +92,7 @@ namespace RapidTrackingSingleThread
             // 23-03-2020
 
             if (nodeCol == null) throw new Exception("No block found.");
-
+            //if (nodeCol == null & string.IsNullOrEmpty(ndText)) throw new Exception("No block found."); // 03-06-2020
             //if (nodeCol == null) return string.Empty;                      
             //if (nodeCol == null) goto BOTTOMSTUFF; 
 
@@ -717,7 +718,7 @@ namespace RapidTrackingSingleThread
                 s.Append("<block type=\"siteLinks\" url=\"\">");
                 foreach (HtmlNode nd in nds)
                 {
-                    HtmlNodeCollection c = nd.SelectNodes(".//h3[@class='r']/a|.//h3[@class='r t9dkOd']/a"); //01-06-2020 updated selector for sitelinks
+                    HtmlNodeCollection c = nd.SelectNodes(".//h3[@class='r']/a|.//h3[@class='r t9dkOd']/a|.//h3[@class='r X2oHVb t9dkOd']/a"); //03-06-2020 //01-06-2020 updated selector for sitelinks
                     if (c == null) continue;
                     foreach (HtmlNode a in c)
                     {
@@ -1050,14 +1051,17 @@ namespace RapidTrackingSingleThread
 
                 return "AnswerCard";
             }
-
+            nd = node.SelectSingleNode(".//div[@class='pcCUmf vCOSGb']");//03-06-2020 includes below two lines
+            if (nd != null)
+                return "AnswerCard";
 
             if (node.SelectSingleNode(".//div[@id='imso-root']") != null || node.SelectSingleNode(".//div[@class='k9uN1c kfn9hb']") != null
                 || node.SelectSingleNode(".//div[@class='HaXvv kfn9hb']") != null)//07-02-2020
                 return "Event";
 
             if (node.SelectSingleNode(".//div[@id='cwmcwd']") != null || node.SelectSingleNode(".//div[@class='ifM9O']") != null
-                || node.SelectSingleNode(".//div[@class='vk_ard']") != null)    // changes on 09-07-2019
+                || node.SelectSingleNode(".//div[@class='vk_ard']") != null || node.SelectSingleNode(".//div[@class='d7sCQ kp-header']") != null   //03-06-2020
+                || node.SelectSingleNode(".//div[@class='pcCUmf vCOSGb']") != null)   //03-06-2020
             {
                 return "AnswerCard";
             }
@@ -1141,7 +1145,9 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@class='HaXvv kfn9hb']") != null//07-02-2020
                 || (node.SelectSingleNode(".//div[@class='ifM9O']") != null && node.SelectSingleNode(".//div[@class='Wnoohf OJXvsb']") == null)   // answer card  
                 || node.SelectSingleNode(".//div[@id='cwmcwd']") != null  // answer card 
-                                                                          //|| node.SelectSingleNode(".//div[@class='vk_c card-section']") != null // answer card                
+                                                                          //|| node.SelectSingleNode(".//div[@class='vk_c card-section']") != null // answer card    
+                || node.SelectSingleNode(".//div[@class='d7sCQ kp-header']") != null  //03-06-2020                                                      //|| node.SelectSingleNode(".//div[@class='vk_c card-section']") != null // answer card                
+                || node.SelectSingleNode(".//div[@class='pcCUmf vCOSGb']") != null  //03-06-2020
                 || node.SelectSingleNode(".//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']") != null  // people also ask // 11-02-2020
                                                                                                   //|| node.SelectSingleNode(".//span[@data-original-name='People also ask']") != null  // people also ask
                 || node.SelectSingleNode(".//h3[@class='_DM']") != null || node.SelectSingleNode(".//div[@id='imagebox_bigimages']") != null   // images
@@ -1169,10 +1175,10 @@ namespace RapidTrackingSingleThread
 
             if (!bVal)
             {
-                HtmlNode nd = node.SelectSingleNode(".//h3|.//div[@class='HnYYW i8lZMc']|.//div[@class='LMMXP i8lZMc']|.//div[@class='e2BEnf U7izfe']/div");  // 02-06-2020    //01-05-2020
+                HtmlNode nd = node.SelectSingleNode(".//h3|.//div[@class='HnYYW i8lZMc']|.//div[@class='LMMXP i8lZMc']|.//div[@class='e2BEnf U7izfe']/div|.//h2"); //03-06-2020  // 02-06-2020    //01-05-2020
                 if (nd != null)
-                    if (nd.InnerText == "Top stories" || nd.InnerText == "Huvudnyheter" || nd.InnerText == "Videos" || nd.InnerText == "Video" || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws") // 02-06-2020  // 08-04-2020
-                        return true;
+                    if (nd.InnerText == "Top stories" || nd.InnerText == "Huvudnyheter" || nd.InnerText == "Videos" || nd.InnerText == "Video" || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws" || nd.InnerText == "Vertaalresultaat") //03-06-2020 // 02-06-2020  // 08-04-2020
+                            return true;
 
                 // changes in map block on 19-06-2019.
                 nd = node.SelectSingleNode(".//g-img/img");

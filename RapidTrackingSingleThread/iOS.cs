@@ -1073,6 +1073,8 @@ namespace RapidTrackingSingleThread
                     HtmlNode hn = nd1.SelectSingleNode(".//div[@class='mB12kf JRhSae nDgy9d']");
                     if (hn == null)
                         hn = nd1.SelectSingleNode(".//div[@class='hfac6d']");
+                    if (hn == null)
+                        hn = nd1.SelectSingleNode(".//div[@class='hfac6d oz3cqf vH5Lmd']"); //04-06-2020
                     string title = hn.InnerText;
                     s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                 }
@@ -1574,11 +1576,13 @@ namespace RapidTrackingSingleThread
                 {
                     foreach (HtmlNode nd in nds)
                     {
-                        if (nd.SelectSingleNode(".//div[@class='poMUXd']") != null || nd.SelectSingleNode(".//div[@class='mCBkyc nDgy9d']") != null)   //14-05-2020
+                        if (nd.SelectSingleNode(".//div[@class='poMUXd']") != null || nd.SelectSingleNode(".//div[@class='mCBkyc nDgy9d']") != null || nd.SelectSingleNode(".//div[@class='poMUXd oz3cqf vH5Lmd']") != null) //04-06-2020  //14-05-2020
                         {
                             HtmlNode title = nd.SelectSingleNode(".//div[@class='poMUXd']");
                             if (title == null)
                                 title = nd.SelectSingleNode(".//div[@class='mCBkyc nDgy9d']");    //14-05-2020
+                            if (title == null)
+                                title = nd.SelectSingleNode(".//div[@class='poMUXd oz3cqf vH5Lmd']");//04-06-2020
                             string url = nd.Attributes["href"].Value;
                             s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title.InnerText) + "\" />");
                         }

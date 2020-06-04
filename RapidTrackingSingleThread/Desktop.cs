@@ -123,7 +123,7 @@ namespace RapidTrackingSingleThread
 
         }
 
-        private string GetRightStuff(HtmlDocument doc)
+       private string GetRightStuff(HtmlDocument doc)
         {
             StringBuilder s = new StringBuilder();
 

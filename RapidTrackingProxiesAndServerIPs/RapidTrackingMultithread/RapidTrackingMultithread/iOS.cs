@@ -343,7 +343,7 @@ namespace RapidTrackingMultithread
             if (crNode != null)
             {
                 // if (crNode.SelectSingleNode(".//div[@id='sh_uid_1']") != null)
-                if (crNode.SelectSingleNode(".//sticky-header[@class='pA48Db']") != null || crNode.SelectSingleNode(".//div[@id='sh_uid_1']") != null || crNode.SelectSingleNode(".//div[@class='K1fSEd']") != null)//23-05-2020 commented this line getting object reference|| crNode.SelectSingleNode(".//div[@class='KkEU2']") != null)    //21-05-2020 carousel block
+                if (crNode.SelectSingleNode(".//sticky-header[@class='pA48Db']") != null || crNode.SelectSingleNode(".//div[@id='sh_uid_1']") != null || crNode.SelectSingleNode(".//div[@class='K1fSEd']") != null || crNode.SelectSingleNode(".//div[@class='klbar']") != null) //03-06-2020 //23-05-2020 commented this line getting object reference|| crNode.SelectSingleNode(".//div[@class='KkEU2']") != null)    //21-05-2020 carousel block
                 {
                     s.Append("<block type=\"carousel\" url=\"\">");
                     //s.Append(GetCarousel(crNode)); //23-05-2020 commented because if item urls are empty then display empty block
@@ -1069,6 +1069,8 @@ namespace RapidTrackingMultithread
                     HtmlNode hn = nd1.SelectSingleNode(".//div[@class='mB12kf JRhSae nDgy9d']");
                     if (hn == null)
                         hn = nd1.SelectSingleNode(".//div[@class='hfac6d']");
+                    if (hn == null)
+                        hn = nd1.SelectSingleNode(".//div[@class='hfac6d oz3cqf vH5Lmd']"); //04-06-2020
                     string title = hn.InnerText;
                     s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                 }
@@ -1554,9 +1556,9 @@ namespace RapidTrackingMultithread
                 foreach (HtmlNode nd in nds)
                 {
                     //changes on 28-06-2019
-                    HtmlNode title = nd.SelectSingleNode(".//div[@role='heading']");
+                    HtmlNode title = nd.SelectSingleNode(".//div[@class='d4FON']"); // 03-06-2020 swapped from below line.
                     if (title == null)
-                        title = nd.SelectSingleNode(".//div[@class='d4FON']");
+                        title = nd.SelectSingleNode(".//div[@role='heading']");
                     if (title == null)
                         title = nd.SelectSingleNode(".//div[@class='nDgy9d']");   //changes on 05-07-2019
 
@@ -1570,11 +1572,13 @@ namespace RapidTrackingMultithread
                 {
                     foreach (HtmlNode nd in nds)
                     {
-                        if (nd.SelectSingleNode(".//div[@class='poMUXd']") != null || nd.SelectSingleNode(".//div[@class='mCBkyc nDgy9d']") != null)   //14-05-2020
+                        if (nd.SelectSingleNode(".//div[@class='poMUXd']") != null || nd.SelectSingleNode(".//div[@class='mCBkyc nDgy9d']") != null || nd.SelectSingleNode(".//div[@class='poMUXd oz3cqf vH5Lmd']") != null) //04-06-2020  //14-05-2020
                         {
                             HtmlNode title = nd.SelectSingleNode(".//div[@class='poMUXd']");
                             if (title == null)
                                 title = nd.SelectSingleNode(".//div[@class='mCBkyc nDgy9d']");    //14-05-2020
+                            if (title == null)
+                                title = nd.SelectSingleNode(".//div[@class='poMUXd oz3cqf vH5Lmd']");//04-06-2020
                             string url = nd.Attributes["href"].Value;
                             s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title.InnerText) + "\" />");
                         }
@@ -1771,7 +1775,7 @@ namespace RapidTrackingMultithread
                         return "Carousel";
                 // 24-04-2020
 
-                nd = node.SelectSingleNode(".//div[@class='kp-blk nGydZ Wnoohf OJXvsb']");  // 20-03-2020
+                nd = node.SelectSingleNode(".//div[@class='kp-blk nGydZ Wnoohf OJXvsb']|.//div[@class='NFQFxe XbtRGb qxsd xsZWvb EfDVh WDjuKe mod']");  //03-06-2020  // 20-03-2020
                 if (nd == null)
                     return "KnowledgePanel";
             }

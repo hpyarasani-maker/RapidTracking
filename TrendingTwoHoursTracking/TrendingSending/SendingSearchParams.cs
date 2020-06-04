@@ -1489,25 +1489,6 @@ namespace TrendingSending
             {
                 seid =444, domain ="co.uk", geo_location="E1,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIZRTEsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==", device="mobile_android"
             },
-
-            new SearchProperties()
-            {
-                seid =445, domain ="co.uk", geo_location="NW1,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIaTlcxLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=", device="desktop"
-            },
-            new SearchProperties()
-            {
-                seid =446, domain ="co.uk", geo_location="NW1,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIaTlcxLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=", device="mobile_android"
-            },
-
-            new SearchProperties()
-            {
-                seid =447, domain ="co.uk", geo_location="SE1,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIaU0UxLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=", device="desktop"
-            },
-            new SearchProperties()
-            {
-                seid =448, domain ="co.uk", geo_location="SE1,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIaU0UxLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=", device="mobile_android"
-            },
-
             new SearchProperties()
             {
                 seid =445, domain ="co.uk", geo_location="NW1,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIaTlcxLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=", device="desktop"

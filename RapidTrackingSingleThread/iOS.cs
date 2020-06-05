@@ -2096,6 +2096,8 @@ namespace RapidTrackingSingleThread
                 return true;
             }
             nd = node.SelectSingleNode(".//div[@class='oLO3I']");
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='aZVgnb']/h2");  // 05-06-2020
             if (nd != null)
                 return true;
             // Changes in Finance block on 25-06-2019

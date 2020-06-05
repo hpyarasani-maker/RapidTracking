@@ -609,7 +609,7 @@ namespace RapidTrackingMultithread
             {
                 //nds = node.SelectNodes(".//div[@class='mnr-c waTp2e xpd O9g5cc uUPGi']");  19-05-2020   //20-01-2020 selector changed for two classic links
                 //if (nds == null)
-                nds = node.SelectNodes(".//div[@class='mnr-c O9g5cc uUPGi']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='HD8Pae mnr-c xpd O9g5cc uUPGi']|.//div/g-card[@class='XqIXXe']|.//g-card[@id='tscffb']|.//g-card[@class='g F6CFcc']|.//div[@class='khgTR lWEpfd']|.//div[@class='mnr-c fp-w qs-ic aig-grd']"); //20-05-2020 missing classic link
+                nds = node.SelectNodes(".//div[@class='mnr-c O9g5cc uUPGi']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='HD8Pae mnr-c xpd O9g5cc uUPGi']|.//div/g-card[@class='XqIXXe']|.//g-card[@id='tscffb']|.//g-card[@class='g F6CFcc']|.//div[@class='khgTR lWEpfd']|.//div[@class='mnr-c fp-w qs-ic aig-grd']|.//g-card[@class='URhAHe']"); //20-05-2020 missing classic link //05-06-2020
                 if (nds == null)
                     if (node.Attributes["class"].Value == "mnr-c xpd O9g5cc uUPGi")
                         nds = node.SelectNodes(".//div[@class='KJDcUb']");
@@ -866,7 +866,7 @@ namespace RapidTrackingMultithread
                                     nv = nd.SelectSingleNode(".//g-link/a");
                                 if (nv == null)
                                 {
-                                    nv = nd.SelectSingleNode(".//div[@class='rc']");
+                                    nv = nd.SelectSingleNode(".//div[@class='rc']|.//div[@class='ytwLQd']");//05-06-2020 missing classic links
                                     if (nv != null)
                                         nv = nd.SelectSingleNode(".//h3[@class='r']/a");
                                 }
@@ -1404,7 +1404,7 @@ namespace RapidTrackingMultithread
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='GNxIwf']/div[@jscontroller='xc1DSd']/div/a/g-inner-card/g-img[@class='BA0A6c']/img");  //30-10-2019
             if (nds == null)
-                nds = node.SelectNodes(".//div[@class='GNxIwf']/div[@jscontroller='xc1DSd']/a/g-inner-card/g-img[@class='BA0A6c']/img");  //13-01-2020 included selector for images
+                nds = node.SelectNodes(".//div[@class='GNxIwf']/div[@jscontroller='xc1DSd']/a/g-inner-card/g-img[@class='BA0A6c']/img|.//div[@class='eA0Zlc JX86yc ivg-i']/g-inner-card/g-img[@class='BA0A6c']/img"); //05-06-2020 included selector for images //13-01-2020 included selector for images
             if (nds != null)
 
                 foreach (HtmlNode nd in nds)
@@ -1973,11 +1973,11 @@ namespace RapidTrackingMultithread
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='bUNBRd mnr-c']/g-tray-header/div[@class='N60dNb']/a");
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='N60dNb']/a");
+                nd = node.SelectSingleNode(".//div[@class='N60dNb']/a|.//g-tray-header/div[@class='N60dNb i8lZMc']"); //05-06-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='bUNBRd mnr-c']/g-tray-header/div[@class='N60dNb i8lZMc']/a");    //17-02-2020 included selector for images
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='gID6df']");
+                nd = node.SelectSingleNode(".//div[@class='gID6df']|.//div[@id='iur']"); //05-06-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='GNxIwf']");  // 18-03-2020
             if (nd != null)
@@ -2087,6 +2087,8 @@ namespace RapidTrackingMultithread
                 return true;
             }
             nd = node.SelectSingleNode(".//div[@class='oLO3I']");
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='aZVgnb']/h2");  // 05-06-2020
             if (nd != null)
                 return true;
             // Changes in Finance block on 25-06-2019
@@ -2154,7 +2156,7 @@ namespace RapidTrackingMultithread
 
             if (!node.HasClass("srg")) // 19-09-2019
             {
-                nd = node.SelectSingleNode(".//div[@class='mnr-c xpd O9g5cc uUPGi']");
+                nd = node.SelectSingleNode(".//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='mnr-c']");//05-06-2020 missing classic links
                 if (nd != null && node.SelectSingleNode(".//div[@class='EDblX m8vZ3d']") == null)   // 16-10-2019
                 {
                     return false;
@@ -2173,6 +2175,7 @@ namespace RapidTrackingMultithread
             return (node.HasClass("srg") || node.SelectSingleNode(".//div[@class='oITGTd aSYQ6c']") != null
                 || node.SelectSingleNode(".//div[@class='ZINbbc xpd']") != null
                 || node.SelectSingleNode(".//div[@class='mnr-c xpd O9g5cc uUPGi']") != null
+                || node.SelectSingleNode(".//div[@class='mnr-c']") != null //05-06-2020
                 || node.Attributes["class"]?.Value == "mnr-c xpd O9g5cc uUPGi"
                 || node.SelectSingleNode(".//div[@class='vC5Ym']") != null
                 || node.SelectSingleNode(".//div[@class='kp-blk Wnoohf OJXvsb']") != null

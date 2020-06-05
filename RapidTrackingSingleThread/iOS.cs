@@ -1413,7 +1413,7 @@ namespace RapidTrackingSingleThread
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='GNxIwf']/div[@jscontroller='xc1DSd']/div/a/g-inner-card/g-img[@class='BA0A6c']/img");  //30-10-2019
             if (nds == null)
-                nds = node.SelectNodes(".//div[@class='GNxIwf']/div[@jscontroller='xc1DSd']/a/g-inner-card/g-img[@class='BA0A6c']/img");  //13-01-2020 included selector for images
+                nds = node.SelectNodes(".//div[@class='GNxIwf']/div[@jscontroller='xc1DSd']/a/g-inner-card/g-img[@class='BA0A6c']/img|.//div[@class='eA0Zlc JX86yc ivg-i']/g-inner-card/g-img[@class='BA0A6c']/img"); //05-06-2020 included selector for images //13-01-2020 included selector for images
             if (nds != null)
 
                 foreach (HtmlNode nd in nds)
@@ -1982,7 +1982,7 @@ namespace RapidTrackingSingleThread
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='bUNBRd mnr-c']/g-tray-header/div[@class='N60dNb']/a");
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='N60dNb']/a");
+                nd = node.SelectSingleNode(".//div[@class='N60dNb']/a|.//g-tray-header/div[@class='N60dNb i8lZMc']");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='bUNBRd mnr-c']/g-tray-header/div[@class='N60dNb i8lZMc']/a");    //17-02-2020 included selector for images
             if (nd == null)
@@ -2182,6 +2182,7 @@ namespace RapidTrackingSingleThread
             return (node.HasClass("srg") || node.SelectSingleNode(".//div[@class='oITGTd aSYQ6c']") != null
                 || node.SelectSingleNode(".//div[@class='ZINbbc xpd']") != null
                 || node.SelectSingleNode(".//div[@class='mnr-c xpd O9g5cc uUPGi']") != null
+                || node.SelectSingleNode(".//div[@class='mnr-c']") != null //05-06-2020
                 || node.Attributes["class"]?.Value == "mnr-c xpd O9g5cc uUPGi"
                 || node.SelectSingleNode(".//div[@class='vC5Ym']") != null
                 || node.SelectSingleNode(".//div[@class='kp-blk Wnoohf OJXvsb']") != null

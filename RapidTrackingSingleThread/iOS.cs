@@ -2182,6 +2182,7 @@ namespace RapidTrackingSingleThread
             return (node.HasClass("srg") || node.SelectSingleNode(".//div[@class='oITGTd aSYQ6c']") != null
                 || node.SelectSingleNode(".//div[@class='ZINbbc xpd']") != null
                 || node.SelectSingleNode(".//div[@class='mnr-c xpd O9g5cc uUPGi']") != null
+                || node.SelectSingleNode(".//div[@class='mnr-c']") != null //05-06-2020
                 || node.Attributes["class"]?.Value == "mnr-c xpd O9g5cc uUPGi"
                 || node.SelectSingleNode(".//div[@class='vC5Ym']") != null
                 || node.SelectSingleNode(".//div[@class='kp-blk Wnoohf OJXvsb']") != null

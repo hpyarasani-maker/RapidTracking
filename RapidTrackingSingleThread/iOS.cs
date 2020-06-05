@@ -618,7 +618,7 @@ namespace RapidTrackingSingleThread
             {
                 //nds = node.SelectNodes(".//div[@class='mnr-c waTp2e xpd O9g5cc uUPGi']");  19-05-2020   //20-01-2020 selector changed for two classic links
                 //if (nds == null)
-                nds = node.SelectNodes(".//div[@class='mnr-c O9g5cc uUPGi']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='HD8Pae mnr-c xpd O9g5cc uUPGi']|.//div/g-card[@class='XqIXXe']|.//g-card[@id='tscffb']|.//g-card[@class='g F6CFcc']|.//div[@class='khgTR lWEpfd']|.//div[@class='mnr-c fp-w qs-ic aig-grd']"); //20-05-2020 missing classic link
+                nds = node.SelectNodes(".//div[@class='mnr-c O9g5cc uUPGi']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='HD8Pae mnr-c xpd O9g5cc uUPGi']|.//div/g-card[@class='XqIXXe']|.//g-card[@id='tscffb']|.//g-card[@class='g F6CFcc']|.//div[@class='khgTR lWEpfd']|.//div[@class='mnr-c fp-w qs-ic aig-grd']|.//g-card[@class='URhAHe']"); //20-05-2020 missing classic link //05-06-2020
                 if (nds == null)
                     if (node.Attributes["class"].Value == "mnr-c xpd O9g5cc uUPGi")
                         nds = node.SelectNodes(".//div[@class='KJDcUb']");
@@ -875,7 +875,7 @@ namespace RapidTrackingSingleThread
                                     nv = nd.SelectSingleNode(".//g-link/a");
                                 if (nv == null)
                                 {
-                                    nv = nd.SelectSingleNode(".//div[@class='rc']");
+                                    nv = nd.SelectSingleNode(".//div[@class='rc']|.//div[@class='ytwLQd']");//05-06-2020 missing classic links
                                     if (nv != null)
                                         nv = nd.SelectSingleNode(".//h3[@class='r']/a");
                                 }
@@ -2163,7 +2163,7 @@ namespace RapidTrackingSingleThread
 
             if (!node.HasClass("srg")) // 19-09-2019
             {
-                nd = node.SelectSingleNode(".//div[@class='mnr-c xpd O9g5cc uUPGi']");
+                nd = node.SelectSingleNode(".//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='mnr-c']");//05-06-2020 missing classic links
                 if (nd != null && node.SelectSingleNode(".//div[@class='EDblX m8vZ3d']") == null)   // 16-10-2019
                 {
                     return false;

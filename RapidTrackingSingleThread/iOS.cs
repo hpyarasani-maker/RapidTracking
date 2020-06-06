@@ -1982,11 +1982,11 @@ namespace RapidTrackingSingleThread
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='bUNBRd mnr-c']/g-tray-header/div[@class='N60dNb']/a");
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='N60dNb']/a|.//g-tray-header/div[@class='N60dNb i8lZMc']");
+                nd = node.SelectSingleNode(".//div[@class='N60dNb']/a|.//g-tray-header/div[@class='N60dNb i8lZMc']"); //05-06-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='bUNBRd mnr-c']/g-tray-header/div[@class='N60dNb i8lZMc']/a");    //17-02-2020 included selector for images
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='gID6df']");
+                nd = node.SelectSingleNode(".//div[@class='gID6df']|.//div[@id='iur']"); //05-06-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='GNxIwf']");  // 18-03-2020
             if (nd != null)
@@ -2096,6 +2096,8 @@ namespace RapidTrackingSingleThread
                 return true;
             }
             nd = node.SelectSingleNode(".//div[@class='oLO3I']");
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='aZVgnb']/h2");  // 05-06-2020
             if (nd != null)
                 return true;
             // Changes in Finance block on 25-06-2019

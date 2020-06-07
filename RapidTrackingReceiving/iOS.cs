@@ -2156,7 +2156,7 @@ namespace Oxylabs_BulkKeywords
 
             if (!node.HasClass("srg")) // 19-09-2019
             {
-                nd = node.SelectSingleNode(".//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='mnr-c']");//05-06-2020 missing classic links
+                nd = node.SelectSingleNode(".//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='ytwLQd']");//05-06-2020 missing classic links
                 if (nd != null && node.SelectSingleNode(".//div[@class='EDblX m8vZ3d']") == null)   // 16-10-2019
                 {
                     return false;

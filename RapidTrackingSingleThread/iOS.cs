@@ -2101,6 +2101,8 @@ namespace RapidTrackingSingleThread
             }
             nd = node.SelectSingleNode(".//div[@class='oLO3I']");
             if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='aZVgnb']/h2|.//div[@class='btm7Mb']/h2");  // 08-06-2020  
+            if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='aZVgnb']/h2");  // 05-06-2020
             if (nd != null)
                 return true;

@@ -820,9 +820,9 @@ namespace RapidTrackingSingleThread
                                             if (n == null)
                                                 n = nd.SelectSingleNode(".//div[@class='th N3nEGc']/a");
                                             if (n == null)
-                                                n = nd.SelectSingleNode(".//a[@class='C8nzq BmP5tf']");
+                                                n = nd.SelectSingleNode(".//a[@class='C8nzq BmP5tf amp_r']");  // 10-06-2020 swapped from below //08-01-2020 //included selector for video block
                                             if (n == null)
-                                                n = nd.SelectSingleNode(".//a[@class='C8nzq BmP5tf amp_r']");//08-01-2020 //included selector for video block
+                                                n = nd.SelectSingleNode(".//a[@class='C8nzq BmP5tf']");  // 10-06-2020 swapped from above
                                             if (n == null)
                                                 n = nd.SelectSingleNode(".//a[@class='C8nzq Tj0U2 BmP5tf']");    // 29-11-2019
                                             string url = n.Attributes["href"].Value;

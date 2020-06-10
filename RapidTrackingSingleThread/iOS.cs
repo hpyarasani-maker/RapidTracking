@@ -877,7 +877,7 @@ namespace RapidTrackingSingleThread
                                 {
                                     nv = nd.SelectSingleNode(".//div[@class='rc']|.//div[@class='ytwLQd']");//05-06-2020 missing classic links
                                     if (nv != null)
-                                        nv = nd.SelectSingleNode(".//h3[@class='r']/a");
+                                        nv = nd.SelectSingleNode(".//h3[@class='r']/a|.//h3[@class='r']/div/a"); // 09-06-2020
                                 }
                                 if (nv != null)
                                 {

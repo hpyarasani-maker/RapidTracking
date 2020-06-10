@@ -1416,8 +1416,6 @@ namespace RapidTrackingSingleThread
                 nds = node.SelectNodes(".//div[@class='GNxIwf']/div[@jscontroller='xc1DSd']/a/g-inner-card/g-img[@class='BA0A6c']/img|.//div[@class='eA0Zlc JX86yc ivg-i']/g-inner-card/g-img[@class='BA0A6c']/img"); //05-06-2020 included selector for images //13-01-2020 included selector for images
             if (nds == null)
                 nds = node.SelectNodes(".//div[@class='eR2XS']/g-inner-card/div/a/g-img[@class='SeXxHf']/img"); //08-06-2020
-            if (nds == null)
-                nds = node.SelectNodes(".//div/g-inner-card/a/div/g-img[@class='BA0A6c']/img|.//div/g-inner-card/a/div/g-img[@class='GW5Qcc BA0A6c']/img"); //08-06-2020
             if (nds != null)
 
                 foreach (HtmlNode nd in nds)

@@ -737,11 +737,11 @@ namespace RapidTrackingSingleThread
                             if (n == null)
                                 n = nd.SelectSingleNode(".//a[@class='C8nzq JTuIPc']");
                             if (n == null)
-                                n = nd.SelectSingleNode(".//a[@class='C8nzq BmP5tf']");
+                                n = nd.SelectSingleNode(".//a[@class='C8nzq BmP5tf amp_r']");  // 10-06-2020 swapped from below
                             if (n == null)
                                 n = nd.SelectSingleNode(".//a[@class='C8nzq Tj0U2 BmP5tf']");  // 27-11-2019
                             if (n == null)
-                                n = nd.SelectSingleNode(".//a[@class='C8nzq BmP5tf amp_r']");
+                                n = nd.SelectSingleNode(".//a[@class='C8nzq BmP5tf']");   // 10-06-2020 swapped from above
                             if (n == null)
                                 n = nd.SelectSingleNode(".//a[@class='C8nzq Tj0U2 BmP5tf amp_r']"); // 29-11-2019
                             if (n == null)

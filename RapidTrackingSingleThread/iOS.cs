@@ -862,11 +862,11 @@ namespace RapidTrackingSingleThread
                                 if (nv == null)
                                     nv = nd.SelectSingleNode(".//a[@class='C8nzq JTuIPc']");
                                 if (nv == null)
-                                    nv = nd.SelectSingleNode(".//a[@class='C8nzq BmP5tf']");
+                                    nv = nd.SelectSingleNode(".//a[@class='C8nzq BmP5tf amp_r']");  // 10-06-2020 swapped from below
                                 if (nv == null)
                                     nv = nd.SelectSingleNode(".//a[@class='C8nzq Tj0U2 BmP5tf']");  // 27-11-2019
                                 if (nv == null)
-                                    nv = nd.SelectSingleNode(".//a[@class='C8nzq BmP5tf amp_r']");
+                                    nv = nd.SelectSingleNode(".//a[@class='C8nzq BmP5tf']");  // 10-06-2020 swapped from above
                                 if (nv == null)
                                     nv = nd.SelectSingleNode(".//a[@class='C8nzq Tj0U2 BmP5tf amp_r']"); // 29-11-2019
                                 if (nv == null)

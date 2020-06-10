@@ -1631,6 +1631,8 @@ namespace RapidTrackingSingleThread
                         {
                             // changes in videos block on 19-06-2019.
                             HtmlNode t = nd.SelectSingleNode(".//div[@class='fJiQld']");
+                            if (t == null)
+                                t = nd.SelectSingleNode(".//div[@class='fJiQld oz3cqf vH5Lmd']");//10-06-2020
                             if (t != null)
                                 title = t.InnerText;
                             // end of changes in videos.

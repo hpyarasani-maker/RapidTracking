@@ -315,10 +315,10 @@ namespace RapidTrackingSingleThread
                     if (n != null)
                     {
                         string title = n.SelectSingleNode(".//h3|.//div[@role='heading']").InnerText;
-                        if (!n.Attributes["href"].Value.StartsWith("/"))
+                        if (!string.IsNullOrEmpty(SetUrl(n.Attributes["href"].Value))) // 12-06-2020
                         {
                             var url = n.Attributes["href"].Value.Trim();
-                            url = GetRedirectedUrl(url);
+                            //url = GetRedirectedUrl(url);  // 12-06-2020
                             s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                         }
                         else

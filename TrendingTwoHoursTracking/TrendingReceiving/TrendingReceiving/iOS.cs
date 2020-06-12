@@ -1651,7 +1651,7 @@ namespace TrendingReceiving
                     foreach (HtmlNode nd in nds)
                     {
                         string url = nd.Attributes["data-url"].Value;
-                        string title = nd.SelectSingleNode(".//div[@class='fJiQld']").InnerText;
+                        string title = nd.SelectSingleNode(".//div[@class='fJiQld']|.//div[@class='fJiQld oz3cqf vH5Lmd']").InnerText; //12-06-2020
                         if (url.Contains("/search?")) url = "";
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                     }

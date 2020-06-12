@@ -485,6 +485,13 @@ namespace RapidTrackingSingleThread
                     col = doc.DocumentNode.SelectNodes("//div[@id='tads']/div/ol/li"); //08-04-2020
                 if (col == null)
                     col = doc.DocumentNode.SelectNodes("//div[@class='WcsE3 dJMePd']/div");  // 01-04-2020
+                // 12-06-2020
+                if (col != null)
+                {
+                    col = doc.DocumentNode.SelectNodes("//div[@jsname='xBqLkd']");
+                    if (col != null) col = null;
+                }//end 12-06-2020
+
                 if (col != null)
                 {
                     s.Append("<block type=\"adwords\" url=\"\">");

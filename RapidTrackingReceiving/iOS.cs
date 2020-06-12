@@ -306,10 +306,10 @@ namespace Oxylabs_BulkKeywords
                     if (n != null)
                     {
                         string title = n.SelectSingleNode(".//h3|.//div[@role='heading']").InnerText;
-                        if (!n.Attributes["href"].Value.StartsWith("/"))
+                        if (!string.IsNullOrEmpty(SetUrl(n.Attributes["href"].Value))) // 12-06-2020
                         {
                             var url = n.Attributes["href"].Value.Trim();
-                            url = GetRedirectedUrl(url);
+                            //url = GetRedirectedUrl(url);  // 12-06-2020
                             s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                         }
                         else
@@ -476,6 +476,13 @@ namespace Oxylabs_BulkKeywords
                     col = doc.DocumentNode.SelectNodes("//div[@id='tads']/div/ol/li"); //08-04-2020
                 if (col == null)
                     col = doc.DocumentNode.SelectNodes("//div[@class='WcsE3 dJMePd']/div");  // 01-04-2020
+                // 12-06-2020
+                if (col != null)
+                {
+                    col = doc.DocumentNode.SelectNodes("//div[@jsname='xBqLkd']");
+                    if (col != null) col = null;
+                }//end 12-06-2020
+
                 if (col != null)
                 {
                     s.Append("<block type=\"adwords\" url=\"\">");
@@ -1645,7 +1652,7 @@ namespace Oxylabs_BulkKeywords
                     foreach (HtmlNode nd in nds)
                     {
                         string url = nd.Attributes["data-url"].Value;
-                        string title = nd.SelectSingleNode(".//div[@class='fJiQld']").InnerText;
+                        string title = nd.SelectSingleNode(".//div[@class='fJiQld']|.//div[@class='fJiQld oz3cqf vH5Lmd']").InnerText;//12-06-2020
                         if (url.Contains("/search?")) url = "";
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                     }

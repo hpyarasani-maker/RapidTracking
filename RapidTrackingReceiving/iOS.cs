@@ -1991,7 +1991,7 @@ namespace Oxylabs_BulkKeywords
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='bUNBRd mnr-c']/g-tray-header/div[@class='N60dNb i8lZMc']/a");    //17-02-2020 included selector for images
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='gID6df']|.//div[@id='iur']"); //05-06-2020
+                nd = node.SelectSingleNode(".//div[@class='gID6df']|.//div[@id='iur']/a"); //12-06-2020//05-06-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='GNxIwf']");  // 18-03-2020
             if (nd != null)

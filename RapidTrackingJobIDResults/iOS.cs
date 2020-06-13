@@ -315,10 +315,10 @@ namespace RapidTrackingJobIDResults
                     if (n != null)
                     {
                         string title = n.SelectSingleNode(".//h3|.//div[@role='heading']").InnerText;
-                        if (!n.Attributes["href"].Value.StartsWith("/"))
+                        if (!string.IsNullOrEmpty(SetUrl(n.Attributes["href"].Value))) // 12-06-2020
                         {
                             var url = n.Attributes["href"].Value.Trim();
-                            url = GetRedirectedUrl(url);
+                            //url = GetRedirectedUrl(url);  // 12-06-2020
                             s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                         }
                         else
@@ -485,6 +485,13 @@ namespace RapidTrackingJobIDResults
                     col = doc.DocumentNode.SelectNodes("//div[@id='tads']/div/ol/li"); //08-04-2020
                 if (col == null)
                     col = doc.DocumentNode.SelectNodes("//div[@class='WcsE3 dJMePd']/div");  // 01-04-2020
+                // 12-06-2020
+                //if (col != null)
+                //{
+                //    col = doc.DocumentNode.SelectNodes("//div[@jsname='xBqLkd']");
+                //    if (col != null) col = null;
+                //}//end 12-06-2020
+
                 if (col != null)
                 {
                     s.Append("<block type=\"adwords\" url=\"\">");
@@ -1654,7 +1661,7 @@ namespace RapidTrackingJobIDResults
                     foreach (HtmlNode nd in nds)
                     {
                         string url = nd.Attributes["data-url"].Value;
-                        string title = nd.SelectSingleNode(".//div[@class='fJiQld']").InnerText;
+                        string title = nd.SelectSingleNode(".//div[@class='fJiQld']|.//div[@class='fJiQld oz3cqf vH5Lmd']").InnerText;//12-06-2020
                         if (url.Contains("/search?")) url = "";
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                     }
@@ -1978,7 +1985,8 @@ namespace RapidTrackingJobIDResults
                 if (node.SelectSingleNode(".//g-scrolling-carousel") != null)
                     // 04-11-2019
                     if (nd.InnerText.StartsWith("Movies") || nd.InnerText.StartsWith("Mga Pelikula")
-                        || nd.InnerText.StartsWith("Film") || nd.InnerText.StartsWith("Filme"))
+                        || nd.InnerText.StartsWith("Film") || nd.InnerText.StartsWith("Filme")
+                         || nd.InnerText.StartsWith("Books")) // 09-06-2020
                     {
                         return "Carousel";
                     }
@@ -1992,7 +2000,7 @@ namespace RapidTrackingJobIDResults
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='bUNBRd mnr-c']/g-tray-header/div[@class='N60dNb i8lZMc']/a");    //17-02-2020 included selector for images
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='gID6df']|.//div[@id='iur']"); //05-06-2020
+                nd = node.SelectSingleNode(".//div[@class='gID6df']|.//div[@id='iur']/a"); //12-06-2020//05-06-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='GNxIwf']");  // 18-03-2020
             if (nd != null)

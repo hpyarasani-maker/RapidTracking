@@ -109,8 +109,8 @@ namespace TrendingSending
             //return;
 
             Cursor.Current = Cursors.WaitCursor;
-            //string myDate = date_picker.Text;
-            string myDate = "2019-10-26";
+            string myDate = date_picker.Text;
+            //string myDate = "2019-10-26";
 
             //string strQry = "exec [dbo].[GetBulkTrendingDesktop_1] '" + myDate + "'";
             string strQry = "exec [dbo].[GetBulkTrendingMobile_1] '" + myDate + "'"; 

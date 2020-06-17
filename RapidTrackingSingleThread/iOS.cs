@@ -126,7 +126,7 @@ namespace RapidTrackingSingleThread
                         {
                             HtmlNodeCollection nc = node.SelectNodes(".//div[@id='kp-wp-tab-overview']/div"); //22-01-2020
                             if (nc == null)
-                                nc = node.SelectNodes(".//div[@class='WvKfwe']/div|.//div[@class='WvKfwe a3spGf']/div|.//div[@class='ChlgHf']|.//div[@class='UDZeY mf8UVb']");  //01-06-2020");  //15-04-2020     
+                                nc = node.SelectNodes(".//div[@class='WvKfwe']/div|.//div[@class='WvKfwe a3spGf']/div|.//div[@class='ChlgHf']|.//div[@class='UDZeY mf8UVb']|.//div[@class='UDZeY']");//|.//div[@class='uxUO1b g0S8Ze mnr-c']"); //17-06-2020 answer card //01-06-2020");  //15-04-2020     
                             if (nc == null) //|.//div[@class='a3spGf WvKfwe']/div //23-05-2020
                                 nc = node.SelectNodes(".//div[@class='Kot7x eXEBMb Znsfnf']/div[@class='GhpATe pttBJc']"); //15-04-2020
                             if (nc == null)//|.//div[@class='kp-blk c2xzTb OJXvsb']//23-05-2020
@@ -482,9 +482,11 @@ namespace RapidTrackingSingleThread
                 if (col == null)
                     col = crNode.SelectNodes(".//div[@id='tadsb']/ol/li"); // 21-02-2020 included selector for the text ads block
                 if (col == null)
-                    col = doc.DocumentNode.SelectNodes("//div[@id='tads']/div/ol/li"); //08-04-2020
+                    col = doc.DocumentNode.SelectNodes("//div[@id='tads']/div/ol/li|//div[@jsname='hWE2jd']"); //17-06-2020 //08-04-2020
+                //if (col == null)
+                //    col = doc.DocumentNode.SelectNodes("//div[@class='WcsE3 dJMePd']/div");  // 01-04-2020 commented on 16-06-2020
                 if (col == null)
-                    col = doc.DocumentNode.SelectNodes("//div[@class='WcsE3 dJMePd']/div");  // 01-04-2020
+                    col = doc.DocumentNode.SelectNodes("//div[@jsname='hWE2jd']");//16-06-2020
                 // 12-06-2020
                 //if (col != null)
                 //{
@@ -1788,11 +1790,11 @@ namespace RapidTrackingSingleThread
                 // 24-04-2020
                 nd = node.SelectSingleNode(".//h2");
                 if (nd != null)
-                    if (nd.InnerText.ToLower().Trim() == "recipes" || nd.InnerText.ToLower().Trim() == "ricette" || nd.InnerText.ToLower().Trim() == "recetas") //22-05-2020 receipes language included
+                    if (nd.InnerText.ToLower().Trim() == "recipes" || nd.InnerText.ToLower().Trim() == "ricette" || nd.InnerText.ToLower().Trim() == "recetas" || nd.InnerText.ToLower().Trim() == "recept")//17-06-2020 //22-05-2020 receipes language included
                         return "Carousel";
                 // 24-04-2020
 
-                nd = node.SelectSingleNode(".//div[@class='kp-blk nGydZ Wnoohf OJXvsb']|.//div[@class='NFQFxe XbtRGb qxsd xsZWvb EfDVh WDjuKe mod']");  //03-06-2020  // 20-03-2020
+                nd = node.SelectSingleNode(".//div[@class='kp-blk nGydZ Wnoohf OJXvsb']|.//div[@class='NFQFxe XbtRGb qxsd xsZWvb EfDVh WDjuKe mod']|.//div[@class='NFQFxe viOShc LKPcQc mod']");  // 16-06-2020
                 if (nd == null)
                     return "KnowledgePanel";
             }

@@ -126,7 +126,7 @@ namespace RapidTrackingJobIDResults
                         {
                             HtmlNodeCollection nc = node.SelectNodes(".//div[@id='kp-wp-tab-overview']/div"); //22-01-2020
                             if (nc == null)
-                                nc = node.SelectNodes(".//div[@class='WvKfwe']/div|.//div[@class='WvKfwe a3spGf']/div");  //15-04-2020     
+                                nc = node.SelectNodes(".//div[@class='WvKfwe']/div|.//div[@class='WvKfwe a3spGf']/div|.//div[@class='ChlgHf']|.//div[@class='UDZeY mf8UVb']|.//div[@class='uxUO1b g0S8Ze mnr-c']"); //17-06-2020 answer card //01-06-2020");  //15-04-2020     
                             if (nc == null) //|.//div[@class='a3spGf WvKfwe']/div //23-05-2020
                                 nc = node.SelectNodes(".//div[@class='Kot7x eXEBMb Znsfnf']/div[@class='GhpATe pttBJc']"); //15-04-2020
                             if (nc == null)//|.//div[@class='kp-blk c2xzTb OJXvsb']//23-05-2020

@@ -474,8 +474,10 @@ namespace Oxylabs_BulkKeywords
                     col = crNode.SelectNodes(".//div[@id='tadsb']/ol/li"); // 21-02-2020 included selector for the text ads block
                 if (col == null)
                     col = doc.DocumentNode.SelectNodes("//div[@id='tads']/div/ol/li"); //08-04-2020
+                //if (col == null)
+                //    col = doc.DocumentNode.SelectNodes("//div[@class='WcsE3 dJMePd']/div");  // 01-04-2020 commented on 16-06-2020
                 if (col == null)
-                    col = doc.DocumentNode.SelectNodes("//div[@class='WcsE3 dJMePd']/div");  // 01-04-2020
+                    col = doc.DocumentNode.SelectNodes("//div[@jsname='hWE2jd']");//16-06-2020
                 // 12-06-2020
                 //if (col != null)
                 //{
@@ -1783,7 +1785,7 @@ namespace Oxylabs_BulkKeywords
                         return "Carousel";
                 // 24-04-2020
 
-                nd = node.SelectSingleNode(".//div[@class='kp-blk nGydZ Wnoohf OJXvsb']|.//div[@class='NFQFxe XbtRGb qxsd xsZWvb EfDVh WDjuKe mod']");  //03-06-2020  // 20-03-2020
+                nd = node.SelectSingleNode(".//div[@class='kp-blk nGydZ Wnoohf OJXvsb']|.//div[@class='NFQFxe XbtRGb qxsd xsZWvb EfDVh WDjuKe mod']|.//div[@class='NFQFxe viOShc LKPcQc mod']");  // 16-06-2020
                 if (nd == null)
                     return "KnowledgePanel";
             }

@@ -2134,7 +2134,7 @@ namespace RapidTrackingSingleThread
             nd = node.SelectSingleNode(".//g-card[@id='tscffb']");
             if (nd != null)
             {
-                nd = node.SelectSingleNode(".//g-card[@class='XqIXXe']");
+                nd = node.SelectSingleNode(".//g-card[@class='XqIXXe']|.//div[@class='kGH5dd']");  //19-06-2020
                 if (nd != null)
                 {
                     nd = node.SelectSingleNode(".//div[@class='zK9jzc B3JUpd i8lZMc']"); //17-01-2020 selector changed videos block

@@ -1739,6 +1739,8 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//g-tray-header[@class='kno-fb-ctx Gq01wc zbA8Me ndEm3b']");//19-03-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='qDSRad']");  // changes on 05-07-2019
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='xSoq1 HOslld']"); //19-06-2020
             if (nd != null)
             {
                 bool ts = true;

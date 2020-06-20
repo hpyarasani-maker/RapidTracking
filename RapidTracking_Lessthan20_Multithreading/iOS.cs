@@ -123,7 +123,7 @@ namespace TrackingTrending
                         {
                             HtmlNodeCollection nc = node.SelectNodes(".//div[@id='kp-wp-tab-overview']/div"); //22-01-2020
                             if (nc == null)
-                                nc = node.SelectNodes(".//div[@class='WvKfwe']/div|.//div[@class='WvKfwe a3spGf']/div|.//div[@class='ChlgHf']|.//div[@class='UDZeY mf8UVb']|.//div[@class='UDZeY']"); //17-06-2020 answer card  //01-06-2020");  //15-04-2020     
+                                nc = node.SelectNodes(".//div[@class='WvKfwe']/div|.//div[@class='WvKfwe a3spGf']/div|.//div[@class='ChlgHf']|.//div[@class='UDZeY mf8UVb']|.//div[@class='UDZeY']|.//div[@class='a3spGf WvKfwe']/div");//18-06-2020 //17-06-2020 answer card  //01-06-2020");  //15-04-2020     
                             if (nc == null) //|.//div[@class='a3spGf WvKfwe']/div //23-05-2020
                                 nc = node.SelectNodes(".//div[@class='Kot7x eXEBMb Znsfnf']/div[@class='GhpATe pttBJc']|.//div[@class='a3spGf WvKfwe']/div"); //15-04-2020
                             if (nc == null)//|.//div[@class='kp-blk c2xzTb OJXvsb']//23-05-2020
@@ -619,9 +619,9 @@ namespace TrackingTrending
                 nds = node.SelectNodes(".//div[@jscontroller='iht5n']/div");
             else
             {
-                //nds = node.SelectNodes(".//div[@class='mnr-c waTp2e xpd O9g5cc uUPGi']");  19-05-2020   //20-01-2020 selector changed for two classic links
-                //if (nds == null)
-                nds = node.SelectNodes(".//div[@class='mnr-c O9g5cc uUPGi']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='HD8Pae mnr-c xpd O9g5cc uUPGi']|.//div/g-card[@class='XqIXXe']|.//g-card[@id='tscffb']|.//g-card[@class='g F6CFcc']|.//div[@class='khgTR lWEpfd']|.//div[@class='mnr-c fp-w qs-ic aig-grd']|.//g-card[@class='URhAHe']"); //20-05-2020 missing classic link //05-06-2020
+                nds = node.SelectNodes(".//div[@class='mnr-c waTp2e xpd O9g5cc uUPGi']");  //19-06-2020   //20-01-2020 selector changed for two classic links
+                if (nds == null)
+                    nds = node.SelectNodes(".//div[@class='mnr-c O9g5cc uUPGi']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='HD8Pae mnr-c xpd O9g5cc uUPGi']|.//div/g-card[@class='XqIXXe']|.//g-card[@id='tscffb']|.//g-card[@class='g F6CFcc']|.//div[@class='khgTR lWEpfd']|.//div[@class='mnr-c fp-w qs-ic aig-grd']|.//g-card[@class='URhAHe']"); //20-05-2020 missing classic link //05-06-2020
                 if (nds == null)
                     if (node.Attributes["class"].Value == "mnr-c xpd O9g5cc uUPGi")
                         nds = node.SelectNodes(".//div[@class='KJDcUb']");
@@ -1733,6 +1733,8 @@ namespace TrackingTrending
                 nd = node.SelectSingleNode(".//g-tray-header[@class='kno-fb-ctx Gq01wc zbA8Me ndEm3b']");//19-03-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='qDSRad']");  // changes on 05-07-2019
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='xSoq1 HOslld']"); //19-06-2020
             if (nd != null)
             {
                 bool ts = true;
@@ -1789,7 +1791,7 @@ namespace TrackingTrending
                 // 24-04-2020
 
                 nd = node.SelectSingleNode(".//div[@class='kp-blk nGydZ Wnoohf OJXvsb']|.//div[@class='NFQFxe XbtRGb qxsd xsZWvb EfDVh WDjuKe mod']|.//div[@class='NFQFxe viOShc LKPcQc mod']");  // 16-06-2020
-                if (nd == null)
+                if (nd == null || node.SelectSingleNode(".//div[@class='kp-header']") != null)  //19-06-2020
                     return "KnowledgePanel";
             }
             //swapped 19-03-2020
@@ -1905,7 +1907,7 @@ namespace TrackingTrending
                         return "Maps";
 
                 // changes on 08-07-2019
-                nd = node.SelectSingleNode(".//img[@alt='map image']|.//img[@alt='Affected area map']|.//img[contains(@alt,'Map of ')]");  // 13-03-2020 //01-05-2020
+                nd = node.SelectSingleNode(".//img[@alt='map image']|.//img[@alt='Affected area map']|.//img[contains(@alt,'Map of ')]|.//img[@alt='Affected area']"); //19-06-2020 // 13-03-2020 //01-05-2020
                 if (nd != null)
                     return "Maps";
             }
@@ -2126,7 +2128,7 @@ namespace TrackingTrending
             nd = node.SelectSingleNode(".//g-card[@id='tscffb']");
             if (nd != null)
             {
-                nd = node.SelectSingleNode(".//g-card[@class='XqIXXe']");
+                nd = node.SelectSingleNode(".//g-card[@class='XqIXXe']|.//div[@class='kGH5dd']");  //19-06-2020
                 if (nd != null)
                 {
                     nd = node.SelectSingleNode(".//div[@class='zK9jzc B3JUpd i8lZMc']"); //17-01-2020 selector changed videos block

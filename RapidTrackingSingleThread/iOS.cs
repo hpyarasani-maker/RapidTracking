@@ -901,6 +901,8 @@ namespace RapidTrackingSingleThread
                                 {
                                     string u = nv.Attributes["href"].Value;
                                     HtmlNode d = nv.SelectSingleNode(".//div[@role='heading']");
+                                    if (d == null)
+                                        d = nv.SelectSingleNode(".//div[@class='BNeawe vvjwJb AP7Wnd UwRFLe']"); //22-06-2020
                                     string t = "";
                                     if (d != null)
                                         t = d.InnerText;

@@ -394,7 +394,6 @@ namespace RapidTrackingMultithread
                     label1.Text = "No. of URLs : " + (seresults[1]);
                 }));
 
-
                 if (myDate != "")
                 {
                     try

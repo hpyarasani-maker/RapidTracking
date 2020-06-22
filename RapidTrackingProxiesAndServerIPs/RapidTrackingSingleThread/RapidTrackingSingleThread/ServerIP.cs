@@ -111,7 +111,7 @@ namespace RapidTrackingSingleThread
         public string GetIP()
         {
             //return GetIPAddress(97);
-            return "10.242.3.3";
+            return "10.242.3.7";
         }
         public string getWebDataSource(string url)
         {
@@ -130,8 +130,8 @@ namespace RapidTrackingSingleThread
             Random rnd = new Random();
             x = rnd.Next(0, dtIPs.Rows.Count);
 
-            string sendingIp = dtIPs.Rows[x][1].ToString();
-            //string sendingIp = this.GetIP();
+            //string sendingIp = dtIPs.Rows[x][1].ToString();
+            string sendingIp = this.GetIP();
             int sendingPort = 0;
             StringBuilder stringBuilder = new StringBuilder();
             string value = string.Empty;
@@ -174,8 +174,8 @@ namespace RapidTrackingSingleThread
             Random rnd = new Random();
             x = rnd.Next(0, dtIPs.Rows.Count);
 
-            string sendingIp = dtIPs.Rows[x][1].ToString();
-            //string sendingIp = this.GetIP();
+            //string sendingIp = dtIPs.Rows[x][1].ToString();
+            string sendingIp = this.GetIP();
             int sendingPort = 0;
             StringBuilder stringBuilder = new StringBuilder();
             string value = string.Empty;

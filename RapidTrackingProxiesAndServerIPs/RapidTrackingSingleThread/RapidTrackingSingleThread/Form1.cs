@@ -19,8 +19,8 @@ namespace RapidTrackingSingleThread
     public partial class Form1 : Form
     {
 
-        OxylabsProxies WOWS = new OxylabsProxies();
-
+        //OxylabsProxies WOWS = new OxylabsProxies();
+        ServerIP WOWS = new ServerIP();
         ArrayList seresults = new ArrayList();
 
         string xmlPath = "C:\\inetpub\\wwwroot\\Remaining_103_WC_Proxies.xml";
@@ -69,14 +69,21 @@ namespace RapidTrackingSingleThread
             worklist.Invoke((MethodInvoker)(delegate ()
             {
                 worklist.Items.Clear();
-                //worklist.Items.Add("106:what time is it in uk");
+                //worklist.Items.Add("58:hotel near manila airport terminal 3");
+                //worklist.Items.Add("1:#coronopocolypse");
+                //worklist.Items.Add("1:@diabetes_101");
+                //worklist.Items.Add("1:@fionamartin123");
+                //worklist.Items.Add("1:@smith101sam");
+
+
             }));
             Cursor.Current = System.Windows.Forms.Cursors.WaitCursor;
             date_picker.Format = DateTimePickerFormat.Custom;
             date_picker.CustomFormat = "yyyy-MM-dd";
             string myDate = date_picker.Text;
             //return;
-            string strSql = "exec [dbo].[Tracking_DB_Keywords_SEID_102] '" + myDate + "'";//changes        
+            //string strSql = "exec [dbo].[Tracking_DB_Keywords_SEID_102] '" + myDate + "'";//changes        
+            string strSql = "exec [dbo].[GetAllKeywords_ServerIps_1] '" + myDate + "'";//changes        
 
             SqlConnection objCon = null;
             SqlDataReader objData = null;
@@ -153,24 +160,32 @@ namespace RapidTrackingSingleThread
             string myDate = date_picker.Text;
             //string myDate = "2020-02-06";
             //included try catch for capturing error 429 and threading happening up and down included return; has been solved - 20-01-2020
-            try
-            {
+            //try
+            //{
                 seresults = WOWS.GetTop100(kn, int.Parse(seid));
-            }
-            catch (Exception ex)
-            {
-                results.Invoke((MethodInvoker)(delegate ()
-                {
-                    results.Items.Add(ex.Message);
-                    results.Refresh();
-                }));
-                return;
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    results.Invoke((MethodInvoker)(delegate ()
+            //    {
+            //        results.Items.Add(ex.Message);
+            //        results.Refresh();
+            //    }));
+            //    return;
+            //}
+            
             results.Invoke((MethodInvoker)(delegate ()
             {
                 results.Items.Clear();
             }));
-
+            if (seresults[0] == null || seresults[0].Trim().StartsWith("Index was outside the bounds of the array"))
+            {
+                results.Invoke((MethodInvoker)(delegate ()
+                {
+                    results.Items.Add("no result.");
+                    results.Refresh();
+                }));
+            }
             if (int.Parse(seresults[1]) < 1)
             {
                 results.Invoke((MethodInvoker)(delegate ()
@@ -388,7 +403,17 @@ namespace RapidTrackingSingleThread
                     resultsArray = resultsString.Split(sep);
                     seid = resultsArray.GetValue(0).ToString();
                     kn = resultsArray.GetValue(1).ToString();
-                    processResults(seid, kn);
+                    try
+                    {
+                        processResults(seid, kn);
+                    }
+                    catch(Exception ex)
+                    {
+                        errorList.Invoke((MethodInvoker)(delegate ()
+                        {
+                            errorList.Items.Add(ex.Message.ToString());
+                        }));
+                    }
                     progress_lbl.Invoke((MethodInvoker)(delegate ()
                     {
                         progress_lbl.Text = "Completed : " + (i + 1) + " of " + worklist.Items.Count;
@@ -401,7 +426,7 @@ namespace RapidTrackingSingleThread
             {
                 errorList.Invoke((MethodInvoker)(delegate ()
                 {
-                    errorList.Items.Add(ex.ToString());
+                    errorList.Items.Add(ex.Message.ToString());
                 }));
 
             }

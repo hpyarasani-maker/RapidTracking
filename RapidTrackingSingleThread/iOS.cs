@@ -1717,7 +1717,7 @@ namespace RapidTrackingSingleThread
                 {
                     s.Append("<block type=\"apps\" url=\"\">");
                     string innertext = string.Empty;
-                    HtmlNode TextNode = App.SelectSingleNode(".//div[@class='mdKzW']");
+                    HtmlNode TextNode = App.SelectSingleNode(".//div[@class='mdKzW']|.//div[@class='mdKzW c7UIMb']");  //22-06-2020
                     if (TextNode != null)
                         innertext = TextNode.InnerText;
 

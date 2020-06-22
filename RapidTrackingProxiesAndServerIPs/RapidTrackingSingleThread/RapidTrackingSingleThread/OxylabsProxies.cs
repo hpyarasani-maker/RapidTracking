@@ -31,7 +31,7 @@ namespace RapidTrackingSingleThread
         public OxylabsProxies()
         {
             strConn = readConnection();
-            //dtIPs = getIPsFromDB();
+            dtIPs = getIPsFromDB();
         }
 
         public string readConnection()
@@ -62,7 +62,7 @@ namespace RapidTrackingSingleThread
         {
 
             DataTable dt = new DataTable();
-            string strQry = "Select id, address From oxylabs_proxies";
+            string strQry = "Select id, address From oxylabs_proxies order by NewID()";
 
             using (SqlDataAdapter da = new SqlDataAdapter(strQry, strConn))
             {

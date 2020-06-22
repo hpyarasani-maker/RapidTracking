@@ -178,6 +178,8 @@ namespace RapidTrackingSingleThread
       
         private void SendToAPI(string seid, string kw, string res, string jobid)
        {
+            //string r = "[\x00-\x08\x0B\x0C\x0E-\x1F\x26]";
+            //res = Regex.Replace(res, r, "", RegexOptions.Compiled);
             //if (res == string.Empty)
             //{
             //    XmlDocument xd = new XmlDocument();
@@ -189,7 +191,7 @@ namespace RapidTrackingSingleThread
             //}
             //else
             //{
-                XmlDocument xd = new XmlDocument();
+            XmlDocument xd = new XmlDocument();
                 res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + res;
                 xd.LoadXml(res);
                 xd.Save(xmlPath);

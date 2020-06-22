@@ -265,7 +265,7 @@ namespace RapidTrackingSingleThread
                 results.Invoke((MethodInvoker)(delegate ()
                 {
                     results.Items.Add(seid + " " + kn);
-                    label1.Text = "Classic Links Count : " + (seresults[1]);
+                    label1.Text = "Classic Links : " + (seresults[1]);
                 }));
             }
 
@@ -278,7 +278,6 @@ namespace RapidTrackingSingleThread
                     {
                         SendToAPI(seid, kn, seresults[0]);
                         SendToDB(seid, kn, seresults[0], int.Parse(seresults[1]));
-
                     }
                 }
                 catch (Exception ex)

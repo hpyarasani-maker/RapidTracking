@@ -99,7 +99,7 @@ namespace RapidTrackingSingleThread
         private DataTable getIPsFromDB()
         {
             DataTable dt = new DataTable();
-            string strQry = "Select id, address From IP_Address";
+            string strQry = "Select id, address From IP_AddressIP6";
 
             using (SqlDataAdapter da = new SqlDataAdapter(strQry, strConn))
             {

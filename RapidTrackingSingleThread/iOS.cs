@@ -2218,7 +2218,8 @@ namespace RapidTrackingSingleThread
                 || node.Attributes["class"]?.Value == "mnr-c xpd O9g5cc uUPGi"
                 || node.SelectSingleNode(".//div[@class='vC5Ym']") != null
                 || node.SelectSingleNode(".//div[@class='kp-blk Wnoohf OJXvsb']") != null
-                || (node.SelectSingleNode(".//g-card[@class='XqIXXe']") != null && node.SelectSingleNode(".//g-card[@id='tscffb']") != null));
+                || (node.SelectSingleNode(".//g-card[@class='XqIXXe']") != null && node.SelectSingleNode(".//g-card[@id='tscffb']") != null)
+                 || node.SelectSingleNode(".//div[@class='khgTR lWEpfd']") != null);  //22-06-2020
         }
 
         internal object GetTop100GoogleUKMobileImages_PageURLs(string kw, string v1, string v2, string v3, string v4, string v5)

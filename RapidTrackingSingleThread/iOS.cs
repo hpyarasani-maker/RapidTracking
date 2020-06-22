@@ -322,7 +322,6 @@ namespace RapidTrackingSingleThread
                         if (t != null)
                             title = t.InnerText;
                         //end 22-06-2020
-                        //string title = n.SelectSingleNode(".//h3|.//div[@role='heading']").InnerText;
                         if (!string.IsNullOrEmpty(SetUrl(n.Attributes["href"].Value))) // 12-06-2020
                         {
                             var url = n.Attributes["href"].Value.Trim();

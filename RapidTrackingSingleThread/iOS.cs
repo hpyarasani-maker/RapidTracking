@@ -309,6 +309,8 @@ namespace RapidTrackingSingleThread
                 {
                     HtmlNode n = nd.SelectSingleNode(".//div[@class='d5oMvf KJDcUb']/a");
                     if (n == null)
+                        n = nd.SelectSingleNode(".//div[@class='d5oMvf KJDcUb dJMePd T4Yo']/a");  //22-06-2020
+                    if (n == null)
                         n = nd.SelectSingleNode(".//div[@class='d5oMvf KJDcUb WzRKRb']/a"); // 17-12-2019
                     if (n == null)
                         n = nd.SelectSingleNode(".//div/a[2]|.//div/div/div[@class='d5oMvf']/a");

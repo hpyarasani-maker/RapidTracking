@@ -316,7 +316,13 @@ namespace RapidTrackingSingleThread
                         n = nd.SelectSingleNode(".//div/a[2]|.//div/div/div[@class='d5oMvf']/a");
                     if (n != null)
                     {
-                        string title = n.SelectSingleNode(".//h3|.//div[@role='heading']").InnerText;
+                        //22-06-2020
+                        string title = string.Empty;
+                        HtmlNode t = n.SelectSingleNode(".//h3|.//div[@role='heading']");
+                        if (t != null)
+                            title = t.InnerText;
+                        //end 22-06-2020
+                        //string title = n.SelectSingleNode(".//h3|.//div[@role='heading']").InnerText;
                         if (!string.IsNullOrEmpty(SetUrl(n.Attributes["href"].Value))) // 12-06-2020
                         {
                             var url = n.Attributes["href"].Value.Trim();

@@ -18,16 +18,17 @@ namespace RapidTrackingSingleThread
 {
     public partial class Form1 : Form
     {
-
         //OxylabsProxies WOWS = new OxylabsProxies();
         ServerIP WOWS = new ServerIP();
+
         ArrayList seresults = new ArrayList();
 
-        string xmlPath = "C:\\inetpub\\wwwroot\\Remaining_103_WC_Proxies.xml";
+        string xmlPath = "C:\\inetpub\\wwwroot\\Remaining_GT20_All_S1.xml";
 
 
         public string myDate = string.Empty;
         string statusCode = string.Empty;
+        string liveurl = string.Empty;
 
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
@@ -64,6 +65,37 @@ namespace RapidTrackingSingleThread
             return name;
         }
 
+        static int errCount1 = 0;
+        int kwcnt1 = 0;
+
+        static int cnt = 0;
+        const int maxCnt = 120;
+
+        void IPChanger()
+        {
+            lock (new Object())
+            {
+                cnt++;
+                if (cnt > maxCnt)
+                {
+                    cnt = 0;
+                    errCount1 = 0;
+
+                    WOWS.x++;
+                    if (WOWS.x >= WOWS.dtIPs.Rows.Count) WOWS.x = 0;
+                    StreamWriter sw = new StreamWriter("index.txt", false);
+                    sw.WriteLine(WOWS.x);
+                    sw.Close();
+
+                    //StreamWriter sw1 = new StreamWriter("testlog.txt", true);
+                    //sw1.WriteLine(WOWS.x + " : " + WOWS.dtIPs.Rows[WOWS.x][1].ToString() + " : " + DateTime.Now);
+                    //sw1.Close();
+                    this.Text = "D_RapidTracking_All_1_GT20_ServerIP1_" + WOWS.dtIPs.Rows[WOWS.x][1].ToString();
+
+                }
+            }
+        }
+
         public void generateWorklist()
         {
             worklist.Invoke((MethodInvoker)(delegate ()
@@ -74,8 +106,7 @@ namespace RapidTrackingSingleThread
                 //worklist.Items.Add("1:@diabetes_101");
                 //worklist.Items.Add("1:@fionamartin123");
                 //worklist.Items.Add("1:@smith101sam");
-
-
+                //worklist.Items.Add("1:dvd");
             }));
             Cursor.Current = System.Windows.Forms.Cursors.WaitCursor;
             date_picker.Format = DateTimePickerFormat.Custom;
@@ -154,37 +185,45 @@ namespace RapidTrackingSingleThread
 
         public void processResults(string seid, string kn)
         {
+            IPChanger();
             string[] seresults = new string[1];
             date_picker.Format = DateTimePickerFormat.Custom;
             date_picker.CustomFormat = "yyyy-MM-dd";
             string myDate = date_picker.Text;
             //string myDate = "2020-02-06";
             //included try catch for capturing error 429 and threading happening up and down included return; has been solved - 20-01-2020
-            //try
-            //{
+            try
+            {
                 seresults = WOWS.GetTop100(kn, int.Parse(seid));
-            //}
-            //catch (Exception ex)
-            //{
-            //    results.Invoke((MethodInvoker)(delegate ()
-            //    {
-            //        results.Items.Add(ex.Message);
-            //        results.Refresh();
-            //    }));
-            //    return;
-            //}
-            
+            }
+            catch (WebException ex)
+            {
+                results.Invoke((MethodInvoker)(delegate ()
+                {
+                    results.Items.Add(ex.Message);
+                    results.Refresh();
+                }));
+                return;
+            }
+
             results.Invoke((MethodInvoker)(delegate ()
             {
                 results.Items.Clear();
             }));
-            if (seresults[0] == null || seresults[0].Trim().StartsWith("Index was outside the bounds of the array"))
+            if (string.IsNullOrEmpty(seresults[0]) || seresults[0].Trim().StartsWith("Index was outside the bounds of the array"))
             {
                 results.Invoke((MethodInvoker)(delegate ()
                 {
                     results.Items.Add("no result.");
                     results.Refresh();
                 }));
+
+                errCount1++;
+                if (errCount1 >= 10)
+                {
+                    cnt = maxCnt;
+                    IPChanger();
+                }
             }
             if (int.Parse(seresults[1]) < 1)
             {
@@ -195,34 +234,39 @@ namespace RapidTrackingSingleThread
                 }));
 
             }
-            else if (seresults[0].ToString().Contains("e100") && seresults[0].ToString().Trim().StartsWith("e100"))
+            else if (seresults[1].ToString().Contains("Value cannot be null") || seresults[1].ToString().Trim().Contains("index was outside the bounds of the array"))
             {
                 results.Invoke((MethodInvoker)(delegate ()
                 {
-                    results.Items.Add("e100: no result.");
+                    results.Items.Add("No Results.");
                     results.Refresh();
                 }));
-                errorList.Invoke((MethodInvoker)(delegate ()
+
+                errCount1++;
+                if (errCount1 >= 10)
                 {
-                    errorList.Text += seresults[0].ToString() + "\r\n";
-                    errorList.Refresh();
-                }));
+                    cnt = maxCnt;
+                    IPChanger();
+                }
             }
             else
             {
+                kwcnt1++;
+
+                results.Invoke((MethodInvoker)(delegate ()
+                {
+                    if (kwcnt1 >= 10)
+                    {
+                        IPChanger();
+                        kwcnt1 = 0;
+                    }
+                }));
+
                 results.Invoke((MethodInvoker)(delegate ()
                 {
                     results.Items.Add(seid + " " + kn);
-                    label1.Text = "Item URLs Count : " + (seresults[1]);
-                    //results.Refresh();
+                    label1.Text = "Classic Links Count : " + (seresults[1]);
                 }));
-            }
-
-            if (!string.IsNullOrEmpty(seresults[0]))
-            {
-                StreamWriter sw = new StreamWriter(xmlPath, false);
-                sw.Write(seresults[0]); //updated to string array [0] //20-01-2020
-                sw.Close();
             }
 
             if (myDate != "")
@@ -234,12 +278,8 @@ namespace RapidTrackingSingleThread
                     {
                         SendToAPI(seid, kn, seresults[0]);
                         SendToDB(seid, kn, seresults[0], int.Parse(seresults[1]));
+
                     }
-                    //else
-                    //{
-                    //    SendToAPI(seid, kn, seresults[0]);
-                    //    SendToDB(seid, kn, seresults[0], int.Parse(seresults[1]));
-                    //}
                 }
                 catch (Exception ex)
                 {
@@ -264,7 +304,7 @@ namespace RapidTrackingSingleThread
                         comm.CommandType = CommandType.StoredProcedure;
                         comm.CommandText = "Insert_dashboard_data";
                         comm.Parameters.Add("date", SqlDbType.Date).Value = myDate;
-                        comm.Parameters.Add("name", SqlDbType.NVarChar).Value = keyword; 
+                        comm.Parameters.Add("name", SqlDbType.NVarChar).Value = keyword;
                         comm.Parameters.Add("Seid", SqlDbType.Int).Value = seid;
                         comm.Parameters.Add("jobid", SqlDbType.NVarChar).Value = string.Empty;
                         comm.Parameters.Add("count", SqlDbType.Int).Value = urlcount;
@@ -294,10 +334,10 @@ namespace RapidTrackingSingleThread
             //}
             //else
             //{
-                XmlDocument xd = new XmlDocument();
-                res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + res;
-                xd.LoadXml(res);
-                xd.Save(xmlPath);
+            XmlDocument xd = new XmlDocument();
+            res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + res;
+            xd.LoadXml(res);
+            xd.Save(xmlPath);
             //}
             //SendToURL
             //return;
@@ -407,7 +447,7 @@ namespace RapidTrackingSingleThread
                     {
                         processResults(seid, kn);
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         errorList.Invoke((MethodInvoker)(delegate ()
                         {
@@ -448,10 +488,30 @@ namespace RapidTrackingSingleThread
         {
             this.Invoke((MethodInvoker)(delegate ()
             {
+                date_picker.Value = DateTime.Today;
+            }));
+
+            liveurl = readAPI();
+            if (File.Exists("index.txt"))
+            {
+                StreamReader sw = new StreamReader("index.txt");
+                string val = sw.ReadLine();
+                sw.Close();
+
+                if (Convert.ToInt32(val) >= 0) WOWS.x = Convert.ToInt32(val);
+            }
+
+            if (WOWS.x >= WOWS.dtIPs.Rows.Count)
+            {
+                WOWS.x = 0;
+            }
+
+            this.Invoke((MethodInvoker)(delegate ()
+            {
                 //date_picker.Value = DateTime.Today.AddDays(-2);
 
-                //this.Text = "D_RapidTracking_102_Remaining_Proxies_GT0";//changes
-                this.Text = "D_RapidTracking_103_WOC_Remaining_Proxies";
+                this.Text = "D_RapidTracking_All_1_GT20_ServerIP1_" + WOWS.dtIPs.Rows[WOWS.x][1].ToString();
+
             }));
             Thread myThread = new Thread(new ThreadStart(mainLoop));
             generateWorklist();

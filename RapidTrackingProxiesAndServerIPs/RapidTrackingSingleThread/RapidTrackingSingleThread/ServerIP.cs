@@ -130,15 +130,17 @@ namespace RapidTrackingSingleThread
             Random rnd = new Random();
             x = rnd.Next(0, dtIPs.Rows.Count);
 
-            //string sendingIp = dtIPs.Rows[x][1].ToString();
-            string sendingIp = this.GetIP();
+            string sendingIp = dtIPs.Rows[x][1].ToString();
+            //string sendingIp = this.GetIP();
             int sendingPort = 0;
             StringBuilder stringBuilder = new StringBuilder();
             string value = string.Empty;
             Uri uri = new Uri(url);
             HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
             httpWebRequest.Headers.Clear();
-            httpWebRequest.UserAgent = @"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36";            
+            //httpWebRequest.UserAgent = @"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36"; 
+            httpWebRequest.UserAgent = @"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36";
+
             try
             {
                 ServicePoint servicePoint2 = ServicePointManager.FindServicePoint(uri);
@@ -174,8 +176,8 @@ namespace RapidTrackingSingleThread
             Random rnd = new Random();
             x = rnd.Next(0, dtIPs.Rows.Count);
 
-            //string sendingIp = dtIPs.Rows[x][1].ToString();
-            string sendingIp = this.GetIP();
+            string sendingIp = dtIPs.Rows[x][1].ToString();
+            //string sendingIp = this.GetIP();
             int sendingPort = 0;
             StringBuilder stringBuilder = new StringBuilder();
             string value = string.Empty;

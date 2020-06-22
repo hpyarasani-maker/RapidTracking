@@ -314,6 +314,7 @@ namespace RapidTrackingMultithread
         public void processResults2(string seid, string kn)
         {
             IPChanger();
+
             string[] seresults = new string[1];
             date_picker.Format = DateTimePickerFormat.Custom;
             date_picker.CustomFormat = "yyyy-MM-dd";
@@ -323,7 +324,7 @@ namespace RapidTrackingMultithread
             {
                 seresults = server0.GetTop100(kn, int.Parse(seid));
             }
-            catch (Exception ex)
+            catch (WebException ex)
             {
                 results1.Invoke((MethodInvoker)(delegate ()
                 {
@@ -337,12 +338,11 @@ namespace RapidTrackingMultithread
             {
                 results1.Items.Clear();
             }));
-
-            if (int.Parse(seresults[1]) < 1)
+            if (string.IsNullOrEmpty(seresults[0]) || seresults[0].Trim().StartsWith("Index was outside the bounds of the array"))
             {
                 results1.Invoke((MethodInvoker)(delegate ()
                 {
-                    results1.Items.Add("No Results");
+                    results1.Items.Add("no result.");
                     results1.Refresh();
                 }));
 
@@ -353,17 +353,21 @@ namespace RapidTrackingMultithread
                     IPChanger();
                 }
             }
-            else if (seresults[0].ToString().Contains("e100") && seresults[0].ToString().Trim().StartsWith("e100"))
+
+            if (int.Parse(seresults[1]) < 1)
             {
                 results1.Invoke((MethodInvoker)(delegate ()
                 {
-                    results1.Items.Add("e100: no result.");
+                    results1.Items.Add("no Results");
                     results1.Refresh();
                 }));
-                txtError.Invoke((MethodInvoker)(delegate ()
+            }
+            else if (seresults[1].ToString().Contains("Value cannot be null") || seresults[1].ToString().Trim().Contains("index was outside the bounds of the array"))
+            {
+                results1.Invoke((MethodInvoker)(delegate ()
                 {
-                    txtError.Text += seresults[0].ToString() + "\r\n";
-                    txtError.Refresh();
+                    results1.Items.Add("no Results.");
+                    results1.Refresh();
                 }));
 
                 errCount1++;
@@ -378,7 +382,6 @@ namespace RapidTrackingMultithread
                 kwcnt1++;
                 results1.Invoke((MethodInvoker)(delegate ()
                 {
-                
                     if (kwcnt1 >= 10)
                     {
                         IPChanger();
@@ -391,19 +394,13 @@ namespace RapidTrackingMultithread
                     label1.Text = "No. of URLs : " + (seresults[1]);
                 }));
 
-                if (!string.IsNullOrEmpty(seresults[0]))
-                {
-                    StreamWriter sw = new StreamWriter(xmlPath1, false);
-                    sw.Write(seresults[0]);
-                    sw.Close();
-                }
 
                 if (myDate != "")
                 {
                     try
                     {
                         int rescount1 = int.Parse(seresults[1]);
-                        if (rescount1 > 50)
+                        if (rescount1 > 20)
                         {
                             SendToAPI1(seid, kn, seresults[0]);
                             SendToDB(seid, kn, seresults[0], int.Parse(seresults[1]));
@@ -420,6 +417,7 @@ namespace RapidTrackingMultithread
         public void processResults6(string seid, string kn)
         {
             IPChanger();
+
             string[] seresults = new string[1];
             date_picker.Format = DateTimePickerFormat.Custom;
             date_picker.CustomFormat = "yyyy-MM-dd";
@@ -429,7 +427,7 @@ namespace RapidTrackingMultithread
             {
                 seresults = server0.GetTop100(kn, int.Parse(seid));
             }
-            catch (Exception ex)
+            catch (WebException ex)
             {
                 results2.Invoke((MethodInvoker)(delegate ()
                 {
@@ -443,12 +441,11 @@ namespace RapidTrackingMultithread
             {
                 results2.Items.Clear();
             }));
-
-            if (int.Parse(seresults[1]) < 1)
+            if (string.IsNullOrEmpty(seresults[0]) || seresults[0].Trim().StartsWith("Index was outside the bounds of the array"))
             {
-                results2.Invoke((MethodInvoker)(delegate ()
+                results1.Invoke((MethodInvoker)(delegate ()
                 {
-                    results2.Items.Add("No Results");
+                    results2.Items.Add("no result.");
                     results2.Refresh();
                 }));
 
@@ -459,17 +456,21 @@ namespace RapidTrackingMultithread
                     IPChanger();
                 }
             }
-            else if (seresults[0].ToString().Contains("e100") && seresults[0].ToString().Trim().StartsWith("e100"))
+
+            if (int.Parse(seresults[1]) < 1)
             {
                 results2.Invoke((MethodInvoker)(delegate ()
                 {
-                    results2.Items.Add("e100: no result.");
+                    results2.Items.Add("no Results");
                     results2.Refresh();
                 }));
-                txtError.Invoke((MethodInvoker)(delegate ()
+            }
+            else if (seresults[1].ToString().Contains("Value cannot be null") || seresults[1].ToString().Trim().Contains("index was outside the bounds of the array"))
+            {
+                results2.Invoke((MethodInvoker)(delegate ()
                 {
-                    txtError.Text += seresults[0].ToString() + "\r\n";
-                    txtError.Refresh();
+                    results2.Items.Add("no Results.");
+                    results2.Refresh();
                 }));
 
                 errCount2++;
@@ -499,19 +500,12 @@ namespace RapidTrackingMultithread
                 }));
             }
 
-            if (!string.IsNullOrEmpty(seresults[0]))
-            {
-                StreamWriter sw = new StreamWriter(xmlPath2, false);
-                sw.Write(seresults[0]);
-                sw.Close();
-            }
-
             if (myDate != "")
             {
                 try
                 {
                     int rescount2 = int.Parse(seresults[1]);
-                    if (rescount2 > 50)
+                    if (rescount2 > 20)
                     {
                         SendToAPI2(seid, kn, seresults[0]);
                         SendToDB(seid, kn, seresults[0], int.Parse(seresults[1]));
@@ -537,7 +531,7 @@ namespace RapidTrackingMultithread
             {
                 seresults = server0.GetTop100(kn, int.Parse(seid));
             }
-            catch (Exception ex)
+            catch (WebException ex)
             {
                 results3.Invoke((MethodInvoker)(delegate ()
                 {
@@ -551,12 +545,11 @@ namespace RapidTrackingMultithread
             {
                 results3.Items.Clear();
             }));
-
-            if (int.Parse(seresults[1]) < 1)
+            if (string.IsNullOrEmpty(seresults[0]) || seresults[0].Trim().StartsWith("Index was outside the bounds of the array"))
             {
                 results3.Invoke((MethodInvoker)(delegate ()
                 {
-                    results3.Items.Add("No Results");
+                    results3.Items.Add("no result.");
                     results3.Refresh();
                 }));
 
@@ -567,17 +560,21 @@ namespace RapidTrackingMultithread
                     IPChanger();
                 }
             }
-            else if (seresults[0].ToString().Contains("e100") && seresults[0].ToString().Trim().StartsWith("e100"))
+
+            if (int.Parse(seresults[1]) < 1)
             {
                 results3.Invoke((MethodInvoker)(delegate ()
                 {
-                    results3.Items.Add("e100: no result.");
+                    results3.Items.Add("no Results");
                     results3.Refresh();
                 }));
-                txtError.Invoke((MethodInvoker)(delegate ()
+            }
+            else if (seresults[1].ToString().Contains("Value cannot be null") || seresults[1].ToString().Trim().Contains("index was outside the bounds of the array"))
+            {
+                results3.Invoke((MethodInvoker)(delegate ()
                 {
-                    txtError.Text += seresults[0].ToString() + "\r\n";
-                    txtError.Refresh();
+                    results3.Items.Add("no Results.");
+                    results3.Refresh();
                 }));
 
                 errCount3++;
@@ -605,19 +602,13 @@ namespace RapidTrackingMultithread
                     label3.Text = "No. of URLs : " + (seresults[1]);
                 }));
 
-                if (!string.IsNullOrEmpty(seresults[0]))
-                {
-                    StreamWriter sw = new StreamWriter(xmlPath3, false);
-                    sw.Write(seresults[0]);
-                    sw.Close();
-                }
 
                 if (myDate != "")
                 {
                     try
                     {
                         int rescount3 = int.Parse(seresults[1]);
-                        if (rescount3 > 50)
+                        if (rescount3 > 20)
                         {
                             SendToAPI3(seid, kn, seresults[0]);
                             SendToDB(seid, kn, seresults[0], int.Parse(seresults[1]));
@@ -649,7 +640,17 @@ namespace RapidTrackingMultithread
                     resultsArray = resultsString.Split(sep);
                     seid = resultsArray.GetValue(0).ToString();
                     kn = resultsArray.GetValue(1).ToString();
-                    processResults2(seid, kn);
+                    try
+                    {
+                        processResults2(seid, kn);
+                    }
+                    catch (Exception ex)
+                    {
+                        errorList.Invoke((MethodInvoker)(delegate ()
+                        {
+                            errorList.Items.Add(ex.Message.ToString());
+                        }));
+                    }
 
                     // update progress label
                     progress_seid2.Invoke((MethodInvoker)(delegate ()
@@ -689,7 +690,17 @@ namespace RapidTrackingMultithread
                     seid = resultsArray.GetValue(0).ToString();
                     kn = resultsArray.GetValue(1).ToString();
 
-                    processResults6(seid, kn);
+                    try
+                    {
+                        processResults6(seid, kn);
+                    }
+                    catch (Exception ex)
+                    {
+                        errorList.Invoke((MethodInvoker)(delegate ()
+                        {
+                            errorList.Items.Add(ex.Message.ToString());
+                        }));
+                    }
 
                     // update progress label
                     progress_seid6.Invoke((MethodInvoker)(delegate ()
@@ -729,7 +740,17 @@ namespace RapidTrackingMultithread
                     seid = resultsArray.GetValue(0).ToString();
                     kn = resultsArray.GetValue(1).ToString();
 
-                    processResults12(seid, kn);
+                    try
+                    {
+                        processResults12(seid, kn);
+                    }
+                    catch (Exception ex)
+                    {
+                        errorList.Invoke((MethodInvoker)(delegate ()
+                        {
+                            errorList.Items.Add(ex.Message.ToString());
+                        }));
+                    }
                     progress_seid12.Invoke((MethodInvoker)(delegate ()
                     {
                         progress_seid12.Text = "Completed : " + (i + 1) + " of " + worklist3.Items.Count;

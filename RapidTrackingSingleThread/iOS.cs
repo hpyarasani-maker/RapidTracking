@@ -1816,7 +1816,7 @@ namespace RapidTrackingSingleThread
                 // 24-04-2020
 
                 nd = node.SelectSingleNode(".//div[@class='kp-blk nGydZ Wnoohf OJXvsb']|.//div[@class='NFQFxe XbtRGb qxsd xsZWvb EfDVh WDjuKe mod']|.//div[@class='NFQFxe viOShc LKPcQc mod']");  // 16-06-2020
-                if (nd == null || node.SelectSingleNode(".//div[@class='kp-header']") != null)  //19-06-2020
+                if (nd == null || node.SelectSingleNode(".//div[@class='kp-header']") != null || node.SelectSingleNode(".//div[@class='K2Sb0e kp-header']") != null)   //23-06-2020 //19-06-2020
                     return "KnowledgePanel";
             }
             //swapped 19-03-2020

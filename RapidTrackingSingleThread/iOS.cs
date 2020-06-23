@@ -570,6 +570,8 @@ namespace RapidTrackingSingleThread
                         //HtmlNode App1 = App.SelectSingleNode(".//h3[@class='header-title yovt']");                    
 
                         HtmlNodeCollection App2 = answernode.SelectNodes(".//div[@class='ytwLQd']/h3/a");
+                        if (App2 == null)
+                            App2 = answernode.SelectNodes(".//div[@class='WLSb4b']");//23-06-2020
                         if (App2 != null)
                         {
                             s.Append("<block type=\"answerCard\" url=\"\">");

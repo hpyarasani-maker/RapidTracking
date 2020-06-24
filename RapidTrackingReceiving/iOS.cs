@@ -300,12 +300,19 @@ namespace Oxylabs_BulkKeywords
                 {
                     HtmlNode n = nd.SelectSingleNode(".//div[@class='d5oMvf KJDcUb']/a");
                     if (n == null)
+                        n = nd.SelectSingleNode(".//div[@class='d5oMvf KJDcUb dJMePd T4Yo']/a");  //22-06-2020
+                    if (n == null)
                         n = nd.SelectSingleNode(".//div[@class='d5oMvf KJDcUb WzRKRb']/a"); // 17-12-2019
                     if (n == null)
                         n = nd.SelectSingleNode(".//div/a[2]|.//div/div/div[@class='d5oMvf']/a");
                     if (n != null)
                     {
-                        string title = n.SelectSingleNode(".//h3|.//div[@role='heading']").InnerText;
+                        //22-06-2020
+                        string title = string.Empty;
+                        HtmlNode t = n.SelectSingleNode(".//h3|.//div[@role='heading']");
+                        if (t != null)
+                            title = t.InnerText;
+                        //end 22-06-2020
                         if (!string.IsNullOrEmpty(SetUrl(n.Attributes["href"].Value))) // 12-06-2020
                         {
                             var url = n.Attributes["href"].Value.Trim();
@@ -554,6 +561,8 @@ namespace Oxylabs_BulkKeywords
                         //HtmlNode App1 = App.SelectSingleNode(".//h3[@class='header-title yovt']");                    
 
                         HtmlNodeCollection App2 = answernode.SelectNodes(".//div[@class='ytwLQd']/h3/a");
+                        if (App2 == null)
+                            App2 = answernode.SelectNodes(".//div[@class='WLSb4b']");//23-06-2020
                         if (App2 != null)
                         {
                             s.Append("<block type=\"answerCard\" url=\"\">");
@@ -874,6 +883,8 @@ namespace Oxylabs_BulkKeywords
                                 if (nv == null)
                                     nv = nd.SelectSingleNode(".//g-link/a");
                                 if (nv == null)
+                                    nv = nd.SelectSingleNode(".//div[@class='fM8c FUksre']/a"); //22-06-2020
+                                if (nv == null)
                                 {
                                     nv = nd.SelectSingleNode(".//div[@class='rc']|.//div[@class='ytwLQd']");//05-06-2020 missing classic links
                                     if (nv != null)
@@ -883,6 +894,8 @@ namespace Oxylabs_BulkKeywords
                                 {
                                     string u = nv.Attributes["href"].Value;
                                     HtmlNode d = nv.SelectSingleNode(".//div[@role='heading']");
+                                    if (d == null)
+                                        d = nv.SelectSingleNode(".//div[@class='BNeawe vvjwJb AP7Wnd UwRFLe']"); //22-06-2020
                                     string t = "";
                                     if (d != null)
                                         t = d.InnerText;
@@ -1318,6 +1331,8 @@ namespace Oxylabs_BulkKeywords
                 nd = node.SelectSingleNode(".//div[@class='Y37F6d Nn2Stf']");  // 21-04-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='HnYYW FIdh1']");  // 01-06-2020
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='MQv7ze']");  // 23-06-2020
             if (nd != null)
             {
                 string hdr = "";
@@ -1333,6 +1348,8 @@ namespace Oxylabs_BulkKeywords
                     hdrNode = nd.SelectSingleNode(".//div[@class='cX4Std B7U7kd']"); //30-03-2020
                 if (hdrNode == null)
                     hdrNode = node.SelectSingleNode(".//div[@class='HnYYW FIdh1']"); //21-04-2020  
+                if (hdrNode == null)
+                    hdrNode = node.SelectSingleNode(".//div[@class='MQv7ze']");  // 23-06-2020
                 if (hdrNode != null)
                     hdr = hdrNode.InnerText;
 
@@ -1446,6 +1463,7 @@ namespace Oxylabs_BulkKeywords
             string matchPattern3 = "\"ou\":\"(.*?)\",";
             //string matchPattern4 = "\\W\\W\\Wx22http[s]*://(.*?)\\Wx22";   // 17-02-2020 included pattern
             string matchPattern4 = @"\[0,\\x22[\w-\d]*:\\x22,\[\\x22(.*?)\\x22,"; //18-02-2020 replaced pattern for above 17-02-2020
+            string matchPattern5 = "<img data-src=\\W(.*?)&amp;s\""; //24-06-2020
             Regex re = new Regex(matchPattern1, RegexOptions.IgnoreCase | RegexOptions.Singleline);
             MatchCollection mc = re.Matches(html);
             ArrayList alDup = new ArrayList();
@@ -1506,6 +1524,19 @@ namespace Oxylabs_BulkKeywords
                 //if (!HtmlText.Contains("encrypted") && !HtmlText.Contains(".google.") && !HtmlText.Contains("cdn-img.") && !HtmlText.Contains("image.") && !HtmlText.Contains("t0.gstatic.") && !HtmlText.Contains("img.") && !HtmlText.Contains("cdn.tobi.") && !HtmlText.Contains("ae01."))
                 alDup.Add(HtmlText);
             }
+            //24-06-2020
+            re = new Regex(matchPattern5, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+            mc = re.Matches(html);
+
+            foreach (Match m in mc)
+            {
+                string HtmlText = HttpUtility.HtmlDecode(m.Groups[1].Value);
+                if (HtmlText.StartsWith("http") || HtmlText.StartsWith("https"))
+                {
+                    alDup.Add(HtmlText);
+                }
+            }
+            //end 24-06-2020
 
             foreach (string s1 in alDup)
             {
@@ -1697,7 +1728,7 @@ namespace Oxylabs_BulkKeywords
                 {
                     s.Append("<block type=\"apps\" url=\"\">");
                     string innertext = string.Empty;
-                    HtmlNode TextNode = App.SelectSingleNode(".//div[@class='mdKzW']");
+                    HtmlNode TextNode = App.SelectSingleNode(".//div[@class='mdKzW']|.//div[@class='mdKzW c7UIMb']");  //22-06-2020
                     if (TextNode != null)
                         innertext = TextNode.InnerText;
 
@@ -1778,6 +1809,8 @@ namespace Oxylabs_BulkKeywords
                 nd = node.SelectSingleNode(".//div[@class='Y37F6d Nn2Stf']");  // 21-04-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='HnYYW FIdh1']");  // 01-06-2020
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='MQv7ze']");  // 23-06-2020 
             if (nd != null)
             {
                 // 24-04-2020
@@ -1788,7 +1821,7 @@ namespace Oxylabs_BulkKeywords
                 // 24-04-2020
 
                 nd = node.SelectSingleNode(".//div[@class='kp-blk nGydZ Wnoohf OJXvsb']|.//div[@class='NFQFxe XbtRGb qxsd xsZWvb EfDVh WDjuKe mod']|.//div[@class='NFQFxe viOShc LKPcQc mod']");  // 16-06-2020
-                if (nd == null || node.SelectSingleNode(".//div[@class='kp-header']") != null)  //19-06-2020
+                if (nd == null || node.SelectSingleNode(".//div[@class='kp-header']") != null || node.SelectSingleNode(".//div[@class='K2Sb0e kp-header']") != null)   //23-06-2020 //19-06-2020
                     return "KnowledgePanel";
             }
             //swapped 19-03-2020
@@ -1841,6 +1874,8 @@ namespace Oxylabs_BulkKeywords
             nd = node.SelectSingleNode(".//div[@class='TyzpY']");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='SRYuRe']");
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='w8TE8']");
             if (nd != null)
                 return "Videos";
 
@@ -1860,7 +1895,7 @@ namespace Oxylabs_BulkKeywords
             {
                 nd = node.SelectSingleNode(".//div[@role='heading']/div[@class='HnYYW']");
                 if (nd == null)
-                    nd = node.SelectSingleNode(".//div[@role='heading']/div[@class='HnYYW i8lZMc']");  // 21-02-2020 
+                    nd = node.SelectSingleNode(".//div[@role='heading']/div[@class='HnYYW i8lZMc']|.//div[@role='heading']/div[@class='HnYYW mfMhoc']");  // 24-06-2020   // 21-02-2020 
                 if (nd != null)
                 {
                     if (nd.InnerHtml.ToLower().StartsWith("video") || nd.InnerHtml.ToLower().StartsWith("vídeo")) //07-02-2020 included title for video block for different language
@@ -2052,7 +2087,9 @@ namespace Oxylabs_BulkKeywords
             HtmlNode nd = node.SelectSingleNode(".//div[@class='HnYYW']|.//g-tray-header[@role='heading']|.//div[@role='heading']");
             if (nd != null)
             {
-                if (nd.InnerText == "Top stories" || nd.InnerText == "Noticias principales" || nd.InnerText == "Interesting finds")
+                if (nd.InnerText == "Top stories" || nd.InnerText == "Noticias principales" || nd.InnerText == "Interesting finds"
+                     || nd.InnerText.ToLower().Contains("últimas noticias") || nd.InnerText.ToLower().Contains("det senaste")
+                     || nd.InnerText.ToLower().StartsWith("latest")) //23-06-2020 //22-06-2020
                     return true;
                 else if (nd.InnerText == "More results" || nd.InnerText == "Top results" || nd.InnerText == "Toppresultater"
                     || nd.InnerText == "Fler resultat" || nd.InnerText == "Flere resultater" || nd.InnerText == "Plus de résultats")    // 13-12-2019
@@ -2197,7 +2234,8 @@ namespace Oxylabs_BulkKeywords
                 || node.Attributes["class"]?.Value == "mnr-c xpd O9g5cc uUPGi"
                 || node.SelectSingleNode(".//div[@class='vC5Ym']") != null
                 || node.SelectSingleNode(".//div[@class='kp-blk Wnoohf OJXvsb']") != null
-                || (node.SelectSingleNode(".//g-card[@class='XqIXXe']") != null && node.SelectSingleNode(".//g-card[@id='tscffb']") != null));
+                || (node.SelectSingleNode(".//g-card[@class='XqIXXe']") != null && node.SelectSingleNode(".//g-card[@id='tscffb']") != null)
+                 || node.SelectSingleNode(".//div[@class='khgTR lWEpfd']") != null);  //22-06-2020
         }
 
         internal object GetTop100GoogleUKMobileImages_PageURLs(string kw, string v1, string v2, string v3, string v4, string v5)

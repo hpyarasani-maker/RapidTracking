@@ -178,6 +178,8 @@ namespace RapidTrackingSingleThread
       
         private void SendToAPI(string seid, string kw, string res, string jobid)
        {
+            //string r = "[\x00-\x08\x0B\x0C\x0E-\x1F\x26]";
+            //res = Regex.Replace(res, r, "", RegexOptions.Compiled);
             //if (res == string.Empty)
             //{
             //    XmlDocument xd = new XmlDocument();
@@ -189,7 +191,7 @@ namespace RapidTrackingSingleThread
             //}
             //else
             //{
-                XmlDocument xd = new XmlDocument();
+            XmlDocument xd = new XmlDocument();
                 res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + res;
                 xd.LoadXml(res);
                 xd.Save(xmlPath);
@@ -292,7 +294,7 @@ namespace RapidTrackingSingleThread
                 //lstKWs.Items.Add("160:malmö ff");
                 //lstKWs.Items.Add("102:terry crews");
                 //lstKWs.Items.Add("102:the uninhabitable earth summary");
-                lstKWs.Items.Add("106:donald trump");
+                lstKWs.Items.Add("139:carlton");
             });
             return;
 
@@ -585,7 +587,7 @@ namespace RapidTrackingSingleThread
                         response = "";
 
                     Uri uri = new Uri(cbUrl[1]);
-                    //Uri uri = new Uri("http://data.oxylabs.io/v1/queries/6669414835207292929/results");
+                    //Uri uri = new Uri("http://data.oxylabs.io/v1/queries/6680832535745790977/results");
                     if (cbUrl[2] == "done" && cbUrl[3] == "no")
                         {
                             try

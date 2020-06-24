@@ -99,7 +99,7 @@ namespace RapidTrackingSingleThread
         private DataTable getIPsFromDB()
         {
             DataTable dt = new DataTable();
-            string strQry = "Select id, address From IP_Address";
+            string strQry = "Select id, address From IP_AddressIP6";
 
             using (SqlDataAdapter da = new SqlDataAdapter(strQry, strConn))
             {
@@ -111,7 +111,7 @@ namespace RapidTrackingSingleThread
         public string GetIP()
         {
             //return GetIPAddress(97);
-            return "10.242.3.3";
+            return "10.242.3.7";
         }
         public string getWebDataSource(string url)
         {
@@ -138,7 +138,9 @@ namespace RapidTrackingSingleThread
             Uri uri = new Uri(url);
             HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
             httpWebRequest.Headers.Clear();
-            httpWebRequest.UserAgent = @"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36";            
+            //httpWebRequest.UserAgent = @"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36"; 
+            httpWebRequest.UserAgent = @"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36";
+
             try
             {
                 ServicePoint servicePoint2 = ServicePointManager.FindServicePoint(uri);

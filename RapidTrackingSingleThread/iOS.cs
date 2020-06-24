@@ -1533,6 +1533,19 @@ namespace RapidTrackingSingleThread
                 //if (!HtmlText.Contains("encrypted") && !HtmlText.Contains(".google.") && !HtmlText.Contains("cdn-img.") && !HtmlText.Contains("image.") && !HtmlText.Contains("t0.gstatic.") && !HtmlText.Contains("img.") && !HtmlText.Contains("cdn.tobi.") && !HtmlText.Contains("ae01."))
                 alDup.Add(HtmlText);
             }
+            //24-06-2020
+            re = new Regex(matchPattern5, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+            mc = re.Matches(html);
+
+            foreach (Match m in mc)
+            {
+                string HtmlText = HttpUtility.HtmlDecode(m.Groups[1].Value);
+                if (HtmlText.StartsWith("http") || HtmlText.StartsWith("https"))
+                {
+                    alDup.Add(HtmlText);
+                }
+            }
+            //end 24-06-2020
 
             foreach (string s1 in alDup)
             {

@@ -306,12 +306,19 @@ namespace RapidTrackingSingleThread
                 {
                     HtmlNode n = nd.SelectSingleNode(".//div[@class='d5oMvf KJDcUb']/a");
                     if (n == null)
+                        n = nd.SelectSingleNode(".//div[@class='d5oMvf KJDcUb dJMePd T4Yo']/a");  //22-06-2020
+                    if (n == null)
                         n = nd.SelectSingleNode(".//div[@class='d5oMvf KJDcUb WzRKRb']/a"); // 17-12-2019
                     if (n == null)
                         n = nd.SelectSingleNode(".//div/a[2]|.//div/div/div[@class='d5oMvf']/a");
                     if (n != null)
                     {
-                        string title = n.SelectSingleNode(".//h3|.//div[@role='heading']").InnerText;
+                        //22-06-2020
+                        string title = string.Empty;
+                        HtmlNode t = n.SelectSingleNode(".//h3|.//div[@role='heading']");
+                        if (t != null)
+                            title = t.InnerText;
+                        //end 22-06-2020
                         if (!string.IsNullOrEmpty(SetUrl(n.Attributes["href"].Value))) // 12-06-2020
                         {
                             var url = n.Attributes["href"].Value.Trim();
@@ -560,6 +567,8 @@ namespace RapidTrackingSingleThread
                         //HtmlNode App1 = App.SelectSingleNode(".//h3[@class='header-title yovt']");                    
 
                         HtmlNodeCollection App2 = answernode.SelectNodes(".//div[@class='ytwLQd']/h3/a");
+                        if (App2 == null)
+                            App2 = answernode.SelectNodes(".//div[@class='WLSb4b']");//23-06-2020
                         if (App2 != null)
                         {
                             s.Append("<block type=\"answerCard\" url=\"\">");
@@ -880,6 +889,8 @@ namespace RapidTrackingSingleThread
                                 if (nv == null)
                                     nv = nd.SelectSingleNode(".//g-link/a");
                                 if (nv == null)
+                                    nv = nd.SelectSingleNode(".//div[@class='fM8c FUksre']/a"); //22-06-2020
+                                if (nv == null)
                                 {
                                     nv = nd.SelectSingleNode(".//div[@class='rc']|.//div[@class='ytwLQd']");//05-06-2020 missing classic links
                                     if (nv != null)
@@ -889,6 +900,8 @@ namespace RapidTrackingSingleThread
                                 {
                                     string u = nv.Attributes["href"].Value;
                                     HtmlNode d = nv.SelectSingleNode(".//div[@role='heading']");
+                                    if (d == null)
+                                        d = nv.SelectSingleNode(".//div[@class='BNeawe vvjwJb AP7Wnd UwRFLe']"); //22-06-2020
                                     string t = "";
                                     if (d != null)
                                         t = d.InnerText;
@@ -1324,6 +1337,8 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[@class='Y37F6d Nn2Stf']");  // 21-04-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='HnYYW FIdh1']");  // 01-06-2020
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='MQv7ze']");  // 23-06-2020
             if (nd != null)
             {
                 string hdr = "";
@@ -1339,6 +1354,8 @@ namespace RapidTrackingSingleThread
                     hdrNode = nd.SelectSingleNode(".//div[@class='cX4Std B7U7kd']"); //30-03-2020
                 if (hdrNode == null)
                     hdrNode = node.SelectSingleNode(".//div[@class='HnYYW FIdh1']"); //21-04-2020  
+                if (hdrNode == null)
+                    hdrNode = node.SelectSingleNode(".//div[@class='MQv7ze']");  // 23-06-2020
                 if (hdrNode != null)
                     hdr = hdrNode.InnerText;
 
@@ -1703,7 +1720,7 @@ namespace RapidTrackingSingleThread
                 {
                     s.Append("<block type=\"apps\" url=\"\">");
                     string innertext = string.Empty;
-                    HtmlNode TextNode = App.SelectSingleNode(".//div[@class='mdKzW']");
+                    HtmlNode TextNode = App.SelectSingleNode(".//div[@class='mdKzW']|.//div[@class='mdKzW c7UIMb']");  //22-06-2020
                     if (TextNode != null)
                         innertext = TextNode.InnerText;
 
@@ -1784,6 +1801,8 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[@class='Y37F6d Nn2Stf']");  // 21-04-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='HnYYW FIdh1']");  // 01-06-2020
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='MQv7ze']");  // 23-06-2020 
             if (nd != null)
             {
                 // 24-04-2020
@@ -1794,7 +1813,7 @@ namespace RapidTrackingSingleThread
                 // 24-04-2020
 
                 nd = node.SelectSingleNode(".//div[@class='kp-blk nGydZ Wnoohf OJXvsb']|.//div[@class='NFQFxe XbtRGb qxsd xsZWvb EfDVh WDjuKe mod']|.//div[@class='NFQFxe viOShc LKPcQc mod']");  // 16-06-2020
-                if (nd == null || node.SelectSingleNode(".//div[@class='kp-header']") != null)  //19-06-2020
+                if (nd == null || node.SelectSingleNode(".//div[@class='kp-header']") != null || node.SelectSingleNode(".//div[@class='K2Sb0e kp-header']") != null)   //23-06-2020 //19-06-2020
                     return "KnowledgePanel";
             }
             //swapped 19-03-2020
@@ -2058,7 +2077,9 @@ namespace RapidTrackingSingleThread
             HtmlNode nd = node.SelectSingleNode(".//div[@class='HnYYW']|.//g-tray-header[@role='heading']|.//div[@role='heading']");
             if (nd != null)
             {
-                if (nd.InnerText == "Top stories" || nd.InnerText == "Noticias principales" || nd.InnerText == "Interesting finds")
+                if (nd.InnerText == "Top stories" || nd.InnerText == "Noticias principales" || nd.InnerText == "Interesting finds"
+                     || nd.InnerText.ToLower().Contains("últimas noticias") || nd.InnerText.ToLower().Contains("det senaste")
+                     || nd.InnerText.ToLower().StartsWith("latest")) //23-06-2020 //22-06-2020
                     return true;
                 else if (nd.InnerText == "More results" || nd.InnerText == "Top results" || nd.InnerText == "Toppresultater"
                     || nd.InnerText == "Fler resultat" || nd.InnerText == "Flere resultater" || nd.InnerText == "Plus de résultats")    // 13-12-2019
@@ -2203,7 +2224,8 @@ namespace RapidTrackingSingleThread
                 || node.Attributes["class"]?.Value == "mnr-c xpd O9g5cc uUPGi"
                 || node.SelectSingleNode(".//div[@class='vC5Ym']") != null
                 || node.SelectSingleNode(".//div[@class='kp-blk Wnoohf OJXvsb']") != null
-                || (node.SelectSingleNode(".//g-card[@class='XqIXXe']") != null && node.SelectSingleNode(".//g-card[@id='tscffb']") != null));
+                || (node.SelectSingleNode(".//g-card[@class='XqIXXe']") != null && node.SelectSingleNode(".//g-card[@id='tscffb']") != null)
+                 || node.SelectSingleNode(".//div[@class='khgTR lWEpfd']") != null);  //22-06-2020
         }
 
         internal object GetTop100GoogleUKMobileImages_PageURLs(string kw, string v1, string v2, string v3, string v4, string v5)

@@ -1474,6 +1474,7 @@ namespace TrendingMobileSingleThread
             string matchPattern3 = "\"ou\":\"(.*?)\",";
             //string matchPattern4 = "\\W\\W\\Wx22http[s]*://(.*?)\\Wx22";   // 17-02-2020 included pattern
             string matchPattern4 = @"\[0,\\x22[\w-\d]*:\\x22,\[\\x22(.*?)\\x22,"; //18-02-2020 replaced pattern for above 17-02-2020
+            string matchPattern5 = "<img data-src=\\W(.*?)&amp;s\""; //24-06-2020
             Regex re = new Regex(matchPattern1, RegexOptions.IgnoreCase | RegexOptions.Singleline);
             MatchCollection mc = re.Matches(html);
             ArrayList alDup = new ArrayList();
@@ -1534,6 +1535,19 @@ namespace TrendingMobileSingleThread
                 //if (!HtmlText.Contains("encrypted") && !HtmlText.Contains(".google.") && !HtmlText.Contains("cdn-img.") && !HtmlText.Contains("image.") && !HtmlText.Contains("t0.gstatic.") && !HtmlText.Contains("img.") && !HtmlText.Contains("cdn.tobi.") && !HtmlText.Contains("ae01."))
                 alDup.Add(HtmlText);
             }
+            //24-06-2020
+            re = new Regex(matchPattern5, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+            mc = re.Matches(html);
+
+            foreach (Match m in mc)
+            {
+                string HtmlText = HttpUtility.HtmlDecode(m.Groups[1].Value);
+                if (HtmlText.StartsWith("http") || HtmlText.StartsWith("https"))
+                {
+                    alDup.Add(HtmlText);
+                }
+            }
+            //end 24-06-2020
 
             foreach (string s1 in alDup)
             {
@@ -1871,6 +1885,8 @@ namespace TrendingMobileSingleThread
             nd = node.SelectSingleNode(".//div[@class='TyzpY']");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='SRYuRe']");
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='w8TE8']");
             if (nd != null)
                 return "Videos";
 
@@ -1890,7 +1906,7 @@ namespace TrendingMobileSingleThread
             {
                 nd = node.SelectSingleNode(".//div[@role='heading']/div[@class='HnYYW']");
                 if (nd == null)
-                    nd = node.SelectSingleNode(".//div[@role='heading']/div[@class='HnYYW i8lZMc']");  // 21-02-2020 
+                    nd = node.SelectSingleNode(".//div[@role='heading']/div[@class='HnYYW i8lZMc']|.//div[@role='heading']/div[@class='HnYYW mfMhoc']");  // 24-06-2020   // 21-02-2020 
                 if (nd != null)
                 {
                     if (nd.InnerHtml.ToLower().StartsWith("video") || nd.InnerHtml.ToLower().StartsWith("vídeo")) //07-02-2020 included title for video block for different language

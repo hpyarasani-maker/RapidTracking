@@ -423,6 +423,8 @@ namespace RapidTrackingSingleThread
                                 HtmlNodeCollection cl = pla.SelectNodes(".//a[@class='pla-unit eUPzHb']|.//div[@class='mnr-c pla-unit']/a[2]|.//a[@class='plantl pla-unit-single-clickable-target clickable-card']");
                                 if (cl == null)
                                     cl = pla.SelectNodes(".//a[@class='pla-unit']");
+                                if (cl == null)
+                                    cl = pla.SelectNodes(".//div[@class='fyZ0Ff']/a");  //25-06-2020
                                 if (cl != null)
                                 {
                                     foreach (HtmlNode nd in cl)

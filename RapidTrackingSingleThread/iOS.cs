@@ -2048,6 +2048,8 @@ namespace RapidTrackingSingleThread
                 return "AnswerCard";
 
             nd = node.SelectSingleNode(".//div[@id='kx']");
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='OixsOd']"); //25-06-2020
             if (nd != null)
             {
                 return "Carousel";

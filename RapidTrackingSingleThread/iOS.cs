@@ -431,10 +431,20 @@ namespace RapidTrackingSingleThread
                                     {
                                         var url = nd.Attributes["href"].Value;
                                         url = GetRedirectedUrl(url);
-                                        if (!string.IsNullOrEmpty(nd.SelectSingleNode(".//h4").InnerText) && !string.IsNullOrEmpty(url.Trim()))    //13-11-2019
-                                            s.Append("<item url=\"" + SetUrl(url.Replace("&nbsp;", "")) + "\" title=\"" + SetTitle(nd.SelectSingleNode(".//h4").InnerText) + "\" />"); // 04-11-2019
+                                        //25-06-2020
+                                        string title;
+                                        if (nd.SelectSingleNode(".//h4") != null)
+                                            title = nd.SelectSingleNode(".//h4").InnerText;
+                                        else
+                                            title = nd.InnerText;
+
+                                        if (!string.IsNullOrEmpty(title) && !string.IsNullOrEmpty(url.Trim()))
+                                        {
+                                            url = url.Remove(url.IndexOf("%3F"));
+                                            s.Append("<item url=\"" + SetUrl(url.Replace("&nbsp;", "")) + "\" title=\"" + SetTitle(title.Replace("&nbsp;", " ")) + "\" />");
+                                        }
+                                        //end 25-06-2020
                                     }
-                                }
                                 //09-09-2019
                                 else if (doc.DocumentNode.SelectNodes(".//div[@class='RL6uuc gws-product_ads-showcase_immersive__immersive-tile']//div[@class='PhX95']") != null)
                                 {

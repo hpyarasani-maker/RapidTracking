@@ -1098,6 +1098,7 @@ namespace RapidTrackingSingleThread
         private string GetCarousel(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
+            ArrayList al = new ArrayList();  //25-06-2020
             HtmlNodeCollection nd = node.SelectNodes(".//div[@jsmodel='uIhXXc']/div/g-scrolling-carousel/div/div/div/ul[@class='Kjd0sd']/div/div/g-inner-card/a");
             if (nd == null)
                 nd = node.SelectNodes(".//div[@jsname='WUSFrc']/g-link/a|.//div[@jsname='WUSFrc']/div/g-link/a"); // 06-01-2020 Included new selector for carousel
@@ -1111,9 +1112,10 @@ namespace RapidTrackingSingleThread
                     if (hn == null)
                         hn = nd1.SelectSingleNode(".//div[@class='hfac6d']");
                     if (hn == null)
-                        hn = nd1.SelectSingleNode(".//div[@class='hfac6d oz3cqf vH5Lmd']"); //04-06-2020
+                        hn = nd1.SelectSingleNode(".//div[@class='hfac6d oz3cqf vH5Lmd']"); // 02-06-2020
                     string title = hn.InnerText;
-                    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                    al.Add("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");  //25-06-2020
+                    //s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />"); //25-06-2020
                 }
             }
             if (nd == null)
@@ -1126,9 +1128,12 @@ namespace RapidTrackingSingleThread
                 if (nd == null)
                     nd = node.SelectNodes(".//div[@class='Z8r5Gb']/a"); //23-05-2020
                 if (nd == null)
+                    nd = node.SelectNodes(".//div[@class='OixsOd']/a");//25-06-2020
+                if (nd == null)
                     return string.Empty;
                 foreach (HtmlNode nd1 in nd)
                 {
+                    string title = ""; //25-06-2020
                     url = nd1.Attributes["href"].Value;
                     HtmlNode hn = nd1.SelectSingleNode(".//div[@class='oyj2db']"); //S20Xzc
                     if (hn == null)
@@ -1137,17 +1142,28 @@ namespace RapidTrackingSingleThread
                         hn = nd1.SelectSingleNode(".//div[@class='S20Xzc']");    //23-05-2020
                     if (hn == null)
                         hn = nd1.SelectSingleNode(".//div[@class='JjtOHd Bgg9M']");  //23-05-2020 
-                    string title1 = hn.InnerText;
-                    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title1) + "\" />");
+
+                    //25-06-2020
+                    if (hn == null)
+                        hn = nd1.SelectSingleNode(".//div[@class='pBi0X']");
+                    if (hn != null)
+                        title = hn.InnerText;
+
+                    al.Add("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+
+                    //string title1 = hn.InnerText; 
+                    //s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title1) + "\" />");
+
+                    //end 25-06-2020
                 }
             }
-            string caitems = GetCarouselURLs();
+            string caitems = GetCarouselURLs(al); //25-06-2020
             s.Append(caitems);
             return s.ToString();
         }
 
         // 18-10-2019
-        public string GetCarouselURLs()
+        public string GetCarouselURLs(ArrayList al) //25-06-2020
         {
             StringBuilder s = new StringBuilder();
             string matchPattern = "\\Wn,\\Wx222003\\Wx22:\\Wnull\\W\\Wx22(.*?)\\Wx22,\\Wx22(.*?)\\Wx22\\W\\Wx22(.*?)\\Wx22\\Wnull";
@@ -1169,11 +1185,20 @@ namespace RapidTrackingSingleThread
                             int n = url.IndexOf("?");
                             if (n > 0)
                                 url = url.Remove(n);
-                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(text) + "\" />");
+                            al.Add("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(text) + "\" />"); //25-06-2020
+                            //s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(text) + "\" />"); //25-06-2020
                         }
                     }
                 }
             }
+
+            //25-06-2020
+            foreach (string itm in al)
+            {
+                if (s.ToString().Contains(itm) || string.IsNullOrEmpty(itm)) continue;
+                s.Append(itm);
+            }
+            //end 25-06-2020
 
             return s.ToString();
         }

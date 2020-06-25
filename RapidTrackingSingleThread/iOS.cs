@@ -445,6 +445,7 @@ namespace RapidTrackingSingleThread
                                         }
                                         //end 25-06-2020
                                     }
+                                }
                                 //09-09-2019
                                 else if (doc.DocumentNode.SelectNodes(".//div[@class='RL6uuc gws-product_ads-showcase_immersive__immersive-tile']//div[@class='PhX95']") != null)
                                 {

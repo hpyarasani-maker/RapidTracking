@@ -414,14 +414,27 @@ namespace RapidTrackingMultithread
                                 HtmlNodeCollection cl = pla.SelectNodes(".//a[@class='pla-unit eUPzHb']|.//div[@class='mnr-c pla-unit']/a[2]|.//a[@class='plantl pla-unit-single-clickable-target clickable-card']");
                                 if (cl == null)
                                     cl = pla.SelectNodes(".//a[@class='pla-unit']");
+                                if (cl == null)
+                                    cl = pla.SelectNodes(".//div[@class='fyZ0Ff']/a");  //25-06-2020
                                 if (cl != null)
                                 {
                                     foreach (HtmlNode nd in cl)
                                     {
                                         var url = nd.Attributes["href"].Value;
                                         url = GetRedirectedUrl(url);
-                                        if (!string.IsNullOrEmpty(nd.SelectSingleNode(".//h4").InnerText) && !string.IsNullOrEmpty(url.Trim()))    //13-11-2019
-                                            s.Append("<item url=\"" + SetUrl(url.Replace("&nbsp;", "")) + "\" title=\"" + SetTitle(nd.SelectSingleNode(".//h4").InnerText) + "\" />"); // 04-11-2019
+                                        //25-06-2020
+                                        string title;
+                                        if (nd.SelectSingleNode(".//h4") != null)
+                                            title = nd.SelectSingleNode(".//h4").InnerText;
+                                        else
+                                            title = nd.InnerText;
+
+                                        if (!string.IsNullOrEmpty(title) && !string.IsNullOrEmpty(url.Trim()))
+                                        {
+                                            url = url.Remove(url.IndexOf("%3F"));
+                                            s.Append("<item url=\"" + SetUrl(url.Replace("&nbsp;", "")) + "\" title=\"" + SetTitle(title.Replace("&nbsp;", " ")) + "\" />");
+                                        }
+                                        //end 25-06-2020
                                     }
                                 }
                                 //09-09-2019
@@ -885,6 +898,8 @@ namespace RapidTrackingMultithread
                                 if (nv == null)
                                     nv = nd.SelectSingleNode(".//div[@class='fM8c FUksre']/a"); //22-06-2020
                                 if (nv == null)
+                                    nv = nd.SelectSingleNode(".//div/a");  //25-06-2020
+                                if (nv == null)
                                 {
                                     nv = nd.SelectSingleNode(".//div[@class='rc']|.//div[@class='ytwLQd']");//05-06-2020 missing classic links
                                     if (nv != null)
@@ -1074,6 +1089,7 @@ namespace RapidTrackingMultithread
         private string GetCarousel(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
+            ArrayList al = new ArrayList();  //25-06-2020
             HtmlNodeCollection nd = node.SelectNodes(".//div[@jsmodel='uIhXXc']/div/g-scrolling-carousel/div/div/div/ul[@class='Kjd0sd']/div/div/g-inner-card/a");
             if (nd == null)
                 nd = node.SelectNodes(".//div[@jsname='WUSFrc']/g-link/a|.//div[@jsname='WUSFrc']/div/g-link/a"); // 06-01-2020 Included new selector for carousel
@@ -1087,9 +1103,10 @@ namespace RapidTrackingMultithread
                     if (hn == null)
                         hn = nd1.SelectSingleNode(".//div[@class='hfac6d']");
                     if (hn == null)
-                        hn = nd1.SelectSingleNode(".//div[@class='hfac6d oz3cqf vH5Lmd']"); //04-06-2020
+                        hn = nd1.SelectSingleNode(".//div[@class='hfac6d oz3cqf vH5Lmd']"); // 02-06-2020
                     string title = hn.InnerText;
-                    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                    al.Add("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");  //25-06-2020
+                    //s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />"); //25-06-2020
                 }
             }
             if (nd == null)
@@ -1102,9 +1119,12 @@ namespace RapidTrackingMultithread
                 if (nd == null)
                     nd = node.SelectNodes(".//div[@class='Z8r5Gb']/a"); //23-05-2020
                 if (nd == null)
+                    nd = node.SelectNodes(".//div[@class='OixsOd']/a");//25-06-2020
+                if (nd == null)
                     return string.Empty;
                 foreach (HtmlNode nd1 in nd)
                 {
+                    string title = ""; //25-06-2020
                     url = nd1.Attributes["href"].Value;
                     HtmlNode hn = nd1.SelectSingleNode(".//div[@class='oyj2db']"); //S20Xzc
                     if (hn == null)
@@ -1113,17 +1133,28 @@ namespace RapidTrackingMultithread
                         hn = nd1.SelectSingleNode(".//div[@class='S20Xzc']");    //23-05-2020
                     if (hn == null)
                         hn = nd1.SelectSingleNode(".//div[@class='JjtOHd Bgg9M']");  //23-05-2020 
-                    string title1 = hn.InnerText;
-                    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title1) + "\" />");
+
+                    //25-06-2020
+                    if (hn == null)
+                        hn = nd1.SelectSingleNode(".//div[@class='pBi0X']");
+                    if (hn != null)
+                        title = hn.InnerText;
+
+                    al.Add("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+
+                    //string title1 = hn.InnerText; 
+                    //s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title1) + "\" />");
+
+                    //end 25-06-2020
                 }
             }
-            string caitems = GetCarouselURLs();
+            string caitems = GetCarouselURLs(al); //25-06-2020
             s.Append(caitems);
             return s.ToString();
         }
 
         // 18-10-2019
-        public string GetCarouselURLs()
+        public string GetCarouselURLs(ArrayList al) //25-06-2020
         {
             StringBuilder s = new StringBuilder();
             string matchPattern = "\\Wn,\\Wx222003\\Wx22:\\Wnull\\W\\Wx22(.*?)\\Wx22,\\Wx22(.*?)\\Wx22\\W\\Wx22(.*?)\\Wx22\\Wnull";
@@ -1145,11 +1176,20 @@ namespace RapidTrackingMultithread
                             int n = url.IndexOf("?");
                             if (n > 0)
                                 url = url.Remove(n);
-                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(text) + "\" />");
+                            al.Add("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(text) + "\" />"); //25-06-2020
+                            //s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(text) + "\" />"); //25-06-2020
                         }
                     }
                 }
             }
+
+            //25-06-2020
+            foreach (string itm in al)
+            {
+                if (s.ToString().Contains(itm) || string.IsNullOrEmpty(itm)) continue;
+                s.Append(itm);
+            }
+            //end 25-06-2020
 
             return s.ToString();
         }
@@ -1999,6 +2039,8 @@ namespace RapidTrackingMultithread
                 return "AnswerCard";
 
             nd = node.SelectSingleNode(".//div[@id='kx']");
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='OixsOd']"); //25-06-2020
             if (nd != null)
             {
                 return "Carousel";

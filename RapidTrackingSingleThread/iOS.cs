@@ -1722,7 +1722,13 @@ namespace RapidTrackingSingleThread
                             // end of changes in videos.
                         }
 
-                        string url = nd.Attributes["href"].Value.Trim();
+                        //26-06-2020
+                        string url = ""; //nd.Attributes["href"].Value.Trim();                         
+                        if (nd.Attributes["href"] != null)
+                            url = nd.Attributes["href"].Value.Trim();
+                        else
+                            url = nd.Attributes["data-url"].Value;
+                        //end 26-06-2020
                         if (url.Contains("/search?")) url = "";
                         //if(!string.IsNullOrEmpty(url.Trim()) || !string.IsNullOrEmpty(title.Trim()))
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");

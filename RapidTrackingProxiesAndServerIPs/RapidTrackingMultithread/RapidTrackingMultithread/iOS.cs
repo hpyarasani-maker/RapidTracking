@@ -1679,7 +1679,7 @@ namespace RapidTrackingMultithread
             if (nds == null)
                 nds = node.SelectNodes(".//div[@data-attrid='OsrpVideos']/a|.//div[@class='ALzVK']/div/div/a");
             if (nds == null)
-                nds = node.SelectNodes(".//div[@jsname='ibnC6b']/a");
+                nds = node.SelectNodes(".//div[@jsname='ibnC6b']/a|.//div[@jscontroller='OmmTPc']"); //26-06-2020
             if (nds != null)   // 16-09-2019
                 foreach (HtmlNode nd in nds)
                 {
@@ -1705,15 +1705,21 @@ namespace RapidTrackingMultithread
                         catch
                         {
                             // changes in videos block on 19-06-2019.
-                            HtmlNode t = nd.SelectSingleNode(".//div[@class='fJiQld']");
-                            if (t == null)
-                                t = nd.SelectSingleNode(".//div[@class='fJiQld oz3cqf vH5Lmd']");//10-06-2020
+                            HtmlNode t = nd.SelectSingleNode(".//div[@class='fJiQld']|.//div[@class='fJiQld oz3cqf vH5Lmd']"); //26-06-2020
+                            //if (t == null)
+                            //    t = nd.SelectSingleNode(".//div[@class='fJiQld oz3cqf vH5Lmd']");//26-06-2020
                             if (t != null)
                                 title = t.InnerText;
                             // end of changes in videos.
                         }
 
-                        string url = nd.Attributes["href"].Value.Trim();
+                        //26-06-2020
+                        string url = ""; //nd.Attributes["href"].Value.Trim();                         
+                        if (nd.Attributes["href"] != null)
+                            url = nd.Attributes["href"].Value.Trim();
+                        else
+                            url = nd.Attributes["data-url"].Value;
+                        //end 26-06-2020
                         if (url.Contains("/search?")) url = "";
                         //if(!string.IsNullOrEmpty(url.Trim()) || !string.IsNullOrEmpty(title.Trim()))
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
@@ -1739,7 +1745,6 @@ namespace RapidTrackingMultithread
 
             return s.ToString();
         }
-
         // changes on 15-07-2019
         private string GetApps(HtmlNode node)
         {

@@ -2005,7 +2005,7 @@ namespace RapidTrackingSingleThread
 
             nd = node.SelectSingleNode(".//div[@class='JVrfPc']");
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='bUNBRd mnr-c']|.//div[@class='HnYYW i8lZMc']"); //13-03-2020 //include on 2019-06-24
+                nd = node.SelectSingleNode(".//div[@class='bUNBRd mnr-c']|.//div[@class='HnYYW i8lZMc']|.//div[@class='HnYYW mfMhoc']");//26-06-2020 //13-03-2020 //include on 2019-06-24
             if (nd != null)
             {
                 if (nd.InnerText.Contains("Twitter"))
@@ -2151,7 +2151,8 @@ namespace RapidTrackingSingleThread
                 if (nd.InnerText == "Top stories" || nd.InnerText == "Noticias principales" || nd.InnerText == "Interesting finds"
                      || nd.InnerText.ToLower().Contains("últimas noticias") || nd.InnerText.ToLower().Contains("det senaste")
                      || nd.InnerText.ToLower().StartsWith("latest")) //23-06-2020 //22-06-2020
-                    return true;
+                    if (node.SelectSingleNode(".//div[@class='KJDcUb']") == null) //26-06-2020
+                        return true;
                 else if (nd.InnerText == "More results" || nd.InnerText == "Top results" || nd.InnerText == "Toppresultater"
                     || nd.InnerText == "Fler resultat" || nd.InnerText == "Flere resultater" || nd.InnerText == "Plus de résultats")    // 13-12-2019
                     return false;

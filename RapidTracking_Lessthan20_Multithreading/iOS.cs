@@ -434,7 +434,11 @@ namespace TrackingTrending
 
                                         if (!string.IsNullOrEmpty(title) && !string.IsNullOrEmpty(url.Trim()))
                                         {
-                                            url = url.Remove(url.IndexOf("%3F"));
+                                            //26-06-2020
+                                            int indx = url.IndexOf("%3F");
+                                            if (indx > 0)
+                                                url = url.Remove(indx);
+                                            //end 26-06-2020
                                             s.Append("<item url=\"" + SetUrl(url.Replace("&nbsp;", "")) + "\" title=\"" + SetTitle(title.Replace("&nbsp;", " ")) + "\" />");
                                         }
                                         //end 25-06-2020

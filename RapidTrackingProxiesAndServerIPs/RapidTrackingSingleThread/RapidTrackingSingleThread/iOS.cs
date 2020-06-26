@@ -2002,7 +2002,7 @@ namespace RapidTrackingSingleThread
 
             nd = node.SelectSingleNode(".//div[@class='JVrfPc']");
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='bUNBRd mnr-c']|.//div[@class='HnYYW i8lZMc']"); //13-03-2020 //include on 2019-06-24
+                nd = node.SelectSingleNode(".//div[@class='bUNBRd mnr-c']|.//div[@class='HnYYW i8lZMc']|.//div[@class='HnYYW mfMhoc']");//26-06-2020 //13-03-2020 //include on 2019-06-24
             if (nd != null)
             {
                 if (nd.InnerText.Contains("Twitter"))

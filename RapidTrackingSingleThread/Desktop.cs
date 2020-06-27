@@ -218,10 +218,10 @@ namespace RapidTrackingSingleThread
                 s.Append("<block type=\"adwords\" url=\"\">");
                 foreach (HtmlNode nd in col)
                 {
-                    HtmlNode n = nd.SelectSingleNode(".//h3/a[2]|.//div[@class='ad_cclk']/a[2]");
+                    HtmlNode n = nd.SelectSingleNode(".//h3/a[2]|.//div[@class='ad_cclk']/a[2]|.//div[@class='d5oMvf']/a"); //27-06-2020
                     if (n != null)
                     {
-                        HtmlNode tittlenode = n.SelectSingleNode(".//h3");
+                        HtmlNode tittlenode = n.SelectSingleNode(".//h3|.//div[@role='heading']");//27-06-2020
                         if (!n.Attributes["href"].Value.StartsWith("/"))
                             s.Append("<item url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(tittlenode.InnerText) + "\" />");
                         else

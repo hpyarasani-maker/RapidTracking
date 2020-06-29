@@ -1154,7 +1154,6 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@class='pcCUmf vCOSGb']") != null  //03-06-2020
                 || node.SelectSingleNode(".//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']") != null  // people also ask // 11-02-2020
                                                                                                   //|| node.SelectSingleNode(".//span[@data-original-name='People also ask']") != null  // people also ask
-                //|| node.SelectSingleNode(".//div[@jsmodel='PrbXhc']") != null  //carousel//29-06-2020    
                 || node.SelectSingleNode(".//h3[@class='_DM']") != null || node.SelectSingleNode(".//div[@id='imagebox_bigimages']") != null || node.SelectSingleNode(".//div[@class='mR2gOd']") != null //27-06-2020   // images
                 || node.SelectSingleNode(".//div[@class='e2BEnf']/h3") != null // videos
                 || node.SelectSingleNode(".//div[@class='e2BEnf U7izfe']/h3") != null  // videos

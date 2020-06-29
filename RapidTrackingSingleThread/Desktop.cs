@@ -284,7 +284,8 @@ namespace RapidTrackingSingleThread
             HtmlNode crNode = doc.DocumentNode.SelectSingleNode("//div[@id='extabar']|//div[@id='appbar']");  //29-06-2020
             if (crNode != null)
             {
-                if (crNode.SelectSingleNode(".//div[@id='kx']") != null  || crNode.SelectSingleNode(".//g-scrolling-carousel") != null) //|| crNode.SelectSingleNode(".//div[@role='heading']") != null) //29-06-2020
+                if (crNode.SelectSingleNode(".//div[@id='kx']") != null  || crNode.SelectSingleNode(".//g-scrolling-carousel") != null //|| crNode.SelectSingleNode(".//div[@role='heading']") != null) //29-06-2020
+                     || crNode.SelectSingleNode(".//div[@jscontroller='envtD']") != null) //29-06-2020
                 {
                     s.Append("<block type=\"carousel\" url=\"\">");
                     //s.Append(GetCarousel(crNode));  // 23-10-2019

@@ -281,10 +281,10 @@ namespace RapidTrackingSingleThread
             StringBuilder s = new StringBuilder();
 
             // for carousel
-            HtmlNode crNode = doc.DocumentNode.SelectSingleNode("//div[@id='extabar']");
+            HtmlNode crNode = doc.DocumentNode.SelectSingleNode("//div[@id='extabar']");//|//div[@class='W3btD']"); //29-06-2020
             if (crNode != null)
             {
-                if (crNode.SelectSingleNode(".//div[@id='kx']") != null || crNode.SelectSingleNode(".//g-scrolling-carousel") != null)
+                if (crNode.SelectSingleNode(".//div[@id='kx']") != null  || crNode.SelectSingleNode(".//g-scrolling-carousel") != null) //|| crNode.SelectSingleNode(".//div[@role='heading']") != null) //29-06-2020
                 {
                     s.Append("<block type=\"carousel\" url=\"\">");
                     //s.Append(GetCarousel(crNode));  // 23-10-2019

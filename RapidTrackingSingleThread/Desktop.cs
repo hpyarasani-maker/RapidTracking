@@ -1153,7 +1153,7 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@class='pcCUmf vCOSGb']") != null  //03-06-2020
                 || node.SelectSingleNode(".//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']") != null  // people also ask // 11-02-2020
                                                                                                   //|| node.SelectSingleNode(".//span[@data-original-name='People also ask']") != null  // people also ask
-                || node.SelectSingleNode(".//div[@jsmodel='PrbXhc']") != null  //carousel//29-06-2020    
+                //|| node.SelectSingleNode(".//div[@jsmodel='PrbXhc']") != null  //carousel//29-06-2020    
                 || node.SelectSingleNode(".//h3[@class='_DM']") != null || node.SelectSingleNode(".//div[@id='imagebox_bigimages']") != null || node.SelectSingleNode(".//div[@class='mR2gOd']") != null //27-06-2020   // images
                 || node.SelectSingleNode(".//div[@class='e2BEnf']/h3") != null // videos
                 || node.SelectSingleNode(".//div[@class='e2BEnf U7izfe']/h3") != null  // videos
@@ -1181,7 +1181,7 @@ namespace RapidTrackingSingleThread
             {
                 HtmlNode nd = node.SelectSingleNode(".//h3|.//div[@class='HnYYW i8lZMc']|.//div[@class='LMMXP i8lZMc']|.//div[@class='e2BEnf U7izfe']/div|.//h2"); //03-06-2020  // 02-06-2020    //01-05-2020
                 if (nd != null)
-                    if (nd.InnerText == "Top stories" || nd.InnerText == "Huvudnyheter" || nd.InnerText == "Videos" || nd.InnerText == "Video" || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws" || nd.InnerText == "Vertaalresultaat") //03-06-2020 // 02-06-2020  // 08-04-2020
+                    if (nd.InnerText == "Top stories" || nd.InnerText == "Huvudnyheter" || nd.InnerText == "Videos" || nd.InnerText == "Video" || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws" || nd.InnerText == "Vertaalresultaat" || nd.InnerText == "Recipes") //29-06-2020//03-06-2020 // 02-06-2020  // 08-04-2020
                             return true;
 
                 // changes in map block on 19-06-2019.

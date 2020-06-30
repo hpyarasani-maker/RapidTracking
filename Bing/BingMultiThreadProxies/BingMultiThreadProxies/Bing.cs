@@ -340,7 +340,7 @@ namespace BingMultiThreadProxies
             StringBuilder sb = new StringBuilder();
             try
             {
-                char sep = '/';
+
                 int st = 1;
                 for (int i = 0; i < 10; i++)
                 {
@@ -386,7 +386,6 @@ namespace BingMultiThreadProxies
             StringBuilder sb = new StringBuilder();
             try
             {
-                char sep = '/';
                 int st = 1;
                 for (int i = 0; i < 10; i++)
                 {
@@ -429,7 +428,7 @@ namespace BingMultiThreadProxies
             StringBuilder sb = new StringBuilder();
             try
             {
-                char sep = '/';
+  
                 int st = 1;
                 for (int i = 0; i < 10; i++)
                 {
@@ -472,7 +471,7 @@ namespace BingMultiThreadProxies
             StringBuilder sb = new StringBuilder();
             try
             {
-                char sep = '/';
+
                 int st = 1;
                 for (int i = 0; i < 10; i++)
                 {
@@ -516,7 +515,7 @@ namespace BingMultiThreadProxies
             StringBuilder sb = new StringBuilder();
             try
             {
-                char sep = '/';
+
                 int st = 1;
                 for (int i = 0; i < 10; i++)
                 {
@@ -558,7 +557,7 @@ namespace BingMultiThreadProxies
             StringBuilder sb = new StringBuilder();
             try
             {
-                char sep = '/';
+
                 int st = 1;
                 for (int i = 0; i < 10; i++)
                 {
@@ -602,7 +601,6 @@ namespace BingMultiThreadProxies
             StringBuilder sb = new StringBuilder();
             try
             {
-                char sep = '/';
                 int st = 1;
                 for (int i = 0; i < 10; i++)
                 {
@@ -647,7 +645,6 @@ namespace BingMultiThreadProxies
             StringBuilder sb = new StringBuilder();
             try
             {
-                char sep = '/';
                 int st = 1;
                 for (int i = 0; i < 10; i++)
                 {

@@ -73,7 +73,7 @@ namespace Oxylabs_BulkKeywords
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception(ex.Message.ToString());
             }
         }
 
@@ -107,8 +107,8 @@ namespace Oxylabs_BulkKeywords
             //string callbackURL = "http://previous.azurewebsites.net/api/callbackrapidtrackingmobilehotel/";
             //string callbackURL = "http://previous.azurewebsites.net/api/callbackrapidtrackingmobile/";
             //string callbackURL = "http://previous.azurewebsites.net/api/callbackrapidtrackingdesktop/";
-           // string callbackURL = "http://previous.azurewebsites.net/api/callbackus1desktop/";     // 1 2019-10-10
-
+            // string callbackURL = "http://previous.azurewebsites.net/api/callbackus1desktop/";     // 1 2019-10-10
+            //string callbackURL = "http://previous.azurewebsites.net/api/callbackuk58desktop/";       // 58
             OxyParams op = new OxyParams()
             {
                 source = "google_search",

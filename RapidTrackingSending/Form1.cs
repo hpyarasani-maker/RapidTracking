@@ -10,8 +10,8 @@ namespace Oxylabs_BulkKeywords
     public partial class Form1 : Form
     {        
         SendingKeywordRequest WOWS = new SendingKeywordRequest();
-        System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();       
-
+        System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+        static Random rd = new Random();//29-06-2020
         public Form1()
         {
             InitializeComponent();
@@ -135,9 +135,9 @@ namespace Oxylabs_BulkKeywords
             //string strQry = "exec [dbo].[GetBulkUKDesktop_Temp_1] '" + myDate + "'";    // seid: 503
             //string strQry = "exec [dbo].[GetBulk_All] '" + myDate + "'";
 
-            //string strQry = "exec [dbo].[GetBulkDesktop_58_2] '" + myDate + "'";
+            string strQry = "exec [dbo].[GetBulkDesktop_58_1] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkMobile_102_2] '" + myDate + "'";
-            string strQry = "exec [dbo].[GetBulkDesktop_1] '" + myDate + "'";
+            //string strQry = "exec [dbo].[GetBulkDesktop_1] '" + myDate + "'";
            //string strQry = "exec [dbo].[GetBulkMobile_2] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkDesktop_1_1] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkMobile_Hotel] '" + myDate + "'";
@@ -205,9 +205,17 @@ namespace Oxylabs_BulkKeywords
             Array resultsArray;
             string seid;
             string kn;
-            
+            int mseconds;
+
+
             for (int i = 0; i < worklist.Items.Count; i++)
             {
+                mseconds = rd.Next(10, 80) * 1000; //First Sending app 29-06-2020     //SEID=58
+                //mseconds = rd.Next(11, 14) * 1000; //Second Sending app 29-06-2020 //SEID=106
+                //mseconds = rd.Next(15, 19) * 1000; //Third Sending app 29-06-2020  //SEID=OtherDesktop
+                //mseconds = rd.Next(20, 23) * 1000; //Fourth Sending app 29-06-2020 //SEID=OtherMobile
+                //mseconds = rd.Next(24, 27) * 1000; //Fifith Sending app 29-06-2020 //SEID=1
+                //mseconds = rd.Next(28, 30) * 1000; //Sixth Sending app 29-06-2020  //SEID=102
                 resultsString = worklist.Items[i].ToString();
                 sep = ':';
                 resultsArray = resultsString.Split(sep);
@@ -234,7 +242,12 @@ namespace Oxylabs_BulkKeywords
                     progress_lbl.Refresh();
                     lblIP.Text = ts.TotalSeconds.ToString();
                });
-               //Thread.Sleep(60000);
+                this.Invoke((MethodInvoker)delegate ()
+                {
+                    rnd_lbl.Text = (mseconds / 1000).ToString() + " " + "seconds";
+                });
+                Thread.Sleep(mseconds);
+               
             }
         }
         

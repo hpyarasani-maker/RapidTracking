@@ -135,7 +135,7 @@ namespace Oxylabs_BulkKeywords
             //string strQry = "exec [dbo].[GetBulkUKDesktop_Temp_1] '" + myDate + "'";    // seid: 503
             //string strQry = "exec [dbo].[GetBulk_All] '" + myDate + "'";
 
-            string strQry = "exec [dbo].[GetBulkDesktop_58_2] '" + myDate + "'";
+            string strQry = "exec [dbo].[GetBulkDesktop_58_1] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkMobile_102_2] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkDesktop_1] '" + myDate + "'";
            //string strQry = "exec [dbo].[GetBulkMobile_2] '" + myDate + "'";
@@ -210,7 +210,7 @@ namespace Oxylabs_BulkKeywords
 
             for (int i = 0; i < worklist.Items.Count; i++)
             {
-                mseconds = rd.Next(6, 10) * 1000; //First Sending app 29-06-2020     //SEID=58
+                mseconds = rd.Next(10, 80) * 1000; //First Sending app 29-06-2020     //SEID=58
                 //mseconds = rd.Next(11, 14) * 1000; //Second Sending app 29-06-2020 //SEID=106
                 //mseconds = rd.Next(15, 19) * 1000; //Third Sending app 29-06-2020  //SEID=OtherDesktop
                 //mseconds = rd.Next(20, 23) * 1000; //Fourth Sending app 29-06-2020 //SEID=OtherMobile
@@ -242,7 +242,12 @@ namespace Oxylabs_BulkKeywords
                     progress_lbl.Refresh();
                     lblIP.Text = ts.TotalSeconds.ToString();
                });
-               Thread.Sleep(mseconds);
+                this.Invoke((MethodInvoker)delegate ()
+                {
+                    rnd_lbl.Text = (mseconds / 1000).ToString() + " " + "seconds";
+                });
+                Thread.Sleep(mseconds);
+               
             }
         }
         

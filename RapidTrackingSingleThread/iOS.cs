@@ -1689,8 +1689,6 @@ namespace RapidTrackingSingleThread
                 nds = node.SelectNodes(".//div[@data-attrid='OsrpVideos']/a|.//div[@class='ALzVK']/div/div/a");
             if (nds == null)
                 nds = node.SelectNodes(".//div[@jsname='ibnC6b']/a|.//div[@jscontroller='OmmTPc']"); //26-06-2020
-            if (nds == null)
-                nds = node.SelectNodes(".//div[@class='QevLbc']/a");//02-07-2020
             if (nds != null)   // 16-09-2019
                 foreach (HtmlNode nd in nds)
                 {

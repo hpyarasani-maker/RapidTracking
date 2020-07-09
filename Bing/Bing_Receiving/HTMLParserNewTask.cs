@@ -11,6 +11,7 @@ using System.Xml;
 using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
+using System.Net.Http;
 
 namespace Bing_Receiving
 { 
@@ -35,22 +36,49 @@ namespace Bing_Receiving
             //string url = "http://previous.azurewebsites.net/api/callbackbingdesktop/";  // bing desktop
             string url = "http://previous.azurewebsites.net/api/callbackbingmobile/"; //Bing mobile
 
-            WebClient client = new WebClient();
-            while (true)
-            {                
-                try
+            // WebClient client = new WebClient();
+            Uri uri = new Uri(url);
+            using (var client = new HttpClient())
+            {
+                while (true)
                 {
-                    string response="";
-                    client.Encoding = Encoding.UTF8;
-                    response = client.DownloadString(url);
-                    if (response != "null")
-                        DoProcess(response);
+                    /* try
+                     {
+                         string response="";
+                         client.Encoding = Encoding.UTF8;
+                         response = client.DownloadString(url);
+                         if (response != "null")
+                             DoProcess(response);
+                     }
+                     catch (Exception ex)
+                         {
+                             Console.WriteLine("# EXCEPTION #  " + ex.Message);
+                         }*/
+
+                    //client.BaseAddress = new Uri(url);
+                    try
+                    {
+                        string response = "";
+                        client.DefaultRequestHeaders.Clear();
+                        client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                        response = client.GetStringAsync(uri).Result;
+                        if (response != null)
+                            DoProcess(response);
+                    }
+
+                    catch (Exception)
+                    {
+
+                        //throw new ArgumentException(message: ex.Message.ToString(), paramName: "response");
+                        //OnKeywordDone.Invoke("Error:" + ex.Message.ToString());
+                    }
+                        
+                    finally {
+                       
+                    }
+
                 }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("# EXCEPTION #  " + ex.Message);                    
-                }
-            }            
+            }
         }
 
         private void DoProcess(string resp)
@@ -273,7 +301,7 @@ namespace Bing_Receiving
                     {
                         try
                         {
-                            if (alRes.Count > 0)
+                            if (alRes.Count > 20)
                             {
                                 SendXmlToAPI(path);
                                 //Insert100DashBoardData(qry); //storing 100 URLs

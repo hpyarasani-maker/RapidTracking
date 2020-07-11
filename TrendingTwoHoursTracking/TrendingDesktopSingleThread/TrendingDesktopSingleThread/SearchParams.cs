@@ -1602,6 +1602,30 @@ namespace TrendingDesktopSingleThread
             new SearchProperties()
             {
                 seid =468, domain ="co.uk", geo_location="SW1V,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIbU1cxVixFbmdsYW5kLFVuaXRlZCBLaW5nZG9t", device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =469, domain ="com.cy", geo_location="Cyprus", locale= "EL-CY", uule = "w+CAIQICIGQ3lwcnVz", device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =470, domain ="com.cy", geo_location="Cyprus", locale= "EL-CY", uule = "w+CAIQICIGQ3lwcnVz", device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =471, domain ="ee", geo_location="Estonia", locale= "ET-EE", uule = "w+CAIQICIHRXN0b25pYQ==", device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =472, domain ="ee", geo_location="Estonia", locale= "ET-EE", uule = "w+CAIQICIHRXN0b25pYQ==", device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =473, domain ="lt", geo_location="Lithuania", locale= "LT-LT", uule = "w+CAIQICIJTGl0aHVhbmlh", device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =474, domain ="lt", geo_location="Lithuania", locale= "LT-LT", uule = "w+CAIQICIJTGl0aHVhbmlh", device="mobile_android"
             }
 
 

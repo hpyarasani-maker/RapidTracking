@@ -34,8 +34,8 @@ namespace TrendingSending
                
         private void Form1_Load(object sender, EventArgs e)
         {
-            //Text = "D_TrendingDesktopSending_1";
-            Text = "D_TrendingMobileSending_1";            
+            Text = "D_Oxylabs_CallbackTrendingDesktopSending_1";
+            //Text = "D_Oxylabs_CallbackTrendingMobileSending_1";            
 
             date_picker.Value = DateTime.Today; //.AddDays(-1);
 
@@ -112,8 +112,8 @@ namespace TrendingSending
             string myDate = date_picker.Text;
             //string myDate = "2019-10-26";
 
-            //string strQry = "exec [dbo].[GetBulkTrendingDesktop_1] '" + myDate + "'";
-            string strQry = "exec [dbo].[GetBulkTrendingMobile_1] '" + myDate + "'"; 
+            string strQry = "exec [dbo].[GetBulkTrendingDesktop_1] '" + myDate + "'";
+            //string strQry = "exec [dbo].[GetBulkTrendingMobile_1] '" + myDate + "'"; 
             //string strQry = "[GetBulkTrendingMobile_Status=0] '" + myDate + "'";
 
             SqlConnection objCon = null;
@@ -205,7 +205,7 @@ namespace TrendingSending
                     progress_lbl.Refresh();
                     lblIP.Text = ts.TotalSeconds.ToString();
                 });
-                Thread.Sleep(70000);
+                Thread.Sleep(50000);
                 //Thread.Sleep(30000);
             }
         }

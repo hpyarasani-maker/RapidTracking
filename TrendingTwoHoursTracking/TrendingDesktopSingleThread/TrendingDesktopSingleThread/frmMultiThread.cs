@@ -52,8 +52,8 @@ namespace TrendingDesktopSingleThread
 
         private void frmMultiThread_Load(object sender, EventArgs e)
         {
-            this.Text = "Trending Workspace Live Desktop_Oxylabs Bulk_remaining status 0";
-            //this.Text = "Trending Desktop_Remaining_Keywords"; 
+            //this.Text = "Trending Workspace Live Desktop_Oxylabs Bulk_remaining status 0";
+            this.Text = "Trending Desktop_Remaining_Keywords"; 
 
             Thread t_Desk1 = new Thread(new ThreadStart(StartProcess_Desktop1));
             t_Desk1.SetApartmentState(ApartmentState.STA);
@@ -66,8 +66,8 @@ namespace TrendingDesktopSingleThread
             {
                 string myDate = DateTime.Today.ToString("yyyy-MM-dd");
 
-                string kwQry = "[GetBulkTrendingDesktop_Status=0] '" + myDate + "'";
-                //string kwQry = "GetBulkTrendingDesktop_Remaining '" + myDate + "'";
+                //string kwQry = "[GetBulkTrendingDesktop_Status=0] '" + myDate + "'";
+                string kwQry = "GetBulkTrendingDesktop_Remaining '" + myDate + "'";
 
                 GetDesktop1Keywords(kwQry);
 
@@ -113,11 +113,11 @@ namespace TrendingDesktopSingleThread
 
                                 if (!string.IsNullOrEmpty(res))
                                 {
-                                   // if (count > 0)
-                                   // {
+                                    if (count > 0)
+                                    {
                                         SendDesktopToAPI1(seid, keyword, res);
                                         SendToDB(seid, keyword, res);
-                                    //}
+                                    }
                                 }
                             }
                             catch (Exception ex)

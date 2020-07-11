@@ -210,7 +210,7 @@ namespace Oxylabs_BulkKeywords
 
             for (int i = 0; i < worklist.Items.Count; i++)
             {
-                mseconds = rd.Next(10, 80) * 1000; //First Sending app 29-06-2020     //SEID=58
+                mseconds = rd.Next(20, 80) * 1000; //First Sending app 29-06-2020     //SEID=58
                 //mseconds = rd.Next(11, 14) * 1000; //Second Sending app 29-06-2020 //SEID=106
                 //mseconds = rd.Next(15, 19) * 1000; //Third Sending app 29-06-2020  //SEID=OtherDesktop
                 //mseconds = rd.Next(20, 23) * 1000; //Fourth Sending app 29-06-2020 //SEID=OtherMobile

@@ -2065,7 +2065,8 @@ namespace RapidTrackingSingleThread
                 || (node.SelectSingleNode(".//div[@class='kp-blk cUnQKe OJXvsb']") != null
                 && node.SelectSingleNode(".//div[@class='answered-question']") != null)
                 || node.SelectSingleNode(".//div[@class='vkc_np kkww4d']") != null    // changed on 05-07-2019
-                || node.SelectSingleNode(".//div[@class='UDZeY fAgajc']") != null)     // 13-03-2020
+                || node.SelectSingleNode(".//div[@class='UDZeY fAgajc']") != null     // 13-03-2020
+                || node.SelectSingleNode(".//div[@class='wQu7gc']") != null)    //08-07-2020 mising answered card
 
                 return "AnswerCard";
 

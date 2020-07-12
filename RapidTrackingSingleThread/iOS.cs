@@ -1146,6 +1146,8 @@ namespace RapidTrackingSingleThread
                         hn = nd1.SelectSingleNode(".//div[@class='S20Xzc']");    //23-05-2020
                     if (hn == null)
                         hn = nd1.SelectSingleNode(".//div[@class='JjtOHd Bgg9M']");  //23-05-2020 
+                    if (hn == null)
+                        hn = nd1.SelectSingleNode(".//div[@class='BNeawe vvjwJb AP7Wnd UwRFLe']"); //09-07-2020 carousel included selector
 
                     //25-06-2020
                     if (hn == null)

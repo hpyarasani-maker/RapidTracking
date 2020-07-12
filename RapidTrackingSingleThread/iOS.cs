@@ -2048,6 +2048,14 @@ namespace RapidTrackingSingleThread
                     return "PeopleAlsoAsk";
             }
 
+            else if (node.SelectSingleNode(".//span[@class='mfMhoc']") != null)//12-07-2020
+            {
+                HtmlNode n = node.SelectSingleNode(".//span[@class='mfMhoc']");
+                //if (n.InnerText == "People also ask" || n.InnerText == "Nutzer fragen auch")//12-08-2019
+                if (n.InnerText == "People also ask" || n.InnerText == "Nutzer fragen auch" || n.InnerText == "Le persone hanno chiesto anche" || n.InnerText == "Orang juga bertanya")  //26-11-2019
+                    return "PeopleAlsoAsk";
+            }//12-07-2020
+
             if (node.SelectSingleNode(".//div[@id='cwmcwd']") != null || node.SelectSingleNode(".//div[@class='vk_bk vk_ans']") != null
                 || node.SelectSingleNode(".//div[@class='vk_ans vk_bk']") != null || node.SelectSingleNode(".//div[@data-tts='answers']") != null
                 || node.SelectSingleNode(".//div[@class='vk_gy vk_sh whenis']") != null || node.SelectSingleNode(".//div[@class='N6Sb2c i29hTd']") != null

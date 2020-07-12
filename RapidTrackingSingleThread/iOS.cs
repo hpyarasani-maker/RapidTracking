@@ -1423,6 +1423,8 @@ namespace RapidTrackingSingleThread
             if (nds == null)
                 nds = node.SelectNodes(".//div[@jsname='xXq91c']");
             if (nds == null)
+                nds = node.SelectNodes(".//div[@jsname='bVEB4e']");//12-07-2020 //missing people also ask block for recipes keywords
+            if (nds == null)
                 return string.Empty;
             foreach (HtmlNode nd in nds)
             {

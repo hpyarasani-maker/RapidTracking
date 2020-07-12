@@ -1988,6 +1988,8 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[@class='I2lQic']");//05-11-2019
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='utyL0c']");//01-05-2020
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div/span[@class='YkgoD z1asCe GYDk8c']|.//div/span[@class='Ca2Qlc z1asCe GYDk8c']");//10-07-2020 //covid-19 map block
             if (nd != null)
             {
                 return "Maps";

@@ -1884,6 +1884,8 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[@class='HnYYW FIdh1']");  // 01-06-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='MQv7ze']");  // 23-06-2020 
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='kp-blk EyBRub knowledge-panel OJXvsb']");  //13-07-2020 images block type and KP block type
             if (nd != null)
             {
                 // 24-04-2020

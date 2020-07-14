@@ -1491,7 +1491,7 @@ namespace RapidTrackingSingleThread
             if (nds == null)
                 nds = node.SelectNodes(".//div[@class='eR2XS']/g-inner-card/div/a/g-img[@class='SeXxHf']/img"); //08-06-2020
             if (nds == null)
-                nds = node.SelectNodes(".//div[@class='OixsOd']/a");  //13-07-2020
+                nds = node.SelectNodes(".//div[@class='OixsOd']/a");  //13-07-2020 selector included for images
             if (nds != null)
 
                 foreach (HtmlNode nd in nds)
@@ -1503,6 +1503,14 @@ namespace RapidTrackingSingleThread
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"\" />");
                         existed = true;
                     }
+                    //start 13-07-2020 condition item urls in images block
+                    else if (nd.Attributes.Contains("href"))
+                    {
+                        string url = nd.Attributes["href"].Value.Trim();
+                        if (url.StartsWith("//www.")) url = "http:" + url;
+                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"\" />");
+                        existed = true;
+                    }//end 13-07-2020
                 }
             if (!existed)
             {

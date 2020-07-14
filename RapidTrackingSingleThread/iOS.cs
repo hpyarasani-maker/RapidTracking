@@ -2087,10 +2087,11 @@ namespace RapidTrackingSingleThread
             nd = node.SelectSingleNode(".//div[@id='kx']");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='OixsOd']"); //25-06-2020
-            if (nd != null)
+            if (nd != null && node.SelectSingleNode(".//span[@class='FCUp0c rQMQod']").InnerText != "Images")  //13-07-2020 same selector under images block use for both images and carousel
             {
                 return "Carousel";
             }
+
 
             // changes on 05-07-2019
             nd = node.SelectSingleNode(".//div[@class='rKFBM gsrt wp-ms']/div");

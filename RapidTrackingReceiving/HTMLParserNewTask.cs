@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Net.Http;
 //using Oxylabs_TrackingComponent;
 
 namespace Oxylabs_BulkKeywords
@@ -61,22 +62,41 @@ namespace Oxylabs_BulkKeywords
             //string url = "http://previous.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking other desktop
 
             Uri ul = new Uri(url);
-            WebClient client = new WebClient();
-            while (true)
+            using (var client = new HttpClient())
             {
-                try
+                //WebClient client = new WebClient();
+                while (true)
                 {
-                    statusCode = string.Empty;
-                    string response = string.Empty;
-                    client.Encoding = Encoding.UTF8;
+                    /*try
+                    {
+                        statusCode = string.Empty;
+                        string response = string.Empty;
+                        client.Encoding = Encoding.UTF8;
 
-                    response = client.DownloadString(url);
-                    if (response != "null")
-                        DoProcess(response);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("# EXCEPTION #  " + ex.Message);
+                        response = client.DownloadString(url);
+                        if (response != "null")
+                            DoProcess(response);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("# EXCEPTION #  " + ex.Message);
+                    }*/
+                    try
+                    {
+                        string response = "";
+                        client.DefaultRequestHeaders.Clear();
+                        client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                        response = client.GetStringAsync(ul).Result;
+                        if (response != null)
+                            DoProcess(response);
+                    }
+
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("# EXCEPTION #  " + ex.Message);
+                        //throw new ArgumentException(message: ex.Message.ToString(), paramName: "response");
+                        //OnKeywordDone.Invoke("Error:" + ex.Message.ToString());
+                    }
                 }
             }
         }

@@ -415,7 +415,7 @@ namespace RapidTrackingSingleThread
                         {
                             if ((pla.SelectSingleNode(".//h3[@class='r']") != null && pla.SelectSingleNode(".//h3[@role='heading']") != null) //13-11-2019
                                 || h3.InnerText.StartsWith("Shop for") || h3.InnerText.StartsWith("See ") || WebUtility.HtmlDecode(h3.InnerText).StartsWith("Ads·See ")
-                                || h3.InnerText.StartsWith("Ver ")
+                                || h3.InnerText.StartsWith("Ver ") || WebUtility.HtmlDecode(h3.InnerText).StartsWith("Anuncios·Ver ")  //15-07-2020 included for product lists ads
                                 )
                             {
                                 s.Append("<block type=\"productListedAds\" url=\"\">");

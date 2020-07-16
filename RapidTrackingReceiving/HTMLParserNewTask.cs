@@ -87,7 +87,7 @@ namespace Oxylabs_BulkKeywords
                         client.DefaultRequestHeaders.Clear();
                         client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
                         response = client.GetStringAsync(ul).Result;
-                        if (response != null)
+                        if (response != "null")
                             DoProcess(response);
                     }
 

@@ -62,7 +62,7 @@ namespace Bing_Receiving
                         client.DefaultRequestHeaders.Clear();
                         client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
                         response = client.GetStringAsync(uri).Result;
-                        if (response != null)
+                        if (response != "null")
                             DoProcess(response);
                     }
 

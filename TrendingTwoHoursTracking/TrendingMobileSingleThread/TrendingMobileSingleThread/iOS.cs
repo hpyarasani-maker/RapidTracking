@@ -417,12 +417,13 @@ namespace TrendingMobileSingleThread
                         {
                             if ((pla.SelectSingleNode(".//h3[@class='r']") != null && pla.SelectSingleNode(".//h3[@role='heading']") != null) //13-11-2019
                                 || h3.InnerText.StartsWith("Shop for") || h3.InnerText.StartsWith("See ") || WebUtility.HtmlDecode(h3.InnerText).StartsWith("Ads·See ")
-                                || h3.InnerText.StartsWith("Ver ")
+                                || h3.InnerText.StartsWith("Ver ") || WebUtility.HtmlDecode(h3.InnerText).StartsWith("Anuncios·Ver ")  //15-07-2020 included for product lists ads
+                                || h3.InnerText.StartsWith("Anúncios&middot;Ver ")  //16-07-2020
                                 )
                             {
                                 s.Append("<block type=\"productListedAds\" url=\"\">");
 
-                                HtmlNodeCollection cl = pla.SelectNodes(".//a[@class='pla-unit eUPzHb']|.//div[@class='mnr-c pla-unit']/a[2]|.//a[@class='plantl pla-unit-single-clickable-target clickable-card']");
+                                HtmlNodeCollection cl = pla.SelectNodes(".//a[@class='pla-unit eUPzHb']|.//div[@class='mnr-c pla-unit']/a[2]|.//a[@class='plantl pla-unit-single-clickable-target clickable-card']|.//g-inner-card[@class='pla-unit-container stOtnd VoEfsd']/div/div/a"); //15-07-2020 product list ads
                                 if (cl == null)
                                     cl = pla.SelectNodes(".//a[@class='pla-unit']");
                                 if (cl == null)
@@ -1148,6 +1149,8 @@ namespace TrendingMobileSingleThread
                         hn = nd1.SelectSingleNode(".//div[@class='S20Xzc']");    //23-05-2020
                     if (hn == null)
                         hn = nd1.SelectSingleNode(".//div[@class='JjtOHd Bgg9M']");  //23-05-2020 
+                    if (hn == null)
+                        hn = nd1.SelectSingleNode(".//div[@class='BNeawe vvjwJb AP7Wnd UwRFLe']"); //09-07-2020 carousel included selector
 
                     //25-06-2020
                     if (hn == null)
@@ -1425,6 +1428,8 @@ namespace TrendingMobileSingleThread
             if (nds == null)
                 nds = node.SelectNodes(".//div[@jsname='xXq91c']");
             if (nds == null)
+                nds = node.SelectNodes(".//div[@jsname='bVEB4e']");//12-07-2020 //missing people also ask block for recipes keywords
+            if (nds == null)
                 return string.Empty;
             foreach (HtmlNode nd in nds)
             {
@@ -1488,6 +1493,8 @@ namespace TrendingMobileSingleThread
                 nds = node.SelectNodes(".//div[@class='GNxIwf']/div[@jscontroller='xc1DSd']/a/g-inner-card/g-img[@class='BA0A6c']/img|.//div[@class='eA0Zlc JX86yc ivg-i']/g-inner-card/g-img[@class='BA0A6c']/img"); //05-06-2020 included selector for images //13-01-2020 included selector for images
             if (nds == null)
                 nds = node.SelectNodes(".//div[@class='eR2XS']/g-inner-card/div/a/g-img[@class='SeXxHf']/img"); //08-06-2020
+            if (nds == null)
+                nds = node.SelectNodes(".//div[@class='OixsOd']/a");  //13-07-2020 selector included for images
             if (nds != null)
 
                 foreach (HtmlNode nd in nds)
@@ -1499,6 +1506,14 @@ namespace TrendingMobileSingleThread
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"\" />");
                         existed = true;
                     }
+                    //start 13-07-2020 condition item urls in images block
+                    else if (nd.Attributes.Contains("href"))
+                    {
+                        string url = nd.Attributes["href"].Value.Trim();
+                        if (url.StartsWith("//www.")) url = "http:" + url;
+                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"\" />");
+                        existed = true;
+                    }//end 13-07-2020
                 }
             if (!existed)
             {
@@ -1872,12 +1887,14 @@ namespace TrendingMobileSingleThread
                 nd = node.SelectSingleNode(".//div[@class='HnYYW FIdh1']");  // 01-06-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='MQv7ze']");  // 23-06-2020 
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='kp-blk EyBRub knowledge-panel OJXvsb']");  //13-07-2020 images block type and KP block type
             if (nd != null)
             {
                 // 24-04-2020
                 nd = node.SelectSingleNode(".//h2");
                 if (nd != null)
-                    if (nd.InnerText.ToLower().Trim() == "recipes" || nd.InnerText.ToLower().Trim() == "ricette" || nd.InnerText.ToLower().Trim() == "recetas" || nd.InnerText.ToLower().Trim() == "recept")//17-06-2020 //22-05-2020 receipes language included
+                    if (nd.InnerText.ToLower().Trim() == "recipes" || nd.InnerText.ToLower().Trim() == "ricette" || nd.InnerText.ToLower().Trim() == "recetas" || nd.InnerText.ToLower().Trim() == "recept" || nd.InnerText.ToLower().Trim() == "resep" || nd.InnerText.ToLower().Trim() == "receitas") //16-07-2020//15-07-2020 //17-06-2020 //22-05-2020 receipes language included
                         return "Carousel";
                 // 24-04-2020
 
@@ -1988,6 +2005,8 @@ namespace TrendingMobileSingleThread
                 nd = node.SelectSingleNode(".//div[@class='I2lQic']");//05-11-2019
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='utyL0c']");//01-05-2020
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div/span[@class='YkgoD z1asCe GYDk8c']|.//div/span[@class='Ca2Qlc z1asCe GYDk8c']");//10-07-2020 //covid-19 map block
             if (nd != null)
             {
                 return "Maps";
@@ -2048,6 +2067,14 @@ namespace TrendingMobileSingleThread
                     return "PeopleAlsoAsk";
             }
 
+            else if (node.SelectSingleNode(".//span[@class='mfMhoc']") != null)//12-07-2020
+            {
+                HtmlNode n = node.SelectSingleNode(".//span[@class='mfMhoc']");
+                //if (n.InnerText == "People also ask" || n.InnerText == "Nutzer fragen auch")//12-08-2019
+                if (n.InnerText == "People also ask" || n.InnerText == "Nutzer fragen auch" || n.InnerText == "Le persone hanno chiesto anche" || n.InnerText == "Orang juga bertanya")  //26-11-2019
+                    return "PeopleAlsoAsk";
+            }//12-07-2020
+
             if (node.SelectSingleNode(".//div[@id='cwmcwd']") != null || node.SelectSingleNode(".//div[@class='vk_bk vk_ans']") != null
                 || node.SelectSingleNode(".//div[@class='vk_ans vk_bk']") != null || node.SelectSingleNode(".//div[@data-tts='answers']") != null
                 || node.SelectSingleNode(".//div[@class='vk_gy vk_sh whenis']") != null || node.SelectSingleNode(".//div[@class='N6Sb2c i29hTd']") != null
@@ -2055,17 +2082,19 @@ namespace TrendingMobileSingleThread
                 || (node.SelectSingleNode(".//div[@class='kp-blk cUnQKe OJXvsb']") != null
                 && node.SelectSingleNode(".//div[@class='answered-question']") != null)
                 || node.SelectSingleNode(".//div[@class='vkc_np kkww4d']") != null    // changed on 05-07-2019
-                || node.SelectSingleNode(".//div[@class='UDZeY fAgajc']") != null)     // 13-03-2020
+                || node.SelectSingleNode(".//div[@class='UDZeY fAgajc']") != null     // 13-03-2020
+                || node.SelectSingleNode(".//div[@class='wQu7gc']") != null)    //08-07-2020 mising answered card
 
                 return "AnswerCard";
 
             nd = node.SelectSingleNode(".//div[@id='kx']");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='OixsOd']"); //25-06-2020
-            if (nd != null)
+            if (nd != null && node.SelectSingleNode(".//span[@class='FCUp0c rQMQod']").InnerText != "Images")  //13-07-2020 same selector under images block use for both images and carousel
             {
                 return "Carousel";
             }
+
 
             // changes on 05-07-2019
             nd = node.SelectSingleNode(".//div[@class='rKFBM gsrt wp-ms']/div");
@@ -2103,7 +2132,7 @@ namespace TrendingMobileSingleThread
             }
             else
             {
-                nd = node.SelectSingleNode(".//div[@class='rKFBM gsrt wp-ms']");    // changes on 11-07-2019
+                nd = node.SelectSingleNode(".//div[@class='rKFBM gsrt wp-ms']|.//span[@class='FCUp0c rQMQod']"); //13-07-2020 images selector    // changes on 11-07-2019
                 if (nd != null)
                 {
                     if (nd.InnerText == "About" || nd.InnerText == "Images" || nd.InnerText == "Imágenes")  // 07-02-2020 and 10-02-2020 21-02-2020 included title for images block
@@ -2155,9 +2184,9 @@ namespace TrendingMobileSingleThread
                      || nd.InnerText.ToLower().StartsWith("latest")) //23-06-2020 //22-06-2020
                     if (node.SelectSingleNode(".//div[@class='KJDcUb']") == null) //26-06-2020
                         return true;
-                else if (nd.InnerText == "More results" || nd.InnerText == "Top results" || nd.InnerText == "Toppresultater"
-                    || nd.InnerText == "Fler resultat" || nd.InnerText == "Flere resultater" || nd.InnerText == "Plus de résultats")    // 13-12-2019
-                    return false;
+                    else if (nd.InnerText == "More results" || nd.InnerText == "Top results" || nd.InnerText == "Toppresultater"
+                        || nd.InnerText == "Fler resultat" || nd.InnerText == "Flere resultater" || nd.InnerText == "Plus de résultats")    // 13-12-2019
+                        return false;
             }
             //17-01-2020
             nd = node.SelectSingleNode(".//div[@class='Lgnr0e J88qA BmP5tf']");
@@ -2278,6 +2307,8 @@ namespace TrendingMobileSingleThread
                 nd = node.SelectSingleNode(".//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='ytwLQd']");//05-06-2020 missing classic links
                 if (nd != null && node.SelectSingleNode(".//div[@class='EDblX m8vZ3d']") == null)   // 16-10-2019
                 {
+                    if (node.SelectSingleNode(".//div[@class='BNeawe deIvCb AP7Wnd']") != null) //09-07-2020
+                        return true;
                     return false;
                 }
                 else if (nd != null && node.SelectSingleNode(".//div[@class='d5oMvf KJDcUb']") != null) // 22-01-2020 included selector for classic links

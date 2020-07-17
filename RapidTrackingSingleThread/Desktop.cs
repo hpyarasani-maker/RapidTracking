@@ -670,6 +670,8 @@ namespace RapidTrackingSingleThread
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//g-inner-card/div/a");
+            if (nds == null)
+                nds = node.SelectNodes(".//div[@jsname='ibnC6b']/div/a");   //17-07-2020
             if (nds != null)
                 foreach (HtmlNode nd in nds)
                 {

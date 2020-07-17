@@ -480,7 +480,7 @@ namespace Oxylabs_BulkKeywords
 
             new SearchProperties()
             {
-                seid =208, domain ="com.sg", geo_location="Singapore", locale= "zh-sg", uule = "w+CAIQICIJU2luZ2Fwb3J",device="mobile_android"
+                seid =208, domain ="com.sg", geo_location="Singapore", locale= "zh-sg", uule = "w+CAIQICIJU2luZ2Fwb3Jl",device="mobile_android"
 
             },
 
@@ -621,7 +621,7 @@ namespace Oxylabs_BulkKeywords
             },
             new SearchProperties()
             {
-                seid =247, domain ="com.sg", geo_location="Singapore", locale= "en-sg", uule = "w+CAIQICIJU2luZ2Fwb3J",device="mobile_android"
+                seid =247, domain ="com.sg", geo_location="Singapore", locale= "en-sg", uule = "w+CAIQICIJU2luZ2Fwb3Jl",device="mobile_android"
 
             },
             new SearchProperties()

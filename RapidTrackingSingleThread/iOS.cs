@@ -2128,8 +2128,8 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[@class='gID6df']|.//div[@id='iur']/a"); //12-06-2020//05-06-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='GNxIwf']");  // 18-03-2020
-            if (nd == null)
-                nd = node.SelectSingleNode(".//div[@jscontroller='pfW8md']");  // 17-07-2020
+            //if (nd == null)
+               // nd = node.SelectSingleNode(".//div[@jscontroller='pfW8md']");  // 17-07-2020 //21-07-2020 commented not required selector
             if (nd != null)
             {
                 //if (nd.InnerText == "Images" || nd.InnerText == "Immagini"|| nd.InnerText == "Im?genes")

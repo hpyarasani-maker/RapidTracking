@@ -64,7 +64,7 @@ namespace RapidTrackingMultiThreadJobIDs
             },
                  new SearchProperties()
             {
-                seid =61, domain ="se", geo_location="Sweden", locale= "sv-se", uule = "w+CAIQICIGc3dlZGVu",device="desktop"
+                seid =61, domain ="se", geo_location="Sweden", locale= "sv-se", uule = "w+CAIQICIGU3dlZGVu",device="desktop"
             },
 
             new SearchProperties()
@@ -391,7 +391,7 @@ namespace RapidTrackingMultiThreadJobIDs
             },
             new SearchProperties()
             {
-            seid =160, domain ="se", geo_location="Sweden", locale= "sv-se", uule = "w+CAIQICIGTm9yd2F5",device="mobile_android"
+            seid =160, domain ="se", geo_location="Sweden", locale= "sv-se", uule = "w+CAIQICIGU3dlZGVu",device="mobile_android"
             },
             new SearchProperties()
             {
@@ -714,12 +714,12 @@ namespace RapidTrackingMultiThreadJobIDs
             },
             new SearchProperties()
             {
-                seid =264, domain ="se", geo_location="Sweden", locale= "en-se", uule = "w+CAIQICIGU3dlZGV",device="desktop"
+                seid =264, domain ="se", geo_location="Sweden", locale= "en-se", uule = "w+CAIQICIGU3dlZGVu",device="desktop"
 
             },
             new SearchProperties()
             {
-                seid =265, domain ="se", geo_location="Sweden", locale= "en-se", uule = "w+CAIQICIGU3dlZGV",device="mobile_android"
+                seid =265, domain ="se", geo_location="Sweden", locale= "en-se", uule = "w+CAIQICIGU3dlZGVu",device="mobile_android"
 
             },
             new SearchProperties()

@@ -84,8 +84,8 @@ namespace Oxylabs_BulkKeywords
             string password = "sdV5X3fcX6";
             string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
 
-            string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking other desktop
-            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking other mobile
+            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking other desktop
+            string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking other mobile
             //string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
             //string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobilehotel/";
 

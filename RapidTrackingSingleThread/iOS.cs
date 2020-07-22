@@ -1898,7 +1898,8 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//h2");
                 if (nd != null)
                     if (nd.InnerText.ToLower().Trim() == "recipes" || nd.InnerText.ToLower().Trim() == "ricette" || nd.InnerText.ToLower().Trim() == "recetas" ||
-                        nd.InnerText.ToLower().Trim() == "recept" || nd.InnerText.ToLower().Trim() == "resep" || nd.InnerText.ToLower().Trim() == "receitas") //16-07-2020//15-07-2020 //17-06-2020 //22-05-2020 receipes language included
+                        nd.InnerText.ToLower().Trim() == "recept" || nd.InnerText.ToLower().Trim() == "resep" || nd.InnerText.ToLower().Trim() == "receitas"  //16-07-2020//15-07-2020 //17-06-2020 //22-05-2020 receipes language included
+                        || nd.InnerText.ToLower().Trim() == "recettes")  //22-07-2020
                         return "Carousel";
                 // 24-04-2020
 

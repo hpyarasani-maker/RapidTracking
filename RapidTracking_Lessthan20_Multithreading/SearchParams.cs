@@ -63,7 +63,7 @@ namespace TrackingTrending
             },
                  new SearchProperties()
             {
-                seid =61, domain ="se", geo_location="Sweden", locale= "sv-se", uule = "w+CAIQICIGc3dlZGVu",device="desktop"
+                seid =61, domain ="se", geo_location="Sweden", locale= "sv-se", uule = "w+CAIQICIGU3dlZGVu",device="desktop"
             },
             
             new SearchProperties()
@@ -383,7 +383,7 @@ namespace TrackingTrending
             seid =159, domain ="no", geo_location="Norway", locale= "no-no", uule = "w+CAIQICIGTm9yd2F5",device="mobile_android"
             },new SearchProperties()
             {
-            seid =160, domain ="se", geo_location="Sweden", locale= "sv-se", uule = "w+CAIQICIGTm9yd2F5",device="mobile_android"
+            seid =160, domain ="se", geo_location="Sweden", locale= "sv-se", uule = "w+CAIQICIGU3dlZGVu",device="mobile_android"
             },new SearchProperties()
             {
             seid =167, domain ="hu", geo_location="Hungary", locale= "hu-hu", uule = "w+CAIQICIHSHVuZ2FyeQ==",device="mobile_android"
@@ -702,12 +702,12 @@ namespace TrackingTrending
             },
             new SearchProperties()
             {
-                seid =264, domain ="se", geo_location="Sweden", locale= "en-se", uule = "w+CAIQICIGU3dlZGV",device="desktop"
+                seid =264, domain ="se", geo_location="Sweden", locale= "en-se", uule = "w+CAIQICIGU3dlZGVu",device="desktop"
 
             },
             new SearchProperties()
             {
-                seid =265, domain ="se", geo_location="Sweden", locale= "en-se", uule = "w+CAIQICIGU3dlZGV",device="mobile_android"
+                seid =265, domain ="se", geo_location="Sweden", locale= "en-se", uule = "w+CAIQICIGU3dlZGVu",device="mobile_android"
 
             },
             new SearchProperties()

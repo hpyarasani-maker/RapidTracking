@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 
-namespace Oxylabs_BulkKeywords
-{ 
+namespace RapidTrackingMultiThreadJobIDs
+{  
     class SearchParams
     {  
         public static IList<SearchProperties> searches = new List<SearchProperties>()
         {
-            new SearchProperties()
+           new SearchProperties()
             {
                 seid =1, domain ="com", geo_location="United States", locale="en-us", uule="w+CAIQICINVW5pdGVkIFN0YXRlcw==", device="desktop"
             },
@@ -26,6 +26,7 @@ namespace Oxylabs_BulkKeywords
             {
                 seid =16, domain ="co.za", geo_location="South Africa", locale="en-za", uule = "w+CAIQICIPU291dGggQWZyaWNhCgoK",device="desktop"
             },
+
             new SearchProperties()
             {
                 seid =21, domain ="ru", geo_location="Russia", locale="ru-ru", uule = "w+CAIQICIGUnVzc2lh",device="desktop"
@@ -39,21 +40,20 @@ namespace Oxylabs_BulkKeywords
             {
                 seid =40, domain ="fr", geo_location="France", locale="fr-fr", uule = "w+CAIQICIGRnJhbmNl",device="desktop"
             },
-            
+
             new SearchProperties()
             {
                 seid =44, domain ="be", geo_location="Belgium", locale= "nl-be", uule = "w+CAIQICIHQmVsZ2l1bQ==",device="desktop"
             },
-            
+
             new SearchProperties()
             {
                 seid =57, domain ="nl", geo_location="Netherlands", locale= "nl-nl", uule = "w+CAIQICILTmV0aGVybGFuZHM=",device="desktop"
             },
-             new SearchProperties()
+              new SearchProperties()
             {
                 seid =58, domain ="co.uk",geo_location="United Kingdom",locale= "en-gb",uule = "w+CAIQICIOVW5pdGVkIEtpbmdkb20=",device="desktop"
             },
-
                new SearchProperties()
             {
                 seid =59, domain ="es", geo_location="Spain", locale= "es-es", uule = "w+CAIQICIFc3BhaW4=",device="desktop"
@@ -66,7 +66,7 @@ namespace Oxylabs_BulkKeywords
             {
                 seid =61, domain ="se", geo_location="Sweden", locale= "sv-se", uule = "w+CAIQICIGU3dlZGVu",device="desktop"
             },
-            
+
             new SearchProperties()
             {
                 seid =63, domain ="com.hk", geo_location="Hong Kong", locale= "zh-TW-HK", uule = "w+CAIQICIJSG9uZyBLb25n",device="desktop"
@@ -227,7 +227,7 @@ namespace Oxylabs_BulkKeywords
             {
             seid =115, domain ="ch", geo_location="Switzerland", locale= "fr-ch", uule = "w+CAIQICIMU3dpdHplcmxhbmQK",device="desktop"
             },
-            
+
             new SearchProperties()
             {
             seid =117, domain ="pt", geo_location="Portugal", locale= "pt-pt", uule = "w+CAIQICIIUG9ydHVnYWw=",device="mobile_android"
@@ -356,7 +356,7 @@ namespace Oxylabs_BulkKeywords
             {
             seid =150, domain ="com.br", geo_location="Brazil", locale= "pt-br", uule = "w+CAIQICIGQnJhemls",device="mobile_android"
             },
-           
+
             new SearchProperties()
             {
             seid =152, domain ="dk", geo_location="Denmark", locale= "da-dk", uule ="w+CAIQICIHRGVubWFyaw==",device="mobile_android"
@@ -364,37 +364,48 @@ namespace Oxylabs_BulkKeywords
             new SearchProperties()
             {
             seid =153, domain ="fi", geo_location="Finland", locale= "fi-fi", uule = "w+CAIQICIHRmlubGFuZA==",device="mobile_android"
-            },new SearchProperties()
+            },
+            new SearchProperties()
             {
             seid =154, domain ="fr", geo_location="France", locale= "fr-fr", uule = "w+CAIQICIGRnJhbmNl",device="mobile_android"
-            },new SearchProperties()
+            },
+            new SearchProperties()
             {
             seid =155, domain ="gr", geo_location="Greece", locale= "el-gr", uule = "w+CAIQICIGR3JlZWNl",device="mobile_android"
-            },new SearchProperties()
+            },
+            new SearchProperties()
             {
             seid =156, domain ="com.hk", geo_location="Hong Kong", locale = "zh-TW-HK", uule = "w+CAIQICIJSG9uZyBLb25n",device="mobile_android"
-            },new SearchProperties()
+            },
+            new SearchProperties()
             {
             seid =157, domain ="ie", geo_location="Ireland", locale= "en-ie", uule = "w+CAIQICIHSXJlbGFuZA==",device="mobile_android"
-            },new SearchProperties()
+            },
+            new SearchProperties()
             {
             seid =158, domain ="co.jp", geo_location="Japan", locale= "ja-jp", uule = "w+CAIQICIFSmFwYW4=",device="mobile_android"
-            },new SearchProperties()
+            },
+            new SearchProperties()
             {
             seid =159, domain ="no", geo_location="Norway", locale= "no-no", uule = "w+CAIQICIGTm9yd2F5",device="mobile_android"
-            },new SearchProperties()
+            },
+            new SearchProperties()
             {
             seid =160, domain ="se", geo_location="Sweden", locale= "sv-se", uule = "w+CAIQICIGU3dlZGVu",device="mobile_android"
-            },new SearchProperties()
+            },
+            new SearchProperties()
             {
             seid =167, domain ="hu", geo_location="Hungary", locale= "hu-hu", uule = "w+CAIQICIHSHVuZ2FyeQ==",device="mobile_android"
-            },new SearchProperties()
+            },
+            new SearchProperties()
             {
             seid =168, domain ="pl", geo_location="Poland", locale= "pl-pl", uule = "w+CAIQICIGUG9sYW5k",device="mobile_android"
-            },new SearchProperties()
+            },
+            new SearchProperties()
             {
             seid =169, domain ="com.tr", geo_location="Turkey", locale= "tr-tr", uule = "w+CAIQICIGVHVya2V5",device="mobile_android"
-            },new SearchProperties()
+            },
+            new SearchProperties()
             {
             seid =172, domain ="ru", geo_location="Russia", locale= "ru-ru", uule = "w+CAIQICIGUnVzc2lh",device="mobile_android"
             },
@@ -1310,7 +1321,7 @@ namespace Oxylabs_BulkKeywords
                 seid =400, domain ="com.mm", geo_location="Myanmar", locale= "my-mm", uule ="w+CAIQICIHTXlhbm1hcg==",device="mobile_android"
 
             },
-               new SearchProperties()
+              new SearchProperties()
             {
                 seid =403, domain ="ro", geo_location="Romania", locale= "ro-ro", uule = "w+CAIQICIHUm9tYW5pYQ==",device="mobile_android"
             },
@@ -1322,7 +1333,7 @@ namespace Oxylabs_BulkKeywords
             {
                 seid =405, domain ="ch", geo_location="Switzerland", locale= "en-ch", uule = "w+CAIQICILU3dpdHplcmxhbmQ=",device="mobile_android"
             },
-            new SearchProperties()
+                new SearchProperties()
             {
                 seid =406, domain ="com.bh", geo_location="Bahrain", locale= "en-bh", uule = "w+CAIQICIHQmFocmFpbg==",device="mobile_android"
 
@@ -1388,7 +1399,7 @@ namespace Oxylabs_BulkKeywords
                 seid =419, domain ="com.sa", geo_location="Saudi Arabia", locale= "en-sa", uule = "w+CAIQICIMU2F1ZGkgQXJhYmlh",device="desktop"
 
             },
-                new SearchProperties()
+             new SearchProperties()
             {
                 seid =420, domain ="com.bh", geo_location="Bahrain", locale= "ar-bh", uule = "w+CAIQICIHQmFocmFpbg==",device="mobile_android"
 
@@ -1416,15 +1427,15 @@ namespace Oxylabs_BulkKeywords
              seid =425, domain ="com.qa", geo_location="Qatar", locale= "ar-qa", uule = "w+CAIQICIFUWF0YXI=",device="mobile_android"
 
             },
-             new SearchProperties()
+            new SearchProperties()
             {
                 seid =426, domain ="co.kr", geo_location="South Korea", locale="ko-kr", uule = "w+CAIQICILU291dGggS29yZWE=",device="mobile_android"
             },
-                new SearchProperties()
+             new SearchProperties()
             {
                 seid =427, domain ="co.kr", geo_location="South Korea", locale="ko-kr", uule = "w+CAIQICILU291dGggS29yZWE=",device="desktop"
             },
-              new SearchProperties()
+            new SearchProperties()
             {
             seid =428, domain ="cz", geo_location="Czech Republic", locale = "en-cz", uule = "w+CAIQICIOQ3plY2ggUmVwdWJsaWM=",device="desktop"
             },
@@ -1434,13 +1445,13 @@ namespace Oxylabs_BulkKeywords
             },
             new SearchProperties()
             {
-            seid =430, domain ="cz", geo_location="Malta", locale = "en-mt", uule = "w+CAIQICIFbWFsdGE=",device="desktop"
+            seid =430, domain ="com.mt", geo_location="Malta", locale = "en-mt", uule = "w+CAIQICIFbWFsdGE=",device="desktop"
             },
             new SearchProperties()
             {
-            seid =431, domain ="cz", geo_location="Malta", locale = "en-mt", uule = "w+CAIQICIFbWFsdGE=",device="mobile_android"
+            seid =431, domain ="com.mt", geo_location="Malta", locale = "en-mt", uule = "w+CAIQICIFbWFsdGE=",device="mobile_android"
             },
-             new SearchProperties()
+            new SearchProperties()
             {
             seid =432, domain ="is", geo_location="Iceland", locale = "is-is", uule = "w+CAIQICIHSWNlbGFuZA==",device="desktop"
             },
@@ -1482,7 +1493,7 @@ namespace Oxylabs_BulkKeywords
                 seid =442, domain ="co.uk", geo_location="Newcastle upon Tyne,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIqTmV3Y2FzdGxlIHVwb24gVHluZSxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t", device="mobile_android"
 
             },
-            new SearchProperties()
+             new SearchProperties()
             {
                 seid =443, domain ="co.uk", geo_location="E1,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIZRTEsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==", device="desktop"
             },
@@ -1490,6 +1501,7 @@ namespace Oxylabs_BulkKeywords
             {
                 seid =444, domain ="co.uk", geo_location="E1,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIZRTEsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==", device="mobile_android"
             },
+
             new SearchProperties()
             {
                 seid =445, domain ="co.uk", geo_location="NW1,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIaTlcxLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=", device="desktop"
@@ -1629,9 +1641,6 @@ namespace Oxylabs_BulkKeywords
             }
 
         };
-        
-
-
     }
     class SearchProperties
     {

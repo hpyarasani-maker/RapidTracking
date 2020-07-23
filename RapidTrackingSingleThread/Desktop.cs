@@ -338,7 +338,7 @@ namespace RapidTrackingSingleThread
                     foreach (HtmlNode nd in col)
                     {
                         //HtmlNode n = nd.SelectSingleNode(".//h3/a[2]");
-                        HtmlNode n = nd.SelectSingleNode(".//div[@class='ad_cclk']/a[2]");
+                        HtmlNode n = nd.SelectSingleNode(".//div[@class='ad_cclk']/a[2]|.//div[@class='d5oMvf']/a");  //23-07-2020 included missing item urls selectors
                         if (n != null)
                         {
                             if (!n.Attributes["href"].Value.StartsWith("/"))

@@ -1030,9 +1030,13 @@ namespace RapidTrackingSingleThread
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='BFJZOc']/div");
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='LMMXP i8lZMc']");  // 02-06-2020
+                //nd = node.SelectSingleNode(".//div[@class='LMMXP i8lZMc']");  //23-07-2020 // 02-06-2020
+                nd = node.SelectSingleNode(".//div[contains(@class, 'LMMXP')]");  //23-07-2020
+            //if (nd == null)
+            //    nd = node.SelectSingleNode(".//div[@class='LMMXP mfMhoc']");  //23-07-2020 //17-07-2020
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='LMMXP mfMhoc']");  //17-07-2020
+                nd = node.SelectSingleNode(".//div[@class='sQkmof']");//23-07-2020 included selector for videos
+            
             if (nd != null)
                 return "videos";
 

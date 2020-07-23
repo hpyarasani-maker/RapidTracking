@@ -332,12 +332,12 @@ namespace TrackingTrending
                     foreach (HtmlNode nd in col)
                     {
                         //HtmlNode n = nd.SelectSingleNode(".//h3/a[2]");
-                        HtmlNode n = nd.SelectSingleNode(".//div[@class='ad_cclk']/a[2]");
+                        HtmlNode n = nd.SelectSingleNode(".//div[@class='ad_cclk']/a[2]|.//div[@class='d5oMvf']/a");  //23-07-2020 included missing item urls selectors
                         if (n != null)
                         {
                             if (!n.Attributes["href"].Value.StartsWith("/"))
                             {
-                                HtmlNode title = n.SelectSingleNode(".//h3");
+                                HtmlNode title = n.SelectSingleNode(".//h3|.//div[@role='heading']");  //23-07-2020
                                 s.Append("<item url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(title.InnerText) + "\" />");
                             }
                             else
@@ -664,6 +664,8 @@ namespace TrackingTrending
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//g-inner-card/div/a");
+            if (nds == null)
+                nds = node.SelectNodes(".//div[@jsname='ibnC6b']/div/a");   //17-07-2020
             if (nds != null)
                 foreach (HtmlNode nd in nds)
                 {
@@ -1022,7 +1024,13 @@ namespace TrackingTrending
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='BFJZOc']/div");
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='LMMXP i8lZMc']");  // 02-06-2020
+                //nd = node.SelectSingleNode(".//div[@class='LMMXP i8lZMc']");  //23-07-2020 // 02-06-2020
+                nd = node.SelectSingleNode(".//div[contains(@class, 'LMMXP')]");  //23-07-2020
+            //if (nd == null)
+            //    nd = node.SelectSingleNode(".//div[@class='LMMXP mfMhoc']");  //23-07-2020 //17-07-2020
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='sQkmof']");//23-07-2020 included selector for videos
+
             if (nd != null)
                 return "videos";
 
@@ -1173,7 +1181,7 @@ namespace TrackingTrending
 
             if (!bVal)
             {
-                HtmlNode nd = node.SelectSingleNode(".//h3|.//div[@class='HnYYW i8lZMc']|.//div[@class='LMMXP i8lZMc']|.//div[@class='e2BEnf U7izfe']/div|.//h2"); //03-06-2020  // 02-06-2020    //01-05-2020
+                HtmlNode nd = node.SelectSingleNode(".//h3|.//div[@class='HnYYW i8lZMc']|.//div[@class='LMMXP i8lZMc']|.//div[@class='e2BEnf U7izfe']/div|.//div[@class='LMMXP mfMhoc']");  //17-07-2020 //03-06-2020  // 02-06-2020    //01-05-2020
                 if (nd != null)
                     if (nd.InnerText == "Top stories" || nd.InnerText == "Huvudnyheter" || nd.InnerText == "Videos" || nd.InnerText == "Video" || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws" || nd.InnerText == "Vertaalresultaat" || nd.InnerText == "Recipes") //29-06-2020//03-06-2020 // 02-06-2020  // 08-04-2020
                         return true;

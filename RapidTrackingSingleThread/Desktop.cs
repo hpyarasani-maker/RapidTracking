@@ -343,7 +343,7 @@ namespace RapidTrackingSingleThread
                         {
                             if (!n.Attributes["href"].Value.StartsWith("/"))
                             {
-                                HtmlNode title = n.SelectSingleNode(".//h3");
+                                HtmlNode title = n.SelectSingleNode(".//h3|.//div[@role='heading']");  //23-07-2020
                                 s.Append("<item url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(title.InnerText) + "\" />");
                             }
                             else

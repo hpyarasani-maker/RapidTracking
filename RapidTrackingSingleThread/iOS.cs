@@ -1824,20 +1824,22 @@ namespace RapidTrackingSingleThread
             HtmlNode nd = node.SelectSingleNode(".//div[@class='KNcnob']/g-img");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='fn6bCb']|.//g-tray-header[@class='kno-fb-ctx zbA8Me ndEm3b']");
+            //if (nd == null)
+            //    nd = node.SelectSingleNode(".//g-tray-header[@class='kno-fb-ctx gsrt nQE5cd ieGFJe ndEm3b']");  // 06-12-2019
+            //if (nd == null)
+            //    nd = node.SelectSingleNode(".//g-tray-header[@class='kno-fb-ctx gsrt ieGFJe ndEm3b']");  // 16-12-2019
+            //if (nd == null)
+            //    nd = node.SelectSingleNode(".//g-tray-header[@class='kno-fb-ctx erfML zbA8Me ndEm3b']");  // 18-12-2019
+            //if (nd == null)
+            //    nd = node.SelectSingleNode(".//g-tray-header[@class='kno-fb-ctx KULUEe zbA8Me ndEm3b']");  // 23-01-2020 included selector for top stories block
+            //if (nd == null)
+            //    nd = node.SelectSingleNode(".//g-tray-header[@class='kno-fb-ctx lQckZe zbA8Me ndEm3b']");  // 07-02-2020 included selector for videos block
+            //if (nd == null)
+            //    nd = node.SelectSingleNode(".//g-tray-header[@class='kno-fb-ctx lQckZe gsrt ieGFJe ndEm3b']");  // 21-02-2020 included selector for videos block
+            //if (nd == null)
+            //    nd = node.SelectSingleNode(".//g-tray-header[@class='kno-fb-ctx Gq01wc zbA8Me ndEm3b']");//19-03-2020
             if (nd == null)
-                nd = node.SelectSingleNode(".//g-tray-header[@class='kno-fb-ctx gsrt nQE5cd ieGFJe ndEm3b']");  // 06-12-2019
-            if (nd == null)
-                nd = node.SelectSingleNode(".//g-tray-header[@class='kno-fb-ctx gsrt ieGFJe ndEm3b']");  // 16-12-2019
-            if (nd == null)
-                nd = node.SelectSingleNode(".//g-tray-header[@class='kno-fb-ctx erfML zbA8Me ndEm3b']");  // 18-12-2019
-            if (nd == null)
-                nd = node.SelectSingleNode(".//g-tray-header[@class='kno-fb-ctx KULUEe zbA8Me ndEm3b']");  // 23-01-2020 included selector for top stories block
-            if (nd == null)
-                nd = node.SelectSingleNode(".//g-tray-header[@class='kno-fb-ctx lQckZe zbA8Me ndEm3b']");  // 07-02-2020 included selector for videos block
-            if (nd == null)
-                nd = node.SelectSingleNode(".//g-tray-header[@class='kno-fb-ctx lQckZe gsrt ieGFJe ndEm3b']");  // 21-02-2020 included selector for videos block
-            if (nd == null)
-                nd = node.SelectSingleNode(".//g-tray-header[@class='kno-fb-ctx Gq01wc zbA8Me ndEm3b']");//19-03-2020
+                nd = node.SelectSingleNode(".//g-tray-header[contains(@class,'kno-fb-ctx')]");//27-07-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='qDSRad']");  // changes on 05-07-2019
             if (nd == null)

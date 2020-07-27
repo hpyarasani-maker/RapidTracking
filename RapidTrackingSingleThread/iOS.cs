@@ -1670,7 +1670,8 @@ namespace RapidTrackingSingleThread
                         title = nd.SelectSingleNode(".//div[@role='heading']");
                     if (title == null)
                         title = nd.SelectSingleNode(".//div[@class='nDgy9d']");   //changes on 05-07-2019
-
+                    if (title == null)
+                        title = nd.SelectSingleNode(".//div[contains(@class,'poMUXd')]"); //27-07-2020
                     string url = nd.Attributes["href"].Value;
                     s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title.InnerText) + "\" />");
                 }

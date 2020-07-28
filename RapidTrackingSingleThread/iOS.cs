@@ -2113,8 +2113,8 @@ namespace RapidTrackingSingleThread
             //    nd = node.SelectSingleNode(".//div[@class='rKFBM gsrt iows2d wp-ms']/div");  //19-03-2020 //28-07-2020 commented
             //if (nd == null)
             //    nd = node.SelectSingleNode(".//div[@class='JNkvid gsrt wp-ms']/div");  //15-05-2020 //28-07-2020 commented
-            if (nd == null)
-                   nd = node.SelectSingleNode(".//div[contains(@class,'rKFBM')]/div");  //28-07-2020 included selectors with contains functions
+            //if (nd == null)
+            //       nd = node.SelectSingleNode(".//div[contains(@class,'rKFBM')]/div");  //28-07-2020 commented included selectors with contains functions
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[contains(@class,'JNkvid')]/div"); //28-07-2020 included selectors with contains functions
             if (nd != null)

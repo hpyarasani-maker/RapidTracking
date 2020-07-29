@@ -1990,8 +1990,6 @@ namespace RapidTrackingSingleThread
                         return "Videos";
                     else if (nd.InnerHtml.ToLower().StartsWith("top stories") || nd.InnerHtml.Contains("Interesting finds")) // 18-12-2019)
                         return "Topstories";
-                    else if (nd.InnerText.ToLower() == "películas")//29-07-2020 included innerText missing Carousel block
-                        return "Carousel";
                     HtmlNode nd1 = node.SelectSingleNode(".//div[@class='UDZeY fAgajc']|.//div[@class='rKFBM gsrt CAd2fd wp-ms']");  //31-03-2020
                     if (nd1 != null)
                     {
@@ -2125,7 +2123,7 @@ namespace RapidTrackingSingleThread
                     // 04-11-2019
                     if (nd.InnerText.StartsWith("Movies") || nd.InnerText.StartsWith("Mga Pelikula")
                         || nd.InnerText.StartsWith("Film") || nd.InnerText.StartsWith("Filme")
-                         || nd.InnerText.StartsWith("Books")) // 09-06-2020
+                         || nd.InnerText.StartsWith("Books") || nd.InnerText.StartsWith("Películas")) //29-07-2020 // 09-06-2020
                     {
                         return "Carousel";
                     }

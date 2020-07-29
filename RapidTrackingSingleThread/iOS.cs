@@ -2123,7 +2123,7 @@ namespace RapidTrackingSingleThread
                     // 04-11-2019
                     if (nd.InnerText.StartsWith("Movies") || nd.InnerText.StartsWith("Mga Pelikula")
                         || nd.InnerText.StartsWith("Film") || nd.InnerText.StartsWith("Filme")
-                         || nd.InnerText.StartsWith("Books") || nd.InnerText.StartsWith("Películas")) // 09-06-2020
+                         || nd.InnerText.StartsWith("Books") || nd.InnerText.StartsWith("Películas")) //29-07-2020 // 09-06-2020
                     {
                         return "Carousel";
                     }

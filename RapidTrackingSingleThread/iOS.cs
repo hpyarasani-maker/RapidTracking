@@ -659,7 +659,7 @@ namespace RapidTrackingSingleThread
                     if (node.Attributes["class"].Value == "mnr-c xpd O9g5cc uUPGi")
                         nds = node.SelectNodes(".//div[contains(@class,'KJDcUb')]"); //28-07-2020 //29-07-2020 included contains function
                 //if (nds == null)
-                //    nds = node.SelectNodes(".//div[@class='KJDcUb WzRKRb']");//29-11-2019 commented
+                //    nds = node.SelectNodes(".//div[@class='KJDcUb WzRKRb']");//29-11-2019 //29-07-2020 commented
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='setTDc']");   // 25-10-2019
             }

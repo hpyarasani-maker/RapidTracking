@@ -654,12 +654,12 @@ namespace RapidTrackingSingleThread
             {
                 nds = node.SelectNodes(".//div[@class='mnr-c waTp2e xpd O9g5cc uUPGi']");  //19-06-2020   //20-01-2020 selector changed for two classic links
                 if (nds == null)
-                    nds = node.SelectNodes(".//div[@class='mnr-c O9g5cc uUPGi']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='HD8Pae mnr-c xpd O9g5cc uUPGi']|.//div/g-card[@class='XqIXXe']|.//g-card[@id='tscffb']|.//g-card[@class='g F6CFcc']|.//div[@class='khgTR lWEpfd']|.//div[@class='mnr-c fp-w qs-ic aig-grd']|.//g-card[@class='URhAHe']"); //20-05-2020 missing classic link //05-06-2020
-                if (nds == null)
+                    nds = node.SelectNodes(".//div[@class='mnr-c O9g5cc uUPGi']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='HD8Pae mnr-c xpd O9g5cc uUPGi']|.//div/g-card[@class='XqIXXe']|.//g-card[@id='tscffb']|.//g-card[@class='g F6CFcc']|.//div[@class='khgTR lWEpfd']|.//div[@class='mnr-c fp-w qs-ic aig-grd']|.//g-card[@class='URhAHe']|.//div[@class='mnr-c IcwJCe']"); //29-07-2020 //20-05-2020 missing classic link //05-06-2020
+                    if (nds == null)
                     if (node.Attributes["class"].Value == "mnr-c xpd O9g5cc uUPGi")
-                        nds = node.SelectNodes(".//div[@class='KJDcUb']");
-                if (nds == null)
-                    nds = node.SelectNodes(".//div[@class='KJDcUb WzRKRb']");//29-11-2019
+                        nds = node.SelectNodes(".//div[contains(@class,'KJDcUb')]"); //28-07-2020 //29-07-2020 included contains function
+                //if (nds == null)
+                //    nds = node.SelectNodes(".//div[@class='KJDcUb WzRKRb']");//29-11-2019 commented
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='setTDc']");   // 25-10-2019
             }

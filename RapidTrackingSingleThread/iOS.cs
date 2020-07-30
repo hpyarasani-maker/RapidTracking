@@ -1407,8 +1407,10 @@ namespace RapidTrackingSingleThread
                     hdrNode = node.SelectSingleNode(".//div[@class='HnYYW FIdh1']"); //21-04-2020  
                 if (hdrNode == null)
                     hdrNode = node.SelectSingleNode(".//div[@class='MQv7ze']");  // 23-06-2020
+                //if (hdrNode == null)
+                //    hdrNode = node.SelectSingleNode(".//h2[@class='qrShPb kno-ecr-pt PZPZlf HOpgu gsmt mfMhoc']/span");  //21-07-2020 included selector for KP title
                 if (hdrNode == null)
-                    hdrNode = node.SelectSingleNode(".//h2[@class='qrShPb kno-ecr-pt PZPZlf HOpgu gsmt mfMhoc']/span");  //21-07-2020 included selector for KP title
+                    hdrNode = node.SelectSingleNode(".//h2[contains(@class, 'qrShPb')]/span"); //30-07-2020 included contains functions to KP title
                 if (hdrNode != null)
                     hdr = hdrNode.InnerText;
 

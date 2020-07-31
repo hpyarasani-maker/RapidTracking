@@ -1985,7 +1985,7 @@ namespace RapidTrackingSingleThread
             {
                 nd = node.SelectSingleNode(".//div[@role='heading']/div[@class='HnYYW']");
                 if (nd == null)
-                    nd = node.SelectSingleNode(".//div[@role='heading']/div[@class='HnYYW i8lZMc']|.//div[@role='heading']/div[@class='HnYYW mfMhoc']");  // 24-06-2020   // 21-02-2020 
+                    nd = node.SelectSingleNode(".//div[@role='heading']/div[@class='HnYYW i8lZMc']|.//div[@role='heading']/div[@class='HnYYW mfMhoc']|.//div[@class='BNeawe deIvCb AP7Wnd']");//30-07-2020   // 24-06-2020   // 21-02-2020 
                 if (nd != null)
                 {
                     if (nd.InnerHtml.ToLower().StartsWith("video") || nd.InnerHtml.ToLower().StartsWith("vídeo")) //07-02-2020 included title for video block for different language

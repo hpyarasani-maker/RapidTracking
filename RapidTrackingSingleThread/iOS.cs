@@ -1721,7 +1721,7 @@ namespace RapidTrackingSingleThread
                         if (n == null)
                             n = nd.SelectSingleNode(".//div[@class='KiGY3d mB12kf JRhSae ZyAH8d']");
                         if (n == null)
-                            n = nd.SelectSingleNode(".//div[@class='oyj2db']");
+                            n = nd.SelectSingleNode(".//div[@class='oyj2db']|.//span[@class='rQMQod Xb5VRe']");//30-07-2020
                         //if (n == null)
                         //    n = nd.SelectSingleNode(".//div[@class='VibNM WGnkfe']|.//div[@jsname='ibnC6b']");
                         try

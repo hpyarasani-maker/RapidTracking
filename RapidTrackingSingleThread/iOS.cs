@@ -1865,7 +1865,7 @@ namespace RapidTrackingSingleThread
                     n = node.SelectSingleNode(".//div[@role='heading']");
                     if (n != null)
                     {
-                        if (n.InnerText.ToLower().Trim() == "videos" || n.InnerText.ToLower().Trim() == "video" || n.InnerText.Trim() == "فيديوهات")  // 16-12-2019
+                        if (n.InnerText.ToLower().Trim() == "videos" || n.InnerText.ToLower().Trim().Contains("video") || n.InnerText.Trim() == "فيديوهات")  //03-08-2020 included contains func for "video"// 16-12-2019
                             return "Videos";
                         if (n.InnerText.ToLower().Trim() == "recipes" || n.InnerText.ToLower().Trim() == "ricette")  // 20-03-2020 // 18-12-2019
                             return "Carousel";

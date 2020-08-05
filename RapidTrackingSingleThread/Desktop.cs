@@ -1115,6 +1115,8 @@ namespace RapidTrackingSingleThread
             // end of map changes.
 
             nd = node.SelectSingleNode(".//div[@id='kx']|.//div[@id='rrg']");
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='s9lrV aZVgnb']/a/span[@class='U0nHk mfMhoc']");  //05-08-2020
             if (nd != null)
             {
                 return "Carousel";

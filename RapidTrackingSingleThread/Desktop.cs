@@ -1166,6 +1166,7 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//h3[@class='_DM']") != null || node.SelectSingleNode(".//div[@id='imagebox_bigimages']") != null || node.SelectSingleNode(".//div[@class='mR2gOd']") != null //27-06-2020   // images
                 || node.SelectSingleNode(".//div[@class='e2BEnf']/h3") != null // videos
                 || node.SelectSingleNode(".//div[@class='e2BEnf U7izfe']/h3") != null  // videos
+                || node.SelectSingleNode(".//div[@class='mod NFQFxe oHglmf xzPb7d']") != null//images//05-08-2020
                 || node.SelectSingleNode(".//div[@id='knowledge-finance-wholepage__entity-summary']") != null); // 18-03-2020
 
             if (bVal == true)//2019-09-11

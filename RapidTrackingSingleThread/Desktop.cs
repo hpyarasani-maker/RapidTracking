@@ -910,8 +910,8 @@ namespace RapidTrackingSingleThread
                     if (n == null)
                         n = nd.SelectSingleNode(".//div[@class='nDgy9d']");     // changes on 02-07-2019
                     if (n == null)
-                        n = nd.SelectSingleNode(".//div[@class='mCBkyc jBgGLd']|.//div[@class='mCBkyc nDgy9d']|.//div[@class='mCBkyc oz3cqf vH5Lmd nDgy9d']|.//div[@class='mCBkyc oz3cqf vH5Lmd jBgGLd']"); //04-06-2020   //01-05-2020
-
+                        //   n = nd.SelectSingleNode(".//div[@class='mCBkyc jBgGLd']|.//div[@class='mCBkyc nDgy9d']|.//div[@class='mCBkyc oz3cqf vH5Lmd nDgy9d']|.//div[@class='mCBkyc oz3cqf vH5Lmd jBgGLd']"); //08-08-2020 //04-06-2020   //01-05-2020
+                        n = nd.SelectSingleNode(".//div[contains(@class, 'mCBkyc')]"); //08-08-2020 including contains function
                     if (n != null)
                         title = n.InnerText;
                     else

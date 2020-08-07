@@ -1854,7 +1854,7 @@ namespace RapidTrackingSingleThread
                 HtmlNode n = node.SelectSingleNode(".//div[@class='FRH7Ye gsrt']");
                 if (n == null)
                     n = node.SelectSingleNode(".//div[@class='TSyGMd']/a");  // changes on 05-07-2019
-                //07-08-2020
+                //07-08-2020 //included selector for people also ask
                 if (n == null)
                     n = node.SelectSingleNode(".//div[@class='HnYYW V88cHc']");
                 if (n != null)
@@ -2071,6 +2071,7 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@data-hveid='CD0Q-wE']") != null
                 || node.SelectSingleNode(".//h2[@class='XS4Rbf zbA8Me']") != null
                 || (node.SelectSingleNode(".//div[@class='kp-blk cUnQKe OJXvsb']") != null
+                || node.SelectSingleNode(".//div[@jsname='N760b']") != null//07-08-2020 included selector people also ask
                 && node.SelectSingleNode(".//div[@class='answered-question']") == null)
                 || (node.SelectSingleNode(".//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']") != null))
             //&& node.SelectSingleNode(".//div[@class='HnYYW i8lZMc']").InnerText != "People also search for")  //21-05-2020 )

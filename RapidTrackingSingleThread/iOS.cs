@@ -1851,6 +1851,10 @@ namespace RapidTrackingSingleThread
             if (nd != null)
             {
                 bool ts = true;
+                //start07-08-2020 //map selector
+                if (node.SelectSingleNode(".//img[@alt='Affected area']") != null)
+                    ts = false;
+                // end07-08-2020
                 HtmlNode n = node.SelectSingleNode(".//div[@class='FRH7Ye gsrt']");
                 if (n == null)
                     n = node.SelectSingleNode(".//div[@class='TSyGMd']/a");  // changes on 05-07-2019

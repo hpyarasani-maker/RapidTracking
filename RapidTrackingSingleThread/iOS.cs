@@ -1854,6 +1854,15 @@ namespace RapidTrackingSingleThread
                 HtmlNode n = node.SelectSingleNode(".//div[@class='FRH7Ye gsrt']");
                 if (n == null)
                     n = node.SelectSingleNode(".//div[@class='TSyGMd']/a");  // changes on 05-07-2019
+                //07-08-2020
+                if (n == null)
+                    n = node.SelectSingleNode(".//div[@class='HnYYW V88cHc']");
+                if (n != null)
+                {
+                    if (n.InnerText.ToLower().Contains("map"))
+                        ts = false;
+                }
+                //07-08-2020
                 if (n != null)
                 {
                     if (n.InnerText.ToLower().Contains("news"))

@@ -1858,15 +1858,6 @@ namespace RapidTrackingSingleThread
                 HtmlNode n = node.SelectSingleNode(".//div[@class='FRH7Ye gsrt']");
                 if (n == null)
                     n = node.SelectSingleNode(".//div[@class='TSyGMd']/a");  // changes on 05-07-2019
-                //07-08-2020 //included selector for people also ask
-                if (n == null)
-                    n = node.SelectSingleNode(".//div[@class='HnYYW V88cHc']");
-                if (n != null)
-                {
-                    if (n.InnerText.ToLower().Contains("map"))
-                        ts = false;
-                }
-                //07-08-2020
                 if (n != null)
                 {
                     if (n.InnerText.ToLower().Contains("news"))
@@ -1878,7 +1869,7 @@ namespace RapidTrackingSingleThread
                     n = node.SelectSingleNode(".//div[@role='heading']");
                     if (n != null)
                     {
-                        if (n.InnerText.ToLower().Trim() == "videos" || n.InnerText.ToLower().Trim().Contains("video") || n.InnerText.Trim() == "فيديوهات")  //03-08-2020 included contains func for "video"// 16-12-2019
+                        if (n.InnerText.ToLower().Trim() == "videos" || n.InnerText.ToLower().Trim().StartsWith("video") || n.InnerText.Trim() == "فيديوهات")  //03-08-2020 included contains func for "video"// 16-12-2019
                             return "Videos";
                         if (n.InnerText.ToLower().Trim() == "recipes" || n.InnerText.ToLower().Trim() == "ricette")  // 20-03-2020 // 18-12-2019
                             return "Carousel";

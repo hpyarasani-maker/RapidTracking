@@ -910,8 +910,8 @@ namespace RapidTrackingSingleThread
                     if (n == null)
                         n = nd.SelectSingleNode(".//div[@class='nDgy9d']");     // changes on 02-07-2019
                     if (n == null)
-                        n = nd.SelectSingleNode(".//div[@class='mCBkyc jBgGLd']|.//div[@class='mCBkyc nDgy9d']|.//div[@class='mCBkyc oz3cqf vH5Lmd nDgy9d']|.//div[@class='mCBkyc oz3cqf vH5Lmd jBgGLd']"); //04-06-2020   //01-05-2020
-
+                        //   n = nd.SelectSingleNode(".//div[@class='mCBkyc jBgGLd']|.//div[@class='mCBkyc nDgy9d']|.//div[@class='mCBkyc oz3cqf vH5Lmd nDgy9d']|.//div[@class='mCBkyc oz3cqf vH5Lmd jBgGLd']"); //08-08-2020 //04-06-2020   //01-05-2020
+                        n = nd.SelectSingleNode(".//div[contains(@class, 'mCBkyc')]"); //08-08-2020 including contains function
                     if (n != null)
                         title = n.InnerText;
                     else
@@ -1114,7 +1114,7 @@ namespace RapidTrackingSingleThread
             }
             // end of map changes.
 
-            nd = node.SelectSingleNode(".//div[@id='kx']|.//div[@id='rrg']");
+            nd = node.SelectSingleNode(".//div[@id='kx']|.//div[@id='rrg']|.//div[@class='oHJrJb']");//05-08-2020 included selector for carousel
             if (nd != null)
             {
                 return "Carousel";
@@ -1165,6 +1165,7 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//h3[@class='_DM']") != null || node.SelectSingleNode(".//div[@id='imagebox_bigimages']") != null || node.SelectSingleNode(".//div[@class='mR2gOd']") != null //27-06-2020   // images
                 || node.SelectSingleNode(".//div[@class='e2BEnf']/h3") != null // videos
                 || node.SelectSingleNode(".//div[@class='e2BEnf U7izfe']/h3") != null  // videos
+                || node.SelectSingleNode(".//div[@class='mod NFQFxe oHglmf xzPb7d']") != null//images//05-08-2020
                 || node.SelectSingleNode(".//div[@id='knowledge-finance-wholepage__entity-summary']") != null); // 18-03-2020
 
             if (bVal == true)//2019-09-11
@@ -1187,10 +1188,10 @@ namespace RapidTrackingSingleThread
 
             if (!bVal)
             {
-                HtmlNode nd = node.SelectSingleNode(".//h3|.//div[@class='HnYYW i8lZMc']|.//div[@class='LMMXP i8lZMc']|.//div[@class='e2BEnf U7izfe']/div|.//div[@class='LMMXP mfMhoc']");  //17-07-2020 //03-06-2020  // 02-06-2020    //01-05-2020
+                HtmlNode nd = node.SelectSingleNode(".//h3|.//div[contains(@class,'HnYYW')]|.//div[@class='LMMXP i8lZMc']|.//div[@class='e2BEnf U7izfe']/div|.//div[@class='LMMXP mfMhoc']"); //05-08-2020 included contains function  //17-07-2020 //03-06-2020  // 02-06-2020    //01-05-2020
                 if (nd != null)
-                    if (nd.InnerText == "Top stories" || nd.InnerText == "Huvudnyheter" || nd.InnerText == "Videos" || nd.InnerText == "Video" || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws" || nd.InnerText == "Vertaalresultaat" || nd.InnerText == "Recipes") //29-06-2020//03-06-2020 // 02-06-2020  // 08-04-2020
-                            return true;
+                    if (nd.InnerText == "Top stories" || nd.InnerText == "Huvudnyheter" || nd.InnerText == "Videos" || nd.InnerText == "Video" || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws" || nd.InnerText == "Vertaalresultaat" || nd.InnerText == "Recipes")//05-08-2020 //29-06-2020//03-06-2020 // 02-06-2020  // 08-04-2020
+                        return true;
 
                 // changes in map block on 19-06-2019.
                 nd = node.SelectSingleNode(".//g-img/img");
@@ -1229,7 +1230,7 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@class='zTpPx']") != null || node.SelectSingleNode(".//div[@class='zTpPx']/g-link/a") != null    // 28-05-2020   // 13-03-2020
                 || node.SelectSingleNode(".//h3[@class='r dO0Ag']") != null || node.SelectSingleNode(".//div[@class='DOqJne']") != null); //27-06-2020    //29-05-2020
         }
-        //Surendra comments
+        
         //07-11-2019
         private string GetRedirectedUrl(string url)
         {

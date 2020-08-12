@@ -1166,8 +1166,8 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@class='e2BEnf']/h3") != null // videos
                 || node.SelectSingleNode(".//div[@class='e2BEnf U7izfe']/h3") != null  // videos
                 || node.SelectSingleNode(".//div[@class='mod NFQFxe oHglmf xzPb7d']") != null//images//05-08-2020
-                || node.SelectSingleNode(".//div[@id='knowledge-finance-wholepage__entity-summary']") != null); // 18-03-2020
-
+                || node.SelectSingleNode(".//div[@id='knowledge-finance-wholepage__entity-summary']") != null // 18-03-2020
+                || node.SelectSingleNode(".//div[@class='I6TXqe osrp-blk']") != null); //12-08-2020 included selector for video card
             if (bVal == true)//2019-09-11
             {
                 try

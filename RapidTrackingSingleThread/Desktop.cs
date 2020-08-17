@@ -382,7 +382,7 @@ namespace RapidTrackingSingleThread
                     s.Append("</block>");
                 }
 
-                HtmlNodeCollection map = colt.SelectNodes(".//g-tray-header[@class='XvZKZb ndEm3b']/div/span");
+                HtmlNodeCollection map = colt.SelectNodes(".//g-tray-header[@class='XvZKZb ndEm3b']/div/span |.//div[@class='WuixVd']/a/div"); // 17-08-2020 included selector for map block
                 if (map != null)
                 {
                     foreach (var node in map)

@@ -387,7 +387,7 @@ namespace RapidTrackingSingleThread
                 {
                     foreach (var node in map)
                     {
-                        if (node.InnerText == "Affected area")
+                        if (node.InnerText == "Affected area" || node.SelectSingleNode(".//span/svg/path") != null) //17-08-2020 included selector for map block without innerText
                         {
                             s.Append("<block type=\"maps\" url=\"\"></block>");
                             break;

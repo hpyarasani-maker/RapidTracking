@@ -381,12 +381,12 @@ namespace RapidTrackingJobIDResults
                     s.Append("</block>");
                 }
 
-                HtmlNodeCollection map = colt.SelectNodes(".//g-tray-header[@class='XvZKZb ndEm3b']/div/span");
+                HtmlNodeCollection map = colt.SelectNodes(".//g-tray-header[@class='XvZKZb ndEm3b']/div/span |.//div[@class='WuixVd']/a/div"); // 17-08-2020 included selector for map block
                 if (map != null)
                 {
                     foreach (var node in map)
                     {
-                        if (node.InnerText == "Affected area")
+                        if (node.InnerText == "Affected area" || node.SelectSingleNode(".//span/svg/path") != null) //17-08-2020 included selector for map block without innerText
                         {
                             s.Append("<block type=\"maps\" url=\"\"></block>");
                             break;
@@ -429,7 +429,7 @@ namespace RapidTrackingJobIDResults
                     foreach (HtmlNode nd in nds)
                     {
                         // 02-06-2020
-                        if (nd.SelectSingleNode(".//table[@class='nrgt']") != null)
+                        if (nd.SelectSingleNode(".//table[@class='nrgt']") != null || node.SelectSingleNode(".//table[@class='jmjoTe']") != null) //22-08-2020 included dor site links
                         {
                             s.Append(GetSiteLinks(nd));
                             continue;
@@ -714,7 +714,7 @@ namespace RapidTrackingJobIDResults
                 }
             }
 
-            HtmlNodeCollection nds = node.SelectNodes(".//table[@class='nrgt']/tr");
+            HtmlNodeCollection nds = node.SelectNodes(".//table[@class='nrgt']/tr|.//table[@class='jmjoTe']/tr"); //22-08-2020 include selector for sitelinks
             if (nds != null)
             {
                 s.Append("<block type=\"siteLinks\" url=\"\">");
@@ -1129,7 +1129,7 @@ namespace RapidTrackingJobIDResults
             {
                 return "Finance";
             }
-            nd = node.SelectSingleNode(".//table[@class='nrgt']");
+            nd = node.SelectSingleNode(".//table[@class='nrgt']|.//table[@class='jmjoTe']");   //22-08-2020 included selector for sitelinks
             if (nd != null)
             {
                 return "SiteLinks";
@@ -1143,7 +1143,7 @@ namespace RapidTrackingJobIDResults
             bool bVal = (node.SelectSingleNode(".//h3[@class='zQlLed']") != null  // top stories       
                 || node.SelectSingleNode(".//div[@class='wXlZre B03h3d V14nKc ptcLIOszQJu__wholepage-card wp-msss']") != null//topstories 08-04-2020
                 || node.SelectSingleNode(".//div[@class='e2BEnf U7izfe']") != null//topstories 01-06-2020
-                || node.SelectSingleNode(".//table[@class='nrgt']") != null      // site links
+                || node.SelectSingleNode(".//table[@class='nrgt']") != null || node.SelectSingleNode(".//table[@class='jmjoTe']") != null      // site links  22-08-2020 included block type selector
                 || node.SelectSingleNode(".//img[@id='lu_map']") != null      // maps
                 || node.SelectSingleNode(".//div[@class='xERobd']") != null //  maps    //changed on 26-06-2019
                 || node.SelectSingleNode(".//div[@id='kx']") != null      // carousel
@@ -1165,8 +1165,8 @@ namespace RapidTrackingJobIDResults
                 || node.SelectSingleNode(".//div[@class='e2BEnf']/h3") != null // videos
                 || node.SelectSingleNode(".//div[@class='e2BEnf U7izfe']/h3") != null  // videos
                 || node.SelectSingleNode(".//div[@class='mod NFQFxe oHglmf xzPb7d']") != null//images//05-08-2020
-                || node.SelectSingleNode(".//div[@id='knowledge-finance-wholepage__entity-summary']") != null); // 18-03-2020
-
+                || node.SelectSingleNode(".//div[@id='knowledge-finance-wholepage__entity-summary']") != null // 18-03-2020
+                || node.SelectSingleNode(".//div[@class='I6TXqe osrp-blk']") != null); //12-08-2020 included selector for video card
             if (bVal == true)//2019-09-11
             {
                 try
@@ -1229,7 +1229,7 @@ namespace RapidTrackingJobIDResults
                 || node.SelectSingleNode(".//div[@class='zTpPx']") != null || node.SelectSingleNode(".//div[@class='zTpPx']/g-link/a") != null    // 28-05-2020   // 13-03-2020
                 || node.SelectSingleNode(".//h3[@class='r dO0Ag']") != null || node.SelectSingleNode(".//div[@class='DOqJne']") != null); //27-06-2020    //29-05-2020
         }
-       
+
         //07-11-2019
         private string GetRedirectedUrl(string url)
         {

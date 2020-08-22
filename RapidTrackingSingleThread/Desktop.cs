@@ -715,7 +715,7 @@ namespace RapidTrackingSingleThread
                 }
             }
 
-            HtmlNodeCollection nds = node.SelectNodes(".//table[@class='nrgt']/tr");
+            HtmlNodeCollection nds = node.SelectNodes(".//table[@class='nrgt']/tr|.//table[@class='jmjoTe']/tr"); //22-08-2020 include selector for sitelinks
             if (nds != null)
             {
                 s.Append("<block type=\"siteLinks\" url=\"\">");

@@ -430,7 +430,7 @@ namespace RapidTrackingSingleThread
                     foreach (HtmlNode nd in nds)
                     {
                         // 02-06-2020
-                        if (nd.SelectSingleNode(".//table[@class='nrgt']") != null)
+                        if (nd.SelectSingleNode(".//table[@class='nrgt']") != null || node.SelectSingleNode(".//table[@class='jmjoTe']") != null) //22-08-2020 included dor site links
                         {
                             s.Append(GetSiteLinks(nd));
                             continue;

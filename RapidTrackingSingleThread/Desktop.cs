@@ -1130,7 +1130,7 @@ namespace RapidTrackingSingleThread
             {
                 return "Finance";
             }
-            nd = node.SelectSingleNode(".//table[@class='nrgt']");
+            nd = node.SelectSingleNode(".//table[@class='nrgt']|.//table[@class='jmjoTe']");   //22-08-2020 included selector for sitelinks
             if (nd != null)
             {
                 return "SiteLinks";
@@ -1144,7 +1144,7 @@ namespace RapidTrackingSingleThread
             bool bVal = (node.SelectSingleNode(".//h3[@class='zQlLed']") != null  // top stories       
                 || node.SelectSingleNode(".//div[@class='wXlZre B03h3d V14nKc ptcLIOszQJu__wholepage-card wp-msss']") != null//topstories 08-04-2020
                 || node.SelectSingleNode(".//div[@class='e2BEnf U7izfe']") != null//topstories 01-06-2020
-                || node.SelectSingleNode(".//table[@class='nrgt']") != null      // site links
+                || node.SelectSingleNode(".//table[@class='nrgt']") != null || node.SelectSingleNode(".//table[@class='jmjoTe']") != null      // site links  22-08-2020 included block type selector
                 || node.SelectSingleNode(".//img[@id='lu_map']") != null      // maps
                 || node.SelectSingleNode(".//div[@class='xERobd']") != null //  maps    //changed on 26-06-2019
                 || node.SelectSingleNode(".//div[@id='kx']") != null      // carousel

@@ -87,7 +87,7 @@ namespace Bing_Receiving
         }
         private void Form1_Load(object sender, EventArgs e)
         {             
-            this.Text = "D_Bing_Mobile_Receving_GT0_3";
+            this.Text = "D_Bing_Mobile_Receving_GT20_2";
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)

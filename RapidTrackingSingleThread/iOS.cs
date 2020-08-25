@@ -602,10 +602,6 @@ namespace RapidTrackingSingleThread
                             {
                                 url = n.Attributes["data-pcu"].Value.Trim();
                             }
-                            else if (!string.IsNullOrEmpty(SetUrl(n.Attributes["data-src"]?.Value)))
-                            {
-                                url = n.Attributes["data-src"].Value.Trim();
-                            }
                             else
                             {
                                 n = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite|.//div[@class='QNz0M ellip GsCRYb']/cite");

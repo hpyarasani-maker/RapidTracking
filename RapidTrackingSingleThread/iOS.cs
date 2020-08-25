@@ -2439,6 +2439,7 @@ namespace RapidTrackingSingleThread
 
         public string SetUrl(string url)
         {
+            if (string.IsNullOrEmpty(url)) return string.Empty; //24-08-2020
             //21-11-2019
             url = GetRedirectedUrl(WebUtility.HtmlDecode(url).Trim());
             if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e"))

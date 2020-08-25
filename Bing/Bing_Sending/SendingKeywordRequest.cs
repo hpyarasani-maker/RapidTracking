@@ -82,8 +82,8 @@ namespace Bing_Sending
             string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
 
             //string callbackURL = "http://previous.azurewebsites.net/api/callbackbingcomma/";
-            string callbackURL = "http://previous.azurewebsites.net/api/callbackbingdesktop/";
-            //string callbackURL = "http://previous.azurewebsites.net/api/callbackbingmobile/";// previous other mobile  
+            //string callbackURL = "http://previous.azurewebsites.net/api/callbackbingdesktop/";
+            string callbackURL = "http://previous.azurewebsites.net/api/callbackbingmobile/";// previous other mobile  
 
 
 
@@ -94,17 +94,17 @@ namespace Bing_Sending
                 domain = sp.domain,
                 query = sp.query.Split(','),
                 //query = keyword,
-                limit = 10,
+                //limit = 10,
                 pages = 10,
                 start_page = 1,
-                locale = null,
+                locale = sp.language,
                 callback_url = callbackURL,  
                 geo_location = sp.geo_location,
-                parse = 1, 
+                parse = false, 
                 user_agent_type = sp.device,
-                context = new List<Context> {
-                    new Context("results_language", sp.language) 
-                }
+                //context = new List<Context> {
+                //    new Context("results_language", sp.language) 
+                //}
             };
                   
             

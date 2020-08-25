@@ -24,7 +24,7 @@ namespace Bing_Receiving
         {
             Thread t1 = new Thread(new ThreadStart(StartProcess))
             {
-                Name = "Bing_Mobile_GT0_3"
+                Name = "Bing_Mobile_GT20_2"
             };
             t1.Start();
         }
@@ -92,6 +92,9 @@ namespace Bing_Receiving
             string domain = job["domain"].Value<string>();
             string jobid = job["id"].Value<string>();
             int seid=0;
+
+            StringBuilder sb = new StringBuilder();
+
             try
             {
                 string username = "gpidatametrics";
@@ -116,29 +119,41 @@ namespace Bing_Receiving
                         seid = sp.seid;
                         JObject obj = JObject.Parse(response);
                         var cont = obj["results"];//[0]["content"];
-                        int i = 0;
+                        //int i = 0;
                         foreach (JObject jo in cont)
                         {
+                            response = jo["content"].Value<string>();
+                            sb.Append(response); 
                             //i++;
-                            ArrayList addURLs = new ArrayList();
-                            response = jo["content"].Value<string>(); //["content"].Value<string>();
-                            //System.IO.File.WriteAllText(@"c:\inetpub\wwwroot\html\" + kw + "_"+i+".html", response, Encoding.UTF8);
-                            if (device == "desktop")
-                                addURLs = DesktopPattern(response);
-                            else
-                                addURLs= MobilePattern(response);
-                            foreach(string str in addURLs)
-                            {
-                                if(!arRes.Contains(str))
-                                arRes.Add(str);
-                            }
-                        }
+                            //ArrayList addURLs = new ArrayList();
+                            //response = jo["content"].Value<string>(); //["content"].Value<string>();
 
+                            ////System.IO.File.WriteAllText(@"c:\inetpub\wwwroot\html\" + kw + "_"+i+".html", response, Encoding.UTF8);
+                            //if (device == "desktop")
+                            //    addURLs = DesktopPattern(response);
+                            //else
+                            //    addURLs= MobilePattern(response);
+                            //foreach(string str in addURLs)
+                            //{
+                            //    if(!arRes.Contains(str))
+                            //    arRes.Add(str);
+                            //}
+                        }
+                        if (device == "desktop")
+                        {
+                            //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + kw + ".html", sb.ToString(), Encoding.UTF8);
+                            arRes = DesktopPattern(sb.ToString()); 
+                        }
+                        else
+                        {
+                            //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + kw + ".html", sb.ToString(), Encoding.UTF8);
+                            arRes = MobilePattern(sb.ToString()); 
+                        }
 
                     }
                     catch (Exception ex)
                     {
-                        //throw ex;
+                        throw new Exception(ex.Message.ToString());
                     }
                     if (arRes.Count > 100)                    
                         arRes.RemoveRange(100, arRes.Count - 100);
@@ -301,11 +316,11 @@ namespace Bing_Receiving
                     {
                         try
                         {
-                            if (alRes.Count > 20)
+                            if (alRes.Count > 50)
                             {
                                 SendXmlToAPI(path);
                                 //Insert100DashBoardData(qry); //storing 100 URLs
-                                InsertDashBoardData_Callback( kw, seid, alRes.Count,alRes[0].ToString(), jobid);
+                                InsertDashBoardData_Callback(kw, seid, alRes.Count, alRes[0].ToString(), jobid);
                             }
                             //else
                             //{

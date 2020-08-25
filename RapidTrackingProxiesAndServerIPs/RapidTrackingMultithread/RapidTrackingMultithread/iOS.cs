@@ -1398,8 +1398,10 @@ namespace RapidTrackingMultithread
                     hdrNode = node.SelectSingleNode(".//div[@class='HnYYW FIdh1']"); //21-04-2020  
                 if (hdrNode == null)
                     hdrNode = node.SelectSingleNode(".//div[@class='MQv7ze']");  // 23-06-2020
+                //if (hdrNode == null)
+                //    hdrNode = node.SelectSingleNode(".//h2[@class='qrShPb kno-ecr-pt PZPZlf HOpgu gsmt mfMhoc']/span");  //21-07-2020 included selector for KP title
                 if (hdrNode == null)
-                    hdrNode = node.SelectSingleNode(".//h2[@class='qrShPb kno-ecr-pt PZPZlf HOpgu gsmt mfMhoc']/span");  //21-07-2020 included selector for KP title
+                    hdrNode = node.SelectSingleNode(".//h2[contains(@class, 'qrShPb')]/span"); //30-07-2020 included contains functions to KP title
                 if (hdrNode != null)
                     hdr = hdrNode.InnerText;
 
@@ -1699,7 +1701,7 @@ namespace RapidTrackingMultithread
             if (nds == null)
                 nds = node.SelectNodes(".//div[@data-attrid='OsrpVideos']/a|.//div[@class='ALzVK']/div/div/a");
             if (nds == null)
-                nds = node.SelectNodes(".//div[@jsname='ibnC6b']/a|.//div[@jscontroller='OmmTPc']"); //26-06-2020
+                nds = node.SelectNodes(".//div[@jsname='ibnC6b']/a|.//div[@jscontroller='OmmTPc']|.//div[@class='QevLbc']/a"); //30-07-2020 //26-06-2020 included select for videos
             if (nds != null)   // 16-09-2019
                 foreach (HtmlNode nd in nds)
                 {
@@ -1710,7 +1712,7 @@ namespace RapidTrackingMultithread
                         if (n == null)
                             n = nd.SelectSingleNode(".//div[@class='KiGY3d mB12kf JRhSae ZyAH8d']");
                         if (n == null)
-                            n = nd.SelectSingleNode(".//div[@class='oyj2db']");
+                            n = nd.SelectSingleNode(".//div[@class='oyj2db']|.//span[@class='rQMQod Xb5VRe']");//30-07-2020
                         //if (n == null)
                         //    n = nd.SelectSingleNode(".//div[@class='VibNM WGnkfe']|.//div[@jsname='ibnC6b']");
                         try
@@ -1840,6 +1842,10 @@ namespace RapidTrackingMultithread
             if (nd != null)
             {
                 bool ts = true;
+                //start07-08-2020 //map selector
+                if (node.SelectSingleNode(".//img[@alt='Affected area']") != null)
+                    ts = false;
+                // end07-08-2020
                 HtmlNode n = node.SelectSingleNode(".//div[@class='FRH7Ye gsrt']");
                 if (n == null)
                     n = node.SelectSingleNode(".//div[@class='TSyGMd']/a");  // changes on 05-07-2019
@@ -1854,7 +1860,7 @@ namespace RapidTrackingMultithread
                     n = node.SelectSingleNode(".//div[@role='heading']");
                     if (n != null)
                     {
-                        if (n.InnerText.ToLower().Trim() == "videos" || n.InnerText.ToLower().Trim() == "video" || n.InnerText.Trim() == "فيديوهات")  // 16-12-2019
+                        if (n.InnerText.ToLower().Trim() == "videos" || n.InnerText.ToLower().Trim().StartsWith("video") || n.InnerText.Trim() == "فيديوهات")  //03-08-2020 included contains func for "video"// 16-12-2019
                             return "Videos";
                         if (n.InnerText.ToLower().Trim() == "recipes" || n.InnerText.ToLower().Trim() == "ricette")  // 20-03-2020 // 18-12-2019
                             return "Carousel";
@@ -1974,7 +1980,7 @@ namespace RapidTrackingMultithread
             {
                 nd = node.SelectSingleNode(".//div[@role='heading']/div[@class='HnYYW']");
                 if (nd == null)
-                    nd = node.SelectSingleNode(".//div[@role='heading']/div[@class='HnYYW i8lZMc']|.//div[@role='heading']/div[@class='HnYYW mfMhoc']");  // 24-06-2020   // 21-02-2020 
+                    nd = node.SelectSingleNode(".//div[@role='heading']/div[@class='HnYYW i8lZMc']|.//div[@role='heading']/div[@class='HnYYW mfMhoc']|.//div[@class='BNeawe deIvCb AP7Wnd']");//30-07-2020   // 24-06-2020   // 21-02-2020 
                 if (nd != null)
                 {
                     if (nd.InnerHtml.ToLower().StartsWith("video") || nd.InnerHtml.ToLower().StartsWith("vídeo")) //07-02-2020 included title for video block for different language
@@ -2051,6 +2057,7 @@ namespace RapidTrackingMultithread
                 || node.SelectSingleNode(".//div[@data-hveid='CD0Q-wE']") != null
                 || node.SelectSingleNode(".//h2[@class='XS4Rbf zbA8Me']") != null
                 || (node.SelectSingleNode(".//div[@class='kp-blk cUnQKe OJXvsb']") != null
+                || node.SelectSingleNode(".//div[@jsname='N760b']") != null//07-08-2020 included selector people also ask
                 && node.SelectSingleNode(".//div[@class='answered-question']") == null)
                 || (node.SelectSingleNode(".//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']") != null))
             //&& node.SelectSingleNode(".//div[@class='HnYYW i8lZMc']").InnerText != "People also search for")  //21-05-2020 )
@@ -2190,7 +2197,7 @@ namespace RapidTrackingMultithread
             {
                 if (nd.InnerText == "Top stories" || nd.InnerText == "Noticias principales" || nd.InnerText == "Interesting finds"
                      || nd.InnerText.ToLower().Contains("últimas noticias") || nd.InnerText.ToLower().Contains("det senaste")
-                     || nd.InnerText.ToLower().StartsWith("latest")) //23-06-2020 //22-06-2020
+                     || nd.InnerText.ToLower().StartsWith("latest") || nd.InnerText.ToLower().Contains("map"))//07-08-2020  //23-06-2020 //22-06-2020
                     if (node.SelectSingleNode(".//div[@class='KJDcUb']") == null) //26-06-2020
                         return true;
                     else if (nd.InnerText == "More results" || nd.InnerText == "Top results" || nd.InnerText == "Toppresultater"
@@ -2339,7 +2346,8 @@ namespace RapidTrackingMultithread
                 || node.SelectSingleNode(".//div[@class='vC5Ym']") != null
                 || node.SelectSingleNode(".//div[@class='kp-blk Wnoohf OJXvsb']") != null
                 || (node.SelectSingleNode(".//g-card[@class='XqIXXe']") != null && node.SelectSingleNode(".//g-card[@id='tscffb']") != null)
-                 || node.SelectSingleNode(".//div[@class='khgTR lWEpfd']") != null);  //22-06-2020
+                 || node.SelectSingleNode(".//div[@class='khgTR lWEpfd']") != null  //22-06-2020
+                 || node.SelectSingleNode(".//div[@class='ywTQJc']") != null); //07-08-2020 
         }
 
         internal object GetTop100GoogleUKMobileImages_PageURLs(string kw, string v1, string v2, string v3, string v4, string v5)

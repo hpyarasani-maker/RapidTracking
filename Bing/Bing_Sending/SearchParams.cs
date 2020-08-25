@@ -32,11 +32,11 @@ namespace Bing_Sending
             },
             new SearchProperties()
             {
-                seid =190, domain ="com", geo_location="United States", language="en", device="mobile_android"
+                seid =190, domain ="com", geo_location="United States", language="en", device="mobile"
             },
               new SearchProperties()
             {
-                seid =191, domain ="com", geo_location="United Kingdom", language="en" , device="mobile_android"
+                seid =191, domain ="com", geo_location="United Kingdom", language="en" , device="mobile"
             },
         };
     }

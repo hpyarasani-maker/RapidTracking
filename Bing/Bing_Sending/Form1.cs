@@ -26,7 +26,7 @@ namespace Bing_Sending
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Text = "D_Bing_Desktop_Sending";
+            Text = "D_Bing_Mobile_Sending";
             
             date_picker.Value = DateTime.Today; //.AddDays(-1);
 
@@ -82,19 +82,19 @@ namespace Bing_Sending
             this.Invoke((MethodInvoker)delegate ()
             {
                 worklist.Items.Clear();
-                //worklist.Items.Add("190:donald Trump");
+                //worklist.Items.Add("191:12kg kettlebell,covid mask effectiveness,c j sansom books");
                 worklist.Refresh();
                 date_picker.Format = DateTimePickerFormat.Custom;
                 date_picker.CustomFormat = "yyyy-MM-dd";
             });
 
-           // return;
+            //return;
 
             Cursor.Current = Cursors.WaitCursor;
             string myDate = date_picker.Text;
 
-            //string strQry = "exec [dbo].[GetBulkMobile_Bing] '" + myDate + "'"; 
-            string strQry = "exec [dbo].[GetBulkDesktop_Bing] '" + myDate + "'";
+            string strQry = "exec [dbo].[GetBulkMobile_Bing] '" + myDate + "'";
+            //string strQry = "exec [dbo].[GetBulkDesktop_Bing] '" + myDate + "'";
 
 
             SqlConnection objCon = null;

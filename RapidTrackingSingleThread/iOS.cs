@@ -322,7 +322,9 @@ namespace RapidTrackingSingleThread
                         if (t != null)
                             title = t.InnerText;
                         //end 22-06-2020
-                        if (!string.IsNullOrEmpty(SetUrl(n.Attributes["href"].Value))) // 12-06-2020
+
+                        //25-08-2020 commented
+                        /*if (!string.IsNullOrEmpty(SetUrl(n.Attributes["href"].Value))) // 12-06-2020
                         {
                             var url = n.Attributes["href"].Value.Trim();
                             //url = GetRedirectedUrl(url);  // 12-06-2020
@@ -333,7 +335,37 @@ namespace RapidTrackingSingleThread
                             n = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite");
                             if (n != null)
                                 s.Append("<item url=\"" + SetUrl(n.InnerText) + "\" title=\"" + SetTitle(title) + "\" />");
+                        }*/
+                        //25-08-2020
+
+                        //24-08-2020
+                        string url = string.Empty;
+                        if (!string.IsNullOrEmpty(SetUrl(n.Attributes["href"]?.Value))) // 12-06-2020
+                        {
+                            url = n.Attributes["href"].Value.Trim();
                         }
+                        else if (!string.IsNullOrEmpty(SetUrl(n.Attributes["data-rw"]?.Value)))
+                        {
+                            url = n.Attributes["data-rw"].Value.Trim();
+                        }
+                        else if (!string.IsNullOrEmpty(SetUrl(n.Attributes["data-pcu"]?.Value)))
+                        {
+                            url = n.Attributes["data-pcu"].Value.Trim();
+                        }
+                        else if (!string.IsNullOrEmpty(SetUrl(n.Attributes["data-src"]?.Value)))
+                        {
+                            url = n.Attributes["data-src"].Value.Trim();
+                        }
+                        else
+                        {
+                            n = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite|.//div[@class='QNz0M ellip GsCRYb']/cite");
+                            if (n != null)
+                                url = n.InnerText;
+                        }
+                        if (!string.IsNullOrEmpty(url))
+                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                        // end 24-08-2020
+
                     }
                 }
                 s.Append("</block>");

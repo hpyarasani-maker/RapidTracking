@@ -319,7 +319,9 @@ namespace TrendingReceiving
                         if (t != null)
                             title = t.InnerText;
                         //end 22-06-2020
-                        if (!string.IsNullOrEmpty(SetUrl(n.Attributes["href"].Value))) // 12-06-2020
+
+                        //25-08-2020 commented
+                        /*if (!string.IsNullOrEmpty(SetUrl(n.Attributes["href"].Value))) // 12-06-2020
                         {
                             var url = n.Attributes["href"].Value.Trim();
                             //url = GetRedirectedUrl(url);  // 12-06-2020
@@ -330,7 +332,33 @@ namespace TrendingReceiving
                             n = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite");
                             if (n != null)
                                 s.Append("<item url=\"" + SetUrl(n.InnerText) + "\" title=\"" + SetTitle(title) + "\" />");
+                        }*/
+                        //25-08-2020
+
+                        //24-08-2020
+                        string url = string.Empty;
+                        if (!string.IsNullOrEmpty(SetUrl(n.Attributes["href"]?.Value))) // 12-06-2020
+                        {
+                            url = n.Attributes["href"].Value.Trim();
                         }
+                        else if (!string.IsNullOrEmpty(SetUrl(n.Attributes["data-rw"]?.Value)))
+                        {
+                            url = n.Attributes["data-rw"].Value.Trim();
+                        }
+                        else if (!string.IsNullOrEmpty(SetUrl(n.Attributes["data-pcu"]?.Value)))
+                        {
+                            url = n.Attributes["data-pcu"].Value.Trim();
+                        }
+                        else
+                        {
+                            n = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite|.//div[@class='QNz0M ellip GsCRYb']/cite");
+                            if (n != null)
+                                url = n.InnerText;
+                        }
+                        if (!string.IsNullOrEmpty(url))
+                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                        // end 24-08-2020
+
                     }
                 }
                 s.Append("</block>");
@@ -505,8 +533,8 @@ namespace TrendingReceiving
                     col = crNode.SelectNodes(".//div[@id='tadsb']/ol/li"); // 21-02-2020 included selector for the text ads block
                 if (col == null)
                     col = doc.DocumentNode.SelectNodes("//div[@id='tads']/div/ol/li|//div[@jsname='hWE2jd']"); //17-06-2020 //08-04-2020
-                //if (col == null)
-                //    col = doc.DocumentNode.SelectNodes("//div[@class='WcsE3 dJMePd']/div");  // 01-04-2020 commented on 16-06-2020
+                if (col == null)
+                    col = doc.DocumentNode.SelectNodes("//div[@id='tads']/div[@class='uEierd']"); //25-08-2020
                 if (col == null)
                     col = doc.DocumentNode.SelectNodes("//div[@jsname='hWE2jd']");//16-06-2020
                 // 12-06-2020
@@ -538,25 +566,48 @@ namespace TrendingReceiving
                                 : (n.SelectSingleNode(".//div[@role='heading']") != null) ? n.SelectSingleNode(".//div[@role='heading']").InnerText
                                 : (n.SelectSingleNode(".//div[@class='mdzVfb gAWudd']") != null) ? n.SelectSingleNode(".//div[@class='mdzVfb gAWudd']").InnerText  // 01-04-2020
                                 : n.InnerText;
-
-                            if (!n.Attributes["href"].Value.StartsWith("/"))
+                            //25-08-2020 commented old code
+                            /* if (!n.Attributes["href"].Value.StartsWith("/"))
+                             {
+                                 var url = n.Attributes["href"].Value;
+                                 url = GetRedirectedUrl(url);
+                                 s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                             }
+                             else if (n.Attributes["data-rw"] != null && !n.Attributes["data-rw"].Value.StartsWith("/"))  // changes on 28-06-2019
+                             {
+                                 var url = n.Attributes["data-rw"].Value;
+                                 url = GetRedirectedUrl(url);
+                                 s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                             }
+                             else
+                             {
+                                 n = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite|.//div[@class='QNz0M ellip GsCRYb']/cite");   // changes on 28-06-2019
+                                 if (n != null)
+                                     s.Append("<item url=\"" + SetUrl(n.InnerText) + "\" title=\"" + SetTitle(title) + "\" />");
+                             }*/
+                            //24-08-2020
+                            string url = string.Empty;
+                            if (!string.IsNullOrEmpty(SetUrl(n.Attributes["href"]?.Value))) // 12-06-2020
                             {
-                                var url = n.Attributes["href"].Value;
-                                url = GetRedirectedUrl(url);
-                                s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                                url = n.Attributes["href"].Value.Trim();
                             }
-                            else if (n.Attributes["data-rw"] != null && !n.Attributes["data-rw"].Value.StartsWith("/"))  // changes on 28-06-2019
+                            else if (!string.IsNullOrEmpty(SetUrl(n.Attributes["data-rw"]?.Value)))
                             {
-                                var url = n.Attributes["data-rw"].Value;
-                                url = GetRedirectedUrl(url);
-                                s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                                url = n.Attributes["data-rw"].Value.Trim();
+                            }
+                            else if (!string.IsNullOrEmpty(SetUrl(n.Attributes["data-pcu"]?.Value)))
+                            {
+                                url = n.Attributes["data-pcu"].Value.Trim();
                             }
                             else
                             {
-                                n = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite|.//div[@class='QNz0M ellip GsCRYb']/cite");   // changes on 28-06-2019
+                                n = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite|.//div[@class='QNz0M ellip GsCRYb']/cite");
                                 if (n != null)
-                                    s.Append("<item url=\"" + SetUrl(n.InnerText) + "\" title=\"" + SetTitle(title) + "\" />");
+                                    url = n.InnerText;
                             }
+                            if (!string.IsNullOrEmpty(url))
+                                s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                            // end 24-08-2020
                         }
                     }
                     s.Append("</block>");
@@ -651,7 +702,7 @@ namespace TrendingReceiving
             {
                 nds = node.SelectNodes(".//div[@class='mnr-c waTp2e xpd O9g5cc uUPGi']");  //19-06-2020   //20-01-2020 selector changed for two classic links
                 if (nds == null)
-                    nds = node.SelectNodes(".//div[@class='mnr-c O9g5cc uUPGi']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='HD8Pae mnr-c xpd O9g5cc uUPGi']|.//div/g-card[@class='XqIXXe']|.//g-card[@id='tscffb']|.//g-card[@class='g F6CFcc']|.//div[@class='khgTR lWEpfd']|.//div[@class='mnr-c fp-w qs-ic aig-grd']|.//g-card[@class='URhAHe']|.//div[@class='mnr-c IcwJCe']"); //29-07-2020 //20-05-2020 missing classic link //05-06-2020
+                    nds = node.SelectNodes(".//div[@class='mnr-c O9g5cc uUPGi']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='HD8Pae mnr-c xpd O9g5cc uUPGi']|.//div/g-card[@class='XqIXXe']|.//g-card[@id='tscffb']|.//g-card[@class='g F6CFcc']|.//div[@class='khgTR lWEpfd']|.//div[@class='khgTR R5lVqb']|.//div[@class='mnr-c fp-w qs-ic aig-grd']|.//g-card[@class='URhAHe']|.//div[@class='mnr-c IcwJCe']");//26-08-2020 incuded contains functions to the selector//29-07-2020 //20-05-2020 missing classic link //05-06-2020
                 if (nds == null)
                     if (node.Attributes["class"].Value == "mnr-c xpd O9g5cc uUPGi")
                         nds = node.SelectNodes(".//div[contains(@class,'KJDcUb')]"); //28-07-2020 //29-07-2020 included contains function
@@ -823,7 +874,7 @@ namespace TrendingReceiving
                         {
                             if (nd.Attributes.Count == 0 || nd.Attributes["class"].Value == "mnr-c" || nd.Attributes["class"].Value == "mnr-c xpd O9g5cc uUPGi"
                              || nd.Attributes["class"].Value == "mnr-c O9g5cc uUPGi" || nd.Attributes["class"].Value == "mnr-c waTp2e xpd O9g5cc uUPGi"
-                             || nd.Attributes["class"].Value == "MGqjK" || nd.Attributes["class"].Value == "setTDc" || nd.Attributes["class"].Value == "khgTR lWEpfd"   // 20-05-2020
+                             || nd.Attributes["class"].Value == "MGqjK" || nd.Attributes["class"].Value == "setTDc" || nd.Attributes["class"].Value.Contains("khgTR") //26-08-2020    // 20-05-2020
                              || node.Attributes["class"]?.Value == "mnr-c xpd O9g5cc uUPGi") //20-01-2020 // selectors for two classic links block
                             {
                                 //17-10-2019
@@ -1845,7 +1896,7 @@ namespace TrendingReceiving
                 nd = node.SelectSingleNode(".//div[@class='qDSRad']");  // changes on 05-07-2019
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='xSoq1 HOslld']"); //19-06-2020
-            if (nd != null)
+            if (nd != null && node.SelectSingleNode(".//div[contains(@class,'knowledge-panel')]") == null) //26-08-2020 included KP selector
             {
                 bool ts = true;
                 //start07-08-2020 //map selector
@@ -2097,7 +2148,8 @@ namespace TrendingReceiving
                 && node.SelectSingleNode(".//div[@class='answered-question']") != null)
                 || node.SelectSingleNode(".//div[@class='vkc_np kkww4d']") != null    // changed on 05-07-2019
                 || node.SelectSingleNode(".//div[@class='UDZeY fAgajc']") != null     // 13-03-2020
-                || node.SelectSingleNode(".//div[@class='wQu7gc']") != null)    //08-07-2020 mising answered card
+                || node.SelectSingleNode(".//div[@class='wQu7gc']") != null   //08-07-2020 mising answered card
+                || node.SelectSingleNode(".//div[@class='kp-blk OJXvsb']") != null)  //26-08-2020 included selector for answered 
 
                 return "AnswerCard";
 
@@ -2306,6 +2358,8 @@ namespace TrendingReceiving
                 nd = node.SelectSingleNode(".//div[@class='KJDcUb']/a[@class='C8nzq BmP5tf']");  // 25-10-2019
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='kp-blk Wnoohf OJXvsb']");
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='khgTR R5lVqb']");  //26-08-2020 selector for missing classic link
             if (nd != null)
             {
                 return false;
@@ -2353,7 +2407,8 @@ namespace TrendingReceiving
                 || node.SelectSingleNode(".//div[@class='kp-blk Wnoohf OJXvsb']") != null
                 || (node.SelectSingleNode(".//g-card[@class='XqIXXe']") != null && node.SelectSingleNode(".//g-card[@id='tscffb']") != null)
                  || node.SelectSingleNode(".//div[@class='khgTR lWEpfd']") != null  //22-06-2020
-                 || node.SelectSingleNode(".//div[@class='ywTQJc']") != null); //07-08-2020 
+                 || node.SelectSingleNode(".//div[@class='ywTQJc']") != null //07-08-2020 
+                || node.SelectSingleNode(".//div[@class='khgTR R5lVqb']") != null); //26-08-2020 selector for missing classic link
         }
 
         internal object GetTop100GoogleUKMobileImages_PageURLs(string kw, string v1, string v2, string v3, string v4, string v5)
@@ -2410,6 +2465,7 @@ namespace TrendingReceiving
 
         public string SetUrl(string url)
         {
+            if (string.IsNullOrEmpty(url)) return string.Empty; //24-08-2020
             //21-11-2019
             url = GetRedirectedUrl(WebUtility.HtmlDecode(url).Trim());
             if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e"))

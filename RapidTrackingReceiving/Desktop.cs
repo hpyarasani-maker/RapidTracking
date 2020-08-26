@@ -228,17 +228,17 @@ namespace Oxylabs_BulkKeywords
                     if (n != null)
                     {
                         HtmlNode tittlenode = n.SelectSingleNode(".//h3|.//div[@role='heading']");//27-06-2020
-                                                                                                  //25-08-2020 commented
-                                                                                                  /* if (!n.Attributes["href"].Value.StartsWith("/"))
-                                                                                                       s.Append("<item url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(tittlenode.InnerText) + "\" />");
-                                                                                                   else
-                                                                                                   {
-                                                                                                       string title = tittlenode.InnerText;
-                                                                                                       n = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite");
-                                                                                                       if (n != null)
-                                                                                                           s.Append("<item url=\"" + SetUrl(n.InnerText) + "\" title=\"" + SetTitle(title) + "\" />");
-                                                                                                   }*/
-                                                                                                  //25-08-2020
+                        //25-08-2020 commented
+                       /* if (!n.Attributes["href"].Value.StartsWith("/"))
+                            s.Append("<item url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(tittlenode.InnerText) + "\" />");
+                        else
+                        {
+                            string title = tittlenode.InnerText;
+                            n = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite");
+                            if (n != null)
+                                s.Append("<item url=\"" + SetUrl(n.InnerText) + "\" title=\"" + SetTitle(title) + "\" />");
+                        }*/
+                         //25-08-2020
                         string url = string.Empty;
                         string title = tittlenode.InnerText;
 

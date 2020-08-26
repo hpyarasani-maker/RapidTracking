@@ -2361,6 +2361,8 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[@class='KJDcUb']/a[@class='C8nzq BmP5tf']");  // 25-10-2019
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='kp-blk Wnoohf OJXvsb']");
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='khgTR R5lVqb']");  //26-08-2020 selector for missing classic link
             if (nd != null)
             {
                 return false;

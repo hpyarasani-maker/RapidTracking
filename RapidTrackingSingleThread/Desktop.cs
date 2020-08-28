@@ -239,21 +239,21 @@ namespace RapidTrackingSingleThread
                         //27-08-2020
                         if (!string.IsNullOrEmpty(SetUrl(n.Attributes["href"]?.Value)))
                         {
-                            url = SetUrl(n.Attributes["href"].Value);
+                            url = GetRedirectedUrl_TextAds(n.Attributes["href"].Value);
                         }
                         else if (!string.IsNullOrEmpty(SetUrl(n.Attributes["data-rw"]?.Value)))
                         {
-                            url = SetUrl(n.Attributes["data-rw"].Value);
+                            url = GetRedirectedUrl_TextAds(n.Attributes["data-rw"].Value);
                         }
                         else if (!string.IsNullOrEmpty(SetUrl(n.Attributes["data-pcu"]?.Value)))
                         {
-                            url = SetUrl(n.Attributes["data-pcu"].Value);
+                            url = GetRedirectedUrl_TextAds(n.Attributes["data-pcu"].Value);
                         }
                         else
                         {
                             HtmlNode n1 = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite");
                             if (n1 != null)
-                                url = SetUrl(n1.InnerText);
+                                url = GetRedirectedUrl_TextAds(n1.InnerText);
 
                             if (string.IsNullOrEmpty(url))
                                 url = GetRedirectedUrl_TextAds(n.Attributes["href"]?.Value);
@@ -398,21 +398,21 @@ namespace RapidTrackingSingleThread
 
                             if (!string.IsNullOrEmpty(SetUrl(n.Attributes["href"]?.Value)))
                             {
-                                url = SetUrl(n.Attributes["href"].Value);
+                                url = GetRedirectedUrl_TextAds(n.Attributes["href"].Value);
                             }
                             else if (!string.IsNullOrEmpty(SetUrl(n.Attributes["data-rw"]?.Value)))
                             {
-                                url = SetUrl(n.Attributes["data-rw"].Value);
+                                url = GetRedirectedUrl_TextAds(n.Attributes["data-rw"].Value);
                             }
                             else if (!string.IsNullOrEmpty(SetUrl(n.Attributes["data-pcu"]?.Value)))
                             {
-                                url = SetUrl(n.Attributes["data-pcu"].Value);
+                                url = GetRedirectedUrl_TextAds(n.Attributes["data-pcu"].Value);
                             }
                             else
                             {
                                 HtmlNode n1 = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite");
                                 if (n1 != null)
-                                    url = SetUrl(n1.InnerText);
+                                    url = GetRedirectedUrl_TextAds(n1.InnerText);
 
                                 if (string.IsNullOrEmpty(url))
                                     url = GetRedirectedUrl_TextAds(n.Attributes["href"]?.Value);

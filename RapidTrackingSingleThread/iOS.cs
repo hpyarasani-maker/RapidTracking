@@ -341,15 +341,15 @@ namespace RapidTrackingSingleThread
                         //24-08-2020
                         string url = string.Empty;
                         //27-08-2020
-                        if (!string.IsNullOrEmpty(SetUrl(n.Attributes["href"]?.Value))) // 12-06-2020
+                        if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["href"]?.Value))) // 12-06-2020
                         {
                             url = GetRedirectedUrl_TextAds(n.Attributes["href"].Value);
                         }
-                        else if (!string.IsNullOrEmpty(SetUrl(n.Attributes["data-rw"]?.Value)))
+                        else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["data-rw"]?.Value)))
                         {
                             url = GetRedirectedUrl_TextAds(n.Attributes["data-rw"].Value);
                         }
-                        else if (!string.IsNullOrEmpty(SetUrl(n.Attributes["data-pcu"]?.Value)))
+                        else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["data-pcu"]?.Value)))
                         {
                             url = GetRedirectedUrl_TextAds(n.Attributes["data-pcu"].Value);
                         }
@@ -595,15 +595,15 @@ namespace RapidTrackingSingleThread
                             //24-08-2020
                             string url = string.Empty;
                             //27-08-2020
-                            if (!string.IsNullOrEmpty(SetUrl(n.Attributes["href"]?.Value))) // 12-06-2020
+                            if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["href"]?.Value))) // 12-06-2020
                             {
                                 url = GetRedirectedUrl_TextAds(n.Attributes["href"].Value);
                             }
-                            else if (!string.IsNullOrEmpty(SetUrl(n.Attributes["data-rw"]?.Value)))
+                            else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["data-rw"]?.Value)))
                             {
                                 url = GetRedirectedUrl_TextAds(n.Attributes["data-rw"].Value);
                             }
-                            else if (!string.IsNullOrEmpty(SetUrl(n.Attributes["data-pcu"]?.Value)))
+                            else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["data-pcu"]?.Value)))
                             {
                                 url = GetRedirectedUrl_TextAds(n.Attributes["data-pcu"].Value);
                             }

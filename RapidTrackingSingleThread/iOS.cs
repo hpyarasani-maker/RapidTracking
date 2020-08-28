@@ -594,27 +594,32 @@ namespace RapidTrackingSingleThread
                              }*/
                             //24-08-2020
                             string url = string.Empty;
+                            //27-08-2020
                             if (!string.IsNullOrEmpty(SetUrl(n.Attributes["href"]?.Value))) // 12-06-2020
                             {
-                                url = n.Attributes["href"].Value.Trim();
+                                url = SetUrl(n.Attributes["href"].Value);
                             }
                             else if (!string.IsNullOrEmpty(SetUrl(n.Attributes["data-rw"]?.Value)))
                             {
-                                url = n.Attributes["data-rw"].Value.Trim();
+                                url = SetUrl(n.Attributes["data-rw"].Value);
                             }
                             else if (!string.IsNullOrEmpty(SetUrl(n.Attributes["data-pcu"]?.Value)))
                             {
-                                url = n.Attributes["data-pcu"].Value.Trim();
+                                url = SetUrl(n.Attributes["data-pcu"].Value);
                             }
                             else
                             {
-                                n = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite|.//div[@class='QNz0M ellip GsCRYb']/cite");
-                                if (n != null)
-                                    url = n.InnerText;
+                                HtmlNode n1 = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite|.//div[@class='QNz0M ellip GsCRYb']/cite");
+                                if (n1 != null)
+                                    url = SetUrl(n1.InnerText);
+
+                                if (string.IsNullOrEmpty(url))
+                                    url = GetRedirectedUrl_TextAds(n.Attributes["href"]?.Value);
+
                             }
                             if (!string.IsNullOrEmpty(url))
-                                s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
-                            // end 24-08-2020
+                                s.Append("<item url=\"" + url + "\" title=\"" + SetTitle(title) + "\" />");
+                            // end 27-08-2020
                         }
                     }
                     s.Append("</block>");

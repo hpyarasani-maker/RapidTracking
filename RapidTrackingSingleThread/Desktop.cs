@@ -236,27 +236,31 @@ namespace RapidTrackingSingleThread
                         string url = string.Empty;
                         string title = tittlenode.InnerText;
 
+                        //27-08-2020
                         if (!string.IsNullOrEmpty(SetUrl(n.Attributes["href"]?.Value)))
                         {
-                            url = n.Attributes["href"].Value.Trim();
+                            url = SetUrl(n.Attributes["href"].Value);
                         }
                         else if (!string.IsNullOrEmpty(SetUrl(n.Attributes["data-rw"]?.Value)))
                         {
-                            url = n.Attributes["data-rw"].Value.Trim();
+                            url = SetUrl(n.Attributes["data-rw"].Value);
                         }
                         else if (!string.IsNullOrEmpty(SetUrl(n.Attributes["data-pcu"]?.Value)))
                         {
-                            url = n.Attributes["data-pcu"].Value.Trim();
+                            url = SetUrl(n.Attributes["data-pcu"].Value);
                         }
                         else
                         {
-                            n = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite");
-                            if (n != null)
-                                url = n.InnerText;
+                            HtmlNode n1 = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite");
+                            if (n1 != null)
+                                url = SetUrl(n1.InnerText);
+
+                            if (string.IsNullOrEmpty(url))
+                                url = GetRedirectedUrl_TextAds(n.Attributes["href"]?.Value);
                         }
                         if (!string.IsNullOrEmpty(url))
-                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
-                        // end 25-08-2020
+                            s.Append("<item url=\"" + url + "\" title=\"" + SetTitle(title) + "\" />");
+                        // end 27-08-2020
                     }
                 }
                 s.Append("</block>");

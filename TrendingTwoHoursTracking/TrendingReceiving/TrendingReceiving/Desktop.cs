@@ -225,41 +225,45 @@ namespace TrendingReceiving
                     if (n != null)
                     {
                         HtmlNode tittlenode = n.SelectSingleNode(".//h3|.//div[@role='heading']");//27-06-2020
-                         //25-08-2020 commented
-                       /* if (!n.Attributes["href"].Value.StartsWith("/"))
-                            s.Append("<item url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(tittlenode.InnerText) + "\" />");
-                        else
-                        {
-                            string title = tittlenode.InnerText;
-                            n = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite");
-                            if (n != null)
-                                s.Append("<item url=\"" + SetUrl(n.InnerText) + "\" title=\"" + SetTitle(title) + "\" />");
-                        }*/
-                         //25-08-2020
+                                                                                                  //25-08-2020 commented
+                                                                                                  /* if (!n.Attributes["href"].Value.StartsWith("/"))
+                                                                                                       s.Append("<item url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(tittlenode.InnerText) + "\" />");
+                                                                                                   else
+                                                                                                   {
+                                                                                                       string title = tittlenode.InnerText;
+                                                                                                       n = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite");
+                                                                                                       if (n != null)
+                                                                                                           s.Append("<item url=\"" + SetUrl(n.InnerText) + "\" title=\"" + SetTitle(title) + "\" />");
+                                                                                                   }*/
+                                                                                                  //25-08-2020
                         string url = string.Empty;
                         string title = tittlenode.InnerText;
 
-                        if (!string.IsNullOrEmpty(SetUrl(n.Attributes["href"]?.Value)))
+                        //27-08-2020
+                        if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["href"]?.Value)))
                         {
-                            url = n.Attributes["href"].Value.Trim();
+                            url = GetRedirectedUrl_TextAds(n.Attributes["href"].Value);
                         }
-                        else if (!string.IsNullOrEmpty(SetUrl(n.Attributes["data-rw"]?.Value)))
+                        else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["data-rw"]?.Value)))
                         {
-                            url = n.Attributes["data-rw"].Value.Trim();
+                            url = GetRedirectedUrl_TextAds(n.Attributes["data-rw"].Value);
                         }
-                        else if (!string.IsNullOrEmpty(SetUrl(n.Attributes["data-pcu"]?.Value)))
+                        else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["data-pcu"]?.Value)))
                         {
-                            url = n.Attributes["data-pcu"].Value.Trim();
+                            url = GetRedirectedUrl_TextAds(n.Attributes["data-pcu"].Value);
                         }
                         else
                         {
-                            n = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite");
-                            if (n != null)
-                                url = n.InnerText;
+                            HtmlNode n1 = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite");
+                            if (n1 != null)
+                                url = GetRedirectedUrl_TextAds(n1.InnerText);
+
+                            if (string.IsNullOrEmpty(url))
+                                url = GetRedirectedUrl_TextAds(n.Attributes["href"]?.Value);
                         }
                         if (!string.IsNullOrEmpty(url))
-                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
-                        // end 25-08-2020
+                            s.Append("<item url=\"" + url + "\" title=\"" + SetTitle(title) + "\" />");
+                        // end 27-08-2020
                     }
                 }
                 s.Append("</block>");
@@ -367,7 +371,7 @@ namespace TrendingReceiving
                     foreach (HtmlNode nd in col)
                     {
                         //HtmlNode n = nd.SelectSingleNode(".//h3/a[2]");
-                        HtmlNode n = nd.SelectSingleNode(".//div[@class='ad_cclk']/a[2]|.//div[@class='d5oMvf']/a");  //23-07-2020 included missing item urls selectors
+                        HtmlNode n = nd.SelectSingleNode(".//div[@class='ad_cclk']/a[2]|.//div[contains(@class,'d5oMvf')]/a"); //29-08-2020 included contains fucntions //23-07-2020 included missing item urls selectors
                         if (n != null)
                         {
                             //25-08-2020 commented
@@ -389,31 +393,36 @@ namespace TrendingReceiving
                                     s.Append("<item url=\"" + SetUrl(n.InnerText) + "\" title=\"" + SetTitle(title) + "\" />");
                             }*/
                             //25-08-2020
+                            //25-08-2020
                             string url = string.Empty;
+                            //27-08-2020
                             HtmlNode titleNode = n.SelectSingleNode(".//h3|.//div[@role='heading']");
                             string title = titleNode != null ? titleNode.InnerText : n.InnerText;
 
-                            if (!string.IsNullOrEmpty(SetUrl(n.Attributes["href"]?.Value)))
+                            if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["href"]?.Value)))
                             {
-                                url = n.Attributes["href"].Value.Trim();
+                                url = GetRedirectedUrl_TextAds(n.Attributes["href"].Value);
                             }
-                            else if (!string.IsNullOrEmpty(SetUrl(n.Attributes["data-rw"]?.Value)))
+                            else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["data-rw"]?.Value)))
                             {
-                                url = n.Attributes["data-rw"].Value.Trim();
+                                url = GetRedirectedUrl_TextAds(n.Attributes["data-rw"].Value);
                             }
-                            else if (!string.IsNullOrEmpty(SetUrl(n.Attributes["data-pcu"]?.Value)))
+                            else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["data-pcu"]?.Value)))
                             {
-                                url = n.Attributes["data-pcu"].Value.Trim();
+                                url = GetRedirectedUrl_TextAds(n.Attributes["data-pcu"].Value);
                             }
                             else
                             {
-                                n = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite");
-                                if (n != null)
-                                    url = n.InnerText;
+                                HtmlNode n1 = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite");
+                                if (n1 != null)
+                                    url = GetRedirectedUrl_TextAds(n1.InnerText);
+
+                                if (string.IsNullOrEmpty(url))
+                                    url = GetRedirectedUrl_TextAds(n.Attributes["href"]?.Value);
                             }
                             if (!string.IsNullOrEmpty(url))
-                                s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
-                            // end 25-08-2020
+                                s.Append("<item url=\"" + url + "\" title=\"" + SetTitle(title) + "\" />");
+                            // end 27-08-2020
                         }
                     }
                     s.Append("</block>");
@@ -1337,6 +1346,44 @@ namespace TrendingReceiving
 
             return WebUtility.HtmlEncode(url.Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim();  //26-03-2020 updated converting hexadecimal codes
         }
+        //27-08-2020
+        private string GetRedirectedUrl_TextAds(string url)
+        {
+            if (string.IsNullOrEmpty(url)) return string.Empty;
+
+            url = url.Replace("HTTPS://", "https://").Replace("HTTP://", "http://");
+            if (string.IsNullOrEmpty(url.Trim())) return string.Empty;
+
+            if (url.LastIndexOf("https://") > 0)
+                url = url.Remove(0, url.LastIndexOf("https://"));
+            if (url.LastIndexOf("http://") > 0)
+                url = url.Remove(0, url.LastIndexOf("http://"));
+
+            Regex rx = new Regex("http[\\w]?://(.*)", RegexOptions.Singleline);
+            if (!rx.Match(url).Success && !url.Contains("/aclk?"))
+                if (!url.Contains("://"))
+                    url = "http://" + url;
+
+            if (url.Contains("&amp;grqid="))
+                url = url.Remove(url.IndexOf("&amp;grqid="));
+
+            if (url.Contains("&grqid="))
+                url = url.Remove(url.IndexOf("&grqid="));
+
+            if (url.Contains("\0"))
+                url = url.Replace("\0", "%00");
+
+            if ((url.StartsWith("https://") || url.StartsWith("http://") || url.StartsWith("ftp://")) && (!url.StartsWith("/aclk?") && !url.Contains("search?num=100")))
+            {
+                if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e"))
+                    url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
+
+                return WebUtility.HtmlEncode(url.Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim();
+            }
+
+            return string.Empty;
+        }
+
 
     }
 }

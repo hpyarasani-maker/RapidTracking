@@ -7,10 +7,9 @@ namespace RapidTrackingMultithread
 {
     public static class Common
     {
-        internal static DataTable getIPsFromDB()
+        internal static DataTable GetIPsFromDB()
         {
             DataTable dt = new DataTable();
-
 
             string strQry = "Select id, address From IP_Address where id between 1 and 120 ";
 

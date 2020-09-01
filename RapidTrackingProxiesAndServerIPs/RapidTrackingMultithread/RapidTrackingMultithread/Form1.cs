@@ -22,7 +22,8 @@ namespace RapidTrackingMultithread
 {
     public partial class Form1 : Form
     {
-        ServerIP server0 = new ServerIP();
+        //ServerIP server0 = new ServerIP();
+        OxylabsProxies server0 = new OxylabsProxies();
 
         string xmlPath1 = "C:\\inetpub\\wwwroot\\RapidTracking_s_1.xml";
         string xmlPath2 = "C:\\inetpub\\wwwroot\\RapidTracking_s_2.xml";
@@ -41,25 +42,25 @@ namespace RapidTrackingMultithread
         public Form1()
         {
             InitializeComponent();
-            timerExit();
-            strCon = strConn();
-            liveurl = readAPI();
+            //TimerExit();
+            strCon = StrConn();
+            liveurl = ReadAPI();
         }
 
-        void timerExit()
+        void TimerExit()
         {
             timer.Interval = 20 * 60000;
-            timer.Tick += new EventHandler(timer_Tick);
+            timer.Tick += new EventHandler(Timer_Tick);
             timer.Start();
         }
 
-        void timer_Tick(object sender, EventArgs e)
+        void Timer_Tick(object sender, EventArgs e)
         {
             timer.Stop();
             Environment.Exit(Environment.ExitCode);
         }
 
-        public string strConn()
+        public string StrConn()
         {
             try
             {
@@ -106,17 +107,26 @@ namespace RapidTrackingMultithread
                     sw.WriteLine(server0.x);
                     sw.Close();
 
-                    StreamWriter sw1 = new StreamWriter("testlog.txt", true);
-                    sw1.WriteLine(server0.x + " : " + server0.dtIPs.Rows[server0.x][1].ToString() + " : " + DateTime.Now);
-                    sw1.Close();
+                    //StreamWriter sw1 = new StreamWriter("testlog.txt", true);
+                    //sw1.WriteLine(server0.x + " : " + server0.dtIPs.Rows[server0.x][1].ToString() + " : " + DateTime.Now);
+                    //sw1.Close();
 
-                    this.Text = "D_TrackingTrending_(1-2-3)_Server-1_" + server0.dtIPs.Rows[server0.x][1].ToString();
-                    
+                    //this.Text = "D_TrackingTrending_(1-2-3)_Server-1_" + server0.dtIPs.Rows[server0.x][1].ToString(); 
+                    this.Text = "D_TrackingTrending_(1-2-3)_All_GT20_Proxies";
+
+                    //this.Text = "D_TrackingTrending_(1-2-3)_Server-1_1-120_AutoIP_HTMLParser_" + server0.dtIPs.Rows[server0.x][1].ToString();//changess
+                    //this.Text = "D_TrackingTrending_(4-5-6)_Server-2_1-120_AutoIP_HTMLParser_" + server0.dtIPs.Rows[server0.x][1].ToString();
+                    //this.Text = "D_TrackingTrending_(7-8-9)_Server-3_1-120_AutoIP_HTMLParser_" + server0.dtIPs.Rows[server0.x][1].ToString();
+                    //this.Text = "D_TrackingTrending_(10-11-12)_Server-4_1-120_AutoIP_HTMLParser_" + server0.dtIPs.Rows[server0.x][1].ToString();
+                    //this.Text = "D_TrackingTrending_(13-14-15)_Server-5_1-120_AutoIP_HTMLParser_" + server0.dtIPs.Rows[server0.x][1].ToString();
+                    //this.Text = "D_TrackingTrending_(16-17-18)_Server-6_1-120_AutoIP_HTMLParser_" + server0.dtIPs.Rows[server0.x][1].ToString();
+                    //this.Text = "D_TrackingTrending_(19-20-21)_Server-7_1-120_AutoIP_HTMLParser_" + server0.dtIPs.Rows[server0.x][1].ToString();
+
                 }
             }
         }
 
-        public void generateWorklist2()
+        public void GenerateWorklist2()
         {
             worklist1.Invoke((MethodInvoker)(delegate ()
             {
@@ -128,33 +138,34 @@ namespace RapidTrackingMultithread
             date_picker.CustomFormat = "yyyy-MM-dd";
             myDate = date_picker.Text;
             //return;
-            string strSql = "exec [dbo].[GetKeywordsAdult_1] '" + myDate + "'";
-       
-            SqlConnection objCon = null;
-            SqlDataReader objData = null;
+            //string strSql = "exec [dbo].[GetKeywordsAdult_1] '" + myDate + "'";
+
+            string strSql = "exec [dbo].[GetAllKeywords_ServerIps_1] '" + myDate + "'";
+
             try
             {
-                objCon = new SqlConnection(strCon);
-                objCon.Open();
-                SqlCommand objCmd = new SqlCommand(strSql, objCon);
-                objCmd.CommandTimeout = 0;
-                objData = objCmd.ExecuteReader(CommandBehavior.CloseConnection);
-                while (objData.Read())
+                using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
                 {
-                    worklist1.Invoke((MethodInvoker)(delegate ()
+                    con.Open();
+                    using (SqlCommand comm = new SqlCommand(strSql, con))
                     {
-                        worklist1.Items.Add(objData[0].ToString() + ":" + objData[1].ToString());
-                    }));
+                        comm.CommandTimeout = 0;
+                        using (SqlDataReader dr = comm.ExecuteReader(CommandBehavior.CloseConnection))
+                        {
+                            while (dr.Read())
+                            {
+                                this.Invoke((MethodInvoker)delegate ()
+                                {
+                                    worklist1.Items.Add(dr[0].ToString() + ":" + dr[1].ToString());
+                                });
+                            }
+                        }
+                    }
                 }
-                worklist1.Invoke((MethodInvoker)(delegate ()
-                {
-                    worklist1.Refresh();
-                }));
-                objData.Close();
             }
-            catch (SqlException e)
+            catch (SqlException ex)
             {
-                string errMsg = "Database Connection is temporarily not working\n" + e.ToString();
+                string errMsg = "Database Connection is temporarily not working\n" + ex.ToString();
                 errorList.Invoke((MethodInvoker)(delegate ()
                 {
                     errorList.Items.Add(errMsg);
@@ -170,12 +181,11 @@ namespace RapidTrackingMultithread
             }
             finally
             {
-                if (objCon.State == ConnectionState.Open)
-                    objCon.Close();
+              
             }
         }
 
-        public void generateWorklist6()
+        public void GenerateWorklist6()
         {
             worklist2.Invoke((MethodInvoker)(delegate ()
             {
@@ -187,38 +197,39 @@ namespace RapidTrackingMultithread
             date_picker.CustomFormat = "yyyy-MM-dd";
             myDate = date_picker.Text;
             //return;
-            string strSql = "exec [dbo].[GetKeywordsAdult_2] '" + myDate + "'";
-           
-            SqlConnection objCon = null;
-            SqlDataReader objData = null;
+            //string strSql = "exec [dbo].[GetKeywordsAdult_2] '" + myDate + "'";
+
+            string strSql = "exec [dbo].[GetAllKeywords_ServerIps_2] '" + myDate + "'";
+
             try
             {
-                objCon = new SqlConnection(strCon);
-                objCon.Open();
-                SqlCommand objCmd = new SqlCommand(strSql, objCon);
-                objCmd.CommandTimeout = 0;
-                objData = objCmd.ExecuteReader(CommandBehavior.CloseConnection);
-                while (objData.Read())
+                using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
                 {
-                    worklist2.Invoke((MethodInvoker)(delegate ()
+                    con.Open();
+                    using (SqlCommand comm = new SqlCommand(strSql, con))
                     {
-                        worklist2.Items.Add(objData[0].ToString() + ":" + objData[1].ToString());
-                    }));
+                        comm.CommandTimeout = 0;
+                        using (SqlDataReader dr = comm.ExecuteReader(CommandBehavior.CloseConnection))
+                        {
+                            while (dr.Read())
+                            {
+                                this.Invoke((MethodInvoker)delegate ()
+                                {
+                                    worklist2.Items.Add(dr[0].ToString() + ":" + dr[1].ToString());
+                                });
+                            }
+                        }
+                    }
                 }
-                worklist2.Invoke((MethodInvoker)(delegate ()
-                {
-                    worklist2.Refresh();
-                }));
-                objData.Close();
-
             }
-            catch (SqlException e)
+            catch (SqlException ex)
             {
-                string errMsg = "Database Connection is temporarily not working\n" + e.ToString();
+                string errMsg = "Database Connection is temporarily not working\n" + ex.ToString();
                 errorList.Invoke((MethodInvoker)(delegate ()
                 {
                     errorList.Items.Add(errMsg);
                 }));
+
             }
             catch (Exception ex)
             {
@@ -229,12 +240,11 @@ namespace RapidTrackingMultithread
             }
             finally
             {
-                if (objCon.State == ConnectionState.Open)
-                    objCon.Close();
+
             }
         }
 
-        public void generateWorklist12()
+        public void GenerateWorklist12()
         {
             worklist3.Invoke((MethodInvoker)(delegate ()
             {
@@ -245,38 +255,39 @@ namespace RapidTrackingMultithread
             date_picker.CustomFormat = "yyyy-MM-dd";
             myDate = date_picker.Text;
             //return;
-            string strSql = "exec [dbo].[GetKeywordsAdult_3] '" + myDate + "'";
+            //string strSql = "exec [dbo].[GetKeywordsAdult_3] '" + myDate + "'";
 
-            SqlConnection objCon = null;
-            SqlDataReader objData = null;
+            string strSql = "exec [dbo].[GetAllKeywords_ServerIps_3] '" + myDate + "'";
+
             try
             {
-                objCon = new SqlConnection(strCon);
-                objCon.Open();
-                SqlCommand objCmd = new SqlCommand(strSql, objCon);
-                objCmd.CommandTimeout = 0;
-                objData = objCmd.ExecuteReader(CommandBehavior.CloseConnection);
-                while (objData.Read())
+                using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
                 {
-                    worklist3.Invoke((MethodInvoker)(delegate ()
+                    con.Open();
+                    using (SqlCommand comm = new SqlCommand(strSql, con))
                     {
-                        worklist3.Items.Add(objData[0].ToString() + ":" + objData[1].ToString());
-                    }));
+                        comm.CommandTimeout = 0;
+                        using (SqlDataReader dr = comm.ExecuteReader(CommandBehavior.CloseConnection))
+                        {
+                            while (dr.Read())
+                            {
+                                this.Invoke((MethodInvoker)delegate ()
+                                {
+                                    worklist3.Items.Add(dr[0].ToString() + ":" + dr[1].ToString());
+                                });
+                            }
+                        }
+                    }
                 }
-                worklist3.Invoke((MethodInvoker)(delegate ()
-                {
-                    worklist3.Refresh();
-                }));
-                objData.Close();
             }
-            catch (SqlException e)
+            catch (SqlException ex)
             {
-                string errMsg = "Database Connection is temporarily not working\n" + e.ToString();
-
+                string errMsg = "Database Connection is temporarily not working\n" + ex.ToString();
                 errorList.Invoke((MethodInvoker)(delegate ()
                 {
                     errorList.Items.Add(errMsg);
                 }));
+
             }
             catch (Exception ex)
             {
@@ -285,33 +296,31 @@ namespace RapidTrackingMultithread
                     errorList.Items.Add(ex.ToString());
                 }));
             }
-
             finally
             {
-                if (objCon.State == ConnectionState.Open)
-                    objCon.Close();
+
             }
         }
 
-        public int getWorklistSize2()
+        public int GetWorklistSize2()
         {
             int worklistSize = worklist1.Items.Count;
             return worklistSize;
         }
 
-        public int getWorklistSize6()
+        public int GetWorklistSize6()
         {
             int worklistSize = worklist2.Items.Count;
             return worklistSize;
         }
 
-        public int getWorklistSize12()
+        public int GetWorklistSize12()
         {
             int worklistSize = worklist3.Items.Count;
             return worklistSize;
         }
 
-        public void processResults2(string seid, string kn)
+        public void ProcessResults2(string seid, string kn)
         {
             IPChanger();
 
@@ -413,7 +422,7 @@ namespace RapidTrackingMultithread
             }
         }
 
-        public void processResults6(string seid, string kn)
+        public void ProcessResults6(string seid, string kn)
         {
             IPChanger();
 
@@ -518,7 +527,7 @@ namespace RapidTrackingMultithread
         }
 
 
-        public void processResults12(string seid, string kn)
+        public void ProcessResults12(string seid, string kn)
         {
             IPChanger();
             string[] seresults = new string[1];
@@ -621,7 +630,7 @@ namespace RapidTrackingMultithread
             }
         }
 
-        public void processWorklist2()
+        public void ProcessWorklist2()
         {
             string resultsString;
             char sep;
@@ -641,7 +650,7 @@ namespace RapidTrackingMultithread
                     kn = resultsArray.GetValue(1).ToString();
                     try
                     {
-                        processResults2(seid, kn);
+                        ProcessResults2(seid, kn);
                     }
                     catch (Exception ex)
                     {
@@ -671,7 +680,7 @@ namespace RapidTrackingMultithread
             }
         }
 
-        public void processWorklist6()
+        public void ProcessWorklist6()
         {
             string resultsString;
             char sep;
@@ -691,7 +700,7 @@ namespace RapidTrackingMultithread
 
                     try
                     {
-                        processResults6(seid, kn);
+                        ProcessResults6(seid, kn);
                     }
                     catch (Exception ex)
                     {
@@ -721,7 +730,7 @@ namespace RapidTrackingMultithread
             }
         }
 
-        public void processWorklist12()
+        public void ProcessWorklist12()
         {
             string resultsString;
             char sep;
@@ -741,7 +750,7 @@ namespace RapidTrackingMultithread
 
                     try
                     {
-                        processResults12(seid, kn);
+                        ProcessResults12(seid, kn);
                     }
                     catch (Exception ex)
                     {
@@ -768,33 +777,33 @@ namespace RapidTrackingMultithread
             }
         }
 
-        public void mainLoop2()
+        public void MainLoop2()
         {
             //generateWorklist2();
-            while (getWorklistSize2() > 0)
+            while (GetWorklistSize2() > 0)
             {
-                processWorklist2();
-                generateWorklist2();
+                ProcessWorklist2();
+                GenerateWorklist2();
             }
         }
 
-        public void mainLoop6()
+        public void MainLoop6()
         {
             //generateWorklist6();
-            while (getWorklistSize6() > 0)
+            while (GetWorklistSize6() > 0)
             {
-                processWorklist6();
-                generateWorklist6();
+                ProcessWorklist6();
+                GenerateWorklist6();
             }
         }
 
-        public void mainLoop12()
+        public void MainLoop12()
         {
             //generateWorklist12();
-            while (getWorklistSize12() > 0)
+            while (GetWorklistSize12() > 0)
             {
-                processWorklist12();
-                generateWorklist12();
+                ProcessWorklist12();
+                GenerateWorklist12();
             }
         }
 
@@ -812,7 +821,7 @@ namespace RapidTrackingMultithread
                 date_picker.Value = DateTime.Today;
             }));
 
-            liveurl = readAPI();
+            liveurl = ReadAPI();
             if (File.Exists("index.txt"))
             {
                 StreamReader sw = new StreamReader("index.txt");
@@ -831,13 +840,22 @@ namespace RapidTrackingMultithread
             this.Invoke((MethodInvoker)(delegate ()
             {
                 this.Text = "D_TrackingTrending_(1-2-3)_Server-1_" + server0.dtIPs.Rows[server0.x][1].ToString();
-                
+                //this.Text = "D_TrackingTrending_(1-2-3)_All_GT20_Proxies";
+
+                //this.Text = "D_TrackingTrending_(1-2-3)_Server-1_1-120_AutoIP_HTMLParser_" + server0.dtIPs.Rows[server0.x][1].ToString();//changess
+                //this.Text = "D_TrackingTrending_(4-5-6)_Server-2_1-120_AutoIP_HTMLParser_" + server0.dtIPs.Rows[server0.x][1].ToString();
+                //this.Text = "D_TrackingTrending_(7-8-9)_Server-3_1-120_AutoIP_HTMLParser_" + server0.dtIPs.Rows[server0.x][1].ToString();
+                //this.Text = "D_TrackingTrending_(10-11-12)_Server-4_1-120_AutoIP_HTMLParser_" + server0.dtIPs.Rows[server0.x][1].ToString();
+                //this.Text = "D_TrackingTrending_(13-14-15)_Server-5_1-120_AutoIP_HTMLParser_" + server0.dtIPs.Rows[server0.x][1].ToString();
+                //this.Text = "D_TrackingTrending_(16-17-18)_Server-6_1-120_AutoIP_HTMLParser_" + server0.dtIPs.Rows[server0.x][1].ToString();
+                //this.Text = "D_TrackingTrending_(19-20-21)_Server-7_1-120_AutoIP_HTMLParser_" + server0.dtIPs.Rows[server0.x][1].ToString();
+
             }));
 
-            Thread myThread2 = new Thread(new ThreadStart(mainLoop2));
-            generateWorklist2();
+            Thread myThread2 = new Thread(new ThreadStart(MainLoop2));
+            GenerateWorklist2();
 
-            if (getWorklistSize2() > 0)
+            if (GetWorklistSize2() > 0)
             {
                 myThread2.Start();
             }
@@ -846,9 +864,9 @@ namespace RapidTrackingMultithread
                 myThread2.Abort();
             }
 
-            Thread myThread6 = new Thread(new ThreadStart(mainLoop6));
-            generateWorklist6();
-            if (getWorklistSize6() > 0)
+            Thread myThread6 = new Thread(new ThreadStart(MainLoop6));
+            GenerateWorklist6();
+            if (GetWorklistSize6() > 0)
             {
                 myThread6.Start();
             }
@@ -857,9 +875,9 @@ namespace RapidTrackingMultithread
                 myThread6.Abort();
             }
 
-            Thread myThread12 = new Thread(new ThreadStart(mainLoop12));
-            generateWorklist12();
-            if (getWorklistSize12() > 0)
+            Thread myThread12 = new Thread(new ThreadStart(MainLoop12));
+            GenerateWorklist12();
+            if (GetWorklistSize12() > 0)
             {
                 myThread12.Start();
             }
@@ -875,10 +893,10 @@ namespace RapidTrackingMultithread
             res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + res;
             xd.LoadXml(res);
             xd.Save(xmlPath1);
-          
+
             //SendToURL
 
-            string submitURL = readAPI();
+            string submitURL = ReadAPI();
 
             string user = "pisoftware";
             string pwd = "r00t123456";
@@ -895,7 +913,7 @@ namespace RapidTrackingMultithread
 
                 httpWReq.ProtocolVersion = HttpVersion.Version11;
                 httpWReq.Method = "POST";
-                httpWReq.ContentType = "application/x-www-form-urlencoded"; 
+                httpWReq.ContentType = "application/x-www-form-urlencoded";
 
 
                 string auth = string.Format("{0}:{1}", user, pwd);
@@ -955,7 +973,7 @@ namespace RapidTrackingMultithread
                 {
                     txtError.Text += ex.Message + "\r\n";
                 });
-              
+
             }
             catch (Exception ex)
             {
@@ -971,7 +989,7 @@ namespace RapidTrackingMultithread
 
             //SendToURL
 
-            string submitURL = readAPI();
+            string submitURL = ReadAPI();
 
             string user = "pisoftware";
             string pwd = "r00t123456";
@@ -988,7 +1006,7 @@ namespace RapidTrackingMultithread
 
                 httpWReq.ProtocolVersion = HttpVersion.Version11;
                 httpWReq.Method = "POST";
-                httpWReq.ContentType = "application/x-www-form-urlencoded"; 
+                httpWReq.ContentType = "application/x-www-form-urlencoded";
 
 
                 string auth = string.Format("{0}:{1}", user, pwd);
@@ -1048,7 +1066,7 @@ namespace RapidTrackingMultithread
                 {
                     txtError.Text += ex.Message + "\r\n";
                 });
-               
+
             }
             catch (Exception ex)
             {
@@ -1062,10 +1080,10 @@ namespace RapidTrackingMultithread
             res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + res;
             xd.LoadXml(res);
             xd.Save(xmlPath3);
-       
+
             //SendToURL
 
-            string submitURL = readAPI();
+            string submitURL = ReadAPI();
 
             string user = "pisoftware";
             string pwd = "r00t123456";
@@ -1164,13 +1182,13 @@ namespace RapidTrackingMultithread
                         comm.CommandType = CommandType.StoredProcedure;
                         comm.CommandText = "Insert_Dashboard_Data";
                         comm.Parameters.Add("date", SqlDbType.DateTime).Value = myDate;
-                        comm.Parameters.Add("name", SqlDbType.NVarChar).Value = keyword; 
+                        comm.Parameters.Add("name", SqlDbType.NVarChar).Value = keyword;
                         comm.Parameters.Add("Seid", SqlDbType.Int).Value = seid;
                         comm.Parameters.Add("jobid", SqlDbType.NVarChar).Value = string.Empty;
                         comm.Parameters.Add("count", SqlDbType.Int).Value = urlcount;
                         comm.Parameters.Add("XmlData", SqlDbType.Xml).Value = xml.Replace("'", "''");
 
-                        comm.ExecuteNonQuery();                       
+                        comm.ExecuteNonQuery();
                     }
                 }
             }
@@ -1193,44 +1211,8 @@ namespace RapidTrackingMultithread
             return ret;
         }
 
-        private void process_btn_Click(object sender, EventArgs e)
-        {
-            Thread myThread2 = new Thread(new ThreadStart(mainLoop2));
-            generateWorklist2();
-
-            if (getWorklistSize2() > 0)
-            {
-                myThread2.Start();
-            }
-            else
-            {
-                myThread2.Abort();
-            }
-
-            Thread myThread6 = new Thread(new ThreadStart(mainLoop6));
-            generateWorklist6();
-            if (getWorklistSize6() > 0)
-            {
-                myThread6.Start();
-            }
-            else
-            {
-                myThread6.Abort();
-            }
-            Thread myThread12 = new Thread(new ThreadStart(mainLoop12));
-
-            generateWorklist12();
-            if (getWorklistSize12() > 0)
-            {
-                myThread12.Start();
-            }
-            else
-            {
-                myThread12.Abort();
-            }
-        }
-
-        public string readAPI()
+        
+        public string ReadAPI()
         {
             try
             {
@@ -1254,5 +1236,41 @@ namespace RapidTrackingMultithread
 
         }
 
+        private void Process_btn_Click(object sender, EventArgs e)
+        {
+            Thread myThread2 = new Thread(new ThreadStart(MainLoop2));
+            GenerateWorklist2();
+
+            if (GetWorklistSize2() > 0)
+            {
+                myThread2.Start();
+            }
+            else
+            {
+                myThread2.Abort();
+            }
+
+            Thread myThread6 = new Thread(new ThreadStart(MainLoop6));
+            GenerateWorklist6();
+            if (GetWorklistSize6() > 0)
+            {
+                myThread6.Start();
+            }
+            else
+            {
+                myThread6.Abort();
+            }
+            Thread myThread12 = new Thread(new ThreadStart(MainLoop12));
+
+            GenerateWorklist12();
+            if (GetWorklistSize12() > 0)
+            {
+                myThread12.Start();
+            }
+            else
+            {
+                myThread12.Abort();
+            }
+        }
     }
 }

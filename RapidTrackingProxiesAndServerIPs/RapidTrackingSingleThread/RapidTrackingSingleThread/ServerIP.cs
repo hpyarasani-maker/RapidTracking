@@ -21,7 +21,7 @@ namespace RapidTrackingSingleThread
     class ServerIP
     {
 
-        string strConn = string.Empty;
+        readonly string strConn = string.Empty;
         public string sIP = string.Empty;
         const string googleurl = "https://www.google.";
         const string safesearch = "0";
@@ -32,12 +32,12 @@ namespace RapidTrackingSingleThread
 
         public ServerIP()
         {
-            strConn = readConnection();
-            dtIPs = getIPsFromDB();
+            strConn = ReadConnection();
+            dtIPs = GetIPsFromDB();
         }
 
-        string error1 = string.Empty;
-        public string readConnection()
+        
+        public string ReadConnection()
         {
             try
             {
@@ -65,38 +65,36 @@ namespace RapidTrackingSingleThread
         {
             string address = string.Empty;
             string strQuery = "exec [dbo].[GetIPAddress] '" + id + "'";
-
-            SqlConnection objCon = new SqlConnection(strConn);
             try
             {
-                objCon.Open();
-                SqlCommand objCmd = new SqlCommand(strQuery, objCon);
-                objCmd.CommandTimeout = 0;
-                SqlDataReader objData = null;
-                objData = objCmd.ExecuteReader(CommandBehavior.CloseConnection);
-                while (objData.Read())
+                using (SqlConnection con = new SqlConnection(strConn))
                 {
-                    address = objData[0].ToString();
-                }
-                objData.Close();
-            }
-            catch (SqlException e)
-            {
-                string errMsg = "Database Connection is temporarily not working\n" + e.ToString();
-            }
-            finally
-            {
-                if (objCon.State == ConnectionState.Open)
-                {
-                    objCon.Close();
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand(strQuery, con))
+                    {
+                        cmd.CommandTimeout = 0;
+                        using (SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection))
+                        {
+                            while (dr.Read())
+                            {
+                                address = dr[0].ToString();
+                            }
+                        }
+                    }
                 }
             }
+            catch (SqlException ex)
+            {
+                string errMsg = "Database Connection is temporarily not working\n" + ex.ToString();
+            }
+
             return address;
         }
+
         public int x = 0;
         public DataTable dtIPs;
-        Dictionary<string, CookieCollection> cookies = new Dictionary<string, CookieCollection>();
-        private DataTable getIPsFromDB()
+        //Dictionary<string, CookieCollection> cookies = new Dictionary<string, CookieCollection>();
+        private DataTable GetIPsFromDB()
         {
             DataTable dt = new DataTable();
             string strQry = "Select id, address From IP_AddressIP6";
@@ -113,14 +111,14 @@ namespace RapidTrackingSingleThread
             //return GetIPAddress(97);
             return "10.242.3.7";
         }
-        public string getWebDataSource(string url)
+        public string GetWebDataSource(string url)
         {
             System.Threading.Thread.Sleep(1000);
 
             // getting IPs from db.
             if (dtIPs == null)
             {
-                dtIPs = getIPsFromDB();
+                dtIPs = GetIPsFromDB();
                 if (dtIPs == null || dtIPs.Rows.Count == 0)
                 {
                     throw new Exception("There is no IP to continue...");
@@ -160,14 +158,14 @@ namespace RapidTrackingSingleThread
             return stringBuilder.ToString();
         }
 
-        public string getWebDataMobileSource(string url)
+        public string GetWebDataMobileSource(string url)
         {
             System.Threading.Thread.Sleep(1000);
 
             // getting IPs from db.
             if (dtIPs == null)
             {
-                dtIPs = getIPsFromDB();
+                dtIPs = GetIPsFromDB();
                 if (dtIPs == null || dtIPs.Rows.Count == 0)
                 {
                     throw new Exception("There is no IP to continue...");
@@ -204,7 +202,7 @@ namespace RapidTrackingSingleThread
         }
 
 
-        public string[] getTop100Desktop(string keyword, int seid, out string oIP, string domain, string locale, string uule, string device)
+        public string[] GetTop100Desktop(string keyword, int seid, out string oIP, string domain, string locale, string uule, string device)
         {
             ArrayList DesktopResult = new ArrayList();
             string[] locale1 = locale.Split('-');
@@ -222,14 +220,14 @@ namespace RapidTrackingSingleThread
             {
                 url = "" + googleurl + "" + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&num=" + num + "&safe_search=" + safesearch + "&safe=" + safe + "&aomd=" + aomd + "&uule=" + uule + "&gs_l=" + device + "&gws_rd=ssl,cr";
             }
-            string HTML = getWebDataSource(url);
+            string HTML = GetWebDataSource(url);
 
-            string[] dr = desktoppatternTrending(HTML, keyword, seid.ToString());
+            string[] dr = DesktoppatternTrending(HTML, keyword, seid.ToString());
             oIP = sIP;
             return dr;
         }
 
-        public string[] getTop100Mobile(string keyword, int seid, out string oIP, string domain, string locale, string uule, string device)
+        public string[] GetTop100Mobile(string keyword, int seid, out string oIP, string domain, string locale, string uule, string device)
         {
             ArrayList MobileResult = new ArrayList();
 
@@ -247,13 +245,13 @@ namespace RapidTrackingSingleThread
             {
                 url = "" + googleurl + "" + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&num=" + num + "&safe_search=" + safesearch + "&safe=" + safe + "&aomd=" + aomd + "&uule=" + uule + "&gs_l=" + device + "-gws-serp.3.0&gws_rd=ssl,cr";
             }
-            string HTML = getWebDataMobileSource(url);
-            string[] mr = mobilepatternTrending(HTML, keyword, seid.ToString());
+            string HTML = GetWebDataMobileSource(url);
+            string[] mr = MobilepatternTrending(HTML, keyword, seid.ToString());
             oIP = sIP;
             return mr;
         }
 
-        private string[] desktoppatternTrending(string html, string keyword, string seid)
+        private string[] DesktoppatternTrending(string html, string keyword, string seid)
         {
             string[] array = new string[2];
             string res = "";
@@ -270,7 +268,7 @@ namespace RapidTrackingSingleThread
             array[1] = clsDesktop.orgLinks.ToString();
             return array;
         }
-        private string[] mobilepatternTrending(string html, string keyword, string seid)
+        private string[] MobilepatternTrending(string html, string keyword, string seid)
         {
             string[] array = new string[2];
             string res = "";
@@ -297,11 +295,11 @@ namespace RapidTrackingSingleThread
                 {
                     if (value.device == "desktop")
                     {
-                        seresults = getTop100Desktop(keyword, seid, out sIP, value.domain, value.locale, value.uule, value.device);
+                        seresults = GetTop100Desktop(keyword, seid, out sIP, value.domain, value.locale, value.uule, value.device);
                     }
                     else if (value.device == "mobile_android")
                     {
-                        seresults = getTop100Mobile(keyword, seid, out sIP, value.domain, value.locale, value.uule, value.device);
+                        seresults = GetTop100Mobile(keyword, seid, out sIP, value.domain, value.locale, value.uule, value.device);
                     }
                 }
             }

@@ -294,10 +294,9 @@ namespace RapidTrackingSingleThread
                 //lstKWs.Items.Add("160:malmö ff");
                 //lstKWs.Items.Add("102:terry crews");
                 //lstKWs.Items.Add("102:the uninhabitable earth summary");
-                lstKWs.Items.Add("102:autobiographies");
+                //lstKWs.Items.Add("102:autobiographies");
             });
-            return;
-
+            //return;
             try
             {
                 using (SqlConnection con = new SqlConnection(Common.ReadConnection()))  // 12-05-2020

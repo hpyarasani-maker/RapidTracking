@@ -19,7 +19,7 @@ namespace RapidTrackingSingleThread
 {
     public partial class frmSingleThread : Form
     {
-        string xmlPath = "C:\\inetpub\\wwwroot\\rapidtracking_singlethread_102_GT20_WC.xml";        
+        string xmlPath = "C:\\inetpub\\wwwroot\\rapidtracking_singlethread_102_GT20_WC.xml";
 
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
@@ -33,7 +33,7 @@ namespace RapidTrackingSingleThread
         }
         void TimerExit()
         {
-            timer.Interval = 25 * 60000; 
+            timer.Interval = 25 * 60000;
             timer.Tick += new EventHandler(Timer_Tick);
             timer.Start();
         }
@@ -45,7 +45,7 @@ namespace RapidTrackingSingleThread
 
         private void frmSingleThread_Load(object sender, EventArgs e)
         {
-            
+
             this.Text = "RapidTracking_SingleThread_CoronaKeywords-2_102_GT20_WC";
             //this.Text = "RapidTracking_SingleThread_P_A_WOC_10-09-2019";
 
@@ -63,12 +63,12 @@ namespace RapidTrackingSingleThread
                 //string myDate = "2019-11-20";
 
 
-                string kwQry = "[Tracking_DB_Keywords_Seid_102] '" + myDate + "'";               
+                string kwQry = "[Tracking_DB_Keywords_Seid_102] '" + myDate + "'";
                 //string kwQry = "[Tracking_DB_Keywords_Seid_103p] '" + myDate + "'";               
                 //string kwQry = "[GetCommaKeywordsP] '" + myDate + "'";               
 
                 GetKeywords(kwQry);
-                
+
                 if (lstKWs.Items.Count <= 0)
                     break;
 
@@ -84,10 +84,10 @@ namespace RapidTrackingSingleThread
                     string kw = s.Split(':')[1];
                     bool result = false;
                     try
-                    {                        
-                        var doc = new HtmlAgilityPack.HtmlDocument();   
+                    {
+                        var doc = new HtmlAgilityPack.HtmlDocument();
                         Task<ArrayList> alresult = GetHTML(kw, Convert.ToInt32(seid));
-                        
+
                         foreach (string[] src in alresult.Result)
                         {
                             string keyword = src[0];
@@ -95,25 +95,25 @@ namespace RapidTrackingSingleThread
                             string html = obj["results"][0]["content"].Value<string>();
                             string jobid = src[2];
                             string device = src[3];
-                            File.WriteAllText(@"C:\inetpub\wwwroot\html\"+jobid+"_"+keyword+".html", html, Encoding.UTF8);
+                            File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
                             //File.WriteAllText(@"C:\inetpub\wwwroot\"+jobid+"_withOut filter_"+".html", html, Encoding.UTF8);
                             result = true;
                             doc = new HtmlAgilityPack.HtmlDocument();
                             doc.LoadHtml(html);
                             string res = string.Empty;
                             int count = 0;
-                            try { 
-                                    if (device == "desktop")
-                                   {
-                                        Desktop clsDesktop = new Desktop();
-                                        res = clsDesktop.ProcessDocument(seid, keyword, doc, out count);
-                                    
-                                    }
-                                    else
-                                    {
-                                        iOS clsiOS = new iOS();
-                                        res = clsiOS.ProcessDocument(seid, keyword, doc, out count);
-                                    }
+                            try
+                            {
+                                if (device == "desktop")
+                                {
+                                    Desktop clsDesktop = new Desktop();
+                                    res = clsDesktop.ProcessDocument(seid, keyword, doc, out count);
+                                }
+                                else
+                                {
+                                    iOS clsiOS = new iOS();
+                                    res = clsiOS.ProcessDocument(seid, keyword, doc, out count);
+                                }
 
                                 if (!string.IsNullOrEmpty(res))
                                 {
@@ -167,17 +167,17 @@ namespace RapidTrackingSingleThread
                             textBox1.Text = s + "  -- No result.";
                         textBox1.Refresh();
                     });
-                    
+
                 }
-               
-            }            
-            
+
+            }
+
             Environment.Exit(Environment.ExitCode);
         }
 
-      
+
         private void SendToAPI(string seid, string kw, string res, string jobid)
-       {
+        {
             //string r = "[\x00-\x08\x0B\x0C\x0E-\x1F\x26]";
             //res = Regex.Replace(res, r, "", RegexOptions.Compiled);
             //if (res == string.Empty)
@@ -192,16 +192,16 @@ namespace RapidTrackingSingleThread
             //else
             //{
             XmlDocument xd = new XmlDocument();
-                res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + res;
-                xd.LoadXml(res);
-                xd.Save(xmlPath);
+            res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + res;
+            xd.LoadXml(res);
+            xd.Save(xmlPath);
 
             //}
             //SendToURL
 
 
             string submitURL = ReadAPI();
-           
+
             string user = "pisoftware";
             string pwd = "r00t123456";
             try
@@ -217,7 +217,7 @@ namespace RapidTrackingSingleThread
 
                 httpWReq.ProtocolVersion = HttpVersion.Version11;
                 httpWReq.Method = "POST";
-                httpWReq.ContentType = "application/x-www-form-urlencoded";   
+                httpWReq.ContentType = "application/x-www-form-urlencoded";
 
 
                 string auth = string.Format("{0}:{1}", user, pwd);
@@ -254,9 +254,9 @@ namespace RapidTrackingSingleThread
             }
             catch (WebException ex)
             {
-                
+
                 ////store into keywordfail table.
-                SendToDBFailure(seid, kw, jobid,false);
+                SendToDBFailure(seid, kw, jobid, false);
 
 
                 string errorMsg = string.Empty;
@@ -271,7 +271,7 @@ namespace RapidTrackingSingleThread
                         errorMsg += "\r\n" + reader.ReadToEnd();
                         txtError.Text = errorMsg;
                     }
-                }                
+                }
 
                 throw new Exception(errorMsg);
 
@@ -294,9 +294,10 @@ namespace RapidTrackingSingleThread
                 //lstKWs.Items.Add("160:malmö ff");
                 //lstKWs.Items.Add("102:terry crews");
                 //lstKWs.Items.Add("102:the uninhabitable earth summary");
-                //lstKWs.Items.Add("102:autobiographies");
+                lstKWs.Items.Add("1:bengal country");
             });
-            //return;
+            return;
+
             try
             {
                 using (SqlConnection con = new SqlConnection(Common.ReadConnection()))  // 12-05-2020
@@ -310,8 +311,8 @@ namespace RapidTrackingSingleThread
                             while (dr.Read())
                             {
                                 this.Invoke((MethodInvoker)delegate ()
-                                {                                   
-                                    lstKWs.Items.Add(dr[0].ToString()+ ":" + dr[1].ToString());                                   
+                                {
+                                    lstKWs.Items.Add(dr[0].ToString() + ":" + dr[1].ToString());
                                 });
                             }
                         }
@@ -339,7 +340,7 @@ namespace RapidTrackingSingleThread
             reader.Close();
             return ret;
         }
-               
+
         public string ReadAPI()
         {
             try
@@ -411,7 +412,7 @@ namespace RapidTrackingSingleThread
                     //throw ex;
                 }
             }
-           
+
 
 
             //string qry = "Insert into KeywordsFailure(date, seid, keyword, status) values('" + DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ") + "', " + seid + ", N'" + kw.Replace("'", "''") + "', '-1')";
@@ -431,14 +432,14 @@ namespace RapidTrackingSingleThread
             //}
             //finally { }
         }
-       
+
         private void SendToDB(string seid, string keyword, string xml, string jobid, int urlcount)
         {
             try
             {
                 string myDate = DateTime.Today.ToString("yyyy-MM-dd");
                 //string myDate = "2019-11-20";
-               
+
                 using (SqlConnection con = new SqlConnection(Common.ReadConnection()))  // 12-05-2020
                 {
                     con.Open();
@@ -489,7 +490,7 @@ namespace RapidTrackingSingleThread
                 SearchProperties sp = SearchParams.searches.Where(s => s.seid == seid).SingleOrDefault();
                 sp.query = keyword;
                 if (sp != null)
-                    alResult =  GetOxylabsWebDataSources(sp).Result;
+                    alResult = GetOxylabsWebDataSources(sp).Result;
             }
             catch (Exception ex)
             {
@@ -498,168 +499,168 @@ namespace RapidTrackingSingleThread
 
             return await Task.FromResult(alResult);
         }
-        
-        async Task<ArrayList> GetOxylabsWebDataSources(SearchProperties sp) 
+
+        async Task<ArrayList> GetOxylabsWebDataSources(SearchProperties sp)
         {
-            
+
 
             Uri queryUri = new Uri("https://data.oxylabs.io/v1/queries/batch");
             string username = "gpidatametrics";
             string password = "sdV5X3fcX6";
             string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
             string[] keyword = { sp.query };
-           
-                OxyParams op = new OxyParams()
-                {
-                    source = "google_search",
-                    domain = sp.domain,
-                    //query = sp.query.Split(','),
-                    query = keyword,
-                    limit = 100,
-                    pages = 1,
-                    //start_page = 1,
-                    locale = sp.locale,
-                    geo_location = sp.geo_location,
-                    //uule = uule,
-                    parse = 1,
-                    user_agent_type = sp.device,
-                    context = new List<Context> {
+
+            OxyParams op = new OxyParams()
+            {
+                source = "google_search",
+                domain = sp.domain,
+                //query = sp.query.Split(','),
+                query = keyword,
+                limit = 100,
+                pages = 1,
+                //start_page = 1,
+                locale = sp.locale,
+                geo_location = sp.geo_location,
+                //uule = uule,
+                parse = 1,
+                user_agent_type = sp.device,
+                context = new List<Context> {
                     new Context("safe_search", 0)
                     }
-                };
+            };
 
 
-                HttpWebRequest req = (HttpWebRequest)WebRequest.Create(queryUri);
-                req.Headers.Clear();
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(queryUri);
+            req.Headers.Clear();
 
-                req.Method = "POST";
-                req.ContentType = "application/json";
-                req.Headers.Add(HttpRequestHeader.Authorization, "Basic " + authInfo);
+            req.Method = "POST";
+            req.ContentType = "application/json";
+            req.Headers.Add(HttpRequestHeader.Authorization, "Basic " + authInfo);
 
-                using (var streamWriter = new StreamWriter(req.GetRequestStream()))
+            using (var streamWriter = new StreamWriter(req.GetRequestStream()))
+            {
+                var json = JsonConvert.SerializeObject(op, new JsonSerializerSettings
                 {
-                    var json = JsonConvert.SerializeObject(op, new JsonSerializerSettings
-                    {
-                        Formatting = Newtonsoft.Json.Formatting.Indented,
-                    });
+                    Formatting = Newtonsoft.Json.Formatting.Indented,
+                });
 
-                    streamWriter.Write(json);
+                streamWriter.Write(json);
+            }
+
+            string response;
+            try
+            {
+                HttpWebResponse res = (HttpWebResponse)await req.GetResponseAsync();
+                using (StreamReader reader = new StreamReader(res.GetResponseStream(), Encoding.UTF8))
+                {
+                    response = reader.ReadToEnd();
                 }
+                res.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
-                string response;
-                try
-                {
-                    HttpWebResponse res = (HttpWebResponse)await req.GetResponseAsync();
-                    using (StreamReader reader = new StreamReader(res.GetResponseStream(),Encoding.UTF8))
-                    {
-                        response = reader.ReadToEnd();
-                    }
-                    res.Close();
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-            
-                JObject jo = JObject.Parse(response);
-                var links = from p in jo["queries"] select p;
-                ArrayList lst = new ArrayList();
-                foreach (JToken link in links)
-                {
-                    string kw = link["query"].Value<string>();
-                    string href = link["_links"][1]["href"].Value<string>();
-                    string status = link["status"].Value<string>();
-                    string jobid = link["id"].Value<string>();
-                    string device = link["user_agent_type"].Value<string>();
-                    string[] s = { kw, href, status, "no", jobid, device };    // keyword, url, status, isdownloaded, jobid, device.
-                    lst.Add(s);
-                }
+            JObject jo = JObject.Parse(response);
+            var links = from p in jo["queries"] select p;
+            ArrayList lst = new ArrayList();
+            foreach (JToken link in links)
+            {
+                string kw = link["query"].Value<string>();
+                string href = link["_links"][1]["href"].Value<string>();
+                string status = link["status"].Value<string>();
+                string jobid = link["id"].Value<string>();
+                string device = link["user_agent_type"].Value<string>();
+                string[] s = { kw, href, status, "no", jobid, device };    // keyword, url, status, isdownloaded, jobid, device.
+                lst.Add(s);
+            }
 
-                if (lst.Count <= 0) return lst;
-                ArrayList alResult = new ArrayList();
-                do
+            if (lst.Count <= 0) return lst;
+            ArrayList alResult = new ArrayList();
+            do
+            {
+                int cnt = 0;
+                foreach (string[] cbUrl in lst)
                 {
-                    int cnt = 0;
-                    foreach (string[] cbUrl in lst)
-                    {
-                        string[] reslt = { "", "", "", "" };
-                        response = "";
+                    string[] reslt = { "", "", "", "" };
+                    response = "";
 
-                    Uri uri = new Uri(cbUrl[1]);
-                    //Uri uri = new Uri("http://data.oxylabs.io/v1/queries/6706351948792081409/results");
+                    //Uri uri = new Uri(cbUrl[1]);
+                    Uri uri = new Uri("http://data.oxylabs.io/v1/queries/6707077494169666561/results");
                     if (cbUrl[2] == "done" && cbUrl[3] == "no")
+                    {
+                        try
                         {
-                            try
-                            {
-                                HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
-                                httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
-                                HttpWebResponse res = (HttpWebResponse)await httpWebRequest.GetResponseAsync();
+                            HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
+                            httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
+                            HttpWebResponse res = (HttpWebResponse)await httpWebRequest.GetResponseAsync();
 
-                                Stream resVal = res.GetResponseStream();
-                                StreamReader reader = new StreamReader(resVal, Encoding.UTF8);
-                                //** Store all the contents
-                                response = reader.ReadToEnd();
-                                resVal.Close();
-                                res.Close();
+                            Stream resVal = res.GetResponseStream();
+                            StreamReader reader = new StreamReader(resVal, Encoding.UTF8);
+                            //** Store all the contents
+                            response = reader.ReadToEnd();
+                            resVal.Close();
+                            res.Close();
 
-                                cbUrl[3] = "yes";
-                                cnt++;
-
-                                if (!string.IsNullOrEmpty(response))
-                                {
-                                    reslt[0] = cbUrl[0];
-                                    reslt[1] = response;
-                                    reslt[2] = cbUrl[4];
-                                    reslt[3] = cbUrl[5];
-                                    alResult.Add(reslt);
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                Console.WriteLine("Result Request: " + ex.Message);
-                            }
-                        }
-                        else if (cbUrl[2] == "faulted" && cbUrl[3] == "no")
-                        {
                             cbUrl[3] = "yes";
                             cnt++;
+
+                            if (!string.IsNullOrEmpty(response))
+                            {
+                                reslt[0] = cbUrl[0];
+                                reslt[1] = response;
+                                reslt[2] = cbUrl[4];
+                                reslt[3] = cbUrl[5];
+                                alResult.Add(reslt);
+                            }
                         }
-                        else if (cbUrl[2] == "pending" && cbUrl[3] == "no")
+                        catch (Exception ex)
                         {
-                            try
-                            {
-                                HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(uri.ToString().Replace("/results", ""));
-                                httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
-                                HttpWebResponse res = (HttpWebResponse)await httpWebRequest.GetResponseAsync();
-
-                                string doneresp = "";
-                                using (StreamReader reader = new StreamReader(res.GetResponseStream(),Encoding.UTF8))
-                                {
-                                    doneresp = reader.ReadToEnd();
-                                }
-                                res.Close();
-
-                                JObject job = JObject.Parse(doneresp);
-                                string status = job["status"].Value<string>();
-                                cbUrl[2] = status;
-                            }
-                            catch (Exception ex)
-                            {
-                                Console.WriteLine("Status Request: " + ex.Message);
-                            }
+                            Console.WriteLine("Result Request: " + ex.Message);
                         }
-                        else
-                            cnt++;
-                        Task.Delay(200).Wait();
                     }
-                
-                    if (lst.Count == cnt) break;
+                    else if (cbUrl[2] == "faulted" && cbUrl[3] == "no")
+                    {
+                        cbUrl[3] = "yes";
+                        cnt++;
+                    }
+                    else if (cbUrl[2] == "pending" && cbUrl[3] == "no")
+                    {
+                        try
+                        {
+                            HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(uri.ToString().Replace("/results", ""));
+                            httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
+                            HttpWebResponse res = (HttpWebResponse)await httpWebRequest.GetResponseAsync();
 
-                } while (true);
+                            string doneresp = "";
+                            using (StreamReader reader = new StreamReader(res.GetResponseStream(), Encoding.UTF8))
+                            {
+                                doneresp = reader.ReadToEnd();
+                            }
+                            res.Close();
 
-                return await Task.FromResult<ArrayList>(alResult);
-            
+                            JObject job = JObject.Parse(doneresp);
+                            string status = job["status"].Value<string>();
+                            cbUrl[2] = status;
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("Status Request: " + ex.Message);
+                        }
+                    }
+                    else
+                        cnt++;
+                    Task.Delay(200).Wait();
+                }
+
+                if (lst.Count == cnt) break;
+
+            } while (true);
+
+            return await Task.FromResult<ArrayList>(alResult);
+
         }
-        
+
     }
 }

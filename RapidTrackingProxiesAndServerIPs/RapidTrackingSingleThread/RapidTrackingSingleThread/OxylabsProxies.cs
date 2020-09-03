@@ -18,7 +18,7 @@ namespace RapidTrackingSingleThread
 {
     class OxylabsProxies
     {
-        string strConn = string.Empty;
+        readonly string strConn = string.Empty;
         public string sIP = string.Empty;
         const string googleurl = "https://www.google.";
         const string safesearch = "0";
@@ -30,8 +30,8 @@ namespace RapidTrackingSingleThread
 
         public OxylabsProxies()
         {
-            strConn = ReadConnection();
-            dtIPs = getIPsFromDB();
+            strConn = Common.ReadConnection();
+            dtIPs = Common.GetIPsFromDB();
         }
 
         public string ReadConnection()
@@ -57,20 +57,7 @@ namespace RapidTrackingSingleThread
 
         public int x = 0;
         public DataTable dtIPs;
-        
-        private DataTable getIPsFromDB()
-        {
-
-            DataTable dt = new DataTable();
-            string strQry = "Select id, address From oxylabs_proxies order by NewID()";
-
-            using (SqlDataAdapter da = new SqlDataAdapter(strQry, strConn))
-            {
-                da.Fill(dt);
-            }
-            return dt;
-        }
-
+       
 
         Random rnd;
         public string GetWebDataSource(string url)
@@ -82,14 +69,15 @@ namespace RapidTrackingSingleThread
                 // getting IPs from db.
                 if (dtIPs == null)
                 {
-                    dtIPs = getIPsFromDB();
+                    dtIPs = Common.GetIPsFromDB();
                 }
                 rnd = new Random();
                 x = rnd.Next(0, dtIPs.Rows.Count);
                 Uri uri = new Uri(url);
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create(uri);
                 req.Headers.Clear();
-                req.UserAgent = @"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36";
+                //req.UserAgent = @"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36";
+                req.UserAgent = @"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36";
                 // port is changed from '6747' to '6747'.
                 WebProxy proxy = new WebProxy("http://" + dtIPs.Rows[x][1].ToString());
                 NetworkCredential cred = new NetworkCredential("pidatametrics", "sbj4A3PLyZ");
@@ -132,7 +120,7 @@ namespace RapidTrackingSingleThread
                 // getting IPs from db.
                 if (dtIPs == null)
                 {
-                    dtIPs = getIPsFromDB();
+                    dtIPs = Common.GetIPsFromDB();
                 }
                 rnd = new Random();
                 x = rnd.Next(0, dtIPs.Rows.Count);

@@ -30,47 +30,14 @@ namespace RapidTrackingMultithread
 
         public OxylabsProxies()
         {
-            strConn = ReadConnection();
-            dtIPs = GetIPsFromDB();
+            strConn = Common.ReadConnection();
+            dtIPs = Common.GetIPsFromDB();
         }
 
-        public string ReadConnection()
-        {
-            try
-            {
-                XmlDocument xml = new XmlDocument();
-                string fileName = @"C:\Inetpub\wwwroot\Callback_TrackingTrending.xml";
-                xml.Load(fileName);
-
-                // Select a specific node
-                XmlNode node = xml.SelectSingleNode("ConnectionString/con");
-                // Get its value
-                string name = node.InnerText;
-
-                return name;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
+        
         public int x = 0;
         public DataTable dtIPs;
-        private DataTable GetIPsFromDB()
-        {
-    
-            DataTable dt = new DataTable();
-            string strQry = "Select id, address From oxylabs_proxies order by newID()";            
-
-            using (SqlDataAdapter da = new SqlDataAdapter(strQry, strConn))
-            {
-                da.Fill(dt);
-            }
-            return dt;
-        }
-
-       
+        
         Random rnd;
         public string GetWebDataSource(string url)
         {
@@ -83,7 +50,7 @@ namespace RapidTrackingMultithread
                 // getting IPs from db.
                 if (dtIPs == null)
                 {
-                    dtIPs = GetIPsFromDB();
+                    dtIPs = Common.GetIPsFromDB();
                 }
                 rnd = new Random();
                 x = rnd.Next(0, dtIPs.Rows.Count);
@@ -91,7 +58,9 @@ namespace RapidTrackingMultithread
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create(uri);
                 req.Headers.Clear();
                 //req.UserAgent = @"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36";
-                req.UserAgent = @"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36";
+                //req.UserAgent = @"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36";
+                req.UserAgent = @"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36";
+
                 // port is changed from '6747' to '6747'.
                 WebProxy proxy = new WebProxy("http://" + dtIPs.Rows[x][1].ToString());
                 NetworkCredential cred = new NetworkCredential("pidatametrics", "sbj4A3PLyZ");
@@ -133,7 +102,7 @@ namespace RapidTrackingMultithread
                 // getting IPs from db.
                 if (dtIPs == null)
                 {
-                    dtIPs = GetIPsFromDB();
+                    dtIPs = Common.GetIPsFromDB();
                 }
                 rnd = new Random();
                 x = rnd.Next(0, dtIPs.Rows.Count);

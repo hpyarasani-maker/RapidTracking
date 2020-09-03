@@ -1,22 +1,12 @@
 ﻿using System;
-using System.Drawing;
-using System.Collections;
-using System.ComponentModel;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Text;
-using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.IO;
 using System.Threading;
 using System.Net;
 using System.Data;
 using System.Xml;
-using System.Xml.XPath;
-using System.Web;
-using System.Diagnostics;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace RapidTrackingMultithread
 {
@@ -25,17 +15,13 @@ namespace RapidTrackingMultithread
         //ServerIP server0 = new ServerIP();
         OxylabsProxies server0 = new OxylabsProxies();
 
-        string xmlPath1 = "C:\\inetpub\\wwwroot\\RapidTracking_s_1.xml";
-        string xmlPath2 = "C:\\inetpub\\wwwroot\\RapidTracking_s_2.xml";
-        string xmlPath3 = "C:\\inetpub\\wwwroot\\RapidTracking_s_3.xml";
+        string xmlPath1 = "C:\\inetpub\\wwwroot\\RapidTracking_1.xml";
+        string xmlPath2 = "C:\\inetpub\\wwwroot\\RapidTracking_2.xml";
+        string xmlPath3 = "C:\\inetpub\\wwwroot\\RapidTracking_3.xml";
 
         string strCon = string.Empty;
         string liveurl = string.Empty;
         public string myDate = string.Empty;
-
-        int kwcnt1 = 0;
-        int kwcnt2 = 0;
-        int kwcnt3 = 0;
 
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
@@ -43,8 +29,8 @@ namespace RapidTrackingMultithread
         {
             InitializeComponent();
             //TimerExit();
-            strCon = StrConn();
-            liveurl = ReadAPI();
+            strCon = Common.ReadConnection();
+            liveurl = Common.ReadAPI();
         }
 
         void TimerExit()
@@ -60,71 +46,7 @@ namespace RapidTrackingMultithread
             Environment.Exit(Environment.ExitCode);
         }
 
-        public string StrConn()
-        {
-            try
-            {
-                XmlDocument xml = new XmlDocument();
-                string fileName = @"C:\Inetpub\wwwroot\Callback_TrackingTrending.xml";
-                // You'll need to put the correct path to your xml file here
-                xml.Load(fileName);
-                // Select a specific node
-                XmlNode node = xml.SelectSingleNode("ConnectionString/con");
-
-                // Get its value
-                string name = node.InnerText;
-
-                return name;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-
-        static int errCount1 = 0;
-        static int errCount2 = 0;
-        static int errCount3 = 0;
-
-        static int cnt = 0;
-        const int maxCnt = 120;
-
-        void IPChanger()
-        {
-            lock (new Object())
-            {
-                cnt++;
-                if (cnt > maxCnt)
-                {
-                    cnt = 0;
-                    errCount1 = 0;
-                    errCount2 = 0;
-                    errCount3 = 0;
-                    server0.x++;
-                    if (server0.x >= server0.dtIPs.Rows.Count) server0.x = 0;
-                    StreamWriter sw = new StreamWriter("index.txt", false);
-                    sw.WriteLine(server0.x);
-                    sw.Close();
-
-                    //StreamWriter sw1 = new StreamWriter("testlog.txt", true);
-                    //sw1.WriteLine(server0.x + " : " + server0.dtIPs.Rows[server0.x][1].ToString() + " : " + DateTime.Now);
-                    //sw1.Close();
-
-                    //this.Text = "D_TrackingTrending_(1-2-3)_Server-1_" + server0.dtIPs.Rows[server0.x][1].ToString(); 
-                    this.Text = "D_TrackingTrending_(1-2-3)_All_GT20_Proxies";
-
-                    //this.Text = "D_TrackingTrending_(1-2-3)_Server-1_1-120_AutoIP_HTMLParser_" + server0.dtIPs.Rows[server0.x][1].ToString();//changess
-                    //this.Text = "D_TrackingTrending_(4-5-6)_Server-2_1-120_AutoIP_HTMLParser_" + server0.dtIPs.Rows[server0.x][1].ToString();
-                    //this.Text = "D_TrackingTrending_(7-8-9)_Server-3_1-120_AutoIP_HTMLParser_" + server0.dtIPs.Rows[server0.x][1].ToString();
-                    //this.Text = "D_TrackingTrending_(10-11-12)_Server-4_1-120_AutoIP_HTMLParser_" + server0.dtIPs.Rows[server0.x][1].ToString();
-                    //this.Text = "D_TrackingTrending_(13-14-15)_Server-5_1-120_AutoIP_HTMLParser_" + server0.dtIPs.Rows[server0.x][1].ToString();
-                    //this.Text = "D_TrackingTrending_(16-17-18)_Server-6_1-120_AutoIP_HTMLParser_" + server0.dtIPs.Rows[server0.x][1].ToString();
-                    //this.Text = "D_TrackingTrending_(19-20-21)_Server-7_1-120_AutoIP_HTMLParser_" + server0.dtIPs.Rows[server0.x][1].ToString();
-
-                }
-            }
-        }
+        
 
         public void GenerateWorklist2()
         {
@@ -322,8 +244,6 @@ namespace RapidTrackingMultithread
 
         public void ProcessResults2(string seid, string kn)
         {
-            IPChanger();
-
             string[] seresults = new string[1];
             date_picker.Format = DateTimePickerFormat.Custom;
             date_picker.CustomFormat = "yyyy-MM-dd";
@@ -351,16 +271,9 @@ namespace RapidTrackingMultithread
             {
                 results1.Invoke((MethodInvoker)(delegate ()
                 {
-                    results1.Items.Add("no result.");
+                    results1.Items.Add("no Result");
                     results1.Refresh();
                 }));
-
-                errCount1++;
-                if (errCount1 >= 10)
-                {
-                    cnt = maxCnt;
-                    IPChanger();
-                }
             }
 
             if (int.Parse(seresults[1]) < 1)
@@ -375,32 +288,20 @@ namespace RapidTrackingMultithread
             {
                 results1.Invoke((MethodInvoker)(delegate ()
                 {
-                    results1.Items.Add("no Results.");
+                    results1.Items.Add("no Results");
                     results1.Refresh();
                 }));
-
-                errCount1++;
-                if (errCount1 >= 10)
-                {
-                    cnt = maxCnt;
-                    IPChanger();
-                }
             }
             else
-            {
-                kwcnt1++;
+            {                
                 results1.Invoke((MethodInvoker)(delegate ()
                 {
-                    if (kwcnt1 >= 10)
-                    {
-                        IPChanger();
-                        kwcnt1 = 0;
-                    }
+                    
                 }));
                 results1.Invoke((MethodInvoker)(delegate ()
                 {
                     results1.Items.Add(seid + " " + kn);
-                    label1.Text = "No. of URLs : " + (seresults[1]);
+                    label1.Text = "Classic Links : " + (seresults[1]);
                 }));
 
                 if (myDate != "")
@@ -416,16 +317,14 @@ namespace RapidTrackingMultithread
                     }
                     catch (Exception ex)
                     {
-                        throw ex;
+                        string error = ex.Message;
                     }
                 }
             }
         }
 
         public void ProcessResults6(string seid, string kn)
-        {
-            IPChanger();
-
+        {            
             string[] seresults = new string[1];
             date_picker.Format = DateTimePickerFormat.Custom;
             date_picker.CustomFormat = "yyyy-MM-dd";
@@ -453,16 +352,10 @@ namespace RapidTrackingMultithread
             {
                 results1.Invoke((MethodInvoker)(delegate ()
                 {
-                    results2.Items.Add("no result.");
+                    results2.Items.Add("no Results");
                     results2.Refresh();
                 }));
 
-                errCount2++;
-                if (errCount2 >= 10)
-                {
-                    cnt = maxCnt;
-                    IPChanger();
-                }
             }
 
             if (int.Parse(seresults[1]) < 1)
@@ -477,33 +370,22 @@ namespace RapidTrackingMultithread
             {
                 results2.Invoke((MethodInvoker)(delegate ()
                 {
-                    results2.Items.Add("no Results.");
+                    results2.Items.Add("no Results");
                     results2.Refresh();
                 }));
 
-                errCount2++;
-                if (errCount2 >= 10)
-                {
-                    cnt = maxCnt;
-                    IPChanger();
-                }
             }
             else
             {
-                kwcnt1++;
                 results2.Invoke((MethodInvoker)(delegate ()
                 {
-                    if (kwcnt2 >= 10)
-                    {
-                        IPChanger();
-                        kwcnt2 = 0;
-                    }
+                    
                 }));
 
                 results2.Invoke((MethodInvoker)(delegate ()
                 {
                     results2.Items.Add(seid + " " + kn);
-                    label2.Text = "No. of URLs : " + (seresults[1]);
+                    label2.Text = "Classic Links : " + (seresults[1]);
 
                 }));
             }
@@ -521,7 +403,7 @@ namespace RapidTrackingMultithread
                 }
                 catch (Exception ex)
                 {
-                    throw ex;
+                    string error1 = ex.Message;
                 }
             }
         }
@@ -529,7 +411,6 @@ namespace RapidTrackingMultithread
 
         public void ProcessResults12(string seid, string kn)
         {
-            IPChanger();
             string[] seresults = new string[1];
             date_picker.Format = DateTimePickerFormat.Custom;
             date_picker.CustomFormat = "yyyy-MM-dd";
@@ -561,12 +442,6 @@ namespace RapidTrackingMultithread
                     results3.Refresh();
                 }));
 
-                errCount3++;
-                if (errCount3 >= 10)
-                {
-                    cnt = maxCnt;
-                    IPChanger();
-                }
             }
 
             if (int.Parse(seresults[1]) < 1)
@@ -584,32 +459,19 @@ namespace RapidTrackingMultithread
                     results3.Items.Add("no Results.");
                     results3.Refresh();
                 }));
-
-                errCount3++;
-                if (errCount3 >= 10)
-                {
-                    cnt = maxCnt;
-                    IPChanger();
-                }
             }
             else
             {
-                kwcnt3++;
                 results3.Invoke((MethodInvoker)(delegate ()
                 {
-                    if (kwcnt3 >= 10)
-                    {
-                        IPChanger();
-                        kwcnt3 = 0;
-                    }
+                    
                 }));
 
                 results3.Invoke((MethodInvoker)(delegate ()
                 {
                     results3.Items.Add(seid + " " + kn);
-                    label3.Text = "No. of URLs : " + (seresults[1]);
+                    label3.Text = "Classic Links : " + (seresults[1]);
                 }));
-
 
                 if (myDate != "")
                 {
@@ -624,7 +486,7 @@ namespace RapidTrackingMultithread
                     }
                     catch (Exception ex)
                     {
-                        throw ex;
+                        string error2 = ex.Message;
                     }
                 }
             }
@@ -821,34 +683,13 @@ namespace RapidTrackingMultithread
                 date_picker.Value = DateTime.Today;
             }));
 
-            liveurl = ReadAPI();
-            if (File.Exists("index.txt"))
-            {
-                StreamReader sw = new StreamReader("index.txt");
-                string val = sw.ReadLine();
-                sw.Close();
-
-                if (Convert.ToInt32(val) >= 0) server0.x = Convert.ToInt32(val);
-            }
-
-
-            if (server0.x >= server0.dtIPs.Rows.Count)
-            {
-                server0.x = 0;
-            }
+            liveurl = Common.ReadAPI();
 
             this.Invoke((MethodInvoker)(delegate ()
             {
-                this.Text = "D_TrackingTrending_(1-2-3)_Server-1_" + server0.dtIPs.Rows[server0.x][1].ToString();
-                //this.Text = "D_TrackingTrending_(1-2-3)_All_GT20_Proxies";
+                this.Text = "D_TrackingTrending_(1-2-3)_All_GT20_Proxies"; // Multithreads  Proxies
 
-                //this.Text = "D_TrackingTrending_(1-2-3)_Server-1_1-120_AutoIP_HTMLParser_" + server0.dtIPs.Rows[server0.x][1].ToString();//changess
-                //this.Text = "D_TrackingTrending_(4-5-6)_Server-2_1-120_AutoIP_HTMLParser_" + server0.dtIPs.Rows[server0.x][1].ToString();
-                //this.Text = "D_TrackingTrending_(7-8-9)_Server-3_1-120_AutoIP_HTMLParser_" + server0.dtIPs.Rows[server0.x][1].ToString();
-                //this.Text = "D_TrackingTrending_(10-11-12)_Server-4_1-120_AutoIP_HTMLParser_" + server0.dtIPs.Rows[server0.x][1].ToString();
-                //this.Text = "D_TrackingTrending_(13-14-15)_Server-5_1-120_AutoIP_HTMLParser_" + server0.dtIPs.Rows[server0.x][1].ToString();
-                //this.Text = "D_TrackingTrending_(16-17-18)_Server-6_1-120_AutoIP_HTMLParser_" + server0.dtIPs.Rows[server0.x][1].ToString();
-                //this.Text = "D_TrackingTrending_(19-20-21)_Server-7_1-120_AutoIP_HTMLParser_" + server0.dtIPs.Rows[server0.x][1].ToString();
+                //this.Text = "D_TrackingTrending_(1-2-3)_GT20_Proxies"; 
 
             }));
 
@@ -896,7 +737,7 @@ namespace RapidTrackingMultithread
 
             //SendToURL
 
-            string submitURL = ReadAPI();
+            string submitURL = Common.ReadAPI();
 
             string user = "pisoftware";
             string pwd = "r00t123456";
@@ -989,7 +830,7 @@ namespace RapidTrackingMultithread
 
             //SendToURL
 
-            string submitURL = ReadAPI();
+            string submitURL = Common.ReadAPI();
 
             string user = "pisoftware";
             string pwd = "r00t123456";
@@ -1083,7 +924,7 @@ namespace RapidTrackingMultithread
 
             //SendToURL
 
-            string submitURL = ReadAPI();
+            string submitURL = Common.ReadAPI();
 
             string user = "pisoftware";
             string pwd = "r00t123456";
@@ -1211,30 +1052,6 @@ namespace RapidTrackingMultithread
             return ret;
         }
 
-        
-        public string ReadAPI()
-        {
-            try
-            {
-                XmlDocument xml = new XmlDocument();
-                string fileName = @"C:\Inetpub\wwwroot\Callback_TrackingTrending.xml";
-
-                // You'll need to put the correct path to your xml file here
-                xml.Load(fileName);
-
-                // Select a specific node
-                XmlNode node = xml.SelectSingleNode("ConnectionString/apiSubmit");
-                // Get its value
-                string name = node.InnerText;
-
-                return name;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-        }
 
         private void Process_btn_Click(object sender, EventArgs e)
         {

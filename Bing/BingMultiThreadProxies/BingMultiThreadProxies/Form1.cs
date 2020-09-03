@@ -356,89 +356,6 @@ namespace BingMultiThreadProxies
 
         }
 
-        static int errCount1 = 0;
-        static int errCount2 = 0;
-        static int errCount3 = 0;
-
-        static int cnt = 0;
-        const int maxCnt = 120;
-
-        /*void IPChanger()
-        {
-            lock (new Object())
-            {
-                cnt++;
-                if (cnt > maxCnt)
-                {
-                    cnt = 0;
-                    errCount1 = 0;
-                    errCount2 = 0;
-                    errCount3 = 0;
-                    server0.x++;
-                    if (server0.x >= server0.dtIPs.Rows.Count) server0.x = 0;
-                    StreamWriter sw = new StreamWriter("index.txt", false);
-                    sw.WriteLine(server0.x);
-                    sw.Close();
-
-                    StreamWriter sw1 = new StreamWriter("testlog.txt", true);
-                    sw1.WriteLine(server0.x + " : " + server0.dtIPs.Rows[server0.x][1].ToString() + " : " + DateTime.Now);
-                    sw1.Close();
-
-                    //this.Text = "D_0_(23-24-25)_Server-6_AutoIP_" + server0.dtIPs.Rows[server0.x][1].ToString();  
-                    //this.Text = "D_0_(29-30-31)_Server-7_AutoIP_" + server0.dtIPs.Rows[server0.x][1].ToString();  
-
-                    //this.Text = "D_SIPs_(16-17-18)_" + server0.dtIPs.Rows[server0.x][1].ToString();                  
-                    // this.Text = "D_01_(53-54-55_1)_Server_1_" + server0.dtIPs.Rows[server0.x][1].ToString();               
-                    //this.Text = "D_01_(56-57-58)_Server_2_" + server0.dtIPs.Rows[server0.x][1].ToString();               
-                    //this.Text = "D_01_(59-60-61)_Server_4_" + server0.dtIPs.Rows[server0.x][1].ToString();               
-                    //this.Text = "D_01_(62-63-64)_Server_5_" + server0.dtIPs.Rows[server0.x][1].ToString();               
-                    //this.Text = "D_01_(53-54-55_1)_Server_2_" + server0.dtIPs.Rows[server0.x][1].ToString();               
-                    //this.Text = "D_01_(59-60-61)_Server_2_" + server0.dtIPs.Rows[server0.x][1].ToString();               
-                    //this.Text = "D_01_(62-63-64)_Server_3_" + server0.dtIPs.Rows[server0.x][1].ToString();               
-                    // this.Text = "D_01_(65-66-67)_Server_4_" + server0.dtIPs.Rows[server0.x][1].ToString();               
-                    // this.Text = "D_01_(68-69-70)_Server_5_" + server0.dtIPs.Rows[server0.x][1].ToString();               
-                    //this.Text = "D_01_(53-54-55_1)_Server_7_" + server0.dtIPs.Rows[server0.x][1].ToString();               
-
-                    //this.Text = "D_01_(62-63-64)_Server_7_" + server0.dtIPs.Rows[server0.x][1].ToString();               
-                    //this.Text = "D_01_(68-69-70)_Server_7_" + server0.dtIPs.Rows[server0.x][1].ToString();               
-                    // this.Text = "D_01_(65-66-67)_Server_7_" + server0.dtIPs.Rows[server0.x][1].ToString();               
-                    // this.Text = "D_01_(74_4-5-6)_Server_2_" + server0.dtIPs.Rows[server0.x][1].ToString();               
-                    //this.Text = "D_(1_2_58)_Server_1_AutoIP_" + server0.dtIPs.Rows[server0.x][1].ToString();               
-                    // this.Text = "D_1_(1_2_58)_Server_2_AutoIP_1-69_" + server0.dtIPs.Rows[server0.x][1].ToString();               
-                    // this.Text = "D_0_(1_2_3)_Server_3_1-120_AutoIP_" + server0.dtIPs.Rows[server0.x][1].ToString();               
-
-                    // this.Text = "D_01_(1_2_3)_Server_4_1-120_AutoIP_" + server0.dtIPs.Rows[server0.x][1].ToString();               
-                    //this.Text = "D_0_(13_14_15)_Server_5_1-120_AutoIP_" + server0.dtIPs.Rows[server0.x][1].ToString();               
-
-                    //this.Text = "D_01_Mobile_(18-19-21)_Server-6_1-120_AutoIP_" + server0.dtIPs.Rows[server0.x][1].ToString();               
-                    //this.Text = "D_01_Mobile_(19-20-21)_Server-7_1-120_AutoIP_" + server0.dtIPs.Rows[server0.x][1].ToString();   
-
-                    //this.Text = "D_01_Desktop_01_(1-2-3)_Server-1_1-120_AutoIP_" + server0.dtIPs.Rows[server0.x][1].ToString();               
-                    //this.Text = "D_01_Desktop_01_(4-5-6)_Server-2_1-69_AutoIP_" + server0.dtIPs.Rows[server0.x][1].ToString();               
-                    //this.Text = "D_01_Desktop_01_(7-8-9)_Server-3_1-120_AutoIP_" + server0.dtIPs.Rows[server0.x][1].ToString();               
-                    //this.Text = "D_01_Desktop_01_(10-11-12)_Server-4_1-120_AutoIP_" + server0.dtIPs.Rows[server0.x][1].ToString();               
-                    //this.Text = "D_01_Desktop_01_(10-11-12)_Server-5_1-120_AutoIP_" + server0.dtIPs.Rows[server0.x][1].ToString();               
-                    //this.Text = "D_01_Desktop_02_(1-2-3)_Server-6_1-120_AutoIP_" + server0.dtIPs.Rows[server0.x][1].ToString();               
-                    //this.Text = "D_01_Desktop_02_(4-5-6)_Server-7_1-120_AutoIP_" + server0.dtIPs.Rows[server0.x][1].ToString(); 
-
-                    //this.Text = "D_01_Mobile_(1-2-3)_Server-1_1-120_AutoIP_HTMLParser_" + server0.dtIPs.Rows[server0.x][1].ToString();
-                    //this.Text = "D_01_Mobile_(4-5-6)_Server-2_1-120_AutoIP_HTMLParser_" + server0.dtIPs.Rows[server0.x][1].ToString();
-                    //this.Text = "D_01_Mobile_(7-8-9)_Server-3_1-120_AutoIP_HTMLParser_" + server0.dtIPs.Rows[server0.x][1].ToString();
-                    //this.Text = "D_01_Mobile_(10-11-12)_Server-4_1-120_AutoIP_HTMLParser_" + server0.dtIPs.Rows[server0.x][1].ToString();
-                    //this.Text = "D_01_Mobile_(13-14-15)_Server-5_1-120_AutoIP_HTMLParser_" + server0.dtIPs.Rows[server0.x][1].ToString();
-                    this.Text = "D_01_Mobile_(16-17-18)_Server-6_1-120_AutoIP_HTMLParser_" + server0.dtIPs.Rows[server0.x][1].ToString();
-                    //this.Text = "D_01_Mobile_(19-20-21)_Server-7_1-120_AutoIP_HTMLParser_" + server0.dtIPs.Rows[server0.x][1].ToString();
-
-
-                    //Application.Restart();
-                    //Process.GetProcessesByName("DashboardAppn");
-                    ////Process.GetCurrentProcess().Kill();
-                    //Process.GetCurrentProcess().Close();
-                }
-            }
-        }*/
-
-               
         public void processResults2(string seid, string kn)
 		{  			
 			ArrayList seresults = new ArrayList();
@@ -477,11 +394,11 @@ namespace BingMultiThreadProxies
                 //    IPChanger();                   
                 //}
 			}            
-            else if (seresults[0].ToString().Contains("e100") && seresults[0].ToString().Trim().StartsWith("e100"))
+            else if (seresults[0].ToString().Contains("Index was outside the bounds of the array"))
             {
                 results1.Invoke((MethodInvoker)(delegate()
                 {
-                    results1.Items.Add("e100: no result." );
+                    results1.Items.Add("No result" );
                     results1.Refresh();
                 }));
                 txtError.Invoke((MethodInvoker)(delegate()
@@ -489,24 +406,9 @@ namespace BingMultiThreadProxies
                     txtError.Text += seresults[0].ToString() + "\r\n";
                     txtError.Refresh();
                 }));                             
-
-                //errCount1++;
-                //if (errCount1 >= 1)
-                //{
-                //    cnt = maxCnt;
-                //    IPChanger();
-                //}
             }
             else
-            {
-                errCount1 = 0;
-                // display results in Results listbox
-                //errCount1++;
-                //if (errCount1 >= 10)
-                //{
-                //    cnt = maxCnt;
-                //    IPChanger();
-                //}       
+            {      
                 results1.Invoke((MethodInvoker)(delegate()
                 {
                     results1.Items.Add(seid + " " + kn);
@@ -540,8 +442,7 @@ namespace BingMultiThreadProxies
                     {
                         k = (i + 1);
                         c = k.ToString();
-                        if (seresults[i].ToString().Contains("e100") && seresults[i].ToString().Trim().StartsWith("e100"))
-                            continue;
+                  
                         writer.WriteStartElement("", "url", "");
                         writer.WriteStartAttribute("position");
                         writer.WriteString(c);
@@ -620,11 +521,11 @@ namespace BingMultiThreadProxies
                 //    IPChanger();
                 //}
 			}             
-            else if (seresults[0].ToString().Contains("e100") && seresults[0].ToString().Trim().StartsWith("e100"))
+            else if (seresults[0].ToString().Contains("Index was outside the bounds of the array"))
             {
                 results2.Invoke((MethodInvoker)(delegate()
                 {
-                    results2.Items.Add("e100: no result." );
+                    results2.Items.Add("no result");
                     results2.Refresh();
                 }));
                 txtError.Invoke((MethodInvoker)(delegate()
@@ -642,14 +543,6 @@ namespace BingMultiThreadProxies
             }
 			else
 			{
-                errCount2 = 0;
-				// display results in Results listbox
-                //errCount2++;
-                //if (errCount2 >= 10)
-                //{
-                //    cnt = maxCnt;
-                //    IPChanger();
-                //}  
                 results2.Invoke((MethodInvoker)(delegate()
                 {
                     results2.Items.Add(seid + " " + kn);
@@ -684,8 +577,7 @@ namespace BingMultiThreadProxies
                     {
                         k = (i + 1);
                         c = k.ToString();
-                        if (seresults[i].ToString().Contains("e100") && seresults[i].ToString().Trim().StartsWith("e100"))
-                            continue;
+
                         writer.WriteStartElement("", "url", "");
                         writer.WriteStartAttribute("position");
                         writer.WriteString(c);
@@ -765,11 +657,11 @@ namespace BingMultiThreadProxies
                 //    IPChanger();
                 //}
 			}	
-            else if (seresults[0].ToString().Contains("e100") && seresults[0].ToString().Trim().StartsWith("e100"))
+            else if (seresults[0].ToString().Contains("Index was outside the bounds of the array"))
             {
                 results3.Invoke((MethodInvoker)(delegate()
                 {
-                    results3.Items.Add("e100: no result.");
+                    results3.Items.Add("no result");
                     results3.Refresh();
                 }));
                 txtError.Invoke((MethodInvoker)(delegate()
@@ -777,24 +669,9 @@ namespace BingMultiThreadProxies
                     txtError.Text += seresults[0].ToString() + "\r\n";
                     txtError.Refresh();
                 }));
-
-                //errCount3++;
-                //if (errCount3 >= 1)
-                //{
-                //    cnt = maxCnt;
-                //    IPChanger();
-                //}
             }
 			else
-			{
-                errCount3 = 0;
-				// display results in Results listbox
-                //errCount3++;
-                //if (errCount3 >= 10)
-                //{
-                //    cnt = maxCnt;
-                //    IPChanger();
-                //}  				 
+			{                				 
                 results3.Invoke((MethodInvoker)(delegate()
                 {
                     results3.Items.Add(seid + " " + kn);
@@ -827,8 +704,7 @@ namespace BingMultiThreadProxies
                     {
                         k = (i + 1);
                         c = k.ToString();
-                        if (seresults[i].ToString().Contains("e100") && seresults[i].ToString().Trim().StartsWith("e100"))
-                            continue;
+                  
                         writer.WriteStartElement("", "url", "");
                         writer.WriteStartAttribute("position");
                         writer.WriteString(c);

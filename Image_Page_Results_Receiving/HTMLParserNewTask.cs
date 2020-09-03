@@ -258,8 +258,7 @@ namespace Image_Page_Results_Receiving
                         {
                             k = i + 1;
                             c = k.ToString();
-                            if (alRes[i].ToString().Contains("e100") && alRes[i].ToString().Trim().StartsWith("e100"))
-                                continue;
+                          
                             writer.WriteStartElement("", "url", "");
                             writer.WriteStartAttribute("position");
                             writer.WriteString(c);

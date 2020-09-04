@@ -772,7 +772,7 @@ namespace RapidTrackingSingleThread
             StringBuilder s = new StringBuilder();
             HtmlNode n = node.SelectSingleNode(".//div[@class='r']/a");
             if (n == null)
-                n = node.SelectSingleNode(".//div[@class='yuRUbf']/a"); //03-09-2020
+                n = node.SelectSingleNode(".//div[@class='yuRUbf']/a"); //03-09-2020 included classic link selector
             if (n != null)
             {
                 if (orgLinks < 100)

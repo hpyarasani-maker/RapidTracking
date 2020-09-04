@@ -15,9 +15,9 @@ namespace RapidTrackingMultithread
         //ServerIP server0 = new ServerIP();
         OxylabsProxies server0 = new OxylabsProxies();
 
-        string xmlPath1 = "C:\\inetpub\\wwwroot\\RapidTracking_1.xml";
-        string xmlPath2 = "C:\\inetpub\\wwwroot\\RapidTracking_2.xml";
-        string xmlPath3 = "C:\\inetpub\\wwwroot\\RapidTracking_3.xml";
+        string xmlPath1 = "C:\\inetpub\\wwwroot\\RapidTracking_1_GT20.xml";
+        string xmlPath2 = "C:\\inetpub\\wwwroot\\RapidTracking_2_GT20.xml";
+        string xmlPath3 = "C:\\inetpub\\wwwroot\\RapidTracking_3_GT20.xml";
 
         string strCon = string.Empty;
         string liveurl = string.Empty;

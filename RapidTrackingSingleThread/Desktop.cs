@@ -825,6 +825,8 @@ namespace RapidTrackingSingleThread
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='r']/a");
             if (nds == null)
+                nds = node.SelectNodes(".//div[@class='yuRUbf']/a");  //03-09-2020 included selector for missing classic links
+            if (nds == null)
                 return string.Empty;
             foreach (HtmlNode nd in nds)
             {

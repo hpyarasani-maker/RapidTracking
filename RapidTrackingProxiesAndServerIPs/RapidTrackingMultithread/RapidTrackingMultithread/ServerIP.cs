@@ -7,13 +7,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Web;
-using System.Windows.Forms;
 using System.Xml;
 
 namespace RapidTrackingMultithread
@@ -32,34 +26,10 @@ namespace RapidTrackingMultithread
 
         public ServerIP()
         {
-            strConn = ReadConnection();
-            dtIPs = GetIPsFromDB();
+            strConn = Common.ReadConnection();
+            dtIPs = Common.GetIPsFromDB();
         }
 
-
-        public string ReadConnection()
-        {
-            try
-            {
-                XmlDocument xml = new XmlDocument();
-                string fileName = @"C:\Inetpub\wwwroot\Callback_TrackingTrending.xml";
-
-                // You'll need to put the correct path to your xml file here
-                xml.Load(fileName);
-
-                // Select a specific node
-                XmlNode node = xml.SelectSingleNode("ConnectionString/con");
-
-                // Get its value
-                string name = node.InnerText;
-
-                return name;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
 
         public string GetIPAddress(int id)
         {
@@ -94,18 +64,6 @@ namespace RapidTrackingMultithread
         public int x = 0;
         public DataTable dtIPs;
 
-        private DataTable GetIPsFromDB()
-        {
-            DataTable dt = new DataTable();
-            string strQry = "Select id, address From IP_AddressIP6";
-
-            using (SqlDataAdapter da = new SqlDataAdapter(strQry, strConn))
-            {
-                da.Fill(dt);
-            }
-            return dt;
-        }
-
         public string GetIP()
         {
             //return GetIPAddress(97);
@@ -118,7 +76,7 @@ namespace RapidTrackingMultithread
             // getting IPs from db.
             if (dtIPs == null)
             {
-                dtIPs = GetIPsFromDB();
+                dtIPs = Common.GetIPsFromDB();
                 if (dtIPs == null || dtIPs.Rows.Count == 0)
                 {
                     throw new Exception("There is no IP to continue...");
@@ -163,7 +121,7 @@ namespace RapidTrackingMultithread
             // getting IPs from db.
             if (dtIPs == null)
             {
-                dtIPs = GetIPsFromDB();
+                dtIPs = Common.GetIPsFromDB();
                 if (dtIPs == null || dtIPs.Rows.Count == 0)
                 {
                     throw new Exception("There is no IP to continue...");

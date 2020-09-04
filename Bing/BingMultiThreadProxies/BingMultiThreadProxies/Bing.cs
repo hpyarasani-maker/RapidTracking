@@ -371,7 +371,7 @@ namespace BingMultiThreadProxies
             }
             catch (Exception ex)
             {
-                string errorBingUS = "e100" + " " + ex.Message.ToString();
+                string errorBingUS =  ex.Message.ToString();
                 top100MSNUS.Add(errorBingUS);
             }
             return top100MSNUS;
@@ -413,7 +413,7 @@ namespace BingMultiThreadProxies
             }
             catch (Exception ex)
             {
-                string errorBingUK = "e100" + " " + ex.Message.ToString();
+                string errorBingUK =  ex.Message.ToString();
                 top100MSNUK.Add(errorBingUK);
             }
             return top100MSNUK;
@@ -456,7 +456,7 @@ namespace BingMultiThreadProxies
             }
             catch (Exception ex)
             {
-                string errorBingNZ = "e100" + " " + ex.Message.ToString();
+                string errorBingNZ = ex.Message.ToString();
                 top100MSNNZ.Add(errorBingNZ);
             }
             return top100MSNNZ;
@@ -500,7 +500,7 @@ namespace BingMultiThreadProxies
             }
             catch (Exception ex)
             {
-                string errorBingZA = "e100" + " " + ex.Message.ToString();
+                string errorBingZA = ex.Message.ToString();
                 top100MSNZA.Add(errorBingZA);
             }
             return top100MSNZA;
@@ -542,7 +542,7 @@ namespace BingMultiThreadProxies
             }
             catch (Exception ex)
             {
-                string errorBingIT = "e100" + " " + ex.Message.ToString();
+                string errorBingIT = ex.Message.ToString();
                 top100MSNIT.Add(errorBingIT);
             }
             return top100MSNIT;
@@ -586,7 +586,7 @@ namespace BingMultiThreadProxies
             }
             catch (Exception ex)
             {
-                string errorBingFR = "e100" + " " + ex.Message.ToString();
+                string errorBingFR = ex.Message.ToString();
                 top100MSNFR.Add(errorBingFR);
             }
             return top100MSNFR;
@@ -630,7 +630,7 @@ namespace BingMultiThreadProxies
             }
             catch (Exception ex)
             {
-                string errorBingUSMobile = "e100" + " " + ex.Message.ToString();
+                string errorBingUSMobile = ex.Message.ToString();
                 top100BingUSMobile.Add(errorBingUSMobile);
             }
             return top100BingUSMobile;
@@ -675,7 +675,7 @@ namespace BingMultiThreadProxies
             }
             catch (Exception ex)
             {
-                string errorBingUkMobile = "e100" + " " + ex.Message.ToString();
+                string errorBingUkMobile = ex.Message.ToString();
                 top100BingUKMobile.Add(errorBingUkMobile);
             }
             return top100BingUKMobile;

@@ -23,8 +23,7 @@ namespace RapidTrackingSingleThread
 
         ArrayList seresults = new ArrayList();
 
-        string xmlPath = "C:\\inetpub\\wwwroot\\Remaining_GT20_All_S1.xml";
-
+        string xmlPath = "C:\\inetpub\\wwwroot\\Remaining_GT20_102.xml";
 
         public string myDate = string.Empty;
         string statusCode = string.Empty;
@@ -50,52 +49,6 @@ namespace RapidTrackingSingleThread
         }
 
 
-        public string StrConn()
-        {
-            XmlDocument xml = new XmlDocument();
-            string fileName = @"C:\Inetpub\wwwroot\Callback_TrackingTrending.xml";
-            // You'll need to put the correct path to your xml file here
-            xml.Load(fileName);
-
-            // Select a specific node
-            XmlNode node = xml.SelectSingleNode("ConnectionString/con");
-            // Get its value
-            string name = node.InnerText;
-
-            return name;
-        }
-
-        static int errCount1 = 0;
-        int kwcnt1 = 0;
-
-        static int cnt = 0;
-        const int maxCnt = 120;
-
-        void IPChanger()
-        {
-            lock (new Object())
-            {
-                cnt++;
-                if (cnt > maxCnt)
-                {
-                    cnt = 0;
-                    errCount1 = 0;
-
-                    WOWS.x++;
-                    if (WOWS.x >= WOWS.dtIPs.Rows.Count) WOWS.x = 0;
-                    StreamWriter sw = new StreamWriter("index.txt", false);
-                    sw.WriteLine(WOWS.x);
-                    sw.Close();
-
-                    //StreamWriter sw1 = new StreamWriter("testlog.txt", true);
-                    //sw1.WriteLine(WOWS.x + " : " + WOWS.dtIPs.Rows[WOWS.x][1].ToString() + " : " + DateTime.Now);
-                    //sw1.Close();
-                    this.Text = "D_RapidTracking_All_1_GT20_ServerIP1_" + WOWS.dtIPs.Rows[WOWS.x][1].ToString();
-
-                }
-            }
-        }
-
         public void GenerateWorklist()
         {
             worklist.Invoke((MethodInvoker)(delegate ()
@@ -106,15 +59,15 @@ namespace RapidTrackingSingleThread
                 //worklist.Items.Add("1:@diabetes_101");
                 //worklist.Items.Add("1:@fionamartin123");
                 //worklist.Items.Add("1:@smith101sam");
-                worklist.Items.Add("106:rob beckett tour");
+                //worklist.Items.Add("106:rob beckett tour");
             }));
             Cursor.Current = System.Windows.Forms.Cursors.WaitCursor;
             date_picker.Format = DateTimePickerFormat.Custom;
             date_picker.CustomFormat = "yyyy-MM-dd";
             string myDate = date_picker.Text;
-            return;
-            //string strSql = "exec [dbo].[Tracking_DB_Keywords_SEID_102] '" + myDate + "'";       
-            string strSql = "exec [dbo].[GetAllKeywords_ServerIps_1] '" + myDate + "'";      
+            //return;
+
+            string strSql = "exec [dbo].[Tracking_DB_Keywords_SEID_102] '" + myDate + "'";                     
 
             try
             {
@@ -163,26 +116,9 @@ namespace RapidTrackingSingleThread
             int worklistSize = worklist.Items.Count;
             return worklistSize;
         }
-        public string ReadAPI()
-        {
-            XmlDocument xml = new XmlDocument();
-            string fileName = @"C:\Inetpub\wwwroot\Callback_TrackingTrending.xml";
-            // You'll need to put the correct path to your xml file here
-            xml.Load(fileName);
-
-            // Select a specific node
-            XmlNode node = xml.SelectSingleNode("ConnectionString/apiSubmit");
-
-            // Get its value
-            string name = node.InnerText;
-
-            return name;
-
-        }
 
         public void ProcessResults(string seid, string kn)
         {
-            IPChanger();
             string[] seresults = new string[1];
             date_picker.Format = DateTimePickerFormat.Custom;
             date_picker.CustomFormat = "yyyy-MM-dd";
@@ -215,12 +151,6 @@ namespace RapidTrackingSingleThread
                     results.Refresh();
                 }));
 
-                errCount1++;
-                if (errCount1 >= 10)
-                {
-                    cnt = maxCnt;
-                    IPChanger();
-                }
             }
             if (int.Parse(seresults[1]) < 1)
             {
@@ -239,24 +169,12 @@ namespace RapidTrackingSingleThread
                     results.Refresh();
                 }));
 
-                errCount1++;
-                if (errCount1 >= 10)
-                {
-                    cnt = maxCnt;
-                    IPChanger();
-                }
             }
             else
             {
-                kwcnt1++;
-
                 results.Invoke((MethodInvoker)(delegate ()
                 {
-                    if (kwcnt1 >= 10)
-                    {
-                        IPChanger();
-                        kwcnt1 = 0;
-                    }
+                    
                 }));
 
                 results.Invoke((MethodInvoker)(delegate ()
@@ -279,7 +197,7 @@ namespace RapidTrackingSingleThread
                 }
                 catch (Exception ex)
                 {
-                    throw ex;
+                    string error = ex.Message;
                 }
             }
         }
@@ -337,7 +255,7 @@ namespace RapidTrackingSingleThread
             //}
             //SendToURL
             //return;
-            string submitURL = ReadAPI();
+            string submitURL = Common.ReadAPI();
 
             string user = "pisoftware";
             string pwd = "r00t123456";
@@ -487,26 +405,13 @@ namespace RapidTrackingSingleThread
                 date_picker.Value = DateTime.Today;
             }));
 
-            liveurl = ReadAPI();
-            if (File.Exists("index.txt"))
-            {
-                StreamReader sw = new StreamReader("index.txt");
-                string val = sw.ReadLine();
-                sw.Close();
-
-                if (Convert.ToInt32(val) >= 0) WOWS.x = Convert.ToInt32(val);
-            }
-
-            if (WOWS.x >= WOWS.dtIPs.Rows.Count)
-            {
-                WOWS.x = 0;
-            }
+            liveurl = Common.ReadAPI();
 
             this.Invoke((MethodInvoker)(delegate ()
             {
                 //date_picker.Value = DateTime.Today.AddDays(-2);
 
-                this.Text = "D_RapidTracking_All_1_GT20_ServerIP1_" + WOWS.dtIPs.Rows[WOWS.x][1].ToString();
+                this.Text = "D_RapidTracking_102_GT20_Proxies";
 
             }));
             Thread myThread = new Thread(new ThreadStart(MainLoop));

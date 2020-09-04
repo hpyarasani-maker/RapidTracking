@@ -171,7 +171,7 @@
             this.Process_btn.Name = "Process_btn";
             this.Process_btn.Size = new System.Drawing.Size(75, 23);
             this.Process_btn.TabIndex = 32;
-            this.Process_btn.Text = "button1";
+            this.Process_btn.Text = "Update";
             this.Process_btn.UseVisualStyleBackColor = true;
             this.Process_btn.Click += new System.EventHandler(this.Process_btn_Click);
             // 

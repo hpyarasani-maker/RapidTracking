@@ -1290,7 +1290,8 @@ namespace RapidTrackingSingleThread
         {
             return (node.SelectSingleNode(".//h3[@class='r']") != null || node.SelectSingleNode(".//div[@class='r']") != null
                 || node.SelectSingleNode(".//div[@class='zTpPx']") != null || node.SelectSingleNode(".//div[@class='zTpPx']/g-link/a") != null    // 28-05-2020   // 13-03-2020
-                || node.SelectSingleNode(".//h3[@class='r dO0Ag']") != null || node.SelectSingleNode(".//div[@class='DOqJne']") != null); //27-06-2020    //29-05-2020
+                || node.SelectSingleNode(".//h3[@class='r dO0Ag']") != null || node.SelectSingleNode(".//div[@class='DOqJne']") != null //27-06-2020    //29-05-2020
+                || node.SelectSingleNode(".//div[@class='rc']") != null); // 03-09-2020 missing classic links selector included
         }
         
         //07-11-2019

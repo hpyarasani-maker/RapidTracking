@@ -574,6 +574,10 @@ namespace RapidTrackingMultithread
                                     n = nd.SelectSingleNode(".//div[@class='r']/div/a");  // 28-05-2020 twitter class link included selector
                                 if (n == null)
                                     n = nd.SelectSingleNode(".//h3[@class='r dO0Ag']/a");  //29-05-2020
+                                if (n == null)
+                                    n = nd.SelectSingleNode(".//div[@class='yuRUbf']/a"); //03-09-2020  included selector for classic links                         
+                                if (n != null)
+                                    title = n.SelectSingleNode(".//h3"); //03-09-2020 included selector for classic links
                                 var urls = n.Attributes["href"].Value;
                                 string t;
                                 if (title != null)
@@ -763,6 +767,8 @@ namespace RapidTrackingMultithread
         {
             StringBuilder s = new StringBuilder();
             HtmlNode n = node.SelectSingleNode(".//div[@class='r']/a");
+            if (n == null)
+                n = node.SelectSingleNode(".//div[@class='yuRUbf']/a"); //03-09-2020 included classic link selector
             if (n != null)
             {
                 if (orgLinks < 100)
@@ -814,6 +820,8 @@ namespace RapidTrackingMultithread
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='r']/a");
+            if (nds == null)
+                nds = node.SelectNodes(".//div[@class='yuRUbf']/a");  //03-09-2020 included selector for missing classic links
             if (nds == null)
                 return string.Empty;
             foreach (HtmlNode nd in nds)
@@ -1286,7 +1294,8 @@ namespace RapidTrackingMultithread
         {
             return (node.SelectSingleNode(".//h3[@class='r']") != null || node.SelectSingleNode(".//div[@class='r']") != null
                 || node.SelectSingleNode(".//div[@class='zTpPx']") != null || node.SelectSingleNode(".//div[@class='zTpPx']/g-link/a") != null    // 28-05-2020   // 13-03-2020
-                || node.SelectSingleNode(".//h3[@class='r dO0Ag']") != null || node.SelectSingleNode(".//div[@class='DOqJne']") != null); //27-06-2020    //29-05-2020
+                || node.SelectSingleNode(".//h3[@class='r dO0Ag']") != null || node.SelectSingleNode(".//div[@class='DOqJne']") != null //27-06-2020    //29-05-2020
+                || node.SelectSingleNode(".//div[@class='rc']") != null); // 03-09-2020 missing classic links selector included
         }
 
         //07-11-2019

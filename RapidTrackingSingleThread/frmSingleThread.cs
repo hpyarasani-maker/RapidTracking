@@ -31,13 +31,13 @@ namespace RapidTrackingSingleThread
             //count = 0;   // Common.GetOxylabsCount();          
             //timerExit();
         }
-        void timerExit()
+        void TimerExit()
         {
             timer.Interval = 25 * 60000; 
-            timer.Tick += new EventHandler(timer_Tick);
+            timer.Tick += new EventHandler(Timer_Tick);
             timer.Start();
         }
-        void timer_Tick(object sender, EventArgs e)
+        void Timer_Tick(object sender, EventArgs e)
         {
             timer.Stop();
             Environment.Exit(Environment.ExitCode);
@@ -294,10 +294,9 @@ namespace RapidTrackingSingleThread
                 //lstKWs.Items.Add("160:malmö ff");
                 //lstKWs.Items.Add("102:terry crews");
                 //lstKWs.Items.Add("102:the uninhabitable earth summary");
-                lstKWs.Items.Add("208:o2 jyväskylä");
+                //lstKWs.Items.Add("102:autobiographies");
             });
-            return;
-
+            //return;
             try
             {
                 using (SqlConnection con = new SqlConnection(Common.ReadConnection()))  // 12-05-2020
@@ -587,7 +586,7 @@ namespace RapidTrackingSingleThread
                         response = "";
 
                     Uri uri = new Uri(cbUrl[1]);
-                    //Uri uri = new Uri("http://data.oxylabs.io/v1/queries/6683348256069525505/results");
+                    //Uri uri = new Uri("http://data.oxylabs.io/v1/queries/6706351948792081409/results");
                     if (cbUrl[2] == "done" && cbUrl[3] == "no")
                         {
                             try

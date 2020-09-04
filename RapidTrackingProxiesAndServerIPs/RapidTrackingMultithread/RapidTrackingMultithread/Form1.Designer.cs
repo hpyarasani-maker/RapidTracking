@@ -42,8 +42,8 @@
             this.worklist3 = new System.Windows.Forms.ListBox();
             this.worklist2 = new System.Windows.Forms.ListBox();
             this.worklist1 = new System.Windows.Forms.ListBox();
-            this.process_btn = new System.Windows.Forms.Button();
             this.date_picker = new System.Windows.Forms.DateTimePicker();
+            this.Process_btn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label3
@@ -157,15 +157,6 @@
             this.worklist1.Size = new System.Drawing.Size(128, 693);
             this.worklist1.TabIndex = 18;
             // 
-            // process_btn
-            // 
-            this.process_btn.Location = new System.Drawing.Point(229, 17);
-            this.process_btn.Name = "process_btn";
-            this.process_btn.Size = new System.Drawing.Size(75, 23);
-            this.process_btn.TabIndex = 17;
-            this.process_btn.Text = "Update UK";
-            this.process_btn.Click += new System.EventHandler(this.process_btn_Click);
-            // 
             // date_picker
             // 
             this.date_picker.CustomFormat = "dd/mm/yyyy";
@@ -174,11 +165,22 @@
             this.date_picker.Size = new System.Drawing.Size(200, 20);
             this.date_picker.TabIndex = 16;
             // 
+            // Process_btn
+            // 
+            this.Process_btn.Location = new System.Drawing.Point(253, 17);
+            this.Process_btn.Name = "Process_btn";
+            this.Process_btn.Size = new System.Drawing.Size(75, 23);
+            this.Process_btn.TabIndex = 32;
+            this.Process_btn.Text = "button1";
+            this.Process_btn.UseVisualStyleBackColor = true;
+            this.Process_btn.Click += new System.EventHandler(this.Process_btn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1026, 750);
+            this.Controls.Add(this.Process_btn);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -193,7 +195,6 @@
             this.Controls.Add(this.worklist3);
             this.Controls.Add(this.worklist2);
             this.Controls.Add(this.worklist1);
-            this.Controls.Add(this.process_btn);
             this.Controls.Add(this.date_picker);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -219,8 +220,8 @@
         private System.Windows.Forms.ListBox worklist3;
         private System.Windows.Forms.ListBox worklist2;
         private System.Windows.Forms.ListBox worklist1;
-        private System.Windows.Forms.Button process_btn;
         private System.Windows.Forms.DateTimePicker date_picker;
+        private System.Windows.Forms.Button Process_btn;
     }
 }
 

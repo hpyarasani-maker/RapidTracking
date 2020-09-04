@@ -737,7 +737,7 @@ namespace RapidTrackingSingleThread
                             continue;
                         }
                         //21-02-2020  included selector for the Apps Block
-                        if (nd.SelectSingleNode(".//div[@class='ki5rnd']|.//div[@class='yR4jwc']") != null) //20-05-2020 included selector for app block
+                        if (nd.SelectSingleNode(".//div[@class='ki5rnd']|.//div[@class='yR4jwc']|.//div[@class='qs-io aig-lst']") != null) //31-08-2020  //20-05-2020 included selector for app block
                         {
                             s.Append(GetApps(nd));
                             continue;
@@ -1856,9 +1856,17 @@ namespace RapidTrackingSingleThread
                     foreach (HtmlNode nd in App2)
                     {
                         HtmlNode App3 = nd.ChildNodes[0];
+                        //31-08-2020
+                        HtmlNode titleNode = nd.SelectSingleNode(".//div[@class='dlErff']");
+                        string title;
+                        if (titleNode != null)
+                            title = titleNode.InnerText.Trim();
+                        else
+                            title = nd.InnerText.TrimStart();
 
-                        s.Append("<item url=\"" + SetUrl(App3.Attributes["href"].Value) + "\" title=\"" + SetTitle(nd.InnerText.TrimStart()) + "\" />");
-                        //end of 06-08-2019
+                        s.Append("<item url=\"" + SetUrl(App3.Attributes["href"].Value) + "\" title=\"" + SetTitle(title) + "\" />");
+                        //end 31-08-2020
+                       
                     }
                 }
                 s.Append("</block>");
@@ -2315,7 +2323,7 @@ namespace RapidTrackingSingleThread
                 return true;
             }//end 13-08-2019
 
-            nd = node.SelectSingleNode(".//div[@data-tts='answers']|.//div[@class='N6Sb2c i29hTd']|.//div[@class='kp-blk c2xzTb OJXvsb']|.//div[@class='answered-question']");
+            nd = node.SelectSingleNode(".//div[@data-tts='answers']|.//div[@class='N6Sb2c i29hTd']|.//div[@class='kp-blk c2xzTb OJXvsb']|.//div[@class='answered-question']|.//div[@class='UDZeY fAgajc']"); //02-09-2020 included selector for (About)Answer Card
             if (nd != null)
             {
                 return true;

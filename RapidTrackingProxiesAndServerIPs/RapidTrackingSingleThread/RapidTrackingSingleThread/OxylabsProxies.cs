@@ -30,11 +30,11 @@ namespace RapidTrackingSingleThread
 
         public OxylabsProxies()
         {
-            strConn = readConnection();
+            strConn = ReadConnection();
             dtIPs = getIPsFromDB();
         }
 
-        public string readConnection()
+        public string ReadConnection()
         {
             try
             {
@@ -57,7 +57,7 @@ namespace RapidTrackingSingleThread
 
         public int x = 0;
         public DataTable dtIPs;
-        Dictionary<string, CookieCollection> cookies = new Dictionary<string, CookieCollection>();
+        
         private DataTable getIPsFromDB()
         {
 
@@ -73,7 +73,7 @@ namespace RapidTrackingSingleThread
 
 
         Random rnd;
-        public string getWebDataSource(string url)
+        public string GetWebDataSource(string url)
         {
             int x = 0;
             sIP = string.Empty;
@@ -122,7 +122,7 @@ namespace RapidTrackingSingleThread
 
         string[] lastIP = new string[2];
         ArrayList al = new ArrayList();
-        public string getWebDataMobileSource(string url)
+        public string GetWebDataMobileSource(string url)
         {
 
             int x = 0;
@@ -168,7 +168,7 @@ namespace RapidTrackingSingleThread
             }
         }
 
-        public string[] getTop100Desktop(string keyword, int seid, out string oIP, string domain, string locale, string uule, string device)
+        public string[] GetTop100Desktop(string keyword, int seid, out string oIP, string domain, string locale, string uule, string device)
         {
             ArrayList DesktopResult = new ArrayList();
 
@@ -187,14 +187,14 @@ namespace RapidTrackingSingleThread
                 url = "" + googleurl + "" + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&num=" + num + "&safe_search=" + safesearch + "&safe=" + safe + "&aomd=" + aomd + "&uule=" + uule + "&gs_l=" + device + "&gws_rd=ssl,cr";
             }
 
-            string HTML = getWebDataSource(url);
-            string[] dr = desktoppatternTrending(HTML, keyword, seid.ToString());
+            string HTML = GetWebDataSource(url);
+            string[] dr = DesktoppatternTrending(HTML, keyword, seid.ToString());
 
             oIP = sIP;
             return dr;
         }
 
-        public string[] getTop100Mobile(string keyword, int seid, out string oIP, string domain, string locale, string uule, string device)
+        public string[] GetTop100Mobile(string keyword, int seid, out string oIP, string domain, string locale, string uule, string device)
         {
             ArrayList MobileResult = new ArrayList();
 
@@ -213,14 +213,14 @@ namespace RapidTrackingSingleThread
                 url = "" + googleurl + "" + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&num=" + num + "&safe_search=" + safesearch + "&safe=" + safe + "&aomd=" + aomd + "&uule=" + uule + "&gs_l=" + device + "-gws-serp.3.0&gws_rd=ssl,cr";
             }
 
-            string HTML = getWebDataMobileSource(url);
-            string[] mr = mobilepatternTrending(HTML, keyword, seid.ToString());
+            string HTML = GetWebDataMobileSource(url);
+            string[] mr = MobilepatternTrending(HTML, keyword, seid.ToString());
             oIP = sIP;
             return mr;
         }
 
 
-        private string[] desktoppatternTrending(string html, string keyword, string seid)
+        private string[] DesktoppatternTrending(string html, string keyword, string seid)
         {
             string[] array = new string[2];
             string res = "";
@@ -235,7 +235,7 @@ namespace RapidTrackingSingleThread
             array[1] = clsDesktop.orgLinks.ToString();
             return array;
         }
-        private string[] mobilepatternTrending(string html, string keyword, string seid)
+        private string[] MobilepatternTrending(string html, string keyword, string seid)
         {
             string[] array = new string[2];
             string res = "";
@@ -259,11 +259,11 @@ namespace RapidTrackingSingleThread
             {
                 if (value.device == "desktop")
                 {
-                    seresults = getTop100Desktop(keyword, seid, out sIP, value.domain, value.locale, value.uule, value.device);
+                    seresults = GetTop100Desktop(keyword, seid, out sIP, value.domain, value.locale, value.uule, value.device);
                 }
                 else if (value.device == "mobile_android")
                 {
-                    seresults = getTop100Mobile(keyword, seid, out sIP, value.domain, value.locale, value.uule, value.device);
+                    seresults = GetTop100Mobile(keyword, seid, out sIP, value.domain, value.locale, value.uule, value.device);
                 }
             }
             return seresults;

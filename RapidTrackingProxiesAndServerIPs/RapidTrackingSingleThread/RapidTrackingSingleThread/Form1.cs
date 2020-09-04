@@ -18,8 +18,8 @@ namespace RapidTrackingSingleThread
 {
     public partial class Form1 : Form
     {
-        //OxylabsProxies WOWS = new OxylabsProxies();
-        ServerIP WOWS = new ServerIP();
+        OxylabsProxies WOWS = new OxylabsProxies();
+        //ServerIP WOWS = new ServerIP();
 
         ArrayList seresults = new ArrayList();
 
@@ -32,14 +32,14 @@ namespace RapidTrackingSingleThread
 
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
-        void timerExit()
+        void TimerExit()
         {
             timer.Interval = 30 * 60000;
-            timer.Tick += new EventHandler(timer_Tick);
+            timer.Tick += new EventHandler(Timer_Tick);
             timer.Start();
         }
 
-        void timer_Tick(object sender, EventArgs e)
+        void Timer_Tick(object sender, EventArgs e)
         {
             timer.Stop();
             Environment.Exit(Environment.ExitCode);
@@ -50,7 +50,7 @@ namespace RapidTrackingSingleThread
         }
 
 
-        public string strConn()
+        public string StrConn()
         {
             XmlDocument xml = new XmlDocument();
             string fileName = @"C:\Inetpub\wwwroot\Callback_TrackingTrending.xml";
@@ -96,7 +96,7 @@ namespace RapidTrackingSingleThread
             }
         }
 
-        public void generateWorklist()
+        public void GenerateWorklist()
         {
             worklist.Invoke((MethodInvoker)(delegate ()
             {
@@ -106,38 +106,36 @@ namespace RapidTrackingSingleThread
                 //worklist.Items.Add("1:@diabetes_101");
                 //worklist.Items.Add("1:@fionamartin123");
                 //worklist.Items.Add("1:@smith101sam");
-                //worklist.Items.Add("1:dvd");
+                worklist.Items.Add("106:rob beckett tour");
             }));
             Cursor.Current = System.Windows.Forms.Cursors.WaitCursor;
             date_picker.Format = DateTimePickerFormat.Custom;
             date_picker.CustomFormat = "yyyy-MM-dd";
             string myDate = date_picker.Text;
-            //return;
-            //string strSql = "exec [dbo].[Tracking_DB_Keywords_SEID_102] '" + myDate + "'";//changes        
-            string strSql = "exec [dbo].[GetAllKeywords_ServerIps_1] '" + myDate + "'";//changes        
+            return;
+            //string strSql = "exec [dbo].[Tracking_DB_Keywords_SEID_102] '" + myDate + "'";       
+            string strSql = "exec [dbo].[GetAllKeywords_ServerIps_1] '" + myDate + "'";      
 
-            SqlConnection objCon = null;
-            SqlDataReader objData = null;
             try
             {
-                objCon = new SqlConnection(strConn());
-                objCon.Open();
-                SqlCommand objCmd = new SqlCommand(strSql, objCon);
-                objCmd.CommandTimeout = 0;
-                objData = objCmd.ExecuteReader(CommandBehavior.CloseConnection);
-                while (objData.Read())
+                using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
                 {
-                    worklist.Invoke((MethodInvoker)(delegate ()
+                    con.Open();
+                    using (SqlCommand comm = new SqlCommand(strSql, con))
                     {
-                        worklist.Items.Add(objData[0].ToString() + ":" + objData[1].ToString());
-                    }));
+                        comm.CommandTimeout = 0;
+                        using (SqlDataReader dr = comm.ExecuteReader(CommandBehavior.CloseConnection))
+                        {
+                            while (dr.Read())
+                            {
+                                this.Invoke((MethodInvoker)delegate ()
+                                {
+                                    worklist.Items.Add(dr[0].ToString() + ":" + dr[1].ToString());
+                                });
+                            }
+                        }
+                    }
                 }
-
-                worklist.Invoke((MethodInvoker)(delegate ()
-                {
-                    worklist.Refresh();
-                }));
-                objData.Close();
             }
             catch (SqlException e)
             {
@@ -146,6 +144,7 @@ namespace RapidTrackingSingleThread
                 {
                     errorList.Items.Add(errMsg);
                 }));
+
             }
             catch (Exception ex)
             {
@@ -154,19 +153,17 @@ namespace RapidTrackingSingleThread
                     errorList.Items.Add(ex.ToString());
                 }));
             }
-
             finally
             {
-                objCon.Dispose();
-                objCon.Close();
+
             }
         }
-        public int getWorklistSize()
+        public int GetWorklistSize()
         {
             int worklistSize = worklist.Items.Count;
             return worklistSize;
         }
-        public string readAPI()
+        public string ReadAPI()
         {
             XmlDocument xml = new XmlDocument();
             string fileName = @"C:\Inetpub\wwwroot\Callback_TrackingTrending.xml";
@@ -183,7 +180,7 @@ namespace RapidTrackingSingleThread
 
         }
 
-        public void processResults(string seid, string kn)
+        public void ProcessResults(string seid, string kn)
         {
             IPChanger();
             string[] seresults = new string[1];
@@ -340,7 +337,7 @@ namespace RapidTrackingSingleThread
             //}
             //SendToURL
             //return;
-            string submitURL = readAPI();
+            string submitURL = ReadAPI();
 
             string user = "pisoftware";
             string pwd = "r00t123456";
@@ -425,7 +422,7 @@ namespace RapidTrackingSingleThread
             return ret;
         }
         int i;
-        public void processWorklist()
+        public void ProcessWorklist()
         {
             string resultsString;
             char sep;
@@ -444,7 +441,7 @@ namespace RapidTrackingSingleThread
                     kn = resultsArray.GetValue(1).ToString();
                     try
                     {
-                        processResults(seid, kn);
+                        ProcessResults(seid, kn);
                     }
                     catch (Exception ex)
                     {
@@ -471,14 +468,14 @@ namespace RapidTrackingSingleThread
             }
         }
 
-        public void mainLoop()
+        public void MainLoop()
         {
 
-            generateWorklist();
-            while (getWorklistSize() > 0)
+            GenerateWorklist();
+            while (GetWorklistSize() > 0)
             {
-                processWorklist();
-                generateWorklist();
+                ProcessWorklist();
+                GenerateWorklist();
             }
             Environment.Exit(Environment.ExitCode);
         }
@@ -490,7 +487,7 @@ namespace RapidTrackingSingleThread
                 date_picker.Value = DateTime.Today;
             }));
 
-            liveurl = readAPI();
+            liveurl = ReadAPI();
             if (File.Exists("index.txt"))
             {
                 StreamReader sw = new StreamReader("index.txt");
@@ -512,9 +509,9 @@ namespace RapidTrackingSingleThread
                 this.Text = "D_RapidTracking_All_1_GT20_ServerIP1_" + WOWS.dtIPs.Rows[WOWS.x][1].ToString();
 
             }));
-            Thread myThread = new Thread(new ThreadStart(mainLoop));
-            generateWorklist();
-            if (getWorklistSize() > 0)
+            Thread myThread = new Thread(new ThreadStart(MainLoop));
+            GenerateWorklist();
+            if (GetWorklistSize() > 0)
             {
                 //mainLoop();
                 myThread.Start();

@@ -19,7 +19,7 @@ namespace RapidTrackingSingleThread
 {
     public partial class frmSingleThread : Form
     {
-        string xmlPath = "C:\\inetpub\\wwwroot\\rapidtracking_singlethread_102_GT20_WC.xml";
+        string xmlPath = "C:\\inetpub\\wwwroot\\rapidtracking_singlethread_103_GT20_WC.xml";
 
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
@@ -46,7 +46,7 @@ namespace RapidTrackingSingleThread
         private void frmSingleThread_Load(object sender, EventArgs e)
         {
 
-            this.Text = "RapidTracking_SingleThread_CoronaKeywords-2_102_GT20_WC";
+            this.Text = "RapidTracking_SingleThread_103_GT20_WC";
             //this.Text = "RapidTracking_SingleThread_P_A_WOC_10-09-2019";
 
 
@@ -63,7 +63,7 @@ namespace RapidTrackingSingleThread
                 //string myDate = "2019-11-20";
 
 
-                string kwQry = "[Tracking_DB_Keywords_Seid_102] '" + myDate + "'";
+                string kwQry = "[Tracking_DB_Keywords_Seid_103] '" + myDate + "'";
                 //string kwQry = "[Tracking_DB_Keywords_Seid_103p] '" + myDate + "'";               
                 //string kwQry = "[GetCommaKeywordsP] '" + myDate + "'";               
 
@@ -95,7 +95,7 @@ namespace RapidTrackingSingleThread
                             string html = obj["results"][0]["content"].Value<string>();
                             string jobid = src[2];
                             string device = src[3];
-                            File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
+                            //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
                             //File.WriteAllText(@"C:\inetpub\wwwroot\"+jobid+"_withOut filter_"+".html", html, Encoding.UTF8);
                             result = true;
                             doc = new HtmlAgilityPack.HtmlDocument();
@@ -117,7 +117,7 @@ namespace RapidTrackingSingleThread
 
                                 if (!string.IsNullOrEmpty(res))
                                 {
-                                    if (count > 0)
+                                    if (count > 20)
                                     {
                                         SendToAPI(seid, keyword, res, jobid);
                                         SendToDB(seid, keyword, res, jobid, count);
@@ -191,7 +191,7 @@ namespace RapidTrackingSingleThread
             //}
             //else
             //{
-            XmlDocument xd = new XmlDocument();
+                XmlDocument xd = new XmlDocument();
             res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + res;
             xd.LoadXml(res);
             xd.Save(xmlPath);
@@ -294,9 +294,9 @@ namespace RapidTrackingSingleThread
                 //lstKWs.Items.Add("160:malmö ff");
                 //lstKWs.Items.Add("102:terry crews");
                 //lstKWs.Items.Add("102:the uninhabitable earth summary");
-                lstKWs.Items.Add("1:bengal country");
+                //lstKWs.Items.Add("1:bengal country");
             });
-            return;
+            //return;
 
             try
             {
@@ -586,8 +586,8 @@ namespace RapidTrackingSingleThread
                     string[] reslt = { "", "", "", "" };
                     response = "";
 
-                    //Uri uri = new Uri(cbUrl[1]);
-                    Uri uri = new Uri("http://data.oxylabs.io/v1/queries/6707077494169666561/results");
+                    Uri uri = new Uri(cbUrl[1]);
+                    //Uri uri = new Uri("http://data.oxylabs.io/v1/queries/6707077494169666561/results");
                     if (cbUrl[2] == "done" && cbUrl[3] == "no")
                     {
                         try

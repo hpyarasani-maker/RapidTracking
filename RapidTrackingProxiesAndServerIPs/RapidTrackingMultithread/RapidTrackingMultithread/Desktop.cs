@@ -543,6 +543,10 @@ namespace RapidTrackingMultithread
                             //Changes - Included else if condition which was missing.....
                             else if (orgLinks < 100)
                             {
+                                if (n == null)
+                                    n = nd.SelectSingleNode(".//div[@class='yuRUbf']/a"); //04-09-2020 included selector for classic links
+                                if (n != null)
+                                    title = n.SelectSingleNode(".//h3"); //04-09-2020 included selector for classic links
                                 var urls = n.Attributes["href"].Value;
                                 urls = SetUrl(urls);    // 20-12-2019
                                 if (urls.StartsWith("http") || urls.StartsWith("https") || urls.StartsWith("ftp")) //30-04-2020

@@ -2011,6 +2011,8 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[@class='F7SFG']");  //21-04-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='Nhsae']");//01-05-2020
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='aD8dbe']");//14-09-2020  Answered Card selector
             if (nd != null)
             {
                 return "AnswerCard";

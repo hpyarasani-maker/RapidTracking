@@ -1349,7 +1349,7 @@ namespace RapidTrackingSingleThread
             if (n == null)
                 n = node.SelectSingleNode(".//a[@class='C8nzq JTuIPc']");
             if (n == null)
-                n = node.SelectSingleNode(".//a[@class='C8nzq BmP5tf']");
+                n = node.SelectSingleNode(".//a[contains(@class,'C8nzq BmP5tf')]"); //14-09-2020 contains
             if (n != null)
             {
                 if (orgLinks < 100)

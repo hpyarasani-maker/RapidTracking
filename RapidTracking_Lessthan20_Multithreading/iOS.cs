@@ -731,7 +731,7 @@ namespace TrackingTrending
                             continue;
                         }
                         //21-02-2020  included selector for the Apps Block
-                        if (nd.SelectSingleNode(".//div[@class='ki5rnd']|.//div[@class='yR4jwc']") != null) //20-05-2020 included selector for app block
+                        if (nd.SelectSingleNode(".//div[@class='ki5rnd']|.//div[@class='yR4jwc']|.//div[@class='qs-io aig-lst']") != null) //31-08-2020  //20-05-2020 included selector for app block
                         {
                             s.Append(GetApps(nd));
                             continue;
@@ -842,7 +842,7 @@ namespace TrackingTrending
                             {
                                 n = nd.SelectSingleNode(".//div[@class='rc']");
                                 if (n != null)
-                                    n = nd.SelectSingleNode(".//h3[@class='r']/a|.//h3[@class='r']/div/a"); //09-06-2020
+                                    n = nd.SelectSingleNode(".//h3[@class='r']/a|.//h3[@class='r']/div/a|.//h3[@class='yuRUbf JtG40d']/a"); //09-06-2020 //16-09-2020 included selector for classic link
                             }
                             if (n != null)
                             {
@@ -1343,7 +1343,7 @@ namespace TrackingTrending
             if (n == null)
                 n = node.SelectSingleNode(".//a[@class='C8nzq JTuIPc']");
             if (n == null)
-                n = node.SelectSingleNode(".//a[@class='C8nzq BmP5tf']");
+                n = node.SelectSingleNode(".//a[contains(@class,'C8nzq BmP5tf')]"); //14-09-2020 contains
             if (n != null)
             {
                 if (orgLinks < 100)
@@ -1850,9 +1850,17 @@ namespace TrackingTrending
                     foreach (HtmlNode nd in App2)
                     {
                         HtmlNode App3 = nd.ChildNodes[0];
+                        //31-08-2020
+                        HtmlNode titleNode = nd.SelectSingleNode(".//div[@class='dlErff']");
+                        string title;
+                        if (titleNode != null)
+                            title = titleNode.InnerText.Trim();
+                        else
+                            title = nd.InnerText.TrimStart();
 
-                        s.Append("<item url=\"" + SetUrl(App3.Attributes["href"].Value) + "\" title=\"" + SetTitle(nd.InnerText.TrimStart()) + "\" />");
-                        //end of 06-08-2019
+                        s.Append("<item url=\"" + SetUrl(App3.Attributes["href"].Value) + "\" title=\"" + SetTitle(title) + "\" />");
+                        //end 31-08-2020
+
                     }
                 }
                 s.Append("</block>");
@@ -1997,6 +2005,8 @@ namespace TrackingTrending
                 nd = node.SelectSingleNode(".//div[@class='F7SFG']");  //21-04-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='Nhsae']");//01-05-2020
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='aD8dbe']");//14-09-2020  Answered Card selector
             if (nd != null)
             {
                 return "AnswerCard";
@@ -2259,7 +2269,7 @@ namespace TrackingTrending
             HtmlNode nd = node.SelectSingleNode(".//div[@class='HnYYW']|.//g-tray-header[@role='heading']|.//div[@role='heading']");
             if (nd != null)
             {
-                if (nd.InnerText == "Top stories" || nd.InnerText == "Noticias principales" || nd.InnerText == "Interesting finds"
+                if (nd.InnerText.Trim() == "Top stories" || nd.InnerText.Trim() == "Noticias principales" || nd.InnerText.Trim() == "Interesting finds" //16-09-2020
                      || nd.InnerText.ToLower().Contains("últimas noticias") || nd.InnerText.ToLower().Contains("det senaste")
                      || nd.InnerText.ToLower().StartsWith("latest") || nd.InnerText.ToLower().Contains("map"))//07-08-2020  //23-06-2020 //22-06-2020
                     if (node.SelectSingleNode(".//div[@class='KJDcUb']") == null) //26-06-2020
@@ -2309,7 +2319,7 @@ namespace TrackingTrending
                 return true;
             }//end 13-08-2019
 
-            nd = node.SelectSingleNode(".//div[@data-tts='answers']|.//div[@class='N6Sb2c i29hTd']|.//div[@class='kp-blk c2xzTb OJXvsb']|.//div[@class='answered-question']");
+            nd = node.SelectSingleNode(".//div[@data-tts='answers']|.//div[@class='N6Sb2c i29hTd']|.//div[@class='kp-blk c2xzTb OJXvsb']|.//div[@class='answered-question']|.//div[@class='UDZeY fAgajc']"); //02-09-2020 included selector for (About)Answer Card
             if (nd != null)
             {
                 return true;
@@ -2340,7 +2350,7 @@ namespace TrackingTrending
                 {
                     nd = node.SelectSingleNode(".//div[@class='zK9jzc B3JUpd i8lZMc']"); //17-01-2020 selector changed videos block
                     if (nd == null)
-                        nd = node.SelectSingleNode(".//g-tray-header[@class='kno-fb-ctx lQckZe gsrt ieGFJe ndEm3b']");  //21-02-2020 included selector for videos card
+                        nd = node.SelectSingleNode(".//g-tray-header[@class='kno-fb-ctx lQckZe gsrt ieGFJe ndEm3b']"); //08-09-2020 commented //21-02-2020 included selector for videos card
                     if (nd != null)
                     {
                         //if (nd.InnerText.Trim() == "Recipes" || nd.InnerText.Trim() == "Recept" || nd.InnerText.Trim() == "Ricette")// 21-11-2019
@@ -2364,8 +2374,13 @@ namespace TrackingTrending
                 nd = node.SelectSingleNode(".//div[@class='KJDcUb']/a[@class='C8nzq BmP5tf']");  // 25-10-2019
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='kp-blk Wnoohf OJXvsb']");
+            if (node.SelectNodes(".//div[contains(@class,'aD8dbe')]") != null)//14-09-2020 updated selector return true for empty block
+            {
+                return true;
+            }//14-09-2020
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='khgTR R5lVqb']");  //26-08-2020 selector for missing classic link
+                //nd = node.SelectSingleNode(".//div[@class='khgTR R5lVqb']");  //26-08-2020 selector for missing classic link
+                nd = node.SelectSingleNode(".//div[contains(@class,'khgTR')]");  //16-09-2020 applied contains function
             if (nd != null)
             {
                 return false;

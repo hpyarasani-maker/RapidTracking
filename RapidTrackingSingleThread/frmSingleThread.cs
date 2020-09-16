@@ -19,7 +19,7 @@ namespace RapidTrackingSingleThread
 {
     public partial class frmSingleThread : Form
     {
-        string xmlPath = "C:\\inetpub\\wwwroot\\rapidtracking_singlethread_103_GT20_WC.xml";
+        string xmlPath = "C:\\inetpub\\wwwroot\\rapidtracking_singlethread_102_GT20_WC.xml";
 
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
@@ -46,7 +46,7 @@ namespace RapidTrackingSingleThread
         private void frmSingleThread_Load(object sender, EventArgs e)
         {
 
-            this.Text = "RapidTracking_SingleThread_103_GT20_WC";
+            this.Text = "RapidTracking_SingleThread_102_GT20_WC";
             //this.Text = "RapidTracking_SingleThread_P_A_WOC_10-09-2019";
 
 
@@ -63,7 +63,7 @@ namespace RapidTrackingSingleThread
                 //string myDate = "2019-11-20";
 
 
-                string kwQry = "[Tracking_DB_Keywords_Seid_103] '" + myDate + "'";
+                string kwQry = "[Tracking_DB_Keywords_Seid_102] '" + myDate + "'";
                 //string kwQry = "[Tracking_DB_Keywords_Seid_103p] '" + myDate + "'";               
                 //string kwQry = "[GetCommaKeywordsP] '" + myDate + "'";               
 
@@ -191,7 +191,7 @@ namespace RapidTrackingSingleThread
             //}
             //else
             //{
-                XmlDocument xd = new XmlDocument();
+            XmlDocument xd = new XmlDocument();
             res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + res;
             xd.LoadXml(res);
             xd.Save(xmlPath);

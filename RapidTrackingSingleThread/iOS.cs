@@ -2275,7 +2275,7 @@ namespace RapidTrackingSingleThread
             HtmlNode nd = node.SelectSingleNode(".//div[@class='HnYYW']|.//g-tray-header[@role='heading']|.//div[@role='heading']");
             if (nd != null)
             {
-                if (nd.InnerText.Trim() == "Top stories" || nd.InnerText == "Noticias principales" || nd.InnerText == "Interesting finds"
+                if (nd.InnerText.Trim() == "Top stories" || nd.InnerText.Trim() == "Noticias principales" || nd.InnerText.Trim() == "Interesting finds" //16-09-2020
                      || nd.InnerText.ToLower().Contains("últimas noticias") || nd.InnerText.ToLower().Contains("det senaste")
                      || nd.InnerText.ToLower().StartsWith("latest") || nd.InnerText.ToLower().Contains("map"))//07-08-2020  //23-06-2020 //22-06-2020
                     if (node.SelectSingleNode(".//div[@class='KJDcUb']") == null) //26-06-2020
@@ -2387,7 +2387,7 @@ namespace RapidTrackingSingleThread
             if (nd == null)
                 //nd = node.SelectSingleNode(".//div[@class='khgTR R5lVqb']");  //26-08-2020 selector for missing classic link
                 nd = node.SelectSingleNode(".//div[contains(@class,'khgTR')]");  //16-09-2020 applied contains function
-                if (nd != null)
+            if (nd != null)
             {
                 return false;
             }

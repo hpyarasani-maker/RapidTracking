@@ -2385,8 +2385,9 @@ namespace RapidTrackingSingleThread
                 return true;
             }//14-09-2020
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='khgTR R5lVqb']");  //26-08-2020 selector for missing classic link
-            if (nd != null)
+                //nd = node.SelectSingleNode(".//div[@class='khgTR R5lVqb']");  //26-08-2020 selector for missing classic link
+                nd = node.SelectSingleNode(".//div[contains(@class,'khgTR')]");  //16-09-2020 applied contains function
+                if (nd != null)
             {
                 return false;
             }

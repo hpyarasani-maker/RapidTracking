@@ -1323,6 +1323,9 @@ namespace RapidTrackingSingleThread
                 if (!url.Contains("://")) // 30-04-2020
                     url = "http://" + url;
 
+            if (url.StartsWith("http:////") || url.StartsWith("https:////")) //18-09-2020 condition applied if appears http:////
+                url = url.Replace("////", "//"); //18-09-2020
+
             if (url.Contains("&amp;grqid="))
                 url = url.Remove(url.IndexOf("&amp;grqid="));
             //13-12-2019
@@ -1377,6 +1380,9 @@ namespace RapidTrackingSingleThread
             if (!rx.Match(url).Success && !url.Contains("/aclk?"))
                 if (!url.Contains("://"))
                     url = "http://" + url;
+
+            if (url.StartsWith("http:////") || url.StartsWith("https:////")) //18-09-2020 condition applied if appears http:////
+                url = url.Replace("////", "//"); //18-09-2020
 
             if (url.Contains("&amp;grqid="))
                 url = url.Remove(url.IndexOf("&amp;grqid="));

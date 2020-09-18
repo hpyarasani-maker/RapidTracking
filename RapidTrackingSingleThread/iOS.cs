@@ -301,7 +301,7 @@ namespace RapidTrackingSingleThread
             }//25-09-2019
             // Ads  added or condition
             // HtmlNodeCollection col = doc.DocumentNode.SelectNodes("//div[@id='tadsb']/ol/li|//div[@id='tads']/ol/li");
-            HtmlNodeCollection col = doc.DocumentNode.SelectNodes("//div[@id='tadsb']/div[@class='C4eCVc c']/ol/li");  // 24-04-2020   included class selector
+            HtmlNodeCollection col = doc.DocumentNode.SelectNodes("//div[@id='tadsb']/div[@class='C4eCVc c']/ol/li|.//div[@id='tadsb']/div[@class='uEierd']"); //18-09-2020 included selector for bottom adwords // 24-04-2020   included class selector
             if (col != null)
             {
                 s.Append("<block type=\"adwords\" url=\"\">");
@@ -2509,10 +2509,12 @@ namespace RapidTrackingSingleThread
             url = url.Replace("HTTPS://", "https://").Replace("HTTP://", "http://");
             if (string.IsNullOrEmpty(url.Trim())) return string.Empty;
 
-            if (url.LastIndexOf("https://") > 0)
-                url = url.Remove(0, url.LastIndexOf("https://"));
-            if (url.LastIndexOf("http://") > 0)
-                url = url.Remove(0, url.LastIndexOf("http://"));
+            //18-09-2020 commented
+            //if (url.LastIndexOf("https://") > 0)
+            //    url = url.Remove(0, url.LastIndexOf("https://"));
+            //if (url.LastIndexOf("http://") > 0)
+            //    url = url.Remove(0, url.LastIndexOf("http://"));
+            //end 18-09-2020
 
             Regex rx = new Regex("http[\\w]?://(.*)", RegexOptions.Singleline);
             if (!rx.Match(url).Success && !url.Contains("/aclk?"))

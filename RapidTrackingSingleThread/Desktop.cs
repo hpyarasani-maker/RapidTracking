@@ -1365,10 +1365,13 @@ namespace RapidTrackingSingleThread
             url = url.Replace("HTTPS://", "https://").Replace("HTTP://", "http://");
             if (string.IsNullOrEmpty(url.Trim())) return string.Empty;
 
-            if (url.LastIndexOf("https://") > 0)
-                url = url.Remove(0, url.LastIndexOf("https://"));
-            if (url.LastIndexOf("http://") > 0)
-                url = url.Remove(0, url.LastIndexOf("http://"));
+            //18-09-2020 commented
+            //if (url.LastIndexOf("https://") > 0)
+            //    url = url.Remove(0, url.LastIndexOf("https://"));
+            //if (url.LastIndexOf("http://") > 0)
+            //    url = url.Remove(0, url.LastIndexOf("http://"));
+            //end 18-09-2020
+
 
             Regex rx = new Regex("http[\\w]?://(.*)", RegexOptions.Singleline);
             if (!rx.Match(url).Success && !url.Contains("/aclk?"))

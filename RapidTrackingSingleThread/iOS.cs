@@ -2495,7 +2495,8 @@ namespace RapidTrackingSingleThread
             if (string.IsNullOrEmpty(url)) return string.Empty; //24-08-2020
             //21-11-2019
             url = GetRedirectedUrl(WebUtility.HtmlDecode(url).Trim());
-            if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e"))
+            //if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e"))
+            if (url.Contains("%")) //18-09-2020
                 url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
 
             return WebUtility.HtmlEncode(url.Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim(); //22-04-2020
@@ -2529,7 +2530,8 @@ namespace RapidTrackingSingleThread
 
             if ((url.StartsWith("https://") || url.StartsWith("http://") || url.StartsWith("ftp://")) && (!url.StartsWith("/aclk?") && !url.Contains("search?num=100")))
             {
-                if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e"))
+                //if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e")) //commented 18-09-2020
+                if (url.Contains("%")) //18-09-2020
                     url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
 
                 return WebUtility.HtmlEncode(url.Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim();

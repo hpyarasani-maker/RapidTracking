@@ -1941,7 +1941,8 @@ namespace RapidTrackingSingleThread
                             return "Videos";
                         if (n.InnerText.ToLower().Trim() == "recipes" || n.InnerText.ToLower().Trim() == "ricette")  // 20-03-2020 // 18-12-2019
                             return "Carousel";
-
+                        if (n.InnerText.ToLower().Trim().Contains("top sights") || n.InnerText.ToLower().Trim().Contains("popular trip")) //19-09-2020
+                            ts = false;
                     }
                 }
                 if (ts)

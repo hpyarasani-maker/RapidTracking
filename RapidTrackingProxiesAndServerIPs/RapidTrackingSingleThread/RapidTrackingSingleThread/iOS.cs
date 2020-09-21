@@ -303,7 +303,7 @@ namespace RapidTrackingSingleThread
             }//25-09-2019
             // Ads  added or condition
             // HtmlNodeCollection col = doc.DocumentNode.SelectNodes("//div[@id='tadsb']/ol/li|//div[@id='tads']/ol/li");
-            HtmlNodeCollection col = doc.DocumentNode.SelectNodes("//div[@id='tadsb']/div[@class='C4eCVc c']/ol/li");  // 24-04-2020   included class selector
+            HtmlNodeCollection col = doc.DocumentNode.SelectNodes("//div[@id='tadsb']/div[@class='C4eCVc c']/ol/li|.//div[@id='tadsb']/div[@class='uEierd']"); //18-09-2020 included selector for bottom adwords // 24-04-2020   included class selector
             if (col != null)
             {
                 s.Append("<block type=\"adwords\" url=\"\">");
@@ -1943,7 +1943,8 @@ namespace RapidTrackingSingleThread
                             return "Videos";
                         if (n.InnerText.ToLower().Trim() == "recipes" || n.InnerText.ToLower().Trim() == "ricette")  // 20-03-2020 // 18-12-2019
                             return "Carousel";
-
+                        if (n.InnerText.ToLower().Trim().Contains("top sights") || n.InnerText.ToLower().Trim().Contains("popular trip")) //19-09-2020 does not picks this blocks
+                            ts = false;
                     }
                 }
                 if (ts)
@@ -2467,6 +2468,9 @@ namespace RapidTrackingSingleThread
                 if (!url.Contains("://")) // 30-04-2020
                     url = "http://" + url;
 
+            if (url.StartsWith("http:////") || url.StartsWith("https:////")) //18-09-2020 condition applied if appears http:////
+                url = url.Replace("////", "//"); //18-09-2020
+
             if (url.Contains("&amp;grqid="))
                 url = url.Remove(url.IndexOf("&amp;grqid="));
 
@@ -2497,7 +2501,8 @@ namespace RapidTrackingSingleThread
             if (string.IsNullOrEmpty(url)) return string.Empty; //24-08-2020
             //21-11-2019
             url = GetRedirectedUrl(WebUtility.HtmlDecode(url).Trim());
-            if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e"))
+            //if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e"))
+            if (url.Contains("%")) //18-09-2020
                 url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
 
             return WebUtility.HtmlEncode(url.Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim(); //22-04-2020
@@ -2510,15 +2515,20 @@ namespace RapidTrackingSingleThread
             url = url.Replace("HTTPS://", "https://").Replace("HTTP://", "http://");
             if (string.IsNullOrEmpty(url.Trim())) return string.Empty;
 
-            if (url.LastIndexOf("https://") > 0)
-                url = url.Remove(0, url.LastIndexOf("https://"));
-            if (url.LastIndexOf("http://") > 0)
-                url = url.Remove(0, url.LastIndexOf("http://"));
+            //18-09-2020 commented
+            //if (url.LastIndexOf("https://") > 0)
+            //    url = url.Remove(0, url.LastIndexOf("https://"));
+            //if (url.LastIndexOf("http://") > 0)
+            //    url = url.Remove(0, url.LastIndexOf("http://"));
+            //end 18-09-2020
 
             Regex rx = new Regex("http[\\w]?://(.*)", RegexOptions.Singleline);
             if (!rx.Match(url).Success && !url.Contains("/aclk?"))
                 if (!url.Contains("://"))
                     url = "http://" + url;
+
+            if (url.StartsWith("http:////") || url.StartsWith("https:////")) //18-09-2020 condition applied if appears http:////
+                url = url.Replace("////", "//"); //18-09-2020
 
             if (url.Contains("&amp;grqid="))
                 url = url.Remove(url.IndexOf("&amp;grqid="));
@@ -2531,7 +2541,8 @@ namespace RapidTrackingSingleThread
 
             if ((url.StartsWith("https://") || url.StartsWith("http://") || url.StartsWith("ftp://")) && (!url.StartsWith("/aclk?") && !url.Contains("search?num=100")))
             {
-                if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e"))
+                //if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e")) //commented 18-09-2020
+                if (url.Contains("%")) //18-09-2020
                     url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
 
                 return WebUtility.HtmlEncode(url.Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim();

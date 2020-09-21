@@ -963,6 +963,8 @@ namespace RapidTrackingMultiThreadJobIDs
                 nds = node.SelectNodes(".//div[@class='dbsr']/a");
             if (nds == null)
                 nds = node.SelectNodes(".//g-inner-card/div/a");   //01-05-2020
+            if (nds == null)
+                nds = node.SelectNodes(".//div[@class='HCUNre dbsr']/a"); //21-09-2020 Top Stories block item urls selector updated
 
             if (nds != null)
                 foreach (HtmlNode nd in nds)
@@ -980,6 +982,7 @@ namespace RapidTrackingMultiThreadJobIDs
                     if (n == null)
                         //   n = nd.SelectSingleNode(".//div[@class='mCBkyc jBgGLd']|.//div[@class='mCBkyc nDgy9d']|.//div[@class='mCBkyc oz3cqf vH5Lmd nDgy9d']|.//div[@class='mCBkyc oz3cqf vH5Lmd jBgGLd']"); //08-08-2020 //04-06-2020   //01-05-2020
                         n = nd.SelectSingleNode(".//div[contains(@class, 'mCBkyc')]"); //08-08-2020 including contains function
+
                     if (n != null)
                         title = n.InnerText;
                     else
@@ -1212,6 +1215,7 @@ namespace RapidTrackingMultiThreadJobIDs
             bool bVal = (node.SelectSingleNode(".//h3[@class='zQlLed']") != null  // top stories       
                 || node.SelectSingleNode(".//div[@class='wXlZre B03h3d V14nKc ptcLIOszQJu__wholepage-card wp-msss']") != null//topstories 08-04-2020
                 || node.SelectSingleNode(".//div[@class='e2BEnf U7izfe']") != null//topstories 01-06-2020
+                || node.SelectSingleNode(".//div[@class='e2BEnf U7izfe mfMhoc']") != null //21-09-2020 images selectors
                 || node.SelectSingleNode(".//table[@class='nrgt']") != null || node.SelectSingleNode(".//table[@class='jmjoTe']") != null      // site links  22-08-2020 included block type selector
                 || node.SelectSingleNode(".//img[@id='lu_map']") != null      // maps
                 || node.SelectSingleNode(".//div[@class='xERobd']") != null //  maps    //changed on 26-06-2019
@@ -1317,6 +1321,9 @@ namespace RapidTrackingMultiThreadJobIDs
                 if (!url.Contains("://")) // 30-04-2020
                     url = "http://" + url;
 
+            if (url.StartsWith("http:////") || url.StartsWith("https:////")) //18-09-2020 condition applied if appears http:////
+                url = url.Replace("////", "//"); //18-09-2020
+
             if (url.Contains("&amp;grqid="))
                 url = url.Remove(url.IndexOf("&amp;grqid="));
             //13-12-2019
@@ -1345,7 +1352,8 @@ namespace RapidTrackingMultiThreadJobIDs
             if (string.IsNullOrEmpty(url)) return string.Empty; //25-08-2020
             //21-11-2019
             url = GetRedirectedUrl(WebUtility.HtmlDecode(url).Trim());
-            if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e"))
+            //if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e"))//18-09-2020 commented
+            if (url.Contains("%")) //18-09-2020
                 url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
 
             return WebUtility.HtmlEncode(url.Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim();  //26-03-2020 updated converting hexadecimal codes
@@ -1358,15 +1366,21 @@ namespace RapidTrackingMultiThreadJobIDs
             url = url.Replace("HTTPS://", "https://").Replace("HTTP://", "http://");
             if (string.IsNullOrEmpty(url.Trim())) return string.Empty;
 
-            if (url.LastIndexOf("https://") > 0)
-                url = url.Remove(0, url.LastIndexOf("https://"));
-            if (url.LastIndexOf("http://") > 0)
-                url = url.Remove(0, url.LastIndexOf("http://"));
+            //18-09-2020 commented
+            //if (url.LastIndexOf("https://") > 0)
+            //    url = url.Remove(0, url.LastIndexOf("https://"));
+            //if (url.LastIndexOf("http://") > 0)
+            //    url = url.Remove(0, url.LastIndexOf("http://"));
+            //end 18-09-2020
+
 
             Regex rx = new Regex("http[\\w]?://(.*)", RegexOptions.Singleline);
             if (!rx.Match(url).Success && !url.Contains("/aclk?"))
                 if (!url.Contains("://"))
                     url = "http://" + url;
+
+            if (url.StartsWith("http:////") || url.StartsWith("https:////")) //18-09-2020 condition applied if appears http:////
+                url = url.Replace("////", "//"); //18-09-2020
 
             if (url.Contains("&amp;grqid="))
                 url = url.Remove(url.IndexOf("&amp;grqid="));
@@ -1379,7 +1393,8 @@ namespace RapidTrackingMultiThreadJobIDs
 
             if ((url.StartsWith("https://") || url.StartsWith("http://") || url.StartsWith("ftp://")) && (!url.StartsWith("/aclk?") && !url.Contains("search?num=100")))
             {
-                if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e"))
+                //if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e")) //commented 18-09-2020
+                if (url.Contains("%")) //18-09-2020
                     url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
 
                 return WebUtility.HtmlEncode(url.Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim();

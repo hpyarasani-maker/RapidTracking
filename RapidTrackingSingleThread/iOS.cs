@@ -2534,6 +2534,13 @@ namespace RapidTrackingSingleThread
             if (url.Contains("&grqid="))
                 url = url.Remove(url.IndexOf("&grqid="));
 
+            //23-09-2020
+            if (url.Contains("&amp;gclid="))
+                url = url.Remove(url.IndexOf("&amp;gclid="));
+            if (url.Contains("&gclid="))
+                url = url.Remove(url.IndexOf("&gclid="));
+            //end 23-09-2020
+
             if (url.Contains("\0"))
                 url = url.Replace("\0", "%00");
 

@@ -2475,6 +2475,12 @@ namespace RapidTrackingSingleThread
             //  13-12-2019
             if (url.Contains("&grqid="))
                 url = url.Remove(url.IndexOf("&grqid="));
+            //23-09-2020
+            if (url.Contains("&amp;gclid="))
+                url = url.Remove(url.IndexOf("&amp;gclid="));
+            if (url.Contains("&gclid="))
+                url = url.Remove(url.IndexOf("&gclid="));
+            //end 23-09-2020
 
             if (url.Contains("\0"))
                 url = url.Replace("\0", "%00");
@@ -2503,7 +2509,7 @@ namespace RapidTrackingSingleThread
             if (url.Contains("%")) //18-09-2020
                 url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
 
-            return WebUtility.HtmlEncode(SanitizeXmlString(url).Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim(); //22-04-2020
+            return WebUtility.HtmlEncode(SanitizeXmlString(url).Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim(); //23-09-2020 applied method to URL//22-04-2020
         }
         //27-08-2020
         private string GetRedirectedUrl_TextAds(string url)
@@ -2550,11 +2556,12 @@ namespace RapidTrackingSingleThread
                 if (url.Contains("%")) //18-09-2020
                     url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
 
-                return WebUtility.HtmlEncode(SanitizeXmlString(url).Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim();
+                return WebUtility.HtmlEncode(SanitizeXmlString(url).Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim();//23-09-2020 applied method to URL
             }
 
             return string.Empty;
         }
+        //23-09-2020 included method to find and fix hexdecimal chars
         public string SanitizeXmlString(string xml)
         {
 
@@ -2575,6 +2582,7 @@ namespace RapidTrackingSingleThread
 
             return buffer.ToString();
         }
+        //end 23-09-2020
     }
 }
 

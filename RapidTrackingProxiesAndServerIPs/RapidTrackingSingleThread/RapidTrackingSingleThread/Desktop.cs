@@ -1362,7 +1362,7 @@ namespace RapidTrackingSingleThread
             if (url.Contains("%")) //18-09-2020
                 url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
 
-            return WebUtility.HtmlEncode(url.Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim();  //26-03-2020 updated converting hexadecimal codes
+            return WebUtility.HtmlEncode(SanitizeXmlString(url).Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim();  //26-03-2020 updated converting hexadecimal codes
         }
         //27-08-2020
         private string GetRedirectedUrl_TextAds(string url)
@@ -1403,10 +1403,30 @@ namespace RapidTrackingSingleThread
                 if (url.Contains("%")) //18-09-2020
                     url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
 
-                return WebUtility.HtmlEncode(url.Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim();
+                return WebUtility.HtmlEncode(SanitizeXmlString(url).Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim();
             }
 
             return string.Empty;
+        }
+        public string SanitizeXmlString(string xml)
+        {
+
+            if (xml == null)
+            {
+                throw new ArgumentNullException("xml");
+            }
+
+            StringBuilder buffer = new StringBuilder(xml.Length);
+
+            foreach (char c in xml)
+            {
+                if (XmlSanitizingStream.IsLegalXmlChar(c))
+                {
+                    buffer.Append(c);
+                }
+            }
+
+            return buffer.ToString();
         }
 
 

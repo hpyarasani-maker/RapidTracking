@@ -216,7 +216,7 @@ namespace Oxylabs_BulkKeywords
             HtmlNode colb = doc.DocumentNode.SelectSingleNode("//div[@id='bottomads']");   //20-01-2020
             if (colb != null)
             {
-                HtmlNodeCollection col = colb.SelectNodes(".//div[@id='tadsb']/ol/li|.//div[@id='tads']/div[@class='uEierd']"); //21-09-2020 updated bottom adwords   //20-01-2020
+                HtmlNodeCollection col = colb.SelectNodes(".//div[@id='tadsb']/ol/li|.//div[@id='tads']/div[@class='uEierd']|.//div[@id='tadsb']/div[@class='uEierd']"); //24-09-2020 bottom adwords//21-09-2020 updated bottom adwords   //20-01-2020
                 if (col == null)
                     col = colb.SelectNodes(".//div[@id='tadsb']/div/ol/li");   //16-04-2020
                 if (col == null) return s.ToString();   //20-01-2020
@@ -1323,11 +1323,12 @@ namespace Oxylabs_BulkKeywords
             //21-11-2019
             url = url.Replace("HTTPS://", "https://").Replace("HTTP://", "http://");
             if (string.IsNullOrEmpty(url.Trim())) return string.Empty;
-
-            if (url.LastIndexOf("https://") > 0)
-                url = url.Remove(0, url.LastIndexOf("https://"));
-            if (url.LastIndexOf("http://") > 0)
-                url = url.Remove(0, url.LastIndexOf("http://"));
+            //24-09-2020 changed LastIndexOf to IndexOf
+            if (url.IndexOf("https://") > 0)
+                url = url.Remove(0, url.IndexOf("https://"));
+            if (url.IndexOf("http://") > 0)
+                url = url.Remove(0, url.IndexOf("http://"));
+            //end 24-09-2020
 
             Regex rx = new Regex("http[\\w]?://(.*)", RegexOptions.Singleline);
             if (!rx.Match(url).Success && !url.Contains("/aclk?"))
@@ -1342,11 +1343,17 @@ namespace Oxylabs_BulkKeywords
             //13-12-2019
             if (url.Contains("&grqid="))
                 url = url.Remove(url.IndexOf("&grqid="));
+            //23-09-2020
+            if (url.Contains("&amp;gclid="))
+                url = url.Remove(url.IndexOf("&amp;gclid="));
+            if (url.Contains("&gclid="))
+                url = url.Remove(url.IndexOf("&gclid="));
+            //end 23-09-2020
 
             if (url.Contains("\0"))
                 url = url.Replace("\0", "%00");
 
-            if ((url.StartsWith("https://") || url.StartsWith("http://") || url.StartsWith("ftp://")) && !url.Contains("/aclk?"))  // 30-04-2020
+            if ((url.StartsWith("https://") || url.StartsWith("http://") || url.StartsWith("ftp://")) && !url.Contains("/aclk?"))  // 30-04-2020 
                 return url;
 
             return string.Empty;
@@ -1368,8 +1375,8 @@ namespace Oxylabs_BulkKeywords
             //if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e"))//18-09-2020 commented
             if (url.Contains("%")) //18-09-2020
                 url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
-
-            return WebUtility.HtmlEncode(SanitizeXmlString(url).Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim();  //26-03-2020 updated converting hexadecimal codes
+            ////SanitizeXmlString(url);
+            return WebUtility.HtmlEncode(SanitizeXmlString(url).Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim();//23-09-2020 applied method to URL  //26-03-2020 updated converting hexadecimal codes
         }
         //27-08-2020
         private string GetRedirectedUrl_TextAds(string url)
@@ -1400,7 +1407,12 @@ namespace Oxylabs_BulkKeywords
 
             if (url.Contains("&grqid="))
                 url = url.Remove(url.IndexOf("&grqid="));
-
+            //23-09-2020
+            if (url.Contains("&amp;gclid="))
+                url = url.Remove(url.IndexOf("&amp;gclid="));
+            if (url.Contains("&gclid="))
+                url = url.Remove(url.IndexOf("&gclid="));
+            //end 23-09-2020
             if (url.Contains("\0"))
                 url = url.Replace("\0", "%00");
 
@@ -1408,13 +1420,14 @@ namespace Oxylabs_BulkKeywords
             {
                 //if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e")) //commented 18-09-2020
                 if (url.Contains("%")) //18-09-2020
-                    url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
+                    url = GetRedirectedUrl_TextAds(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
 
-                return WebUtility.HtmlEncode(SanitizeXmlString(url).Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim();
+                return WebUtility.HtmlEncode(SanitizeXmlString(url).Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim(); //23-09-2020 applied method to URL
             }
 
             return string.Empty;
         }
+        //23-09-2020 included method to find and fix hexdecimal chars
         public string SanitizeXmlString(string xml)
         {
 
@@ -1435,6 +1448,9 @@ namespace Oxylabs_BulkKeywords
 
             return buffer.ToString();
         }
-
+        //end 23-09-2020
     }
 }
+
+
+

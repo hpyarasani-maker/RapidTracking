@@ -212,7 +212,7 @@ namespace RapidTrackingSingleThread
             HtmlNode colb = doc.DocumentNode.SelectSingleNode("//div[@id='bottomads']");   //20-01-2020
             if (colb != null)
             {
-                HtmlNodeCollection col = colb.SelectNodes(".//div[@id='tadsb']/ol/li|.//div[@id='tads']/div[@class='uEierd']"); //21-09-2020 updated bottom adwords   //20-01-2020
+                HtmlNodeCollection col = colb.SelectNodes(".//div[@id='tadsb']/ol/li|.//div[@id='tads']/div[@class='uEierd']|.//div[@id='tadsb']/div[@class='uEierd']"); //24-09-2020 bottom adwords//21-09-2020 updated bottom adwords   //20-01-2020
                 if (col == null)
                     col = colb.SelectNodes(".//div[@id='tadsb']/div/ol/li");   //16-04-2020
                 if (col == null) return s.ToString();   //20-01-2020

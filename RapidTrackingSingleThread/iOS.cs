@@ -2211,7 +2211,8 @@ namespace RapidTrackingSingleThread
             nd = node.SelectSingleNode(".//div[@class='bUNBRd mnr-c']/div/g-tray-header/div");   // || node.SelectSingleNode(".//div[@id='imagebox_bigimages']") != null)
             if (nd == null)
                 // nd = node.SelectSingleNode(".//div[@class='bUNBRd mnr-c']/g-tray-header/div[@class='N60dNb']/a"); //21-07-2020 commented
-                nd = node.SelectSingleNode(".//div[@class='bUNBRd mnr-c']/g-tray-header/div[contains(@class, 'N60dNb')]/a"); //21-07-2020 
+                //nd = node.SelectSingleNode(".//div[@class='bUNBRd mnr-c']/g-tray-header/div[contains(@class, 'N60dNb')]/a");//24-09-2020 commented //21-07-2020 
+                nd = node.SelectSingleNode(".//g-tray-header/div[contains(@class,'N60dNb')]/a"); //24-09-2020 update above line to this selector
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='N60dNb']/a|.//g-tray-header/div[@class='N60dNb i8lZMc']/div[@class='rqLLId i8lZMc']"); //05-06-2020 //08-06-2020
                                                                                                                                                   //if (nd == null)

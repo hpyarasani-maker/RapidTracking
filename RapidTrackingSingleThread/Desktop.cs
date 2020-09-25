@@ -536,7 +536,7 @@ namespace RapidTrackingSingleThread
                                     }
                                     if (indx < 0)
                                     {
-                                        indx = urls.IndexOf("ftp://");  //30-04-2020//25-09-2020 LastIndexOf changed to IndexOf
+                                        indx = urls.LastIndexOf("ftp://");  //30-04-2020
                                     }
                                     urls = urls.Remove(0, indx);
                                     // video block.
@@ -564,7 +564,7 @@ namespace RapidTrackingSingleThread
                                     }
                                     if (indx < 0)
                                     {
-                                        indx = urls.IndexOf("ftp://");  //30-04-2020//25-09-2020 LastIndexOf changed to IndexOf
+                                        indx = urls.LastIndexOf("ftp://");  //30-04-2020
                                     }
                                     urls = urls.Remove(0, indx);
                                     // string links1= HttpUtility.UrlDecode(urls);
@@ -605,7 +605,7 @@ namespace RapidTrackingSingleThread
                                     }
                                     if (indx < 0)
                                     {
-                                        indx = urls.IndexOf("ftp://");  //30-04-2020//25-09-2020 LastIndexOf changed to IndexOf
+                                        indx = urls.LastIndexOf("ftp://");  //30-04-2020
                                     }
                                     urls = urls.Remove(0, indx);
                                     // string links1= HttpUtility.UrlDecode(urls);
@@ -643,7 +643,7 @@ namespace RapidTrackingSingleThread
                             }
                             if (indx < 0)
                             {
-                                indx = u.IndexOf("ftp://");  //30-04-2020//25-09-2020 LastIndexOf changed to IndexOf
+                                indx = u.LastIndexOf("ftp://");  //30-04-2020
                             }
                             u = u.Remove(0, indx);
                             // string links1 = HttpUtility.UrlDecode(u);

@@ -812,7 +812,7 @@ namespace RapidTrackingSingleThread
                                                 }
                                                 if (indx < 0)
                                                 {
-                                                    indx = url.IndexOf("ftp://");  //30-04-2020 //25-09-2020 LastIndexOf changed to IndexOf
+                                                    indx = url.LastIndexOf("ftp://");  //30-04-2020
                                                 }
                                                 url = url.Remove(0, indx);
                                                 s.Append("<block type=\"video\" url=\"\">");
@@ -873,7 +873,7 @@ namespace RapidTrackingSingleThread
                                         }
                                         if (indx < 0)
                                         {
-                                            indx = u.IndexOf("ftp://");  //30-04-2020//25-09-2020 LastIndexOf changed to IndexOf
+                                            indx = u.LastIndexOf("ftp://");  //30-04-2020
                                         }
                                         //string links1 = HttpUtility.UrlDecode(u);
 
@@ -938,7 +938,7 @@ namespace RapidTrackingSingleThread
                                                 }
                                                 if (indx < 0)
                                                 {
-                                                    indx = url.IndexOf("ftp://");  //30-04-2020//25-09-2020 LastIndexOf changed to IndexOf
+                                                    indx = url.LastIndexOf("ftp://");  //30-04-2020
                                                 }
                                                 url = url.Remove(0, indx);
                                                 s.Append("<block type=\"video\" url=\"\">");
@@ -1006,7 +1006,7 @@ namespace RapidTrackingSingleThread
                                             }
                                             if (indx < 0)
                                             {
-                                                indx = u.IndexOf("ftp://");  //30-04-2020//25-09-2020 LastIndexOf changed to IndexOf
+                                                indx = u.LastIndexOf("ftp://");  //30-04-2020
                                             }
                                             //string links1 = HttpUtility.UrlDecode(u);
 
@@ -1035,7 +1035,7 @@ namespace RapidTrackingSingleThread
                                             }
                                             if (indx < 0)
                                             {
-                                                indx = u.IndexOf("ftp://");  //30-04-2020//25-09-2020 LastIndexOf changed to IndexOf
+                                                indx = u.LastIndexOf("ftp://");  //30-04-2020
                                             }
                                             u = u.Remove(0, indx);
                                             // string links1 = HttpUtility.UrlDecode(u);

@@ -444,7 +444,9 @@ namespace RapidTrackingMultithread
                             {
                                 s.Append("<block type=\"productListedAds\" url=\"\">");
 
-                                HtmlNodeCollection cl = pla.SelectNodes(".//a[@class='pla-unit eUPzHb']|.//div[@class='mnr-c pla-unit']/a[2]|.//a[@class='plantl pla-unit-single-clickable-target clickable-card']|.//g-inner-card[@class='pla-unit-container stOtnd VoEfsd']/div/div/a"); //15-07-2020 product list ads
+                                //HtmlNodeCollection cl = pla.SelectNodes(".//a[@class='pla-unit eUPzHb']|.//div[@class='mnr-c pla-unit']/a[2]|.//a[@class='plantl pla-unit-single-clickable-target clickable-card']|.//g-inner-card[@class='pla-unit-container stOtnd VoEfsd']/div/div/a"); //15-07-2020 product list ads
+                                HtmlNodeCollection cl = pla.SelectNodes(".//a[@class='pla-unit eUPzHb']|.//div[@class='mnr-c pla-unit']/a[2]|.//a[@class='plantl pla-unit-single-clickable-target clickable-card']|.//g-inner-card[contains(@class,'stOtnd VoEfsd')]/div/div/a");//25-09-2020 updated contains //15-07-2020 product list ads
+
                                 if (cl == null)
                                     cl = pla.SelectNodes(".//a[@class='pla-unit']");
                                 if (cl == null)
@@ -794,16 +796,18 @@ namespace RapidTrackingMultithread
                                             string title = vdo.SelectSingleNode(".//div[@class='MUxGbd v0nnCb']|.//div[@class='zlBHuf MUxGbd v0nnCb']").InnerText;  //24-09-2019
                                             if (url.StartsWith("http") || url.StartsWith("https") || url.StartsWith("ftp")) //30-04-2020
                                             {
-                                                int indx = url.LastIndexOf("http://");
+                                                //25-09-2020 commented
+                                                /*int indx = url.IndexOf("http://"); 
                                                 if (indx < 0)
                                                 {
-                                                    indx = url.LastIndexOf("https://");
+                                                    indx = url.IndexOf("https://"); 
                                                 }
                                                 if (indx < 0)
                                                 {
                                                     indx = url.LastIndexOf("ftp://");  //30-04-2020
                                                 }
-                                                url = url.Remove(0, indx);
+                                                url = url.Remove(0, indx);*/
+                                                //end 25-09-2020
                                                 s.Append("<block type=\"video\" url=\"\">");
                                                 s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                                                 s.Append("</block>");
@@ -855,15 +859,17 @@ namespace RapidTrackingMultithread
                                 {
                                     if (u.StartsWith("http") || u.StartsWith("https") || u.StartsWith("ftp")) //30-04-2020
                                     {
-                                        int indx = u.LastIndexOf("http://");
+                                        //25-09-2020 commented
+                                        /*int indx = u.IndexOf("http://");
                                         if (indx < 0)
                                         {
-                                            indx = u.LastIndexOf("https://");
+                                            indx = u.IndexOf("https://");
                                         }
                                         if (indx < 0)
                                         {
                                             indx = u.LastIndexOf("ftp://");  //30-04-2020
-                                        }
+                                        }*/
+                                        //end 25-09-2020
                                         //string links1 = HttpUtility.UrlDecode(u);
 
                                         s.Append("<item url=\"" + SetUrl(u) + "\"  title=\"" + SetTitle(t) + "\" />");   // 
@@ -920,16 +926,18 @@ namespace RapidTrackingMultithread
                                                 title = n.SelectSingleNode(".//div[@role='heading']").InnerText;
                                             if (url.StartsWith("http") || url.StartsWith("https") || url.StartsWith("ftp")) //30-04-2020
                                             {
-                                                int indx = url.LastIndexOf("http://");
+                                                //25-09-2020 commented
+                                                /*int indx = url.IndexOf("http://");
                                                 if (indx < 0)
                                                 {
-                                                    indx = url.LastIndexOf("https://");
+                                                    indx = url.IndexOf("https://");
                                                 }
                                                 if (indx < 0)
                                                 {
                                                     indx = url.LastIndexOf("ftp://");  //30-04-2020
                                                 }
-                                                url = url.Remove(0, indx);
+                                                url = url.Remove(0, indx);*/
+                                                //end of 25-09-2020
                                                 s.Append("<block type=\"video\" url=\"\">");
                                                 s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                                                 s.Append("</block>");
@@ -988,15 +996,17 @@ namespace RapidTrackingMultithread
                                         u = SetUrl(u);
                                         if (u.StartsWith("http") || u.StartsWith("https") || u.StartsWith("ftp")) //30-04-2020
                                         {
-                                            int indx = u.LastIndexOf("http://");
+                                            //25-09-2020 commented
+                                            /*int indx = u.IndexOf("http://");
                                             if (indx < 0)
                                             {
-                                                indx = u.LastIndexOf("https://");
+                                                indx = u.IndexOf("https://");
                                             }
                                             if (indx < 0)
                                             {
                                                 indx = u.LastIndexOf("ftp://");  //30-04-2020
-                                            }
+                                            }*/
+                                            //end 25-09-2020
                                             //string links1 = HttpUtility.UrlDecode(u);
 
                                             s.Append("<item url=\"" + SetUrl(u) + "\"  title=\"" + SetTitle(t) + "\" />");   // 
@@ -1017,16 +1027,18 @@ namespace RapidTrackingMultithread
                                         var u = n.Attributes["href"].Value;
                                         if (u.StartsWith("http") || u.StartsWith("https") || u.StartsWith("ftp")) //30-04-2020
                                         {
-                                            int indx = u.LastIndexOf("http://");
-                                            if (indx < 0)
-                                            {
-                                                indx = u.LastIndexOf("https://");
-                                            }
-                                            if (indx < 0)
-                                            {
-                                                indx = u.LastIndexOf("ftp://");  //30-04-2020
-                                            }
-                                            u = u.Remove(0, indx);
+                                            //25-09-2020 commented
+                                            /* int indx = u.IndexOf("http://");
+                                             if (indx < 0)
+                                             {
+                                                 indx = u.IndexOf("https://");
+                                             }
+                                             if (indx < 0)
+                                             {
+                                                 indx = u.LastIndexOf("ftp://");  //30-04-2020
+                                             }
+                                             u = u.Remove(0, indx);*/
+                                            //end 25-09-2020
                                             // string links1 = HttpUtility.UrlDecode(u);
                                             s.Append("<item url=\"" + SetUrl(u) + "\"  title=\"" + SetTitle(n.InnerText) + "\" />");    //   
                                             orgLinks++;
@@ -2202,7 +2214,8 @@ namespace RapidTrackingMultithread
             nd = node.SelectSingleNode(".//div[@class='bUNBRd mnr-c']/div/g-tray-header/div");   // || node.SelectSingleNode(".//div[@id='imagebox_bigimages']") != null)
             if (nd == null)
                 // nd = node.SelectSingleNode(".//div[@class='bUNBRd mnr-c']/g-tray-header/div[@class='N60dNb']/a"); //21-07-2020 commented
-                nd = node.SelectSingleNode(".//div[@class='bUNBRd mnr-c']/g-tray-header/div[contains(@class, 'N60dNb')]/a"); //21-07-2020 
+                //nd = node.SelectSingleNode(".//div[@class='bUNBRd mnr-c']/g-tray-header/div[contains(@class, 'N60dNb')]/a");//24-09-2020 commented //21-07-2020 
+                nd = node.SelectSingleNode(".//g-tray-header/div[contains(@class,'N60dNb')]/a"); //24-09-2020 update above line to this selector
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='N60dNb']/a|.//g-tray-header/div[@class='N60dNb i8lZMc']/div[@class='rqLLId i8lZMc']"); //05-06-2020 //08-06-2020
                                                                                                                                                   //if (nd == null)
@@ -2447,11 +2460,12 @@ namespace RapidTrackingMultithread
             url = url.Replace("HTTPS://", "https://").Replace("HTTP://", "http://");
             if (string.IsNullOrEmpty(url.Trim())) return string.Empty;
 
-            if (url.LastIndexOf("https://") > 0)
-                url = url.Remove(0, url.LastIndexOf("https://"));
-            if (url.LastIndexOf("http://") > 0)
-                url = url.Remove(0, url.LastIndexOf("http://"));
-
+            //24-09-2020 changed LastIndexOf to IndexOf
+            if (url.IndexOf("https://") > 0)
+                url = url.Remove(0, url.IndexOf("https://"));
+            if (url.IndexOf("http://") > 0)
+                url = url.Remove(0, url.IndexOf("http://"));
+            //end 24-09-2020
             Regex rx = new Regex("http[\\w]?://(.*)", RegexOptions.Singleline);
             if (!rx.Match(url).Success && !url.Contains("/aclk?"))
                 if (!url.Contains("://")) // 30-04-2020
@@ -2466,6 +2480,12 @@ namespace RapidTrackingMultithread
             //  13-12-2019
             if (url.Contains("&grqid="))
                 url = url.Remove(url.IndexOf("&grqid="));
+            //23-09-2020
+            if (url.Contains("&amp;gclid="))
+                url = url.Remove(url.IndexOf("&amp;gclid="));
+            if (url.Contains("&gclid="))
+                url = url.Remove(url.IndexOf("&gclid="));
+            //end 23-09-2020
 
             if (url.Contains("\0"))
                 url = url.Replace("\0", "%00");
@@ -2494,7 +2514,7 @@ namespace RapidTrackingMultithread
             if (url.Contains("%")) //18-09-2020
                 url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
 
-            return WebUtility.HtmlEncode(url.Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim(); //22-04-2020
+            return WebUtility.HtmlEncode(SanitizeXmlString(url).Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim(); //23-09-2020 applied method to URL//22-04-2020
         }
         //27-08-2020
         private string GetRedirectedUrl_TextAds(string url)
@@ -2525,6 +2545,13 @@ namespace RapidTrackingMultithread
             if (url.Contains("&grqid="))
                 url = url.Remove(url.IndexOf("&grqid="));
 
+            //23-09-2020
+            if (url.Contains("&amp;gclid="))
+                url = url.Remove(url.IndexOf("&amp;gclid="));
+            if (url.Contains("&gclid="))
+                url = url.Remove(url.IndexOf("&gclid="));
+            //end 23-09-2020
+
             if (url.Contains("\0"))
                 url = url.Replace("\0", "%00");
 
@@ -2532,14 +2559,35 @@ namespace RapidTrackingMultithread
             {
                 //if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e")) //commented 18-09-2020
                 if (url.Contains("%")) //18-09-2020
-                    url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
+                    url = GetRedirectedUrl_TextAds(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
 
-                return WebUtility.HtmlEncode(url.Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim();
+                return WebUtility.HtmlEncode(SanitizeXmlString(url).Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim();//23-09-2020 applied method to URL
             }
 
             return string.Empty;
         }
+        //23-09-2020 included method to find and fix hexdecimal chars
+        public string SanitizeXmlString(string xml)
+        {
 
+            if (xml == null)
+            {
+                throw new ArgumentNullException("xml");
+            }
+
+            StringBuilder buffer = new StringBuilder(xml.Length);
+
+            foreach (char c in xml)
+            {
+                if (XmlSanitizingStream.IsLegalXmlChar(c))
+                {
+                    buffer.Append(c);
+                }
+            }
+
+            return buffer.ToString();
+        }
+        //end 23-09-2020
     }
 }
 

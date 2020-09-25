@@ -878,6 +878,7 @@ namespace RapidTrackingSingleThread
                                         {
                                             indx = u.LastIndexOf("ftp://");  //30-04-2020
                                         }*/
+                                        //end 25-09-2020
                                         //string links1 = HttpUtility.UrlDecode(u);
 
                                         s.Append("<item url=\"" + SetUrl(u) + "\"  title=\"" + SetTitle(t) + "\" />");   // 
@@ -945,6 +946,7 @@ namespace RapidTrackingSingleThread
                                                     indx = url.LastIndexOf("ftp://");  //30-04-2020
                                                 }
                                                 url = url.Remove(0, indx);*/
+                                                //end of 25-09-2020
                                                 s.Append("<block type=\"video\" url=\"\">");
                                                 s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                                                 s.Append("</block>");

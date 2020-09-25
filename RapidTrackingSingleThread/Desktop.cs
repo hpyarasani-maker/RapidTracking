@@ -326,7 +326,7 @@ namespace RapidTrackingSingleThread
             }
 
             // product listed ads
-            HtmlNode pla = doc.DocumentNode.SelectSingleNode("//div[contains(@class,'cu-container')]']"); //25-09-2020 included contains for existing selector
+            HtmlNode pla = doc.DocumentNode.SelectSingleNode("//div[contains(@class,'cu-container')]"); //25-09-2020 included contains for existing selector
             if (pla != null)
             {
                 HtmlNode h3 = pla.SelectSingleNode(".//div[@class='dxR8gf']/h3");

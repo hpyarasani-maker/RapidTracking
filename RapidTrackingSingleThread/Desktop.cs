@@ -326,7 +326,7 @@ namespace RapidTrackingSingleThread
             }
 
             // product listed ads
-            HtmlNode pla = doc.DocumentNode.SelectSingleNode("//div[@class='cu-container']");
+            HtmlNode pla = doc.DocumentNode.SelectSingleNode("//div[contains(@class,'cu-container')]']"); //25-09-2020 included contains for existing selector
             if (pla != null)
             {
                 HtmlNode h3 = pla.SelectSingleNode(".//div[@class='dxR8gf']/h3");
@@ -529,14 +529,14 @@ namespace RapidTrackingSingleThread
                                 var urls = n.Attributes["href"].Value;
                                 if (urls.StartsWith("http") || urls.StartsWith("https") || urls.StartsWith("ftp")) //30-04-2020
                                 {
-                                    int indx = urls.LastIndexOf("http://");
+                                    int indx = urls.IndexOf("http://");//25-09-2020 LastIndexOf changed to IndexOf
                                     if (indx < 0)
                                     {
-                                        indx = urls.LastIndexOf("https://");
+                                        indx = urls.IndexOf("https://");//25-09-2020 LastIndexOf changed to IndexOf
                                     }
                                     if (indx < 0)
                                     {
-                                        indx = urls.LastIndexOf("ftp://");  //30-04-2020
+                                        indx = urls.IndexOf("ftp://");  //30-04-2020//25-09-2020 LastIndexOf changed to IndexOf
                                     }
                                     urls = urls.Remove(0, indx);
                                     // video block.
@@ -557,14 +557,14 @@ namespace RapidTrackingSingleThread
                                 urls = SetUrl(urls);    // 20-12-2019
                                 if (urls.StartsWith("http") || urls.StartsWith("https") || urls.StartsWith("ftp")) //30-04-2020
                                 {
-                                    int indx = urls.LastIndexOf("http://");
+                                    int indx = urls.IndexOf("http://");//25-09-2020 LastIndexOf changed to IndexOf
                                     if (indx < 0)
                                     {
-                                        indx = urls.LastIndexOf("https://");
+                                        indx = urls.IndexOf("https://");//25-09-2020 LastIndexOf changed to IndexOf
                                     }
                                     if (indx < 0)
                                     {
-                                        indx = urls.LastIndexOf("ftp://");  //30-04-2020
+                                        indx = urls.IndexOf("ftp://");  //30-04-2020//25-09-2020 LastIndexOf changed to IndexOf
                                     }
                                     urls = urls.Remove(0, indx);
                                     // string links1= HttpUtility.UrlDecode(urls);
@@ -598,14 +598,14 @@ namespace RapidTrackingSingleThread
                                 urls = SetUrl(urls);    // 20-12-2019
                                 if (urls.StartsWith("http") || urls.StartsWith("https") || urls.StartsWith("ftp")) //30-04-2020
                                 {
-                                    int indx = urls.LastIndexOf("http://");
+                                    int indx = urls.IndexOf("http://");//25-09-2020 LastIndexOf changed to IndexOf
                                     if (indx < 0)
                                     {
-                                        indx = urls.LastIndexOf("https://");
+                                        indx = urls.IndexOf("https://");//25-09-2020 LastIndexOf changed to IndexOf
                                     }
                                     if (indx < 0)
                                     {
-                                        indx = urls.LastIndexOf("ftp://");  //30-04-2020
+                                        indx = urls.IndexOf("ftp://");  //30-04-2020//25-09-2020 LastIndexOf changed to IndexOf
                                     }
                                     urls = urls.Remove(0, indx);
                                     // string links1= HttpUtility.UrlDecode(urls);
@@ -636,14 +636,14 @@ namespace RapidTrackingSingleThread
                     {
                         if (u.StartsWith("http") || u.StartsWith("https") || u.StartsWith("ftp")) //30-04-2020
                         {
-                            int indx = u.LastIndexOf("http://");
+                            int indx = u.IndexOf("http://");//25-09-2020 LastIndexOf changed to IndexOf
                             if (indx < 0)
                             {
-                                indx = u.LastIndexOf("https://");
+                                indx = u.IndexOf("https://");//25-09-2020 LastIndexOf changed to IndexOf
                             }
                             if (indx < 0)
                             {
-                                indx = u.LastIndexOf("ftp://");  //30-04-2020
+                                indx = u.IndexOf("ftp://");  //30-04-2020//25-09-2020 LastIndexOf changed to IndexOf
                             }
                             u = u.Remove(0, indx);
                             // string links1 = HttpUtility.UrlDecode(u);
@@ -1155,7 +1155,8 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@class='pcCUmf vCOSGb']") != null 
                 || node.SelectSingleNode(".//div[@class='vkc_np kkww4d']") != null) //21-09-2020 updated answered card selectors  //03-06-2020
             {
-                return "AnswerCard";
+                if (node.SelectSingleNode(".//div[@class='BET1rd']") == null) //25-09-2020
+                    return "AnswerCard";
             }
 
             nd = node.SelectSingleNode(".//div[@class='DUU6i']");

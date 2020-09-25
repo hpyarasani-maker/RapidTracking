@@ -453,7 +453,9 @@ namespace RapidTrackingSingleThread
                             {
                                 s.Append("<block type=\"productListedAds\" url=\"\">");
 
-                                HtmlNodeCollection cl = pla.SelectNodes(".//a[@class='pla-unit eUPzHb']|.//div[@class='mnr-c pla-unit']/a[2]|.//a[@class='plantl pla-unit-single-clickable-target clickable-card']|.//g-inner-card[@class='pla-unit-container stOtnd VoEfsd']/div/div/a"); //15-07-2020 product list ads
+                                //HtmlNodeCollection cl = pla.SelectNodes(".//a[@class='pla-unit eUPzHb']|.//div[@class='mnr-c pla-unit']/a[2]|.//a[@class='plantl pla-unit-single-clickable-target clickable-card']|.//g-inner-card[@class='pla-unit-container stOtnd VoEfsd']/div/div/a"); //15-07-2020 product list ads
+                                HtmlNodeCollection cl = pla.SelectNodes(".//a[@class='pla-unit eUPzHb']|.//div[@class='mnr-c pla-unit']/a[2]|.//a[@class='plantl pla-unit-single-clickable-target clickable-card']|.//g-inner-card[contains(@class,'stOtnd VoEfsd')]/div/div/a");//25-09-2020 updated contains //15-07-2020 product list ads
+
                                 if (cl == null)
                                     cl = pla.SelectNodes(".//a[@class='pla-unit']");
                                 if (cl == null)
@@ -803,14 +805,14 @@ namespace RapidTrackingSingleThread
                                             string title = vdo.SelectSingleNode(".//div[@class='MUxGbd v0nnCb']|.//div[@class='zlBHuf MUxGbd v0nnCb']").InnerText;  //24-09-2019
                                             if (url.StartsWith("http") || url.StartsWith("https") || url.StartsWith("ftp")) //30-04-2020
                                             {
-                                                int indx = url.LastIndexOf("http://");
+                                                int indx = url.IndexOf("http://"); //25-09-2020 LastIndexOf changed to IndexOf
                                                 if (indx < 0)
                                                 {
-                                                    indx = url.LastIndexOf("https://");
+                                                    indx = url.IndexOf("https://"); //25-09-2020 LastIndexOf changed to IndexOf
                                                 }
                                                 if (indx < 0)
                                                 {
-                                                    indx = url.LastIndexOf("ftp://");  //30-04-2020
+                                                    indx = url.IndexOf("ftp://");  //30-04-2020 //25-09-2020 LastIndexOf changed to IndexOf
                                                 }
                                                 url = url.Remove(0, indx);
                                                 s.Append("<block type=\"video\" url=\"\">");
@@ -864,14 +866,14 @@ namespace RapidTrackingSingleThread
                                 {
                                     if (u.StartsWith("http") || u.StartsWith("https") || u.StartsWith("ftp")) //30-04-2020
                                     {
-                                        int indx = u.LastIndexOf("http://");
+                                        int indx = u.IndexOf("http://");//25-09-2020 LastIndexOf changed to IndexOf
                                         if (indx < 0)
                                         {
-                                            indx = u.LastIndexOf("https://");
+                                            indx = u.IndexOf("https://");//25-09-2020 LastIndexOf changed to IndexOf
                                         }
                                         if (indx < 0)
                                         {
-                                            indx = u.LastIndexOf("ftp://");  //30-04-2020
+                                            indx = u.IndexOf("ftp://");  //30-04-2020//25-09-2020 LastIndexOf changed to IndexOf
                                         }
                                         //string links1 = HttpUtility.UrlDecode(u);
 
@@ -929,14 +931,14 @@ namespace RapidTrackingSingleThread
                                                 title = n.SelectSingleNode(".//div[@role='heading']").InnerText;
                                             if (url.StartsWith("http") || url.StartsWith("https") || url.StartsWith("ftp")) //30-04-2020
                                             {
-                                                int indx = url.LastIndexOf("http://");
+                                                int indx = url.IndexOf("http://");//25-09-2020 LastIndexOf changed to IndexOf
                                                 if (indx < 0)
                                                 {
-                                                    indx = url.LastIndexOf("https://");
+                                                    indx = url.IndexOf("https://");//25-09-2020 LastIndexOf changed to IndexOf
                                                 }
                                                 if (indx < 0)
                                                 {
-                                                    indx = url.LastIndexOf("ftp://");  //30-04-2020
+                                                    indx = url.IndexOf("ftp://");  //30-04-2020//25-09-2020 LastIndexOf changed to IndexOf
                                                 }
                                                 url = url.Remove(0, indx);
                                                 s.Append("<block type=\"video\" url=\"\">");
@@ -997,14 +999,14 @@ namespace RapidTrackingSingleThread
                                         u = SetUrl(u);
                                         if (u.StartsWith("http") || u.StartsWith("https") || u.StartsWith("ftp")) //30-04-2020
                                         {
-                                            int indx = u.LastIndexOf("http://");
+                                            int indx = u.IndexOf("http://");//25-09-2020 LastIndexOf changed to IndexOf
                                             if (indx < 0)
                                             {
-                                                indx = u.LastIndexOf("https://");
+                                                indx = u.IndexOf("https://");//25-09-2020 LastIndexOf changed to IndexOf
                                             }
                                             if (indx < 0)
                                             {
-                                                indx = u.LastIndexOf("ftp://");  //30-04-2020
+                                                indx = u.IndexOf("ftp://");  //30-04-2020//25-09-2020 LastIndexOf changed to IndexOf
                                             }
                                             //string links1 = HttpUtility.UrlDecode(u);
 
@@ -1026,14 +1028,14 @@ namespace RapidTrackingSingleThread
                                         var u = n.Attributes["href"].Value;
                                         if (u.StartsWith("http") || u.StartsWith("https") || u.StartsWith("ftp")) //30-04-2020
                                         {
-                                            int indx = u.LastIndexOf("http://");
+                                            int indx = u.IndexOf("http://");//25-09-2020 LastIndexOf changed to IndexOf
                                             if (indx < 0)
                                             {
-                                                indx = u.LastIndexOf("https://");
+                                                indx = u.IndexOf("https://");//25-09-2020 LastIndexOf changed to IndexOf
                                             }
                                             if (indx < 0)
                                             {
-                                                indx = u.LastIndexOf("ftp://");  //30-04-2020
+                                                indx = u.IndexOf("ftp://");  //30-04-2020//25-09-2020 LastIndexOf changed to IndexOf
                                             }
                                             u = u.Remove(0, indx);
                                             // string links1 = HttpUtility.UrlDecode(u);

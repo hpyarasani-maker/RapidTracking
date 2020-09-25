@@ -805,16 +805,18 @@ namespace RapidTrackingSingleThread
                                             string title = vdo.SelectSingleNode(".//div[@class='MUxGbd v0nnCb']|.//div[@class='zlBHuf MUxGbd v0nnCb']").InnerText;  //24-09-2019
                                             if (url.StartsWith("http") || url.StartsWith("https") || url.StartsWith("ftp")) //30-04-2020
                                             {
-                                                int indx = url.IndexOf("http://"); //25-09-2020 LastIndexOf changed to IndexOf
+                                                //25-09-2020 commented
+                                                /*int indx = url.IndexOf("http://"); 
                                                 if (indx < 0)
                                                 {
-                                                    indx = url.IndexOf("https://"); //25-09-2020 LastIndexOf changed to IndexOf
+                                                    indx = url.IndexOf("https://"); 
                                                 }
                                                 if (indx < 0)
                                                 {
                                                     indx = url.LastIndexOf("ftp://");  //30-04-2020
                                                 }
-                                                url = url.Remove(0, indx);
+                                                url = url.Remove(0, indx);*/
+                                                //end 25-09-2020
                                                 s.Append("<block type=\"video\" url=\"\">");
                                                 s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                                                 s.Append("</block>");
@@ -866,15 +868,16 @@ namespace RapidTrackingSingleThread
                                 {
                                     if (u.StartsWith("http") || u.StartsWith("https") || u.StartsWith("ftp")) //30-04-2020
                                     {
-                                        int indx = u.IndexOf("http://");//25-09-2020 LastIndexOf changed to IndexOf
+                                        //25-09-2020 commented
+                                        /*int indx = u.IndexOf("http://");
                                         if (indx < 0)
                                         {
-                                            indx = u.IndexOf("https://");//25-09-2020 LastIndexOf changed to IndexOf
+                                            indx = u.IndexOf("https://");
                                         }
                                         if (indx < 0)
                                         {
                                             indx = u.LastIndexOf("ftp://");  //30-04-2020
-                                        }
+                                        }*/
                                         //string links1 = HttpUtility.UrlDecode(u);
 
                                         s.Append("<item url=\"" + SetUrl(u) + "\"  title=\"" + SetTitle(t) + "\" />");   // 
@@ -931,16 +934,17 @@ namespace RapidTrackingSingleThread
                                                 title = n.SelectSingleNode(".//div[@role='heading']").InnerText;
                                             if (url.StartsWith("http") || url.StartsWith("https") || url.StartsWith("ftp")) //30-04-2020
                                             {
-                                                int indx = url.IndexOf("http://");//25-09-2020 LastIndexOf changed to IndexOf
+                                                //25-09-2020 commented
+                                                /*int indx = url.IndexOf("http://");
                                                 if (indx < 0)
                                                 {
-                                                    indx = url.IndexOf("https://");//25-09-2020 LastIndexOf changed to IndexOf
+                                                    indx = url.IndexOf("https://");
                                                 }
                                                 if (indx < 0)
                                                 {
                                                     indx = url.LastIndexOf("ftp://");  //30-04-2020
                                                 }
-                                                url = url.Remove(0, indx);
+                                                url = url.Remove(0, indx);*/
                                                 s.Append("<block type=\"video\" url=\"\">");
                                                 s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                                                 s.Append("</block>");
@@ -999,15 +1003,17 @@ namespace RapidTrackingSingleThread
                                         u = SetUrl(u);
                                         if (u.StartsWith("http") || u.StartsWith("https") || u.StartsWith("ftp")) //30-04-2020
                                         {
-                                            int indx = u.IndexOf("http://");//25-09-2020 LastIndexOf changed to IndexOf
+                                            //25-09-2020 commented
+                                            /*int indx = u.IndexOf("http://");
                                             if (indx < 0)
                                             {
-                                                indx = u.IndexOf("https://");//25-09-2020 LastIndexOf changed to IndexOf
+                                                indx = u.IndexOf("https://");
                                             }
                                             if (indx < 0)
                                             {
                                                 indx = u.LastIndexOf("ftp://");  //30-04-2020
-                                            }
+                                            }*/
+                                            //end 25-09-2020
                                             //string links1 = HttpUtility.UrlDecode(u);
 
                                             s.Append("<item url=\"" + SetUrl(u) + "\"  title=\"" + SetTitle(t) + "\" />");   // 
@@ -1028,16 +1034,18 @@ namespace RapidTrackingSingleThread
                                         var u = n.Attributes["href"].Value;
                                         if (u.StartsWith("http") || u.StartsWith("https") || u.StartsWith("ftp")) //30-04-2020
                                         {
-                                            int indx = u.IndexOf("http://");//25-09-2020 LastIndexOf changed to IndexOf
-                                            if (indx < 0)
-                                            {
-                                                indx = u.IndexOf("https://");//25-09-2020 LastIndexOf changed to IndexOf
-                                            }
-                                            if (indx < 0)
-                                            {
-                                                indx = u.LastIndexOf("ftp://");  //30-04-2020
-                                            }
-                                            u = u.Remove(0, indx);
+                                            //25-09-2020 commented
+                                            /* int indx = u.IndexOf("http://");
+                                             if (indx < 0)
+                                             {
+                                                 indx = u.IndexOf("https://");
+                                             }
+                                             if (indx < 0)
+                                             {
+                                                 indx = u.LastIndexOf("ftp://");  //30-04-2020
+                                             }
+                                             u = u.Remove(0, indx);*/
+                                             //end 25-09-2020
                                             // string links1 = HttpUtility.UrlDecode(u);
                                             s.Append("<item url=\"" + SetUrl(u) + "\"  title=\"" + SetTitle(n.InnerText) + "\" />");    //   
                                             orgLinks++;

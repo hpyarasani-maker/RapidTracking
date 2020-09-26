@@ -2599,7 +2599,7 @@ namespace RapidTrackingSingleThread
 
             return buffer.ToString();
         }
-        //end 23-09-2020
+        
     }
     public class XmlSanitizingStream : StreamReader
     {

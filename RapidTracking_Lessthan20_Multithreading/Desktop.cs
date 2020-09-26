@@ -523,7 +523,7 @@ namespace TrackingTrending
                                 if (urls.StartsWith("http") || urls.StartsWith("https") || urls.StartsWith("ftp")) //30-04-2020
                                 {
                                     //25-09-2020 commented
-                                    int indx = urls.IndexOf("http://");//25-09-2020 LastIndexOf changed to IndexOf
+                                    /*int indx = urls.IndexOf("http://");//25-09-2020 LastIndexOf changed to IndexOf
                                     if (indx < 0)
                                     {
                                         indx = urls.IndexOf("https://");//25-09-2020 LastIndexOf changed to IndexOf
@@ -532,7 +532,7 @@ namespace TrackingTrending
                                     {
                                         indx = urls.LastIndexOf("ftp://");  //30-04-2020
                                     }
-                                    urls = urls.Remove(0, indx);
+                                    urls = urls.Remove(0, indx);*/
                                     //end 25-09-2020
                                     // video block.
                                     s.Append("<block type=\"video\" url=\"\">");
@@ -553,7 +553,7 @@ namespace TrackingTrending
                                 if (urls.StartsWith("http") || urls.StartsWith("https") || urls.StartsWith("ftp")) //30-04-2020
                                 {
                                     //25-09-2020
-                                    int indx = urls.IndexOf("http://");
+                                    /*int indx = urls.IndexOf("http://");
                                     if (indx < 0)
                                     {
                                         indx = urls.IndexOf("https://");
@@ -562,7 +562,7 @@ namespace TrackingTrending
                                     {
                                         indx = urls.LastIndexOf("ftp://");  //30-04-2020
                                     }
-                                    urls = urls.Remove(0, indx);
+                                    urls = urls.Remove(0, indx);*/
                                     //end 25-09-2020
                                     // string links1= HttpUtility.UrlDecode(urls);
                                     s.Append("<item url=\"" + SetUrl(urls) + "\"  title=\"" + SetTitle(title.InnerText) + "\"  />");
@@ -596,7 +596,7 @@ namespace TrackingTrending
                                 if (urls.StartsWith("http") || urls.StartsWith("https") || urls.StartsWith("ftp")) //30-04-2020
                                 {
                                     //25-09-2020 commented
-                                    int indx = urls.IndexOf("http://");
+                                    /*int indx = urls.IndexOf("http://");
                                     if (indx < 0)
                                     {
                                         indx = urls.IndexOf("https://");
@@ -605,7 +605,7 @@ namespace TrackingTrending
                                     {
                                         indx = urls.LastIndexOf("ftp://");  //30-04-2020
                                     }
-                                    urls = urls.Remove(0, indx);
+                                    urls = urls.Remove(0, indx);*/
                                     // end 25-09-2020
                                     // string links1= HttpUtility.UrlDecode(urls);
                                     s.Append("<item url=\"" + SetUrl(urls) + "\"  title=\"" + SetTitle(t) + "\"  />");
@@ -636,7 +636,7 @@ namespace TrackingTrending
                         if (u.StartsWith("http") || u.StartsWith("https") || u.StartsWith("ftp")) //30-04-2020
                         {
                             //25-09-2020 commented
-                            int indx = u.IndexOf("http://");
+                            /*int indx = u.IndexOf("http://");
                             if (indx < 0)
                             {
                                 indx = u.IndexOf("https://");
@@ -645,7 +645,7 @@ namespace TrackingTrending
                             {
                                 indx = u.LastIndexOf("ftp://");  //30-04-2020
                             }
-                            u = u.Remove(0, indx);
+                            u = u.Remove(0, indx);*/
                             //25-09-2020
                             // string links1 = HttpUtility.UrlDecode(u);
                             s.Append("<item url=\"" + SetUrl(u) + "\"  title=\"" + SetTitle(nd.InnerText) + "\"  />");
@@ -1374,7 +1374,7 @@ namespace TrackingTrending
             if (url.Contains("%")) //18-09-2020
                 url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
             ////SanitizeXmlString(url);
-            return WebUtility.HtmlEncode(url.Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim();//23-09-2020 applied method to URL  //26-03-2020 updated converting hexadecimal codes
+            return WebUtility.HtmlEncode(SanitizeXmlString(url).Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim();//23-09-2020 applied method to URL  //26-03-2020 updated converting hexadecimal codes
         }
         //27-08-2020
         private string GetRedirectedUrl_TextAds(string url)
@@ -1420,7 +1420,7 @@ namespace TrackingTrending
                 if (url.Contains("%")) //18-09-2020
                     url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
 
-                return WebUtility.HtmlEncode(url.Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim(); //23-09-2020 applied method to URL
+                return WebUtility.HtmlEncode(SanitizeXmlString(url).Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim(); //23-09-2020 applied method to URL
             }
 
             return string.Empty;
@@ -1447,79 +1447,82 @@ namespace TrackingTrending
             return buffer.ToString();
         }
         //end 23-09-2020
-    }
-    public class XmlSanitizingStream : StreamReader
-    {
-        public XmlSanitizingStream(Stream streamToSanitize)
-        : base(streamToSanitize, true)
-        { }
 
-        /// <summary>
-        /// Whether a given character is allowed by XML 1.0.
-        /// </summary>
-        public static bool IsLegalXmlChar(int character)
+        public class XmlSanitizingStream : StreamReader
         {
-            return
-            (
-                 character == 0x9 /* == '\t' == 9   */          ||
-                 character == 0xA /* == '\n' == 10  */          ||
-                 character == 0xD /* == '\r' == 13  */          ||
-                (character >= 0x20 && character <= 0xD7FF) ||
-                (character >= 0xE000 && character <= 0xFFFD) ||
-                (character >= 0x10000 && character <= 0x10FFFF)
-            );
-        }
-        private const int EOF = -1;
+            public XmlSanitizingStream(Stream streamToSanitize)
+            : base(streamToSanitize, true)
+            { }
 
-        public override int Read()
-        {
-            // Read each char, skipping ones XML has prohibited
-
-            int nextCharacter;
-
-            do
+            /// <summary>
+            /// Whether a given character is allowed by XML 1.0.
+            /// </summary>
+            public static bool IsLegalXmlChar(int character)
             {
-                // Read a character
+                return
+                (
+                     character == 0x9 /* == '\t' == 9   */          ||
+                     character == 0xA /* == '\n' == 10  */          ||
+                     character == 0xD /* == '\r' == 13  */          ||
+                    (character >= 0x20 && character <= 0xD7FF) ||
+                    (character >= 0xE000 && character <= 0xFFFD) ||
+                    (character >= 0x10000 && character <= 0x10FFFF)
+                );
+            }
+            private const int EOF = -1;
 
-                if ((nextCharacter = base.Read()) == EOF)
+            public override int Read()
+            {
+                // Read each char, skipping ones XML has prohibited
+
+                int nextCharacter;
+
+                do
                 {
-                    // If the char denotes end of file, stop
-                    break;
+                    // Read a character
+
+                    if ((nextCharacter = base.Read()) == EOF)
+                    {
+                        // If the char denotes end of file, stop
+                        break;
+                    }
                 }
+
+                // Skip char if it's illegal, and try the next
+
+                while (!XmlSanitizingStream.
+                        IsLegalXmlChar(nextCharacter));
+
+                return nextCharacter;
             }
 
-            // Skip char if it's illegal, and try the next
-
-            while (!XmlSanitizingStream.
-                    IsLegalXmlChar(nextCharacter));
-
-            return nextCharacter;
-        }
-
-        public override int Peek()
-        {
-            // Return next legal XML char w/o reading it 
-
-            int nextCharacter;
-
-            do
+            public override int Peek()
             {
-                // See what the next character is 
-                nextCharacter = base.Peek();
+                // Return next legal XML char w/o reading it 
+
+                int nextCharacter;
+
+                do
+                {
+                    // See what the next character is 
+                    nextCharacter = base.Peek();
+                }
+                while
+                (
+                    // If it's illegal, skip over 
+                    // and try the next.
+
+                    !XmlSanitizingStream.IsLegalXmlChar(nextCharacter) &&
+                    (nextCharacter = base.Read()) != EOF
+                );
+
+                return nextCharacter;
+
             }
-            while
-            (
-                // If it's illegal, skip over 
-                // and try the next.
-
-                !XmlSanitizingStream.IsLegalXmlChar(nextCharacter) &&
-                (nextCharacter = base.Read()) != EOF
-            );
-
-            return nextCharacter;
-
         }
+
     }
+
 }
 
 

@@ -67,7 +67,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchParams.cs" />
     <Compile Include="ServerIP.cs" />
-    <Compile Include="XmlSanitizingStream.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

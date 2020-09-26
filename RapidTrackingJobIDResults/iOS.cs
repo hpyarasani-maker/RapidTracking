@@ -878,6 +878,7 @@ namespace RapidTrackingJobIDResults
                                         {
                                             indx = u.LastIndexOf("ftp://");  //30-04-2020
                                         }
+                                        u = u.Remove(0, indx);
                                         //end 25-09-2020
                                         //string links1 = HttpUtility.UrlDecode(u);
 
@@ -1015,6 +1016,7 @@ namespace RapidTrackingJobIDResults
                                             {
                                                 indx = u.LastIndexOf("ftp://");  //30-04-2020
                                             }
+                                            u = u.Remove(0, indx);
                                             //end 25-09-2020
                                             //string links1 = HttpUtility.UrlDecode(u);
 

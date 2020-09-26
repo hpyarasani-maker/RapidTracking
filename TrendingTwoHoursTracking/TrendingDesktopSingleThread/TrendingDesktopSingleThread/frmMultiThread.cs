@@ -28,7 +28,7 @@ namespace TrendingDesktopSingleThread
         int timerVal;
 
         bool desktop1 = false;
-        
+        int itmCount1 = 0;
 
         public frmMultiThread()
         {

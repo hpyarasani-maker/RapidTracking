@@ -808,16 +808,16 @@ namespace RapidTrackingSingleThread
                                             if (url.StartsWith("http") || url.StartsWith("https") || url.StartsWith("ftp")) //30-04-2020
                                             {
                                                 //25-09-2020 commented
-                                                /*int indx = url.IndexOf("http://"); 
+                                                int indx = url.IndexOf("http://");
                                                 if (indx < 0)
                                                 {
-                                                    indx = url.IndexOf("https://"); 
+                                                    indx = url.IndexOf("https://");
                                                 }
                                                 if (indx < 0)
                                                 {
                                                     indx = url.LastIndexOf("ftp://");  //30-04-2020
                                                 }
-                                                url = url.Remove(0, indx);*/
+                                                url = url.Remove(0, indx);
                                                 //end 25-09-2020
                                                 s.Append("<block type=\"video\" url=\"\">");
                                                 s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
@@ -871,7 +871,7 @@ namespace RapidTrackingSingleThread
                                     if (u.StartsWith("http") || u.StartsWith("https") || u.StartsWith("ftp")) //30-04-2020
                                     {
                                         //25-09-2020 commented
-                                        /*int indx = u.IndexOf("http://");
+                                        int indx = u.IndexOf("http://");
                                         if (indx < 0)
                                         {
                                             indx = u.IndexOf("https://");
@@ -879,7 +879,7 @@ namespace RapidTrackingSingleThread
                                         if (indx < 0)
                                         {
                                             indx = u.LastIndexOf("ftp://");  //30-04-2020
-                                        }*/
+                                        }
                                         //end 25-09-2020
                                         //string links1 = HttpUtility.UrlDecode(u);
 
@@ -938,7 +938,7 @@ namespace RapidTrackingSingleThread
                                             if (url.StartsWith("http") || url.StartsWith("https") || url.StartsWith("ftp")) //30-04-2020
                                             {
                                                 //25-09-2020 commented
-                                                /*int indx = url.IndexOf("http://");
+                                                int indx = url.IndexOf("http://");
                                                 if (indx < 0)
                                                 {
                                                     indx = url.IndexOf("https://");
@@ -947,7 +947,7 @@ namespace RapidTrackingSingleThread
                                                 {
                                                     indx = url.LastIndexOf("ftp://");  //30-04-2020
                                                 }
-                                                url = url.Remove(0, indx);*/
+                                                url = url.Remove(0, indx);
                                                 //end of 25-09-2020
                                                 s.Append("<block type=\"video\" url=\"\">");
                                                 s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
@@ -1008,7 +1008,7 @@ namespace RapidTrackingSingleThread
                                         if (u.StartsWith("http") || u.StartsWith("https") || u.StartsWith("ftp")) //30-04-2020
                                         {
                                             //25-09-2020 commented
-                                            /*int indx = u.IndexOf("http://");
+                                            int indx = u.IndexOf("http://");
                                             if (indx < 0)
                                             {
                                                 indx = u.IndexOf("https://");
@@ -1016,7 +1016,7 @@ namespace RapidTrackingSingleThread
                                             if (indx < 0)
                                             {
                                                 indx = u.LastIndexOf("ftp://");  //30-04-2020
-                                            }*/
+                                            }
                                             //end 25-09-2020
                                             //string links1 = HttpUtility.UrlDecode(u);
 
@@ -1039,16 +1039,16 @@ namespace RapidTrackingSingleThread
                                         if (u.StartsWith("http") || u.StartsWith("https") || u.StartsWith("ftp")) //30-04-2020
                                         {
                                             //25-09-2020 commented
-                                            /* int indx = u.IndexOf("http://");
-                                             if (indx < 0)
-                                             {
-                                                 indx = u.IndexOf("https://");
-                                             }
-                                             if (indx < 0)
-                                             {
-                                                 indx = u.LastIndexOf("ftp://");  //30-04-2020
-                                             }
-                                             u = u.Remove(0, indx);*/
+                                            int indx = u.IndexOf("http://");
+                                            if (indx < 0)
+                                            {
+                                                indx = u.IndexOf("https://");
+                                            }
+                                            if (indx < 0)
+                                            {
+                                                indx = u.LastIndexOf("ftp://");  //30-04-2020
+                                            }
+                                            u = u.Remove(0, indx);
                                             //end 25-09-2020
                                             // string links1 = HttpUtility.UrlDecode(u);
                                             s.Append("<item url=\"" + SetUrl(u) + "\"  title=\"" + SetTitle(n.InnerText) + "\" />");    //   
@@ -2525,7 +2525,7 @@ namespace RapidTrackingSingleThread
             if (url.Contains("%")) //18-09-2020
                 url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
 
-            return WebUtility.HtmlEncode(SanitizeXmlString(url).Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim(); //23-09-2020 applied method to URL//22-04-2020
+            return WebUtility.HtmlEncode(url.Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim(); //23-09-2020 applied method to URL//22-04-2020
         }
         //27-08-2020
         private string GetRedirectedUrl_TextAds(string url)
@@ -2572,7 +2572,7 @@ namespace RapidTrackingSingleThread
                 if (url.Contains("%")) //18-09-2020
                     url = GetRedirectedUrl_TextAds(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
 
-                return WebUtility.HtmlEncode(SanitizeXmlString(url).Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim();//23-09-2020 applied method to URL
+                return WebUtility.HtmlEncode(url.Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim();//23-09-2020 applied method to URL
             }
 
             return string.Empty;

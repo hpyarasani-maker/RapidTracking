@@ -523,7 +523,7 @@ namespace TrackingTrending
                                 if (urls.StartsWith("http") || urls.StartsWith("https") || urls.StartsWith("ftp")) //30-04-2020
                                 {
                                     //25-09-2020 commented
-                                    int indx = urls.IndexOf("http://");//25-09-2020 LastIndexOf changed to IndexOf
+                                    /*int indx = urls.IndexOf("http://");//25-09-2020 LastIndexOf changed to IndexOf
                                     if (indx < 0)
                                     {
                                         indx = urls.IndexOf("https://");//25-09-2020 LastIndexOf changed to IndexOf
@@ -532,7 +532,7 @@ namespace TrackingTrending
                                     {
                                         indx = urls.LastIndexOf("ftp://");  //30-04-2020
                                     }
-                                    urls = urls.Remove(0, indx);
+                                    urls = urls.Remove(0, indx);*/
                                     //end 25-09-2020
                                     // video block.
                                     s.Append("<block type=\"video\" url=\"\">");
@@ -553,7 +553,7 @@ namespace TrackingTrending
                                 if (urls.StartsWith("http") || urls.StartsWith("https") || urls.StartsWith("ftp")) //30-04-2020
                                 {
                                     //25-09-2020
-                                    int indx = urls.IndexOf("http://");
+                                    /*int indx = urls.IndexOf("http://");
                                     if (indx < 0)
                                     {
                                         indx = urls.IndexOf("https://");
@@ -562,7 +562,7 @@ namespace TrackingTrending
                                     {
                                         indx = urls.LastIndexOf("ftp://");  //30-04-2020
                                     }
-                                    urls = urls.Remove(0, indx);
+                                    urls = urls.Remove(0, indx);*/
                                     //end 25-09-2020
                                     // string links1= HttpUtility.UrlDecode(urls);
                                     s.Append("<item url=\"" + SetUrl(urls) + "\"  title=\"" + SetTitle(title.InnerText) + "\"  />");
@@ -596,7 +596,7 @@ namespace TrackingTrending
                                 if (urls.StartsWith("http") || urls.StartsWith("https") || urls.StartsWith("ftp")) //30-04-2020
                                 {
                                     //25-09-2020 commented
-                                    int indx = urls.IndexOf("http://");
+                                    /*int indx = urls.IndexOf("http://");
                                     if (indx < 0)
                                     {
                                         indx = urls.IndexOf("https://");
@@ -605,7 +605,7 @@ namespace TrackingTrending
                                     {
                                         indx = urls.LastIndexOf("ftp://");  //30-04-2020
                                     }
-                                    urls = urls.Remove(0, indx);
+                                    urls = urls.Remove(0, indx);*/
                                     // end 25-09-2020
                                     // string links1= HttpUtility.UrlDecode(urls);
                                     s.Append("<item url=\"" + SetUrl(urls) + "\"  title=\"" + SetTitle(t) + "\"  />");
@@ -636,7 +636,7 @@ namespace TrackingTrending
                         if (u.StartsWith("http") || u.StartsWith("https") || u.StartsWith("ftp")) //30-04-2020
                         {
                             //25-09-2020 commented
-                            int indx = u.IndexOf("http://");
+                           /* int indx = u.IndexOf("http://");
                             if (indx < 0)
                             {
                                 indx = u.IndexOf("https://");
@@ -645,7 +645,7 @@ namespace TrackingTrending
                             {
                                 indx = u.LastIndexOf("ftp://");  //30-04-2020
                             }
-                            u = u.Remove(0, indx);
+                            u = u.Remove(0, indx);*/
                             //25-09-2020
                             // string links1 = HttpUtility.UrlDecode(u);
                             s.Append("<item url=\"" + SetUrl(u) + "\"  title=\"" + SetTitle(nd.InnerText) + "\"  />");

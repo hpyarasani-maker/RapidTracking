@@ -91,7 +91,7 @@ namespace BingMultiThreadProxies
 
             string sendingIp = dtIPs.Rows[x][1].ToString();
             //string sendingIp = this.GetIP();
-            int sendingPort = 0;
+            
             StringBuilder stringBuilder = new StringBuilder();
             string value = string.Empty;
 
@@ -143,7 +143,7 @@ namespace BingMultiThreadProxies
 
             string sendingIp = dtIPs.Rows[x][1].ToString();
             // string sendingIp = this.GetIP();
-            int sendingPort = 0;
+           
             StringBuilder stringBuilder = new StringBuilder();
             string value = string.Empty;
             Uri uri = new Uri(url);

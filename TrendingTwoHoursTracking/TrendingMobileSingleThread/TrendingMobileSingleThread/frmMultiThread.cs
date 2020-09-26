@@ -24,7 +24,7 @@ namespace TrendingMobileSingleThread
 
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
-        int count;
+        int count=0;
         int timerVal;
         bool iOS1 = false;       
 

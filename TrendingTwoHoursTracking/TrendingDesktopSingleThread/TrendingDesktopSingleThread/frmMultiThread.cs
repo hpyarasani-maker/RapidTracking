@@ -24,11 +24,11 @@ namespace TrendingDesktopSingleThread
 
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
-        int count;
+        int count=0;
         int timerVal;
 
         bool desktop1 = false;
-        int itmCount1 = 0;
+        
 
         public frmMultiThread()
         {

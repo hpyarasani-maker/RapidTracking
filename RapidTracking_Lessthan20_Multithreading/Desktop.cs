@@ -13,7 +13,7 @@ namespace TrackingTrending
     public class Desktop
     {
         int orgLinks;
-        string html;
+        string html; 
         public string ProcessDocument(string seid, string keyword, HtmlDocument doc, out int count)
         {
             count = 0;
@@ -636,7 +636,7 @@ namespace TrackingTrending
                         if (u.StartsWith("http") || u.StartsWith("https") || u.StartsWith("ftp")) //30-04-2020
                         {
                             //25-09-2020 commented
-                           /* int indx = u.IndexOf("http://");
+                            /*int indx = u.IndexOf("http://");
                             if (indx < 0)
                             {
                                 indx = u.IndexOf("https://");
@@ -1418,7 +1418,7 @@ namespace TrackingTrending
             {
                 //if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e")) //commented 18-09-2020
                 if (url.Contains("%")) //18-09-2020
-                    url = GetRedirectedUrl_TextAds(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
+                    url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
 
                 return WebUtility.HtmlEncode(SanitizeXmlString(url).Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim(); //23-09-2020 applied method to URL
             }
@@ -1447,80 +1447,83 @@ namespace TrackingTrending
             return buffer.ToString();
         }
         //end 23-09-2020
-    }
-}
 
-public class XmlSanitizingStream : StreamReader
-{
-    public XmlSanitizingStream(Stream streamToSanitize)
-    : base(streamToSanitize, true)
-    { }
-
-    /// <summary>
-    /// Whether a given character is allowed by XML 1.0.
-    /// </summary>
-    public static bool IsLegalXmlChar(int character)
-    {
-        return
-        (
-             character == 0x9 /* == '\t' == 9   */          ||
-             character == 0xA /* == '\n' == 10  */          ||
-             character == 0xD /* == '\r' == 13  */          ||
-            (character >= 0x20 && character <= 0xD7FF) ||
-            (character >= 0xE000 && character <= 0xFFFD) ||
-            (character >= 0x10000 && character <= 0x10FFFF)
-        );
-    }
-    private const int EOF = -1;
-
-    public override int Read()
-    {
-        // Read each char, skipping ones XML has prohibited
-
-        int nextCharacter;
-
-        do
+        public class XmlSanitizingStream : StreamReader
         {
-            // Read a character
+            public XmlSanitizingStream(Stream streamToSanitize)
+            : base(streamToSanitize, true)
+            { }
 
-            if ((nextCharacter = base.Read()) == EOF)
+            /// <summary>
+            /// Whether a given character is allowed by XML 1.0.
+            /// </summary>
+            public static bool IsLegalXmlChar(int character)
             {
-                // If the char denotes end of file, stop
-                break;
+                return
+                (
+                     character == 0x9 /* == '\t' == 9   */          ||
+                     character == 0xA /* == '\n' == 10  */          ||
+                     character == 0xD /* == '\r' == 13  */          ||
+                    (character >= 0x20 && character <= 0xD7FF) ||
+                    (character >= 0xE000 && character <= 0xFFFD) ||
+                    (character >= 0x10000 && character <= 0x10FFFF)
+                );
+            }
+            private const int EOF = -1;
+
+            public override int Read()
+            {
+                // Read each char, skipping ones XML has prohibited
+
+                int nextCharacter;
+
+                do
+                {
+                    // Read a character
+
+                    if ((nextCharacter = base.Read()) == EOF)
+                    {
+                        // If the char denotes end of file, stop
+                        break;
+                    }
+                }
+
+                // Skip char if it's illegal, and try the next
+
+                while (!XmlSanitizingStream.
+                        IsLegalXmlChar(nextCharacter));
+
+                return nextCharacter;
+            }
+
+            public override int Peek()
+            {
+                // Return next legal XML char w/o reading it 
+
+                int nextCharacter;
+
+                do
+                {
+                    // See what the next character is 
+                    nextCharacter = base.Peek();
+                }
+                while
+                (
+                    // If it's illegal, skip over 
+                    // and try the next.
+
+                    !XmlSanitizingStream.IsLegalXmlChar(nextCharacter) &&
+                    (nextCharacter = base.Read()) != EOF
+                );
+
+                return nextCharacter;
+
             }
         }
 
-        // Skip char if it's illegal, and try the next
-
-        while (!XmlSanitizingStream.
-                IsLegalXmlChar(nextCharacter));
-
-        return nextCharacter;
     }
 
-    public override int Peek()
-    {
-        // Return next legal XML char w/o reading it 
-
-        int nextCharacter;
-
-        do
-        {
-            // See what the next character is 
-            nextCharacter = base.Peek();
-        }
-        while
-        (
-            // If it's illegal, skip over 
-            // and try the next.
-
-            !XmlSanitizingStream
-            .IsLegalXmlChar(nextCharacter) &&
-            (nextCharacter = base.Read()) != EOF
-        );
-
-        return nextCharacter;
-
-    }
 }
+
+
 

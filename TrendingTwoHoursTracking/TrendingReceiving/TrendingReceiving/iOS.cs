@@ -1,6 +1,7 @@
 ﻿using HtmlAgilityPack;
 using System;
 using System.Collections;
+using System.IO;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -803,16 +804,16 @@ namespace TrendingReceiving
                                             if (url.StartsWith("http") || url.StartsWith("https") || url.StartsWith("ftp")) //30-04-2020
                                             {
                                                 //25-09-2020 commented
-                                                int indx = url.IndexOf("http://");
+                                                /*int indx = url.IndexOf("http://"); 
                                                 if (indx < 0)
                                                 {
-                                                    indx = url.IndexOf("https://");
+                                                    indx = url.IndexOf("https://"); 
                                                 }
                                                 if (indx < 0)
                                                 {
                                                     indx = url.LastIndexOf("ftp://");  //30-04-2020
                                                 }
-                                                url = url.Remove(0, indx);
+                                                url = url.Remove(0, indx);*/
                                                 //end 25-09-2020
                                                 s.Append("<block type=\"video\" url=\"\">");
                                                 s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
@@ -866,7 +867,7 @@ namespace TrendingReceiving
                                     if (u.StartsWith("http") || u.StartsWith("https") || u.StartsWith("ftp")) //30-04-2020
                                     {
                                         //25-09-2020 commented
-                                        int indx = u.IndexOf("http://");
+                                        /*int indx = u.IndexOf("http://");
                                         if (indx < 0)
                                         {
                                             indx = u.IndexOf("https://");
@@ -875,7 +876,7 @@ namespace TrendingReceiving
                                         {
                                             indx = u.LastIndexOf("ftp://");  //30-04-2020
                                         }
-                                        u = u.Remove(0, indx);
+                                        u = u.Remove(0, indx);*/
                                         //end 25-09-2020
                                         //string links1 = HttpUtility.UrlDecode(u);
 
@@ -934,7 +935,7 @@ namespace TrendingReceiving
                                             if (url.StartsWith("http") || url.StartsWith("https") || url.StartsWith("ftp")) //30-04-2020
                                             {
                                                 //25-09-2020 commented
-                                                int indx = url.IndexOf("http://");
+                                                /*int indx = url.IndexOf("http://");
                                                 if (indx < 0)
                                                 {
                                                     indx = url.IndexOf("https://");
@@ -943,7 +944,7 @@ namespace TrendingReceiving
                                                 {
                                                     indx = url.LastIndexOf("ftp://");  //30-04-2020
                                                 }
-                                                url = url.Remove(0, indx);
+                                                url = url.Remove(0, indx);*/
                                                 //end of 25-09-2020
                                                 s.Append("<block type=\"video\" url=\"\">");
                                                 s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
@@ -1004,7 +1005,7 @@ namespace TrendingReceiving
                                         if (u.StartsWith("http") || u.StartsWith("https") || u.StartsWith("ftp")) //30-04-2020
                                         {
                                             //25-09-2020 commented
-                                            int indx = u.IndexOf("http://");
+                                            /*int indx = u.IndexOf("http://");
                                             if (indx < 0)
                                             {
                                                 indx = u.IndexOf("https://");
@@ -1013,7 +1014,7 @@ namespace TrendingReceiving
                                             {
                                                 indx = u.LastIndexOf("ftp://");  //30-04-2020
                                             }
-                                            u = u.Remove(0, indx);
+                                            u = u.Remove(0, indx);*/
                                             //end 25-09-2020
                                             //string links1 = HttpUtility.UrlDecode(u);
 
@@ -1036,7 +1037,7 @@ namespace TrendingReceiving
                                         if (u.StartsWith("http") || u.StartsWith("https") || u.StartsWith("ftp")) //30-04-2020
                                         {
                                             //25-09-2020 commented
-                                            int indx = u.IndexOf("http://");
+                                            /*int indx = u.IndexOf("http://");
                                             if (indx < 0)
                                             {
                                                 indx = u.IndexOf("https://");
@@ -1045,7 +1046,7 @@ namespace TrendingReceiving
                                             {
                                                 indx = u.LastIndexOf("ftp://");  //30-04-2020
                                             }
-                                            u = u.Remove(0, indx);
+                                            u = u.Remove(0, indx);*/
                                             //end 25-09-2020
                                             // string links1 = HttpUtility.UrlDecode(u);
                                             s.Append("<item url=\"" + SetUrl(u) + "\"  title=\"" + SetTitle(n.InnerText) + "\" />");    //   
@@ -2522,7 +2523,7 @@ namespace TrendingReceiving
             if (url.Contains("%")) //18-09-2020
                 url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
 
-            return WebUtility.HtmlEncode(url.Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim(); //23-09-2020 applied method to URL//22-04-2020
+            return WebUtility.HtmlEncode(SanitizeXmlString(url).Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim(); //23-09-2020 applied method to URL//22-04-2020
         }
         //27-08-2020
         private string GetRedirectedUrl_TextAds(string url)
@@ -2567,14 +2568,86 @@ namespace TrendingReceiving
             {
                 //if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e")) //commented 18-09-2020
                 if (url.Contains("%")) //18-09-2020
-                    url = GetRedirectedUrl_TextAds(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
+                    url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
 
-                return WebUtility.HtmlEncode(url.Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim();//23-09-2020 applied method to URL
+                return WebUtility.HtmlEncode(SanitizeXmlString(url).Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim();//23-09-2020 applied method to URL
             }
 
             return string.Empty;
         }
         
+    }
+    public class XmlSanitizingStream : StreamReader
+    {
+        public XmlSanitizingStream(Stream streamToSanitize)
+        : base(streamToSanitize, true)
+        { }
+
+        /// <summary>
+        /// Whether a given character is allowed by XML 1.0.
+        /// </summary>
+        public static bool IsLegalXmlChar(int character)
+        {
+            return
+            (
+                 character == 0x9 /* == '\t' == 9   */          ||
+                 character == 0xA /* == '\n' == 10  */          ||
+                 character == 0xD /* == '\r' == 13  */          ||
+                (character >= 0x20 && character <= 0xD7FF) ||
+                (character >= 0xE000 && character <= 0xFFFD) ||
+                (character >= 0x10000 && character <= 0x10FFFF)
+            );
+        }
+        private const int EOF = -1;
+
+        public override int Read()
+        {
+            // Read each char, skipping ones XML has prohibited
+
+            int nextCharacter;
+
+            do
+            {
+                // Read a character
+
+                if ((nextCharacter = base.Read()) == EOF)
+                {
+                    // If the char denotes end of file, stop
+                    break;
+                }
+            }
+
+            // Skip char if it's illegal, and try the next
+
+            while (!XmlSanitizingStream.
+                    IsLegalXmlChar(nextCharacter));
+
+            return nextCharacter;
+        }
+
+        public override int Peek()
+        {
+            // Return next legal XML char w/o reading it 
+
+            int nextCharacter;
+
+            do
+            {
+                // See what the next character is 
+                nextCharacter = base.Peek();
+            }
+            while
+            (
+                // If it's illegal, skip over 
+                // and try the next.
+
+                !XmlSanitizingStream.IsLegalXmlChar(nextCharacter) &&
+                (nextCharacter = base.Read()) != EOF
+            );
+
+            return nextCharacter;
+
+        }
     }
 }
 

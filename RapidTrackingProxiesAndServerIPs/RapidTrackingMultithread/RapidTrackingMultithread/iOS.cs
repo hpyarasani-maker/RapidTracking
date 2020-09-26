@@ -2568,28 +2568,7 @@ namespace RapidTrackingMultithread
 
             return string.Empty;
         }
-        //23-09-2020 included method to find and fix hexdecimal chars
-        public string SanitizeXmlString(string xml)
-        {
-
-            if (xml == null)
-            {
-                throw new ArgumentNullException("xml");
-            }
-
-            StringBuilder buffer = new StringBuilder(xml.Length);
-
-            foreach (char c in xml)
-            {
-                if (XmlSanitizingStream.IsLegalXmlChar(c))
-                {
-                    buffer.Append(c);
-                }
-            }
-
-            return buffer.ToString();
-        }
-        //end 23-09-2020
+       
     }
 }
 

@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Globalization;
+using System.IO;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -12,7 +13,7 @@ namespace Oxylabs_BulkKeywords
     public class Desktop
     {
         int orgLinks;
-        string html; 
+        string html;
 
         public string ProcessDocument(string seid, string keyword, string htmlsource, out int organicurls)
         {
@@ -29,7 +30,7 @@ namespace Oxylabs_BulkKeywords
             if (htmlNode != null)
             {
                 organicurls = 0;
-                throw new Exception( "Old page found.");
+                throw new Exception("Old page found.");
             }
 
             html = htmlsource;
@@ -125,7 +126,7 @@ namespace Oxylabs_BulkKeywords
             }
             organicurls = orgLinks;
             return sb.ToString();
-            
+
 
         }
 
@@ -1385,7 +1386,7 @@ namespace Oxylabs_BulkKeywords
             if (url.Contains("%")) //18-09-2020
                 url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
             ////SanitizeXmlString(url);
-            return WebUtility.HtmlEncode(url.Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim();//23-09-2020 applied method to URL  //26-03-2020 updated converting hexadecimal codes
+            return WebUtility.HtmlEncode(SanitizeXmlString(url).Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim();//23-09-2020 applied method to URL  //26-03-2020 updated converting hexadecimal codes
         }
         //27-08-2020
         private string GetRedirectedUrl_TextAds(string url)
@@ -1431,7 +1432,7 @@ namespace Oxylabs_BulkKeywords
                 if (url.Contains("%")) //18-09-2020
                     url = GetRedirectedUrl_TextAds(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
 
-                return WebUtility.HtmlEncode(url.Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim(); //23-09-2020 applied method to URL
+                return WebUtility.HtmlEncode(SanitizeXmlString(url).Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim(); //23-09-2020 applied method to URL
             }
 
             return string.Empty;
@@ -1458,6 +1459,79 @@ namespace Oxylabs_BulkKeywords
             return buffer.ToString();
         }
         //end 23-09-2020
+
+        public class XmlSanitizingStream : StreamReader
+        {
+            public XmlSanitizingStream(Stream streamToSanitize)
+            : base(streamToSanitize, true)
+            { }
+
+            /// <summary>
+            /// Whether a given character is allowed by XML 1.0.
+            /// </summary>
+            public static bool IsLegalXmlChar(int character)
+            {
+                return
+                (
+                     character == 0x9 /* == '\t' == 9   */          ||
+                     character == 0xA /* == '\n' == 10  */          ||
+                     character == 0xD /* == '\r' == 13  */          ||
+                    (character >= 0x20 && character <= 0xD7FF) ||
+                    (character >= 0xE000 && character <= 0xFFFD) ||
+                    (character >= 0x10000 && character <= 0x10FFFF)
+                );
+            }
+            private const int EOF = -1;
+
+            public override int Read()
+            {
+                // Read each char, skipping ones XML has prohibited
+
+                int nextCharacter;
+
+                do
+                {
+                    // Read a character
+
+                    if ((nextCharacter = base.Read()) == EOF)
+                    {
+                        // If the char denotes end of file, stop
+                        break;
+                    }
+                }
+
+                // Skip char if it's illegal, and try the next
+
+                while (!XmlSanitizingStream.
+                        IsLegalXmlChar(nextCharacter));
+
+                return nextCharacter;
+            }
+
+            public override int Peek()
+            {
+                // Return next legal XML char w/o reading it 
+
+                int nextCharacter;
+
+                do
+                {
+                    // See what the next character is 
+                    nextCharacter = base.Peek();
+                }
+                while
+                (
+                    // If it's illegal, skip over 
+                    // and try the next.
+
+                    !XmlSanitizingStream.IsLegalXmlChar(nextCharacter) &&
+                    (nextCharacter = base.Read()) != EOF
+                );
+
+                return nextCharacter;
+
+            }
+        }
     }
 }
 

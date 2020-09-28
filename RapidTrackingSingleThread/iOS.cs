@@ -2485,6 +2485,8 @@ namespace RapidTrackingSingleThread
                 url = url.Remove(0, url.IndexOf("https://"));
             if (url.IndexOf("http://") > 0)
                 url = url.Remove(0, url.IndexOf("http://"));
+            else if (url.LastIndexOf("http") > 0)
+                url = url.Remove(url.IndexOf("http%")); //28-09-2020
             //end 24-09-2020
             Regex rx = new Regex("http[\\w]?://(.*)", RegexOptions.Singleline);
             if (!rx.Match(url).Success && !url.Contains("/aclk?"))

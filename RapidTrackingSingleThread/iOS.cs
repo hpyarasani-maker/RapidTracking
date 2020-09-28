@@ -2029,6 +2029,8 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[@class='Nhsae']");//01-05-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='aD8dbe']");//14-09-2020  Answered Card selector
+            if (nd == null)
+                nd = node.SelectSingleNode(".//a[@class='duf3 wrSo4']");//28-09-2020 Answered Card Selector
             if (nd != null)
             {
                 return "AnswerCard";
@@ -2421,7 +2423,13 @@ namespace RapidTrackingSingleThread
             {
                 return true;
             }//21-08-2019"
-
+            //28-09-2020 Returns true if href="#" as empty answered card
+            nd = node.SelectSingleNode(".//a[@class='duf3 wrSo4']");
+            if (nd != null)
+            {
+                return true;
+            }
+            //end 28-09-2020
             if (!node.HasClass("srg")) // 19-09-2019
             {
                 nd = node.SelectSingleNode(".//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='ytwLQd']");//05-06-2020 missing classic links

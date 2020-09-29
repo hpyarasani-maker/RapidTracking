@@ -25,8 +25,9 @@ namespace RapidTrackingSingleThread
             html = doc.DocumentNode.OuterHtml;
             StringBuilder sb = new StringBuilder();
             sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" date=\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\" >");
-
-            sb.Append("<section col=\"main\">");
+            try  //28-09-2020  try catch.
+            {
+                sb.Append("<section col=\"main\">");
             string topStuff = GetTopStuff(doc);
             ndText = topStuff;
             sb.Append(topStuff);

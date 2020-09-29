@@ -2208,6 +2208,7 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@class='UDZeY fAgajc']") != null     // 13-03-2020
                 || node.SelectSingleNode(".//div[@class='wQu7gc']") != null   //08-07-2020 mising answered card
                 || node.SelectSingleNode(".//div[@class='kp-blk OJXvsb']") != null)  //26-08-2020 included selector for answered 
+                || node.SelectSingleNode(".//w-answer|.//a[@class='duf3 wrSo4']") != null) //28-09-2020
 
                 return "AnswerCard";
 

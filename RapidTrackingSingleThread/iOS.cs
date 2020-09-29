@@ -28,156 +28,157 @@ namespace RapidTrackingSingleThread
             try  //28-09-2020  try catch.
             {
                 sb.Append("<section col=\"main\">");
-            string topStuff = GetTopStuff(doc);
-            ndText = topStuff;
-            sb.Append(topStuff);
+                string topStuff = GetTopStuff(doc);
+                ndText = topStuff;
+                sb.Append(topStuff);
 
-            HtmlNodeCollection nodeCol = doc.DocumentNode.SelectNodes("//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']/div[@class='MUxGbd v0nnCb lyLwlc']|//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']/div/div[@class='MUxGbd v0nnCb lyLwlc']");   //29-04-2020
-            if (nodeCol != null)
-                nodeCol = nodeCol[nodeCol.Count - 1].SelectNodes("a/div");  //28-04-2020
-            if (nodeCol == null)
-                nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-card|//div[@id='taw']/div[@class='med']/div[2]/div|//div[@id='rso']/nav");   //28-04-2020
-            if (nodeCol != null && nodeCol.Count == 1)
-                nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@class='vC5Ym DhKAUb']/div");    //17-09-2019
-            if (nodeCol == null)
-                nodeCol = doc.DocumentNode.SelectNodes("//*[@id='tscffb']");
-            //if (nodeCol == null)
-            //    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='mnr-c IGtt6d imgac']");
-            //if (nodeCol == null)
-            //    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");
+                HtmlNodeCollection nodeCol = doc.DocumentNode.SelectNodes("//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']/div[@class='MUxGbd v0nnCb lyLwlc']|//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']/div/div[@class='MUxGbd v0nnCb lyLwlc']");   //29-04-2020
+                if (nodeCol != null)
+                    nodeCol = nodeCol[nodeCol.Count - 1].SelectNodes("a/div");  //28-04-2020
+                if (nodeCol == null)
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-card|//div[@id='taw']/div[@class='med']/div[2]/div|//div[@id='rso']/nav");   //28-04-2020
+                if (nodeCol != null && nodeCol.Count == 1)
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@class='vC5Ym DhKAUb']/div");    //17-09-2019
+                if (nodeCol == null)
+                    nodeCol = doc.DocumentNode.SelectNodes("//*[@id='tscffb']");
+                //if (nodeCol == null)
+                //    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='mnr-c IGtt6d imgac']");
+                //if (nodeCol == null)
+                //    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");
 
-            if (nodeCol == null) throw new Exception("No block found.");
-            //if (nodeCol == null) return string.Empty; 
-            //if (nodeCol == null) goto BOTTOMSTUFF;             
+                if (nodeCol == null) throw new Exception("No block found.");
+                //if (nodeCol == null) return string.Empty; 
+                //if (nodeCol == null) goto BOTTOMSTUFF;             
 
-            foreach (HtmlNode node in nodeCol)
-            {
-                HtmlNode fsh = node.SelectSingleNode(".//*[@id='knowledge-finance-wholepage__fw-sticky-header']");
-                if (fsh != null)
-                {
-                    HtmlNodeCollection nc = node.SelectNodes(".//*[@class='knowledge-finance-wholepage__section wp-ms']"); // /div[1]
-                    if (node.HasClass("kp-wholepage"))
-                    {
-                        continue;
-                    }
-                    try
-                    {
-                        if (nc != null)
-                        {
-                            foreach (HtmlNode nd in nc)
-                            {
-                                string s = ProcessNode(nd);
-                                ndText += s;
-                                if (s.Length > 0)
-                                    sb.Append(s);
-                            }
-                            break;
-                        }
-                    }
-                    catch { }
-
-                }
-                //changes on 06-08-2019
-                if ((node.SelectSingleNode(".//div[@id='knowledge-finance-wholepage__entity-summary']") != null
-                    || node.InnerText.Contains("Finance results")) && node.SelectSingleNode(".//div[@class='srg']") != null)
-                {
-                    sb.Append("<block type=\"finance\" url=\"\"></block>");
-                }
-
-                if (node.HasClass("kp-wholepage") || node.SelectNodes(".//div[contains(@class, 'kp-wholepage')]") != null)
-                {
-                    // changed on 05-07-2019
-                    HtmlNode n = node.SelectSingleNode(".//div[@class='PyJv1b kno-fb-ctx gsmt PZPZlf']/span[@role='heading']");
-                    if (n == null)
-                        n = node.SelectSingleNode(".//div[@class='PyJv1b kno-fb-ctx gsmt PZPZlf lV8Nyd']/span[@role='heading']");
-                    if (n == null)
-                        n = node.SelectSingleNode(".//div[@class='PyJv1b gsmt PZPZlf']/span[@role='heading']"); // 06-11-2019
-                    if (n == null)
-                        n = node.SelectSingleNode(".//div[@class='PyJv1b gsmt PZPZlf lV8Nyd']/span[@role='heading']"); // 11-11-2019
-                    if (n == null)
-                        n = node.SelectSingleNode(".//div[@class='Ftghae iirjIb']");//16-09-2019 //
-                    if (n != null)
-                    {
-                        string heading = n.InnerText;
-                        sb.Append("<block type=\"knowledgeGraph\" url=\"\" title=\"" + SetTitle(heading) + "\" />");
-                    }
-
-                    continue;
-                }
-                try
-                {
-                    if (node.InnerHtml != "")
-                    {
-                        string s = ProcessNode(node);
-                        ndText += s;
-                        if (s.Length > 0)
-                            sb.Append(s);
-                    }
-                }
-                catch
-                { }
-            }
-
-            if (string.IsNullOrEmpty(ndText.Trim()) || orgLinks == 0)
-            {
                 foreach (HtmlNode node in nodeCol)
                 {
-                    try
+                    HtmlNode fsh = node.SelectSingleNode(".//*[@id='knowledge-finance-wholepage__fw-sticky-header']");
+                    if (fsh != null)
                     {
-                        if (node.HasClass("kp-wholepage") || node.SelectNodes(".//div[contains(@class, 'kp-wholepage')]") != null)
+                        HtmlNodeCollection nc = node.SelectNodes(".//*[@class='knowledge-finance-wholepage__section wp-ms']"); // /div[1]
+                        if (node.HasClass("kp-wholepage"))
                         {
-                            HtmlNodeCollection nc = node.SelectNodes(".//div[@id='kp-wp-tab-overview']/div"); //22-01-2020
-                            if (nc == null)
-                                nc = node.SelectNodes(".//div[@class='WvKfwe']/div|.//div[@class='WvKfwe a3spGf']/div|.//div[@class='ChlgHf']|.//div[@class='UDZeY mf8UVb']|.//div[@class='UDZeY']|.//div[@class='a3spGf WvKfwe']/div");//18-06-2020//|.//div[@class='uxUO1b g0S8Ze mnr-c']"); //17-06-2020 answer card //01-06-2020");  //15-04-2020     
-                            if (nc == null) //|.//div[@class='a3spGf WvKfwe']/div //23-05-2020
-                                nc = node.SelectNodes(".//div[@class='Kot7x eXEBMb Znsfnf']/div[@class='GhpATe pttBJc']"); //15-04-2020
-                            if (nc == null)//|.//div[@class='kp-blk c2xzTb OJXvsb']//23-05-2020
-                                nc = node.SelectNodes(".//div[@class='UDZeY']/div|.//div[@class='vC5Ym']/div|.//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']");       //23-05-2020
-                            if (nc == null)
-                                nc = node.SelectNodes(".//div[@class='MRWHue']");
-                            if (nc == null)
-                                nc = node.SelectNodes(".//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']/div"); //22-01-2020
-                            if (nc == null)
-                                nc = node.SelectNodes(".//div[@class='a3spGf WvKfwe']");
-                            foreach (HtmlNode nd in nc)
+                            continue;
+                        }
+                        try
+                        {
+                            if (nc != null)
                             {
-                                if (nd.InnerHtml != "")
+                                foreach (HtmlNode nd in nc)
                                 {
-                                    string s = string.Empty;
-                                    try
-                                    {
-                                        s = ProcessNode(nd);
-                                    }
-                                    catch { }
+                                    string s = ProcessNode(nd);
                                     ndText += s;
                                     if (s.Length > 0)
                                         sb.Append(s);
                                 }
+                                break;
                             }
-                            break;
+                        }
+                        catch { }
+
+                    }
+                    //changes on 06-08-2019
+                    if ((node.SelectSingleNode(".//div[@id='knowledge-finance-wholepage__entity-summary']") != null
+                        || node.InnerText.Contains("Finance results")) && node.SelectSingleNode(".//div[@class='srg']") != null)
+                    {
+                        sb.Append("<block type=\"finance\" url=\"\"></block>");
+                    }
+
+                    if (node.HasClass("kp-wholepage") || node.SelectNodes(".//div[contains(@class, 'kp-wholepage')]") != null)
+                    {
+                        // changed on 05-07-2019
+                        HtmlNode n = node.SelectSingleNode(".//div[@class='PyJv1b kno-fb-ctx gsmt PZPZlf']/span[@role='heading']");
+                        if (n == null)
+                            n = node.SelectSingleNode(".//div[@class='PyJv1b kno-fb-ctx gsmt PZPZlf lV8Nyd']/span[@role='heading']");
+                        if (n == null)
+                            n = node.SelectSingleNode(".//div[@class='PyJv1b gsmt PZPZlf']/span[@role='heading']"); // 06-11-2019
+                        if (n == null)
+                            n = node.SelectSingleNode(".//div[@class='PyJv1b gsmt PZPZlf lV8Nyd']/span[@role='heading']"); // 11-11-2019
+                        if (n == null)
+                            n = node.SelectSingleNode(".//div[@class='Ftghae iirjIb']");//16-09-2019 //
+                        if (n != null)
+                        {
+                            string heading = n.InnerText;
+                            sb.Append("<block type=\"knowledgeGraph\" url=\"\" title=\"" + SetTitle(heading) + "\" />");
+                        }
+
+                        continue;
+                    }
+                    try
+                    {
+                        if (node.InnerHtml != "")
+                        {
+                            string s = ProcessNode(node);
+                            ndText += s;
+                            if (s.Length > 0)
+                                sb.Append(s);
                         }
                     }
-                    catch { }
+                    catch
+                    { }
                 }
-            }
 
-            //BOTTOMSTUFF:
-            string bottomStuff = GetBottomStuff(doc);
-            ndText += bottomStuff;
-            sb.Append(bottomStuff);
-            sb.Append("</section>");
+                if (string.IsNullOrEmpty(ndText.Trim()) || orgLinks == 0)
+                {
+                    foreach (HtmlNode node in nodeCol)
+                    {
+                        try
+                        {
+                            if (node.HasClass("kp-wholepage") || node.SelectNodes(".//div[contains(@class, 'kp-wholepage')]") != null)
+                            {
+                                HtmlNodeCollection nc = node.SelectNodes(".//div[@id='kp-wp-tab-overview']/div"); //22-01-2020
+                                if (nc == null)
+                                    nc = node.SelectNodes(".//div[@class='WvKfwe']/div|.//div[@class='WvKfwe a3spGf']/div|.//div[@class='ChlgHf']|.//div[@class='UDZeY mf8UVb']|.//div[@class='UDZeY']|.//div[@class='a3spGf WvKfwe']/div");//18-06-2020//|.//div[@class='uxUO1b g0S8Ze mnr-c']"); //17-06-2020 answer card //01-06-2020");  //15-04-2020     
+                                if (nc == null) //|.//div[@class='a3spGf WvKfwe']/div //23-05-2020
+                                    nc = node.SelectNodes(".//div[@class='Kot7x eXEBMb Znsfnf']/div[@class='GhpATe pttBJc']"); //15-04-2020
+                                if (nc == null)//|.//div[@class='kp-blk c2xzTb OJXvsb']//23-05-2020
+                                    nc = node.SelectNodes(".//div[@class='UDZeY']/div|.//div[@class='vC5Ym']/div|.//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']");       //23-05-2020
+                                if (nc == null)
+                                    nc = node.SelectNodes(".//div[@class='MRWHue']");
+                                if (nc == null)
+                                    nc = node.SelectNodes(".//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']/div"); //22-01-2020
+                                if (nc == null)
+                                    nc = node.SelectNodes(".//div[@class='a3spGf WvKfwe']");
+                                foreach (HtmlNode nd in nc)
+                                {
+                                    if (nd.InnerHtml != "")
+                                    {
+                                        string s = string.Empty;
+                                        try
+                                        {
+                                            s = ProcessNode(nd);
+                                        }
+                                        catch { }
+                                        ndText += s;
+                                        if (s.Length > 0)
+                                            sb.Append(s);
+                                    }
+                                }
+                                break;
+                            }
+                        }
+                        catch { }
+                    }
+                }
 
-            sb.Append("<section col=\"right\">");
-            string rightStuff = GetRightStuff(doc);
-            ndText += rightStuff;
-            sb.Append(rightStuff);
-            sb.Append("</section>");
-            sb.Append("</searchResult>");
+                //BOTTOMSTUFF:
+                string bottomStuff = GetBottomStuff(doc);
+                ndText += bottomStuff;
+                sb.Append(bottomStuff);
+                sb.Append("</section>");
 
-            if (ndText.Length > 0)
-            {
-                count = orgLinks;
-                return sb.ToString();
+                sb.Append("<section col=\"right\">");
+                string rightStuff = GetRightStuff(doc);
+                ndText += rightStuff;
+                sb.Append(rightStuff);
+                sb.Append("</section>");
+                sb.Append("</searchResult>");
+
+                if (ndText.Length > 0)
+                {
+                    count = orgLinks;
+                    return sb.ToString();
+                }
             }
             catch (Exception ex)
             {
@@ -346,32 +347,33 @@ namespace RapidTrackingSingleThread
                         {
                             //24-08-2020
                             string url = string.Empty;
-                        //27-08-2020
-                        if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["href"]?.Value))) // 12-06-2020
-                        {
-                            url = GetRedirectedUrl_TextAds(n.Attributes["href"].Value);
-                        }
-                        else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["data-rw"]?.Value)))
-                        {
-                            url = GetRedirectedUrl_TextAds(n.Attributes["data-rw"].Value);
-                        }
-                        else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["data-pcu"]?.Value)))
-                        {
-                            url = GetRedirectedUrl_TextAds(n.Attributes["data-pcu"].Value);
-                        }
-                        else
-                        {
-                            HtmlNode n1 = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite|.//div[@class='QNz0M ellip GsCRYb']/cite");
-                            if (n1 != null)
-                                url = GetRedirectedUrl_TextAds(n1.InnerText);
+                            //27-08-2020
+                            if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["href"]?.Value))) // 12-06-2020
+                            {
+                                url = GetRedirectedUrl_TextAds(n.Attributes["href"].Value);
+                            }
+                            else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["data-rw"]?.Value)))
+                            {
+                                url = GetRedirectedUrl_TextAds(n.Attributes["data-rw"].Value);
+                            }
+                            else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["data-pcu"]?.Value)))
+                            {
+                                url = GetRedirectedUrl_TextAds(n.Attributes["data-pcu"].Value);
+                            }
+                            else
+                            {
+                                HtmlNode n1 = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite|.//div[@class='QNz0M ellip GsCRYb']/cite");
+                                if (n1 != null)
+                                    url = GetRedirectedUrl_TextAds(n1.InnerText);
 
-                            if (string.IsNullOrEmpty(url))
-                                url = GetRedirectedUrl_TextAds(n.Attributes["href"]?.Value);
+                                if (string.IsNullOrEmpty(url))
+                                    url = GetRedirectedUrl_TextAds(n.Attributes["href"]?.Value);
+                            }
+                            if (!string.IsNullOrEmpty(url))
+                                s.Append("<item url=\"" + url + "\" title=\"" + SetTitle(title) + "\" />");
+                            // end 27-08-2020
                         }
-                        if (!string.IsNullOrEmpty(url))
-                            s.Append("<item url=\"" + url + "\" title=\"" + SetTitle(title) + "\" />");
-                        // end 27-08-2020
-                          catch (Exception ex)
+                        catch (Exception ex)
                         {
                             throw ex;
                         }
@@ -713,12 +715,13 @@ namespace RapidTrackingSingleThread
                 {
                     sb = ProcessOrganic(node);
                 }
+                return sb;
             }
             catch (Exception ex)
             {
                 throw ex
             }
-            return sb;
+           
         }
 
         private string ProcessOrganic(HtmlNode node)

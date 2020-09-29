@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 
 namespace RapidTrackingSingleThread
-{  
+{
     class SearchParams
-    {  
+    {
         public static IList<SearchProperties> searches = new List<SearchProperties>()
         {
             new SearchProperties()
@@ -26,7 +26,7 @@ namespace RapidTrackingSingleThread
             {
                 seid =16, domain ="co.za", geo_location="South Africa", locale="en-za", uule = "w+CAIQICIPU291dGggQWZyaWNhCgoK",device="desktop"
             },
-           
+
             new SearchProperties()
             {
                 seid =21, domain ="ru", geo_location="Russia", locale="ru-ru", uule = "w+CAIQICIGUnVzc2lh",device="desktop"
@@ -40,12 +40,12 @@ namespace RapidTrackingSingleThread
             {
                 seid =40, domain ="fr", geo_location="France", locale="fr-fr", uule = "w+CAIQICIGRnJhbmNl",device="desktop"
             },
-            
+
             new SearchProperties()
             {
                 seid =44, domain ="be", geo_location="Belgium", locale= "nl-be", uule = "w+CAIQICIHQmVsZ2l1bQ==",device="desktop"
             },
-            
+
             new SearchProperties()
             {
                 seid =57, domain ="nl", geo_location="Netherlands", locale= "nl-nl", uule = "w+CAIQICILTmV0aGVybGFuZHM=",device="desktop"
@@ -228,7 +228,7 @@ namespace RapidTrackingSingleThread
             {
             seid =115, domain ="ch", geo_location="Switzerland", locale= "fr-ch", uule = "w+CAIQICIMU3dpdHplcmxhbmQK",device="desktop"
             },
-            
+
             new SearchProperties()
             {
             seid =117, domain ="pt", geo_location="Portugal", locale= "pt-pt", uule = "w+CAIQICIIUG9ydHVnYWw=",device="mobile_android"
@@ -357,7 +357,7 @@ namespace RapidTrackingSingleThread
             {
             seid =150, domain ="com.br", geo_location="Brazil", locale= "pt-br", uule = "w+CAIQICIGQnJhemls",device="mobile_android"
             },
-           
+
             new SearchProperties()
             {
             seid =152, domain ="dk", geo_location="Denmark", locale= "da-dk", uule ="w+CAIQICIHRGVubWFyaw==",device="mobile_android"
@@ -1585,12 +1585,12 @@ namespace RapidTrackingSingleThread
             },
             new SearchProperties()
             {
-                seid =462, domain ="co.uk", geo_location="Norwich,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIeTm9yd2ljaCxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t", device="mobile_android"
+             seid =462, domain ="co.uk", geo_location="Norwich,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIeTm9yd2ljaCxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t", device="mobile_android"
 
             },
             new SearchProperties()
             {
-                seid =463, domain ="co.uk", geo_location="Slough,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIdU2xvdWdoLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=", device="desktop"
+             seid =463, domain ="co.uk", geo_location="Slough,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIdU2xvdWdoLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=", device="desktop"
 
             },
             new SearchProperties()
@@ -1600,33 +1600,33 @@ namespace RapidTrackingSingleThread
             },
             new SearchProperties()
             {
-                seid =465, domain ="co.uk", geo_location="Watford,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIeV2F0Zm9yZCxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t", device="desktop"
+             seid =465, domain ="co.uk", geo_location="Watford,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIeV2F0Zm9yZCxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t", device="desktop"
 
             },
             new SearchProperties()
             {
-                seid =466, domain ="co.uk", geo_location="Watford,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIeV2F0Zm9yZCxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t", device="mobile_android"
+             seid =466, domain ="co.uk", geo_location="Watford,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIeV2F0Zm9yZCxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t", device="mobile_android"
 
             },
             new SearchProperties()
             {
-                seid =467, domain ="co.uk", geo_location="SW1V,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIbU1cxVixFbmdsYW5kLFVuaXRlZCBLaW5nZG9t", device="desktop"
+             seid =467, domain ="co.uk", geo_location="SW1V,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIbU1cxVixFbmdsYW5kLFVuaXRlZCBLaW5nZG9t", device="desktop"
             },
             new SearchProperties()
             {
-                seid =468, domain ="co.uk", geo_location="SW1V,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIbU1cxVixFbmdsYW5kLFVuaXRlZCBLaW5nZG9t", device="mobile_android"
+             seid =468, domain ="co.uk", geo_location="SW1V,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIbU1cxVixFbmdsYW5kLFVuaXRlZCBLaW5nZG9t", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid =469, domain ="com.cy", geo_location="Cyprus", locale= "EL-CY", uule = "w+CAIQICIGQ3lwcnVz", device="desktop"
+             seid =469, domain ="com.cy", geo_location="Cyprus", locale= "EL-CY", uule = "w+CAIQICIGQ3lwcnVz", device="desktop"
             },
             new SearchProperties()
             {
-                seid =470, domain ="com.cy", geo_location="Cyprus", locale= "EL-CY", uule = "w+CAIQICIGQ3lwcnVz", device="mobile_android"
+                 seid =470, domain ="com.cy", geo_location="Cyprus", locale= "EL-CY", uule = "w+CAIQICIGQ3lwcnVz", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid =471, domain ="ee", geo_location="Estonia", locale= "ET-EE", uule = "w+CAIQICIHRXN0b25pYQ==", device="desktop"
+                 seid =471, domain ="ee", geo_location="Estonia", locale= "ET-EE", uule = "w+CAIQICIHRXN0b25pYQ==", device="desktop"
             },
             new SearchProperties()
             {
@@ -1639,10 +1639,122 @@ namespace RapidTrackingSingleThread
             new SearchProperties()
             {
                 seid =474, domain ="lt", geo_location="Lithuania", locale= "LT-LT", uule = "w+CAIQICIJTGl0aHVhbmlh", device="mobile_android"
-            }
+            },
+            new SearchProperties()
+            {
+                seid =475, domain ="com", geo_location="Florida,United States", locale="en-us", uule="w+CAIQICIVRmxvcmlkYSxVbml0ZWQgU3RhdGVz", device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =476, domain ="com", geo_location="Florida,United States", locale="en-us", uule="w+CAIQICIVRmxvcmlkYSxVbml0ZWQgU3RhdGVz", device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =477, domain ="com", geo_location="Pennsylvania,United States", locale="en-us", uule="w+CAIQICIaUGVubnN5bHZhbmlhLFVuaXRlZCBTdGF0ZXM=", device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =478, domain ="com", geo_location="Pennsylvania,United States", locale="en-us", uule="w+CAIQICIaUGVubnN5bHZhbmlhLFVuaXRlZCBTdGF0ZXM=", device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =479, domain ="com", geo_location="Wisconsin,United States", locale="en-us", uule="w+CAIQICIXV2lzY29uc2luLFVuaXRlZCBTdGF0ZXM=", device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =480, domain ="com", geo_location="Wisconsin,United States", locale="en-us", uule="w+CAIQICIXV2lzY29uc2luLFVuaXRlZCBTdGF0ZXM=", device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =481, domain ="com", geo_location="Arizona,United States", locale="en-us", uule="w+CAIQICIVQXJpem9uYSxVbml0ZWQgU3RhdGVz", device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =482, domain ="com", geo_location="Arizona,United States", locale="en-us", uule="w+CAIQICIVQXJpem9uYSxVbml0ZWQgU3RhdGVz", device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =483, domain ="com", geo_location="Michigan,United States", locale="en-us", uule="w+CAIQICIWTWljaGlnYW4sVW5pdGVkIFN0YXRlcw==", device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =484, domain ="com", geo_location="Michigan,United States", locale="en-us", uule="w+CAIQICIWTWljaGlnYW4sVW5pdGVkIFN0YXRlcw==", device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =485, domain ="com", geo_location="Ohio,United States", locale="en-us", uule="w+CAIQICIST2hpbyxVbml0ZWQgU3RhdGVz", device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =486, domain ="com", geo_location="Ohio,United States", locale="en-us", uule="w+CAIQICIST2hpbyxVbml0ZWQgU3RhdGVz", device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =487, domain ="com", geo_location="North Carolina,United States", locale="en-us", uule="w+CAIQICIcTm9ydGggQ2Fyb2xpbmEsVW5pdGVkIFN0YXRlcw==", device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =488, domain ="com", geo_location="North Carolina,United States", locale="en-us", uule="w+CAIQICIcTm9ydGggQ2Fyb2xpbmEsVW5pdGVkIFN0YXRlcw==", device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =489, domain ="com", geo_location="Tallahassee,Florida,United States", locale="en-us", uule="w+CAIQICIhVGFsbGFoYXNzZWUsRmxvcmlkYSxVbml0ZWQgU3RhdGVz", device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =490, domain ="com", geo_location="Tallahassee,Florida,United States", locale="en-us", uule="w+CAIQICIhVGFsbGFoYXNzZWUsRmxvcmlkYSxVbml0ZWQgU3RhdGVz", device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =491, domain ="com", geo_location="Harrisburg,Pennsylvania,United States", locale="en-us", uule="w+CAIQICIlSGFycmlzYnVyZyxQZW5uc3lsdmFuaWEsVW5pdGVkIFN0YXRlcw==", device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =492, domain ="com", geo_location="Harrisburg,Pennsylvania,United States", locale="en-us", uule="w+CAIQICIlSGFycmlzYnVyZyxQZW5uc3lsdmFuaWEsVW5pdGVkIFN0YXRlcw==", device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =493, domain ="com", geo_location="Madison,Wisconsin,United States", locale="en-us", uule="w+CAIQICIfTWFkaXNvbixXaXNjb25zaW4sVW5pdGVkIFN0YXRlcw==", device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =494, domain ="com", geo_location="Madison,Wisconsin,United States", locale="en-us", uule="w+CAIQICIfTWFkaXNvbixXaXNjb25zaW4sVW5pdGVkIFN0YXRlcw==", device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =495, domain ="com", geo_location="Phoenix,Arizona,United States", locale="en-us", uule="w+CAIQICIdUGhvZW5peCxBcml6b25hLFVuaXRlZCBTdGF0ZXM=", device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =496, domain ="com", geo_location="Phoenix,Arizona,United States", locale="en-us", uule="w+CAIQICIdUGhvZW5peCxBcml6b25hLFVuaXRlZCBTdGF0ZXM=", device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =497, domain ="com", geo_location="Lansing,Michigan,United States", locale="en-us", uule="w+CAIQICIeTGFuc2luZyxNaWNoaWdhbixVbml0ZWQgU3RhdGVz", device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =498, domain ="com", geo_location="Lansing,Michigan,United States", locale="en-us", uule="w+CAIQICIeTGFuc2luZyxNaWNoaWdhbixVbml0ZWQgU3RhdGVz", device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =499, domain ="com", geo_location="Columbus,Ohio,United States", locale="en-us", uule="w+CAIQICIbQ29sdW1idXMsT2hpbyxVbml0ZWQgU3RhdGVz", device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =500, domain ="com", geo_location="Columbus,Ohio,United States", locale="en-us", uule="w+CAIQICIbQ29sdW1idXMsT2hpbyxVbml0ZWQgU3RhdGVz", device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =501, domain ="com", geo_location="Raleigh,North Carolina,United States", locale="en-us", uule="w+CAIQICIkUmFsZWlnaCxOb3J0aCBDYXJvbGluYSxVbml0ZWQgU3RhdGVz", device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =502, domain ="com", geo_location="Raleigh,North Carolina,United States", locale="en-us", uule="w+CAIQICIkUmFsZWlnaCxOb3J0aCBDYXJvbGluYSxVbml0ZWQgU3RhdGVz", device="mobile_android"
+            },
 
         };
-        
+
 
 
     }
@@ -1657,6 +1769,6 @@ namespace RapidTrackingSingleThread
         public string tbm { get; set; }
         public string device { get; set; }
     }
-   
-    
+
+
 }

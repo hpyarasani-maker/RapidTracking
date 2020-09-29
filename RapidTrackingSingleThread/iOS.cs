@@ -371,7 +371,10 @@ namespace RapidTrackingSingleThread
                         if (!string.IsNullOrEmpty(url))
                             s.Append("<item url=\"" + url + "\" title=\"" + SetTitle(title) + "\" />");
                         // end 27-08-2020
-
+                          catch (Exception ex)
+                        {
+                            throw ex;
+                        }
                     }
                 }
                 s.Append("</block>");

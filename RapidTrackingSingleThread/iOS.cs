@@ -342,9 +342,10 @@ namespace RapidTrackingSingleThread
                                 s.Append("<item url=\"" + SetUrl(n.InnerText) + "\" title=\"" + SetTitle(title) + "\" />");
                         }*/
                         //25-08-2020
-
-                        //24-08-2020
-                        string url = string.Empty;
+                        try  //28-09-2020  try catch.
+                        {
+                            //24-08-2020
+                            string url = string.Empty;
                         //27-08-2020
                         if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["href"]?.Value))) // 12-06-2020
                         {

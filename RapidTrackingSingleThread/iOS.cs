@@ -179,7 +179,10 @@ namespace RapidTrackingSingleThread
                 count = orgLinks;
                 return sb.ToString();
             }
-
+            catch (Exception ex)
+            {
+                throw ex;
+            }
             return string.Empty;
 
         }

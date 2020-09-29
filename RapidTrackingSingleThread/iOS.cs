@@ -2573,50 +2573,55 @@ namespace RapidTrackingSingleThread
         private string GetRedirectedUrl_TextAds(string url)
         {
             if (string.IsNullOrEmpty(url)) return string.Empty;
-            
-            url = url.Replace("HTTPS://", "https://").Replace("HTTP://", "http://");
-            if (string.IsNullOrEmpty(url.Trim())) return string.Empty;
-
-            //18-09-2020 commented
-            //if (url.LastIndexOf("https://") > 0)
-            //    url = url.Remove(0, url.LastIndexOf("https://"));
-            //if (url.LastIndexOf("http://") > 0)
-            //    url = url.Remove(0, url.LastIndexOf("http://"));
-            //end 18-09-2020
-
-            Regex rx = new Regex("http[\\w]?://(.*)", RegexOptions.Singleline);
-            if (!rx.Match(url).Success && !url.Contains("/aclk?"))
-                if (!url.Contains("://"))
-                    url = "http://" + url;
-
-            if (url.StartsWith("http:////") || url.StartsWith("https:////")) //18-09-2020 condition applied if appears http:////
-                url = url.Replace("////", "//"); //18-09-2020
-
-            if (url.Contains("&amp;grqid="))
-                url = url.Remove(url.IndexOf("&amp;grqid="));
-
-            if (url.Contains("&grqid="))
-                url = url.Remove(url.IndexOf("&grqid="));
-
-            //23-09-2020
-            if (url.Contains("&amp;gclid="))
-                url = url.Remove(url.IndexOf("&amp;gclid="));
-            if (url.Contains("&gclid="))
-                url = url.Remove(url.IndexOf("&gclid="));
-            //end 23-09-2020
-
-            if (url.Contains("\0"))
-                url = url.Replace("\0", "%00");
-
-            if ((url.StartsWith("https://") || url.StartsWith("http://") || url.StartsWith("ftp://")) && (!url.StartsWith("/aclk?") && !url.Contains("search?num=100")))
+            try  //28-09-2020  try catch.
             {
-                //if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e")) //commented 18-09-2020
-                if (url.Contains("%")) //18-09-2020
-                    url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
+                url = url.Replace("HTTPS://", "https://").Replace("HTTP://", "http://");
+                if (string.IsNullOrEmpty(url.Trim())) return string.Empty;
 
-                return WebUtility.HtmlEncode(SanitizeXmlString(url).Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim();//23-09-2020 applied method to URL
+                //18-09-2020 commented
+                //if (url.LastIndexOf("https://") > 0)
+                //    url = url.Remove(0, url.LastIndexOf("https://"));
+                //if (url.LastIndexOf("http://") > 0)
+                //    url = url.Remove(0, url.LastIndexOf("http://"));
+                //end 18-09-2020
+
+                Regex rx = new Regex("http[\\w]?://(.*)", RegexOptions.Singleline);
+                if (!rx.Match(url).Success && !url.Contains("/aclk?"))
+                    if (!url.Contains("://"))
+                        url = "http://" + url;
+
+                if (url.StartsWith("http:////") || url.StartsWith("https:////")) //18-09-2020 condition applied if appears http:////
+                    url = url.Replace("////", "//"); //18-09-2020
+
+                if (url.Contains("&amp;grqid="))
+                    url = url.Remove(url.IndexOf("&amp;grqid="));
+
+                if (url.Contains("&grqid="))
+                    url = url.Remove(url.IndexOf("&grqid="));
+
+                //23-09-2020
+                if (url.Contains("&amp;gclid="))
+                    url = url.Remove(url.IndexOf("&amp;gclid="));
+                if (url.Contains("&gclid="))
+                    url = url.Remove(url.IndexOf("&gclid="));
+                //end 23-09-2020
+
+                if (url.Contains("\0"))
+                    url = url.Replace("\0", "%00");
+
+                if ((url.StartsWith("https://") || url.StartsWith("http://") || url.StartsWith("ftp://")) && (!url.StartsWith("/aclk?") && !url.Contains("search?num=100")))
+                {
+                    //if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e")) //commented 18-09-2020
+                    if (url.Contains("%")) //18-09-2020
+                        url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
+
+                    return WebUtility.HtmlEncode(SanitizeXmlString(url).Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim();//23-09-2020 applied method to URL
+                }
             }
-
+            catch(Exception ex)
+            {
+                throw ex;
+            }
             return string.Empty;
         }
         //23-09-2020 included method to find and fix hexdecimal chars

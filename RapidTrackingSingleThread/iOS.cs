@@ -2495,45 +2495,50 @@ namespace RapidTrackingSingleThread
         //07-11-2019
         private string GetRedirectedUrl(string url)
         {
-            //21-11-2019
-            url = url.Replace("HTTPS://", "https://").Replace("HTTP://", "http://");
-            if (string.IsNullOrEmpty(url.Trim())) return string.Empty;
+            try  //28-09-2020  try catch.
+            {
+                //21-11-2019
+                url = url.Replace("HTTPS://", "https://").Replace("HTTP://", "http://");
+                if (string.IsNullOrEmpty(url.Trim())) return string.Empty;
 
-            //24-09-2020 changed LastIndexOf to IndexOf
-            if (url.IndexOf("https://") > 0)
-                url = url.Remove(0, url.IndexOf("https://"));
-            if (url.IndexOf("http://") > 0)
-                url = url.Remove(0, url.IndexOf("http://"));
-            else if (url.LastIndexOf("http") > 0)
-                url = url.Remove(url.IndexOf("http%")); //28-09-2020
-            //end 24-09-2020
-            Regex rx = new Regex("http[\\w]?://(.*)", RegexOptions.Singleline);
-            if (!rx.Match(url).Success && !url.Contains("/aclk?"))
-                if (!url.Contains("://")) // 30-04-2020
-                    url = "http://" + url;
+                //24-09-2020 changed LastIndexOf to IndexOf
+                if (url.IndexOf("https://") > 0)
+                    url = url.Remove(0, url.IndexOf("https://"));
+                if (url.IndexOf("http://") > 0)
+                    url = url.Remove(0, url.IndexOf("http://"));
+               
+                                                            //end 24-09-2020
+                Regex rx = new Regex("http[\\w]?://(.*)", RegexOptions.Singleline);
+                if (!rx.Match(url).Success && !url.Contains("/aclk?"))
+                    if (!url.Contains("://")) // 30-04-2020
+                        url = "http://" + url;
 
-            if (url.StartsWith("http:////") || url.StartsWith("https:////")) //18-09-2020 condition applied if appears http:////
-                url = url.Replace("////", "//"); //18-09-2020
+                if (url.StartsWith("http:////") || url.StartsWith("https:////")) //18-09-2020 condition applied if appears http:////
+                    url = url.Replace("////", "//"); //18-09-2020
 
-            if (url.Contains("&amp;grqid="))
-                url = url.Remove(url.IndexOf("&amp;grqid="));
+                if (url.Contains("&amp;grqid="))
+                    url = url.Remove(url.IndexOf("&amp;grqid="));
 
-            //  13-12-2019
-            if (url.Contains("&grqid="))
-                url = url.Remove(url.IndexOf("&grqid="));
-            //23-09-2020
-            if (url.Contains("&amp;gclid="))
-                url = url.Remove(url.IndexOf("&amp;gclid="));
-            if (url.Contains("&gclid="))
-                url = url.Remove(url.IndexOf("&gclid="));
-            //end 23-09-2020
+                //  13-12-2019
+                if (url.Contains("&grqid="))
+                    url = url.Remove(url.IndexOf("&grqid="));
+                //23-09-2020
+                if (url.Contains("&amp;gclid="))
+                    url = url.Remove(url.IndexOf("&amp;gclid="));
+                if (url.Contains("&gclid="))
+                    url = url.Remove(url.IndexOf("&gclid="));
+                //end 23-09-2020
 
-            if (url.Contains("\0"))
-                url = url.Replace("\0", "%00");
+                if (url.Contains("\0"))
+                    url = url.Replace("\0", "%00");
 
-            if ((url.StartsWith("https://") || url.StartsWith("http://") || url.StartsWith("ftp://")) && (!url.Contains("/aclk?") && !url.Contains("search?num=100")))  // 30-04-2020 //18-02-2020 and 24-02-2020 included condition
-                return url;
-
+                if ((url.StartsWith("https://") || url.StartsWith("http://") || url.StartsWith("ftp://")) && (!url.Contains("/aclk?") && !url.Contains("search?num=100")))  // 30-04-2020 //18-02-2020 and 24-02-2020 included condition
+                    return url;
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
             return string.Empty;
 
         }

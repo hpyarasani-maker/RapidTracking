@@ -2337,7 +2337,7 @@ namespace RapidTrackingSingleThread
             }
 
             //22-11-2019
-            nd = node.SelectSingleNode(".//div[@class='g kno-result rQUFld mnr-c g-blk']");
+            nd = node.SelectSingleNode(".//div[@class='g kno-result rQUFld mnr-c g-blk']|.//w-answer|.//a[@class='duf3 wrSo4']"); //28-09-2020
             if (nd != null)
             {
                 return true;

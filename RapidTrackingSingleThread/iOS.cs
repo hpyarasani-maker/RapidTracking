@@ -719,9 +719,9 @@ namespace RapidTrackingSingleThread
             }
             catch (Exception ex)
             {
-                throw ex
+                throw ex;
             }
-           
+
         }
 
         private string ProcessOrganic(HtmlNode node)

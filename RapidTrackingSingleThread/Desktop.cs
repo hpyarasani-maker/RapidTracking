@@ -26,58 +26,30 @@ namespace RapidTrackingSingleThread
             }
             orgLinks = 0;
             string ndText = "";
-
-            html = doc.DocumentNode.OuterHtml;
-            StringBuilder sb = new StringBuilder();
-            sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" date=\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\" >");
-            sb.Append("<section col=\"main\">");
-            string topStuff = GetTopStuff(doc);
-            ndText = topStuff;
-            sb.Append(topStuff);
-
-            HtmlNodeCollection nodeCol = doc.DocumentNode.SelectNodes("//div[@class='_NId']");
-            if (nodeCol == null)
-                nodeCol = doc.DocumentNode.SelectNodes("//div[@class='bkWMgd']");
-            if (nodeCol == null)
-                nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");
-            if (nodeCol == null)
-                nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-section-with-header");//13-03-2020  //01-05-2020         
-
-            foreach (HtmlNode node in nodeCol)
+            try //28-09-2020  try catch.
             {
-                if (node.HasClass("kp-wholepage"))
-                {
-                    continue;
-                }
-                try
-                {
-                    if (node.InnerHtml != "")
-                    {
-                        string s = ProcessNode(node);
-                        ndText += s;
-                        if (s.Length > 0)
-                            sb.Append(s);
-                    }
-                }
-                catch { }
-            }
+                html = doc.DocumentNode.OuterHtml;
+                StringBuilder sb = new StringBuilder();
+                sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" date=\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\" >");
+                sb.Append("<section col=\"main\">");
+                string topStuff = GetTopStuff(doc);
+                ndText = topStuff;
+                sb.Append(topStuff);
 
-            // 23-03-2020
-            if (string.IsNullOrEmpty(ndText) || orgLinks == 0)//08-04-2020
-            {
+                HtmlNodeCollection nodeCol = doc.DocumentNode.SelectNodes("//div[@class='_NId']");
+                if (nodeCol == null)
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='bkWMgd']");
+                if (nodeCol == null)
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");
+                if (nodeCol == null)
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-section-with-header");//13-03-2020  //01-05-2020         
 
-                nodeCol = doc.DocumentNode.SelectNodes("//div[@class='xVtsMb i6u2Cc']|//div[@class='xVtsMb']/div/div");//swapped 08-04-2020
-                if (nodeCol == null)
-                    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='vC5Ym DhKAUb']/div");  // 03-04-2020
-                if (nodeCol == null)
-                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div"); //15-04-2020
-                if (nodeCol == null)
-                    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='WvKfwe a3spGf']/div|//div[@class='WvKfwe a3spGf']/g-section-with-header");  // 15-04-2020    //01-05-2020");  // 15-04-2020//22-05-2020
-                if (nodeCol == null)
-                    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='a3spGf WvKfwe']/div|//div[@class='a3spGf WvKfwe']/g-section-with-header|.//div[@class='UDZeY OTFaAf']");  // 01-06-2020
-                //if (nodeCol != null)  // 03-06-2020
                 foreach (HtmlNode node in nodeCol)
                 {
+                    if (node.HasClass("kp-wholepage"))
+                    {
+                        continue;
+                    }
                     try
                     {
                         if (node.InnerHtml != "")
@@ -90,37 +62,70 @@ namespace RapidTrackingSingleThread
                     }
                     catch { }
                 }
+
+                // 23-03-2020
+                if (string.IsNullOrEmpty(ndText) || orgLinks == 0)//08-04-2020
+                {
+
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='xVtsMb i6u2Cc']|//div[@class='xVtsMb']/div/div");//swapped 08-04-2020
+                    if (nodeCol == null)
+                        nodeCol = doc.DocumentNode.SelectNodes("//div[@class='vC5Ym DhKAUb']/div");  // 03-04-2020
+                    if (nodeCol == null)
+                        nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div"); //15-04-2020
+                    if (nodeCol == null)
+                        nodeCol = doc.DocumentNode.SelectNodes("//div[@class='WvKfwe a3spGf']/div|//div[@class='WvKfwe a3spGf']/g-section-with-header");  // 15-04-2020    //01-05-2020");  // 15-04-2020//22-05-2020
+                    if (nodeCol == null)
+                        nodeCol = doc.DocumentNode.SelectNodes("//div[@class='a3spGf WvKfwe']/div|//div[@class='a3spGf WvKfwe']/g-section-with-header|.//div[@class='UDZeY OTFaAf']");  // 01-06-2020
+                                                                                                                                                                                        //if (nodeCol != null)  // 03-06-2020
+                    foreach (HtmlNode node in nodeCol)
+                    {
+                        try
+                        {
+                            if (node.InnerHtml != "")
+                            {
+                                string s = ProcessNode(node);
+                                ndText += s;
+                                if (s.Length > 0)
+                                    sb.Append(s);
+                            }
+                        }
+                        catch { }
+                    }
+                }
+                // 23-03-2020
+
+                if (nodeCol == null) throw new Exception("No block found.");
+                //if (nodeCol == null & string.IsNullOrEmpty(ndText)) throw new Exception("No block found."); // 03-06-2020
+                //if (nodeCol == null) return string.Empty;                      
+                //if (nodeCol == null) goto BOTTOMSTUFF; 
+
+
+                //if (orgLinks < count)
+                //    return string.Empty;
+
+                //BOTTOMSTUFF:
+                string bottomStuff = GetBottomStuff(doc);
+                ndText += bottomStuff;
+                sb.Append(bottomStuff);
+                sb.Append("</section>");
+
+                sb.Append("<section col=\"right\">");
+                string rightStuff = GetRightStuff(doc);
+                ndText += rightStuff;
+                sb.Append(rightStuff);
+                sb.Append("</section>");
+                sb.Append("</searchResult>");
+
+                if (ndText.Length > 0)
+                {
+                    count = orgLinks;
+                    return sb.ToString();
+                }
             }
-            // 23-03-2020
-
-            if (nodeCol == null) throw new Exception("No block found.");
-            //if (nodeCol == null & string.IsNullOrEmpty(ndText)) throw new Exception("No block found."); // 03-06-2020
-            //if (nodeCol == null) return string.Empty;                      
-            //if (nodeCol == null) goto BOTTOMSTUFF; 
-
-
-            //if (orgLinks < count)
-            //    return string.Empty;
-
-            //BOTTOMSTUFF:
-            string bottomStuff = GetBottomStuff(doc);
-            ndText += bottomStuff;
-            sb.Append(bottomStuff);
-            sb.Append("</section>");
-
-            sb.Append("<section col=\"right\">");
-            string rightStuff = GetRightStuff(doc);
-            ndText += rightStuff;
-            sb.Append(rightStuff);
-            sb.Append("</section>");
-            sb.Append("</searchResult>");
-
-            if (ndText.Length > 0)
+            catch (Exception ex)
             {
-                count = orgLinks;
-                return sb.ToString();
+                throw ex;
             }
-
             return string.Empty;
 
         }

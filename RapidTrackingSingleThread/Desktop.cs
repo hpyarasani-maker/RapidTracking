@@ -1,7 +1,6 @@
 ﻿using HtmlAgilityPack;
 using System;
 using System.Collections;
-using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -11,7 +10,7 @@ using System.Web;
 
 namespace RapidTrackingSingleThread
 {
-    public class Desktop 
+    public class Desktop
     {
         int orgLinks;
         string html;
@@ -130,7 +129,7 @@ namespace RapidTrackingSingleThread
 
         }
 
-       private string GetRightStuff(HtmlDocument doc)
+        private string GetRightStuff(HtmlDocument doc)
         {
             StringBuilder s = new StringBuilder();
 
@@ -229,17 +228,17 @@ namespace RapidTrackingSingleThread
                     if (n != null)
                     {
                         HtmlNode tittlenode = n.SelectSingleNode(".//h3|.//div[@role='heading']");//27-06-2020
-                        //25-08-2020 commented
-                       /* if (!n.Attributes["href"].Value.StartsWith("/"))
-                            s.Append("<item url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(tittlenode.InnerText) + "\" />");
-                        else
-                        {
-                            string title = tittlenode.InnerText;
-                            n = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite");
-                            if (n != null)
-                                s.Append("<item url=\"" + SetUrl(n.InnerText) + "\" title=\"" + SetTitle(title) + "\" />");
-                        }*/
-                         //25-08-2020
+                                                                                                  //25-08-2020 commented
+                                                                                                  /* if (!n.Attributes["href"].Value.StartsWith("/"))
+                                                                                                       s.Append("<item url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(tittlenode.InnerText) + "\" />");
+                                                                                                   else
+                                                                                                   {
+                                                                                                       string title = tittlenode.InnerText;
+                                                                                                       n = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite");
+                                                                                                       if (n != null)
+                                                                                                           s.Append("<item url=\"" + SetUrl(n.InnerText) + "\" title=\"" + SetTitle(title) + "\" />");
+                                                                                                   }*/
+                                                                                                  //25-08-2020
                         string url = string.Empty;
                         string title = tittlenode.InnerText;
 
@@ -321,7 +320,7 @@ namespace RapidTrackingSingleThread
             HtmlNode crNode = doc.DocumentNode.SelectSingleNode("//div[@id='extabar']|//div[@id='appbar']");  //29-06-2020
             if (crNode != null)
             {
-                if (crNode.SelectSingleNode(".//div[@id='kx']") != null  || crNode.SelectSingleNode(".//g-scrolling-carousel") != null //|| crNode.SelectSingleNode(".//div[@role='heading']") != null) //29-06-2020
+                if (crNode.SelectSingleNode(".//div[@id='kx']") != null || crNode.SelectSingleNode(".//g-scrolling-carousel") != null //|| crNode.SelectSingleNode(".//div[@role='heading']") != null) //29-06-2020
                      || crNode.SelectSingleNode(".//div[@jscontroller='envtD']") != null) //29-06-2020
                 {
                     s.Append("<block type=\"carousel\" url=\"\">");
@@ -595,7 +594,7 @@ namespace RapidTrackingSingleThread
                                     n = nd.SelectSingleNode(".//h3[@class='r dO0Ag']/a");  //29-05-2020
                                 if (n == null)
                                     n = nd.SelectSingleNode(".//div[@class='yuRUbf']/a"); //03-09-2020  included selector for classic links                         
-                                if (n != null) 
+                                if (n != null)
                                     title = n.SelectSingleNode(".//h3"); //03-09-2020 included selector for classic links
                                 var urls = n.Attributes["href"].Value;
                                 string t;
@@ -981,7 +980,7 @@ namespace RapidTrackingSingleThread
             HtmlNodeCollection nds = node.SelectNodes(".//g-inner-card/a");
 
             if (nds == null)
-                 nds = node.SelectNodes(".//div[@class='dbsr']/a");
+                nds = node.SelectNodes(".//div[@class='dbsr']/a");
             if (nds == null)
                 nds = node.SelectNodes(".//g-inner-card/div/a");   //01-05-2020
             if (nds == null)
@@ -1003,7 +1002,7 @@ namespace RapidTrackingSingleThread
                     if (n == null)
                         //   n = nd.SelectSingleNode(".//div[@class='mCBkyc jBgGLd']|.//div[@class='mCBkyc nDgy9d']|.//div[@class='mCBkyc oz3cqf vH5Lmd nDgy9d']|.//div[@class='mCBkyc oz3cqf vH5Lmd jBgGLd']"); //08-08-2020 //04-06-2020   //01-05-2020
                         n = nd.SelectSingleNode(".//div[contains(@class, 'mCBkyc')]"); //08-08-2020 including contains function
-                   
+
                     if (n != null)
                         title = n.InnerText;
                     else
@@ -1014,7 +1013,7 @@ namespace RapidTrackingSingleThread
             else
             {
                 nds = node.SelectNodes(".//g-card-section/a");
-              
+
                 if (nds != null)
                     foreach (HtmlNode nd in nds)
                     {
@@ -1128,7 +1127,7 @@ namespace RapidTrackingSingleThread
             //    nd = node.SelectSingleNode(".//div[@class='LMMXP mfMhoc']");  //23-07-2020 //17-07-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='sQkmof']");//23-07-2020 included selector for videos
-            
+
             if (nd != null)
                 return "videos";
 
@@ -1165,7 +1164,7 @@ namespace RapidTrackingSingleThread
 
             if (node.SelectSingleNode(".//div[@id='cwmcwd']") != null || node.SelectSingleNode(".//div[@class='ifM9O']") != null
                 || node.SelectSingleNode(".//div[@class='vk_ard']") != null || node.SelectSingleNode(".//div[@class='d7sCQ kp-header']") != null   //03-06-2020
-                || node.SelectSingleNode(".//div[@class='pcCUmf vCOSGb']") != null 
+                || node.SelectSingleNode(".//div[@class='pcCUmf vCOSGb']") != null
                 || node.SelectSingleNode(".//div[@class='vkc_np kkww4d']") != null) //21-09-2020 updated answered card selectors  //03-06-2020
             {
                 if (node.SelectSingleNode(".//div[@class='BET1rd']") == null) //25-09-2020
@@ -1307,10 +1306,10 @@ namespace RapidTrackingSingleThread
                         {
                             if (n.Attributes["class"] != null)   //01-06-2020
                                 if (n.Attributes["class"].Value.Contains("obcontainer"))  //node.SelectSingleNode(".//div[@id='cwmcwd']") != null)
-                            {
-                                bVal = true;
-                                break;
-                            }
+                                {
+                                    bVal = true;
+                                    break;
+                                }
                         }
                         catch
                         { }
@@ -1326,46 +1325,52 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//h3[@class='r dO0Ag']") != null || node.SelectSingleNode(".//div[@class='DOqJne']") != null //27-06-2020    //29-05-2020
                 || node.SelectSingleNode(".//div[@class='rc']") != null); // 03-09-2020 missing classic links selector included
         }
-        
+
         //07-11-2019
         private string GetRedirectedUrl(string url)
         {
-            //21-11-2019
-            url = url.Replace("HTTPS://", "https://").Replace("HTTP://", "http://");
-            if (string.IsNullOrEmpty(url.Trim())) return string.Empty;
-            //29-09-2020            
-            if (url.IndexOf("https://") >= 0)
-                url = url.Remove(0, url.IndexOf("https://"));
-            else if (url.IndexOf("http://") >= 0)
-                url = url.Remove(0, url.IndexOf("http://"));
-            //end 29-09-2020
+            try //28-09-2020  try catch.
+            {
+                //21-11-2019
+                url = url.Replace("HTTPS://", "https://").Replace("HTTP://", "http://");
+                if (string.IsNullOrEmpty(url.Trim())) return string.Empty;
+                //29-09-2020            
+                if (url.IndexOf("https://") >= 0)
+                    url = url.Remove(0, url.IndexOf("https://"));
+                else if (url.IndexOf("http://") >= 0)
+                    url = url.Remove(0, url.IndexOf("http://"));
+                //end 29-09-2020
 
-            Regex rx = new Regex("http[\\w]?://(.*)", RegexOptions.Singleline);
-            if (!rx.Match(url).Success && !url.Contains("/aclk?"))
-                if (!url.Contains("://")) // 30-04-2020
-                    url = "http://" + url;
+                Regex rx = new Regex("http[\\w]?://(.*)", RegexOptions.Singleline);
+                if (!rx.Match(url).Success && !url.Contains("/aclk?"))
+                    if (!url.Contains("://")) // 30-04-2020
+                        url = "http://" + url;
 
-            if (url.StartsWith("http:////") || url.StartsWith("https:////")) //18-09-2020 condition applied if appears http:////
-                url = url.Replace("////", "//"); //18-09-2020
+                if (url.StartsWith("http:////") || url.StartsWith("https:////")) //18-09-2020 condition applied if appears http:////
+                    url = url.Replace("////", "//"); //18-09-2020
 
-            if (url.Contains("&amp;grqid="))
-                url = url.Remove(url.IndexOf("&amp;grqid="));
-            //13-12-2019
-            if (url.Contains("&grqid="))
-                url = url.Remove(url.IndexOf("&grqid="));
-            //23-09-2020
-            if (url.Contains("&amp;gclid="))
-                url = url.Remove(url.IndexOf("&amp;gclid="));
-            if (url.Contains("&gclid="))
-                url = url.Remove(url.IndexOf("&gclid="));
-            //end 23-09-2020
+                if (url.Contains("&amp;grqid="))
+                    url = url.Remove(url.IndexOf("&amp;grqid="));
+                //13-12-2019
+                if (url.Contains("&grqid="))
+                    url = url.Remove(url.IndexOf("&grqid="));
+                //23-09-2020
+                if (url.Contains("&amp;gclid="))
+                    url = url.Remove(url.IndexOf("&amp;gclid="));
+                if (url.Contains("&gclid="))
+                    url = url.Remove(url.IndexOf("&gclid="));
+                //end 23-09-2020
 
-            if (url.Contains("\0"))
-                url = url.Replace("\0", "%00");
+                if (url.Contains("\0"))
+                    url = url.Replace("\0", "%00");
 
-            if ((url.StartsWith("https://") || url.StartsWith("http://") || url.StartsWith("ftp://")) && !url.Contains("/aclk?"))  // 30-04-2020 
-                return url;
-
+                if ((url.StartsWith("https://") || url.StartsWith("http://") || url.StartsWith("ftp://")) && !url.Contains("/aclk?"))  // 30-04-2020 
+                    return url;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
             return string.Empty;
 
         }
@@ -1380,59 +1385,72 @@ namespace RapidTrackingSingleThread
         public string SetUrl(string url)
         {
             if (string.IsNullOrEmpty(url)) return string.Empty; //25-08-2020
-            //21-11-2019
-            url = GetRedirectedUrl(WebUtility.HtmlDecode(url).Trim());
-            //if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e"))//18-09-2020 commented
-            if (url.Contains("%")) //18-09-2020
-                url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
-            ////SanitizeXmlString(url);
-            return WebUtility.HtmlEncode(SanitizeXmlString(url).Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim();//23-09-2020 applied method to URL  //26-03-2020 updated converting hexadecimal codes
+            try  //28-09-2020  try catch.
+            {
+                //21-11-2019
+                url = GetRedirectedUrl(WebUtility.HtmlDecode(url).Trim());
+                //if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e"))//18-09-2020 commented
+                if (url.Contains("%")) //18-09-2020
+                    url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
+                ////SanitizeXmlString(url);
+                return WebUtility.HtmlEncode(SanitizeXmlString(url).Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim();//23-09-2020 applied method to URL  //26-03-2020 updated converting hexadecimal codes
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         //27-08-2020
         private string GetRedirectedUrl_TextAds(string url)
         {
             if (string.IsNullOrEmpty(url)) return string.Empty;
-
-            url = url.Replace("HTTPS://", "https://").Replace("HTTP://", "http://");
-            if (string.IsNullOrEmpty(url.Trim())) return string.Empty;
-
-            //18-09-2020 commented
-            //if (url.LastIndexOf("https://") > 0)
-            //    url = url.Remove(0, url.LastIndexOf("https://"));
-            //if (url.LastIndexOf("http://") > 0)
-            //    url = url.Remove(0, url.LastIndexOf("http://"));
-            //end 18-09-2020
-
-
-            Regex rx = new Regex("http[\\w]?://(.*)", RegexOptions.Singleline);
-            if (!rx.Match(url).Success && !url.Contains("/aclk?"))
-                if (!url.Contains("://"))
-                    url = "http://" + url;
-
-            if (url.StartsWith("http:////") || url.StartsWith("https:////")) //18-09-2020 condition applied if appears http:////
-                url = url.Replace("////", "//"); //18-09-2020
-
-            if (url.Contains("&amp;grqid="))
-                url = url.Remove(url.IndexOf("&amp;grqid="));
-
-            if (url.Contains("&grqid="))
-                url = url.Remove(url.IndexOf("&grqid="));
-            //23-09-2020
-            if (url.Contains("&amp;gclid="))
-                url = url.Remove(url.IndexOf("&amp;gclid="));
-            if (url.Contains("&gclid="))
-                url = url.Remove(url.IndexOf("&gclid="));
-            //end 23-09-2020
-            if (url.Contains("\0"))
-                url = url.Replace("\0", "%00");
-
-            if ((url.StartsWith("https://") || url.StartsWith("http://") || url.StartsWith("ftp://")) && (!url.StartsWith("/aclk?") && !url.Contains("search?num=100")))
+            try  //28-09-2020  try catch.
             {
-                //if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e")) //commented 18-09-2020
-                if (url.Contains("%")) //18-09-2020
-                    url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
+                url = url.Replace("HTTPS://", "https://").Replace("HTTP://", "http://");
+                if (string.IsNullOrEmpty(url.Trim())) return string.Empty;
+
+                //18-09-2020 commented
+                //if (url.LastIndexOf("https://") > 0)
+                //    url = url.Remove(0, url.LastIndexOf("https://"));
+                //if (url.LastIndexOf("http://") > 0)
+                //    url = url.Remove(0, url.LastIndexOf("http://"));
+                //end 18-09-2020
+
+
+                Regex rx = new Regex("http[\\w]?://(.*)", RegexOptions.Singleline);
+                if (!rx.Match(url).Success && !url.Contains("/aclk?"))
+                    if (!url.Contains("://"))
+                        url = "http://" + url;
+
+                if (url.StartsWith("http:////") || url.StartsWith("https:////")) //18-09-2020 condition applied if appears http:////
+                    url = url.Replace("////", "//"); //18-09-2020
+
+                if (url.Contains("&amp;grqid="))
+                    url = url.Remove(url.IndexOf("&amp;grqid="));
+
+                if (url.Contains("&grqid="))
+                    url = url.Remove(url.IndexOf("&grqid="));
+                //23-09-2020
+                if (url.Contains("&amp;gclid="))
+                    url = url.Remove(url.IndexOf("&amp;gclid="));
+                if (url.Contains("&gclid="))
+                    url = url.Remove(url.IndexOf("&gclid="));
+                //end 23-09-2020
+                if (url.Contains("\0"))
+                    url = url.Replace("\0", "%00");
+
+                if ((url.StartsWith("https://") || url.StartsWith("http://") || url.StartsWith("ftp://")) && (!url.StartsWith("/aclk?") && !url.Contains("search?num=100")))
+                {
+                    //if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e")) //commented 18-09-2020
+                    if (url.Contains("%")) //18-09-2020
+                        url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
 
                     return WebUtility.HtmlEncode(SanitizeXmlString(url).Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim(); //23-09-2020 applied method to URL
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
 
             return string.Empty;

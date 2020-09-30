@@ -546,23 +546,28 @@ namespace RapidTrackingSingleThread
                         }
                     }
                 }
-
+                //30-0-2020 commented
                 // text ads
-                HtmlNodeCollection col = crNode.SelectNodes(".//div[@id='tads']/ol/li");
-                if (col == null)
-                    col = crNode.SelectNodes(".//div[@id='tadsb']/ol/li"); // 21-02-2020 included selector for the text ads block
-                if (col == null)
-                    col = doc.DocumentNode.SelectNodes("//div[@id='tads']/div/ol/li|//div[@jsname='hWE2jd']"); //17-06-2020 //08-04-2020
-                if (col == null)
-                    col = doc.DocumentNode.SelectNodes("//div[@id='tads']/div[@class='uEierd']"); //25-08-2020
-                if (col == null)
-                    col = doc.DocumentNode.SelectNodes("//div[@jsname='hWE2jd']");//16-06-2020
+                /* HtmlNodeCollection col = crNode.SelectNodes(".//div[@id='tads']/ol/li");
+                 if (col == null)
+                     col = crNode.SelectNodes(".//div[@id='tadsb']/ol/li"); // 21-02-2020 included selector for the text ads block
+                 if (col == null)
+                     col = doc.DocumentNode.SelectNodes("//div[@id='tads']/div/ol/li|//div[@jsname='hWE2jd']"); //17-06-2020 //08-04-2020
+                 if (col == null)
+                     col = doc.DocumentNode.SelectNodes("//div[@id='tads']/div[@class='uEierd']"); //25-08-2020
+                 if (col == null)
+                     col = doc.DocumentNode.SelectNodes("//div[@jsname='hWE2jd']");//16-06-2020*/
+                 //end 30-09-2020
                 // 12-06-2020
                 //if (col != null)
                 //{
                 //    col = doc.DocumentNode.SelectNodes("//div[@jsname='xBqLkd']");
                 //    if (col != null) col = null;
                 //}//end 12-06-2020
+                //30-09-2020 included
+                HtmlNodeCollection col = crNode.SelectNodes(".//div[contains(@id,'tads')]/ol/li");
+                if (col == null)
+                    col = doc.DocumentNode.SelectNodes("//div[@id='tads']/div/ol/li|//div[@jsname='hWE2jd']|//div[@id='tads']/div[@class='uEierd']");
 
                 if (col != null)
                 {

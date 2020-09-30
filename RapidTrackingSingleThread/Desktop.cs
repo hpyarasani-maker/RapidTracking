@@ -239,34 +239,42 @@ namespace RapidTrackingSingleThread
                                                                                                            s.Append("<item url=\"" + SetUrl(n.InnerText) + "\" title=\"" + SetTitle(title) + "\" />");
                                                                                                    }*/
                                                                                                   //25-08-2020
-                        string url = string.Empty;
-                        string title = tittlenode.InnerText;
 
-                        //27-08-2020
-                        if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["href"]?.Value)))
+                        try  //28-09-2020  try catch.
                         {
-                            url = GetRedirectedUrl_TextAds(n.Attributes["href"].Value);
-                        }
-                        else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["data-rw"]?.Value)))
-                        {
-                            url = GetRedirectedUrl_TextAds(n.Attributes["data-rw"].Value);
-                        }
-                        else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["data-pcu"]?.Value)))
-                        {
-                            url = GetRedirectedUrl_TextAds(n.Attributes["data-pcu"].Value);
-                        }
-                        else
-                        {
-                            HtmlNode n1 = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite");
-                            if (n1 != null)
-                                url = GetRedirectedUrl_TextAds(n1.InnerText);
+                            string url = string.Empty;
+                            string title = tittlenode.InnerText;
 
-                            if (string.IsNullOrEmpty(url))
-                                url = GetRedirectedUrl_TextAds(n.Attributes["href"]?.Value);
+                            //27-08-2020
+                            if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["href"]?.Value)))
+                            {
+                                url = GetRedirectedUrl_TextAds(n.Attributes["href"].Value);
+                            }
+                            else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["data-rw"]?.Value)))
+                            {
+                                url = GetRedirectedUrl_TextAds(n.Attributes["data-rw"].Value);
+                            }
+                            else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["data-pcu"]?.Value)))
+                            {
+                                url = GetRedirectedUrl_TextAds(n.Attributes["data-pcu"].Value);
+                            }
+                            else
+                            {
+                                HtmlNode n1 = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite");
+                                if (n1 != null)
+                                    url = GetRedirectedUrl_TextAds(n1.InnerText);
+
+                                if (string.IsNullOrEmpty(url))
+                                    url = GetRedirectedUrl_TextAds(n.Attributes["href"]?.Value);
+                            }
+                            if (!string.IsNullOrEmpty(url))
+                                s.Append("<item url=\"" + url + "\" title=\"" + SetTitle(title) + "\" />");
+                            // end 27-08-2020
                         }
-                        if (!string.IsNullOrEmpty(url))
-                            s.Append("<item url=\"" + url + "\" title=\"" + SetTitle(title) + "\" />");
-                        // end 27-08-2020
+                        catch(Exception ex)
+                        {
+                            throw ex;
+                        }
                     }
                 }
                 s.Append("</block>");

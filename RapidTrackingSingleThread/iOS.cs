@@ -2501,9 +2501,9 @@ namespace RapidTrackingSingleThread
                 if (string.IsNullOrEmpty(url.Trim())) return string.Empty;
 
                 //24-09-2020 changed LastIndexOf to IndexOf
-                if (url.IndexOf("https://") > 0)
+                if (url.IndexOf("https://") >= 0)
                     url = url.Remove(0, url.IndexOf("https://"));
-                if (url.IndexOf("http://") > 0)
+                if (url.IndexOf("http://") >= 0)
                     url = url.Remove(0, url.IndexOf("http://"));
                
                                                             //end 24-09-2020

@@ -478,16 +478,24 @@ namespace RapidTrackingSingleThread
 
         private string ProcessNode(HtmlNode node)
         {
-            string sb = "";
-            if (IsBlock(node))
+            try  //28-09-2020  try catch.
             {
-                sb = ProcessBlock(node);
+
+                string sb = "";
+                if (IsBlock(node))
+                {
+                    sb = ProcessBlock(node);
+                }
+                else if (IsOrganic(node))
+                {
+                    sb = ProcessOrganic(node);
+                }
+                return sb;
             }
-            else if (IsOrganic(node))
+            catch(Exception ex)
             {
-                sb = ProcessOrganic(node);
+                throw ex;
             }
-            return sb;
         }
 
         private string ProcessOrganic(HtmlNode node)

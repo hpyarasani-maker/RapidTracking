@@ -1333,13 +1333,13 @@ namespace RapidTrackingSingleThread
             //21-11-2019
             url = url.Replace("HTTPS://", "https://").Replace("HTTP://", "http://");
             if (string.IsNullOrEmpty(url.Trim())) return string.Empty;
-            //24-09-2020 changed LastIndexOf to IndexOf
-                if (url.IndexOf("https://") > 0)
-                    url = url.Remove(0, url.IndexOf("https://"));
-                if (url.IndexOf("http://") > 0)
-                    url = url.Remove(0, url.IndexOf("http://"));
-             //end 24-09-2020
-            
+            //29-09-2020            
+            if (url.IndexOf("https://") >= 0)
+                url = url.Remove(0, url.IndexOf("https://"));
+            else if (url.IndexOf("http://") >= 0)
+                url = url.Remove(0, url.IndexOf("http://"));
+            //end 29-09-2020
+
             Regex rx = new Regex("http[\\w]?://(.*)", RegexOptions.Singleline);
             if (!rx.Match(url).Success && !url.Contains("/aclk?"))
                 if (!url.Contains("://")) // 30-04-2020

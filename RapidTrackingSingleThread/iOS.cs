@@ -2054,6 +2054,8 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[@class='Nhsae']");//01-05-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='aD8dbe']");//14-09-2020  Answered Card selector
+            if (nd == null)
+                nd = node.SelectSingleNode(".//w-answer/div[@class='MUxGbd t51gnb lyLwlc lEBKkf']"); //29-09-2020 answer card
             if (nd != null)
             {
                 return "AnswerCard";

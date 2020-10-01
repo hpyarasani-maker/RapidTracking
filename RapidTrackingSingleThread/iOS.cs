@@ -2508,7 +2508,7 @@ namespace RapidTrackingSingleThread
                 if (string.IsNullOrEmpty(url.Trim())) return string.Empty;
 
                 //24-09-2020 changed LastIndexOf to IndexOf
-                if (url.IndexOf("https://") == 0 || url.IndexOf("https://")>=0)
+                if (url.IndexOf("https://") == 0 || url.IndexOf("https://")>=0)//01-10-2020
                     url = url.Remove(0, url.IndexOf("https://"));
                 if (url.IndexOf("http://") == 0)
                     url = url.Remove(0, url.IndexOf("http://"));
@@ -2619,9 +2619,10 @@ namespace RapidTrackingSingleThread
                 if ((url.StartsWith("https://") || url.StartsWith("http://") || url.StartsWith("ftp://")) && (!url.StartsWith("/aclk?") && !url.Contains("search?num=100")))
                 {
                     //if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e")) //commented 18-09-2020
+                    //01-10-2020 commented
                     //if (url.Contains("%")) //18-09-2020
                     //  url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
-
+                    //end 01-10-2020
    
                     url =WebUtility.UrlDecode(WebUtility.HtmlDecode(url).Trim());
 

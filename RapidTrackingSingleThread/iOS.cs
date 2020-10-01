@@ -2624,7 +2624,7 @@ namespace RapidTrackingSingleThread
                     //  url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
                     //end 01-10-2020
    
-                    url =WebUtility.UrlDecode(WebUtility.HtmlDecode(url).Trim());
+                    url =WebUtility.UrlDecode(WebUtility.HtmlDecode(url).Trim()); //10-01-2020
 
                     return WebUtility.HtmlEncode(SanitizeXmlString(url).Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim();//23-09-2020 applied method to URL
                 }

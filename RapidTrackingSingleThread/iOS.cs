@@ -2219,8 +2219,8 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@class='vkc_np kkww4d']") != null    // changed on 05-07-2019
                 || node.SelectSingleNode(".//div[@class='UDZeY fAgajc']") != null     // 13-03-2020
                 || node.SelectSingleNode(".//div[@class='wQu7gc']") != null   //08-07-2020 mising answered card
-                || node.SelectSingleNode(".//div[@class='kp-blk OJXvsb']") != null  //26-08-2020 included selector for answered 
-                || node.SelectSingleNode(".//w-answer|.//a[@class='duf3 wrSo4']") != null) //28-09-2020
+                || node.SelectSingleNode(".//div[@class='kp-blk OJXvsb']") != null)  //26-08-2020 included selector for answered 
+               
 
                 return "AnswerCard";
 
@@ -2349,7 +2349,7 @@ namespace RapidTrackingSingleThread
             }
 
             //22-11-2019
-            nd = node.SelectSingleNode(".//div[@class='g kno-result rQUFld mnr-c g-blk']|.//w-answer|.//a[@class='duf3 wrSo4']"); //28-09-2020
+            nd = node.SelectSingleNode(".//div[@class='g kno-result rQUFld mnr-c g-blk']|.//w-answer/div[@class='MUxGbd t51gnb lyLwlc lEBKkf']"); //01-10-2020 Answered Card selector included
             if (nd != null)
             {
                 return true;

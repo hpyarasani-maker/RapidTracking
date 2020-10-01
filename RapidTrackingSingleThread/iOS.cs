@@ -2508,12 +2508,13 @@ namespace RapidTrackingSingleThread
                 if (string.IsNullOrEmpty(url.Trim())) return string.Empty;
 
                 //24-09-2020 changed LastIndexOf to IndexOf
-                if (url.IndexOf("https://") >= 0)
+                if (url.IndexOf("https://") == 0)
                     url = url.Remove(0, url.IndexOf("https://"));
-                if (url.IndexOf("http://") >= 0)
+                if (url.IndexOf("http://") == 0)
                     url = url.Remove(0, url.IndexOf("http://"));
                
-                                                            //end 24-09-2020
+                
+                //end 24-09-2020
                 Regex rx = new Regex("http[\\w]?://(.*)", RegexOptions.Singleline);
                 if (!rx.Match(url).Success && !url.Contains("/aclk?"))
                     if (!url.Contains("://")) // 30-04-2020
@@ -2620,6 +2621,7 @@ namespace RapidTrackingSingleThread
                     //if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e")) //commented 18-09-2020
                     if (url.Contains("%")) //18-09-2020
                         url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
+                        
 
                     return WebUtility.HtmlEncode(SanitizeXmlString(url).Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim();//23-09-2020 applied method to URL
                 }

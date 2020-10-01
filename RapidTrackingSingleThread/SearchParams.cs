@@ -1751,7 +1751,7 @@ namespace RapidTrackingSingleThread
             new SearchProperties()
             {
                 seid =502, domain ="com", geo_location="Raleigh,North Carolina,United States", locale="en-us", uule="w+CAIQICIkUmFsZWlnaCxOb3J0aCBDYXJvbGluYSxVbml0ZWQgU3RhdGVz", device="mobile_android"
-            },
+            }
 
         };
 

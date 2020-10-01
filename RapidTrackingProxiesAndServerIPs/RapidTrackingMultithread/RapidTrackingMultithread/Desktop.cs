@@ -230,34 +230,42 @@ namespace RapidTrackingMultithread
                                                                                                            s.Append("<item url=\"" + SetUrl(n.InnerText) + "\" title=\"" + SetTitle(title) + "\" />");
                                                                                                    }*/
                                                                                                   //25-08-2020
-                        string url = string.Empty;
-                        string title = tittlenode.InnerText;
 
-                        //27-08-2020
-                        if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["href"]?.Value)))
+                        try  //28-09-2020  try catch.
                         {
-                            url = GetRedirectedUrl_TextAds(n.Attributes["href"].Value);
-                        }
-                        else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["data-rw"]?.Value)))
-                        {
-                            url = GetRedirectedUrl_TextAds(n.Attributes["data-rw"].Value);
-                        }
-                        else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["data-pcu"]?.Value)))
-                        {
-                            url = GetRedirectedUrl_TextAds(n.Attributes["data-pcu"].Value);
-                        }
-                        else
-                        {
-                            HtmlNode n1 = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite");
-                            if (n1 != null)
-                                url = GetRedirectedUrl_TextAds(n1.InnerText);
+                            string url = string.Empty;
+                            string title = tittlenode.InnerText;
 
-                            if (string.IsNullOrEmpty(url))
-                                url = GetRedirectedUrl_TextAds(n.Attributes["href"]?.Value);
+                            //27-08-2020
+                            if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["href"]?.Value)))
+                            {
+                                url = GetRedirectedUrl_TextAds(n.Attributes["href"].Value);
+                            }
+                            else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["data-rw"]?.Value)))
+                            {
+                                url = GetRedirectedUrl_TextAds(n.Attributes["data-rw"].Value);
+                            }
+                            else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["data-pcu"]?.Value)))
+                            {
+                                url = GetRedirectedUrl_TextAds(n.Attributes["data-pcu"].Value);
+                            }
+                            else
+                            {
+                                HtmlNode n1 = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite");
+                                if (n1 != null)
+                                    url = GetRedirectedUrl_TextAds(n1.InnerText);
+
+                                if (string.IsNullOrEmpty(url))
+                                    url = GetRedirectedUrl_TextAds(n.Attributes["href"]?.Value);
+                            }
+                            if (!string.IsNullOrEmpty(url))
+                                s.Append("<item url=\"" + url + "\" title=\"" + SetTitle(title) + "\" />");
+                            // end 27-08-2020
                         }
-                        if (!string.IsNullOrEmpty(url))
-                            s.Append("<item url=\"" + url + "\" title=\"" + SetTitle(title) + "\" />");
-                        // end 27-08-2020
+                        catch (Exception ex)
+                        {
+                            throw ex;
+                        }
                     }
                 }
                 s.Append("</block>");
@@ -388,35 +396,40 @@ namespace RapidTrackingMultithread
                             }*/
                             //25-08-2020
                             //25-08-2020
-                            string url = string.Empty;
-                            //27-08-2020
-                            HtmlNode titleNode = n.SelectSingleNode(".//h3|.//div[@role='heading']");
-                            string title = titleNode != null ? titleNode.InnerText : n.InnerText;
+                            try  //28-09-2020  try catch.
+                            {
+                                string url = string.Empty;
+                                //27-08-2020
+                                HtmlNode titleNode = n.SelectSingleNode(".//h3|.//div[@role='heading']");
+                                string title = titleNode != null ? titleNode.InnerText : n.InnerText;
 
-                            if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["href"]?.Value)))
-                            {
-                                url = GetRedirectedUrl_TextAds(n.Attributes["href"].Value);
-                            }
-                            else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["data-rw"]?.Value)))
-                            {
-                                url = GetRedirectedUrl_TextAds(n.Attributes["data-rw"].Value);
-                            }
-                            else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["data-pcu"]?.Value)))
-                            {
-                                url = GetRedirectedUrl_TextAds(n.Attributes["data-pcu"].Value);
-                            }
-                            else
-                            {
-                                HtmlNode n1 = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite");
-                                if (n1 != null)
-                                    url = GetRedirectedUrl_TextAds(n1.InnerText);
+                                if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["href"]?.Value)))
+                                {
+                                    url = GetRedirectedUrl_TextAds(n.Attributes["href"].Value);
+                                }
+                                else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["data-rw"]?.Value)))
+                                {
+                                    url = GetRedirectedUrl_TextAds(n.Attributes["data-rw"].Value);
+                                }
+                                else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["data-pcu"]?.Value)))
+                                {
+                                    url = GetRedirectedUrl_TextAds(n.Attributes["data-pcu"].Value);
+                                }
+                                else
+                                {
+                                    HtmlNode n1 = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite");
+                                    if (n1 != null)
+                                        url = GetRedirectedUrl_TextAds(n1.InnerText);
 
-                                if (string.IsNullOrEmpty(url))
-                                    url = GetRedirectedUrl_TextAds(n.Attributes["href"]?.Value);
+                                    if (string.IsNullOrEmpty(url))
+                                        url = GetRedirectedUrl_TextAds(n.Attributes["href"]?.Value);
+                                }
+                                if (!string.IsNullOrEmpty(url))
+                                    s.Append("<item url=\"" + url + "\" title=\"" + SetTitle(title) + "\" />");
+                                // end 27-08-2020
                             }
-                            if (!string.IsNullOrEmpty(url))
-                                s.Append("<item url=\"" + url + "\" title=\"" + SetTitle(title) + "\" />");
-                            // end 27-08-2020
+                            catch (Exception ex)
+                            { throw ex; }
                         }
                     }
                     s.Append("</block>");
@@ -461,16 +474,24 @@ namespace RapidTrackingMultithread
 
         private string ProcessNode(HtmlNode node)
         {
-            string sb = "";
-            if (IsBlock(node))
+            try  //28-09-2020  try catch.
             {
-                sb = ProcessBlock(node);
+
+                string sb = "";
+                if (IsBlock(node))
+                {
+                    sb = ProcessBlock(node);
+                }
+                else if (IsOrganic(node))
+                {
+                    sb = ProcessOrganic(node);
+                }
+                return sb;
             }
-            else if (IsOrganic(node))
+            catch (Exception ex)
             {
-                sb = ProcessOrganic(node);
+                throw ex;
             }
-            return sb;
         }
 
         private string ProcessOrganic(HtmlNode node)
@@ -1320,42 +1341,48 @@ namespace RapidTrackingMultithread
         //07-11-2019
         private string GetRedirectedUrl(string url)
         {
-            //21-11-2019
-            url = url.Replace("HTTPS://", "https://").Replace("HTTP://", "http://");
-            if (string.IsNullOrEmpty(url.Trim())) return string.Empty;
-            //24-09-2020 changed LastIndexOf to IndexOf
-            if (url.IndexOf("https://") > 0)
-                url = url.Remove(0, url.IndexOf("https://"));
-            if (url.IndexOf("http://") > 0)
-                url = url.Remove(0, url.IndexOf("http://"));
-            //end 24-09-2020
+            try //28-09-2020  try catch.
+            {
+                //21-11-2019
+                url = url.Replace("HTTPS://", "https://").Replace("HTTP://", "http://");
+                if (string.IsNullOrEmpty(url.Trim())) return string.Empty;
+                //29-09-2020            
+                if (url.IndexOf("https://") == 0 || url.IndexOf("https://") >= 0) //01-10-2020
+                    url = url.Remove(0, url.IndexOf("https://"));
+                else if (url.IndexOf("http://") == 0)
+                    url = url.Remove(0, url.IndexOf("http://"));
+                //end 29-09-2020
 
-            Regex rx = new Regex("http[\\w]?://(.*)", RegexOptions.Singleline);
-            if (!rx.Match(url).Success && !url.Contains("/aclk?"))
-                if (!url.Contains("://")) // 30-04-2020
-                    url = "http://" + url;
+                Regex rx = new Regex("http[\\w]?://(.*)", RegexOptions.Singleline);
+                if (!rx.Match(url).Success && !url.Contains("/aclk?"))
+                    if (!url.Contains("://")) // 30-04-2020
+                        url = "http://" + url;
 
-            if (url.StartsWith("http:////") || url.StartsWith("https:////")) //18-09-2020 condition applied if appears http:////
-                url = url.Replace("////", "//"); //18-09-2020
+                if (url.StartsWith("http:////") || url.StartsWith("https:////")) //18-09-2020 condition applied if appears http:////
+                    url = url.Replace("////", "//"); //18-09-2020
 
-            if (url.Contains("&amp;grqid="))
-                url = url.Remove(url.IndexOf("&amp;grqid="));
-            //13-12-2019
-            if (url.Contains("&grqid="))
-                url = url.Remove(url.IndexOf("&grqid="));
-            //23-09-2020
-            if (url.Contains("&amp;gclid="))
-                url = url.Remove(url.IndexOf("&amp;gclid="));
-            if (url.Contains("&gclid="))
-                url = url.Remove(url.IndexOf("&gclid="));
-            //end 23-09-2020
+                if (url.Contains("&amp;grqid="))
+                    url = url.Remove(url.IndexOf("&amp;grqid="));
+                //13-12-2019
+                if (url.Contains("&grqid="))
+                    url = url.Remove(url.IndexOf("&grqid="));
+                //23-09-2020
+                if (url.Contains("&amp;gclid="))
+                    url = url.Remove(url.IndexOf("&amp;gclid="));
+                if (url.Contains("&gclid="))
+                    url = url.Remove(url.IndexOf("&gclid="));
+                //end 23-09-2020
 
-            if (url.Contains("\0"))
-                url = url.Replace("\0", "%00");
+                if (url.Contains("\0"))
+                    url = url.Replace("\0", "%00");
 
-            if ((url.StartsWith("https://") || url.StartsWith("http://") || url.StartsWith("ftp://")) && !url.Contains("/aclk?"))  // 30-04-2020 
-                return url;
-
+                if ((url.StartsWith("https://") || url.StartsWith("http://") || url.StartsWith("ftp://")) && !url.Contains("/aclk?"))  // 30-04-2020 
+                    return url;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
             return string.Empty;
 
         }
@@ -1370,59 +1397,74 @@ namespace RapidTrackingMultithread
         public string SetUrl(string url)
         {
             if (string.IsNullOrEmpty(url)) return string.Empty; //25-08-2020
-            //21-11-2019
-            url = GetRedirectedUrl(WebUtility.HtmlDecode(url).Trim());
-            //if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e"))//18-09-2020 commented
-            if (url.Contains("%")) //18-09-2020
-                url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
-            ////SanitizeXmlString(url);
-            return WebUtility.HtmlEncode(SanitizeXmlString(url).Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim();//23-09-2020 applied method to URL  //26-03-2020 updated converting hexadecimal codes
+            try  //28-09-2020  try catch.
+            {
+                //21-11-2019
+                url = GetRedirectedUrl(WebUtility.HtmlDecode(url).Trim());
+                //if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e"))//18-09-2020 commented
+                if (url.Contains("%")) //18-09-2020
+                    url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
+                ////SanitizeXmlString(url);
+                return WebUtility.HtmlEncode(SanitizeXmlString(url).Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim();//23-09-2020 applied method to URL  //26-03-2020 updated converting hexadecimal codes
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         //27-08-2020
         private string GetRedirectedUrl_TextAds(string url)
         {
             if (string.IsNullOrEmpty(url)) return string.Empty;
-
-            url = url.Replace("HTTPS://", "https://").Replace("HTTP://", "http://");
-            if (string.IsNullOrEmpty(url.Trim())) return string.Empty;
-
-            //18-09-2020 commented
-            //if (url.LastIndexOf("https://") > 0)
-            //    url = url.Remove(0, url.LastIndexOf("https://"));
-            //if (url.LastIndexOf("http://") > 0)
-            //    url = url.Remove(0, url.LastIndexOf("http://"));
-            //end 18-09-2020
-
-
-            Regex rx = new Regex("http[\\w]?://(.*)", RegexOptions.Singleline);
-            if (!rx.Match(url).Success && !url.Contains("/aclk?"))
-                if (!url.Contains("://"))
-                    url = "http://" + url;
-
-            if (url.StartsWith("http:////") || url.StartsWith("https:////")) //18-09-2020 condition applied if appears http:////
-                url = url.Replace("////", "//"); //18-09-2020
-
-            if (url.Contains("&amp;grqid="))
-                url = url.Remove(url.IndexOf("&amp;grqid="));
-
-            if (url.Contains("&grqid="))
-                url = url.Remove(url.IndexOf("&grqid="));
-            //23-09-2020
-            if (url.Contains("&amp;gclid="))
-                url = url.Remove(url.IndexOf("&amp;gclid="));
-            if (url.Contains("&gclid="))
-                url = url.Remove(url.IndexOf("&gclid="));
-            //end 23-09-2020
-            if (url.Contains("\0"))
-                url = url.Replace("\0", "%00");
-
-            if ((url.StartsWith("https://") || url.StartsWith("http://") || url.StartsWith("ftp://")) && (!url.StartsWith("/aclk?") && !url.Contains("search?num=100")))
+            try  //28-09-2020  try catch.
             {
-                //if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e")) //commented 18-09-2020
-                if (url.Contains("%")) //18-09-2020
-                    url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
+                url = url.Replace("HTTPS://", "https://").Replace("HTTP://", "http://");
+                if (string.IsNullOrEmpty(url.Trim())) return string.Empty;
 
-                return WebUtility.HtmlEncode(SanitizeXmlString(url).Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim(); //23-09-2020 applied method to URL
+                //18-09-2020 commented
+                //if (url.LastIndexOf("https://") > 0)
+                //    url = url.Remove(0, url.LastIndexOf("https://"));
+                //if (url.LastIndexOf("http://") > 0)
+                //    url = url.Remove(0, url.LastIndexOf("http://"));
+                //end 18-09-2020
+
+
+                Regex rx = new Regex("http[\\w]?://(.*)", RegexOptions.Singleline);
+                if (!rx.Match(url).Success && !url.Contains("/aclk?"))
+                    if (!url.Contains("://"))
+                        url = "http://" + url;
+
+                if (url.StartsWith("http:////") || url.StartsWith("https:////")) //18-09-2020 condition applied if appears http:////
+                    url = url.Replace("////", "//"); //18-09-2020
+
+                if (url.Contains("&amp;grqid="))
+                    url = url.Remove(url.IndexOf("&amp;grqid="));
+
+                if (url.Contains("&grqid="))
+                    url = url.Remove(url.IndexOf("&grqid="));
+                //23-09-2020
+                if (url.Contains("&amp;gclid="))
+                    url = url.Remove(url.IndexOf("&amp;gclid="));
+                if (url.Contains("&gclid="))
+                    url = url.Remove(url.IndexOf("&gclid="));
+                //end 23-09-2020
+                if (url.Contains("\0"))
+                    url = url.Replace("\0", "%00");
+
+                if ((url.StartsWith("https://") || url.StartsWith("http://") || url.StartsWith("ftp://")) && (!url.StartsWith("/aclk?") && !url.Contains("search?num=100")))
+                {
+                    //if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e")) //commented 18-09-2020
+                    //01-10-2020 commented
+                    //if (url.Contains("%")) //18-09-2020
+                    // url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
+                    //end 01-10-2020
+                    url = WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim();//01-10-2020
+                    return WebUtility.HtmlEncode(SanitizeXmlString(url).Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim(); //23-09-2020 applied method to URL
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
 
             return string.Empty;

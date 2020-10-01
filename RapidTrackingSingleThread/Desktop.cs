@@ -1356,9 +1356,9 @@ namespace RapidTrackingSingleThread
                 url = url.Replace("HTTPS://", "https://").Replace("HTTP://", "http://");
                 if (string.IsNullOrEmpty(url.Trim())) return string.Empty;
                 //29-09-2020            
-                if (url.IndexOf("https://") >= 0)
+                if (url.IndexOf("https://") == 0)
                     url = url.Remove(0, url.IndexOf("https://"));
-                else if (url.IndexOf("http://") >= 0)
+                else if (url.IndexOf("http://") == 0)
                     url = url.Remove(0, url.IndexOf("http://"));
                 //end 29-09-2020
 

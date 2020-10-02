@@ -537,8 +537,11 @@ namespace RapidTrackingJobIDResults
                             n = nd.SelectSingleNode(".//div[@class='r']/a");
                         if (n == null)
                             n = nd.SelectSingleNode(".//div[@class='r']/div/a"); //28-05-2020
+                        if (n == null)
+                            n = nd.SelectSingleNode(".//div[@class='yuRUbf']/a"); //02-10-2020
                         if (n != null)
                             title = n.SelectSingleNode(".//h3");
+
 
                         HtmlNode img = nd.SelectSingleNode(".//img");
                         if (img != null)
@@ -1200,6 +1203,8 @@ namespace RapidTrackingJobIDResults
             nd = node.SelectSingleNode(".//*[@id='lu_map']");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='xERobd']");  //changed on 26-06-2019
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='MHStgc']/span"); //02-10-2020 maps selectors
             if (nd != null)
             {
                 return "Maps";
@@ -1276,7 +1281,8 @@ namespace RapidTrackingJobIDResults
                 || node.SelectSingleNode(".//div[@class='e2BEnf U7izfe']/h3") != null  // videos
                 || node.SelectSingleNode(".//div[@class='mod NFQFxe oHglmf xzPb7d']") != null//images//05-08-2020
                 || node.SelectSingleNode(".//div[@id='knowledge-finance-wholepage__entity-summary']") != null // 18-03-2020
-                || node.SelectSingleNode(".//div[@class='I6TXqe osrp-blk']") != null); //12-08-2020 included selector for video card
+                || node.SelectSingleNode(".//div[@class='I6TXqe osrp-blk']") != null //12-08-2020 included selector for video card
+                || node.SelectSingleNode(".//div[@class='WcS13d']") != null); //02-10-2020 maps selectors
             if (bVal == true)//2019-09-11
             {
                 try

@@ -1643,10 +1643,6 @@ namespace RapidTrackingSingleThread
             },
             new SearchProperties()
             {
-                seid =474, domain ="lt", geo_location="Lithuania", locale= "LT-LT", uule = "w+CAIQICIJTGl0aHVhbmlh", device="mobile_android"
-            },
-            new SearchProperties()
-            {
                 seid =475, domain ="com", geo_location="Florida,United States", locale="en-us", uule="w+CAIQICIVRmxvcmlkYSxVbml0ZWQgU3RhdGVz", device="desktop"
             },
             new SearchProperties()

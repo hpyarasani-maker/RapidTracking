@@ -1207,6 +1207,13 @@ namespace RapidTrackingSingleThread
                 if (node.SelectSingleNode(".//div[@class='BET1rd']") == null) //25-09-2020
                     return "AnswerCard";
             }
+            //05-10-2020 KP Block selectors updated
+            nd = node.SelectSingleNode(".//div[@class='kp-wholepage EyBRub kp-wholepage-osrp HSryR']");
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='kp-wholepage kp-wholepage-osrp HSryR EyBRub']");
+            if (nd != null)
+                return "KnowledgePanel";
+            //end 05-10-2020
 
             nd = node.SelectSingleNode(".//div[@class='DUU6i']");
             if (nd == null)

@@ -1553,6 +1553,8 @@ namespace RapidTrackingSingleThread
             if (nds == null)
                 nds = node.SelectNodes(".//a[contains(@class,'sXtWJb')]"); //05-10-2020 for answer card     //26-11-2019
             if (nds == null)
+                nds = node.SelectNodes(".//div[@class='WcS13d']/a");  //05-10-2020 included selector for missing classic links
+            if (nds == null)
                 return string.Empty;
             foreach (HtmlNode nd in nds)
             {

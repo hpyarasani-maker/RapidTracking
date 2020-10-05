@@ -1229,8 +1229,8 @@ namespace RapidTrackingSingleThread
             nd = node.SelectSingleNode(".//*[@id='lu_map']");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='xERobd']");  //changed on 26-06-2019
-            if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='MHStgc']/span"); //02-10-2020 maps selectors
+            //if (nd == null)
+            //    nd = node.SelectSingleNode(".//div[@class='MHStgc']/span");//05-10-2020 commented //02-10-2020 maps selectors
             if (nd != null)
             {
                 return "Maps";

@@ -872,10 +872,29 @@ namespace RapidTrackingSingleThread
             if (nds == null)
                 nds = node.SelectNodes(".//div[@class='yuRUbf']/a");  //03-09-2020 included selector for missing classic links
             if (nds == null)
-                nds = node.SelectNodes(".//div[@class='WcS13d']/a");  //05-10-2020 included selector for missing classic links
+                nds = node.SelectNodes(".//div[@class='WcS13d']"); //removed /a //05-10-2020 included selector for missing classic links
             if (nds == null)
                 return string.Empty;
             foreach (HtmlNode nd in nds)
+            {
+                //05-10-2020
+                string title = "";
+                HtmlNodeCollection nds1 = nd.SelectNodes(".//h3");
+                if (nds1 != null)
+                {
+                    title = nd.SelectSingleNode(".//h3").InnerText;
+                    s.Append("<item url=\"" + SetUrl(nd.Attributes["href"].Value) + "\" title=\"" + SetTitle(title) + "\" />");
+                }
+                nds1 = nd.SelectNodes(".//a");
+                if (nds1 != null)
+                    foreach (HtmlNode nd1 in nds1)
+                    {
+                        s.Append("<item url=\"" + SetUrl(nd1.Attributes["href"].Value) + "\" title=\"" + SetTitle(title) + "\" />");
+                    }
+                //end 05-10-2020
+            }
+            //05-10-2020 commented
+            /*foreach (HtmlNode nd in nds)
             {
                 //05-10-2020
                 string title;
@@ -885,7 +904,8 @@ namespace RapidTrackingSingleThread
                     title = nd.InnerText;
                 //end 05-10-2020
                 s.Append("<item url=\"" + SetUrl(nd.Attributes["href"].Value) + "\" title=\"" + SetTitle(title) + "\" />");
-            }
+            }*/
+            //end 05-10-2020
             return s.ToString();
         }
 

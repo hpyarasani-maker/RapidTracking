@@ -754,6 +754,9 @@ namespace RapidTrackingSingleThread
                     s.Append(GetVideos(node));
                     s.Append("</block>");
                     break;
+                case "knowledgepanel":
+                    s.Append("<block type=\"knowledgeGraph\" url=\"\" />"); //05-10-2020
+                    break;
                 default:
                     break;
             }

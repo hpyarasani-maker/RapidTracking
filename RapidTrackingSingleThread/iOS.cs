@@ -1499,7 +1499,7 @@ namespace RapidTrackingSingleThread
             {
                 string hdr = "";
                 //string hdr = nd.SelectSingleNode(".//div[@role='heading']/div[1]/span").InnerText;
-                HtmlNode hdrNode = nd.SelectSingleNode(".//div[@role='heading']/div[1]/span");
+                HtmlNode hdrNode = nd.SelectSingleNode(".//div[@role='heading']/div[1]/span|.//div[@role='heading']"); //05-10-2020 KP block title included
                 if (hdrNode == null)
                     hdrNode = nd.SelectSingleNode(".//div[@class='kno-ecr-pt kno-fb-ctx HOpgu gsmt']/span");
                 if (hdrNode == null)
@@ -2014,8 +2014,10 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[@class='HnYYW FIdh1']");  // 01-06-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='MQv7ze']");  // 23-06-2020 
+            //if (nd == null)
+            //    nd = node.SelectSingleNode(".//div[@class='kp-blk EyBRub knowledge-panel OJXvsb']");//05-10-2020 commented  //13-07-2020 images block type and KP block type
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='kp-blk EyBRub knowledge-panel OJXvsb']");  //13-07-2020 images block type and KP block type
+                nd = node.SelectSingleNode(".//div[contains(@class,'kp-blk')]"); //05-10-2020 included selector for missing KP block
             if (nd != null)
             {
                 // 24-04-2020

@@ -1190,6 +1190,8 @@ namespace RapidTrackingSingleThread
                 return "AnswerCard";
             }
             nd = node.SelectSingleNode(".//div[@class='pcCUmf vCOSGb']");//03-06-2020 includes below two lines
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='MHStgc']/span"); //05-10-2020 answer card selector
             if (nd != null)
                 return "AnswerCard";
 

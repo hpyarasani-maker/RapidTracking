@@ -1551,7 +1551,7 @@ namespace RapidTrackingSingleThread
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//h3[@class='r']/a");
             if (nds == null)
-                nds = node.SelectNodes(".//a[@class='sXtWJb']");      //26-11-2019
+                nds = node.SelectNodes(".//a[contains(@class,'sXtWJb']"); //05-10-2020 for answer card     //26-11-2019
             if (nds == null)
                 return string.Empty;
             foreach (HtmlNode nd in nds)

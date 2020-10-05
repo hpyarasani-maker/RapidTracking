@@ -872,10 +872,18 @@ namespace RapidTrackingSingleThread
             if (nds == null)
                 nds = node.SelectNodes(".//div[@class='yuRUbf']/a");  //03-09-2020 included selector for missing classic links
             if (nds == null)
+                nds = node.SelectNodes(".//div[@class='WcS13d']/a");  //05-10-2020 included selector for missing classic links
+            if (nds == null)
                 return string.Empty;
             foreach (HtmlNode nd in nds)
             {
-                string title = nd.SelectSingleNode(".//h3").InnerText;
+                //05-10-2020
+                string title;
+                if (nd.SelectSingleNode(".//h3") != null)
+                    title = nd.SelectSingleNode(".//h3").InnerText;
+                else
+                    title = nd.InnerText;
+                //end 05-10-2020
                 s.Append("<item url=\"" + SetUrl(nd.Attributes["href"].Value) + "\" title=\"" + SetTitle(title) + "\" />");
             }
             return s.ToString();

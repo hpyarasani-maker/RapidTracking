@@ -508,7 +508,8 @@ namespace RapidTrackingSingleThread
             StringBuilder s = new StringBuilder();
             if (node.HasClass("_NId") || node.HasClass("bkWMgd") || node.HasClass("srg")
                 || node.HasClass("g") || node.SelectNodes(".//div[@class='g']") != null // 18-03-2020
-                || node.SelectNodes(".//div[@class='g GjRtuc']") != null) // 02-06-2020
+                || node.SelectNodes(".//div[@class='g GjRtuc']") != null // 02-06-2020
+                || || node.SelectNodes(".//div[@class='g card-section waTp2e cUezCb xpd O9g5cc uUPGi']") != null) //06-10-2020 classic link
             {
                 HtmlNodeCollection nds = node.SelectNodes(".//div[@class='g']");
                 if (nds == null)

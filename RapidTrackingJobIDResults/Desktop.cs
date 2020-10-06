@@ -502,7 +502,8 @@ namespace RapidTrackingJobIDResults
             StringBuilder s = new StringBuilder();
             if (node.HasClass("_NId") || node.HasClass("bkWMgd") || node.HasClass("srg")
                 || node.HasClass("g") || node.SelectNodes(".//div[@class='g']") != null // 18-03-2020
-                || node.SelectNodes(".//div[@class='g GjRtuc']") != null) // 02-06-2020
+                || node.SelectNodes(".//div[@class='g GjRtuc']") != null // 02-06-2020
+                || node.SelectNodes(".//div[contains(@class,'g card-section')]") != null) //06-10-2020 classic link
             {
                 HtmlNodeCollection nds = node.SelectNodes(".//div[@class='g']");
                 if (nds == null)
@@ -748,6 +749,9 @@ namespace RapidTrackingJobIDResults
                     s.Append(GetVideos(node));
                     s.Append("</block>");
                     break;
+                case "knowledgepanel":
+                    s.Append("<block type=\"knowledgeGraph\" url=\"\" />"); //05-10-2020
+                    break;
                 default:
                     break;
             }
@@ -863,12 +867,40 @@ namespace RapidTrackingJobIDResults
             if (nds == null)
                 nds = node.SelectNodes(".//div[@class='yuRUbf']/a");  //03-09-2020 included selector for missing classic links
             if (nds == null)
+                nds = node.SelectNodes(".//div[@class='WcS13d']"); //removed /a //05-10-2020 included selector for missing classic links
+            if (nds == null)
                 return string.Empty;
             foreach (HtmlNode nd in nds)
             {
-                string title = nd.SelectSingleNode(".//h3").InnerText;
-                s.Append("<item url=\"" + SetUrl(nd.Attributes["href"].Value) + "\" title=\"" + SetTitle(title) + "\" />");
+                //05-10-2020
+                string title = "";
+                HtmlNodeCollection nds1 = nd.SelectNodes(".//h3");
+                if (nds1 != null)
+                {
+                    title = nd.SelectSingleNode(".//h3").InnerText;
+                    s.Append("<item url=\"" + SetUrl(nd.Attributes["href"].Value) + "\" title=\"" + SetTitle(title) + "\" />");
+                }
+                nds1 = nd.SelectNodes(".//a");
+                if (nds1 != null)
+                    foreach (HtmlNode nd1 in nds1)
+                    {
+                        s.Append("<item url=\"" + SetUrl(nd1.Attributes["href"].Value) + "\" title=\"" + SetTitle(title) + "\" />");
+                    }
+                //end 05-10-2020
             }
+            //05-10-2020 commented
+            /*foreach (HtmlNode nd in nds)
+            {
+                //05-10-2020
+                string title;
+                if (nd.SelectSingleNode(".//h3") != null)
+                    title = nd.SelectSingleNode(".//h3").InnerText;
+                else
+                    title = nd.InnerText;
+                //end 05-10-2020
+                s.Append("<item url=\"" + SetUrl(nd.Attributes["href"].Value) + "\" title=\"" + SetTitle(title) + "\" />");
+            }*/
+            //end 05-10-2020
             return s.ToString();
         }
 
@@ -1173,6 +1205,8 @@ namespace RapidTrackingJobIDResults
                 return "AnswerCard";
             }
             nd = node.SelectSingleNode(".//div[@class='pcCUmf vCOSGb']");//03-06-2020 includes below two lines
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='MHStgc']/span"); //05-10-2020 answer card selector
             if (nd != null)
                 return "AnswerCard";
 
@@ -1188,6 +1222,13 @@ namespace RapidTrackingJobIDResults
                 if (node.SelectSingleNode(".//div[@class='BET1rd']") == null) //25-09-2020
                     return "AnswerCard";
             }
+            //05-10-2020 KP Block selectors updated
+            nd = node.SelectSingleNode(".//div[@class='kp-wholepage EyBRub kp-wholepage-osrp HSryR']");
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='kp-wholepage kp-wholepage-osrp HSryR EyBRub']");
+            if (nd != null)
+                return "KnowledgePanel";
+            //end 05-10-2020
 
             nd = node.SelectSingleNode(".//div[@class='DUU6i']");
             if (nd == null)
@@ -1203,8 +1244,8 @@ namespace RapidTrackingJobIDResults
             nd = node.SelectSingleNode(".//*[@id='lu_map']");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='xERobd']");  //changed on 26-06-2019
-            if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='MHStgc']/span"); //02-10-2020 maps selectors
+            //if (nd == null)
+            //    nd = node.SelectSingleNode(".//div[@class='MHStgc']/span");//05-10-2020 commented //02-10-2020 maps selectors
             if (nd != null)
             {
                 return "Maps";
@@ -1577,6 +1618,3 @@ namespace RapidTrackingJobIDResults
     }
 
 }
-
-
-

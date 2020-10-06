@@ -734,7 +734,7 @@ namespace RapidTrackingMultiThreadJobIDs
                 nds = node.SelectNodes(".//div[@jscontroller='iht5n']/div");
             else
             {
-                nds = node.SelectNodes(".//div[@class='mnr-c waTp2e xpd O9g5cc uUPGi']");  //19-06-2020   //20-01-2020 selector changed for two classic links
+                nds = node.SelectNodes(".//div[@class='mnr-c waTp2e xpd O9g5cc uUPGi']|.//div[@class='mnr-c luh4tb xpd O9g5cc uUPGi']");//06-10-2020 classic link selector //19-06-2020   //20-01-2020 selector changed for two classic links
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='mnr-c O9g5cc uUPGi']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='HD8Pae mnr-c xpd O9g5cc uUPGi']|.//div/g-card[@class='XqIXXe']|.//g-card[@id='tscffb']|.//g-card[@class='g F6CFcc']|.//div[@class='khgTR lWEpfd']|.//div[@class='khgTR R5lVqb']|.//div[@class='mnr-c fp-w qs-ic aig-grd']|.//g-card[@class='URhAHe']|.//div[@class='mnr-c IcwJCe']");//26-08-2020 incuded contains functions to the selector//29-07-2020 //20-05-2020 missing classic link //05-06-2020
                 if (nds == null)
@@ -914,7 +914,8 @@ namespace RapidTrackingMultiThreadJobIDs
                             if (nd.Attributes.Count == 0 || nd.Attributes["class"].Value == "mnr-c" || nd.Attributes["class"].Value == "mnr-c xpd O9g5cc uUPGi"
                              || nd.Attributes["class"].Value == "mnr-c O9g5cc uUPGi" || nd.Attributes["class"].Value == "mnr-c waTp2e xpd O9g5cc uUPGi"
                              || nd.Attributes["class"].Value == "MGqjK" || nd.Attributes["class"].Value == "setTDc" || nd.Attributes["class"].Value.Contains("khgTR") //26-08-2020    // 20-05-2020
-                             || node.Attributes["class"]?.Value == "mnr-c xpd O9g5cc uUPGi") //20-01-2020 // selectors for two classic links block
+                             || node.Attributes["class"]?.Value == "mnr-c xpd O9g5cc uUPGi" //20-01-2020 // selectors for two classic links block
+                             || nd.Attributes["class"].Value == "mnr-c luh4tb xpd O9g5cc uUPGi") //06-10-2020 classic type block type
                             {
                                 //17-10-2019
                                 string vdos = string.Empty;
@@ -1488,7 +1489,7 @@ namespace RapidTrackingMultiThreadJobIDs
             {
                 string hdr = "";
                 //string hdr = nd.SelectSingleNode(".//div[@role='heading']/div[1]/span").InnerText;
-                HtmlNode hdrNode = nd.SelectSingleNode(".//div[@role='heading']/div[1]/span");
+                HtmlNode hdrNode = nd.SelectSingleNode(".//div[@role='heading']/div[1]/span|.//div[@role='heading']"); //05-10-2020 KP block title included
                 if (hdrNode == null)
                     hdrNode = nd.SelectSingleNode(".//div[@class='kno-ecr-pt kno-fb-ctx HOpgu gsmt']/span");
                 if (hdrNode == null)
@@ -1540,7 +1541,9 @@ namespace RapidTrackingMultiThreadJobIDs
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//h3[@class='r']/a");
             if (nds == null)
-                nds = node.SelectNodes(".//a[@class='sXtWJb']");      //26-11-2019
+                nds = node.SelectNodes(".//a[contains(@class,'sXtWJb')]"); //05-10-2020 for answer card     //26-11-2019
+            if (nds == null)
+                nds = node.SelectNodes(".//div[@class='WcS13d']/a");  //05-10-2020 included selector for missing classic links
             if (nds == null)
                 return string.Empty;
             foreach (HtmlNode nd in nds)
@@ -2003,8 +2006,10 @@ namespace RapidTrackingMultiThreadJobIDs
                 nd = node.SelectSingleNode(".//div[@class='HnYYW FIdh1']");  // 01-06-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='MQv7ze']");  // 23-06-2020 
+            //if (nd == null)
+            //    nd = node.SelectSingleNode(".//div[@class='kp-blk EyBRub knowledge-panel OJXvsb']");//05-10-2020 commented  //13-07-2020 images block type and KP block type
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='kp-blk EyBRub knowledge-panel OJXvsb']");  //13-07-2020 images block type and KP block type
+                nd = node.SelectSingleNode(".//div[contains(@class,'kp-blk EyBRub')]"); //05-10-2020 included selector for missing KP block
             if (nd != null)
             {
                 // 24-04-2020
@@ -2017,7 +2022,7 @@ namespace RapidTrackingMultiThreadJobIDs
                     return "Carousel";
                 // 24-04-2020
 
-                nd = node.SelectSingleNode(".//div[@class='kp-blk nGydZ Wnoohf OJXvsb']|.//div[@class='NFQFxe XbtRGb qxsd xsZWvb EfDVh WDjuKe mod']|.//div[@class='NFQFxe viOShc LKPcQc mod']");  // 16-06-2020
+                nd = node.SelectSingleNode(".//div[@class='kp-blk nGydZ Wnoohf OJXvsb']|.//div[@class='NFQFxe XbtRGb qxsd xsZWvb EfDVh WDjuKe mod']|.//div[@class='NFQFxe viOShc LKPcQc mod']|.//div[@class='B3nbW mfMhoc']");//05-10-2020  // 16-06-2020
                 if (nd == null || node.SelectSingleNode(".//div[@class='kp-header']") != null || node.SelectSingleNode(".//div[@class='K2Sb0e kp-header']") != null)   //23-06-2020 //19-06-2020
                     return "KnowledgePanel";
             }
@@ -2048,6 +2053,8 @@ namespace RapidTrackingMultiThreadJobIDs
                 nd = node.SelectSingleNode(".//div[@class='Nhsae']");//01-05-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='aD8dbe']");//14-09-2020  Answered Card selector
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div/span[@class='YkgoD z1asCe GYDk8c']|.//div/span[@class='Ca2Qlc z1asCe GYDk8c']|.//div[@class='MHStgc']/span"); //05-10-2020 Answercard
             if (nd == null)
                 nd = node.SelectSingleNode(".//w-answer/div[@class='MUxGbd t51gnb lyLwlc lEBKkf']"); //29-09-2020 answer card
             if (nd != null)
@@ -2128,8 +2135,8 @@ namespace RapidTrackingMultiThreadJobIDs
                 nd = node.SelectSingleNode(".//div[@class='I2lQic']");//05-11-2019
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='utyL0c']");//01-05-2020
-            if (nd == null)
-                nd = node.SelectSingleNode(".//div/span[@class='YkgoD z1asCe GYDk8c']|.//div/span[@class='Ca2Qlc z1asCe GYDk8c']");//10-07-2020 //covid-19 map block
+            //if (nd == null)
+            //    nd = node.SelectSingleNode(".//div/span[@class='YkgoD z1asCe GYDk8c']|.//div/span[@class='Ca2Qlc z1asCe GYDk8c']");//05-10-2020 commented//10-07-2020 //covid-19 map block
             if (nd != null)
             {
                 return "Maps";

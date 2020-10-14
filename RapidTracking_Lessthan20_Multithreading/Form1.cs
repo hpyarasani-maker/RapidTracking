@@ -84,12 +84,12 @@ namespace TrackingTrending
                 //string kwQry = "GetAllKeywords_1 '" + myDate + "'";     
 
                 GetKeywords1(kwQry);
-                this.Invoke((MethodInvoker)delegate ()//13-10-2020
+                //14-10-2020
+                this.Invoke((MethodInvoker)delegate ()
                 {
-                    SendToDBTable(id1, "Thread1", lstKWs1.Items.Count);
-
-
+                    SendToDBTable(id1, "Thread1", lstKWs.Items.Count);
                 });
+                //end 14-10-2020
                 if (lstKWs.Items.Count <= 0 )
                     break;
 
@@ -173,12 +173,12 @@ namespace TrackingTrending
                 //string kwQry = "GetAllKeywords_2 '" + myDate + "'";     
 
                 GetKeywords2(kwQry);
+                //14-10-2020
                 this.Invoke((MethodInvoker)delegate ()//13-10-2020
                 {
                     SendToDBTable(id2, "Thread2", lstKWs2.Items.Count);
-
-
                 });
+                //end 14-10-2020
                 if (lstKWs2.Items.Count <= 0)
                     break;
 
@@ -261,12 +261,12 @@ namespace TrackingTrending
                 //string kwQry = "GetAllKeywords_3 '" + myDate + "'";     
 
                 GetKeywords3(kwQry);
+                //14-10-2020
                 this.Invoke((MethodInvoker)delegate ()//13-10-2020
                 {
                     SendToDBTable(id3, "Thread3", lstKWs3.Items.Count);
-
-
                 });
+                //end 14-10-2020
                 if (lstKWs3.Items.Count <= 0)
                     break;
 
@@ -640,6 +640,8 @@ namespace TrackingTrending
                 throw ex;
             }
         }
+
+        //14-10-2020 New method to updated number of threads repeating and count the keywords
         private void SendToDBTable(int id, string threadname, int threadcount)//13-10-2020
         {
 
@@ -697,6 +699,7 @@ namespace TrackingTrending
                 throw ex;
             }
         }
+        //end 14-10-2020
         private void SendToDBFailure(string seid, string kw, string jobid)
         {
             //string myDate = DateTime.Today.ToString("yyyy-MM-dd");

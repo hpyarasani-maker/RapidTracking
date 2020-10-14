@@ -76,6 +76,7 @@ namespace TrackingTrending
 
         private void StartProcess_1()
         {
+            int id1 = 0;
             while (true)
             {
                 //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
@@ -83,7 +84,12 @@ namespace TrackingTrending
                 //string kwQry = "GetAllKeywords_1 '" + myDate + "'";     
 
                 GetKeywords1(kwQry);
+                this.Invoke((MethodInvoker)delegate ()//13-10-2020
+                {
+                    SendToDBTable(id1, "Thread1", lstKWs1.Items.Count);
 
+
+                });
                 if (lstKWs.Items.Count <= 0 )
                     break;
 
@@ -159,6 +165,7 @@ namespace TrackingTrending
 
         private void StartProcess_2()
         {
+            int id2 = 0;
             while (true)
             {
                 //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
@@ -166,7 +173,12 @@ namespace TrackingTrending
                 //string kwQry = "GetAllKeywords_2 '" + myDate + "'";     
 
                 GetKeywords2(kwQry);
+                this.Invoke((MethodInvoker)delegate ()//13-10-2020
+                {
+                    SendToDBTable(id2, "Thread2", lstKWs2.Items.Count);
 
+
+                });
                 if (lstKWs2.Items.Count <= 0)
                     break;
 
@@ -241,6 +253,7 @@ namespace TrackingTrending
 
         private void StartProcess_3()
         {
+            int id3 = 0;
             while (true)
             {
                 //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
@@ -248,7 +261,12 @@ namespace TrackingTrending
                 //string kwQry = "GetAllKeywords_3 '" + myDate + "'";     
 
                 GetKeywords3(kwQry);
+                this.Invoke((MethodInvoker)delegate ()//13-10-2020
+                {
+                    SendToDBTable(id3, "Thread3", lstKWs3.Items.Count);
 
+
+                });
                 if (lstKWs3.Items.Count <= 0)
                     break;
 

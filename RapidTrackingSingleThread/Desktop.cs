@@ -70,7 +70,7 @@ namespace RapidTrackingSingleThread
                     if (nodeCol == null)
                         nodeCol = doc.DocumentNode.SelectNodes("//div[@class='vC5Ym DhKAUb']/div");  // 03-04-2020
                     if (nodeCol == null)
-                        nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div"); //15-04-2020
+                        nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div|.//div[@class='WvKfwe']/div");//14-10-2020 updated selector classic links //15-04-2020
                     if (nodeCol == null)
                         nodeCol = doc.DocumentNode.SelectNodes("//div[@class='WvKfwe a3spGf']/div|//div[@class='WvKfwe a3spGf']/g-section-with-header");  // 15-04-2020    //01-05-2020");  // 15-04-2020//22-05-2020
                     if (nodeCol == null)
@@ -1405,7 +1405,7 @@ namespace RapidTrackingSingleThread
                 //29-09-2020            
                 if (url.IndexOf("https://") == 0 || url.IndexOf("https://") >= 0) //01-10-2020
                     url = url.Remove(0, url.IndexOf("https://"));
-                else if (url.IndexOf("http://") == 0)
+                else if (url.IndexOf("http://") == 0 || url.IndexOf("http://") >= 0) //14-10-2020 included indexof for http)
                     url = url.Remove(0, url.IndexOf("http://"));
                 //end 29-09-2020
 

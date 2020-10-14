@@ -622,7 +622,63 @@ namespace TrackingTrending
                 throw ex;
             }
         }
+        private void SendToDBTable(int id, string threadname, int threadcount)//13-10-2020
+        {
 
+            try
+            {
+                String query = "";
+                string myDate = DateTime.Today.ToString("yyyy-MM-dd");
+
+                using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
+                {
+                    if (con.State != ConnectionState.Open)
+                        con.Open();
+                    SqlCommand comm = new SqlCommand("Select count(*) from Lessthen20Table_Threads_1 where id= @id and date=@date", con);
+                    comm.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                    comm.Parameters.Add("@date", SqlDbType.DateTime).Value = myDate;
+                    var result = comm.ExecuteScalar();
+                    int count = int.Parse(result.ToString());
+                    if (count > 0)
+                    {
+                        query = "UPDATE Lessthen20Table_Threads SET " + threadname + "=" + threadcount + " Where id=" + id + " and date='" + myDate + "' ";
+                        comm = new SqlCommand(query, con);
+                        comm.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        query = "INSERT INTO dbo.Lessthen20Table_Threads (Date,id," + threadname + ") VALUES (@date,@id,@tcount)";
+                        comm = new SqlCommand(query, con);
+                        comm.Parameters.Add("@date", SqlDbType.DateTime).Value = myDate;
+                        comm.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                        comm.Parameters.Add("@tcount", SqlDbType.Int).Value = threadcount;
+                        comm.ExecuteNonQuery();
+                    }
+                    if (con.State != ConnectionState.Closed)
+                        con.Close();
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                string errorMessage = "Database Error: \r\n";
+                for (int i = 0; i < ex.Errors.Count; i++)
+                {
+                    errorMessage += "Index #" + i + "\n" +
+                                     "Message: " + ex.Errors[i].Message + "\n" +
+                                     "LineNumber: " + ex.Errors[i].LineNumber + "\n" +
+                                     "Source: " + ex.Errors[i].Source + "\n" +
+                                     "Procedure: " + ex.Errors[i].Procedure + "\n" +
+                                     "Server: " + ex.Errors[i].Server + "\n";
+                }
+
+                throw new Exception(errorMessage);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         private void SendToDBFailure(string seid, string kw, string jobid)
         {
             //string myDate = DateTime.Today.ToString("yyyy-MM-dd");

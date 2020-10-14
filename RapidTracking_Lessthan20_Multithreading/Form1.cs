@@ -654,7 +654,7 @@ namespace TrackingTrending
                 {
                     if (con.State != ConnectionState.Open)
                         con.Open();
-                    SqlCommand comm = new SqlCommand("Select count(*) from Lessthen20Table_Threads_1 where id= @id and date=@date", con);
+                    SqlCommand comm = new SqlCommand("Select count(*) from Lessthen20Table_Threads where id= @id and date=@date", con);
                     comm.Parameters.Add("@id", SqlDbType.Int).Value = id;
                     comm.Parameters.Add("@date", SqlDbType.DateTime).Value = myDate;
                     var result = comm.ExecuteScalar();

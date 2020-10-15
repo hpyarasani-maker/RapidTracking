@@ -511,7 +511,7 @@ namespace RapidTrackingSingleThread
                 || node.SelectNodes(".//div[@class='g GjRtuc']") != null // 02-06-2020
                 || node.SelectNodes(".//div[contains(@class,'g card-section')]") != null) //06-10-2020 classic link
             {
-                HtmlNodeCollection nds = node.SelectNodes(".//div[@class='g']");
+                HtmlNodeCollection nds = node.SelectNodes(".//div[@class='g']|.//div/g-section-with-header"); //15-10-2020
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='rc']");
                 if (nds == null)

@@ -82,7 +82,7 @@ namespace TrackingTrending
                 //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
                 string kwQry = "GetLessthan20Keywords_1 '" + myDate + "'";
                 //string kwQry = "GetAllKeywords_1 '" + myDate + "'";     
-
+                id1++;
                 GetKeywords1(kwQry);
                 //14-10-2020
                 this.Invoke((MethodInvoker)delegate ()
@@ -171,7 +171,7 @@ namespace TrackingTrending
                 //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
                 string kwQry = "GetLessthan20Keywords_2 '" + myDate + "'";
                 //string kwQry = "GetAllKeywords_2 '" + myDate + "'";     
-
+                id2++;
                 GetKeywords2(kwQry);
                 //14-10-2020
                 this.Invoke((MethodInvoker)delegate ()//13-10-2020
@@ -259,7 +259,7 @@ namespace TrackingTrending
                 //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
                 string kwQry = "GetLessthan20Keywords_3 '" + myDate + "'";
                 //string kwQry = "GetAllKeywords_3 '" + myDate + "'";     
-
+                id3++;
                 GetKeywords3(kwQry);
                 //14-10-2020
                 this.Invoke((MethodInvoker)delegate ()//13-10-2020

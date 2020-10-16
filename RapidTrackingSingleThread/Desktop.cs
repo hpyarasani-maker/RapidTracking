@@ -1334,7 +1334,8 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@class='mod NFQFxe oHglmf xzPb7d']") != null//images//05-08-2020
                 || node.SelectSingleNode(".//div[@id='knowledge-finance-wholepage__entity-summary']") != null // 18-03-2020
                 || node.SelectSingleNode(".//div[@class='I6TXqe osrp-blk']") != null //12-08-2020 included selector for video card
-                || node.SelectSingleNode(".//div[@class='WcS13d']") != null); //02-10-2020 maps selectors
+                || node.SelectSingleNode(".//div[@class='WcS13d']") != null //02-10-2020 maps selectors
+                || node.SelectSingleNode(".//h3[@class='GmE3X']") != null); //16-10-2020 updated selector for videos
             if (bVal == true)//2019-09-11
             {
                 try

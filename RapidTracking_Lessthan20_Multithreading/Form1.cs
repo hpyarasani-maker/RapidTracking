@@ -136,13 +136,13 @@ namespace TrackingTrending
         }
         private void StartProcess_1()
         {
-            int id1 = 0;
+            id1++; //19-10-2020
             while (true)
             {
                 //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
                 string kwQry = "GetLessthan20Keywords_1 '" + myDate + "'";
                 //string kwQry = "GetAllKeywords_1 '" + myDate + "'";     
-                id1++;
+                
                 GetKeywords1(kwQry);
                 //14-10-2020
                 this.Invoke((MethodInvoker)delegate ()
@@ -225,13 +225,13 @@ namespace TrackingTrending
 
         private void StartProcess_2()
         {
-            int id2 = 0;
+            id2++; //19-10-2020
             while (true)
             {
                 //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
                 string kwQry = "GetLessthan20Keywords_2 '" + myDate + "'";
                 //string kwQry = "GetAllKeywords_2 '" + myDate + "'";     
-                id2++;
+               
                 GetKeywords2(kwQry);
                 //14-10-2020
                 this.Invoke((MethodInvoker)delegate ()//13-10-2020
@@ -313,13 +313,13 @@ namespace TrackingTrending
 
         private void StartProcess_3()
         {
-            int id3 = 0;
+            id3++; //19-10-2020
             while (true)
             {
                 //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
                 string kwQry = "GetLessthan20Keywords_3 '" + myDate + "'";
                 //string kwQry = "GetAllKeywords_3 '" + myDate + "'";     
-                id3++;
+               
                 GetKeywords3(kwQry);
                 //14-10-2020
                 this.Invoke((MethodInvoker)delegate ()//13-10-2020

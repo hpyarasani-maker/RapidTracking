@@ -147,7 +147,7 @@ namespace TrackingTrending
                 //14-10-2020
                 this.Invoke((MethodInvoker)delegate ()
                 {
-                    SendToDBTable(id1, "Thread1", lstKWs.Items.Count);
+                    SendToDBTable(id1++, "Thread1", lstKWs.Items.Count);
                 });
                 //end 14-10-2020
                 if (lstKWs.Items.Count <= 0 )
@@ -236,7 +236,7 @@ namespace TrackingTrending
                 //14-10-2020
                 this.Invoke((MethodInvoker)delegate ()//13-10-2020
                 {
-                    SendToDBTable(id2, "Thread2", lstKWs2.Items.Count);
+                    SendToDBTable(id2++, "Thread2", lstKWs2.Items.Count);
                 });
                 //end 14-10-2020
                 if (lstKWs2.Items.Count <= 0)
@@ -324,7 +324,7 @@ namespace TrackingTrending
                 //14-10-2020
                 this.Invoke((MethodInvoker)delegate ()//13-10-2020
                 {
-                    SendToDBTable(id3, "Thread3", lstKWs3.Items.Count);
+                    SendToDBTable(id3++, "Thread3", lstKWs3.Items.Count);
                 });
                 //end 14-10-2020
                 if (lstKWs3.Items.Count <= 0)
@@ -704,7 +704,6 @@ namespace TrackingTrending
         //14-10-2020 New method to updated number of threads repeating and count the keywords
         private void SendToDBTable(int id, string threadname, int threadcount)//13-10-2020
         {
-
             try
             {
                 String query = "";
@@ -714,7 +713,7 @@ namespace TrackingTrending
                 {
                     if (con.State != ConnectionState.Open)
                         con.Open();
-                    SqlCommand comm = new SqlCommand("Select count(*) from Lessthen20Table_Threads where id= @id and date=@date", con);
+                    SqlCommand comm = new SqlCommand("Select count(*) from Lessthen20Table_Threads where id = @id and date=@date", con);
                     comm.Parameters.Add("@id", SqlDbType.Int).Value = id;
                     comm.Parameters.Add("@date", SqlDbType.DateTime).Value = myDate;
                     var result = comm.ExecuteScalar();

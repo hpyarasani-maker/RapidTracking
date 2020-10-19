@@ -34,6 +34,9 @@ namespace TrackingTrending
         bool process2 = false;
         bool process3 = false;
 
+        int id1 = 0;
+        int id2 = 0;
+        int id3 = 0;
         string myDate;
         public Form1()
         {

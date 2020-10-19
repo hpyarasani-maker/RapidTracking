@@ -34,6 +34,9 @@ namespace TrackingTrending
         bool process2 = false;
         bool process3 = false;
 
+        int id1 = 0;
+        int id2 = 0;
+        int id3 = 0;
         string myDate;
         public Form1()
         {
@@ -61,6 +64,8 @@ namespace TrackingTrending
             dtPicker1.Value = DateTime.Today;
             myDate = dtPicker1.Value.ToString("yyyy-MM-dd");
 
+            SetLastRunThreads("Thread1", "Thread2", "Thread3"); // 19-10-2020
+
             Thread t1 = new Thread(new ThreadStart(StartProcess_1));
             t1.SetApartmentState(ApartmentState.STA);
             t1.Start();
@@ -73,17 +78,82 @@ namespace TrackingTrending
             t3.SetApartmentState(ApartmentState.STA);
             t3.Start();
         }
+        //19-10-2020
+        private void SetLastRunThreads(string t1, string t2, string t3)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
+                {
+                    con.Open();
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        var qry = "Select max(id) from Lessthen20Table_Threads where date=Convert(varchar(10), '" + myDate + "', 103) And " +
+                                   t1 + " > 0 ";
+                        comm.Connection = con;
+                        comm.CommandText = qry;
+                        comm.CommandType = CommandType.Text;
+                        comm.CommandTimeout = 0;
+                        using (SqlDataReader dr = comm.ExecuteReader())
+                        {
+                            if (dr.Read())
+                            {
+                                id1 = ((int)dr.GetValue(0));
+                            }
+                        }
 
+                        qry = "Select max(id) from Lessthen20Table_Threads where date=Convert(varchar(10), '" + myDate + "', 103) And " +
+                               t2 + " > 0 ";
+                        comm.CommandText = qry;
+                        using (SqlDataReader dr = comm.ExecuteReader())
+                        {
+                            if (dr.Read())
+                            {
+                                id2 = ((int)dr.GetValue(0));
+                            }
+                        }
+
+                        qry = "Select max(id) from Lessthen20Table_Threads where date=Convert(varchar(10), '" + myDate + "', 103) And " +
+                               t3 + " > 0 ";
+                        comm.CommandText = qry;
+                        using (SqlDataReader dr = comm.ExecuteReader())
+                        {
+                            if (dr.Read())
+                            {
+                                id3 = ((int)dr.GetValue(0));
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.Invoke((MethodInvoker)delegate ()
+                {
+                    txtError.Text += ex.Message + "\r\n";
+                });
+            }
+            finally
+            {
+
+            }
+        }
         private void StartProcess_1()
         {
+            id1++; //19-10-2020
             while (true)
             {
                 //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
                 string kwQry = "GetLessthan20Keywords_43 '" + myDate + "'";
                 //string kwQry = "GetAllKeywords_1 '" + myDate + "'";     
-
+                
                 GetKeywords1(kwQry);
-
+                //14-10-2020
+                this.Invoke((MethodInvoker)delegate ()
+                {
+                    SendToDBTable(id1++, "Thread1", lstKWs.Items.Count);
+                });
+                //end 14-10-2020
                 if (lstKWs.Items.Count <= 0 )
                     break;
 
@@ -159,14 +229,20 @@ namespace TrackingTrending
 
         private void StartProcess_2()
         {
+            id2++; //19-10-2020
             while (true)
             {
                 //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
                 string kwQry = "GetLessthan20Keywords_44 '" + myDate + "'";
                 //string kwQry = "GetAllKeywords_2 '" + myDate + "'";     
-
+               
                 GetKeywords2(kwQry);
-
+                //14-10-2020
+                this.Invoke((MethodInvoker)delegate ()//13-10-2020
+                {
+                    SendToDBTable(id2++, "Thread2", lstKWs2.Items.Count);
+                });
+                //end 14-10-2020
                 if (lstKWs2.Items.Count <= 0)
                     break;
 
@@ -241,14 +317,20 @@ namespace TrackingTrending
 
         private void StartProcess_3()
         {
+            id3++; //19-10-2020
             while (true)
             {
                 //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
                 string kwQry = "GetLessthan20Keywords_45 '" + myDate + "'";
                 //string kwQry = "GetAllKeywords_3 '" + myDate + "'";     
-
+               
                 GetKeywords3(kwQry);
-
+                //14-10-2020
+                this.Invoke((MethodInvoker)delegate ()//13-10-2020
+                {
+                    SendToDBTable(id3++, "Thread3", lstKWs3.Items.Count);
+                });
+                //end 14-10-2020
                 if (lstKWs3.Items.Count <= 0)
                     break;
 
@@ -623,6 +705,68 @@ namespace TrackingTrending
             }
         }
 
+        //14-10-2020 New method to updated number of threads repeating and count the keywords
+        private void SendToDBTable(int id, string threadname, int threadcount)//13-10-2020
+        {
+            try
+            {
+                String query = "";
+                string myDate = DateTime.Today.ToString("yyyy-MM-dd");
+
+                using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
+                {
+                    if (con.State != ConnectionState.Open)
+                        con.Open();
+                    SqlCommand comm = new SqlCommand("Select count(*) from Lessthen20Table_Threads where id = @id and date=@date", con);
+                    comm.CommandType = CommandType.Text; //19-10-2020
+                    comm.CommandTimeout = 0; //19-10-2020
+                    comm.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                    comm.Parameters.Add("@date", SqlDbType.DateTime).Value = myDate;
+                    var result = comm.ExecuteScalar();
+
+                    
+                    int count = int.Parse(result.ToString());
+                    if (count > 0)
+                    {
+                        query = "UPDATE Lessthen20Table_Threads SET " + threadname + "=" + threadcount + " Where id=" + id + " and date='" + myDate + "' ";
+                        comm = new SqlCommand(query, con);
+                        comm.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        query = "INSERT INTO dbo.Lessthen20Table_Threads (Date,id," + threadname + ") VALUES (@date,@id,@tcount)";
+                        comm = new SqlCommand(query, con);
+                        comm.Parameters.Add("@date", SqlDbType.DateTime).Value = myDate;
+                        comm.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                        comm.Parameters.Add("@tcount", SqlDbType.Int).Value = threadcount;
+                        comm.ExecuteNonQuery();
+                    }
+                    //if (con.State != ConnectionState.Closed)
+                    //    con.Close();
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                string errorMessage = "Database Error: \r\n";
+                for (int i = 0; i < ex.Errors.Count; i++)
+                {
+                    errorMessage += "Index #" + i + "\n" +
+                                     "Message: " + ex.Errors[i].Message + "\n" +
+                                     "LineNumber: " + ex.Errors[i].LineNumber + "\n" +
+                                     "Source: " + ex.Errors[i].Source + "\n" +
+                                     "Procedure: " + ex.Errors[i].Procedure + "\n" +
+                                     "Server: " + ex.Errors[i].Server + "\n";
+                }
+
+                throw new Exception(errorMessage);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        //end 14-10-2020
         private void SendToDBFailure(string seid, string kw, string jobid)
         {
             //string myDate = DateTime.Today.ToString("yyyy-MM-dd");

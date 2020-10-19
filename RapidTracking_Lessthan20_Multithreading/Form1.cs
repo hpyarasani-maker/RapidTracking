@@ -133,6 +133,10 @@ namespace TrackingTrending
                     txtError.Text += ex.Message + "\r\n";
                 });
             }
+            finally
+            {
+
+            }
         }
         private void StartProcess_1()
         {
@@ -714,9 +718,13 @@ namespace TrackingTrending
                     if (con.State != ConnectionState.Open)
                         con.Open();
                     SqlCommand comm = new SqlCommand("Select count(*) from Lessthen20Table_Threads where id = @id and date=@date", con);
+                    comm.CommandType = CommandType.Text; //19-10-2020
+                    comm.CommandTimeout = 0; //19-10-2020
                     comm.Parameters.Add("@id", SqlDbType.Int).Value = id;
                     comm.Parameters.Add("@date", SqlDbType.DateTime).Value = myDate;
                     var result = comm.ExecuteScalar();
+
+                    
                     int count = int.Parse(result.ToString());
                     if (count > 0)
                     {
@@ -733,8 +741,8 @@ namespace TrackingTrending
                         comm.Parameters.Add("@tcount", SqlDbType.Int).Value = threadcount;
                         comm.ExecuteNonQuery();
                     }
-                    if (con.State != ConnectionState.Closed)
-                        con.Close();
+                    //if (con.State != ConnectionState.Closed)
+                    //    con.Close();
                 }
 
             }

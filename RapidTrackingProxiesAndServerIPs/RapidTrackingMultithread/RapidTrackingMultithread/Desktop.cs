@@ -183,7 +183,7 @@ namespace RapidTrackingMultithread
             if (node == null)
                 node = rcNode.SelectSingleNode(".//div[@class='kp-wholepage EyBRub kp-wholepage-osrp HSryR']");  // 06-11-2019
             if (node == null)
-                node = rcNode.SelectSingleNode(".//div[@class='kp-wholepage kp-wholepage-osrp HSryR EyBRub']");  // 11-05-2020
+                node = rcNode.SelectSingleNode(".//div[contains(@class,'kp-wholepage kp-wholepage-osrp')]");  // 11-05-2020 //16-10-2020 kp block in contains functions
             if (node == null)
                 node = rcNode.SelectSingleNode(".//div[@class='Y37F6d Nn2Stf']");  // 21-04-2020
             if (node == null)
@@ -1175,8 +1175,13 @@ namespace RapidTrackingMultithread
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='sQkmof']");//23-07-2020 included selector for videos
 
+            //15-10-2020
+            HtmlNode nd1 = null;
             if (nd != null)
+                nd1 = node.SelectSingleNode(".//div[@class='g']");
+            if (nd != null && nd1 == null)
                 return "videos";
+            //end 15-10-2020
 
             nd = node.SelectSingleNode(".//div[@class='_Zfh']");
             if (nd == null)
@@ -1320,7 +1325,8 @@ namespace RapidTrackingMultithread
                 || node.SelectSingleNode(".//div[@class='mod NFQFxe oHglmf xzPb7d']") != null//images//05-08-2020
                 || node.SelectSingleNode(".//div[@id='knowledge-finance-wholepage__entity-summary']") != null // 18-03-2020
                 || node.SelectSingleNode(".//div[@class='I6TXqe osrp-blk']") != null //12-08-2020 included selector for video card
-                || node.SelectSingleNode(".//div[@class='WcS13d']") != null); //02-10-2020 maps selectors
+                || node.SelectSingleNode(".//div[@class='WcS13d']") != null //02-10-2020 maps selectors
+                || node.SelectSingleNode(".//h3[@class='GmE3X']") != null); //16-10-2020 updated selector for videos
             if (bVal == true)//2019-09-11
             {
                 try
@@ -1396,7 +1402,7 @@ namespace RapidTrackingMultithread
                 //29-09-2020            
                 if (url.IndexOf("https://") == 0 || url.IndexOf("https://") >= 0) //01-10-2020
                     url = url.Remove(0, url.IndexOf("https://"));
-                else if (url.IndexOf("http://") == 0)
+                else if (url.IndexOf("http://") == 0 || url.IndexOf("http://") >= 0) //14-10-2020 included indexof for http)
                     url = url.Remove(0, url.IndexOf("http://"));
                 //end 29-09-2020
 
@@ -1615,3 +1621,6 @@ namespace RapidTrackingMultithread
     }
 
 }
+
+
+

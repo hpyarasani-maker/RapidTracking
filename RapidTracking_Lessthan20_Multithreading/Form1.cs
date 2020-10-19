@@ -78,7 +78,62 @@ namespace TrackingTrending
             t3.SetApartmentState(ApartmentState.STA);
             t3.Start();
         }
+        //19-10-2020
+        private void SetLastRunThreads(string t1, string t2, string t3)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
+                {
+                    con.Open();
+                    using (SqlCommand comm = new SqlCommand())
+                    {
+                        var qry = "Select max(id) from Lessthen20Table_Threads where date=Convert(varchar(10), '" + myDate + "', 103) And " +
+                                   t1 + " > 0 ";
+                        comm.Connection = con;
+                        comm.CommandText = qry;
+                        comm.CommandType = CommandType.Text;
+                        comm.CommandTimeout = 0;
+                        using (SqlDataReader dr = comm.ExecuteReader())
+                        {
+                            if (dr.Read())
+                            {
+                                id1 = ((int)dr.GetValue(0));
+                            }
+                        }
 
+                        qry = "Select max(id) from Lessthen20Table_Threads where date=Convert(varchar(10), '" + myDate + "', 103) And " +
+                               t2 + " > 0 ";
+                        comm.CommandText = qry;
+                        using (SqlDataReader dr = comm.ExecuteReader())
+                        {
+                            if (dr.Read())
+                            {
+                                id2 = ((int)dr.GetValue(0));
+                            }
+                        }
+
+                        qry = "Select max(id) from Lessthen20Table_Threads where date=Convert(varchar(10), '" + myDate + "', 103) And " +
+                               t3 + " > 0 ";
+                        comm.CommandText = qry;
+                        using (SqlDataReader dr = comm.ExecuteReader())
+                        {
+                            if (dr.Read())
+                            {
+                                id3 = ((int)dr.GetValue(0));
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.Invoke((MethodInvoker)delegate ()
+                {
+                    txtError.Text += ex.Message + "\r\n";
+                });
+            }
+        }
         private void StartProcess_1()
         {
             int id1 = 0;

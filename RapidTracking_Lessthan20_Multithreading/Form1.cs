@@ -64,6 +64,8 @@ namespace TrackingTrending
             dtPicker1.Value = DateTime.Today;
             myDate = dtPicker1.Value.ToString("yyyy-MM-dd");
 
+            SetLastRunThreads("Thread1", "Thread2", "Thread3"); // 19-10-2020
+
             Thread t1 = new Thread(new ThreadStart(StartProcess_1));
             t1.SetApartmentState(ApartmentState.STA);
             t1.Start();

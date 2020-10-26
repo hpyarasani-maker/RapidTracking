@@ -84,9 +84,11 @@ namespace RapidTrackingMultiThreadJobIDs
                 int cnt = 0;
                 foreach (string s in lstKWs.Items)
                 {
-                    string seid = s.Split('|')[0];
-                    string kw = s.Split('|')[1];
-                    string jobid = s.Split('|')[2];
+                    //26-10-2020 changed character as ':'
+                    string seid = s.Split(':')[0];
+                    string kw = s.Split(':')[1];
+                    string jobid = s.Split(':')[2];
+                    //end of 26-10-2020 changed character as ':'
                     try
                     {
                         var doc = new HtmlAgilityPack.HtmlDocument();
@@ -167,9 +169,11 @@ namespace RapidTrackingMultiThreadJobIDs
                 int cnt = 0;
                 foreach (string s in lstKWs2.Items)
                 {
-                    string seid = s.Split('|')[0];
-                    string kw = s.Split('|')[1];
-                    string jobid = s.Split('|')[2];
+                    //26-10-2020 changed character as ':'
+                    string seid = s.Split(':')[0];
+                    string kw = s.Split(':')[1];
+                    string jobid = s.Split(':')[2];
+                    //end of 26-10-2020 changed character as ':'
                     try
                     {
                         var doc = new HtmlAgilityPack.HtmlDocument();
@@ -249,9 +253,11 @@ namespace RapidTrackingMultiThreadJobIDs
                 int cnt = 0;
                 foreach (string s in lstKWs3.Items)
                 {
-                    string seid = s.Split('|')[0];
-                    string kw = s.Split('|')[1];
-                    string jobid = s.Split('|')[2];
+                    //26-10-2020 changed character as ':'
+                    string seid = s.Split(':')[0];
+                    string kw = s.Split(':')[1];
+                    string jobid = s.Split(':')[2];
+                    //end of 26-10-2020 changed character as ':'
                     try
                     {
                         var doc = new HtmlAgilityPack.HtmlDocument();

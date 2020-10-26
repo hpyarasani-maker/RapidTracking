@@ -84,9 +84,11 @@ namespace RapidTrackingMultiThreadJobIDs
                 int cnt = 0;
                 foreach (string s in lstKWs.Items)
                 {
-                    string seid = s.Split('|')[0];
-                    string kw = s.Split('|')[1];
-                    string jobid = s.Split('|')[2];
+                    //26-10-2020 changed character as ':'
+                    string seid = s.Split(':')[0];
+                    string kw = s.Split(':')[1];
+                    string jobid = s.Split(':')[2];
+                    //end of 26-10-2020 changed character as ':'
                     try
                     {
                         var doc = new HtmlAgilityPack.HtmlDocument();
@@ -167,9 +169,11 @@ namespace RapidTrackingMultiThreadJobIDs
                 int cnt = 0;
                 foreach (string s in lstKWs2.Items)
                 {
-                    string seid = s.Split('|')[0];
-                    string kw = s.Split('|')[1];
-                    string jobid = s.Split('|')[2];
+                    //26-10-2020 changed character as ':'
+                    string seid = s.Split(':')[0];
+                    string kw = s.Split(':')[1];
+                    string jobid = s.Split(':')[2];
+                    //end of 26-10-2020 changed character as ':'
                     try
                     {
                         var doc = new HtmlAgilityPack.HtmlDocument();
@@ -249,9 +253,11 @@ namespace RapidTrackingMultiThreadJobIDs
                 int cnt = 0;
                 foreach (string s in lstKWs3.Items)
                 {
-                    string seid = s.Split('|')[0];
-                    string kw = s.Split('|')[1];
-                    string jobid = s.Split('|')[2];
+                    //26-10-2020 changed character as ':'
+                    string seid = s.Split(':')[0];
+                    string kw = s.Split(':')[1];
+                    string jobid = s.Split(':')[2];
+                    //end of 26-10-2020 changed character as ':'
                     try
                     {
                         var doc = new HtmlAgilityPack.HtmlDocument();
@@ -735,8 +741,8 @@ namespace RapidTrackingMultiThreadJobIDs
                             {
                                 this.Invoke((MethodInvoker)delegate ()
                                 {
-                                    lstKWs.Items.Add(dr.GetValue(0) + "|" + dr.GetValue(1) + "|" + dr.GetValue(2));
-                                    
+                                    lstKWs.Items.Add(dr.GetValue(0) + ":" + dr.GetValue(1) + ":" + dr.GetValue(2)); //26-10-2020 applied ":"
+
                                 });
                             }
                         }
@@ -777,7 +783,7 @@ namespace RapidTrackingMultiThreadJobIDs
                             {
                                 this.Invoke((MethodInvoker)delegate ()
                                 {
-                                    lstKWs2.Items.Add(dr.GetValue(0) + "|" + dr.GetValue(1) + "|" + dr.GetValue(2));
+                                    lstKWs2.Items.Add(dr.GetValue(0) + ":" + dr.GetValue(1) + ":" + dr.GetValue(2)); //26-10-2020 applied ":"
 
                                 });
                             }
@@ -819,7 +825,7 @@ namespace RapidTrackingMultiThreadJobIDs
                             {
                                 this.Invoke((MethodInvoker)delegate ()
                                 {
-                                    lstKWs3.Items.Add(dr.GetValue(0) + "|" + dr.GetValue(1) + "|" + dr.GetValue(2));
+                                    lstKWs3.Items.Add(dr.GetValue(0) + ":" + dr.GetValue(1) + ":" + dr.GetValue(2)); //26-10-2020 applied ":"
 
                                 });
                             }

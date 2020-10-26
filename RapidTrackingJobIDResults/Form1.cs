@@ -79,10 +79,12 @@ namespace RapidTrackingJobIDResults
                 int cnt = 0;                
                 foreach (string s in lstKws.Items)
                 {
-                    string seid = s.Split('|')[0];
-                    string kw = s.Split('|')[1];
-                    string jobid = s.Split('|')[2];
-                    
+                    //26-10-2020 changed character as ':'
+                    string seid = s.Split(':')[0];
+                    string kw = s.Split(':')[1];
+                    string jobid = s.Split(':')[2];
+                    //end of 26-10-2020 changed character as ':'
+
 
                     bool result = false;
                     try
@@ -320,7 +322,7 @@ namespace RapidTrackingJobIDResults
                             {
                                 this.Invoke((MethodInvoker)delegate ()
                                 {
-                                    lstKws.Items.Add(dr[0].ToString() + "|" + dr[1].ToString() + "|" + dr[2].ToString());
+                                    lstKws.Items.Add(dr.GetValue(0) + ":" + dr.GetValue(1) + ":" + dr.GetValue(2)); //26-10-2020 applied ":"
                                 });
                             }
                         }

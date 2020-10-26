@@ -735,8 +735,8 @@ namespace RapidTrackingMultiThreadJobIDs
                             {
                                 this.Invoke((MethodInvoker)delegate ()
                                 {
-                                    lstKWs.Items.Add(dr.GetValue(0) + "|" + dr.GetValue(1) + "|" + dr.GetValue(2));
-                                    
+                                    lstKWs.Items.Add(dr.GetValue(0) + ":" + dr.GetValue(1) + ":" + dr.GetValue(2)); //26-10-2020 applied ":"
+
                                 });
                             }
                         }
@@ -777,7 +777,7 @@ namespace RapidTrackingMultiThreadJobIDs
                             {
                                 this.Invoke((MethodInvoker)delegate ()
                                 {
-                                    lstKWs2.Items.Add(dr.GetValue(0) + "|" + dr.GetValue(1) + "|" + dr.GetValue(2));
+                                    lstKWs2.Items.Add(dr.GetValue(0) + ":" + dr.GetValue(1) + ":" + dr.GetValue(2)); //26-10-2020 applied ":"
 
                                 });
                             }
@@ -819,7 +819,7 @@ namespace RapidTrackingMultiThreadJobIDs
                             {
                                 this.Invoke((MethodInvoker)delegate ()
                                 {
-                                    lstKWs3.Items.Add(dr.GetValue(0) + "|" + dr.GetValue(1) + "|" + dr.GetValue(2));
+                                    lstKWs3.Items.Add(dr.GetValue(0) + ":" + dr.GetValue(1) + ":" + dr.GetValue(2)); //26-10-2020 applied ":"
 
                                 });
                             }

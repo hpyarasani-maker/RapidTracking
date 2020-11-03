@@ -2355,6 +2355,9 @@ namespace RapidTrackingSingleThread
                 return true;
             }
 
+            if (node.SelectSingleNode(".//div[@class='g card-section svwwZ']") != null) //03-11-2020
+                return false;
+
             //22-11-2019
             nd = node.SelectSingleNode(".//div[@class='g kno-result rQUFld mnr-c g-blk']|.//w-answer/div[@class='MUxGbd t51gnb lyLwlc lEBKkf']"); //01-10-2020 Answered Card selector included
             if (nd != null)

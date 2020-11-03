@@ -1561,7 +1561,7 @@ namespace RapidTrackingMultiThreadJobIDs
                      character == 0xA /* == '\n' == 10  */          ||
                      character == 0xD /* == '\r' == 13  */          ||
                     (character >= 0x20 && character <= 0xD7FF) ||
-                    (character >= 0xE000 && character <= 0xFFFD) ||
+                    (character >= 0xE000 && character < 0xFFFD) ||     //02-11-2020 changed <= 0xFFFD to < 0xFFFD
                     (character >= 0x10000 && character <= 0x10FFFF)
                 );
             }

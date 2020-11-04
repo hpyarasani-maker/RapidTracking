@@ -736,7 +736,7 @@ namespace TrackingTrending
             {
                 nds = node.SelectNodes(".//div[@class='mnr-c waTp2e xpd O9g5cc uUPGi']|.//div[@class='mnr-c luh4tb xpd O9g5cc uUPGi']");//06-10-2020 classic link selector //19-06-2020   //20-01-2020 selector changed for two classic links
                 if (nds == null)
-                    nds = node.SelectNodes(".//div[@class='mnr-c O9g5cc uUPGi']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='HD8Pae mnr-c xpd O9g5cc uUPGi']|.//div/g-card[@class='XqIXXe']|.//g-card[@id='tscffb']|.//g-card[@class='g F6CFcc']|.//div[@class='khgTR lWEpfd']|.//div[@class='khgTR R5lVqb']|.//div[@class='mnr-c fp-w qs-ic aig-grd']|.//g-card[@class='URhAHe']|.//div[@class='mnr-c IcwJCe']");//26-08-2020 incuded contains functions to the selector//29-07-2020 //20-05-2020 missing classic link //05-06-2020
+                    nds = node.SelectNodes(".//div[@class='mnr-c O9g5cc uUPGi']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='HD8Pae mnr-c xpd O9g5cc uUPGi']|.//div/g-card[@class='XqIXXe']|.//g-card[@id='tscffb']|.//g-card[@class='g F6CFcc']|.//div[@class='khgTR lWEpfd']|.//div[@class='khgTR R5lVqb']|.//div[@class='mnr-c fp-w qs-ic aig-grd']|.//g-card[@class='URhAHe']|.//div[@class='mnr-c IcwJCe']|.//div[@class='g card-section svwwZ']");//03-11-2020//26-08-2020 incuded contains functions to the selector//29-07-2020 //20-05-2020 missing classic link //05-06-2020
                 if (nds == null)
                     if (node.Attributes["class"].Value == "mnr-c xpd O9g5cc uUPGi")
                         nds = node.SelectNodes(".//div[contains(@class,'KJDcUb')]"); //28-07-2020 //29-07-2020 included contains function
@@ -872,7 +872,7 @@ namespace TrackingTrending
                             {
                                 n = nd.SelectSingleNode(".//div[@class='rc']");
                                 if (n != null)
-                                    n = nd.SelectSingleNode(".//h3[@class='r']/a|.//h3[@class='r']/div/a|.//h3[@class='yuRUbf JtG40d']/a"); //09-06-2020 //16-09-2020 included selector for classic link
+                                    n = nd.SelectSingleNode(".//h3[@class='r']/a|.//h3[@class='r']/div/a|.//h3[contains(@class,'yuRUbf JtG40d')]/a"); //04-11-2020 //09-06-2020 //16-09-2020 included selector for classic link
                             }
                             if (n != null)
                             {
@@ -915,7 +915,7 @@ namespace TrackingTrending
                              || nd.Attributes["class"].Value == "mnr-c O9g5cc uUPGi" || nd.Attributes["class"].Value == "mnr-c waTp2e xpd O9g5cc uUPGi"
                              || nd.Attributes["class"].Value == "MGqjK" || nd.Attributes["class"].Value == "setTDc" || nd.Attributes["class"].Value.Contains("khgTR") //26-08-2020    // 20-05-2020
                              || node.Attributes["class"]?.Value == "mnr-c xpd O9g5cc uUPGi" //20-01-2020 // selectors for two classic links block
-                             || nd.Attributes["class"].Value == "mnr-c luh4tb xpd O9g5cc uUPGi") //06-10-2020 classic type block type
+                             || nd.Attributes["class"].Value == "mnr-c luh4tb xpd O9g5cc uUPGi" || nd.Attributes["class"].Value == "g card-section svwwZ") //03-11-2020 //06-10-2020 classic type block type
                             {
                                 //17-10-2019
                                 string vdos = string.Empty;
@@ -1007,7 +1007,7 @@ namespace TrackingTrending
                                 {
                                     nv = nd.SelectSingleNode(".//div[@class='rc']|.//div[@class='ytwLQd']");//05-06-2020 missing classic links
                                     if (nv != null)
-                                        nv = nd.SelectSingleNode(".//h3[@class='r']/a|.//h3[@class='r']/div/a"); // 09-06-2020
+                                        nv = nd.SelectSingleNode(".//h3[@class='r']/a|.//h3[@class='r']/div/a|.//h3[contains(@class,'yuRUbf JtG40d')]/a"); //03-11-2020  // 09-06-2020
                                 }
                                 if (nv != null)
                                 {
@@ -1201,7 +1201,7 @@ namespace TrackingTrending
             ArrayList al = new ArrayList();  //25-06-2020
             HtmlNodeCollection nd = node.SelectNodes(".//div[@jsmodel='uIhXXc']/div/g-scrolling-carousel/div/div/div/ul[@class='Kjd0sd']/div/div/g-inner-card/a");
             if (nd == null)
-                nd = node.SelectNodes(".//div[@jsname='WUSFrc']/g-link/a|.//div[@jsname='WUSFrc']/div/g-link/a"); // 06-01-2020 Included new selector for carousel
+                nd = node.SelectNodes(".//div[@jsname='WUSFrc']/g-link/a|.//div[@jsname='WUSFrc']/div/g-link/a|.//div[@class='v1uiFd']/g-link/a"); //26-10-2020 selector included for item url// 06-01-2020 Included new selector for carousel
             string url = "";
             if (nd != null)
             {
@@ -2321,7 +2321,7 @@ namespace TrackingTrending
             HtmlNode nd = node.SelectSingleNode(".//div[@class='HnYYW']|.//g-tray-header[@role='heading']|.//div[@role='heading']");
             if (nd != null)
             {
-                if (nd.InnerText.Trim() == "Top stories" || nd.InnerText.Trim() == "Noticias principales" || nd.InnerText.Trim() == "Interesting finds" //16-09-2020
+                if (nd.InnerText.Trim() == "Top stories" || nd.InnerText.Trim() == "Noticias principales" || nd.InnerText.Trim() == "Notizie principali" || nd.InnerText.Trim() == "Interesting finds" //04-11-2020//16-09-2020
                      || nd.InnerText.ToLower().Contains("últimas noticias") || nd.InnerText.ToLower().Contains("det senaste")
                      || nd.InnerText.ToLower().StartsWith("latest") || nd.InnerText.ToLower().Contains("map"))//07-08-2020  //23-06-2020 //22-06-2020
                     if (node.SelectSingleNode(".//div[@class='KJDcUb']") == null) //26-06-2020
@@ -2343,6 +2343,9 @@ namespace TrackingTrending
                     return false;
                 return true;
             }
+
+            if (node.SelectSingleNode(".//div[@class='g card-section svwwZ']") != null) //03-11-2020
+                return false;
 
             //22-11-2019
             nd = node.SelectSingleNode(".//div[@class='g kno-result rQUFld mnr-c g-blk']|.//w-answer/div[@class='MUxGbd t51gnb lyLwlc lEBKkf']"); //01-10-2020 Answered Card selector included
@@ -2671,7 +2674,7 @@ namespace TrackingTrending
                  character == 0xA /* == '\n' == 10  */          ||
                  character == 0xD /* == '\r' == 13  */          ||
                 (character >= 0x20 && character <= 0xD7FF) ||
-                (character >= 0xE000 && character < 0xFFFD) ||   //02-11-2020 changed <= 0xFFFD to < 0xFFFD
+                (character >= 0xE000 && character < 0xFFFD) ||       //02-11-2020 changed <= 0xFFFD to < 0xFFFD
                 (character >= 0x10000 && character <= 0x10FFFF)
             );
         }

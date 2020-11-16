@@ -1042,9 +1042,6 @@ namespace RapidTrackingSingleThread
                 s.Append("<item url=\"" + SetUrl(s1) + "\" title=\"\" />");
             }
            
-
-            
-
             return s.ToString();
         }
 

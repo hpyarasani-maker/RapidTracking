@@ -964,6 +964,7 @@ namespace RapidTrackingJobIDResults
             string matchPattern1 = @"]n,\[x22(.*?)x22";
             string matchPattern2 = @"]\n,\[x22(.*?)\?";
             string matchPattern3 = "\"ou\":\"(.*?)\",";
+            string matchPattern5 = "px\\W><img data-src=\\W(.*?)(&amp;s)?\"\\s"; //06-11-2020 //24-06-2020
             Regex re = new Regex(matchPattern1, RegexOptions.IgnoreCase | RegexOptions.Singleline);
             MatchCollection mc = re.Matches(html);
             ArrayList alDup = new ArrayList();
@@ -1010,6 +1011,20 @@ namespace RapidTrackingJobIDResults
                     alDup.Add(HtmlText);
                 }
             }
+
+            //06-11-2020
+            re = new Regex(matchPattern5, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+            mc = re.Matches(html);
+
+            foreach (Match m in mc)
+            {
+                string HtmlText = HttpUtility.HtmlDecode(m.Groups[1].Value);
+                if (HtmlText.StartsWith("http") || HtmlText.StartsWith("https"))
+                {
+                    alDup.Add(HtmlText);
+                }
+            }
+            //end 06-11-2020
             foreach (string s1 in alDup)
             {
                 if (myList.Contains(s1) || string.IsNullOrEmpty(s1)) continue;

@@ -2518,7 +2518,7 @@ namespace RapidTrackingSingleThread
                 //24-09-2020 changed LastIndexOf to IndexOf
                 if (url.IndexOf("https://") == 0 || url.IndexOf("https://") >= 0)//01-10-2020
                     url = url.Remove(0, url.IndexOf("https://"));
-                if (url.IndexOf("http://") == 0 || url.IndexOf("http://") >= 0) //14-10-2020 included indexof for http
+                else if (url.IndexOf("http://") == 0 || url.IndexOf("http://") >= 0) //18-11-2020//14-10-2020 included indexof for http
                     url = url.Remove(0, url.IndexOf("http://"));
 
 

@@ -19,12 +19,12 @@ namespace TrendingMobileSingleThread
 {
     public partial class frmMultiThread : Form
     {
-        //string xmlPath1 = "C:\\inetpub\\wwwroot\\tws_oxybulk_remainingstatus_0.xml";
-        string xmlPath1 = "C:\\inetpub\\wwwroot\\tws_oxybulk_remaining.xml";
+        string xmlPath1 = "C:\\inetpub\\wwwroot\\tws_oxybulk_remainingstatus_0.xml";
+        //string xmlPath1 = "C:\\inetpub\\wwwroot\\tws_oxybulk_remaining.xml";
 
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
-        int count=0;
+        //int count;
         int timerVal;
         bool iOS1 = false;       
 
@@ -33,7 +33,7 @@ namespace TrendingMobileSingleThread
         public frmMultiThread()
         {
             InitializeComponent();
-            count = 1; // Common.GetOxylabsCount();
+            //count = 1; // Common.GetOxylabsCount();
             //timerVal = Common.GetOxylabsTime();
             timerVal = 90 * 60000;
             timerExit();
@@ -52,8 +52,8 @@ namespace TrendingMobileSingleThread
 
         private void frmMultiThread_Load(object sender, EventArgs e)
         {
-            //Text = "Trending Workspace Live IOS Oxylabs tws_oxybulk_remaining status 0";
-            Text = "Trending_Mobile_Remaining_Keywords";             
+            Text = "Trending Workspace Live IOS Oxylabs tws_oxybulk_remaining status 0";
+            //Text = "Trending_Mobile_Remaining_Keywords";             
 
             Thread t1 = new Thread(new ThreadStart(StartProcess_iOS));
             t1.SetApartmentState(ApartmentState.STA);
@@ -66,8 +66,8 @@ namespace TrendingMobileSingleThread
             {
                 string myDate = DateTime.Today.ToString("yyyy-MM-dd");
 
-                //string kwQry = "[GetBulkTrendingMobile_Status=0] '" + myDate + "'";                 
-                string kwQry = "GetBulkTrendingMobile_Remaining '" + myDate + "'";
+                string kwQry = "[GetBulkTrendingMobile_Status=0] '" + myDate + "'";                 
+                //string kwQry = "GetBulkTrendingMobile_Remaining '" + myDate + "'";
 
                 GetiOSKeywords(kwQry);
                 if (lstKWs.Items.Count <= 0)
@@ -98,7 +98,7 @@ namespace TrendingMobileSingleThread
                             string html = obj["results"][0]["content"].Value<string>();
                             string jobid = src[2];
                             string device = src[3];
-                            result = true;
+                            result = !result;
                             doc = new HtmlAgilityPack.HtmlDocument();
                             doc.LoadHtml(html);
                             
@@ -111,7 +111,7 @@ namespace TrendingMobileSingleThread
 
                             if (!string.IsNullOrEmpty(res))
                             {
-                                if (count > 20)
+                                if (count > 0)
                                 {
                                     SendiOSToAPI(seid, keyword, res);
                                     SendToDB(seid, keyword, res);

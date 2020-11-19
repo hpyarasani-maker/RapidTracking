@@ -77,7 +77,7 @@ namespace TrendingMobileSingleThread
                             break;
                         }
                     }
-                    catch (Exception ex) { }
+                    catch (Exception ex) { throw ex; }
 
                 }
                 //changes on 06-08-2019
@@ -116,7 +116,7 @@ namespace TrendingMobileSingleThread
                             sb.Append(s);
                     }
                 }
-                catch(Exception ex) { }
+                catch(Exception ex) { throw ex; }
             }
 
             if (string.IsNullOrEmpty(ndText.Trim()) || orgLinks == 0)
@@ -2517,7 +2517,7 @@ namespace TrendingMobileSingleThread
                 //24-09-2020 changed LastIndexOf to IndexOf
                 if (url.IndexOf("https://") == 0 || url.IndexOf("https://") >= 0)//01-10-2020
                     url = url.Remove(0, url.IndexOf("https://"));
-                if (url.IndexOf("http://") == 0 || url.IndexOf("http://") >= 0) //14-10-2020 included indexof for http
+                else if (url.IndexOf("http://") == 0 || url.IndexOf("http://") >= 0) //18-11-2020 //14-10-2020 included indexof for http
                     url = url.Remove(0, url.IndexOf("http://"));
 
 

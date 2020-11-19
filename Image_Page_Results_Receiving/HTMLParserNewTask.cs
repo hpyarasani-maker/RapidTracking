@@ -683,7 +683,7 @@ namespace Image_Page_Results_Receiving
                         }
                         catch (Exception ex)
                         {
-                            continue;
+                            throw ex;
                         }
                     }
                 }

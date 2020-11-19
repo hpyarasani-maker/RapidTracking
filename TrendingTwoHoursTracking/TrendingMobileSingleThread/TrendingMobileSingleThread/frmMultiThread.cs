@@ -24,7 +24,7 @@ namespace TrendingMobileSingleThread
 
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
-        int count;
+        //int count;
         int timerVal;
         bool iOS1 = false;       
 
@@ -33,7 +33,7 @@ namespace TrendingMobileSingleThread
         public frmMultiThread()
         {
             InitializeComponent();
-            count = 1; // Common.GetOxylabsCount();
+            //count = 1; // Common.GetOxylabsCount();
             //timerVal = Common.GetOxylabsTime();
             timerVal = 90 * 60000;
             timerExit();
@@ -98,7 +98,7 @@ namespace TrendingMobileSingleThread
                             string html = obj["results"][0]["content"].Value<string>();
                             string jobid = src[2];
                             string device = src[3];
-                            result = true;
+                            result = !result;
                             doc = new HtmlAgilityPack.HtmlDocument();
                             doc.LoadHtml(html);
                             

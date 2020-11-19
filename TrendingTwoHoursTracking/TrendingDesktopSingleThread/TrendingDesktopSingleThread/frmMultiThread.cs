@@ -24,16 +24,16 @@ namespace TrendingDesktopSingleThread
 
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
-        int count;
+        //int count=0;
         int timerVal;
 
         bool desktop1 = false;
-        int itmCount1 = 0;
+        //int itmCount1 = 0;
 
         public frmMultiThread()
         {
             InitializeComponent();
-            count = 1; // Common.GetOxylabsCount();
+            //count = 1; // Common.GetOxylabsCount();
             // timerVal = Common.GetOxylabsTime();
             timerVal = 25 * 60000;
             timerExit();
@@ -75,6 +75,7 @@ namespace TrendingDesktopSingleThread
                     break;
 
                 int cnt = 0;
+                int count = 0;
                 //this.Invoke((MethodInvoker)delegate ()
                 //{
                 //    label1.Text = cnt + " of " + itmCount1 + " Completed";
@@ -98,11 +99,11 @@ namespace TrendingDesktopSingleThread
                             string html = obj["results"][0]["content"].Value<string>();
                             string jobid = src[2];
                             string device = src[3];
-                            result = true;
+                            result = !result;
                             doc = new HtmlAgilityPack.HtmlDocument();
                             doc.LoadHtml(html);
                             string res = string.Empty;
-                            int count = 0;
+                            
                             try
                             {
                                 if (device == "desktop")
@@ -249,7 +250,7 @@ namespace TrendingDesktopSingleThread
             this.Invoke((MethodInvoker)delegate ()
             {
                 lstKWs.Items.Clear();
-                itmCount1 = 0;
+                //itmCount1 = 0;
 
 
                 //lstKWs.Items.Add("58:rugby");

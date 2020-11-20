@@ -1198,6 +1198,9 @@ namespace RapidTrackingSingleThread
                 case "apps":
                     s.Append(GetApps(node));    // changes on 15-07-2019
                     break;
+                case "jobs":  //20-11-2020
+                    s.Append(GetJobs(node));
+                    break;
                 default:
                     break;
             }

@@ -765,6 +765,39 @@ namespace RapidTrackingSingleThread
 
         }
 
+
+        //20-11-2020
+        private string GetJobs(HtmlNode node)
+        {
+            StringBuilder s = new StringBuilder();
+
+            s.Append("<block type=\"jobs\" url=\"\">");
+
+            HtmlNodeCollection nodes = node.SelectNodes(".//ul/li/div[@class='PwjeAc']");
+            if (nodes != null)
+            {
+                foreach (HtmlNode nd in nodes)
+                {
+                    string url = string.Empty;
+                    HtmlNode link = nd.SelectSingleNode(".//g-link/a");
+                    if (link != null)
+                    {
+                        url = link.Attributes["href"].Value;
+                        if (url.StartsWith("https://www.google.")) url = string.Empty;
+                        url = SetUrl(url);
+                    }
+
+                    string title = nd.SelectSingleNode(".//div[@role='heading']").InnerText;
+                    if (string.IsNullOrEmpty(url) || !string.IsNullOrEmpty(title))
+                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                }
+            }
+
+            s.Append("</block>");
+
+            return s.ToString();
+        }
+        //end 20-11-2020
         private string GetVideoCard(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();

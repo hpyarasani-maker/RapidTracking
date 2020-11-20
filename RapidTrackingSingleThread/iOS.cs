@@ -1233,7 +1233,7 @@ namespace RapidTrackingSingleThread
                     }
 
                     string title = nd.SelectSingleNode(".//div[@role='heading']").InnerText;
-                    if (string.IsNullOrEmpty(url) || !string.IsNullOrEmpty(title))
+                    if (!string.IsNullOrEmpty(url) || !string.IsNullOrEmpty(title))
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                 }
             }

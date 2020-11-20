@@ -2511,13 +2511,7 @@ namespace RapidTrackingSingleThread
                 return true;
             }//21-08-2019"
 
-            //20-11-2020
-            nd = node.SelectSingleNode(".//div[@class='bUNBRd mnr-c']");
-            if (nd != null)
-            {
-                return true;
-            }
-            //20-11-2020
+            
             if (!node.HasClass("srg")) // 19-09-2019
             {
                 nd = node.SelectSingleNode(".//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='ytwLQd']");//05-06-2020 missing classic links

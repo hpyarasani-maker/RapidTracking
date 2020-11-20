@@ -1256,6 +1256,10 @@ namespace RapidTrackingSingleThread
             {
                 return "PeopleAlsoAsk"; //11-02-2020
             }
+            if (node.SelectSingleNode(".//g-card[@class='cvoI5e']") != null)  //20-11-2020
+            {
+                return "Jobs";
+            }
 
             nd = node.SelectSingleNode(".//div[@class='_OKe']");
             if (nd != null)

@@ -758,6 +758,9 @@ namespace RapidTrackingSingleThread
                 case "knowledgepanel":
                     s.Append("<block type=\"knowledgeGraph\" url=\"\" />"); //05-10-2020
                     break;
+                case "jobs":  //20-11-2020
+                    s.Append(GetJobs(node));
+                    break;
                 default:
                     break;
             }

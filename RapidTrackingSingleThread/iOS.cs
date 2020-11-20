@@ -2033,6 +2033,11 @@ namespace RapidTrackingSingleThread
                     return "Topstories";
             }
 
+            if (node.SelectSingleNode(".//g-card[@class='cvoI5e']") != null) //20-11-2020
+            {
+                return "Jobs";
+            }
+
             if (node.SelectSingleNode(".//div[@id='imso-root']") != null || node.SelectSingleNode(".//div[@class='tsp-view r-iDNua10DBk4I']") != null
                 || node.SelectSingleNode(".//div[@class='nA3Vyd SBFvB']") != null || node.SelectSingleNode(".//div[@class='nJXhWc nA3Vyd']") != null || node.SelectSingleNode(".//div[@class='AE4e7c']") != null)  //22-05-2020 included selector for event block
                 return "Event";

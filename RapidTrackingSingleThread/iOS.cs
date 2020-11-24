@@ -2043,7 +2043,7 @@ namespace RapidTrackingSingleThread
                 return "Jobs";
             }
 
-            if (node.SelectSingleNode(".//div[@id='imso-root']") != null || node.SelectSingleNode(".//div[@class='tsp-view r-iDNua10DBk4I']") != null
+            if (node.SelectSingleNode(".//div[@id='imso-root']") != null || node.SelectSingleNode(".//div[contains(@class,'tsp-view')]") != null //24-11-2020 for eventresults included contains func //node.SelectSingleNode(".//div[@class='tsp-view r-iDNua10DBk4I']") != null
                 || node.SelectSingleNode(".//div[@class='nA3Vyd SBFvB']") != null || node.SelectSingleNode(".//div[@class='nJXhWc nA3Vyd']") != null || node.SelectSingleNode(".//div[@class='AE4e7c']") != null)  //22-05-2020 included selector for event block
                 return "Event";
 
@@ -2378,7 +2378,7 @@ namespace RapidTrackingSingleThread
             HtmlNode nd = node.SelectSingleNode(".//div[@class='HnYYW']|.//g-tray-header[@role='heading']|.//div[@role='heading']");
             if (nd != null)
             {
-                if (nd.InnerText.Trim() == "Top stories" || nd.InnerText.Trim() == "Noticias principales" || nd.InnerText.Trim() == "Notizie principali" || nd.InnerText.Trim() == "Interesting finds" //04-11-2020//16-09-2020
+                if (nd.InnerText.Trim() == "Top stories" || nd.InnerText.ToLower().Contains("noticias") || nd.InnerText.Trim() == "Notizie principali" || nd.InnerText.Trim() == "Interesting finds" //04-11-2020//16-09-2020
                      || nd.InnerText.ToLower().Contains("últimas noticias") || nd.InnerText.ToLower().Contains("det senaste")
                      || nd.InnerText.ToLower().StartsWith("latest") || nd.InnerText.ToLower().Contains("map"))//07-08-2020  //23-06-2020 //22-06-2020
                     if (node.SelectSingleNode(".//div[@class='KJDcUb']") == null) //26-06-2020

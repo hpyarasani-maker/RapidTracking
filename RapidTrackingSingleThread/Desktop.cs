@@ -1278,7 +1278,7 @@ namespace RapidTrackingSingleThread
                 return "AnswerCard";
 
             if (node.SelectSingleNode(".//div[@id='imso-root']") != null || node.SelectSingleNode(".//div[@class='k9uN1c kfn9hb']") != null
-                || node.SelectSingleNode(".//div[@class='HaXvv kfn9hb']") != null)//07-02-2020
+                || node.SelectSingleNode(".//div[@class='HaXvv kfn9hb']") != null || node.SelectSingleNode(".//div[@class='tsp-view']") != null)//24-11-2020 selector for eventresults block//07-02-2020
                 return "Event";
 
             if (node.SelectSingleNode(".//div[@id='cwmcwd']") != null || node.SelectSingleNode(".//div[@class='ifM9O']") != null

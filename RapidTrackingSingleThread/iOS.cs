@@ -2476,7 +2476,13 @@ namespace RapidTrackingSingleThread
             //nd = node.SelectSingleNode(".//div[@jsmodel='uIhXXc']");
             if (nd != null)
                 return false;
-
+            //24-11-2020 updated selector for evenResults boolean
+            nd = node.SelectSingleNode(".//div[@class='tsp-view']");
+            if (nd != null)
+            {
+                return true;
+            }
+            //end 24-11-2020
             nd = node.SelectSingleNode(".//div[@jscontroller='UrRncd']/div/div/a[@class='C8nzq BmP5tf amp_r']");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@jscontroller='UrRncd']/div/div/a[@class='C8nzq BmP5tf']");  // 25-10-2019

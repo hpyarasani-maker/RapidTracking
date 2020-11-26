@@ -94,6 +94,10 @@ namespace Image_Page_Results_Receiving
                     ArrayList arRes = new ArrayList();
                     try
                     {
+                        JObject obj = JObject.Parse(response);
+                        response = obj["results"][0]["content"].Value<string>();
+
+                        //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + kw + ".html", response, Encoding.UTF8);
                         //// Image Links
                         //SearchProperties sp = SearchParamsImageUrls.searches.Where(s => s.locale == hl && s.device == device && s.geo_location == gl && s.tbm == "isch").SingleOrDefault();
 

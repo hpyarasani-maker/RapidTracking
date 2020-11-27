@@ -82,7 +82,8 @@ namespace Oxylabs_BulkKeywords
                 if (nodeCol == null)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@class='vC5Ym DhKAUb']/div");  // 03-04-2020
                 if (nodeCol == null)
-                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div|.//div[@class='WvKfwe']/div");//14-10-2020 updated selector classic links //15-04-2020
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div|.//div[@class='WvKfwe']/div|//div[@class='WvKfwe a3spGf']/div");//20-11-2020 updated for classic links
+                 //14-10-2020 updated selector classic links //15-04-2020
                 if (nodeCol == null)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@class='WvKfwe a3spGf']/div");  // 15-04-2020
                 if (nodeCol == null)

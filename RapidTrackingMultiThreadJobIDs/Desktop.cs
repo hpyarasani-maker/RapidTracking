@@ -748,6 +748,9 @@ namespace RapidTrackingMultiThreadJobIDs
                 case "knowledgepanel":
                     s.Append("<block type=\"knowledgeGraph\" url=\"\" />"); //05-10-2020
                     break;
+                case "jobs":  //20-11-2020
+                    s.Append(GetJobs(node));
+                    break;
                 default:
                     break;
             }
@@ -755,6 +758,39 @@ namespace RapidTrackingMultiThreadJobIDs
 
         }
 
+
+        //20-11-2020
+        private string GetJobs(HtmlNode node)
+        {
+            StringBuilder s = new StringBuilder();
+
+            s.Append("<block type=\"jobs\" url=\"\">");
+
+            HtmlNodeCollection nodes = node.SelectNodes(".//ul/li/div[@class='PwjeAc']");
+            if (nodes != null)
+            {
+                foreach (HtmlNode nd in nodes)
+                {
+                    string url = string.Empty;
+                    HtmlNode link = nd.SelectSingleNode(".//g-link/a");
+                    if (link != null)
+                    {
+                        url = link.Attributes["href"].Value;
+                        if (url.StartsWith("https://www.google.")) url = string.Empty;
+                        url = SetUrl(url);
+                    }
+
+                    string title = nd.SelectSingleNode(".//div[@role='heading']").InnerText;
+                    if (!string.IsNullOrEmpty(url) || !string.IsNullOrEmpty(title))
+                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                }
+            }
+
+            s.Append("</block>");
+
+            return s.ToString();
+        }
+        //end 20-11-2020
         private string GetVideoCard(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
@@ -1034,6 +1070,7 @@ namespace RapidTrackingMultiThreadJobIDs
 
             return s.ToString();
         }
+
         private string GetTopStories(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
@@ -1209,6 +1246,10 @@ namespace RapidTrackingMultiThreadJobIDs
             {
                 return "PeopleAlsoAsk"; //11-02-2020
             }
+            if (node.SelectSingleNode(".//g-card[@class='cvoI5e']") != null || node.SelectSingleNode(".//g-card[@class='U8KfXc']") != null) //23-11-2020 //20-11-2020
+            {
+                return "Jobs";
+            }
 
             nd = node.SelectSingleNode(".//div[@class='_OKe']");
             if (nd != null)
@@ -1226,7 +1267,7 @@ namespace RapidTrackingMultiThreadJobIDs
                 return "AnswerCard";
 
             if (node.SelectSingleNode(".//div[@id='imso-root']") != null || node.SelectSingleNode(".//div[@class='k9uN1c kfn9hb']") != null
-                || node.SelectSingleNode(".//div[@class='HaXvv kfn9hb']") != null)//07-02-2020
+                || node.SelectSingleNode(".//div[@class='HaXvv kfn9hb']") != null || node.SelectSingleNode(".//div[@class='tsp-view']") != null)//24-11-2020 selector for eventresults block//07-02-2020
                 return "Event";
 
             if (node.SelectSingleNode(".//div[@id='cwmcwd']") != null || node.SelectSingleNode(".//div[@class='ifM9O']") != null
@@ -1575,7 +1616,7 @@ namespace RapidTrackingMultiThreadJobIDs
                      character == 0xA /* == '\n' == 10  */          ||
                      character == 0xD /* == '\r' == 13  */          ||
                     (character >= 0x20 && character <= 0xD7FF) ||
-                    (character >= 0xE000 && character < 0xFFFD) ||     //02-11-2020 changed <= 0xFFFD to < 0xFFFD
+                    (character >= 0xE000 && character < 0xFFFD) ||  //02-11-2020 changed <= 0xFFFD to < 0xFFFD
                     (character >= 0x10000 && character <= 0x10FFFF)
                 );
             }
@@ -1634,6 +1675,3 @@ namespace RapidTrackingMultiThreadJobIDs
     }
 
 }
-
-
-

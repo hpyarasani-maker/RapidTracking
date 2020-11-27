@@ -98,6 +98,8 @@ namespace TrendingMobileSingleThread
                     if (n == null)
                         n = node.SelectSingleNode(".//div[@class='PyJv1b gsmt PZPZlf lV8Nyd']/span[@role='heading']"); // 11-11-2019
                     if (n == null)
+                        n = node.SelectSingleNode(".//div[@class='PyJv1b gsmt PZPZlf rq9RNe']/span[@role='heading']");  // 20-11-2020 KP block selector
+                    if (n == null)
                         n = node.SelectSingleNode(".//div[@class='Ftghae iirjIb']");//16-09-2019
                     if (n != null)
                     {

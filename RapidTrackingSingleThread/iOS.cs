@@ -1823,6 +1823,8 @@ namespace RapidTrackingSingleThread
                         title = nd.SelectSingleNode(".//div[@class='nDgy9d']");   //changes on 05-07-2019
                     if (title == null)
                         title = nd.SelectSingleNode(".//div[contains(@class,'poMUXd')]"); //27-07-2020
+                    if (title == null)
+                        title = nd.SelectSingleNode(".//div[@class='mkVq5']");//27-11-2020 top stories titles
                     string url = nd.Attributes["href"].Value;
                     s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title.InnerText) + "\" />");
                 }

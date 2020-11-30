@@ -1861,7 +1861,7 @@ namespace RapidTrackingSingleThread
             if (nds == null)
                 nds = node.SelectNodes(".//div[@data-attrid='OsrpVideos']/a|.//div[@class='ALzVK']/div/div/a");
             if (nds == null)
-                nds = node.SelectNodes(".//div[@jsname='ibnC6b']/a|.//div[@jscontroller='OmmTPc']|.//div[@class='QevLbc']/a"); //30-07-2020 //26-06-2020 included select for videos
+                nds = node.SelectNodes(".//div[@jsname='ibnC6b']/a|.//div[@jscontroller='OmmTPc']|.//div[@class='QevLbc']/a|.//a[@class='OIDuRe']");//30-11-2020 videos item urls selectors //30-07-2020 //26-06-2020 included select for videos
             if (nds != null)   // 16-09-2019
                 foreach (HtmlNode nd in nds)
                 {
@@ -1887,7 +1887,10 @@ namespace RapidTrackingSingleThread
                         catch
                         {
                             // changes in videos block on 19-06-2019.
-                            HtmlNode t = nd.SelectSingleNode(".//div[@class='fJiQld']|.//div[@class='fJiQld oz3cqf vH5Lmd']"); //26-06-2020
+                            //30-11-2020 commented below to apply contains function
+                            //HtmlNode t = nd.SelectSingleNode(".//div[@class='fJiQld']|.//div[contains(@class,'fJiQld oz3cqf vH5Lmd']"); //26-06-2020
+                            HtmlNode t = nd.SelectSingleNode(".//div[contains(@class,'fJiQld')]");//30-11-2020 videos title selector //26-06-2020
+
                             //if (t == null)
                             //    t = nd.SelectSingleNode(".//div[@class='fJiQld oz3cqf vH5Lmd']");//26-06-2020
                             if (t != null)

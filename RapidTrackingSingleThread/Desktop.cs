@@ -1235,7 +1235,8 @@ namespace RapidTrackingSingleThread
             //    nd = node.SelectSingleNode(".//div[@class='LMMXP mfMhoc']");  //23-07-2020 //17-07-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='sQkmof']");//23-07-2020 included selector for videos
-
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@jsname='wRSfy']"); //02-12-2020 included for videos block
             //15-10-2020
             HtmlNode nd1 = null;
             if (nd != null)

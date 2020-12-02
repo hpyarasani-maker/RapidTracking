@@ -82,8 +82,9 @@ namespace Oxylabs_BulkKeywords
                 if (nodeCol == null)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@class='vC5Ym DhKAUb']/div");  // 03-04-2020
                 if (nodeCol == null)
-                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div|.//div[@class='WvKfwe']/div|//div[@class='WvKfwe a3spGf']/div");//20-11-2020 updated for classic links
-                 //14-10-2020 updated selector classic links //15-04-2020
+                    //nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div|.//div[@class='WvKfwe']/div|//div[@class='WvKfwe a3spGf']/div");//20-11-2020 updated for classic links
+                    //14-10-2020 updated selector classic links //15-04-2020
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div|.//div[@class='WvKfwe']/div");//20-11-2020 updated for classic links
                 if (nodeCol == null)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@class='WvKfwe a3spGf']/div");  // 15-04-2020
                 if (nodeCol == null)
@@ -1236,7 +1237,8 @@ namespace Oxylabs_BulkKeywords
             //    nd = node.SelectSingleNode(".//div[@class='LMMXP mfMhoc']");  //23-07-2020 //17-07-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='sQkmof']");//23-07-2020 included selector for videos
-
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@jsname='wRSfy']"); //02-12-2020 included for videos block
             //15-10-2020
             HtmlNode nd1 = null;
             if (nd != null)
@@ -1397,6 +1399,12 @@ namespace Oxylabs_BulkKeywords
             {
                 try
                 {
+                    //02-12-2020
+                    HtmlNode nd = node.SelectSingleNode(".//div[@role='heading']");
+                    if (nd.InnerText == "More results" || nd.InnerText == "Top results")
+                        return false;
+                    //end 02-12-2020
+
                     if (node.InnerText.Contains("Podcast") || node.InnerText.Contains("播客") || node.InnerText.Contains("Podcaster")
                         || node.InnerText.Contains("ملفات البودكاست") || node.InnerText.Contains("พอดแคสต์"))   // 19-09-2019
                     {
@@ -1415,7 +1423,7 @@ namespace Oxylabs_BulkKeywords
             {
                 HtmlNode nd = node.SelectSingleNode(".//h3|.//div[contains(@class,'HnYYW')]|.//div[@class='LMMXP i8lZMc']|.//div[@class='e2BEnf U7izfe']/div|.//div[@class='LMMXP mfMhoc']"); //05-08-2020 included contains function  //17-07-2020 //03-06-2020  // 02-06-2020    //01-05-2020
                 if (nd != null)
-                    if (nd.InnerText == "Top stories" || nd.InnerText == "Huvudnyheter" || nd.InnerText == "Videos" || nd.InnerText == "Video" || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws" || nd.InnerText == "Vertaalresultaat" || nd.InnerText == "Recipes")//05-08-2020 //29-06-2020//03-06-2020 // 02-06-2020  // 08-04-2020
+                    if (nd.InnerText == "Top stories" || nd.InnerText == "Huvudnyheter" || nd.InnerText == "Videos" || nd.InnerText == "Video" || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws" || nd.InnerText == "Vertaalresultaat" || nd.InnerText == "Recipes" || nd.InnerText == "Vidéos")//02-12-2020 videos//05-08-2020 //29-06-2020//03-06-2020 // 02-06-2020  // 08-04-2020
                         return true;
 
                 // changes in map block on 19-06-2019.
@@ -1687,3 +1695,6 @@ namespace Oxylabs_BulkKeywords
     }
 
 }
+
+
+

@@ -70,9 +70,10 @@ namespace RapidTrackingSingleThread
                     if (nodeCol == null)
                         nodeCol = doc.DocumentNode.SelectNodes("//div[@class='vC5Ym DhKAUb']/div");  // 03-04-2020
                     if (nodeCol == null)
-                        nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div|.//div[@class='WvKfwe']/div|//div[@class='WvKfwe a3spGf']/div");//20-11-2020 updated for classic links
-                    //14-10-2020 updated selector classic links //15-04-2020
-                    if (nodeCol == null)
+                        // nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div|.//div[@class='WvKfwe']/div|//div[@class='WvKfwe a3spGf']/div");//20-11-2020 updated for classic links
+                        nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div|.//div[@class='WvKfwe']/div");//20-11-2020 updated for classic links
+                        //14-10-2020 updated selector classic links //15-04-2020
+                        if (nodeCol == null)
                         nodeCol = doc.DocumentNode.SelectNodes("//div[@class='WvKfwe a3spGf']/div|//div[@class='WvKfwe a3spGf']/g-section-with-header");  // 15-04-2020    //01-05-2020");  // 15-04-2020//22-05-2020
                     if (nodeCol == null)
                         nodeCol = doc.DocumentNode.SelectNodes("//div[@class='a3spGf WvKfwe']/div|//div[@class='a3spGf WvKfwe']/g-section-with-header|.//div[@class='UDZeY OTFaAf']");  // 01-06-2020
@@ -1397,6 +1398,12 @@ namespace RapidTrackingSingleThread
             {
                 try
                 {
+                    //02-12-2020
+                    HtmlNode nd = node.SelectSingleNode(".//div[@role='heading']");
+                    if (nd.InnerText == "More results" || nd.InnerText == "Top results")
+                        return false;
+                    //end 02-12-2020
+
                     if (node.InnerText.Contains("Podcast") || node.InnerText.Contains("播客") || node.InnerText.Contains("Podcaster")
                         || node.InnerText.Contains("ملفات البودكاست") || node.InnerText.Contains("พอดแคสต์"))   // 19-09-2019
                     {

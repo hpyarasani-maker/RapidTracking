@@ -1400,7 +1400,7 @@ namespace RapidTrackingSingleThread
                 {
                     //02-12-2020
                     HtmlNode nd = node.SelectSingleNode(".//div[@role='heading']");
-                    if (nd.InnerText == "More results" || nd.InnerText == "Top results")
+                    if (nd != null && (nd.InnerText == "More results" || nd.InnerText == "Top results")) //03-12-2020
                         return false;
                     //end 02-12-2020
 

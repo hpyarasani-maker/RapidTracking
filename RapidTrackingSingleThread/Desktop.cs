@@ -73,7 +73,7 @@ namespace RapidTrackingSingleThread
                     //if (nodeCol == null)
                     //    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div");//03-12-2020 
                     if (nodeCol == null)
-                        nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div|.//div[@class='WvKfwe']/div");//03-12-2020
+                        nodeCol = doc.DocumentNode.SelectNodes(".//div[@class='WvKfwe']/div|//div[@class='WvKfwe a3spGf']/div");//03-12-2020
                     if (nodeCol == null)
                         nodeCol = doc.DocumentNode.SelectNodes("//div[@class='WvKfwe a3spGf']/div|//div[@class='WvKfwe a3spGf']/g-section-with-header");  // 15-04-2020    //01-05-2020");  // 15-04-2020//22-05-2020
                     if (nodeCol == null)

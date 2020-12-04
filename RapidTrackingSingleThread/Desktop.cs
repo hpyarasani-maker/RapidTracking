@@ -1255,7 +1255,7 @@ namespace RapidTrackingSingleThread
                 return "Twitters";
             }
 
-            nd = node.SelectSingleNode(".//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']|.//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']");//04-12-2020 //11-02-2020
+            nd = node.SelectSingleNode(".//div[@class='kp-blk cUnQKe']|.//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']");//04-12-2020 //11-02-2020
             if (nd != null)
             {
                 return "PeopleAlsoAsk"; //11-02-2020

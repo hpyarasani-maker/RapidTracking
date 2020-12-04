@@ -511,7 +511,7 @@ namespace Oxylabs_BulkKeywords
                 || node.SelectNodes(".//div[@class='g GjRtuc']") != null // 02-06-2020
                 || node.SelectNodes(".//div[contains(@class,'g card-section')]") != null) //06-10-2020 classic link
             {
-                HtmlNodeCollection nds = node.SelectNodes(".//div[@class='g']");
+                HtmlNodeCollection nds = node.SelectNodes(".//div[@class='g']|.//div[@class='HD8Pae luh4tb cUezCb xpd O9g5cc uUPGi']");//04-12-2020 videos block
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='rc']");
                 if (nds == null)
@@ -871,7 +871,7 @@ namespace Oxylabs_BulkKeywords
                 s.Append("<block type=\"siteLinks\" url=\"\">");
                 foreach (HtmlNode nd in nds)
                 {
-                    HtmlNodeCollection c = nd.SelectNodes(".//h3[@class='r']/a|.//h3[@class='r t9dkOd']/a|.//h3[@class='r X2oHVb t9dkOd']/a"); //03-06-2020 //01-06-2020 updated selector for sitelinks
+                    HtmlNodeCollection c = nd.SelectNodes(".//h3[@class='r']/a|.//h3[@class='r t9dkOd']/a|.//h3[@class='r X2oHVb t9dkOd']/a|.//h3[@class='r yTjVDd']/a"); //04-12-2020//03-06-2020 //01-06-2020 updated selector for sitelinks
                     if (c == null) continue;
                     foreach (HtmlNode a in c)
                     {
@@ -1252,7 +1252,7 @@ namespace Oxylabs_BulkKeywords
                 return "Twitters";
             }
 
-            nd = node.SelectSingleNode(".//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']"); //11-02-2020
+            nd = node.SelectSingleNode(".//div[@class='kp-blk cUnQKe']|.//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']");//04-12-2020 //11-02-2020
             if (nd != null)
             {
                 return "PeopleAlsoAsk"; //11-02-2020
@@ -1391,14 +1391,15 @@ namespace Oxylabs_BulkKeywords
                 || node.SelectSingleNode(".//div[@id='knowledge-finance-wholepage__entity-summary']") != null // 18-03-2020
                 || node.SelectSingleNode(".//div[@class='I6TXqe osrp-blk']") != null //12-08-2020 included selector for video card
                 || node.SelectSingleNode(".//div[@class='WcS13d']") != null //02-10-2020 maps selectors
-                || node.SelectSingleNode(".//h3[@class='GmE3X']") != null); //16-10-2020 updated selector for videos
+                || node.SelectSingleNode(".//h3[@class='GmE3X']") != null //16-10-2020 updated selector for videos
+             || node.SelectSingleNode(".//div[@class='twQ0Be']") != null); //03-12-2020 updated selector for videocard
             if (bVal == true)//2019-09-11
             {
                 try
                 {
                     //02-12-2020
                     HtmlNode nd = node.SelectSingleNode(".//div[@role='heading']");
-                    if (nd.InnerText == "More results" || nd.InnerText == "Top results")
+                    if (nd != null && (nd.InnerText == "More results" || nd.InnerText == "Top results")) //03-12-2020
                         return false;
                     //end 02-12-2020
 
@@ -1412,6 +1413,9 @@ namespace Oxylabs_BulkKeywords
                     if (node.SelectSingleNode(".//div[@class='a3spGf WvKfwe']|.//div[@class='HnYYW i8lZMc']") != null
                         && node.SelectSingleNode(".//div[@class='Brgz0 tw-res']|.//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']") == null)
                         bVal = false;
+
+                    if (node.SelectSingleNode(".//div[@class='g']") != null) //04-12-2020 select for class links
+                        return false;
                 }
                 catch { }
             }
@@ -1692,6 +1696,3 @@ namespace Oxylabs_BulkKeywords
     }
 
 }
-
-
-

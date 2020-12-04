@@ -47,7 +47,8 @@ namespace TrendingReceiving
                 nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");
             if (nodeCol == null)
                 nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-section-with-header");//13-03-2020  //01-05-2020         
-
+            if (nodeCol == null || nodeCol.Count <= 1)
+                nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div") ?? nodeCol; //04-12-2020
             string ndText = "";
 
             foreach (HtmlNode node in nodeCol)
@@ -75,8 +76,7 @@ namespace TrendingReceiving
                 if (nodeCol == null)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@class='vC5Ym DhKAUb']/div");  // 03-04-2020
                 if (nodeCol == null)
-                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div|.//div[@class='WvKfwe']/div|//div[@class='WvKfwe a3spGf']/div");//20-11-2020 updated for classic links
-                     //14-10-2020 updated selector classic links //15-04-2020
+                    nodeCol = doc.DocumentNode.SelectNodes(".//div[@class='WvKfwe']/div|//div[@class='WvKfwe a3spGf']/div");//03-12-2020
                 if (nodeCol == null)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@class='WvKfwe a3spGf']/div|//div[@class='WvKfwe a3spGf']/g-section-with-header");  // 15-04-2020    //01-05-2020");  // 15-04-2020//22-05-2020
                 if (nodeCol == null)

@@ -1405,7 +1405,7 @@ namespace RapidTrackingSingleThread
                     if (nd != null && (nd.InnerText == "More results" || nd.InnerText == "Top results")) //03-12-2020
                         return false;
                     //end 02-12-2020
-
+                   
                     if (node.InnerText.Contains("Podcast") || node.InnerText.Contains("播客") || node.InnerText.Contains("Podcaster")
                         || node.InnerText.Contains("ملفات البودكاست") || node.InnerText.Contains("พอดแคสต์"))   // 19-09-2019
                     {

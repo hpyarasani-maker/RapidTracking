@@ -41,7 +41,7 @@ namespace RapidTrackingSingleThread
                 if (nodeCol == null)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");
                 if (nodeCol == null)
-                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div"); // |//div[@id='rso']/g-section-with-header");//03-12-2020  //01-05-2020         
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-section-with-header");//03-12-2020  //01-05-2020         
                 if (nodeCol == null || nodeCol.Count <= 1)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div") ?? nodeCol; //04-12-2020
                 foreach (HtmlNode node in nodeCol)

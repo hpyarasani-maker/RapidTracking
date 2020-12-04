@@ -40,11 +40,9 @@ namespace RapidTrackingSingleThread
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@class='bkWMgd']");
                 if (nodeCol == null)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");
-                //if (nodeCol == null)
-                //    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-section-with-header");//13-03-2020  //01-05-2020         
                 if (nodeCol == null)
-                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div"); // |//div[@id='rso']/g-section-with-header");//03-12-2020  //01-05-2020         
-                if (nodeCol == null || nodeCol.Count <= 1)
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-section-with-header");//13-03-2020  //01-05-2020         
+                if (nodeCol == null)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div"); //03-12-2020
                 foreach (HtmlNode node in nodeCol)
                 {
@@ -72,10 +70,8 @@ namespace RapidTrackingSingleThread
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@class='xVtsMb i6u2Cc']|//div[@class='xVtsMb']/div/div");//swapped 08-04-2020
                     if (nodeCol == null)
                         nodeCol = doc.DocumentNode.SelectNodes("//div[@class='vC5Ym DhKAUb']/div");  // 03-04-2020
-                    //if (nodeCol == null)
-                    //    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div");//03-12-2020 
                     if (nodeCol == null)
-                        nodeCol = doc.DocumentNode.SelectNodes(".//div[@class='WvKfwe']/div|//div[@class='WvKfwe a3spGf']/div");//03-12-2020
+                        nodeCol = doc.DocumentNode.SelectNodes(".//div[@id='kp-wp-tab-overview']/div|.//div[@class='WvKfwe']/div");//03-12-2020
                     if (nodeCol == null)
                         nodeCol = doc.DocumentNode.SelectNodes("//div[@class='WvKfwe a3spGf']/div|//div[@class='WvKfwe a3spGf']/g-section-with-header");  // 15-04-2020    //01-05-2020");  // 15-04-2020//22-05-2020
                     if (nodeCol == null)

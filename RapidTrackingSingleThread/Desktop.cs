@@ -73,7 +73,7 @@ namespace RapidTrackingSingleThread
                     //if (nodeCol == null)
                     //    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div");//03-12-2020 
                     if (nodeCol == null)
-                        nodeCol = doc.DocumentNode.SelectNodes(".//div[@class='WvKfwe']/div|//div[contains(@class,'J9WfR')]/div");//03-12-2020  // 05-12-2020
+                        nodeCol = doc.DocumentNode.SelectNodes(".//div[@class='WvKfwe']/div|//div[@class='WvKfwe a3spGf']/div|//div[contains(@class,'J9WfR')]/div");//03-12-2020  // 05-12-2020
                     if (nodeCol == null)
                         nodeCol = doc.DocumentNode.SelectNodes("//div[@class='WvKfwe a3spGf']/div|//div[@class='WvKfwe a3spGf']/g-section-with-header"); //05-12-2020 // 15-04-2020    //01-05-2020");  // 15-04-2020//22-05-2020
                     if (nodeCol == null)
@@ -1418,7 +1418,7 @@ namespace RapidTrackingSingleThread
                         && node.SelectSingleNode(".//div[@class='Brgz0 tw-res']|.//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']") == null)
                         bVal = false;
 
-                    if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null) //07-12-2020 for answercard block
+                    if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null) //0-12-2020 for answercard block
                         return true;
 
                     if (node.SelectSingleNode(".//div[@class='g']") != null) //04-12-2020 select for class links

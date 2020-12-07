@@ -1417,6 +1417,9 @@ namespace RapidTrackingSingleThread
                         && node.SelectSingleNode(".//div[@class='Brgz0 tw-res']|.//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']") == null)
                         bVal = false;
 
+                    if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null) //05-12-2020 for answercard block
+                        return true;
+
                     if (node.SelectSingleNode(".//div[@class='g']") != null) //04-12-2020 select for class links
                         return false;
                 }

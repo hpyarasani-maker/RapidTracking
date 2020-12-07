@@ -1299,7 +1299,7 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@class='vk_ard']") != null || node.SelectSingleNode(".//div[@class='d7sCQ kp-header']") != null   //03-06-2020
                 || node.SelectSingleNode(".//div[@class='pcCUmf vCOSGb']") != null
                 || node.SelectSingleNode(".//div[@class='vkc_np kkww4d']") != null //21-09-2020 updated answered card selectors  //03-06-2020
-                || node.SelectSingleNode(".//div[@class='setTDc']") != null); //07-12-2020 answered card selector
+                || node.SelectSingleNode(".//div[@class='setTDc']") != null) //07-12-2020 answered card selector
             {
                 if (node.SelectSingleNode(".//div[@class='BET1rd']") == null) //25-09-2020
                     return "AnswerCard";

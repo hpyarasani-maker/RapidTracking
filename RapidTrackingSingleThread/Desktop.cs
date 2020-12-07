@@ -1221,6 +1221,13 @@ namespace RapidTrackingSingleThread
             {
                 return "VideoCard";
             }
+            nd = node.SelectSingleNode(".//div[@class='_Zfh']");
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='Brgz0 tw-res']");
+            if (nd != null)
+            {
+                return "Twitters";
+            }
             nd = node.SelectSingleNode(".//div[@class='KNcnob']/g-img|.//div[@class='YEMaTe']/g-img");   //01-05-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='fn6bCb']");
@@ -1249,13 +1256,7 @@ namespace RapidTrackingSingleThread
                 return "videos";
             //end 15-10-2020
 
-            nd = node.SelectSingleNode(".//div[@class='_Zfh']");
-            if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='Brgz0 tw-res']");
-            if (nd != null)
-            {
-                return "Twitters";
-            }
+            
 
             nd = node.SelectSingleNode(".//div[@class='kp-blk cUnQKe']|.//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']");//04-12-2020 //11-02-2020
             if (nd != null)
@@ -1384,12 +1385,12 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@class='HaXvv kfn9hb']") != null//07-02-2020
                 || (node.SelectSingleNode(".//div[@class='ifM9O']") != null && node.SelectSingleNode(".//div[@class='Wnoohf OJXvsb']") == null)   // answer card  
                 || node.SelectSingleNode(".//div[@id='cwmcwd']") != null  // answer card 
-                //|| node.SelectSingleNode(".//div[@class='vk_c card-section']") != null // answer card    
+                                                                          //|| node.SelectSingleNode(".//div[@class='vk_c card-section']") != null // answer card    
                 || node.SelectSingleNode(".//div[@class='d7sCQ kp-header']") != null  //03-06-2020                                                      
-                //|| node.SelectSingleNode(".//div[@class='vk_c card-section']") != null // answer card                
+                                                                                      //|| node.SelectSingleNode(".//div[@class='vk_c card-section']") != null // answer card                
                 || node.SelectSingleNode(".//div[@class='pcCUmf vCOSGb']") != null  //03-06-2020
                 || node.SelectSingleNode(".//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']") != null  // people also ask // 11-02-2020
-                //|| node.SelectSingleNode(".//span[@data-original-name='People also ask']") != null  // people also ask
+                                                                                                  //|| node.SelectSingleNode(".//span[@data-original-name='People also ask']") != null  // people also ask
                 || node.SelectSingleNode(".//h3[@class='_DM']") != null || node.SelectSingleNode(".//div[@id='imagebox_bigimages']") != null || node.SelectSingleNode(".//div[@class='mR2gOd']") != null //27-06-2020   // images
                 || node.SelectSingleNode(".//div[@class='e2BEnf']/h3") != null // videos
                 || node.SelectSingleNode(".//div[@class='e2BEnf U7izfe']/h3") != null  // videos
@@ -1398,7 +1399,8 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@class='I6TXqe osrp-blk']") != null //12-08-2020 included selector for video card
                 || node.SelectSingleNode(".//div[@class='WcS13d']") != null //02-10-2020 maps selectors
                 || node.SelectSingleNode(".//h3[@class='GmE3X']") != null //16-10-2020 updated selector for videos
-                || node.SelectSingleNode(".//div[@class='twQ0Be']") != null); //03-12-2020 updated selector for videocard
+                || node.SelectSingleNode(".//div[@class='twQ0Be']") != null //03-12-2020 updated selector for videocard
+                || node.SelectSingleNode(".//div[@clas='vwfsqc']") != null); //07-11-2020
             if (bVal == true)//2019-09-11
             {
                 try

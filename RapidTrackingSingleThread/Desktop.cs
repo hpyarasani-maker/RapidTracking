@@ -1221,6 +1221,7 @@ namespace RapidTrackingSingleThread
             {
                 return "VideoCard";
             }
+            //07-12-2020 moved to top from bottom
             nd = node.SelectSingleNode(".//div[@class='_Zfh']");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='Brgz0 tw-res']");
@@ -1228,6 +1229,7 @@ namespace RapidTrackingSingleThread
             {
                 return "Twitters";
             }
+            //07-12-2020
             nd = node.SelectSingleNode(".//div[@class='KNcnob']/g-img|.//div[@class='YEMaTe']/g-img");   //01-05-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='fn6bCb']");
@@ -1255,8 +1257,14 @@ namespace RapidTrackingSingleThread
             if (nd != null && nd1 == null)
                 return "videos";
             //end 15-10-2020
+            //nd = node.SelectSingleNode(".//div[@class='_Zfh']");
+            //if (nd == null)
+            //    nd = node.SelectSingleNode(".//div[@class='Brgz0 tw-res']");
+            //if (nd != null)
+            //{
+            //    return "Twitters";
+            //}
 
-            
 
             nd = node.SelectSingleNode(".//div[@class='kp-blk cUnQKe']|.//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']");//04-12-2020 //11-02-2020
             if (nd != null)

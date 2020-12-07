@@ -1409,7 +1409,7 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@class='WcS13d']") != null //02-10-2020 maps selectors
                 || node.SelectSingleNode(".//h3[@class='GmE3X']") != null //16-10-2020 updated selector for videos
                 || node.SelectSingleNode(".//div[@class='twQ0Be']") != null //03-12-2020 updated selector for videocard
-                || node.SelectSingleNode(".//div[@clas='vwfsqc']") != null //07-11-2020
+                || node.SelectSingleNode(".//div[@class='vwfsqc']") != null //07-12-2020
                 || node.SelectSingleNode(".//div[@class='setTDc']") != null); //07-12-2020
             if (bVal == true)//2019-09-11
             {

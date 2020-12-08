@@ -44,8 +44,12 @@ namespace RapidTrackingSingleThread
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div|//div[@id='rso']/div");//07-12-2020
                     if (nodeCol == null)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-section-with-header");//03-12-2020  //01-05-2020         
+                //if (nodeCol == null || nodeCol.Count <= 1)
+                //    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div") ?? nodeCol; //04-12-2020
                 if (nodeCol == null || nodeCol.Count <= 1)
-                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div") ?? nodeCol; //04-12-2020
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div"); //08-12-2020
+                if (nodeCol == null)
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='WvKfwe a3spGf']/div|//div[@class='UDZeY OTFaAf']|//div[@class='WvKfwe a3spGf']/g-section-with-header"); // 08-12-2020
                 foreach (HtmlNode node in nodeCol)
                 {
                     if (node.HasClass("kp-wholepage"))

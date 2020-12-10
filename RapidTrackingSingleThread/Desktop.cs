@@ -1240,7 +1240,7 @@ namespace RapidTrackingSingleThread
             {
                 return "VideoCard";
             }
-            nd = node.SelectSingleNode(".//div[@class='KNcnob']/g-img|.//div[@class='YEMaTe']/g-img");   //01-05-2020
+            nd = node.SelectSingleNode(".//div[@class='KNcnob']/g-img|.//div[contains(@class,'YEMaTe')]/g-img");//10-12-2020 applied contains   //01-05-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='fn6bCb']");
             if (nd == null)

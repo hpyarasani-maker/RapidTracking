@@ -1113,7 +1113,7 @@ namespace RapidTrackingSingleThread
                 nds = node.SelectNodes(".//g-inner-card/div/a");   //01-05-2020
             if (nds == null)
                 nds = node.SelectNodes(".//div[@class='HCUNre dbsr']/a"); //21-09-2020 Top Stories block item urls selector updated
-            if (nds == null && node.SelectNodes(".//div/a/div[@class='TIh7vf']") != null) //10-12-2020 
+            if (nds == null && node.SelectNodes(".//div/a/div[@class='TIh7vf']") != null) //10-12-2020  top stories selector
                 nds = node.SelectNodes(".//div/a"); //10-12-2020 
 
 
@@ -1245,6 +1245,8 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[@class='fn6bCb']");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='qmv19b']");    // 09-12-2019
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div/a/div[@class='TIh7vf']"); // 10-12-2019 topstories block type selector
             if (nd != null)
                 return "topstories";
             if (nd == null)

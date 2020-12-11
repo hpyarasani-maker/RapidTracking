@@ -39,13 +39,23 @@ namespace RapidTrackingSingleThread
                 if (nodeCol == null)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@class='bkWMgd']");
                 if (nodeCol == null)
-                    //nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");
-                    //nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div|//div[@id='rso']/div[@class='hlcw0c']/div");//07-12-2020
-                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div|//div[@id='rso']/div");//07-12-2020
-                    if (nodeCol == null)
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");//09-12-2020
+                if (nodeCol == null)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-section-with-header");//03-12-2020  //01-05-2020         
                 if (nodeCol == null || nodeCol.Count <= 1)
-                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div") ?? nodeCol; //04-12-2020
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div|//div[@class='hlcw0c']/div") ?? nodeCol; //04-12-2020 //09-12-2020 no result issue
+
+                //commented 09-12-2020
+                /*if (nodeCol == null)
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='bkWMgd']");
+                if (nodeCol == null)
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div|//div[@id='rso']/div");//07-12-2020
+                if (nodeCol == null)
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-section-with-header");//03-12-2020  //01-05-2020         
+                if (nodeCol == null || nodeCol.Count <= 1)
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div") ?? nodeCol; //04-12-2020*/
+                //end 09-12-2020
+
                 foreach (HtmlNode node in nodeCol)
                 {
                     if (node.HasClass("kp-wholepage"))
@@ -72,15 +82,18 @@ namespace RapidTrackingSingleThread
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@class='xVtsMb i6u2Cc']|//div[@class='xVtsMb']/div/div");//swapped 08-04-2020
                     if (nodeCol == null)
                         nodeCol = doc.DocumentNode.SelectNodes("//div[@class='vC5Ym DhKAUb']/div");  // 03-04-2020
-                    //if (nodeCol == null)
-                    //    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div");//03-12-2020 
                     if (nodeCol == null)
-                        //nodeCol = doc.DocumentNode.SelectNodes(".//div[@class='WvKfwe']/div|//div[@class='WvKfwe a3spGf']/div|//div[contains(@class,'J9WfR')]/div");//03-12-2020  // 05-12-2020
+                        nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[contains(@class,'WvKfwe')]/g-section-with-header|.//div[@class='UDZeY OTFaAf']");//09-12-2020
+                    //commented 09-12-2020
+                    /*f (nodeCol == null)
+                        nodeCol = doc.DocumentNode.SelectNodes("//div[@class='vC5Ym DhKAUb']/div");  // 03-04-2020
+                    if (nodeCol == null)
                         nodeCol = doc.DocumentNode.SelectNodes(".//div[@class='WvKfwe']/div|//div[@class='WvKfwe a3spGf']/div");//07-12-2020 removed selector//03-12-2020  // 05-12-2020
-                        if (nodeCol == null)
+                    if (nodeCol == null)
                         nodeCol = doc.DocumentNode.SelectNodes("//div[@class='WvKfwe a3spGf']/div|//div[@class='WvKfwe a3spGf']/g-section-with-header"); //05-12-2020 // 15-04-2020    //01-05-2020");  // 15-04-2020//22-05-2020
                     if (nodeCol == null)
-                        nodeCol = doc.DocumentNode.SelectNodes("//div[@class='a3spGf WvKfwe']/div|//div[@class='a3spGf WvKfwe']/g-section-with-header|.//div[@class='UDZeY OTFaAf']");  // 01-06-2020
+                        nodeCol = doc.DocumentNode.SelectNodes("//div[@class='a3spGf WvKfwe']/div|//div[@class='a3spGf WvKfwe']/g-section-with-header|.//div[@class='UDZeY OTFaAf']");  // 01-06-2020*/
+                    //end 09-12-2020
                      
                     foreach (HtmlNode node in nodeCol)
                     {
@@ -1100,6 +1113,9 @@ namespace RapidTrackingSingleThread
                 nds = node.SelectNodes(".//g-inner-card/div/a");   //01-05-2020
             if (nds == null)
                 nds = node.SelectNodes(".//div[@class='HCUNre dbsr']/a"); //21-09-2020 Top Stories block item urls selector updated
+            if (nds == null && node.SelectNodes(".//div/a/div[@class='TIh7vf']") != null) //10-12-2020  top stories selector
+                nds = node.SelectNodes(".//div/a"); //10-12-2020 
+
 
             if (nds != null)
                 foreach (HtmlNode nd in nds)
@@ -1224,11 +1240,13 @@ namespace RapidTrackingSingleThread
             {
                 return "VideoCard";
             }
-            nd = node.SelectSingleNode(".//div[@class='KNcnob']/g-img|.//div[@class='YEMaTe']/g-img");   //01-05-2020
+            nd = node.SelectSingleNode(".//div[@class='KNcnob']/g-img|.//div[contains(@class,'YEMaTe')]/g-img");//10-12-2020 applied contains   //01-05-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='fn6bCb']");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='qmv19b']");    // 09-12-2019
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div/a/div[@class='TIh7vf']"); // 10-12-2019 topstories block type selector
             if (nd != null)
                 return "topstories";
             if (nd == null)

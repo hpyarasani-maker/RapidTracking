@@ -1989,7 +1989,7 @@ namespace RapidTrackingSingleThread
         {
             HtmlNode nd = node.SelectSingleNode(".//div[@class='KNcnob']/g-img");
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='fn6bCb']|.//g-tray-header[@class='kno-fb-ctx zbA8Me ndEm3b']");
+                nd = node.SelectSingleNode(".//div[@class='fn6bCb']|.//g-tray-header[@class='kno-fb-ctx zbA8Me ndEm3b']|.//div[@class='fhQnRd']"); //12-12-2020 applied selector for TS BT
             //if (nd == null)
             //    nd = node.SelectSingleNode(".//g-tray-header[@class='kno-fb-ctx gsrt nQE5cd ieGFJe ndEm3b']");  // 06-12-2019
             //if (nd == null)

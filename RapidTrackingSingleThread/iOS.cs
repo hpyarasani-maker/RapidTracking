@@ -888,6 +888,8 @@ namespace RapidTrackingSingleThread
                             if (n == null)
                                 n = nd.SelectSingleNode(".//a[@class='sXtWJb amp_r']"); // 20-05-2020
                             if (n == null)
+                                n = nd.SelectSingleNode(".//a[@class='sXtWJb gsrt amp_r']");//15-12-2020 missing classic link
+                            if (n == null)
                                 n = nd.SelectSingleNode(".//g-link/a");
                             if (n == null)
                             {
@@ -972,6 +974,8 @@ namespace RapidTrackingSingleThread
                                                 n = nd.SelectSingleNode(".//a[@class='C8nzq BmP5tf']");  // 10-06-2020 swapped from above
                                             if (n == null)
                                                 n = nd.SelectSingleNode(".//a[@class='C8nzq Tj0U2 BmP5tf']");    // 29-11-2019
+                                            if (n == null)
+                                                n = nd.SelectSingleNode(".//div[@class='au0C1b u78HIe']/a"); //15-12-2020 video selector
                                             string url = n.Attributes["href"].Value;
 
                                             string title = n.InnerText.Replace("'", "").Replace("\"", "");
@@ -1020,6 +1024,8 @@ namespace RapidTrackingSingleThread
                                     nv = nd.SelectSingleNode(".//a[@class='C8nzq Tj0U2 BmP5tf amp_r']"); // 29-11-2019
                                 if (nv == null)
                                     nv = nd.SelectSingleNode(".//a[@class='sXtWJb amp_r']"); // 20-05-2020
+                                if (n == null)
+                                    n = nd.SelectSingleNode(".//a[@class='sXtWJb gsrt amp_r']");//15-12-2020 missing classic link
                                 if (nv == null)
                                     nv = nd.SelectSingleNode(".//g-link/a");
                                 if (nv == null)
@@ -2550,9 +2556,8 @@ namespace RapidTrackingSingleThread
                 if (nd != null && node.SelectSingleNode(".//div[@class='EDblX m8vZ3d']") == null)   // 16-10-2019
                 {
                     //if (node.SelectSingleNode(".//div[@class='BNeawe deIvCb AP7Wnd']") != null)//commented 11-12-2020 //09-07-2020
-                    //if (node.SelectSingleNode(".//div[contains(@class,'BNeawe')]") != null && node.SelectSingleNode(".//div[contains(@class,'au0C1b')]") == null)//15-12-2020 commented //14-12-2020 //11-12-2020 not for popular products
-                    if (node.SelectSingleNode(".//div[contains(@class,'BNeawe')]") != null) //15-12-2020 //11-12-2020 not for popular products
-                    return true;
+                    if (node.SelectSingleNode(".//div[contains(@class,'BNeawe')]") != null && node.SelectSingleNode(".//div[@class='au0C1b u78HIe']") == null)//15-12-2020 commented //14-12-2020 //11-12-2020 not for popular products
+                     return true;
                     return false;
                 }
                 else if (nd != null && node.SelectSingleNode(".//div[@class='d5oMvf KJDcUb']") != null) // 22-01-2020 included selector for classic links

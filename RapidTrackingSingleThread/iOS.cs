@@ -1654,8 +1654,10 @@ namespace RapidTrackingSingleThread
             if (nds == null)
                 nds = node.SelectNodes(".//div[@class='eR2XS']/g-inner-card/div/a/g-img[@class='SeXxHf']/img"); //08-06-2020
             if (nds == null)
-                nds = node.SelectNodes(".//div[@class='OixsOd']/a|.//div[@class='eA0Zlc qN5nNb ivg-i CxtVFd']/g-img[@class='BA0A6c']/img|.//div[@class='sDiRtb']/a"); //14-12-2020  //17-07-2020  //13-07-2020 selector included for images
-            if (nds != null)
+                // nds = node.SelectNodes(".//div[@class='OixsOd']/a|.//div[@class='eA0Zlc qN5nNb ivg-i CxtVFd']/g-img[@class='BA0A6c']/img|.//div[@class='sDiRtb']/a");//15-12-2020 commented //14-12-2020  //17-07-2020  //13-07-2020 selector included for images
+                 nds = node.SelectNodes(".//div[@class='OixsOd']/a|.//div[@class='eA0Zlc qN5nNb ivg-i CxtVFd']/g-img[@class='BA0A6c']/img"); //15-12-2020  //17-07-2020  //13-07-2020 selector included for images
+
+                if (nds != null)
 
                 foreach (HtmlNode nd in nds)
                 {
@@ -2338,8 +2340,10 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[@class='gID6df']|.//div[@id='iur']/a"); //12-06-2020//05-06-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='GNxIwf']");  // 18-03-2020
-                                                                        //if (nd == null)
-                                                                        // nd = node.SelectSingleNode(".//div[@jscontroller='pfW8md']");  // 17-07-2020 //21-07-2020 commented not required selector
+             //if (nd == null)
+             // nd = node.SelectSingleNode(".//div[@jscontroller='pfW8md']");  // 17-07-2020 //21-07-2020 commented not required selector
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='BNeawe UwRFLe']/span"); //15-12-2020 applied selector to avoid wrong item urls
             if (nd != null)
             {
                 //if (nd.InnerText == "Images" || nd.InnerText == "Immagini"|| nd.InnerText == "Im?genes")
@@ -2540,8 +2544,9 @@ namespace RapidTrackingSingleThread
                 if (nd != null && node.SelectSingleNode(".//div[@class='EDblX m8vZ3d']") == null)   // 16-10-2019
                 {
                     //if (node.SelectSingleNode(".//div[@class='BNeawe deIvCb AP7Wnd']") != null)//commented 11-12-2020 //09-07-2020
-                    if (node.SelectSingleNode(".//div[contains(@class,'BNeawe')]") != null && node.SelectSingleNode(".//div[contains(@class,'au0C1b')]") == null) //14-12-2020 //11-12-2020 not for popular products
-                        return true;
+                    //if (node.SelectSingleNode(".//div[contains(@class,'BNeawe')]") != null && node.SelectSingleNode(".//div[contains(@class,'au0C1b')]") == null)//15-12-2020 commented //14-12-2020 //11-12-2020 not for popular products
+                    if (node.SelectSingleNode(".//div[contains(@class,'BNeawe')]") != null) //15-12-2020 //11-12-2020 not for popular products
+                    return true;
                     return false;
                 }
                 else if (nd != null && node.SelectSingleNode(".//div[@class='d5oMvf KJDcUb']") != null) // 22-01-2020 included selector for classic links

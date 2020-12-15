@@ -763,6 +763,8 @@ namespace RapidTrackingSingleThread
                 //    nds = node.SelectNodes(".//div[@class='KJDcUb WzRKRb']");//29-11-2019 //29-07-2020 commented
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='setTDc']");   // 25-10-2019
+                if (nds == null && node.SelectNodes("//div[contains(@class,'g mnr-c')]") != null) //15-12-2020
+                    nds = node.SelectNodes("//div[contains(@class,'g mnr-c')]"); //15-12-2020
             }
             if (nds != null)
             {
@@ -1441,11 +1443,15 @@ namespace RapidTrackingSingleThread
                 n = node.SelectSingleNode(".//a[@class='C8nzq JTuIPc']");
             if (n == null)
                 n = node.SelectSingleNode(".//a[contains(@class,'C8nzq BmP5tf')]"); //14-09-2020 contains
+            if (n == null)
+                n = node.SelectSingleNode(".//a[@class='sXtWJb gsrt']"); //15-12-2020
             if (n != null)
             {
                 if (orgLinks < 100)
                 {
                     HtmlNode t = n.SelectSingleNode(".//div[@role='heading']");
+                    if (t == null)
+                        t = n.SelectSingleNode(".//span"); //15-12-2020
                     s.Append("<item url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(t.InnerText) + "\" />");
                     orgLinks++;
                 }
@@ -2570,7 +2576,9 @@ namespace RapidTrackingSingleThread
                 || (node.SelectSingleNode(".//g-card[@class='XqIXXe']") != null && node.SelectSingleNode(".//g-card[@id='tscffb']") != null)
                  || node.SelectSingleNode(".//div[@class='khgTR lWEpfd']") != null  //22-06-2020
                  || node.SelectSingleNode(".//div[@class='ywTQJc']") != null //07-08-2020 
-                || node.SelectSingleNode(".//div[@class='khgTR R5lVqb']") != null); //26-08-2020 selector for missing classic link
+                || node.SelectSingleNode(".//div[@class='khgTR R5lVqb']") != null //26-08-2020 selector for missing classic link
+            || node.SelectSingleNode(".//div[@class='V1nn0e R5lVqb']") != null); //15-12-2020
+
         }
 
         internal object GetTop100GoogleUKMobileImages_PageURLs(string kw, string v1, string v2, string v3, string v4, string v5)

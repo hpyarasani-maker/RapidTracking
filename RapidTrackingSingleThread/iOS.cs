@@ -761,15 +761,17 @@ namespace RapidTrackingSingleThread
                     nds = node.SelectNodes(".//div[@class='mnr-c O9g5cc uUPGi']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='HD8Pae mnr-c xpd O9g5cc uUPGi']" +
                         "|.//div/g-card[@class='XqIXXe']|.//g-card[@id='tscffb']|.//g-card[@class='g F6CFcc']|.//div[@class='khgTR lWEpfd']" +
                         "|.//div[@class='khgTR R5lVqb']|.//div[@class='mnr-c fp-w qs-ic aig-grd']|.//g-card[@class='URhAHe']" +
-                        "|.//div[@class='mnr-c IcwJCe']|.//div[@class='g card-section svwwZ']"); //03-11-2020//26-08-2020 incuded contains functions to the selector//29-07-2020 //20-05-2020 missing classic link //05-06-2020
-                        //"|.//div[@class='card-section']|.//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']"); //15-12-2020
+                        "|.//div[@class='mnr-c IcwJCe']|.//div[@class='g card-section svwwZ']"+ //03-11-2020//26-08-2020 incuded contains functions to the selector//29-07-2020 //20-05-2020 missing classic link //05-06-2020
+                        "|.//div[@class='card-section']|.//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']"); //15-12-2020
                 if (nds == null)
                     if (node.Attributes["class"].Value == "mnr-c xpd O9g5cc uUPGi")
                         nds = node.SelectNodes(".//div[contains(@class,'KJDcUb')]"); //28-07-2020 //29-07-2020 included contains function
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='setTDc']");   // 25-10-2019
-                if (nds == null && node.SelectNodes("//div[contains(@class,'g mnr-c')]") != null) //15-12-2020
-                    nds = node.SelectNodes("//div[contains(@class,'g mnr-c')]"); //15-12-2020
+                //commented 16-12-2020
+                //if (nds == null && node.SelectNodes("//div[contains(@class,'g mnr-c')]") != null) //15-12-2020
+                //    nds = node.SelectNodes("//div[contains(@class,'g mnr-c')]"); //15-12-2020
+                //end 16-12-2020
             }
             if (nds != null)
             {
@@ -891,10 +893,12 @@ namespace RapidTrackingSingleThread
                                 n = nd.SelectSingleNode(".//a[@class='C8nzq BmP5tf']");   // 10-06-2020 swapped from above
                             if (n == null)
                                 n = nd.SelectSingleNode(".//a[@class='C8nzq Tj0U2 BmP5tf amp_r']"); // 29-11-2019
+                            //if (n == null)
+                            //    n = nd.SelectSingleNode(".//a[@class='sXtWJb amp_r']"); // 20-05-2020
+                            //if (n == null)
+                            //    n = nd.SelectSingleNode(".//a[@class='sXtWJb gsrt amp_r']");//15-12-2020 missing classic link
                             if (n == null)
-                                n = nd.SelectSingleNode(".//a[@class='sXtWJb amp_r']"); // 20-05-2020
-                            if (n == null)
-                                n = nd.SelectSingleNode(".//a[@class='sXtWJb gsrt amp_r']");//15-12-2020 missing classic link
+                               n = nd.SelectSingleNode(".//a[contains(@class,'sXtWJb')]"); //16-12-2020
                             if (n == null)
                                 n = nd.SelectSingleNode(".//g-link/a");
                             if (n == null)
@@ -1028,16 +1032,18 @@ namespace RapidTrackingSingleThread
                                     nv = nd.SelectSingleNode(".//a[@class='C8nzq BmP5tf']");  // 10-06-2020 swapped from above
                                 if (nv == null)
                                     nv = nd.SelectSingleNode(".//a[@class='C8nzq Tj0U2 BmP5tf amp_r']"); // 29-11-2019
-                                if (nv == null)
-                                    nv = nd.SelectSingleNode(".//a[@class='sXtWJb amp_r']"); // 20-05-2020
-                                if (nv == null)
-                                    nv = nd.SelectSingleNode(".//a[@class='sXtWJb gsrt amp_r']");//15-12-2020 missing classic link
+                                //if (nv == null)
+                                //    nv = nd.SelectSingleNode(".//a[@class='sXtWJb amp_r']"); // 20-05-2020
+                                //if (nv == null)
+                                //    nv = nd.SelectSingleNode(".//a[@class='sXtWJb gsrt amp_r']");//15-12-2020 missing classic link
                                 if (nv == null)
                                     nv = nd.SelectSingleNode(".//g-link/a");
                                 if (nv == null)
                                     nv = nd.SelectSingleNode(".//div[@class='fM8c FUksre']/a"); //22-06-2020
+                                //if (nv == null)
+                                //    nv = nd.SelectSingleNode(".//a[@class='sXtWJb gsrt']"); //16-12-2020
                                 if (nv == null)
-                                    nv = nd.SelectSingleNode(".//a[@class='sXtWJb gsrt']"); //16-12-2020
+                                    nv = nd.SelectSingleNode(".//a[contains(@class,'sXtWJb')]"); //16-12-2020
                                 if (nv == null)
                                     nv = nd.SelectSingleNode(".//div/a");  //25-06-2020
                                 if (nv == null)
@@ -1458,7 +1464,7 @@ namespace RapidTrackingSingleThread
             if (n == null)
                 n = node.SelectSingleNode(".//a[contains(@class,'C8nzq BmP5tf')]"); //14-09-2020 contains
             if (n == null)
-                n = node.SelectSingleNode(".//a[@class='sXtWJb gsrt']"); //15-12-2020
+                n = node.SelectSingleNode(".//a[contains(@class,'sXtWJb')]");//16-12-2020 //15-12-2020
             if (n != null)
             {
                 if (orgLinks < 100)

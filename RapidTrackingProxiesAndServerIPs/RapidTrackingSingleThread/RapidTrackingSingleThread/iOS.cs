@@ -1954,8 +1954,8 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div/span[@class='YkgoD z1asCe GYDk8c']|.//div/span[@class='Ca2Qlc z1asCe GYDk8c']|.//div[@class='MHStgc']/span"); //05-10-2020 Answercard
             if (nd == null)
                 nd = node.SelectSingleNode(".//w-answer/div[@class='MUxGbd t51gnb lyLwlc lEBKkf']"); //29-09-2020 answer card
-            if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='XbtRGb qxsd NV5pMe yF5Gqd mod']"); //15-12-2020 answer card
+            //if (nd == null)
+            //    nd = node.SelectSingleNode(".//div[@class='XbtRGb qxsd NV5pMe yF5Gqd mod']"); //15-12-2020 answer card
             if (nd != null)
             {
                 return "AnswerCard";

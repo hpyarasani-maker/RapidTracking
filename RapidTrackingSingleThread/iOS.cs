@@ -495,6 +495,12 @@ namespace RapidTrackingSingleThread
                                             innertextNode = planode.SelectSingleNode(".//div[@class='Ved4gc']|.//div[@class='UBq0ab']");
                                             //11-11-2019
                                             string url = GetProductListedUrls(urlnode.InnerText.ToString().Replace("&nbsp;", ""));
+                                            //18-12-2020
+                                            var url1 = GetRedirectedUrl(url);
+                                            if (string.IsNullOrEmpty(url1))
+                                                url1 = GetProductListUrl(url);
+                                            url = url1;
+                                            //end 18-12-2020
                                             if (!string.IsNullOrEmpty(url) && !string.IsNullOrEmpty(innertextNode.InnerText))    //13-11-2019
                                                 s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(innertextNode.InnerText) + "\" />");  // 04-11-2019
                                         }

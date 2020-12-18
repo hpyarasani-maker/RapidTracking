@@ -3,7 +3,9 @@ using System;
 using System.Collections;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -14,7 +16,7 @@ namespace Oxylabs_BulkKeywords
     {
         int orgLinks;
         string html;
-
+        string seid; //18-12-2020
         public string ProcessDocument(string seid, string keyword, string htmlsource, out int organicurls)
         {
             if (string.IsNullOrEmpty(htmlsource))
@@ -22,11 +24,12 @@ namespace Oxylabs_BulkKeywords
                 organicurls = 0;
                 return string.Empty;
             }
-
+           
             var doc = new HtmlDocument();
             doc.LoadHtml(htmlsource);
             html = htmlsource;
             orgLinks = 0;
+            this.seid = seid; //18-12-2020
             StringBuilder sb = new StringBuilder();
             //sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" date=\"2019-11-29\" >");
             sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" date=\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\" >");
@@ -199,7 +202,12 @@ namespace Oxylabs_BulkKeywords
                     foreach (HtmlNode nd in col)
                     {
                         var url = nd.Attributes["href"].Value.Trim();
-                        url = GetRedirectedUrl(url);
+                        //18-12-2020
+                        var url1 = GetRedirectedUrl(url);
+                        if (string.IsNullOrEmpty(url1))
+                            url1 = GetProductListUrl(url);
+                        url = url1;
+                        //end 18-12-2020
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(nd.InnerText) + "\" />");
                     }
                 }
@@ -242,7 +250,12 @@ namespace Oxylabs_BulkKeywords
                                 foreach (HtmlNode nd in cl)
                                 {
                                     var url = nd.Attributes["href"].Value;
-                                    url = GetRedirectedUrl(url);
+                                    //18-12-2020
+                                    var url1 = GetRedirectedUrl(url);
+                                    if (string.IsNullOrEmpty(url1))
+                                        url1 = GetProductListUrl(url);
+                                    url = url1;
+                                    //end 18-12-2020
                                     if (!string.IsNullOrEmpty(nd.SelectSingleNode(".//h4").InnerText) && !string.IsNullOrEmpty(url.Trim()))    //13-11-2019
                                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(nd.SelectSingleNode(".//h4").InnerText) + "\" />");
                                 }
@@ -260,6 +273,12 @@ namespace Oxylabs_BulkKeywords
                                         innertextNode = planode.SelectSingleNode(".//div[@class='Ved4gc']");
                                         //11-11-2019
                                         string url = GetProductListedUrls(urlnode.InnerText.ToString());
+                                        //18-12-2020
+                                        var url1 = GetRedirectedUrl(url);
+                                        if (string.IsNullOrEmpty(url1))
+                                            url1 = GetProductListUrl(url);
+                                        url = url1;
+                                        //end 18-12-2020
                                         if (!string.IsNullOrEmpty(url) && !string.IsNullOrEmpty(innertextNode.InnerText))    //13-11-2019
                                             s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(innertextNode.InnerText) + "\" />");
                                     }
@@ -426,7 +445,12 @@ namespace Oxylabs_BulkKeywords
                                     foreach (HtmlNode nd in cl)
                                     {
                                         var url = nd.Attributes["href"].Value;
-                                        url = GetRedirectedUrl(url);
+                                        //18-12-2020
+                                        var url1 = GetRedirectedUrl(url);
+                                        if (string.IsNullOrEmpty(url1))
+                                            url1 = GetProductListUrl(url);
+                                        url = url1;
+                                        //end 18-12-2020
                                         //25-06-2020
                                         string title;
                                         if (nd.SelectSingleNode(".//h4") != null)
@@ -462,6 +486,12 @@ namespace Oxylabs_BulkKeywords
                                             innertextNode = planode.SelectSingleNode(".//div[@class='Ved4gc']|.//div[@class='UBq0ab']");
                                             //11-11-2019
                                             string url = GetProductListedUrls(urlnode.InnerText.ToString().Replace("&nbsp;", ""));
+                                            //18-12-2020
+                                            var url1 = GetRedirectedUrl(url);
+                                            if (string.IsNullOrEmpty(url1))
+                                                url1 = GetProductListUrl(url);
+                                            url = url1;
+                                            //end 18-12-2020
                                             if (!string.IsNullOrEmpty(url) && !string.IsNullOrEmpty(innertextNode.InnerText))    //13-11-2019
                                                 s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(innertextNode.InnerText) + "\" />");  // 04-11-2019
                                         }
@@ -638,7 +668,7 @@ namespace Oxylabs_BulkKeywords
             {
                 nds = node.SelectNodes(".//div[@class='mnr-c waTp2e xpd O9g5cc uUPGi']|.//div[@class='mnr-c luh4tb xpd O9g5cc uUPGi']");//15-12-2020 removed selector//06-10-2020 classic link selector //19-06-2020   //20-01-2020 selector changed for two classic links
                 if (nds == null)
-                    nds = node.SelectNodes(".//div[@class='KJDcUb']"); //15-12-2020
+                    nds = node.SelectNodes(".//div[@class='KJDcUb']|.//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']");//18-12-2020 sitelinks missing selector //15-12-2020
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='mnr-c O9g5cc uUPGi']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='HD8Pae mnr-c xpd O9g5cc uUPGi']" +
                         "|.//div/g-card[@class='XqIXXe']|.//g-card[@id='tscffb']|.//g-card[@class='g F6CFcc']|.//div[@class='khgTR lWEpfd']" +
@@ -1233,12 +1263,18 @@ namespace Oxylabs_BulkKeywords
                 foreach (HtmlNode nd1 in nd)
                 {
                     string title = nd1.InnerText;
-                    string url = "";
-                    if (url.Contains("http"))
+                    //18-12-2020
+                    string url = nd1.Attributes["href"].Value;
+                    var url1 = GetRedirectedUrl(url);
+                    if (string.IsNullOrEmpty(url1))
+                        url1 = GetProductListUrl(url);
+                    url = url1;
+
+                    if (!string.IsNullOrEmpty(title) && !string.IsNullOrEmpty(url.Trim()))
                     {
-                        url = nd1.Attributes["href"].Value;
+                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                     }
-                    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                    //end 18-12-2020
                 }
             }
 
@@ -2433,7 +2469,39 @@ namespace Oxylabs_BulkKeywords
             return string.Empty;
 
         }
+        //18-12-2020
+        public string GetProductListUrl(string url)
+        {
+            SearchProperties sp = SearchParams.searches.Where(s => s.seid == Convert.ToInt32(seid)).SingleOrDefault();
+            if (url.StartsWith("/aclk?"))
+            {
+                url = "http://www.google." + sp.domain + url;
+                url = url.Replace("&amp;", "&");
+            }
+            using (var client = new HttpClient(new HttpClientHandler() { AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip }))
+            {
+                var request = new HttpRequestMessage()
+                {
+                    RequestUri = new Uri(url),
+                    Method = HttpMethod.Get
+                };
+                HttpResponseMessage response = client.SendAsync(request).Result;
+                var statusCode = (int)response.StatusCode;
 
+                // We want to handle redirects ourselves so that we can determine the final redirect Location (via header)
+                if (statusCode == 200)
+                {
+                    string url1 = response.RequestMessage.RequestUri.ToString();
+                    if (url1.IndexOf("?") >= 0)
+                        url1 = url1.Remove(url1.IndexOf("?"));
+                    if (url1.IndexOf("#") >= 0)
+                        url1 = url1.Remove(url1.IndexOf("#"));
+                    return url1;
+                }
+            }
+            return string.Empty;
+        }
+        //END 18-12-2020
         // There are chances method was used for title contains in case any issues in xml applied decode/encode.
         public string SetTitle(string unicodestring)
         {

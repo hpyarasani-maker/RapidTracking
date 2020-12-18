@@ -2,7 +2,9 @@
 using System;
 using System.Collections;
 using System.IO;
+using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -2443,7 +2445,39 @@ namespace RapidTrackingSingleThread
             return string.Empty;
 
         }
+        //18-12-2020
+        public string GetProductListUrl(string url)
+        {
+            SearchProperties sp = SearchParams.searches.Where(s => s.seid == Convert.ToInt32(seid)).SingleOrDefault();
+            if (url.StartsWith("/aclk?"))
+            {
+                url = "http://www.google." + sp.domain + url;
+                url = url.Replace("&amp;", "&");
+            }
+            using (var client = new HttpClient(new HttpClientHandler() { AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip }))
+            {
+                var request = new HttpRequestMessage()
+                {
+                    RequestUri = new Uri(url),
+                    Method = HttpMethod.Get
+                };
+                HttpResponseMessage response = client.SendAsync(request).Result;
+                var statusCode = (int)response.StatusCode;
 
+                // We want to handle redirects ourselves so that we can determine the final redirect Location (via header)
+                if (statusCode == 200)
+                {
+                    string url1 = response.RequestMessage.RequestUri.ToString();
+                    if (url1.IndexOf("?") >= 0)
+                        url1 = url1.Remove(url1.IndexOf("?"));
+                    if (url1.IndexOf("#") >= 0)
+                        url1 = url1.Remove(url1.IndexOf("#"));
+                    return url1;
+                }
+            }
+            return string.Empty;
+        }
+        //END 18-12-2020
         // There are chances method was used for title contains in case any issues in xml applied decode/encode.
         public string SetTitle(string unicodestring)
         {

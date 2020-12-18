@@ -1272,12 +1272,18 @@ namespace RapidTrackingSingleThread
                 foreach (HtmlNode nd1 in nd)
                 {
                     string title = nd1.InnerText;
-                    string url = "";
-                    if (url.Contains("http"))
+                    //18-12-2020
+                    string url = nd1.Attributes["href"].Value;
+                    var url1 = GetRedirectedUrl(url);
+                    if (string.IsNullOrEmpty(url1))
+                        url1 = GetProductListUrl(url);
+                    url = url1;
+
+                    if (!string.IsNullOrEmpty(title) && !string.IsNullOrEmpty(url.Trim()))
                     {
-                        url = nd1.Attributes["href"].Value;
+                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                     }
-                    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                    //end 18-12-2020
                 }
             }
 

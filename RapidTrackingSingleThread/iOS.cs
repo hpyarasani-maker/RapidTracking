@@ -646,7 +646,8 @@ namespace RapidTrackingSingleThread
             else
             {
                 nds = node.SelectNodes(".//div[@class='mnr-c waTp2e xpd O9g5cc uUPGi']|.//div[@class='mnr-c luh4tb xpd O9g5cc uUPGi']");//15-12-2020 removed selector//06-10-2020 classic link selector //19-06-2020   //20-01-2020 selector changed for two classic links
-                if (nds == null)
+                if (node.SelectSingleNode(".//div[@jscontroller='i5z2Rc']") == null)//18-12-2020 updated for missing selectors
+                    if (nds == null)
                     nds = node.SelectNodes(".//div[@class='KJDcUb']"); //15-12-2020
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='mnr-c O9g5cc uUPGi']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='HD8Pae mnr-c xpd O9g5cc uUPGi']" +

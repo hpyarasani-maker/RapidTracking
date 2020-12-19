@@ -259,12 +259,7 @@ namespace RapidTrackingSingleThread
                                 foreach (HtmlNode nd in cl)
                                 {
                                     var url = nd.Attributes["href"].Value;
-                                    //18-12-2020
-                                    var url1 = GetRedirectedUrl(url);
-                                    if (string.IsNullOrEmpty(url1))
-                                        url1 = GetProductListUrl(url);
-                                    url = url1;
-                                    //end 18-12-2020
+                                    url = GetRedirectedUrl(url);
                                     if (!string.IsNullOrEmpty(nd.SelectSingleNode(".//h4").InnerText) && !string.IsNullOrEmpty(url.Trim()))    //13-11-2019
                                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(nd.SelectSingleNode(".//h4").InnerText) + "\" />");
                                 }

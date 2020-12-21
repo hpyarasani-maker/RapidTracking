@@ -2123,6 +2123,8 @@ namespace RapidTrackingSingleThread
             nd = node.SelectSingleNode(".//div[contains(@class,'rKFBM')]/div"); //28-07-2020 included contains functions
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[contains(@class,'JNkvid')]/div"); //28-07-2020 included selectors with contains functions
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='sPeCJd']"); //21-12-2020 selector for carousel
             if (nd != null)
             {
                 if (node.SelectSingleNode(".//g-scrolling-carousel") != null)
@@ -2133,7 +2135,12 @@ namespace RapidTrackingSingleThread
                     {
                         return "Carousel";
                     }
+                    if (node.SelectSingleNode(".//div[contains(@data-attrid,'movies')]") != null)//21-12-2020 for carousel selector if true
+                    {
+                        return "Carousel";
+                    }
             }
+
 
             nd = node.SelectSingleNode(".//div[@class='bUNBRd mnr-c']/div/g-tray-header/div");   // || node.SelectSingleNode(".//div[@id='imagebox_bigimages']") != null)
             if (nd == null)

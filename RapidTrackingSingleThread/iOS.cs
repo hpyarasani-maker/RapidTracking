@@ -2081,7 +2081,7 @@ namespace RapidTrackingSingleThread
                 && node.SelectSingleNode(".//div[@class='answered-question']") == null)
                 || (node.SelectSingleNode(".//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']") != null))
             {
-                if (!node.InnerText.StartsWith("People also search for")) //25-05-2020
+                if (!node.InnerText.StartsWith("People also search for") && node.SelectSingleNode(".//div[@class='Eee1Bd vKF8c LL6Bte']") == null) //21-12-2020//25-05-2020
                     return "PeopleAlsoAsk";
             }
             // changed on 05-07-2019

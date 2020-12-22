@@ -644,7 +644,7 @@ namespace TrendingReceiving
             {
                 nds = node.SelectNodes(".//div[@class='mnr-c waTp2e xpd O9g5cc uUPGi']|.//div[@class='mnr-c luh4tb xpd O9g5cc uUPGi']");//15-12-2020 removed selector//06-10-2020 classic link selector //19-06-2020   //20-01-2020 selector changed for two classic links
                 if (nds == null)
-                    nds = node.SelectNodes(".//div[@class='KJDcUb']"); //15-12-2020
+                    nds = node.SelectNodes(".//div[@class='KJDcUb']|.//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']");//18-12-2020 sitelinks missing selector //15-12-2020
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='mnr-c O9g5cc uUPGi']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='HD8Pae mnr-c xpd O9g5cc uUPGi']" +
                         "|.//div/g-card[@class='XqIXXe']|.//g-card[@id='tscffb']|.//g-card[@class='g F6CFcc']|.//div[@class='khgTR lWEpfd']" +
@@ -827,7 +827,7 @@ namespace TrendingReceiving
                                     try
                                     {
                                         //28-10-2019
-                                        if (Regex.IsMatch(img.OuterHtml, "id=\"vidthumb\\d*\"") || nd.SelectSingleNode(".//div[@class='YgXj7b Qc4Zr']|.//div[contains(@class,'qW7zYd')]") != null || node.SelectSingleNode(".//div[@class='YgXj7b Qc4Zr']") != null) //16-12-2020 //14-12-2020
+                                        if (Regex.IsMatch(img.OuterHtml, "id=\"vidthumb\\d*\"") || nd.SelectSingleNode(".//div[@class='YgXj7b Qc4Zr']|.//div[contains(@class,'qW7zYd')]") != null || node.SelectSingleNode(".//div[@class='YgXj7b Qc4Zr']") != null) //21-12-2020//16-12-2020 //14-12-2020
                                         {
                                             HtmlNode n = nd.SelectSingleNode(".//h3[@class='r']/a");
                                             // video block.
@@ -1858,7 +1858,7 @@ namespace TrendingReceiving
                 // 23-10-2019
                 if (ts)
                 {
-                    n = node.SelectSingleNode(".//div[@role='heading']");
+                    n = node.SelectSingleNode(".//div[@role='heading']|.//g-tray-header[@role='heading']");//21-12-2020 top stories only
                     if (n != null)
                     {
                         if (n.InnerText.ToLower().Trim() == "videos" || n.InnerText.ToLower().Trim().StartsWith("video") || n.InnerText.Trim() == "فيديوهات")  //03-08-2020 included contains func for "video"// 16-12-2019
@@ -1949,6 +1949,8 @@ namespace TrendingReceiving
                 nd = node.SelectSingleNode(".//div/span[@class='YkgoD z1asCe GYDk8c']|.//div/span[@class='Ca2Qlc z1asCe GYDk8c']|.//div[@class='MHStgc']/span"); //05-10-2020 Answercard
             if (nd == null)
                 nd = node.SelectSingleNode(".//w-answer/div[@class='MUxGbd t51gnb lyLwlc lEBKkf']"); //29-09-2020 answer card
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='PZPZlf hb8SAc']");//21-12-2020 selector for answer card block
             //if (nd == null)
             //    nd = node.SelectSingleNode(".//div[@class='XbtRGb qxsd NV5pMe yF5Gqd mod']"); //15-12-2020 answer card
             if (nd != null)
@@ -2076,7 +2078,7 @@ namespace TrendingReceiving
                 && node.SelectSingleNode(".//div[@class='answered-question']") == null)
                 || (node.SelectSingleNode(".//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']") != null))
             {
-                if (!node.InnerText.StartsWith("People also search for")) //25-05-2020
+                if (!node.InnerText.StartsWith("People also search for") && node.SelectSingleNode(".//div[@class='Eee1Bd vKF8c LL6Bte']") == null) //21-12-2020//25-05-2020
                     return "PeopleAlsoAsk";
             }
             // changed on 05-07-2019
@@ -2120,6 +2122,8 @@ namespace TrendingReceiving
             nd = node.SelectSingleNode(".//div[contains(@class,'rKFBM')]/div"); //28-07-2020 included contains functions
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[contains(@class,'JNkvid')]/div"); //28-07-2020 included selectors with contains functions
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='sPeCJd']"); //21-12-2020 selector for carousel
             if (nd != null)
             {
                 if (node.SelectSingleNode(".//g-scrolling-carousel") != null)
@@ -2130,7 +2134,12 @@ namespace TrendingReceiving
                     {
                         return "Carousel";
                     }
+                if (node.SelectSingleNode(".//div[contains(@data-attrid,'movies')]") != null)//21-12-2020 for carousel selector if true
+                {
+                    return "Carousel";
+                }
             }
+
 
             nd = node.SelectSingleNode(".//div[@class='bUNBRd mnr-c']/div/g-tray-header/div");   // || node.SelectSingleNode(".//div[@id='imagebox_bigimages']") != null)
             if (nd == null)

@@ -830,7 +830,7 @@ namespace RapidTrackingSingleThread
                                     try
                                     {
                                         //28-10-2019
-                                        if (Regex.IsMatch(img.OuterHtml, "id=\"vidthumb\\d*\"") || nd.SelectSingleNode(".//div[@class='YgXj7b Qc4Zr']|.//div[contains(@class,'qW7zYd')]") != null) //21-12-2020//16-12-2020 //14-12-2020
+                                        if (Regex.IsMatch(img.OuterHtml, "id=\"vidthumb\\d*\"") || nd.SelectSingleNode(".//div[@class='YgXj7b Qc4Zr']|.//div[contains(@class,'qW7zYd')]") != null || node.SelectSingleNode(".//div[@class='YgXj7b Qc4Zr']") != null) //21-12-2020//16-12-2020 //14-12-2020
                                         {
                                             HtmlNode n = nd.SelectSingleNode(".//h3[@class='r']/a");
                                             // video block.

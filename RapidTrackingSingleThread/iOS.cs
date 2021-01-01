@@ -605,7 +605,13 @@ namespace RapidTrackingSingleThread
                 }
 
                 //Knowledge graph new 
-                HtmlNode kgNode = crNode.SelectSingleNode(".//div[@class='c ptJHdc commercial-unit-mobile-top']|.//div[@class='SPZz6b']");
+                //HtmlNode kgNode = crNode.SelectSingleNode(".//div[@class='c ptJHdc commercial-unit-mobile-top']|.//div[@class='SPZz6b']"); //commented 01-01-2021
+                //starts 01-01-2021
+                HtmlNode kgNode = crNode.SelectSingleNode(".//div[@class='p7xMX qs-ic fp-w']");//01-01-2021
+                if (kgNode == null)
+                    kgNode = crNode.SelectSingleNode(".//div[@class='c ptJHdc commercial-unit-mobile-top']|.//div[@class='SPZz6b']");
+                // ends 01-01-2021
+
 
                 if (kgNode != null)
                 {

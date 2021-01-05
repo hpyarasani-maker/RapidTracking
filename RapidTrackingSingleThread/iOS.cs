@@ -2234,8 +2234,9 @@ namespace RapidTrackingSingleThread
                  if ((node.SelectSingleNode(".//div[@id='tscffb']") != null || node.SelectSingleNode(".//div[@class='KJDcUb']") == null) && node.SelectSingleNode(".//div/a[@class='C8nzq BmP5tf']") == null) //04-01-2021 video block
                         return true;
                 //if (node.SelectSingleNode(".//div[@class='KJDcUb']") == null) //26-06-2020 //04-01-2021 commented
-                    //    return true;
-                    else if (nd.InnerText == "More results" || nd.InnerText == "Top results" || nd.InnerText == "Toppresultater"
+                //    return true;
+                //else if //05-01-2020 commented
+                   if (nd.InnerText == "More results" || nd.InnerText == "Top results" || nd.InnerText == "Toppresultater"
                         || nd.InnerText == "Fler resultat" || nd.InnerText == "Flere resultater" || nd.InnerText == "Plus de résultats")    // 13-12-2019
                         return false;
             }

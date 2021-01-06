@@ -1875,7 +1875,7 @@ namespace RapidTrackingSingleThread
                 // 23-10-2019
                 if (ts)
                 {
-                    n = node.SelectSingleNode(".//div[@role='heading']|.//g-tray-header[@role='heading']");//21-12-2020 top stories only
+                    n = node.SelectSingleNode(".//div[@role='heading']|.//g-tray-header[@role='heading']|.//g-inner-card[contains(@class,'kno-fb-ctx')]");//06-01-2021//21-12-2020 top stories only
                     if (n != null)
                     {
                         if (n.InnerText.ToLower().Trim() == "videos" || n.InnerText.ToLower().Trim().StartsWith("video") || n.InnerText.Trim() == "فيديوهات")  //03-08-2020 included contains func for "video"// 16-12-2019

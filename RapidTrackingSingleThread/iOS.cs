@@ -2070,7 +2070,7 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[@class='bUNBRd mnr-c']|.//div[@class='HnYYW i8lZMc']|.//div[@class='HnYYW mfMhoc']|.//div[@class='HnYYW']/div");//20-11-2020 twiter classic links//26-06-2020 //13-03-2020 //include on 2019-06-24
             if (nd != null)
             {
-                if (nd.InnerText.Contains("Twitter"))
+                if (nd.InnerText.Contains("Twitter")|| nd.SelectSingleNode(".//g-link") != null) //07-01-2021 twitter link
                     return "Twitters";
             }
             nd = node.SelectSingleNode(".//div[@class='_OKe']");
@@ -2151,7 +2151,8 @@ namespace RapidTrackingSingleThread
                     {
                         return "Carousel";
                     }
-                    if (node.SelectSingleNode(".//div[contains(@data-attrid,'movies')]") != null)//21-12-2020 for carousel selector if true
+                    if (node.SelectSingleNode(".//div[contains(@data-attrid,'movies')]|.//div[contains(@data-attrid,'book')]") != null) //07-01-2021 carousel block
+                    //if (node.SelectSingleNode(".//div[contains(@data-attrid,'movies')]") != null)//07-01-2021 replace with above//21-12-2020 for carousel selector if true 
                     {
                         return "Carousel";
                     }

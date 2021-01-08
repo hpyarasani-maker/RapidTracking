@@ -1884,6 +1884,8 @@ namespace RapidTrackingSingleThread
                             return "Carousel";
                         if (n.InnerText.ToLower().Trim().Contains("top sights") || n.InnerText.ToLower().Trim().Contains("popular trip")) //19-09-2020 does not picks this blocks
                             ts = false;
+                        if (node.SelectSingleNode(".//div[@class='YoZiHf']") != null) //08-01-2021 for not top sights
+                            ts = false;
                     }
                 }
                 if (ts)

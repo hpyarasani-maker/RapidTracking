@@ -1834,6 +1834,8 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[@class='qDSRad']");  // changes on 05-07-2019
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[contains(@class,'xSoq1')]");//08-01-2021 top stories //19-06-2020
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='CXo9G']"); //08-01-2021
             if (nd != null && node.SelectSingleNode(".//div[contains(@class,'knowledge-panel')]") == null) //26-08-2020 included KP selector
             {
                 bool ts = true;

@@ -507,6 +507,8 @@ namespace RapidTrackingJobIDResults
                     nds = node.SelectNodes(".//div[@class='rc']");
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='gG0TJc']");  //29-05-2020
+                if (nds == null)
+                    nds = node.SelectNodes(".//div[@class='tF2Cxc']");//07-01-2021
                 if (nds != null)
                     foreach (HtmlNode nd in nds)
                     {
@@ -1469,7 +1471,8 @@ namespace RapidTrackingJobIDResults
                 || node.SelectSingleNode(".//div[@class='zTpPx']") != null || node.SelectSingleNode(".//div[@class='zTpPx']/g-link/a") != null    // 28-05-2020   // 13-03-2020
                 || node.SelectSingleNode(".//h3[@class='r dO0Ag']") != null || node.SelectSingleNode(".//div[@class='DOqJne']") != null //27-06-2020    //29-05-2020
                 || node.SelectSingleNode(".//div[@class='rc']") != null // 03-09-2020 missing classic links selector included
-                || node.SelectSingleNode(".//div[@class='DOqJne']/g-link/a") != null); //twitter classic link selector
+                || node.SelectSingleNode(".//div[@class='DOqJne']/g-link/a") != null //twitter classic link selector
+                || node.SelectSingleNode(".//div[@class='tF2Cxc']/div/a") != null); //07-01-2020 missing classic link
         }
 
         //07-11-2019

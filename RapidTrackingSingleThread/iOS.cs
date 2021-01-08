@@ -2243,7 +2243,7 @@ namespace RapidTrackingSingleThread
                         || nd.InnerText == "Fler resultat" || nd.InnerText == "Flere resultater" || nd.InnerText == "Plus de résultats")    // 13-12-2019
                         return false;
             }
-            if (node.SelectSingleNode(".//div[@class='Z3ngN']") != null) //05-01-2021
+            if (node.SelectSingleNode(".//div[@class='Z3ngN']") != null || node.SelectSingleNode(".//div[@class='WFE7gb']") != null)//08-01-2021  //05-01-2021
                 return false;
             //17-01-2020
             nd = node.SelectSingleNode(".//div[@class='Lgnr0e J88qA BmP5tf']");

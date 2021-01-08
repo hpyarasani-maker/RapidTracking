@@ -125,12 +125,6 @@ namespace RapidTrackingSingleThread
                         {
                             if (node.HasClass("kp-wholepage") || node.SelectNodes(".//div[contains(@class, 'kp-wholepage')]") != null)
                             {
-                                //Previous Actually lines 23-12-2020
-                                //HtmlNodeCollection nc = node.SelectNodes(".//div[@id='kp-wp-tab-overview']/div"); //22-01-2020
-                                //if (nc == null)
-                                //    nc = node.SelectNodes(".//div[@class='WvKfwe']/div|.//div[@class='WvKfwe a3spGf']/div|.//div[@class='ChlgHf']|.//div[contains(@class,'UDZeY')]|.//div[@class='a3spGf WvKfwe']/div"); //15-12-2020
-                                //end of 23-12-2020
-
                                 //Current 15-12-2020 swapped from bottom HtmlNodeCollection
                                 HtmlNodeCollection nc = node.SelectNodes(".//div[@class='WvKfwe']/div|.//div[@class='WvKfwe a3spGf']/div|.//div[@class='ChlgHf']|.//div[contains(@class,'UDZeY')]|.//div[@class='a3spGf WvKfwe']/div");//18-06-2020//|.//div[@class='uxUO1b g0S8Ze mnr-c']"); //17-06-2020 answer card //01-06-2020");  //15-04-2020     
                                 if(nc == null)
@@ -431,7 +425,6 @@ namespace RapidTrackingSingleThread
                             {
                                 s.Append("<block type=\"productListedAds\" url=\"\">");
 
-                                //HtmlNodeCollection cl = pla.SelectNodes(".//a[@class='pla-unit eUPzHb']|.//div[@class='mnr-c pla-unit']/a[2]|.//a[@class='plantl pla-unit-single-clickable-target clickable-card']|.//g-inner-card[@class='pla-unit-container stOtnd VoEfsd']/div/div/a"); //15-07-2020 product list ads
                                 HtmlNodeCollection cl = pla.SelectNodes(".//a[@class='pla-unit eUPzHb']|.//div[@class='mnr-c pla-unit']/a[2]|.//a[@class='plantl pla-unit-single-clickable-target clickable-card']|.//g-inner-card[contains(@class,'stOtnd VoEfsd')]/div/div/a");//25-09-2020 updated contains //15-07-2020 product list ads
 
                                 if (cl == null)
@@ -578,8 +571,6 @@ namespace RapidTrackingSingleThread
 
                     if (!video)
                     {
-                        //HtmlNode App1 = App.SelectSingleNode(".//h3[@class='header-title yovt']");                    
-
                         HtmlNodeCollection App2 = answernode.SelectNodes(".//div[@class='ytwLQd']/h3/a");
                         if (App2 == null)
                             App2 = answernode.SelectNodes(".//div[@class='WLSb4b']");//23-06-2020
@@ -604,8 +595,6 @@ namespace RapidTrackingSingleThread
                     }
                 }
 
-                //Knowledge graph new 
-                //HtmlNode kgNode = crNode.SelectSingleNode(".//div[@class='c ptJHdc commercial-unit-mobile-top']|.//div[@class='SPZz6b']"); //commented 01-01-2021
                 //starts 01-01-2021
                 HtmlNode kgNode = crNode.SelectSingleNode(".//div[@class='p7xMX qs-ic fp-w']");//01-01-2021
                 if (kgNode == null)
@@ -1508,7 +1497,6 @@ namespace RapidTrackingSingleThread
             if (nds == null)
                 nds = node.SelectNodes(".//div[@class='eR2XS']/g-inner-card/div/a/g-img[@class='SeXxHf']/img"); //08-06-2020
             if (nds == null)
-                // nds = node.SelectNodes(".//div[@class='OixsOd']/a|.//div[@class='eA0Zlc qN5nNb ivg-i CxtVFd']/g-img[@class='BA0A6c']/img|.//div[@class='sDiRtb']/a");//15-12-2020 commented //14-12-2020  //17-07-2020  //13-07-2020 selector included for images
                  nds = node.SelectNodes(".//div[@class='OixsOd']/a|.//div[@class='eA0Zlc qN5nNb ivg-i CxtVFd']/g-img[@class='BA0A6c']/img"); //15-12-2020  //17-07-2020  //13-07-2020 selector included for images
 
                 if (nds != null)
@@ -1644,17 +1632,6 @@ namespace RapidTrackingSingleThread
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//g-card-section/a");
-            //if (nds != null)
-            //    foreach (HtmlNode nd in nds)
-            //    {
-            //        s.Append("<item url=\"" + nd.Attributes["href"].Value + "\" title=\"" + nd.SelectSingleNode(".//div/span").InnerText + "\" />");
-            //    }
-            //nds = node.SelectNodes(".//g-inner-card/a");
-            //if (nds != null)
-            //    foreach (HtmlNode nd in nds)
-            //    {
-            //        s.Append("<item url=\"" + nd.Attributes["href"].Value + "\" title=\"" + nd.InnerText + "\" />");
-            //    }
             if (nds != null)
             {
                 foreach (HtmlNode nd in nds)
@@ -1927,9 +1904,6 @@ namespace RapidTrackingSingleThread
                 //nd = node.SelectSingleNode(".//h2"); //22-07-2020 commented
                 nd = node.SelectSingleNode(".//div[@class='g8xmv']");//22-07-2020
                 if (nd != null)
-                    //if (nd.InnerText.ToLower().Trim() == "recipes" || nd.InnerText.ToLower().Trim() == "ricette" || nd.InnerText.ToLower().Trim() == "recetas" ||
-                    //    nd.InnerText.ToLower().Trim() == "recept" || nd.InnerText.ToLower().Trim() == "resep" || nd.InnerText.ToLower().Trim() == "receitas"  //16-07-2020//15-07-2020 //17-06-2020 //22-05-2020 receipes language included
-                    //    || nd.InnerText.ToLower().Trim() == "recettes")  //22-07-2020
                     return "Carousel";
                 // 24-04-2020
 
@@ -1970,8 +1944,6 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//w-answer/div[@class='MUxGbd t51gnb lyLwlc lEBKkf']"); //29-09-2020 answer card
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='PZPZlf hb8SAc']");//21-12-2020 selector for answer card block
-            //if (nd == null)
-            //    nd = node.SelectSingleNode(".//div[@class='XbtRGb qxsd NV5pMe yF5Gqd mod']"); //15-12-2020 answer card
             if (nd != null)
             {
                 return "AnswerCard";
@@ -2355,7 +2327,6 @@ namespace RapidTrackingSingleThread
                 return true;
             }//14-09-2020
             if (nd == null)
-                //nd = node.SelectSingleNode(".//div[@class='khgTR R5lVqb']");  //26-08-2020 selector for missing classic link
                 nd = node.SelectSingleNode(".//div[contains(@class,'khgTR')]");  //16-09-2020 applied contains function
             if (nd != null)
             {
@@ -2381,7 +2352,6 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='ytwLQd']");//05-06-2020 missing classic links
                 if (nd != null && node.SelectSingleNode(".//div[@class='EDblX m8vZ3d']") == null)   // 16-10-2019
                 {
-                    //if (node.SelectSingleNode(".//div[@class='BNeawe deIvCb AP7Wnd']") != null)//commented 11-12-2020 //09-07-2020
                     if (node.SelectSingleNode(".//div[contains(@class,'BNeawe')]") != null && node.SelectSingleNode(".//div[@class='au0C1b u78HIe']") == null)//15-12-2020 commented //14-12-2020 //11-12-2020 not for popular products
                      return true;
                     return false;
@@ -2535,15 +2505,8 @@ namespace RapidTrackingSingleThread
                     url = url.Replace("\0", "%00");
 
                 if ((url.StartsWith("https://") || url.StartsWith("http://") || url.StartsWith("ftp://")) && (!url.StartsWith("/aclk?") && !url.Contains("search?num=100")))
-                {
-                    //if (url.ToLower().Contains("%2f") || url.ToLower().Contains("%2e")) //commented 18-09-2020
-                    //01-10-2020 commented
-                    //if (url.Contains("%")) //18-09-2020
-                    //  url = GetRedirectedUrl(WebUtility.UrlDecode(WebUtility.HtmlDecode(url)).Trim());
-                    //end 01-10-2020
-   
+                {  
                     url =WebUtility.UrlDecode(WebUtility.HtmlDecode(url).Trim()); //10-01-2020
-
                     return WebUtility.HtmlEncode(SanitizeXmlString(url).Replace("\x00", "%00")).Replace("\\\\u003d", "=").Replace('\u0002', ' ').Replace('\u0018', ' ').Replace('\f', ' ').Trim();//23-09-2020 applied method to URL
                 }
             }

@@ -1834,7 +1834,7 @@ namespace RapidTrackingMultiThreadJobIDs
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='qDSRad']");  // changes on 05-07-2019
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='xSoq1 HOslld']"); //19-06-2020
+                nd = node.SelectSingleNode(".//div[contains(@class,'xSoq1')]");//08-01-2021 top stories //19-06-2020
             if (nd != null && node.SelectSingleNode(".//div[contains(@class,'knowledge-panel')]") == null) //26-08-2020 included KP selector
             {
                 bool ts = true;
@@ -2207,7 +2207,8 @@ namespace RapidTrackingMultiThreadJobIDs
             {
                 if (nd.InnerText.Trim() == "Top stories" || nd.InnerText.ToLower().Contains("noticias") || nd.InnerText.Trim() == "Notizie principali" || nd.InnerText.Trim() == "Interesting finds" //04-11-2020//16-09-2020
                      || nd.InnerText.ToLower().Contains("últimas noticias") || nd.InnerText.ToLower().Contains("det senaste")
-                     || nd.InnerText.ToLower().StartsWith("latest") || nd.InnerText.ToLower().Contains("map"))//07-08-2020  //23-06-2020 //22-06-2020
+                     || nd.InnerText.ToLower().StartsWith("latest") || nd.InnerText.ToLower().Contains("map")//07-08-2020  //23-06-2020 //22-06-2020
+                     || nd.InnerText.ToLower().Contains("notícias")) //08-01-2021 top stories
                     if (node.SelectSingleNode(".//div[@class='KJDcUb']") == null) //26-06-2020
                         return true;
                     else if (nd.InnerText == "More results" || nd.InnerText == "Top results" || nd.InnerText == "Toppresultater"

@@ -1777,13 +1777,13 @@ namespace RapidTrackingSingleThread
             {
                 seid =509, domain ="com", geo_location="United States", locale= "es-419-us", uule = "w+CAIQICIWVG9yb250byxPbnRhcmlvLENhbmFkYQ==",device="mobile_android"
             },
-            new SearchProperties()
+            new SearchProperties()//locale ="zh-cn-us" but removed 'us' bcz oxy does not have 'us'
             {
-                seid =510, domain ="com", geo_location="United States", locale= "zh-cn-us", uule = "w+CAIQICIWVG9yb250byxPbnRhcmlvLENhbmFkYQ==",device="desktop"
+                seid =510, domain ="com", geo_location="United States", locale= "zh-cn", uule = "w+CAIQICIWVG9yb250byxPbnRhcmlvLENhbmFkYQ==",device="desktop"
             },
-            new SearchProperties()
+            new SearchProperties()//locale ="zh-cn-us" but removed 'us' bcz oxy does not have 'us'
             {
-                seid =511, domain ="com", geo_location="United States", locale= "zh-cn-us", uule = "w+CAIQICIWVG9yb250byxPbnRhcmlvLENhbmFkYQ==",device="mobile_android"
+                seid =511, domain ="com", geo_location="United States", locale= "zh-cn", uule = "w+CAIQICIWVG9yb250byxPbnRhcmlvLENhbmFkYQ==",device="mobile_android"
             },//end 11-01-2021
 
         };

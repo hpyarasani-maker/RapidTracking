@@ -530,7 +530,7 @@ namespace RapidTrackingSingleThread
                 || node.SelectNodes(".//div[@class='g GjRtuc']") != null // 02-06-2020
                 || node.SelectNodes(".//div[contains(@class,'g card-section')]") != null) //06-10-2020 classic link
             {
-                HtmlNodeCollection nds = node.SelectNodes(".//div[@class='g']|.//div[@class='HD8Pae luh4tb cUezCb xpd O9g5cc uUPGi']");//04-12-2020 videos block
+                HtmlNodeCollection nds = node.SelectNodes(".//div[@class='g']|.//div[@class='HD8Pae luh4tb cUezCb xpd O9g5cc uUPGi']|.//div[contains(@class,'g card-section')]");//11-01-2021 missing classic link//04-12-2020 videos block
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='rc']");
                 if (nds == null)

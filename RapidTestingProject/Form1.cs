@@ -116,11 +116,7 @@ namespace RapidTestingProject
                                         SendToDB(seid, keyword, res, jobid, count);
                                     }
                                 }
-                                //else
-                                //{
-                                //    SendToAPI(seid, keyword, res, jobid);
-                                //    SendToDB(seid, keyword, res, jobid, count);
-                                //}
+                               
 
                             }
                             catch (Exception ex)
@@ -171,19 +167,7 @@ namespace RapidTestingProject
 
         private void SendToAPI(string seid, string kw, string res, string jobid)
         {
-            //string r = "[\x00-\x08\x0B\x0C\x0E-\x1F\x26]";
-            //res = Regex.Replace(res, r, "", RegexOptions.Compiled);
-            //if (res == string.Empty)
-            //{
-            //    XmlDocument xd = new XmlDocument();
-            //    res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
-            //    res += "<searchResult searchEngine =\"" + seid + "\" keyword=\"" + kw + "\" date =\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\">";
-            //    res += "<section col = \"main\" /> <section col=\"right\" /> </searchResult> ";
-            //    xd.LoadXml(res);
-            //    xd.Save(xmlPath);
-            //}
-            //else
-            //{
+           
             XmlDocument xd = new XmlDocument();
             res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + res;
             xd.LoadXml(res);
@@ -195,84 +179,7 @@ namespace RapidTestingProject
 
             string submitURL = ReadAPI();
 
-            string user = "pisoftware";
-            string pwd = "r00t123456";
-            try
-            {
-                HttpWebRequest httpWReq = (HttpWebRequest)WebRequest.Create(submitURL);
-                httpWReq.UseDefaultCredentials = true;
-                httpWReq.PreAuthenticate = true;
-                httpWReq.Credentials = CredentialCache.DefaultCredentials;
-
-                Encoding encoding = new UTF8Encoding();
-                string postData = GetTextFromXMLFile(xmlPath);
-                byte[] data = encoding.GetBytes(postData);
-
-                httpWReq.ProtocolVersion = HttpVersion.Version11;
-                httpWReq.Method = "POST";
-                httpWReq.ContentType = "application/x-www-form-urlencoded";
-
-
-                string auth = string.Format("{0}:{1}", user, pwd);
-                string enc = Convert.ToBase64String(Encoding.ASCII.GetBytes(auth));
-                string cred = string.Format("{0} {1}", "Basic", enc);
-
-
-                httpWReq.Headers[HttpRequestHeader.Authorization] = cred;
-                httpWReq.ContentLength = data.Length;
-                //httpWReq.Timeout = 0;
-
-                Stream stream = httpWReq.GetRequestStream();
-                stream.Write(data, 0, data.Length);
-                stream.Close();
-
-                HttpWebResponse response = (HttpWebResponse)httpWReq.GetResponse();
-                //string s = response.ToString();
-                StreamReader reader = new StreamReader(response.GetResponseStream());
-
-                if (response.StatusCode != HttpStatusCode.OK)
-                {
-                    reader.Close();
-                    response.Close();
-                    throw new Exception(response.StatusCode + ": " + response.StatusDescription);
-                }
-                String xmlResponse = "";
-                String temp = null;
-                while ((temp = reader.ReadLine()) != null)
-                {
-                    xmlResponse += temp;
-                }
-                reader.Close();
-                response.Close();
-            }
-            catch (WebException ex)
-            {
-
-                ////store into keywordfail table.
-                SendToDBFailure(seid, kw, jobid, false);
-
-
-                string errorMsg = string.Empty;
-                using (WebResponse response = ex.Response)
-                {
-                    HttpWebResponse httpResponse = (HttpWebResponse)response;
-                    errorMsg = string.Format("API Error: StatusCode {0}", httpResponse.StatusCode);
-
-                    using (Stream data = response.GetResponseStream())
-                    using (var reader = new StreamReader(data))
-                    {
-                        errorMsg += "\r\n" + reader.ReadToEnd();
-                        txtError.Text = errorMsg;
-                    }
-                }
-
-                throw new Exception(errorMsg);
-
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error: " + ex.Message);
-            }
+           
 
         }
 

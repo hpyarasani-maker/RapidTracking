@@ -1779,11 +1779,11 @@ namespace RapidTrackingSingleThread
             },
             new SearchProperties()
             {
-                seid =510, domain ="com", geo_location="United States", locale= "zh-cn-us", uule = "w+CAIQICINVW5pdGVkIFN0YXRlcw==",device="desktop"
+                seid =510, domain ="com", geo_location="United States", locale= "zh-cn", uule = "w+CAIQICINVW5pdGVkIFN0YXRlcw==",device="desktop"
             },
             new SearchProperties()
             {
-                seid =511, domain ="com", geo_location="United States", locale= "zh-cn-us", uule = "w+CAIQICINVW5pdGVkIFN0YXRlcw==",device="mobile_android"
+                seid =511, domain ="com", geo_location="United States", locale= "zh-cn", uule = "w+CAIQICINVW5pdGVkIFN0YXRlcw==",device="mobile_android"
             },//end 11-01-2021
 
         };

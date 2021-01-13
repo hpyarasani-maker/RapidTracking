@@ -1777,11 +1777,11 @@ namespace RapidTrackingSingleThread
             {
                 seid =509, domain ="com", geo_location="United States", locale= "es-419-us", uule = "w+CAIQICINVW5pdGVkIFN0YXRlcw==",device="mobile_android"
             },
-            new SearchProperties()
+            new SearchProperties() //locale="zh-cn-us" but "us" does not work in oxy so just use locale = "zh-us"
             {
                 seid =510, domain ="com", geo_location="United States", locale= "zh-cn", uule = "w+CAIQICINVW5pdGVkIFN0YXRlcw==",device="desktop"
             },
-            new SearchProperties()
+            new SearchProperties()//locale="zh-cn-us" but "us" does not work in oxy so just use locale = "zh-us"
             {
                 seid =511, domain ="com", geo_location="United States", locale= "zh-cn", uule = "w+CAIQICINVW5pdGVkIFN0YXRlcw==",device="mobile_android"
             },//end 11-01-2021

@@ -811,7 +811,7 @@ namespace RapidTrackingSingleThread
                              || node.Attributes["class"]?.Value == "mnr-c xpd O9g5cc uUPGi" || nd.Attributes["class"].Value == "KJDcUb" // 14-12-2020  //20-01-2020 // selectors for two classic links block
                              || nd.Attributes["class"].Value == "mnr-c luh4tb xpd O9g5cc uUPGi" || nd.Attributes["class"].Value == "mnr-c PHap3c" //05-01-2021
                              || nd.Attributes["class"].Value == "g card-section svwwZ" || nd.Attributes["class"].Value == "card-section" //15-12-2020//03-11-2020 //06-10-2020 classic type block type
-                             || nd.Attributes["class"].Value == "U3THc") 
+                             || nd.Attributes["class"].Value == "U3THc") //18-01-2021
                            
                             {
                                 //17-10-2019

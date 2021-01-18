@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 
-namespace RapidTestingProject
+namespace RapidTrackingLibrary
 {
-    class SearchParams
+    public class SearchParams
     {
         public static IList<SearchProperties> searches = new List<SearchProperties>()
         {
+
             new SearchProperties()
             {
                 seid =1, domain ="com", geo_location="United States", locale="en-us", uule="w+CAIQICINVW5pdGVkIFN0YXRlcw==", device="desktop"
@@ -1791,7 +1792,7 @@ namespace RapidTestingProject
 
 
     }
-    class SearchProperties
+    public class SearchProperties
     {
         public int seid { get; set; }
         public string domain { get; set; }

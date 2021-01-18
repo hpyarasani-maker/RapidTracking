@@ -2,7 +2,7 @@
 
 namespace RapidTrackingSingleThread
 {
-    class SearchParams
+    internal class SearchParams
     {
         public static IList<SearchProperties> searches = new List<SearchProperties>()
         {

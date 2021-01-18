@@ -7,9 +7,9 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 
-namespace RapidTestingProject
+namespace RapidTrackingLibrary
 {
-    class iOS
+    public class iOS
     {
         int orgLinks;
         string html;

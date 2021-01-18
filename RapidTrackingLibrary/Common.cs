@@ -3,13 +3,12 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Xml;
 
-namespace RapidTestingProject
-{
-    class Common
+namespace RapidTrackingLibrary
+{ 
+   public class Common
     {
       
-
-        internal static string ReadConnection()
+        public static string ReadConnection()
         {
             try 
             {

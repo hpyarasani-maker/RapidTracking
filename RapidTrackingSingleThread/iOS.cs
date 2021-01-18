@@ -648,7 +648,7 @@ namespace RapidTrackingSingleThread
                 nds = node.SelectNodes(".//div[@jscontroller='iht5n']/div");
             else
             {
-                nds = node.SelectNodes(".//div[@class='mnr-c waTp2e xpd O9g5cc uUPGi']|.//div[@class='mnr-c luh4tb xpd O9g5cc uUPGi']");//18-01-2021 missing links//15-12-2020 removed selector//06-10-2020 classic link selector //19-06-2020   //20-01-2020 selector changed for two classic links
+                nds = node.SelectNodes(".//div[@class='mnr-c waTp2e xpd O9g5cc uUPGi']|.//div[@class='mnr-c luh4tb xpd O9g5cc uUPGi']|.//div[@class='mnr-c xpd O9g5cc uUPGi']");//18-01-2021 missing links//15-12-2020 removed selector//06-10-2020 classic link selector //19-06-2020   //20-01-2020 selector changed for two classic links
                     if (nds == null)
                     nds = node.SelectNodes(".//div[@class='KJDcUb']|.//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']|.//g-card[@id='tscffb']|.//div[@class='mnr-c PHap3c']");//05-01-2021 //04-01-2021 missing classic link//18-12-2020 sitelinks missing selector //15-12-2020
                 if (nds == null)
@@ -833,8 +833,8 @@ namespace RapidTrackingSingleThread
                                     try
                                     {
                                         //18-01-2021 COMMENTED
-                                        if (Regex.IsMatch(img.OuterHtml, "id=\"vidthumb\\d*\"") || nd.SelectSingleNode(".//div[@class='YgXj7b Qc4Zr']|.//div[contains(@class,'qW7zYd')]") != null || node.SelectSingleNode(".//div[@class='YgXj7b Qc4Zr']") != null || nd.SelectSingleNode(".//div[@class='hq7Nmd']") != null) //05-01-2021 //21-12-2020//16-12-2020 //14-12-2020
-                                        //if (Regex.IsMatch(img.OuterHtml, "id=\"vidthumb\\d*\"") || nd.SelectSingleNode(".//div[@class='YgXj7b Qc4Zr']|.//div[contains(@class,'qW7zYd')]") != null || nd.SelectSingleNode(".//div[@class='hq7Nmd']") != null)//18-01-2021 //05-01-2021 //21-12-2020//16-12-2020 //14-12-2020
+                                        //if (Regex.IsMatch(img.OuterHtml, "id=\"vidthumb\\d*\"") || nd.SelectSingleNode(".//div[@class='YgXj7b Qc4Zr']|.//div[contains(@class,'qW7zYd')]") != null || node.SelectSingleNode(".//div[@class='YgXj7b Qc4Zr']") != null || nd.SelectSingleNode(".//div[@class='hq7Nmd']") != null) //05-01-2021 //21-12-2020//16-12-2020 //14-12-2020
+                                        if (Regex.IsMatch(img.OuterHtml, "id=\"vidthumb\\d*\"") || nd.SelectSingleNode(".//div[@class='YgXj7b Qc4Zr']|.//div[contains(@class,'qW7zYd')]") != null || nd.SelectSingleNode(".//div[@class='hq7Nmd']") != null)//18-01-2021 //05-01-2021 //21-12-2020//16-12-2020 //14-12-2020
                                           {
                                             HtmlNode n = nd.SelectSingleNode(".//h3[@class='r']/a");
                                             // video block.

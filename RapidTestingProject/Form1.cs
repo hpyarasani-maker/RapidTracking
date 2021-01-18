@@ -80,7 +80,7 @@ namespace RapidTestingProject
                     try
                     {
                         var doc = new HtmlAgilityPack.HtmlDocument();
-                        Task<ArrayList> alresult = GetHTML(kw, Convert.ToInt32(seid));
+                        Task<ArrayList> alresult = source.GetHTML(kw, Convert.ToInt32(seid));
 
                         foreach (string[] src in alresult.Result)
                         {
@@ -313,25 +313,6 @@ namespace RapidTestingProject
                     //throw ex;
                 }
             }
-
-
-
-            //string qry = "Insert into KeywordsFailure(date, seid, keyword, status) values('" + DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ") + "', " + seid + ", N'" + kw.Replace("'", "''") + "', '-1')";
-
-            //try
-            //{
-            //    using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
-            //    {
-            //        con.Open();
-            //        using (SqlCommand comm = new SqlCommand(qry, con))
-            //        {
-            //            comm.CommandTimeout = 0;
-            //            comm.CommandType = CommandType.Text;
-            //            comm.ExecuteNonQuery();
-            //        }
-            //    }
-            //}
-            //finally { }
         }
 
         private void SendToDB(string seid, string keyword, string xml, string jobid, int urlcount)
@@ -383,24 +364,7 @@ namespace RapidTestingProject
             }
         }
 
-        public async Task<ArrayList> GetHTML(string keyword, int seid)
-        {
-            
-            ArrayList alResult = new ArrayList();
-            try
-            {
-                SearchProperties sp = SearchParams.searches.Where(s => s.seid == seid).SingleOrDefault();
-                sp.query = keyword;
-                if (sp != null)
-                    alResult = source.GetOxylabsWebDataSources(sp).Result;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            return await Task.FromResult(alResult);
-        }
+       
 
       
     }

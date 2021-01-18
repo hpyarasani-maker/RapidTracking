@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Windows.Forms;
 namespace RapidTrackingLibrary
 {
     public class source
@@ -173,6 +174,27 @@ namespace RapidTrackingLibrary
             return await Task.FromResult<ArrayList>(alResult);
 
         }
+
+        public static async Task<ArrayList> GetHTML(string keyword, int seid)
+        {
+
+            ArrayList alResult = new ArrayList();
+            try
+            {
+                SearchProperties sp = SearchParams.searches.Where(s => s.seid == seid).SingleOrDefault();
+                sp.query = keyword;
+                if (sp != null)
+                    alResult = GetOxylabsWebDataSources(sp).Result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return await Task.FromResult(alResult);
+        }
+
+        
 
     }
 }

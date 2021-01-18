@@ -833,8 +833,8 @@ namespace RapidTrackingSingleThread
                                     try
                                     {
                                         //18-01-2021 COMMENTED
-                                        if (Regex.IsMatch(img.OuterHtml, "id=\"vidthumb\\d*\"") || nd.SelectSingleNode(".//div[@class='YgXj7b Qc4Zr']|.//div[contains(@class,'qW7zYd')]") != null || node.SelectSingleNode(".//div[@class='YgXj7b Qc4Zr']") != null || nd.SelectSingleNode(".//div[@class='hq7Nmd']") != null) //05-01-2021 //21-12-2020//16-12-2020 //14-12-2020
-                                        //if (Regex.IsMatch(img.OuterHtml, "id=\"vidthumb\\d*\"") || nd.SelectSingleNode(".//div[@class='YgXj7b Qc4Zr']|.//div[contains(@class,'qW7zYd')]") != null || nd.SelectSingleNode(".//div[@class='hq7Nmd']") != null)//18-01-2021 //05-01-2021 //21-12-2020//16-12-2020 //14-12-2020
+                                        //if (Regex.IsMatch(img.OuterHtml, "id=\"vidthumb\\d*\"") || nd.SelectSingleNode(".//div[@class='YgXj7b Qc4Zr']|.//div[contains(@class,'qW7zYd')]") != null || node.SelectSingleNode(".//div[@class='YgXj7b Qc4Zr']") != null || nd.SelectSingleNode(".//div[@class='hq7Nmd']") != null) //05-01-2021 //21-12-2020//16-12-2020 //14-12-2020
+                                        if (Regex.IsMatch(img.OuterHtml, "id=\"vidthumb\\d*\"") || nd.SelectSingleNode(".//div[@class='YgXj7b Qc4Zr']|.//div[contains(@class,'qW7zYd')]") != null || nd.SelectSingleNode(".//div[@class='hq7Nmd']") != null)//18-01-2021 //05-01-2021 //21-12-2020//16-12-2020 //14-12-2020
                                           {
                                             HtmlNode n = nd.SelectSingleNode(".//h3[@class='r']/a");
                                             // video block.
@@ -2211,7 +2211,7 @@ namespace RapidTrackingSingleThread
                      || nd.InnerText.ToLower().Contains("notícias")) //08-01-2021 top stories
                  if ((node.SelectSingleNode(".//div[@id='tscffb']") != null || node.SelectSingleNode(".//div[@class='KJDcUb']") == null) && node.SelectSingleNode(".//div/a[@class='C8nzq BmP5tf']") == null) //04-01-2021 video block
                         return true;
-                if (nd.SelectSingleNode(".//div[@class='ttfMne']") == null) //18-01-2021 top stories
+                if (nd.SelectSingleNode(".//div[@class='ttfMne']") != null) //18-01-2021 top stories
                     return true;
                 if (nd.InnerText == "More results" || nd.InnerText == "Top results" || nd.InnerText == "Toppresultater"
                         || nd.InnerText == "Fler resultat" || nd.InnerText == "Flere resultater" || nd.InnerText == "Plus de résultats")    // 13-12-2019

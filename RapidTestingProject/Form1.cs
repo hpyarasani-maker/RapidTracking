@@ -166,7 +166,16 @@ namespace RapidTestingProject
         }
 
 
-      
+        private void SendToAPI(string seid, string kw, string res, string jobid)
+        {
+            
+            XmlDocument xd = new XmlDocument();
+            res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + res;
+            xd.LoadXml(res);
+            xd.Save(xmlPath);
+            string submitURL = ReadAPI();
+
+        }
 
         private void GetKeywords(string qry)
         {

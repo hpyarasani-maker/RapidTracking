@@ -50,13 +50,5 @@ namespace RapidTrackingUnitTest
             CollectionAssert.AreEqual(list2,list1);
 
         }
-
-        private string GetTextFromXMLFile(string file)
-        {
-            StreamReader reader = new StreamReader(file);
-            string ret = reader.ReadToEnd();
-            reader.Close();
-            return ret;
-        }
     }
 }

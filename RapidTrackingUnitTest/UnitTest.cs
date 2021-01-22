@@ -25,9 +25,6 @@ namespace RapidTrackingUnitTest
             ArrayList list1 = new ArrayList();
             ArrayList list2 = new ArrayList();
 
-            XElement x = XElement.Load(xml1);
-            var a = from XElement r in x.
-
             XmlDocument xml = new XmlDocument();
             xml.Load(xml1); 
             xml.Load(xml2);

@@ -189,6 +189,47 @@ namespace RapidTrackingLibrary
             return string.Empty;
 
         }
+        /// <summary>
+        /// Regex to return mobile top 100 classic links
+        /// </summary>
+        /// <param name="seid"></param>
+        /// <param name="keyword"></param>
+        /// <param name="doc"></param>
+        /// <returns></returns>
+        public string ProcessClassicLinks(string seid, string keyword, HtmlDocument doc)
+        {
+            if (doc == null) throw new Exception("No source found.");
+            orgLinks = 0;
+            html = doc.DocumentNode.OuterHtml;
+            StringBuilder sb = new StringBuilder();
+            sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" date=\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\" >");
+            sb.Append("<section col=\"main\">");
+            try
+            {
+                string matchPattern = "(<div class=\\WKJDcUb\\W>*<a class=\\W[C8nzq BmP5tf]*[C8nzq JTuIPc]*[C8nzq Tj0U2 BmP5tf]*[C8nzq JTuIPc amp_r\\W data-amp=|\\W|C8nzq Tj0U2 BmP5tf amp_r\\W data-amp=|\\W|C8nzq BmP5tf amp_r\\W data-amp=|data-idx=\\W\\d\\W href=|\\W href=]*\"(.*?)\")|" +
+                        "(<div class=\\WXv4xee\\W>*<h3 class=\\WyuRUbf JtG40d V7Sr0\\W><a class=\\W[sXtWJb|sXtWJb gsrt amp_r|sXtWJb amp_r\\W data-amp=|\\W|\\W href=]*\"(.*?)\") ";
+                Regex re = new Regex(matchPattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                MatchCollection mc = re.Matches(html);
+                foreach (Match m in mc)
+                {
+                    string url = m.Groups[2].Value;
+                    url = SetUrl(url);
+                    if (!string.IsNullOrEmpty(url) && orgLinks < 100)
+                    {
+                        sb.Append("<item url=\"" + url + "\" />");
+                        orgLinks++;
+                    }
+                }
+            }
+            finally { }
+
+            sb.Append("</section>");
+            sb.Append("<section col=\"right\">");
+            sb.Append("</section>");
+            sb.Append("</searchResult>");
+
+            return sb.ToString();
+        }
 
         private string GetRightStuff(HtmlDocument doc)
         {

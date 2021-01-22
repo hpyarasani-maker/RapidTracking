@@ -15,7 +15,7 @@ namespace RapidTrackingUnitTest
         public void TestMethod1()
         {
             Generate generate = new Generate();
-            generate.GenerateXml("102", "joe biden");
+            generate.GenerateXml("106", "red dresses");
 
             string xml1 = "C:\\inetpub\\wwwroot\\xml1.xml";
             string xml2 = "C:\\inetpub\\wwwroot\\xml2.xml";
@@ -24,6 +24,9 @@ namespace RapidTrackingUnitTest
 
             ArrayList list1 = new ArrayList();
             ArrayList list2 = new ArrayList();
+
+            XElement x = XElement.Load(xml1);
+            var a = from XElement r in x.
 
             XmlDocument xml = new XmlDocument();
             xml.Load(xml1); 

@@ -9,10 +9,10 @@ using RapidTrackingLibrary;
 namespace RapidTrackingUnitTest
 {
     [TestClass]
-    public class UnitTest1
+    public class UnitTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestClassicLinksList()
         {
             Generate generate = new Generate();
             generate.GenerateXml("106", "red dresses");

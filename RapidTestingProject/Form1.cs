@@ -21,7 +21,7 @@ namespace RapidTestingProject
 {
     public partial class Form1 : Form
     {
-        string xmlPath = "C:\\inetpub\\wwwroot\\rapidtracking_singlethread_102_GT20_WC.xml";
+        string xmlPath = @"C:\inetpub\wwwroot\";
 
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         public Form1()
@@ -96,28 +96,31 @@ namespace RapidTestingProject
                             doc.LoadHtml(html);
                             string res = string.Empty;
                             int count = 0;
+                            string resRx = string.Empty;
+
                             try
                             {
                                 if (device == "desktop")
                                 {
                                     Desktop clsDesktop = new Desktop();
                                     res = clsDesktop.ProcessDocument(seid, keyword, doc, out count);
+                                    resRx = clsDesktop.ProcessClassicLinks(seid, keyword, doc);
                                 }
                                 else
                                 {
                                     iOS clsiOS = new iOS();
                                     res = clsiOS.ProcessDocument(seid, keyword, doc, out count);
+                                    resRx = clsiOS.ProcessClassicLinks(seid, keyword, doc);
                                 }
 
                                 if (!string.IsNullOrEmpty(res))
                                 {
                                     if (count > 20)
                                     {
-                                        SendToAPI(seid, keyword, res, jobid);
-                                        SendToDB(seid, keyword, res, jobid, count);
+                                        SendToAPI(seid, keyword, res, resRx, jobid);
+                                        //SendToDB(seid, keyword, res, jobid, count);
                                     }
                                 }
-                               
 
                             }
                             catch (Exception ex)
@@ -127,7 +130,7 @@ namespace RapidTestingProject
                                     bool isOldPage = false;
                                     if (ex.Message == "Old page found.")
                                         isOldPage = true;
-                                    SendToDBFailure(kw, seid, jobid, isOldPage);
+                                    //SendToDBFailure(kw, seid, jobid, isOldPage);
                                 }
                                 finally { }
                             }
@@ -166,14 +169,17 @@ namespace RapidTestingProject
         }
 
 
-        private void SendToAPI(string seid, string kw, string res, string jobid)
+        private void SendToAPI(string seid, string kw, string res, string resRx, string jobid)
         {
-            
             XmlDocument xd = new XmlDocument();
             res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + res;
             xd.LoadXml(res);
-            xd.Save(xmlPath);
-            string submitURL = ReadAPI();
+            xd.Save(xmlPath + "xml1.xml");
+
+            resRx = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + resRx;
+            xd.LoadXml(resRx);
+            xd.Save(xmlPath + "xml2.xml");
+            //string submitURL = ReadAPI();
 
         }
 
@@ -188,7 +194,7 @@ namespace RapidTestingProject
                 //lstKWs.Items.Add("160:malmö ff");
                 //lstKWs.Items.Add("102:terry crews");
                 //lstKWs.Items.Add("102:the uninhabitable earth summary");
-                lstKWs.Items.Add("139:donald trump");
+                lstKWs.Items.Add("1:joe biden");
             });
             return;
 
@@ -357,8 +363,8 @@ namespace RapidTestingProject
             }
         }
 
-       
 
-      
+
+
     }
 }

@@ -14,8 +14,13 @@ namespace RapidTrackingUnitTest
         [TestMethod]
         public void TestMethod1()
         {
+            Generate generate = new Generate();
+            generate.GenerateXml("102", "joe biden");
+
             string xml1 = "C:\\inetpub\\wwwroot\\xml1.xml";
             string xml2 = "C:\\inetpub\\wwwroot\\xml2.xml";
+
+
 
             ArrayList list1 = new ArrayList();
             ArrayList list2 = new ArrayList();
@@ -36,16 +41,6 @@ namespace RapidTrackingUnitTest
                 list2.Add(xn2.InnerText);
             }
             list2.Sort();
-
-
-            //list1.Add("https://www.dixons.co.uk");
-            //list1.Add("https://www.currys.co.uk");
-
-
-
-            //list2.Add("https://www.dixons.co.uk");
-            //list2.Add("https://www.currys.co.uk");
-
 
             CollectionAssert.AreEqual(list2,list1);
 

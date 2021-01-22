@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 namespace RapidTrackingLibrary
 {
-    public class generate
+    public class Generate
     {
         public void GenerateXml(string seid, string kwd)
         {

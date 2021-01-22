@@ -49,7 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="generate.cs" />
+    <Compile Include="Generate.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="Desktop.cs" />
     <Compile Include="iOS.cs" />

@@ -95,7 +95,7 @@ namespace RapidTrackingSingleThread
                             string html = obj["results"][0]["content"].Value<string>();
                             string jobid = src[2];
                             string device = src[3];
-                            File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
+                            //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
                             //File.WriteAllText(@"C:\inetpub\wwwroot\"+jobid+"_withOut filter_"+".html", html, Encoding.UTF8);
                             result = true;
                             doc = new HtmlAgilityPack.HtmlDocument();
@@ -294,9 +294,9 @@ namespace RapidTrackingSingleThread
                 //lstKWs.Items.Add("160:malmö ff");
                 //lstKWs.Items.Add("102:terry crews");
                 //lstKWs.Items.Add("102:the uninhabitable earth summary");
-                lstKWs.Items.Add("102:salomon shoes");
+                //lstKWs.Items.Add("102:salomon shoes");
             });
-            return;
+            //return;
 
             try
             {
@@ -586,8 +586,8 @@ namespace RapidTrackingSingleThread
                     string[] reslt = { "", "", "", "" };
                     response = "";
 
-                    //Uri uri = new Uri(cbUrl[1]);
-                    Uri uri = new Uri("http://data.oxylabs.io/v1/queries/6764374516048094209/results");
+                    Uri uri = new Uri(cbUrl[1]);
+                    //Uri uri = new Uri("http://data.oxylabs.io/v1/queries/6764374516048094209/results");
                     if (cbUrl[2] == "done" && cbUrl[3] == "no")
                     {
                         try

@@ -2,7 +2,7 @@
 
 namespace RapidTrackingSingleThread
 {
-    class SearchParams
+    internal class SearchParams
     {
         public static IList<SearchProperties> searches = new List<SearchProperties>()
         {
@@ -1754,36 +1754,36 @@ namespace RapidTrackingSingleThread
             },
              new SearchProperties() //11-01-2021
             {
-                seid =504, domain ="mn", geo_location="Monaco", locale="en-mc", uule="w+CAIQICIGTW9uYWNv", device="desktop"
+                seid =504, domain ="fr", geo_location="Monaco", locale="en-mc", uule="w+CAIQICIGTW9uYWNv", device="desktop"
             },
             new SearchProperties()
             {
-                seid =505, domain ="mn", geo_location="Monaco", locale="en-mc", uule="w+CAIQICIGTW9uYWNv", device="mobile_android"
+                seid =505, domain ="fr", geo_location="Monaco", locale="en-mc", uule="w+CAIQICIGTW9uYWNv", device="mobile_android"
             },
              new SearchProperties()
             {
-                seid =506, domain ="mn", geo_location="Monaco", locale="fr-mc", uule="w+CAIQICIGTW9uYWNv", device="desktop"
+                seid =506, domain ="fr", geo_location="Monaco", locale="fr-mc", uule="w+CAIQICIGTW9uYWNv", device="desktop"
             },
             new SearchProperties()
             {
-                seid =507, domain ="mn", geo_location="Monaco", locale="fr-mc", uule="w+CAIQICIGTW9uYWNv", device="mobile_android"
+                seid =507, domain ="fr", geo_location="Monaco", locale="fr-mc", uule="w+CAIQICIGTW9uYWNv", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid =508, domain ="com", geo_location="United States", locale= "es-419-us", uule = "w+CAIQICIWVG9yb250byxPbnRhcmlvLENhbmFkYQ==",device="desktop"
+                seid =508, domain ="com", geo_location="United States", locale= "es-419-us", uule = "w+CAIQICINVW5pdGVkIFN0YXRlcw==",device="desktop"
 
             },
             new SearchProperties()
             {
-                seid =509, domain ="com", geo_location="United States", locale= "es-419-us", uule = "w+CAIQICIWVG9yb250byxPbnRhcmlvLENhbmFkYQ==",device="mobile_android"
+                seid =509, domain ="com", geo_location="United States", locale= "es-419-us", uule = "w+CAIQICINVW5pdGVkIFN0YXRlcw==",device="mobile_android"
             },
-            new SearchProperties()//locale ="zh-cn-us" but removed 'us' bcz oxy does not have 'us'
+            new SearchProperties() //locale="zh-cn-us" but "us" does not work in oxy so just use locale = "zh-cn"
             {
-                seid =510, domain ="com", geo_location="United States", locale= "zh-cn", uule = "w+CAIQICIWVG9yb250byxPbnRhcmlvLENhbmFkYQ==",device="desktop"
+                seid =510, domain ="com", geo_location="United States", locale= "zh-cn", uule = "w+CAIQICINVW5pdGVkIFN0YXRlcw==",device="desktop"
             },
-            new SearchProperties()//locale ="zh-cn-us" but removed 'us' bcz oxy does not have 'us'
+            new SearchProperties()//locale="zh-cn-us" but "us" does not work in oxy so just use locale = "zh-cn"
             {
-                seid =511, domain ="com", geo_location="United States", locale= "zh-cn", uule = "w+CAIQICIWVG9yb250byxPbnRhcmlvLENhbmFkYQ==",device="mobile_android"
+                seid =511, domain ="com", geo_location="United States", locale= "zh-cn", uule = "w+CAIQICINVW5pdGVkIFN0YXRlcw==",device="mobile_android"
             },//end 11-01-2021
 
         };

@@ -829,7 +829,7 @@ namespace RapidTrackingSingleThread
 
 
                                 //HtmlNode img = nd.SelectSingleNode(".//img");
-                                HtmlNode img = nd.SelectSingleNode(".//g-img[@class='P64nJb BA0A6c onqIhd']//img"); //2021-02-15
+                                HtmlNode img = nd.SelectSingleNode(".//g-img[@class='P64nJb BA0A6c onqIhd']//img"); //15-02-2021
                                 if (img != null)
                                 {
                                     try

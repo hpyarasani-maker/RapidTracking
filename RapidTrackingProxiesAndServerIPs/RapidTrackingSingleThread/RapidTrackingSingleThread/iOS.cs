@@ -823,8 +823,8 @@ namespace RapidTrackingSingleThread
 
 
 
-                                HtmlNode img = nd.SelectSingleNode(".//img");
-
+                                //HtmlNode img = nd.SelectSingleNode(".//img");
+                                HtmlNode img = nd.SelectSingleNode(".//g-img[@class='P64nJb BA0A6c onqIhd']//img"); //15-02-2021
                                 if (img != null)
                                 {
                                     try
@@ -853,9 +853,12 @@ namespace RapidTrackingSingleThread
                                                 title = n.SelectSingleNode(".//div[@role='heading']").InnerText;
                                             if (url.StartsWith("http") || url.StartsWith("https") || url.StartsWith("ftp")) //30-04-2020
                                             {
-                                                s.Append("<block type=\"video\" url=\"\">");
-                                                s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
-                                                s.Append("</block>");
+                                                if (!s.ToString().Contains("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />"))//16-02-2021 video block if condition to avoid duplicates with classic link
+                                                {
+                                                    s.Append("<block type=\"video\" url=\"\">");
+                                                    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                                                    s.Append("</block>");
+                                                }
                                                 continue;
                                             }
                                         }

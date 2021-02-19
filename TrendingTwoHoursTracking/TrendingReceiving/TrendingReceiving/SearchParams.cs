@@ -1773,7 +1773,14 @@ namespace TrendingReceiving
             {
                 seid =511, domain ="com", geo_location="United States", locale= "zh-cn", uule = "w+CAIQICINVW5pdGVkIFN0YXRlcw==",device="mobile_android"
             },//end 11-01-2021
-
+            new SearchProperties() //18-02-2021
+            {
+                seid =512, domain ="nl", geo_location="Netherlands", locale= "en-nl", uule = "w+CAIQICILTmV0aGVybGFuZHM=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =513, domain ="nl", geo_location="Netherlands", locale= "en-nl", uule = "w+CAIQICILTmV0aGVybGFuZHM=",device="mobile_android"
+            }, //end 18-02-2021
         };
     }
 

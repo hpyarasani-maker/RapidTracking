@@ -299,7 +299,7 @@ namespace RapidTrackingLibrary
                                 s.Append("<item url=\"" + url + "\" title=\"" + SetTitle(title) + "\" />");
                             // end 27-08-2020
                         }
-                        catch(Exception ex)
+                        catch (Exception ex)
                         {
                             throw ex;
                         }
@@ -413,7 +413,7 @@ namespace RapidTrackingLibrary
                         HtmlNode n = nd.SelectSingleNode(".//div[@class='ad_cclk']/a[2]|.//div[contains(@class,'d5oMvf')]/a"); //29-08-2020 included contains fucntions //23-07-2020 included missing item urls selectors
                         if (n != null)
                         {
-                             //25-08-2020
+                            //25-08-2020
                             try  //28-09-2020  try catch.
                             {
                                 string url = string.Empty;
@@ -446,7 +446,7 @@ namespace RapidTrackingLibrary
                                     s.Append("<item url=\"" + url + "\" title=\"" + SetTitle(title) + "\" />");
                                 // end 27-08-2020
                             }
-                            catch(Exception ex)
+                            catch (Exception ex)
                             { throw ex; }
                         }
                     }
@@ -506,7 +506,7 @@ namespace RapidTrackingLibrary
                 }
                 return sb;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -526,7 +526,7 @@ namespace RapidTrackingLibrary
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='gG0TJc']");  //29-05-2020
                 if (nds == null)
-                    nds = node.SelectNodes(".//div[@class='tF2Cxc']");//07-01-2021
+                    nds = node.SelectNodes(".//div[contains(@class,'tF2Cxc')]");//07-01-2021 //18-02-2021 included contains function
                 if (nds != null)
                     foreach (HtmlNode nd in nds)
                     {
@@ -564,7 +564,7 @@ namespace RapidTrackingLibrary
                         HtmlNode img = nd.SelectSingleNode(".//img");
                         if (img != null)
                         {
-                            if (Regex.IsMatch(nd.OuterHtml, "id=\"vidthumb\\d*\"")) // 17-01-2020
+                            if (Regex.IsMatch(nd.OuterHtml, "id=\"vidthumb\\d*\"") && nd.SelectSingleNode(".//div[@class='ij69rd UHe5G']") != null) // 17-01-2020 //19-02-2021 classic link instead without time video block
                             {
                                 var urls = n.Attributes["href"].Value;
                                 if (urls.StartsWith("http") || urls.StartsWith("https") || urls.StartsWith("ftp")) //30-04-2020
@@ -1030,7 +1030,7 @@ namespace RapidTrackingLibrary
             {
                 s.Append("<item url=\"" + SetUrl(s1) + "\" title=\"\" />");
             }
-           
+
             return s.ToString();
         }
 
@@ -1364,7 +1364,7 @@ namespace RapidTrackingLibrary
                     if (nd != null && (nd.InnerText == "More results" || nd.InnerText == "Top results")) //03-12-2020
                         return false;
                     //end 02-12-2020
-                   
+
                     if (node.InnerText.Contains("Podcast") || node.InnerText.Contains("播客") || node.InnerText.Contains("Podcaster")
                         || node.InnerText.Contains("ملفات البودكاست") || node.InnerText.Contains("พอดแคสต์"))   // 19-09-2019
                     {
@@ -1430,7 +1430,7 @@ namespace RapidTrackingLibrary
                 || node.SelectSingleNode(".//h3[@class='r dO0Ag']") != null || node.SelectSingleNode(".//div[@class='DOqJne']") != null //27-06-2020    //29-05-2020
                 || node.SelectSingleNode(".//div[@class='rc']") != null // 03-09-2020 missing classic links selector included
                 || node.SelectSingleNode(".//div[@class='DOqJne']/g-link/a") != null //twitter classic link selector
-                || node.SelectSingleNode(".//div[@class='tF2Cxc']/div/a") != null); //07-01-2021 missing classic link
+                || node.SelectSingleNode(".//div[contains(@class,'tF2Cxc')]/div/a") != null); //07-01-2021 missing classic link //18-02-2021 included contains fucntions
         }
 
         //07-11-2019

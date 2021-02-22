@@ -1793,6 +1793,22 @@ namespace RapidTrackingSingleThread
             {
                 seid =513, domain ="nl", geo_location="Netherlands", locale= "en-nl", uule = "w+CAIQICILTmV0aGVybGFuZHM=",device="mobile_android"
             }, //end 18-02-2021
+             new SearchProperties() //22-02-2021
+            {
+                seid =514, domain ="ee", geo_location="Russia", locale="ru-ee", uule = "w+CAIQICIGUnVzc2lh",device="desktop"
+            },
+               new SearchProperties()
+            {
+                seid =515, domain ="ee", geo_location="Russia", locale="ru-ee", uule = "w+CAIQICIGUnVzc2lh",device="mobile_android"
+            },
+               new SearchProperties()
+            {
+                seid =514, domain ="lv", geo_location="Russia", locale="ru-lv", uule = "w+CAIQICIGUnVzc2lh",device="desktop"
+            },
+               new SearchProperties()
+            {
+                seid =515, domain ="lv", geo_location="Russia", locale="ru-lv", uule = "w+CAIQICIGUnVzc2lh",device="mobile_android"
+            },//end 22-02-2021
         };
 
 

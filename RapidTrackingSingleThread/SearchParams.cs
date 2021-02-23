@@ -1795,19 +1795,19 @@ namespace RapidTrackingSingleThread
             }, //end 18-02-2021
              new SearchProperties() //22-02-2021
             {
-                seid =514, domain ="ee", geo_location="Russia", locale="ru-ee", uule = "w+CAIQICIGUnVzc2lh",device="desktop"
+                seid =514, domain ="ee", geo_location="Russia", locale="ru-ee", uule = "w+CAIQICIHRXN0b25pYQ==",device="desktop"
             },
                new SearchProperties()
             {
-                seid =515, domain ="ee", geo_location="Russia", locale="ru-ee", uule = "w+CAIQICIGUnVzc2lh",device="mobile_android"
+                seid =516, domain ="ee", geo_location="Russia", locale="ru-ee", uule = "w+CAIQICIHRXN0b25pYQ==",device="mobile_android"
             },
                new SearchProperties()
             {
-                seid =514, domain ="lv", geo_location="Russia", locale="ru-lv", uule = "w+CAIQICIGUnVzc2lh",device="desktop"
+                seid =517, domain ="lv", geo_location="Russia", locale="ru-lv", uule = "w+CAIQICIGTGF0dmlh",device="desktop"
             },
                new SearchProperties()
             {
-                seid =515, domain ="lv", geo_location="Russia", locale="ru-lv", uule = "w+CAIQICIGUnVzc2lh",device="mobile_android"
+                seid =518, domain ="lv", geo_location="Russia", locale="ru-lv", uule = "w+CAIQICIGTGF0dmlh",device="mobile_android"
             },//end 22-02-2021
         };
 

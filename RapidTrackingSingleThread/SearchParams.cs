@@ -1799,15 +1799,15 @@ namespace RapidTrackingSingleThread
             },
                new SearchProperties()
             {
-                seid =516, domain ="ee", geo_location="Estonia", locale="ru-ee", uule = "w+CAIQICIHRXN0b25pYQ==",device="mobile_android"
+                seid =515, domain ="ee", geo_location="Estonia", locale="ru-ee", uule = "w+CAIQICIHRXN0b25pYQ==",device="mobile_android"
             },
                new SearchProperties()
             {
-                seid =517, domain ="lv", geo_location="Latvia", locale="ru-lv", uule = "w+CAIQICIGTGF0dmlh",device="desktop"
+                seid =516, domain ="lv", geo_location="Latvia", locale="ru-lv", uule = "w+CAIQICIGTGF0dmlh",device="desktop"
             },
                new SearchProperties()
             {
-                seid =518, domain ="lv", geo_location="Latvia", locale="ru-lv", uule = "w+CAIQICIGTGF0dmlh",device="mobile_android"
+                seid =517, domain ="lv", geo_location="Latvia", locale="ru-lv", uule = "w+CAIQICIGTGF0dmlh",device="mobile_android"
             },//end 22-02-2021
         };
 

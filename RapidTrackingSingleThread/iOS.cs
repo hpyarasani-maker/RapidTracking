@@ -2300,7 +2300,7 @@ namespace RapidTrackingSingleThread
                     nd = node.SelectSingleNode(".//div[@class='zK9jzc B3JUpd i8lZMc']"); //17-01-2020 selector changed videos block
                     if (nd == null)
                         //nd = node.SelectSingleNode(".//g-tray-header[@class='kno-fb-ctx lQckZe gsrt ieGFJe ndEm3b']"); //08-09-2020 commented //21-02-2020 included selector for videos card
-                        nd = node.SelectSingleNode(".//g-tray-header[contains(@class,'kno-fb-ctx lQckZe'])");//26-02-2021 above line commented and included contains //08-09-2020 commented //21-02-2020 included selector for videos card
+                        nd = node.SelectSingleNode(".//g-tray-header[contains(@class,'kno-fb-ctx lQckZe')]");//26-02-2021 above line commented and included contains //08-09-2020 commented //21-02-2020 included selector for videos card
                         if (nd != null)
                     {
                         //if (nd.InnerText.Trim() == "Recipes" || nd.InnerText.Trim() == "Recept" || nd.InnerText.Trim() == "Ricette")// 21-11-2019

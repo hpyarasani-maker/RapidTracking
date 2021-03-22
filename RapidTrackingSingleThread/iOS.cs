@@ -1503,7 +1503,7 @@ namespace RapidTrackingSingleThread
             if (nds == null)
                 nds = node.SelectNodes(".//div[@class='eR2XS']/g-inner-card/div/a/g-img[@class='SeXxHf']/img"); //08-06-2020
             if (nds == null)
-                nds = node.SelectNodes(".//div[@class='OixsOd']/a|.//div[@class='eA0Zlc qN5nNb ivg-i CxtVFd']/g-img[@class='BA0A6c']/img"); //15-12-2020  //17-07-2020  //13-07-2020 selector included for images
+                nds = node.SelectNodes(".//div[@class='OixsOd']/a|.//div[contains(@class,'eA0Zlc')]/g-img[@class='BA0A6c']/img");//22-03-2021 changed //15-12-2020  //17-07-2020  //13-07-2020 selector included for images
 
             if (nds != null)
 

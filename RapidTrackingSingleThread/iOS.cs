@@ -726,13 +726,13 @@ namespace RapidTrackingSingleThread
                                 continue;
 
 
-                            HtmlNode img = nd.SelectSingleNode(".//div[@class='G5NbBd']/div");
+                            HtmlNode img = nd.SelectSingleNode(".//div[@class='G5NbBd']/div|.//g-img/img[@class='rISBZc zr758c']"); //22-03-2021
 
                             if (img != null)
                             {
                                 try
                                 {
-                                    if (Regex.IsMatch(img.OuterHtml, "id =\"vidthumb\\d*\"") || img.Attributes["class"].Value.Contains("__video-result"))
+                                    if (Regex.IsMatch(img.OuterHtml, "id=\"vidthumb\\d*\"") || Regex.IsMatch(img.OuterHtml, "id=\"dimg_\\d*\"") || img.Attributes["class"].Value.Contains("__video-result")) //22-03-2021
                                     {
                                         HtmlNode vdo = nd.SelectSingleNode(".//a[@class='C8nzq BmP5tf']");
                                         // video block.
@@ -741,8 +741,7 @@ namespace RapidTrackingSingleThread
                                         if (vdo != null)
                                         {
                                             string url = vdo.Attributes["href"].Value;
-                                            //string title = vdo.SelectSingleNode(".//div[1]").InnerText; // vdo.InnerText.Replace("'", "").Replace("\"", "");
-                                            string title = vdo.SelectSingleNode(".//div[@class='MUxGbd v0nnCb']|.//div[@class='zlBHuf MUxGbd v0nnCb']").InnerText;  //24-09-2019
+                                            string title = vdo.SelectSingleNode(".//div[contains(@class, 'MUxGbd v0nnCb')]").InnerText;  //22-03-2021
                                             if (url.StartsWith("http") || url.StartsWith("https") || url.StartsWith("ftp")) //30-04-2020
                                             {
                                                 s.Append("<block type=\"video\" url=\"\">");
@@ -2222,7 +2221,7 @@ namespace RapidTrackingSingleThread
                      || nd.InnerText == "Fler resultat" || nd.InnerText == "Flere resultater" || nd.InnerText == "Plus de résultats")    // 13-12-2019
                     return false;
             }
-            if (node.SelectSingleNode(".//div[@class='Z3ngN']") != null) //05-01-2021
+            if (node.SelectSingleNode(".//div[contains(@class, 'Z3ngN')]") != null) //22-03-2021
                 return false;
             //17-01-2020
             nd = node.SelectSingleNode(".//div[@class='Lgnr0e J88qA BmP5tf']");
@@ -2384,12 +2383,12 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@class='vC5Ym']") != null
                 || node.SelectSingleNode(".//div[@class='kp-blk Wnoohf OJXvsb']") != null
                 || (node.SelectSingleNode(".//g-card[@class='XqIXXe']") != null && node.SelectSingleNode(".//g-card[@id='tscffb']") != null)
-                 || node.SelectSingleNode(".//div[@class='khgTR lWEpfd']") != null  //22-06-2020
-                 || node.SelectSingleNode(".//div[@class='ywTQJc']") != null //07-08-2020 
+                || node.SelectSingleNode(".//div[@class='khgTR lWEpfd']") != null  //22-06-2020
+                || node.SelectSingleNode(".//div[@class='ywTQJc']") != null //07-08-2020 
                 || node.SelectSingleNode(".//div[@class='khgTR R5lVqb']") != null //26-08-2020 selector for missing classic link
                 || node.SelectSingleNode(".//div[@class='V1nn0e R5lVqb']") != null //15-12-2020
                 || node.SelectSingleNode(".//div[@class='card-section']") != null //15-12-2020
-                || node.SelectSingleNode(".//div[@class='Z3ngN']") != null);//05-01-2021
+                || node.SelectSingleNode(".//div[contains(@class, 'Z3ngN')]") != null);//22-03-2021
         }
 
         internal object GetTop100GoogleUKMobileImages_PageURLs(string kw, string v1, string v2, string v3, string v4, string v5)

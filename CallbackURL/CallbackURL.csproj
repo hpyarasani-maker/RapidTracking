@@ -96,6 +96,8 @@
     <Compile Include="Controller\CallbackOtherDesktopController.cs" />
     <Compile Include="Controller\CallbackOtherMobileController.cs" />
     <Compile Include="Controller\CallbackRapidTrackingCommaKeywordsController.cs" />
+    <Compile Include="Controller\CallbackRapidTrackingNewDesktopController.cs" />
+    <Compile Include="Controller\CallbackRapidTrackingNewMobileController.cs" />
     <Compile Include="Controller\CallbackRapidTrackingDesktopController.cs" />
     <Compile Include="Controller\CallbackRapidTrackingImageDesktopController.cs" />
     <Compile Include="Controller\CallbackRapidTrackingImageMobileController.cs" />

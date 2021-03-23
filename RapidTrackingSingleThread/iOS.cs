@@ -1757,13 +1757,16 @@ namespace RapidTrackingSingleThread
             else
             {
                 // 16-12-2019
-                nds = node.SelectNodes(".//div[@jscontroller='OmmTPc']");
+                nds = node.SelectNodes(".//div[@jscontroller='OmmTPc']|.//div[@jscontroller='zIwOx']"); //23-03-2021
                 if (nds != null)
                 {
                     foreach (HtmlNode nd in nds)
                     {
                         string url = nd.Attributes["data-url"].Value;
-                        string title = nd.SelectSingleNode(".//div[@class='fJiQld']|.//div[@class='fJiQld oz3cqf vH5Lmd']").InnerText;//12-06-2020
+                        if (string.IsNullOrEmpty(url)) //23-02-2021
+                            url = nd.Attributes["data-surl"]?.Value; //23-02-2021
+                        //string title = nd.SelectSingleNode(".//div[@class='fJiQld']|.//div[@class='fJiQld oz3cqf vH5Lmd']").InnerText;//12-06-2020
+                        string title = nd.SelectSingleNode(".//div[contains(@class,'fJiQld')]").InnerText; //end 23-03-2021
                         if (url.Contains("/search?")) url = "";
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                     }

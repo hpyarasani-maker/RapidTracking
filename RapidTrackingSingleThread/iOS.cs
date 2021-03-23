@@ -1762,9 +1762,9 @@ namespace RapidTrackingSingleThread
                 {
                     foreach (HtmlNode nd in nds)
                     {
-                        string url = nd.Attributes["data-url"].Value;
+                        string url = nd.Attributes["data-surl"].Value;
                         if (string.IsNullOrEmpty(url)) //23-02-2021
-                            url = nd.Attributes["data-surl"]?.Value; //23-02-2021
+                            url = nd.Attributes["data-url"]?.Value; //23-02-2021
                         //string title = nd.SelectSingleNode(".//div[@class='fJiQld']|.//div[@class='fJiQld oz3cqf vH5Lmd']").InnerText;//12-06-2020
                         string title = nd.SelectSingleNode(".//div[contains(@class,'fJiQld')]").InnerText; //end 23-03-2021
                         if (url.Contains("/search?")) url = "";

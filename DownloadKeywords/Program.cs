@@ -40,7 +40,7 @@ namespace DownloadKeywords
         }
         static void Main(string[] args)
         {
-            Console.Title = "Tracking Trending Download Keywords";
+            Console.Title = "Tracking Trending Download Remaining Keywords in 7th Server";
             GetKeywordsBatch();
         }
 
@@ -62,8 +62,7 @@ namespace DownloadKeywords
 
             string myDate = DateTime.Today.ToString("yyyy-MM-dd");
 
-            string url = "https://incoming.pi-datametrics.com/provider-api/tracking/get-required-searches?date=" + myDate + "&remaining-only=false";
-
+            string url = "https://incoming.pi-datametrics.com/provider-api/tracking/get-required-searches?date=" + myDate + "&remaining-only=true";
 
             string authInfo = "pisoftware" + ":" + "r00t123456";
             StringBuilder stringBuilder = new StringBuilder();
@@ -119,8 +118,6 @@ namespace DownloadKeywords
                     Console.WriteLine("Error: " + ex.Message);
                 }
             }
-
-
         }
 
         private static void ProcessDB(string qry)

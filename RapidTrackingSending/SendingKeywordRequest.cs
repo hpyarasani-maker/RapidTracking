@@ -20,6 +20,8 @@ namespace Oxylabs_BulkKeywords
             {
                 XmlDocument xml = new XmlDocument();
                 string fileName = @"C:\Inetpub\wwwroot\Callback_TrackingTrending.xml";
+                //string fileName = @"C:\Inetpub\wwwroot\downloadKeywords.xml";
+
 
                 // You'll need to put the correct path to your xml file here
                 xml.Load(fileName);
@@ -85,9 +87,12 @@ namespace Oxylabs_BulkKeywords
             string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
 
             //string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking other desktop
-            string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking other mobile
+            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking other mobile
             //string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
             //string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobilehotel/";
+            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidTrackingnewdesktop/"; //Desktop new keywords
+            string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidTrackingnewmobile/"; //mobile new keywords
+            // string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidtrackingnewcommakeywords/";  // new comma keywords
 
             //string callbackURL = "http://seresults.azurewebsites.net/api/callbackuk503desktoptemp";
             //string callbackURL = "http://seresults.azurewebsites.net/api/trackingtrending/";

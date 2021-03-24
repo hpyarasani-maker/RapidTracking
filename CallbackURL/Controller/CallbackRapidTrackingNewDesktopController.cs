@@ -13,7 +13,7 @@ namespace CallbackURL.Controller
         public static readonly object obj = new object();
 
 
-        // GET: api/CallbackRapidTrackingDesktop
+        // GET: api/CallbackRapidTrackingNewDesktop
         public OxyCallbackResponse Get()
         {
             lock (obj)
@@ -30,7 +30,7 @@ namespace CallbackURL.Controller
         }
 
 
-        // GET: api/CallbackRapidTrackingDesktop
+        // GET: api/CallbackRapidTrackingNewDesktop
         public IHttpActionResult Post([FromBody]JObject model)
         {
             lock (obj)

@@ -7,13 +7,15 @@ using System.Web.Http;
 
 namespace CallbackURL.Controller
 {
-    public class CallbackRapidTrackingNewMobileController : ApiController
-    {        
+    public class CallbackRapidTrackingNewCommaKeywordsController : ApiController
+    {
+        
+
         public static ArrayList alData = new ArrayList();
         public static readonly object obj = new object();
 
 
-        // GET: api/CallbackRapidTrackingNewMobile
+        // GET: api/CallbackRapidTrackingNewCommaKeywords
         public OxyCallbackResponse Get()
         {
             lock (obj)
@@ -30,7 +32,7 @@ namespace CallbackURL.Controller
         }
 
 
-        // GET: api/CallbackRapidTrackingNewMobile
+        // GET: api/CallbackRapidTrackingNewCommaKeywords
         public IHttpActionResult Post([FromBody]JObject model)
         {
             lock (obj)

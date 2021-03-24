@@ -1791,6 +1791,8 @@ namespace RapidTrackingSingleThread
                 HtmlNodeCollection App2 = App.SelectNodes(".//div[@class='aig-i aew2ab']");
                 if (App2 == null)
                     App2 = App.SelectNodes(".//div[@class='qiL93c']");//18-07-2020
+                if(App2 == null)
+                     App2 = App.SelectNodes(".//div[@class='EzLsDb']"); //24-03-2021 missing apps url
                 if (App2 != null)
                 {
                     foreach (HtmlNode nd in App2)

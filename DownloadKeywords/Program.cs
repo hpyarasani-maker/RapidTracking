@@ -18,8 +18,8 @@ namespace DownloadKeywords
             try
             {
                 XmlDocument xml = new XmlDocument();
-                //string fileName = @"C:\Inetpub\wwwroot\downloadKeywords.xml";
-                string fileName = @"C:\Inetpub\wwwroot\Callback_TrackingTrending.xml";
+                string fileName = @"C:\Inetpub\wwwroot\downloadKeywords.xml";
+                //string fileName = @"C:\Inetpub\wwwroot\Callback_TrackingTrending.xml";
 
                 // You'll need to put the correct path to your xml file here
                 xml.Load(fileName);
@@ -99,7 +99,7 @@ namespace DownloadKeywords
                         using (var sqlBulk = new SqlBulkCopy(StrConn()))
                         {
                             sqlBulk.BulkCopyTimeout = 0;
-                            sqlBulk.DestinationTableName = "tracking_keywords_new";
+                            sqlBulk.DestinationTableName = "tracking_keywords";
                             sqlBulk.WriteToServer(dt);
                         }
 

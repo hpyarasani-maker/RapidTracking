@@ -1797,6 +1797,54 @@ namespace TrendingReceiving
             {
                 seid =517, domain ="lv", geo_location="Latvia", locale="ru-lv", uule = "w+CAIQICIGTGF0dmlh",device="mobile_android"
             },//end 22-02-2021
+new SearchProperties() //start 25-02-2021
+            {
+                seid =518, domain ="co.nz", geo_location="Auckland,New Zealand", locale= "en-nz", uule = "w+CAIQICIUQXVja2xhbmQsTmV3IFplYWxhbmQ=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =519, domain ="co.nz", geo_location="Auckland,New Zealand", locale= "en-nz", uule = "w+CAIQICIUQXVja2xhbmQsTmV3IFplYWxhbmQ=",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =520, domain ="co.nz", geo_location="Wellington,New Zealand", locale= "en-nz", uule = "w+CAIQICIWV2VsbGluZ3RvbixOZXcgWmVhbGFuZA==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =521, domain ="co.nz", geo_location="Wellington,New Zealand", locale= "en-nz", uule = "w+CAIQICIWV2VsbGluZ3RvbixOZXcgWmVhbGFuZA==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =522, domain ="co.nz", geo_location="Hamilton,Waikato,New Zealand", locale= "en-nz", uule = "w+CAIQICIcSGFtaWx0b24sV2Fpa2F0byxOZXcgWmVhbGFuZA==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =523, domain ="co.nz", geo_location="Hamilton,Waikato,New Zealand", locale= "en-nz", uule = "w+CAIQICIcSGFtaWx0b24sV2Fpa2F0byxOZXcgWmVhbGFuZA==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =524, domain ="co.nz", geo_location="Christchurch,Canterbury,New Zealand", locale= "en-nz", uule = "w+CAIQICIjQ2hyaXN0Y2h1cmNoLENhbnRlcmJ1cnksTmV3IFplYWxhbmQ=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =525, domain ="co.nz", geo_location="Christchurch,Canterbury,New Zealand", locale= "en-nz", uule = "w+CAIQICIjQ2hyaXN0Y2h1cmNoLENhbnRlcmJ1cnksTmV3IFplYWxhbmQ=",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =526, domain ="co.nz", geo_location="Dunedin,Otago,New Zealand", locale= "en-nz", uule = "w+CAIQICIZRHVuZWRpbixPdGFnbyxOZXcgWmVhbGFuZA==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =527, domain ="co.nz", geo_location="Dunedin,Otago,New Zealand", locale= "en-nz", uule = "w+CAIQICIZRHVuZWRpbixPdGFnbyxOZXcgWmVhbGFuZA==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =528, domain ="co.nz", geo_location="Tauranga,Bay of Plenty,New Zealand", locale= "en-nz", uule = "w+CAIQICIiVGF1cmFuZ2EsQmF5IG9mIFBsZW50eSxOZXcgWmVhbGFuZA==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =529, domain ="co.nz", geo_location="Tauranga,Bay of Plenty,New Zealand", locale= "en-nz", uule = "w+CAIQICIiVGF1cmFuZ2EsQmF5IG9mIFBsZW50eSxOZXcgWmVhbGFuZA==",device="mobile_android"
+            }, //end 25-02-2021
         };
     }
 

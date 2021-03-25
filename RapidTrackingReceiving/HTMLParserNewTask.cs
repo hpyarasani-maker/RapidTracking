@@ -31,10 +31,11 @@ namespace Oxylabs_BulkKeywords
 
             Thread t1 = new Thread(new ThreadStart(StartProcess))
             {
-                Name = "All_5"
+                //Name = "All_5"
                 // Name = "Mobile_102_10"
                 ///Name = "CommaKeywords_1"
                 //Name = "ODesktop_20"
+                Name = "NewMobile_2"
             };
             t1.Start();
         }

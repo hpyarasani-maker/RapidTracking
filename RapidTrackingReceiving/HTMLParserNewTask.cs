@@ -35,7 +35,8 @@ namespace Oxylabs_BulkKeywords
                 // Name = "Mobile_102_10"
                 ///Name = "CommaKeywords_1"
                 //Name = "ODesktop_20"
-                Name = "NewMobile_2"
+                //Name = "NewMobile_2"
+                Name = "NewComma"
             };
             t1.Start();
         }

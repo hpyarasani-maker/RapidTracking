@@ -18,14 +18,14 @@ namespace DownloadKeywords
             try
             {
                 XmlDocument xml = new XmlDocument();
-                string fileName = @"C:\Inetpub\wwwroot\downloadKeywords.xml";
-                //string fileName = @"C:\Inetpub\wwwroot\ServerIP_Callback.xml";
+                //string fileName = @"C:\Inetpub\wwwroot\downloadKeywords.xml";
+                string fileName = @"C:\Inetpub\wwwroot\Callback_TrackingTrending.xml";
 
                 // You'll need to put the correct path to your xml file here
                 xml.Load(fileName);
 
                 // Select a specific node
-                XmlNode node = xml.SelectSingleNode("download/con");
+                XmlNode node = xml.SelectSingleNode("ConnectionString/con");
                 //XmlNode node = xml.SelectSingleNode("ConnectionString/con");
 
                 // Get its value
@@ -40,7 +40,7 @@ namespace DownloadKeywords
         }
         static void Main(string[] args)
         {
-            Console.Title = "Tracking Trending Download Remaining Keywords in 7th Server";
+            Console.Title = "Tracking Trending Download Remaining New Keywords";
             GetKeywordsBatch();
         }
 
@@ -99,7 +99,7 @@ namespace DownloadKeywords
                         using (var sqlBulk = new SqlBulkCopy(StrConn()))
                         {
                             sqlBulk.BulkCopyTimeout = 0;
-                            sqlBulk.DestinationTableName = "tracking_keywords";
+                            sqlBulk.DestinationTableName = "tracking_keywords_new";
                             sqlBulk.WriteToServer(dt);
                         }
 

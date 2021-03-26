@@ -1130,8 +1130,8 @@ namespace RapidTrackingSingleThread
                     nd = node.SelectNodes(".//div[@class='Z8r5Gb']/a"); //23-05-2020
                 if (nd == null)
                     nd = node.SelectNodes(".//div[@class='OixsOd']/a");//25-06-2020
-                if (nd == null)
-                    return string.Empty;
+                if (nd != null) //26-03-2021
+                    //return string.Empty; //26-03-2021
                 foreach (HtmlNode nd1 in nd)
                 {
                     string title = ""; //25-06-2020

@@ -1722,7 +1722,7 @@ namespace RapidTrackingSingleThread
         private string GetVideos(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nds = node.SelectNodes(".//g-inner-card/a|");
+            HtmlNodeCollection nds = node.SelectNodes(".//g-inner-card/a");
             if (nds == null)
                 nds = node.SelectNodes(".//div[@data-attrid='OsrpVideos']/a|.//div[@class='ALzVK']/div/div/a");
             if (nds == null)

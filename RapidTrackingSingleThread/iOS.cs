@@ -649,6 +649,9 @@ namespace RapidTrackingSingleThread
             else
             {
                 nds = node.SelectNodes(".//div[@class='mnr-c waTp2e xpd O9g5cc uUPGi']|.//div[@class='mnr-c luh4tb xpd O9g5cc uUPGi']");//24-03-2021//15-12-2020 removed selector//06-10-2020 classic link selector //19-06-2020   //20-01-2020 selector changed for two classic links
+                if (nds == null)//26-03-2021
+                    nds = (node.SelectNodes(".//div[contains(@id,'tsuid')]//a[@class='Xhbgy']") != null && node.SelectNodes(".//div[contains(@class,'KJDcUb')]") != null) ? nds = node.SelectNodes(".//div[@class='mnr-c xpd O9g5cc uUPGi']") : nds = null; 
+                //end 26-03-2021
                 if (nds == null)
                     if (node.SelectSingleNode(".//div[@class='YgXj7b Qc4Zr']") == null) //19-01-2021
                         nds = node.SelectNodes(".//div[contains(@class,'KJDcUb')]|.//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']|.//g-card[@id='tscffb']|.//div[@class='mnr-c PHap3c']");//09-02-2021//27-01-2021 included missing selector//05-01-2021 //04-01-2021 missing classic link//18-12-2020 sitelinks missing selector //15-12-2020
@@ -1719,7 +1722,7 @@ namespace RapidTrackingSingleThread
         private string GetVideos(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nds = node.SelectNodes(".//g-inner-card/a");
+            HtmlNodeCollection nds = node.SelectNodes(".//g-inner-card/a|");
             if (nds == null)
                 nds = node.SelectNodes(".//div[@data-attrid='OsrpVideos']/a|.//div[@class='ALzVK']/div/div/a");
             if (nds == null)
@@ -1998,6 +2001,8 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[@class='SRYuRe']");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='w8TE8']");
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@id='tsuid196']");
             if (nd != null)
                 return "Videos";
 

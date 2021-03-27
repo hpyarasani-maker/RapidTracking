@@ -117,6 +117,10 @@ namespace RapidTrackingSingleThread
 
                                 if (!string.IsNullOrEmpty(res))
                                 {
+                                    lblCount.Invoke((MethodInvoker)(delegate ()
+                                    {
+                                        lblCount.Text = "No. of Urls : " + count;
+                                    }));
                                     if (count > 20)
                                     {
                                         SendToAPI(seid, keyword, res, jobid);
@@ -647,6 +651,7 @@ namespace RapidTrackingSingleThread
                         catch (Exception ex)
                         {
                             Console.WriteLine("Status Request: " + ex.Message);
+                            txtError.Text = ex.Message.ToString();
                         }
                     }
                     else

@@ -19,13 +19,13 @@ namespace DownloadKeywords
             {
                 XmlDocument xml = new XmlDocument();
                 string fileName = @"C:\Inetpub\wwwroot\downloadKeywords.xml";
-                //string fileName = @"C:\Inetpub\wwwroot\ServerIP_Callback.xml";
+                //string fileName = @"C:\Inetpub\wwwroot\Callback_TrackingTrending.xml";
 
                 // You'll need to put the correct path to your xml file here
                 xml.Load(fileName);
 
                 // Select a specific node
-                XmlNode node = xml.SelectSingleNode("download/con");
+                XmlNode node = xml.SelectSingleNode("ConnectionString/con");
                 //XmlNode node = xml.SelectSingleNode("ConnectionString/con");
 
                 // Get its value
@@ -40,7 +40,7 @@ namespace DownloadKeywords
         }
         static void Main(string[] args)
         {
-            Console.Title = "Tracking Trending Download Keywords";
+            Console.Title = "Tracking Trending Download Remaining New Keywords";
             GetKeywordsBatch();
         }
 
@@ -62,8 +62,7 @@ namespace DownloadKeywords
 
             string myDate = DateTime.Today.ToString("yyyy-MM-dd");
 
-            string url = "https://incoming.pi-datametrics.com/provider-api/tracking/get-required-searches?date=" + myDate + "&remaining-only=false";
-
+            string url = "https://incoming.pi-datametrics.com/provider-api/tracking/get-required-searches?date=" + myDate + "&remaining-only=true";
 
             string authInfo = "pisoftware" + ":" + "r00t123456";
             StringBuilder stringBuilder = new StringBuilder();
@@ -119,8 +118,6 @@ namespace DownloadKeywords
                     Console.WriteLine("Error: " + ex.Message);
                 }
             }
-
-
         }
 
         private static void ProcessDB(string qry)

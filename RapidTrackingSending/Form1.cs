@@ -42,7 +42,8 @@ namespace Oxylabs_BulkKeywords
 
             //Text = "D_Oxylabs_TrackingTrending_KwdSending_58_2";
 
-            Text = "D_Oxylabs_TrackingTrending_KwdSending_All";
+            //Text = "D_Oxylabs_TrackingTrending_KwdSending_All";
+            Text = "D_Oxylabs_Tracking New Keywords_Sending";
             //Text = "D_Oxylabs_RapidTracking_KwdSending_Mobile_Yesterdays";
             //Text = "D_Oxylabs_RapidTracking_KwdSending_CommaKeywordsMobile_Hotels_1";
             //Text = "D_Oxylabs_RapidTracking_KwdSending_Mobile_Hotels_1";
@@ -134,8 +135,8 @@ namespace Oxylabs_BulkKeywords
 
             //string strQry = "exec [dbo].[GetBulkUKDesktop_Temp_1] '" + myDate + "'";    // seid: 503
             //string strQry = "exec [dbo].[GetBulk_All] '" + myDate + "'";
-
-            string strQry = "exec [dbo].[GetBulkDesktop_58_1] '" + myDate + "'";
+            string strQry = "exec [dbo]. [GetBulkDesktop_NewKeywords] '" + myDate + "'";
+            //string strQry = "exec [dbo].[GetBulkDesktop_58_1] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkMobile_102_2] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkDesktop_1] '" + myDate + "'";
            //string strQry = "exec [dbo].[GetBulkMobile_2] '" + myDate + "'";
@@ -247,7 +248,6 @@ namespace Oxylabs_BulkKeywords
                     rnd_lbl.Text = (mseconds / 1000).ToString() + " " + "seconds";
                 });
                 Thread.Sleep(mseconds);
-               
             }
         }
         

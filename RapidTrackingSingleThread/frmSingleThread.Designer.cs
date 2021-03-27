@@ -32,6 +32,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.txtError = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.lblCount = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lstKWs
@@ -67,12 +68,21 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "#";
             // 
-
+            // lblCount
+            // 
+            this.lblCount.AutoSize = true;
+            this.lblCount.Location = new System.Drawing.Point(756, 23);
+            this.lblCount.Name = "lblCount";
+            this.lblCount.Size = new System.Drawing.Size(14, 13);
+            this.lblCount.TabIndex = 10;
+            this.lblCount.Text = "#";
+            // 
             // frmSingleThread
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(859, 513);
+            this.Controls.Add(this.lblCount);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtError);
             this.Controls.Add(this.textBox1);
@@ -91,7 +101,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox txtError;
         private System.Windows.Forms.Label label1;
-       
+        private System.Windows.Forms.Label lblCount;
     }
 }
 

@@ -31,20 +31,26 @@ namespace Oxylabs_BulkKeywords
 
             Thread t1 = new Thread(new ThreadStart(StartProcess))
             {
-                Name = "All_5"
+                //Name = "All_5"
                 // Name = "Mobile_102_10"
                 ///Name = "CommaKeywords_1"
                 //Name = "ODesktop_20"
+                //Name = "NewMobile_2"
+                Name = "NewComma"
             };
             t1.Start();
         }
 
         private void StartProcess()
         {
-            string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking desktop and all keywords
-          //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking mobile
+            // string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking desktop and all keywords
+            //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking mobile
             // string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
             //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobilehotel/";  // rapid tracking mobile
+            //string url = "http://seresults.azurewebsites.net/api/callbackrapidTrackingnewdesktop/"; //Desktop new keywords
+            string url = "http://seresults.azurewebsites.net/api/callbackrapidTrackingnewmobile/"; //mobile new keywords
+            // string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingnewcommakeywords/";  // new comma keywords
+
             //string url = "http://seresults.azurewebsites.net/api/callbackuk503desktoptemp/";
             //string url = "http://seresults.azurewebsites.net/api/trackingtrending/";
             //string url = "http://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58
@@ -229,7 +235,7 @@ namespace Oxylabs_BulkKeywords
             {
                 XmlDocument xml = new XmlDocument();
                 string fileName = @"C:\Inetpub\wwwroot\Callback_TrackingTrending.xml";
-                //string fileName = @"C:\Inetpub\wwwroot\ServerIP_Callback.xml";
+                //string fileName = @"C:\Inetpub\wwwroot\downloadKeywords.xml";
 
                 // You'll need to put the correct path to your xml file here
                 xml.Load(fileName);
@@ -381,7 +387,7 @@ namespace Oxylabs_BulkKeywords
             {
                 XmlDocument xml = new XmlDocument();
                 string fileName = @"C:\Inetpub\wwwroot\Callback_TrackingTrending.xml";
-                //string fileName = @"C:\Inetpub\wwwroot\ServerIP_Callback.xml";
+                //string fileName = @"C:\Inetpub\wwwroot\downloadKeywords.xml";
 
                 // You'll need to put the correct path to your xml file here
                 xml.Load(fileName);

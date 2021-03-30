@@ -1857,11 +1857,11 @@ namespace RapidTrackingSingleThread
             {
                 seid =529, domain ="co.nz", geo_location="Tauranga,Bay of Plenty,New Zealand", locale= "en-nz", uule = "w+CAIQICIiVGF1cmFuZ2EsQmF5IG9mIFBsZW50eSxOZXcgWmVhbGFuZA==",device="mobile_android"
             }, //end 25-02-2021
-            new SearchProperties()
+            new SearchProperties()//30-03-2021
             {
                 seid =530, domain ="com.gh", geo_location="Ghana", locale= "en-gh", uule = "w+CAIQICIFR2hhbmE=",device="desktop"
             },
-            new SearchProperties() //30-03-2021
+            new SearchProperties() 
             {
                 seid =531, domain ="com.gh", geo_location="Ghana", locale= "en-gh", uule = "w+CAIQICIFR2hhbmE=",device="mobile_android"
             },

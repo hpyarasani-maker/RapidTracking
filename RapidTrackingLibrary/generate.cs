@@ -68,11 +68,11 @@ namespace RapidTrackingLibrary
             XmlDocument xd = new XmlDocument();
             res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + res;
             xd.LoadXml(res);
-            xd.Save(xmlPath + "xml1.xml");
+            xd.Save(xmlPath + "selector.xml");
 
             resRx = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + resRx;
             xd.LoadXml(resRx);
-            xd.Save(xmlPath + "xml2.xml");
+            xd.Save(xmlPath + "regex.xml");
         }
     }
 }

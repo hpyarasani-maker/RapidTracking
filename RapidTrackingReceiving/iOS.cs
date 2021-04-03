@@ -2001,7 +2001,7 @@ namespace Oxylabs_BulkKeywords
             if (nd != null && node.SelectSingleNode(".//div[contains(@class, ' knowledge-panel ')]") == null)
             {
                 // Changes in Videos block on 25-06-2019
-                if (node.InnerText.ToLower().Contains("videos") || node.InnerText.StartsWith("فيديوهات"))    // 29-11-2019
+                if (node.InnerText.ToLower().Contains("video") || node.InnerText.StartsWith("فيديوهات")) //02-04-2021 removed s from videos condition
                 {
                     return "Videos";
                 }

@@ -1868,6 +1868,14 @@ namespace TrendingDesktopSingleThread
             {
                 seid =535, domain ="co.tz", geo_location="Tanzania", locale= "sw-tz", uule = "w+CAIQICIIVGFuemFuaWE=",device="mobile_android"
             }, //end 30-03-2021
+             new SearchProperties() //07-04-2021
+            {
+                seid =536, domain ="co.id", geo_location="Indonesia", locale= "en-id", uule ="w+CAIQICIJSW5kb25lc2lh",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =537, domain ="co.id", geo_location="Indonesia", locale= "en-id", uule = "w+CAIQICIJSW5kb25lc2lh",device="mobile_android"
+            }, //end 07-04-2021
         };
     }
 

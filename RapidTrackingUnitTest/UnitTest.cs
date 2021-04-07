@@ -12,8 +12,8 @@ namespace RapidTrackingUnitTest
     [TestClass]
     public class UnitTest
     {
-        readonly static string seid = "1";
-        readonly static string keyword = "itab pro";
+        readonly static string seid = "102";
+        readonly static string keyword = "surfing videos";
 
         [ClassInitialize]
         public static void Initialize(TestContext context)

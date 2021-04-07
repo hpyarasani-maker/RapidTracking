@@ -206,13 +206,15 @@ namespace RapidTrackingLibrary
             sb.Append("<section col=\"main\">");
             try
             {
-                string matchPattern = "(<div class=\\WKJDcUb\\W>*<a class=\\W[C8nzq BmP5tf]*[C8nzq JTuIPc]*[C8nzq Tj0U2 BmP5tf]*[C8nzq JTuIPc amp_r\\W data-amp=|\\W|C8nzq Tj0U2 BmP5tf amp_r\\W data-amp=|\\W|C8nzq BmP5tf amp_r\\W data-amp=|data-idx=\\W\\d\\W href=|\\W href=]*\"(.*?)\")|" +
-                        "(<div class=\\WXv4xee\\W>*<h3 class=\\WyuRUbf JtG40d V7Sr0\\W><a class=\\W[sXtWJb|sXtWJb gsrt amp_r|sXtWJb amp_r\\W data-amp=|\\W|\\W href=]*\"(.*?)\") ";
-                Regex re = new Regex(matchPattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                //string matchPattern = "(<div class=\\WKJDcUb\\W>*<a class=\\W[C8nzq BmP5tf]*[C8nzq JTuIPc]*[C8nzq Tj0U2 BmP5tf]*[C8nzq JTuIPc amp_r\\W data-amp=|\\W|C8nzq Tj0U2 BmP5tf amp_r\\W data-amp=|\\W|C8nzq BmP5tf amp_r\\W data-amp=|data-idx=\\W\\d\\W href=|\\W href=]*\"(.*?)\")|" +
+                //        "(<div class=\\WXv4xee\\W>*<h3 class=\\WyuRUbf JtG40d V7Sr0\\W><a class=\\W[sXtWJb|sXtWJb gsrt amp_r|sXtWJb amp_r\\W data-amp=|\\W|\\W href=]*\"(.*?)\") ";
+                string matchPattern = "<[a-z0-9\\W]{11}[a-z0-9A-Z\\s]*[0-9|a-b]{1}\"\\S<[a-z\\D]{9}[A-Z|a-z{1}][A-Z|0-9{1}]([a-z]{3}|[A-Za-z]{4})[a-zA-Z0-9\\s_]*\"\\s(data-amp|href|data-idx)\\D\"(.*?)\"";
+                string URLpattern = "([\\w-./+?()&~'%!,-_.?$=;:]*)?";
+                Regex re = new Regex(matchPattern+URLpattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
                 MatchCollection mc = re.Matches(html);
                 foreach (Match m in mc)
                 {
-                    string url = m.Groups[2].Value;
+                    string url = m.Groups[3].Value;
                     url = SetUrl(url);
                     if (!string.IsNullOrEmpty(url) && orgLinks < 100)
                     {

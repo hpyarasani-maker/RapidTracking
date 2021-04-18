@@ -145,13 +145,12 @@ namespace RapidTrackingLibrary
 
             try
             {
-                string matchPattern = "<[a-z0-9\\W]{11}[a-z0-9A-Z\\s]*[0-9|a-b]{1}\"\\S<[a-z\\D]{9}[A-Z|a-z{1}][A-Z|0-9{1}]([a-z]{3}|[A-Za-z]{4})[a-zA-Z0-9\\s_]*\"\\s(data-amp|href|data-idx)\\D\"(.*?)\"";
-                string URLpattern = "([\\w-./+?()&~'%!,-_.?$=;:]*)?";
-                Regex re = new Regex(matchPattern + URLpattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                string matchPattern = "(<div class=\\WyuRUbf\\W><a href=\"(.*?)\" )|<div class=\\WDOqJne\\W><g-link><a class=\\Wa-no-hover-decoration\\W href=\"(.*?)\" ";
+                Regex re = new Regex(matchPattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
                 MatchCollection mc = re.Matches(html);
                 foreach (Match m in mc)
                 {
-                    string url = m.Groups[3].Value;
+                    string url = m.Groups[2].Value;
                     url = SetUrl(url);
                     if (!string.IsNullOrEmpty(url) && orgLinks < 100)
                     {

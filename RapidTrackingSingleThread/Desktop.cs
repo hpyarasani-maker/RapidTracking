@@ -826,7 +826,7 @@ namespace RapidTrackingSingleThread
             return s.ToString();
         }
 
-        private string GetAnswerCard(HtmlNode node)
+        public string GetAnswerCard(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='r']/a");

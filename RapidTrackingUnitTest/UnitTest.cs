@@ -6,6 +6,7 @@ using System.Xml;
 using System.Xml.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RapidTrackingLibrary;
+using HtmlAgilityPack;
 
 namespace RapidTrackingUnitTest
 {
@@ -136,6 +137,30 @@ namespace RapidTrackingUnitTest
             //31-03-2021
             //ArrayList lst = GetRegExProcessedLists();
             //Assert.IsTrue (lst.Count >= 95);
+        }
+        
+        public void TestReadConnection()
+        {
+            string s = Common.ReadConnection();
+            Assert.AreEqual<string>("Data Source=82.136.42.2;User ID=sa;Password = brisbane007;initial catalog = TrackingTrending", s);
+        }
+        [TestMethod]
+        public void TestAnsweredCard()
+        {
+            var desktop = new Desktop();
+            var doc = new HtmlDocument();
+            string path = "C:\\inetpub\\wwwroot\\html\\6789915732684601345_surfing videos.html";
+            doc.Load(path);
+            HtmlNode node = doc.DocumentNode.SelectSingleNode(".//div[@class='yuRUbf']/a");
+            string s = desktop.GetAnswerCard(node);
+            Assert.AreEqual<string>(".//div[@class='yuRUbf']/a", s);
+        }
+        [TestMethod]
+        public void TestDesktopSanitizeXmlString()
+        {
+            var desktop = new Desktop();
+            string s = desktop.SanitizeXmlString("https://www.dixons.co.uk");
+            Assert.AreEqual("https://www.dixons.co.uk", s);
         }
     }
 }

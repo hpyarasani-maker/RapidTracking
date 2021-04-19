@@ -144,7 +144,7 @@ namespace RapidTrackingUnitTest
             string s = Common.ReadConnection();
             Assert.AreEqual<string>("Data Source=82.136.42.2;User ID=sa;Password = brisbane007;initial catalog = TrackingTrending", s);
         }
-        [TestMethod]
+        //[TestMethod]
         public void TestAnsweredCard()
         {
             var desktop = new Desktop();

@@ -138,18 +138,18 @@ namespace RapidTrackingUnitTest
             //ArrayList lst = GetRegExProcessedLists();
             //Assert.IsTrue (lst.Count >= 95);
         }
-        
+        [TestMethod]
         public void TestReadConnection()
         {
             string s = Common.ReadConnection();
             Assert.AreEqual<string>("Data Source=82.136.42.2;User ID=sa;Password = brisbane007;initial catalog = TrackingTrending", s);
         }
-        //[TestMethod]
+        [TestMethod]
         public void TestAnsweredCard()
         {
             var desktop = new Desktop();
             var doc = new HtmlDocument();
-            string path = "C:\\inetpub\\wwwroot\\html\\6789915732684601345_surfing videos.html";
+            string path = "C:\\inetpub\\wwwroot\\html\\6789935237666199553_surfing videos.html";
             doc.Load(path);
             HtmlNode node = doc.DocumentNode.SelectSingleNode(".//div[@class='yuRUbf']/a");
             string s = desktop.GetAnswerCard(node);

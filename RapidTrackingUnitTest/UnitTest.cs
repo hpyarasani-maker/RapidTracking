@@ -162,5 +162,34 @@ namespace RapidTrackingUnitTest
             string s = desktop.SanitizeXmlString("https://www.dixons.co.uk");
             Assert.AreEqual("https://www.dixons.co.uk", s);
         }
+        [TestMethod]
+        public void TestpeoplealsoaskIOS()
+        {
+            var ios = new iOS();
+            var doc = new HtmlDocument();
+            string path = "C:\\inetpub\\wwwroot\\html\\6790211090757209089_sales vacancies.html";
+            doc.Load(path);
+            HtmlNode node = doc.DocumentNode.SelectSingleNode(".//div[@jsname='F79BRe']");
+            string s = ios.PeopleAlsoAsk(node);
+            XElement newnode = XDocument.Parse(s).Root;
+            string xmlpath = "C:\\inetpub\\wwwroot\\html\\selector.xml";
+            XmlDocument xml = new XmlDocument();
+            xml.Load(xmlpath);
+            XmlNodeList xnList1 = xml.SelectNodes("/searchResult/section/block/item/@title");
+            if (xnList1.Count > 0)
+            {
+                foreach (XmlNode xn1 in xnList1)
+                {
+                    if (newnode.LastAttribute.Value == xn1.InnerText)
+                    {
+                        Assert.AreEqual<string>(newnode.LastAttribute.Value, xn1.InnerText);
+                        return;
+                    }
+                }
+                Assert.Fail();
+            }
+            else
+                Assert.IsTrue(xnList1.Count > 0);
+        }
     }
 }

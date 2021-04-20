@@ -1482,7 +1482,7 @@ namespace RapidTrackingLibrary
             return s.ToString();
         }
 
-        private string PeopleAlsoAsk(HtmlNode node)
+        public string PeopleAlsoAsk(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='_eHi']/div"); // (".//h3[@class='r']/a");

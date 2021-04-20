@@ -14,7 +14,7 @@ namespace RapidTrackingUnitTest
     public class UnitTest
     {
         readonly static string seid = "102";
-        readonly static string keyword = "surfing videos";
+        readonly static string keyword = "joe biden";
 
         [ClassInitialize]
         public static void Initialize(TestContext context)
@@ -144,52 +144,64 @@ namespace RapidTrackingUnitTest
             string s = Common.ReadConnection();
             Assert.AreEqual<string>("Data Source=82.136.42.2;User ID=sa;Password = brisbane007;initial catalog = TrackingTrending;", s);
         }
+        // iOS Tests
         [TestMethod]
-        public void TestAnsweredCard()
+        public void TestiOSAnswerCardBlockExisted()
         {
+            var node = SupportMethods.GetiOSAnswerCard(102, "joe biden");
+            var iOS = new iOS();
+            var result = node != null ? iOS.GetAnswerCard(node) : null;
+            Assert.IsTrue(result != null && result.Length > 0);
+        }
+        [TestMethod]
+        public void TestiOSTopStoriesBlockExisted()
+        {
+            var node = SupportMethods.GetiOSTopStories(102, "joe biden");
+            var iOS = new iOS();
+            var result = node != null ? iOS.GetTopStories(node) : null;
+            Assert.IsTrue(result != null && result.Length > 0);
+        }
+        [TestMethod]
+        public void TestiOSVideosBlockExisted()
+        {
+            var node = SupportMethods.GetiOSVideos(102, "joe biden");
+            var iOS = new iOS();
+            var result = node != null ? iOS.GetVideos(node) : null;
+            Assert.IsTrue(result != null && result.Length > 0);
+        }
+        [TestMethod]
+        public void TestiOSImagesBlockExisted()
+        {
+            var node = SupportMethods.GetiOSImages(102, "joe biden");
+            var iOS = new iOS();
+            var result = node != null ? iOS.GetImages(node) : null;
+            Assert.IsTrue(result != null && result.Length > 0);
+        }
+        // Desktop Tests
+        [TestMethod]
+        public void TestDektopAnswerCardBlockExisted()
+        {
+            var node = SupportMethods.GetDesktopAnswerCard(1, "information about java");
             var desktop = new Desktop();
-            var doc = new HtmlDocument();
-            string path = "C:\\inetpub\\wwwroot\\html\\6789935237666199553_surfing videos.html";
-            doc.Load(path);
-            HtmlNode node = doc.DocumentNode.SelectSingleNode(".//div[@class='yuRUbf']/a");
-            string s = desktop.GetAnswerCard(node);
-            Assert.AreEqual<string>(".//div[@class='yuRUbf']/a", s);
+            var result = node != null ? desktop.GetAnswerCard(node) : null;
+            Assert.IsTrue(result != null && result.Length > 0);
         }
         [TestMethod]
-        public void TestDesktopSanitizeXmlString()
+        public void TestDektopTopStoriesBlockExisted()
         {
+            var node = SupportMethods.GetDesktopTopStories(1, "joe biden");
             var desktop = new Desktop();
-            string s = desktop.SanitizeXmlString("https://www.dixons.co.uk");
-            Assert.AreEqual("https://www.dixons.co.uk", s);
+            var result = node != null ? desktop.GetTopStories(node) : null;
+            Assert.IsTrue(result != null && result.Length > 0);
         }
         [TestMethod]
-        public void TestpeoplealsoaskIOS()
+        public void TestDektopVideosBlockExisted()
         {
-            var ios = new iOS();
-            var doc = new HtmlDocument();
-            string path = "C:\\inetpub\\wwwroot\\html\\6790211090757209089_sales vacancies.html";
-            doc.Load(path);
-            HtmlNode node = doc.DocumentNode.SelectSingleNode(".//div[@jsname='F79BRe']");
-            string s = ios.PeopleAlsoAsk(node);
-            XElement newnode = XDocument.Parse(s).Root;
-            string xmlpath = "C:\\inetpub\\wwwroot\\html\\selector.xml";
-            XmlDocument xml = new XmlDocument();
-            xml.Load(xmlpath);
-            XmlNodeList xnList1 = xml.SelectNodes("/searchResult/section/block/item/@title");
-            if (xnList1.Count > 0)
-            {
-                foreach (XmlNode xn1 in xnList1)
-                {
-                    if (newnode.LastAttribute.Value == xn1.InnerText)
-                    {
-                        Assert.AreEqual<string>(newnode.LastAttribute.Value, xn1.InnerText);
-                        return;
-                    }
-                }
-                Assert.Fail();
-            }
-            else
-                Assert.IsTrue(xnList1.Count > 0);
+            var node = SupportMethods.GetDesktopVideos(1, "joe biden");
+            var desktop = new Desktop();
+            var result = node != null ? desktop.GetVideos(node) : null;
+            Assert.IsTrue(result != null && result.Length > 0);
         }
+
     }
 }

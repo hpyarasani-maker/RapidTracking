@@ -780,7 +780,7 @@ namespace RapidTrackingLibrary
             return s.ToString();
         }
 
-        private string GetVideos(HtmlNode node)
+        public string GetVideos(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//g-inner-card/div/a");
@@ -1034,7 +1034,7 @@ namespace RapidTrackingLibrary
             return s.ToString();
         }
 
-        private string GetTopStories(HtmlNode node)
+        public string GetTopStories(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//g-inner-card/a");
@@ -1163,7 +1163,7 @@ namespace RapidTrackingLibrary
             return s.ToString();
         }
 
-        private string GetBlockType(HtmlNode node)
+        public string GetBlockType(HtmlNode node)
         {
             HtmlNode nd = node.SelectSingleNode(".//div[@class='_ELb']/a");
             if (nd == null)

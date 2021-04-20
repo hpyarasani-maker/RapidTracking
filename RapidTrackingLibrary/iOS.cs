@@ -1505,7 +1505,7 @@ namespace RapidTrackingLibrary
             return s.ToString();
         }
 
-        private string GetAnswerCard(HtmlNode node)
+        public string GetAnswerCard(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//h3[@class='r']/a");
@@ -1553,7 +1553,7 @@ namespace RapidTrackingLibrary
 
 
 
-        private string GetImages(HtmlNode node)
+        public string GetImages(HtmlNode node)
         {
             bool existed = false;
             StringBuilder s = new StringBuilder();
@@ -1694,7 +1694,7 @@ namespace RapidTrackingLibrary
         }
 
 
-        private string GetTopStories(HtmlNode node)
+        public string GetTopStories(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//g-card-section/a");
@@ -1762,7 +1762,7 @@ namespace RapidTrackingLibrary
             return s.ToString();
         }
 
-        private string GetVideos(HtmlNode node)
+        public string GetVideos(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//g-inner-card/a");
@@ -1894,7 +1894,7 @@ namespace RapidTrackingLibrary
             return s.ToString();
         }
 
-        private string GetBlockType(HtmlNode node)
+        public string GetBlockType(HtmlNode node)
         {
             HtmlNode nd = node.SelectSingleNode(".//div[@class='KNcnob']/g-img");
             if (nd == null)

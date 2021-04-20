@@ -169,7 +169,7 @@ namespace RapidTrackingLibrary
             return sb.ToString();
         }
 
-        private string GetRightStuff(HtmlDocument doc)
+        public string GetRightStuff(HtmlDocument doc)
         {
             StringBuilder s = new StringBuilder();
 
@@ -248,7 +248,7 @@ namespace RapidTrackingLibrary
             return s.ToString();
         }
 
-        private string GetBottomStuff(HtmlDocument doc)
+        public string GetBottomStuff(HtmlDocument doc)
         {
             StringBuilder s = new StringBuilder();
 
@@ -311,7 +311,7 @@ namespace RapidTrackingLibrary
             return s.ToString();
         }
 
-        private string GetProductListedAds(HtmlDocument doc)
+        public string GetProductListedAds(HtmlDocument doc)
         {
             StringBuilder s = new StringBuilder();
             HtmlNode pla = doc.DocumentNode.SelectSingleNode("//div[@class='cu-container']");
@@ -348,7 +348,7 @@ namespace RapidTrackingLibrary
             return s.ToString();
         }
 
-        private string GetTopStuff(HtmlDocument doc)
+        public string GetTopStuff(HtmlDocument doc)
         {
             StringBuilder s = new StringBuilder();
 
@@ -490,7 +490,7 @@ namespace RapidTrackingLibrary
             return s.ToString();
         }
 
-        private string ProcessNode(HtmlNode node)
+        public string ProcessNode(HtmlNode node)
         {
             try  //28-09-2020  try catch.
             {
@@ -512,7 +512,7 @@ namespace RapidTrackingLibrary
             }
         }
 
-        private string ProcessOrganic(HtmlNode node)
+        public string ProcessOrganic(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
             if (node.HasClass("_NId") || node.HasClass("bkWMgd") || node.HasClass("srg")
@@ -659,7 +659,7 @@ namespace RapidTrackingLibrary
             return s.ToString();
         }
 
-        private string ProcessBlock(HtmlNode node)
+        public string ProcessBlock(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
             string blockType = GetBlockType(node);
@@ -736,7 +736,7 @@ namespace RapidTrackingLibrary
 
 
         //20-11-2020
-        private string GetJobs(HtmlNode node)
+        public string GetJobs(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
 
@@ -767,7 +767,7 @@ namespace RapidTrackingLibrary
             return s.ToString();
         }
         //end 20-11-2020
-        private string GetVideoCard(HtmlNode node)
+        public string GetVideoCard(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
 
@@ -815,7 +815,7 @@ namespace RapidTrackingLibrary
             return s.ToString();
         }
 
-        private string GetSiteLinks(HtmlNode node)
+        public string GetSiteLinks(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
             HtmlNode n = node.SelectSingleNode(".//div[@class='r']/a");
@@ -849,7 +849,7 @@ namespace RapidTrackingLibrary
             return s.ToString();
         }
 
-        private string PeopleAlsoAsk(HtmlNode node)
+        public string PeopleAlsoAsk(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='_eHi']/div"); // (".//h3[@class='r']/a");
@@ -899,7 +899,7 @@ namespace RapidTrackingLibrary
             return s.ToString();
         }
 
-        private string GetTwitterCards(HtmlNode node)
+        public string GetTwitterCards(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
             HtmlNode hn = node.SelectSingleNode(".//h3[@class='r']/div/g-link/a");
@@ -928,7 +928,7 @@ namespace RapidTrackingLibrary
             return s.ToString();
         }
 
-        private string GetImages(HtmlNode node)
+        public string GetImages(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//g-img/img");
@@ -952,7 +952,7 @@ namespace RapidTrackingLibrary
             return s.ToString();
         }
 
-        private string GetImageURLs()
+        public string GetImageURLs()
         {
             StringBuilder s = new StringBuilder();
 
@@ -1087,7 +1087,7 @@ namespace RapidTrackingLibrary
         }
 
         // 23-10-2019
-        private string GetCarousel(HtmlNode node)
+        public string GetCarousel(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
             //HtmlNodeCollection nd = node.SelectNodes(".//div[@jsmodel='uIhXXc']/div/g-scrolling-carousel/div/div/div/ul[@class='Kjd0sd']/div/div/g-inner-card/a");
@@ -1319,7 +1319,7 @@ namespace RapidTrackingLibrary
             return "";
         }
 
-        private bool IsBlock(HtmlNode node)
+        public bool IsBlock(HtmlNode node)
         {
             bool bVal = (node.SelectSingleNode(".//h3[@class='zQlLed']") != null  // top stories       
                 || node.SelectSingleNode(".//div[@class='wXlZre B03h3d V14nKc ptcLIOszQJu__wholepage-card wp-msss']") != null//topstories 08-04-2020
@@ -1423,7 +1423,7 @@ namespace RapidTrackingLibrary
             return bVal;
         }
 
-        private bool IsOrganic(HtmlNode node)
+        public bool IsOrganic(HtmlNode node)
         {
             return (node.SelectSingleNode(".//h3[@class='r']") != null || node.SelectSingleNode(".//div[@class='r']") != null
                 || node.SelectSingleNode(".//div[@class='zTpPx']") != null || node.SelectSingleNode(".//div[@class='zTpPx']/g-link/a") != null    // 28-05-2020   // 13-03-2020
@@ -1434,7 +1434,7 @@ namespace RapidTrackingLibrary
         }
 
         //07-11-2019
-        private string GetRedirectedUrl(string url)
+        public string GetRedirectedUrl(string url)
         {
             try //28-09-2020  try catch.
             {
@@ -1508,7 +1508,7 @@ namespace RapidTrackingLibrary
             }
         }
         //27-08-2020
-        private string GetRedirectedUrl_TextAds(string url)
+        public string GetRedirectedUrl_TextAds(string url)
         {
             if (string.IsNullOrEmpty(url)) return string.Empty;
             try  //28-09-2020  try catch.

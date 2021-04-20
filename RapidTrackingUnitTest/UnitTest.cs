@@ -144,6 +144,21 @@ namespace RapidTrackingUnitTest
             string s = Common.ReadConnection();
             Assert.AreEqual<string>("Data Source=82.136.42.2;User ID=sa;Password = brisbane007;initial catalog = TrackingTrending;", s);
         }
+
+        [TestMethod]
+        public void TestDesktopSanitizeXmlString()
+        {
+            var desktop = new Desktop();
+            string s = desktop.SanitizeXmlString("https://www.dixons.co.uk");
+            Assert.AreEqual("https://www.dixons.co.uk", s);
+        }
+        [TestMethod]
+        public void TestiOSSanitizeXmlString()
+        {
+            var ios = new iOS();
+            string s = ios.SanitizeXmlString("https://www.dixons.co.uk");
+            Assert.AreEqual("https://www.dixons.co.uk", s);
+        }
         // iOS Tests
         [TestMethod]
         public void TestiOSAnswerCardBlockExisted()

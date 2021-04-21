@@ -48,7 +48,7 @@ namespace RapidTrackingLibrary
         //    return name;
         //}
 
-        internal static int GetOxylabsTime()
+       public static int GetOxylabsTime()
         {
             int time = 0;
             string strQuery = "exec [dbo].[GetOxylabsTime]";

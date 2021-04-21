@@ -151,6 +151,12 @@ namespace RapidTrackingUnitTest
             var s = Common.GetOxylabsTime();
             Assert.AreEqual(450, s);
         }
+        [TestMethod]
+        public void TestGetOxylabsCount()
+        {
+            var s = Common.GetOxylabsCount();
+            Assert.AreEqual(20, s);
+        }
 
         [TestMethod]
         public void TestDesktopSanitizeXmlString()

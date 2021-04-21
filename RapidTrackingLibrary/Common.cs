@@ -80,7 +80,7 @@ namespace RapidTrackingLibrary
             return time;
         }
 
-        internal static int GetOxylabsCount()
+        public static int GetOxylabsCount()
         {
             int count = 0;
             string strQuery = "exec [dbo].[GetOxyCount]";

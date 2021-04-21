@@ -51,7 +51,7 @@ namespace RapidTrackingLibrary
        public static int GetOxylabsTime()
         {
             int time = 0;
-            string strQuery = "exec [dbo].[GetOxylabsTime]";
+            string strQuery = "exec [dbo].[GetSleepTime]";
             SqlConnection objCon = new SqlConnection(ReadConnection());
             try
             {
@@ -83,7 +83,7 @@ namespace RapidTrackingLibrary
         internal static int GetOxylabsCount()
         {
             int count = 0;
-            string strQuery = "exec [dbo].[GetOxylabsCount]";
+            string strQuery = "exec [dbo].[GetOxyCount]";
             SqlConnection objCon = new SqlConnection(ReadConnection());
             try
             {

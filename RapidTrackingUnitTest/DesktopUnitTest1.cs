@@ -11,9 +11,9 @@ using HtmlAgilityPack;
 namespace RapidTrackingUnitTest
 {
     [TestClass]
-    public class UnitTest
+    public class DesktopUnitTest1
     {
-        readonly static string seid = "102";
+        readonly static string seid = "58";
         readonly static string keyword = "joe biden";
 
         [ClassInitialize]
@@ -21,7 +21,7 @@ namespace RapidTrackingUnitTest
         {
             Generate generate = new Generate();
             //generate.GenerateXml(seid, keyword);
-            SupportMethods.html = generate.GenerateXml(seid, keyword);
+            SupportMethods.DesktopHtml = generate.GenerateXml(seid, keyword);
         }
 
 
@@ -54,7 +54,7 @@ namespace RapidTrackingUnitTest
 
             foreach (string s in list1)
             {
-                if(!list2.Contains(s))
+                if (!list2.Contains(s))
                 {
                     st[0] = s;
                     st[1] = "RegEx";
@@ -84,14 +84,14 @@ namespace RapidTrackingUnitTest
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             sb.Append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
             sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + System.Net.WebUtility.HtmlEncode(keyword) + "\" date=\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\" >");
-            sb.Append("<section col=\"missedLinks\">");            
-                
-            foreach (string[] s in missedList ) 
-            {
-                sb.Append("<item url=\"" + s[0] + "\" missedIn=\"" + s[1] + "\" />");                
-            }          
+            sb.Append("<section col=\"missedLinks\">");
 
-            sb.Append("</section>");            
+            foreach (string[] s in missedList)
+            {
+                sb.Append("<item url=\"" + s[0] + "\" missedIn=\"" + s[1] + "\" />");
+            }
+
+            sb.Append("</section>");
             sb.Append("</searchResult>");
 
             string xmlPath = @"C:\inetpub\wwwroot\";
@@ -105,16 +105,15 @@ namespace RapidTrackingUnitTest
         {
             string xml2 = "C:\\inetpub\\wwwroot\\regex.xml";
             ArrayList al = new ArrayList();
-            XmlDocument xml = new XmlDocument();            
+            XmlDocument xml = new XmlDocument();
             xml.Load(xml2);
             XmlNodeList xnList2 = xml.SelectNodes("/searchResult/section/item/@url");
             foreach (XmlNode xn2 in xnList2)
             {
                 al.Add(xn2.InnerText);
-            }           
+            }
             return al;
         }
-
         [TestMethod]
         public void TestClassicLinksList()
         {
@@ -140,97 +139,44 @@ namespace RapidTrackingUnitTest
             //Assert.IsTrue (lst.Count >= 95);
         }
         [TestMethod]
-        public void TestReadConnection()
-        {
-            string s = Common.ReadConnection();
-            Assert.AreEqual<string>("Data Source=82.136.42.2;User ID=sa;Password = brisbane007;initial catalog = TrackingTrending;", s);
-        }
-
-        [TestMethod]
-        public void TestGetOxylabsTime()
-        {
-            var s = Common.GetOxylabsTime();
-            Assert.AreEqual(450, s);
-        }
-        [TestMethod]
-        public void TestGetOxylabsCount()
-        {
-            var s = Common.GetOxylabsCount();
-            Assert.AreEqual(20, s);
-        }
-
-        [TestMethod]
         public void TestDesktopSanitizeXmlString()
         {
             var desktop = new Desktop();
             string s = desktop.SanitizeXmlString("https://www.dixons.co.uk");
             Assert.AreEqual("https://www.dixons.co.uk", s);
         }
-        [TestMethod]
-        public void TestiOSSanitizeXmlString()
-        {
-            var ios = new iOS();
-            string s = ios.SanitizeXmlString("https://www.dixons.co.uk");
-            Assert.AreEqual("https://www.dixons.co.uk", s);
-        }
-        // iOS Tests
+
         //[TestMethod]
-        //public void TestiOSAnswerCardBlockExisted()
+        //public void TestDektopAnswerCardBlockExisted()
         //{
-        //    var node = SupportMethods.GetiOSAnswerCard(102, "joe biden");
-        //    var iOS = new iOS();
-        //    var result = node != null ? iOS.GetAnswerCard(node) : null;
+        //    var node = SupportMethods.GetDesktopAnswerCard("AnswerCard");
+        //    var desktop = new Desktop();
+        //    var result = node != null ? desktop.GetAnswerCard(node) : null;
         //    Assert.IsTrue(result != null && result.Length > 0);
         //}
         [TestMethod]
-        public void TestiOSTopStoriesBlockExisted()
+        public void TestDektopTopStoriesBlockExisted()
         {
-            var node = SupportMethods.GetiOSBlock("TopStories");
-            var iOS = new iOS();
-            var result = node != null ? iOS.GetTopStories(node) : null;
+            var node = SupportMethods.GetDesktopBlock("TopStories");
+            var desktop = new Desktop();
+            var result = node != null ? desktop.GetTopStories(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
         //[TestMethod]
-        //public void TestiOSVideosBlockExisted()
+        //public void TestDektopVideosBlockExisted()
         //{
-        //    var node = SupportMethods.GetiOSVideos(102, "joe biden");
-        //    var iOS = new iOS();
-        //    var result = node != null ? iOS.GetVideos(node) : null;
+        //    var node = SupportMethods.GetDesktopVideos("Videos");
+        //    var desktop = new Desktop();
+        //    var result = node != null ? desktop.GetVideos(node) : null;
         //    Assert.IsTrue(result != null && result.Length > 0);
         //}
         //[TestMethod]
         //public void TestiOSImagesBlockExisted()
         //{
-        //    var node = SupportMethods.GetiOSImages(102, "joe biden");
-        //    var iOS = new iOS();
-        //    var result = node != null ? iOS.GetImages(node) : null;
-        //    Assert.IsTrue(result != null && result.Length > 0);
-        //}
-        // Desktop Tests
-        //[TestMethod]
-        //public void TestDektopAnswerCardBlockExisted()
-        //{
-        //    var node = SupportMethods.GetDesktopAnswerCard(1, "information about java");
+        //    var node = SupportMethods.GetiOSImages("Images");
         //    var desktop = new Desktop();
-        //    var result = node != null ? desktop.GetAnswerCard(node) : null;
+        //    var result = node != null ? desktop.GetImages(node) : null;
         //    Assert.IsTrue(result != null && result.Length > 0);
         //}
-        //[TestMethod]
-        //public void TestDektopTopStoriesBlockExisted()
-        //{
-        //    var node = SupportMethods.GetDesktopBlock("TopStories");
-        //    var desktop = new Desktop();
-        //    var result = node != null ? desktop.GetTopStories(node) : null;
-        //    Assert.IsTrue(result != null && result.Length > 0);
-        //}
-        //[TestMethod]
-        //public void TestDektopVideosBlockExisted()
-        //{
-        //    var node = SupportMethods.GetDesktopVideos(1, "joe biden");
-        //    var desktop = new Desktop();
-        //    var result = node != null ? desktop.GetVideos(node) : null;
-        //    Assert.IsTrue(result != null && result.Length > 0);
-        //}
-
     }
 }

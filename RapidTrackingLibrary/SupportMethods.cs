@@ -5,8 +5,8 @@ namespace RapidTrackingLibrary
 {
     public class SupportMethods
     {
-        public static string html; 
-
+        public static string iOsHtml;
+        public static string DesktopHtml;
         public static HtmlNode GetiOSBlock(string blockName)
         {
             string ndText = string.Empty;
@@ -14,7 +14,7 @@ namespace RapidTrackingLibrary
             try
             {
                 var doc = new HtmlAgilityPack.HtmlDocument();
-                doc.LoadHtml(html);
+                doc.LoadHtml(iOsHtml);
 
                 HtmlNodeCollection nodeCol = doc.DocumentNode.SelectNodes("//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']/div[@class='MUxGbd v0nnCb lyLwlc']|//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']/div/div[@class='MUxGbd v0nnCb lyLwlc']");   //29-04-2020
                 if (nodeCol != null)
@@ -155,7 +155,7 @@ namespace RapidTrackingLibrary
         public static HtmlNode GetDesktopBlock(string blockName)
         {
             var doc = new HtmlAgilityPack.HtmlDocument();
-            doc.LoadHtml(html);
+            doc.LoadHtml(DesktopHtml);
 
             HtmlNode htmlNode = doc.DocumentNode.SelectSingleNode("//table[@id='mn']");
             if (htmlNode != null)

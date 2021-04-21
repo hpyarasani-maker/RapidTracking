@@ -171,12 +171,61 @@ namespace RapidTrackingUnitTest
             Assert.IsTrue(result != null && result.Length > 0);
         }
         [TestMethod]
-        public void TestiOSImagesBlockExisted()
+        public void TestDesktopImagesBlockExisted()
         {
             var node = SupportMethods.GetDesktopBlock("Images");
             var desktop = new Desktop();
             var result = node != null ? desktop.GetImages(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
+        [TestMethod]
+        public void TestDesktopCarouselBlockExisted()
+        {
+            var node = SupportMethods.GetDesktopBlock("Carousel");
+            var desktop = new Desktop();
+            var result = node != null ? desktop.GetCarousel(node) : null;
+            Assert.IsTrue(result != null && result.Length > 0);
+        }
+        [TestMethod]
+        public void TestDesktopTwitterCardsBlockExisted()
+        {
+            var node = SupportMethods.GetDesktopBlock("TwitterCards");
+            var desktop = new Desktop();
+            var result = node != null ? desktop.GetTwitterCards(node) : null;
+            Assert.IsTrue(result != null && result.Length > 0);
+        }
+        [TestMethod]
+        public void TestDesktopVideoCardBlockExisted()
+        {
+            var node = SupportMethods.GetDesktopBlock("VidoeCard");
+            var desktop = new Desktop();
+            var result = node != null ? desktop.GetVideoCard(node) : null;
+            Assert.IsTrue(result != null && result.Length > 0);
+        }
+        [TestMethod]
+        public void TestDesktopPeopleAlsoAskBlockExisted()
+        {
+            var node = SupportMethods.GetDesktopBlock("PeopleAlsoAsk");
+            var desktop = new Desktop();
+            var result = node != null ? desktop.PeopleAlsoAsk(node) : null;
+            Assert.IsTrue(result != null && result.Length > 0);
+        }
+        [TestMethod]
+        public void TestDesktopSiteLinksBlockExisted()
+        {
+            var node = SupportMethods.GetDesktopBlock("SiteLinks");
+            var desktop = new Desktop();
+            var result = node != null ? desktop.GetSiteLinks(node) : null;
+            Assert.IsTrue(result != null && result.Length > 0);
+        }
+        [TestMethod]
+        public void TestDesktopJobsBlockExisted()
+        {
+            var node = SupportMethods.GetDesktopBlock("Jobs");
+            var desktop = new Desktop();
+            var result = node != null ? desktop.GetJobs(node) : null;
+            Assert.IsTrue(result != null && result.Length > 0);
+        }
+       
     }
 }

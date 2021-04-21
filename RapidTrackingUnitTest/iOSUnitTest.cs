@@ -200,7 +200,54 @@ namespace RapidTrackingUnitTest
             var result = node != null ? iOS.GetImages(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
-
+        [TestMethod]
+        public void TestiOSCarouselBlockExisted()
+        {
+            var node = SupportMethods.GetiOSBlock("Carousel");
+            var iOS = new iOS();
+            var result = node != null ? iOS.GetCarousel(node) : null;
+            Assert.IsTrue(result != null && result.Length > 0);
+        }
+        [TestMethod]
+        public void TestiOSTwitterCardsBlockExisted()
+        {
+            var node = SupportMethods.GetiOSBlock("TwitterCards");
+            var iOS = new iOS();
+            var result = node != null ? iOS.GetTwitterCards(node) : null;
+            Assert.IsTrue(result != null && result.Length > 0);
+        }
+        [TestMethod]
+        public void TestiOSVideoCardBlockExisted()
+        {
+            var node = SupportMethods.GetiOSBlock("VidoeCard");
+            var iOS = new iOS();
+            var result = node != null ? iOS.GetVideoCard(node) : null;
+            Assert.IsTrue(result != null && result.Length > 0);
+        }
+        [TestMethod]
+        public void TestiOSPeopleAlsoAskBlockExisted()
+        {
+            var node = SupportMethods.GetiOSBlock("PeopleAlsoAsk");
+            var iOS = new iOS();
+            var result = node != null ? iOS.PeopleAlsoAsk(node) : null;
+            Assert.IsTrue(result != null && result.Length > 0);
+        }
+        [TestMethod]
+        public void TestiOSSiteLinksBlockExisted()
+        {
+            var node = SupportMethods.GetiOSBlock("SiteLinks");
+            var iOS = new iOS();
+            var result = node != null ? iOS.GetSiteLinks(node) : null;
+            Assert.IsTrue(result != null && result.Length > 0);
+        }
+        [TestMethod]
+        public void TestiOSJobsBlockExisted()
+        {
+            var node = SupportMethods.GetiOSBlock("Jobs");
+            var iOS = new iOS();
+            var result = node != null ? iOS.GetJobs(node) : null;
+            Assert.IsTrue(result != null && result.Length > 0);
+        }
 
     }
 }

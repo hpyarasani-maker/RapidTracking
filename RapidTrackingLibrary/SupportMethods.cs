@@ -1,34 +1,20 @@
-﻿using HtmlAgilityPack;
+using HtmlAgilityPack;
 using System;
-using System.IO;
 
 namespace RapidTrackingLibrary
 {
     public class SupportMethods
     {
-        static public string GetSource(int seid, string keyword)
-        {
-            // from oxylabs
-            //Source source = new Source(seid, keyword);
-            //var src = (string[])source.GetSource().GetAwaiter().GetResult()[0];
-            //JObject obj = JObject.Parse(src[1]);
-            //string html = obj["results"][0]["content"].Value<string>();
-            //return html;
+        public static string html; 
 
-            // from local path and WORKS ONLY FOR iOS or Desktop.
-            string path = "C:\\inetpub\\wwwroot\\html\\6790352636458568705_joe biden.html";
-            string html = File.ReadAllText(path);
-            return html;
-        }
-
-        static HtmlNode GetiOSNodesBlocksList(string htmlSource, string blockName)
+        public static HtmlNode GetiOSBlock(string blockName)
         {
             string ndText = string.Empty;
             iOS iOS = new iOS();
             try
             {
                 var doc = new HtmlAgilityPack.HtmlDocument();
-                doc.LoadHtml(htmlSource);
+                doc.LoadHtml(html);
 
                 HtmlNodeCollection nodeCol = doc.DocumentNode.SelectNodes("//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']/div[@class='MUxGbd v0nnCb lyLwlc']|//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']/div/div[@class='MUxGbd v0nnCb lyLwlc']");   //29-04-2020
                 if (nodeCol != null)
@@ -166,10 +152,10 @@ namespace RapidTrackingLibrary
 
         }
 
-        static HtmlNode GetDesktopNodesBlocksList(string htmlSource, string blockName)
+        public static HtmlNode GetDesktopBlock(string blockName)
         {
             var doc = new HtmlAgilityPack.HtmlDocument();
-            doc.LoadHtml(htmlSource);
+            doc.LoadHtml(html);
 
             HtmlNode htmlNode = doc.DocumentNode.SelectSingleNode("//table[@id='mn']");
             if (htmlNode != null)
@@ -241,57 +227,6 @@ namespace RapidTrackingLibrary
             catch { }
             return null;
 
-        }
-
-
-
-
-        // Desktop methods
-
-        public static HtmlNode GetDesktopAnswerCard(int seid, string keyword)
-        {
-            var html = GetSource(seid, keyword);
-            return GetDesktopNodesBlocksList(html, "AnswerCard");
-        }
-
-        public static HtmlNode GetDesktopTopStories(int seid, string keyword)
-        {
-            var html = GetSource(seid, keyword);
-            return GetDesktopNodesBlocksList(html, "TopStories");
-        }
-        public static HtmlNode GetDesktopVideos(int seid, string keyword)
-        {
-            var html = GetSource(seid, keyword);
-            return GetDesktopNodesBlocksList(html, "Videos");
-        }
-
-
-
-
-        // iOS methods
-
-        public static HtmlNode GetiOSAnswerCard(int seid, string keyword)
-        {
-            var html = GetSource(seid, keyword);
-            return GetiOSNodesBlocksList(html, "AnswerCard");
-        }
-
-        public static HtmlNode GetiOSTopStories(int seid, string keyword)
-        {
-            var html = GetSource(seid, keyword);
-            return GetiOSNodesBlocksList(html, "TopStories");
-        }
-
-        public static HtmlNode GetiOSVideos(int seid, string keyword)
-        {
-            var html = GetSource(seid, keyword);
-            return GetiOSNodesBlocksList(html, "Videos");
-        }
-
-        public static HtmlNode GetiOSImages(int seid, string keyword)
-        {
-            var html = GetSource(seid, keyword);
-            return GetiOSNodesBlocksList(html, "Images");
         }
 
     }

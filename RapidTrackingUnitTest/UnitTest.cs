@@ -20,7 +20,8 @@ namespace RapidTrackingUnitTest
         public static void Initialize(TestContext context)
         {
             Generate generate = new Generate();
-            generate.GenerateXml(seid, keyword);
+            //generate.GenerateXml(seid, keyword);
+            SupportMethods.html = generate.GenerateXml(seid, keyword);
         }
 
 
@@ -173,63 +174,63 @@ namespace RapidTrackingUnitTest
             Assert.AreEqual("https://www.dixons.co.uk", s);
         }
         // iOS Tests
-        [TestMethod]
-        public void TestiOSAnswerCardBlockExisted()
-        {
-            var node = SupportMethods.GetiOSAnswerCard(102, "joe biden");
-            var iOS = new iOS();
-            var result = node != null ? iOS.GetAnswerCard(node) : null;
-            Assert.IsTrue(result != null && result.Length > 0);
-        }
+        //[TestMethod]
+        //public void TestiOSAnswerCardBlockExisted()
+        //{
+        //    var node = SupportMethods.GetiOSAnswerCard(102, "joe biden");
+        //    var iOS = new iOS();
+        //    var result = node != null ? iOS.GetAnswerCard(node) : null;
+        //    Assert.IsTrue(result != null && result.Length > 0);
+        //}
         [TestMethod]
         public void TestiOSTopStoriesBlockExisted()
         {
-            var node = SupportMethods.GetiOSTopStories(102, "joe biden");
+            var node = SupportMethods.GetiOSBlock("TopStories");
             var iOS = new iOS();
             var result = node != null ? iOS.GetTopStories(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
-        [TestMethod]
-        public void TestiOSVideosBlockExisted()
-        {
-            var node = SupportMethods.GetiOSVideos(102, "joe biden");
-            var iOS = new iOS();
-            var result = node != null ? iOS.GetVideos(node) : null;
-            Assert.IsTrue(result != null && result.Length > 0);
-        }
-        [TestMethod]
-        public void TestiOSImagesBlockExisted()
-        {
-            var node = SupportMethods.GetiOSImages(102, "joe biden");
-            var iOS = new iOS();
-            var result = node != null ? iOS.GetImages(node) : null;
-            Assert.IsTrue(result != null && result.Length > 0);
-        }
+        //[TestMethod]
+        //public void TestiOSVideosBlockExisted()
+        //{
+        //    var node = SupportMethods.GetiOSVideos(102, "joe biden");
+        //    var iOS = new iOS();
+        //    var result = node != null ? iOS.GetVideos(node) : null;
+        //    Assert.IsTrue(result != null && result.Length > 0);
+        //}
+        //[TestMethod]
+        //public void TestiOSImagesBlockExisted()
+        //{
+        //    var node = SupportMethods.GetiOSImages(102, "joe biden");
+        //    var iOS = new iOS();
+        //    var result = node != null ? iOS.GetImages(node) : null;
+        //    Assert.IsTrue(result != null && result.Length > 0);
+        //}
         // Desktop Tests
-        [TestMethod]
-        public void TestDektopAnswerCardBlockExisted()
-        {
-            var node = SupportMethods.GetDesktopAnswerCard(1, "information about java");
-            var desktop = new Desktop();
-            var result = node != null ? desktop.GetAnswerCard(node) : null;
-            Assert.IsTrue(result != null && result.Length > 0);
-        }
-        [TestMethod]
-        public void TestDektopTopStoriesBlockExisted()
-        {
-            var node = SupportMethods.GetDesktopTopStories(1, "joe biden");
-            var desktop = new Desktop();
-            var result = node != null ? desktop.GetTopStories(node) : null;
-            Assert.IsTrue(result != null && result.Length > 0);
-        }
-        [TestMethod]
-        public void TestDektopVideosBlockExisted()
-        {
-            var node = SupportMethods.GetDesktopVideos(1, "joe biden");
-            var desktop = new Desktop();
-            var result = node != null ? desktop.GetVideos(node) : null;
-            Assert.IsTrue(result != null && result.Length > 0);
-        }
+        //[TestMethod]
+        //public void TestDektopAnswerCardBlockExisted()
+        //{
+        //    var node = SupportMethods.GetDesktopAnswerCard(1, "information about java");
+        //    var desktop = new Desktop();
+        //    var result = node != null ? desktop.GetAnswerCard(node) : null;
+        //    Assert.IsTrue(result != null && result.Length > 0);
+        //}
+        //[TestMethod]
+        //public void TestDektopTopStoriesBlockExisted()
+        //{
+        //    var node = SupportMethods.GetDesktopBlock("TopStories");
+        //    var desktop = new Desktop();
+        //    var result = node != null ? desktop.GetTopStories(node) : null;
+        //    Assert.IsTrue(result != null && result.Length > 0);
+        //}
+        //[TestMethod]
+        //public void TestDektopVideosBlockExisted()
+        //{
+        //    var node = SupportMethods.GetDesktopVideos(1, "joe biden");
+        //    var desktop = new Desktop();
+        //    var result = node != null ? desktop.GetVideos(node) : null;
+        //    Assert.IsTrue(result != null && result.Length > 0);
+        //}
 
     }
 }

@@ -190,7 +190,7 @@ namespace RapidTrackingSingleThread
 
         }
 
-        public string GetRightStuff(HtmlDocument doc)
+        private string GetRightStuff(HtmlDocument doc)
         {
             StringBuilder s = new StringBuilder();
             // product listed ads
@@ -219,7 +219,7 @@ namespace RapidTrackingSingleThread
             return s.ToString();
         }
 
-        public string GetBottomStuff(HtmlDocument doc)
+        private string GetBottomStuff(HtmlDocument doc)
         {
             StringBuilder s = new StringBuilder();
             //25-09-2019                        //swaped productlistedads 14-05-2020
@@ -349,7 +349,7 @@ namespace RapidTrackingSingleThread
         }
 
 
-        public string GetTopStuff(HtmlDocument doc)
+        private string GetTopStuff(HtmlDocument doc)
         {
             StringBuilder s = new StringBuilder();
 
@@ -617,7 +617,7 @@ namespace RapidTrackingSingleThread
             return s.ToString();
         }
 
-        public string ProcessNode(HtmlNode node)
+        private string ProcessNode(HtmlNode node)
         {
             try  //28-09-2020  try catch.
             {
@@ -639,7 +639,7 @@ namespace RapidTrackingSingleThread
 
         }
 
-        public string ProcessOrganic(HtmlNode node)
+        private string ProcessOrganic(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds;
@@ -960,7 +960,7 @@ namespace RapidTrackingSingleThread
         }
 
         //17-10-2019
-        public string SetVideos(HtmlNode nd)
+        private string SetVideos(HtmlNode nd)
         {
             StringBuilder s = new StringBuilder();
             HtmlNode videos = nd.SelectSingleNode(".//div[@class='TyzpY']");
@@ -983,7 +983,7 @@ namespace RapidTrackingSingleThread
             return s.ToString();
         }
 
-        public string ProcessBlock(HtmlNode node)
+        private string ProcessBlock(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
             string blockType = GetBlockType(node);
@@ -1066,7 +1066,7 @@ namespace RapidTrackingSingleThread
         }
 
         //20-11-2020
-        public string GetJobs(HtmlNode node)
+        private string GetJobs(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
 
@@ -1098,7 +1098,7 @@ namespace RapidTrackingSingleThread
         }// end 20-11-2020
 
         // 18-10-2019
-        public string GetCarousel(HtmlNode node)
+        private string GetCarousel(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
             ArrayList al = new ArrayList();  //25-06-2020
@@ -1184,7 +1184,7 @@ namespace RapidTrackingSingleThread
         }
 
         // 18-10-2019
-        public string GetCarouselURLs(ArrayList al) //25-06-2020
+        private string GetCarouselURLs(ArrayList al) //25-06-2020
         {
             StringBuilder s = new StringBuilder();
             string matchPattern = "\\Wn,\\Wx222003\\Wx22:\\Wnull\\W\\Wx22(.*?)\\Wx22,\\Wx22(.*?)\\Wx22\\W\\Wx22(.*?)\\Wx22\\Wnull";
@@ -1224,7 +1224,7 @@ namespace RapidTrackingSingleThread
             return s.ToString();
         }
 
-        public string GetProductListedUrls(string url)
+        private string GetProductListedUrls(string url)
         {
             if (url.Contains("www") && url.Contains("http") != true)
             {
@@ -1280,7 +1280,7 @@ namespace RapidTrackingSingleThread
             return s.ToString();
         }//start 13-08-2019
 
-        public string GetVideoCard(HtmlNode node)
+        private string GetVideoCard(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
 
@@ -1295,7 +1295,7 @@ namespace RapidTrackingSingleThread
             return s.ToString();
         }
 
-        public string GetSiteLinks(HtmlNode node)
+        private string GetSiteLinks(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
             HtmlNode n = node.SelectSingleNode(".//h3[@class='r']/a");
@@ -1381,7 +1381,7 @@ namespace RapidTrackingSingleThread
             return s.ToString();
         }
 
-        public string GetKnowledgePanel(HtmlNode node)
+        private string GetKnowledgePanel(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
             HtmlNode nd = node.SelectSingleNode(".//div[@class='kp-header']");
@@ -1439,7 +1439,7 @@ namespace RapidTrackingSingleThread
             return s.ToString();
         }
 
-        public string PeopleAlsoAsk(HtmlNode node)
+        private string PeopleAlsoAsk(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='_eHi']/div"); // (".//h3[@class='r']/a");
@@ -1462,7 +1462,7 @@ namespace RapidTrackingSingleThread
             return s.ToString();
         }
 
-        public string GetAnswerCard(HtmlNode node)
+        private string GetAnswerCard(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//h3[@class='r']/a");
@@ -1479,7 +1479,7 @@ namespace RapidTrackingSingleThread
             return s.ToString();
         }
 
-        public string GetTwitterCards(HtmlNode node)
+        private string GetTwitterCards(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
             HtmlNode hn = node.SelectSingleNode(".//div[@class='JVrfPc']/a");
@@ -1510,7 +1510,7 @@ namespace RapidTrackingSingleThread
 
 
 
-        public string GetImages(HtmlNode node)
+        private string GetImages(HtmlNode node)
         {
             bool existed = false;
             StringBuilder s = new StringBuilder();
@@ -1551,7 +1551,7 @@ namespace RapidTrackingSingleThread
             return s.ToString();
         }
 
-        public string GetImageURLs()
+        private string GetImageURLs()
         {
             StringBuilder s = new StringBuilder();
 
@@ -1651,7 +1651,7 @@ namespace RapidTrackingSingleThread
         }
 
 
-        public string GetTopStories(HtmlNode node)
+        private string GetTopStories(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//g-card-section/a");
@@ -1719,7 +1719,7 @@ namespace RapidTrackingSingleThread
             return s.ToString();
         }
 
-        public string GetVideos(HtmlNode node)
+        private string GetVideos(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//g-inner-card/a");
@@ -1796,7 +1796,7 @@ namespace RapidTrackingSingleThread
         }
 
         // changes on 15-07-2019
-        public string GetApps(HtmlNode node)
+        private string GetApps(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
             HtmlNode App = node.SelectSingleNode(".//div[@class='qs-io aig-lst']"); //d5oMvf
@@ -1851,7 +1851,7 @@ namespace RapidTrackingSingleThread
             return s.ToString();
         }
 
-        public string GetBlockType(HtmlNode node)
+        private string GetBlockType(HtmlNode node)
         {
             HtmlNode nd = node.SelectSingleNode(".//div[@class='KNcnob']/g-img");
             if (nd == null)
@@ -2227,7 +2227,7 @@ namespace RapidTrackingSingleThread
             return "";
         }
 
-        public bool IsBlock(HtmlNode node)
+        private bool IsBlock(HtmlNode node)
         {
             // changes on 05-07-2019
             HtmlNode nd = node.SelectSingleNode(".//div[@class='HnYYW']|.//g-tray-header[@role='heading']|.//div[@role='heading']");
@@ -2397,7 +2397,7 @@ namespace RapidTrackingSingleThread
             return (!node.HasClass("srg")); // && node.SelectSingleNode(".//div[@class='ZINbbc xpd']") == null);   // block                
         }
 
-        public bool IsOrganic(HtmlNode node)
+        private bool IsOrganic(HtmlNode node)
         {
             return (node.HasClass("srg") || node.SelectSingleNode(".//div[@class='oITGTd aSYQ6c']") != null
                 || node.SelectSingleNode(".//div[@class='ZINbbc xpd']") != null
@@ -2426,7 +2426,7 @@ namespace RapidTrackingSingleThread
         }
 
         //07-11-2019
-        public string GetRedirectedUrl(string url)
+        private string GetRedirectedUrl(string url)
         {
             try  //28-09-2020  try catch.
             {
@@ -2504,7 +2504,7 @@ namespace RapidTrackingSingleThread
             }
         }
         //27-08-2020
-        public string GetRedirectedUrl_TextAds(string url)
+        private string GetRedirectedUrl_TextAds(string url)
         {
             if (string.IsNullOrEmpty(url)) return string.Empty;
             try  //28-09-2020  try catch.

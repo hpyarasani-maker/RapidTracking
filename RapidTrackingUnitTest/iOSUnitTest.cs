@@ -168,14 +168,14 @@ namespace RapidTrackingUnitTest
             Assert.AreEqual("https://www.dixons.co.uk", s);
         }
         // iOS Tests
-        //[TestMethod]
-        //public void TestiOSAnswerCardBlockExisted()
-        //{
-        //    var node = SupportMethods.GetiOSAnswerCard("AnswerCard");
-        //    var iOS = new iOS();
-        //    var result = node != null ? iOS.GetAnswerCard(node) : null;
-        //    Assert.IsTrue(result != null && result.Length > 0);
-        //}
+        [TestMethod]
+        public void TestiOSAnswerCardBlockExisted()
+        {
+            var node = SupportMethods.GetiOSBlock("AnswerCard");
+            var iOS = new iOS();
+            var result = node != null ? iOS.GetAnswerCard(node) : null;
+            Assert.IsTrue(result != null && result.Length > 0);
+        }
         [TestMethod]
         public void TestiOSTopStoriesBlockExisted()
         {
@@ -184,22 +184,22 @@ namespace RapidTrackingUnitTest
             var result = node != null ? iOS.GetTopStories(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
-        //[TestMethod]
-        //public void TestiOSVideosBlockExisted()
-        //{
-        //    var node = SupportMethods.GetiOSVideos("Videos");
-        //    var iOS = new iOS();
-        //    var result = node != null ? iOS.GetVideos(node) : null;
-        //    Assert.IsTrue(result != null && result.Length > 0);
-        //}
-        //[TestMethod]
-        //public void TestiOSImagesBlockExisted()
-        //{
-        //    var node = SupportMethods.GetiOSImages("Images");
-        //    var iOS = new iOS();
-        //    var result = node != null ? iOS.GetImages(node) : null;
-        //    Assert.IsTrue(result != null && result.Length > 0);
-        //}
+        [TestMethod]
+        public void TestiOSVideosBlockExisted()
+        {
+            var node = SupportMethods.GetiOSBlock("Videos");
+            var iOS = new iOS();
+            var result = node != null ? iOS.GetVideos(node) : null;
+            Assert.IsTrue(result != null && result.Length > 0);
+        }
+        [TestMethod]
+        public void TestiOSImagesBlockExisted()
+        {
+            var node = SupportMethods.GetiOSBlock("Images");
+            var iOS = new iOS();
+            var result = node != null ? iOS.GetImages(node) : null;
+            Assert.IsTrue(result != null && result.Length > 0);
+        }
 
 
     }

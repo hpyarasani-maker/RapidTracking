@@ -146,14 +146,14 @@ namespace RapidTrackingUnitTest
             Assert.AreEqual("https://www.dixons.co.uk", s);
         }
 
-        //[TestMethod]
-        //public void TestDektopAnswerCardBlockExisted()
-        //{
-        //    var node = SupportMethods.GetDesktopAnswerCard("AnswerCard");
-        //    var desktop = new Desktop();
-        //    var result = node != null ? desktop.GetAnswerCard(node) : null;
-        //    Assert.IsTrue(result != null && result.Length > 0);
-        //}
+        [TestMethod]
+        public void TestDektopAnswerCardBlockExisted()
+        {
+            var node = SupportMethods.GetDesktopBlock("AnswerCard");
+            var desktop = new Desktop();
+            var result = node != null ? desktop.GetAnswerCard(node) : null;
+            Assert.IsTrue(result != null && result.Length > 0);
+        }
         [TestMethod]
         public void TestDektopTopStoriesBlockExisted()
         {
@@ -162,21 +162,21 @@ namespace RapidTrackingUnitTest
             var result = node != null ? desktop.GetTopStories(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
-        //[TestMethod]
-        //public void TestDektopVideosBlockExisted()
-        //{
-        //    var node = SupportMethods.GetDesktopVideos("Videos");
-        //    var desktop = new Desktop();
-        //    var result = node != null ? desktop.GetVideos(node) : null;
-        //    Assert.IsTrue(result != null && result.Length > 0);
-        //}
-        //[TestMethod]
-        //public void TestiOSImagesBlockExisted()
-        //{
-        //    var node = SupportMethods.GetiOSImages("Images");
-        //    var desktop = new Desktop();
-        //    var result = node != null ? desktop.GetImages(node) : null;
-        //    Assert.IsTrue(result != null && result.Length > 0);
-        //}
+        [TestMethod]
+        public void TestDektopVideosBlockExisted()
+        {
+            var node = SupportMethods.GetDesktopBlock("Videos");
+            var desktop = new Desktop();
+            var result = node != null ? desktop.GetVideos(node) : null;
+            Assert.IsTrue(result != null && result.Length > 0);
+        }
+        [TestMethod]
+        public void TestiOSImagesBlockExisted()
+        {
+            var node = SupportMethods.GetDesktopBlock("Images");
+            var desktop = new Desktop();
+            var result = node != null ? desktop.GetImages(node) : null;
+            Assert.IsTrue(result != null && result.Length > 0);
+        }
     }
 }

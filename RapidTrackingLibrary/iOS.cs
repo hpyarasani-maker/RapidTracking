@@ -2437,7 +2437,8 @@ namespace RapidTrackingLibrary
                     return false;
                 }
             }
-
+            nd = node.SelectSingleNode(".//h3[@class='yuRUbf JtG40d V7Sr0']"); //22-04-2021
+            if (nd != null) return false; //22-04-2021
             return (!node.HasClass("srg")); // && node.SelectSingleNode(".//div[@class='ZINbbc xpd']") == null);   // block                
         }
 

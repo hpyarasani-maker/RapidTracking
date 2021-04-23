@@ -32,22 +32,6 @@ namespace RapidTrackingLibrary
             }
         }
 
-
-        //internal static string ReadConnection()
-        //{
-        //    XmlDocument xml = new XmlDocument();
-        //    string fileName = @"C:\Inetpub\wwwroot\TrendingLiveAPI.xml";
-        //    // You'll need to put the correct path to your xml file here
-        //    xml.Load(fileName);
-
-        //    // Select a specific node
-        //    XmlNode node = xml.SelectSingleNode("TrendingAPI/con");
-        //    // Get its value
-        //    string name = node.InnerText.Trim();
-
-        //    return name;
-        //}
-
         public static int GetOxylabsTime()
         {
             int time = 0;

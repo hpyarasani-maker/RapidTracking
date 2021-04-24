@@ -35,8 +35,8 @@ namespace Oxylabs_BulkKeywords
                 // Name = "Mobile_102_10"
                 ///Name = "CommaKeywords_1"
                 //Name = "ODesktop_20"
-                //Name = "NewMobile_2"
-                Name = "NewComma"
+                Name = "NewMobile_4"
+                //Name = "NewComma"
             };
             t1.Start();
         }
@@ -47,8 +47,8 @@ namespace Oxylabs_BulkKeywords
             //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking mobile
             // string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
             //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobilehotel/";  // rapid tracking mobile
-            //string url = "http://seresults.azurewebsites.net/api/callbackrapidTrackingnewdesktop/"; //Desktop new keywords
-            string url = "http://seresults.azurewebsites.net/api/callbackrapidTrackingnewmobile/"; //mobile new keywords
+            string url = "http://seresults.azurewebsites.net/api/callbackrapidTrackingnewdesktop/"; //Desktop new keywords
+            //string url = "http://seresults.azurewebsites.net/api/callbackrapidTrackingnewmobile/"; //mobile new keywords
             // string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingnewcommakeywords/";  // new comma keywords
 
             //string url = "http://seresults.azurewebsites.net/api/callbackuk503desktoptemp/";

@@ -155,6 +155,7 @@ namespace RapidTrackingSingleThread
                 throw new Exception("IP: " + dtIPs.Rows[x][1].ToString() + " : Error: " + ex.Message);
             }
         }
+        string carona = "&stick=H4sIAAAAAAAAAONgVuLVT9c3NMwySk6OL8zJecTozS3w8sc9YSmnSWtOXmO04eIKzsgvd80rySypFNLjYoOyVLgEpVB1ajBI8XOhCvHsYuLIL0stKstMLV_Eyu2cX5Sfl1iWWVRaDADEmcfgeAAAAA&ictx=1&ved=2ahUKEwizy5j8x_HvAhWg7HMBHer6DvAQyNoBKAB6BQiGARAG";
 
         public string[] GetTop100Desktop(string keyword, int seid, out string oIP, string domain, string locale, string uule, string device)
         {

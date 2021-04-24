@@ -23,7 +23,9 @@ namespace RapidTrackingSingleThread
 
         ArrayList seresults = new ArrayList();
 
-        string xmlPath = "C:\\inetpub\\wwwroot\\Remaining_GT20_102.xml";
+        //string xmlPath = "C:\\inetpub\\wwwroot\\Remaining_NewKeywords_1.xml";
+        string xmlPath = "C:\\inetpub\\wwwroot\\Remaining_NewKeywords_Proxies_GT0.xml"; //15-04-2021
+
 
         public string myDate = string.Empty;
         string statusCode = string.Empty;
@@ -67,7 +69,9 @@ namespace RapidTrackingSingleThread
             string myDate = date_picker.Text;
             //return;
 
-            string strSql = "exec [dbo].[Tracking_DB_Keywords_SEID_102] '" + myDate + "'";                     
+            //string strSql = "exec [dbo].[Tracking_DB_Keywords_SEID_102] '" + myDate + "'";                     
+            string strSql = "exec [dbo]. [GetAllNewKeywords] '" + myDate + "'";  //15-04-2021                   
+
 
             try
             {
@@ -189,7 +193,7 @@ namespace RapidTrackingSingleThread
                 try
                 {
                     int rescount2 = int.Parse(seresults[1]);
-                    if (rescount2 > 20)
+                    if (rescount2 > 0)
                     {
                         SendToAPI(seid, kn, seresults[0]);
                         SendToDB(seid, kn, seresults[0], int.Parse(seresults[1]));
@@ -411,7 +415,9 @@ namespace RapidTrackingSingleThread
             {
                 //date_picker.Value = DateTime.Today.AddDays(-2);
 
-                this.Text = "D_RapidTracking_102_GT20_Proxies";
+                //this.Text = "D_RapidTracking_102_GT20_Proxies";
+                this.Text = "D_RapidTracking_NewKeywords_Proxies_GT0"; //15-04-2021
+
 
             }));
             Thread myThread = new Thread(new ThreadStart(MainLoop));

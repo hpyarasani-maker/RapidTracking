@@ -1093,7 +1093,7 @@ namespace RapidTrackingSingleThread
         }
 
 
-        public string GetCarouselURLs()
+        private string GetCarouselURLs()
         {
             StringBuilder s = new StringBuilder();
             string matchPattern = "\\Wn,\\Wx222003\\Wx22:\\Wnull\\W\\Wx22(.*?)\\Wx22,\\Wx22(.*?)\\Wx22\\W\\Wx22(.*?)\\Wx22\\Wnull";

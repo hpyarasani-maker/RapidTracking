@@ -126,7 +126,7 @@ namespace RapidTrackingSingleThread
                             if (node.HasClass("kp-wholepage") || node.SelectNodes(".//div[contains(@class, 'kp-wholepage')]") != null)
                             {
                                 //Current 15-12-2020 swapped from bottom HtmlNodeCollection
-                                HtmlNodeCollection nc = node.SelectNodes(".//div[@class='WvKfwe']/div|.//div[@class='WvKfwe a3spGf']/div|.//div[@class='ChlgHf']|.//div[contains(@class,'UDZeY')]|.//div[@class='a3spGf WvKfwe']/div");//18-06-2020//|.//div[@class='uxUO1b g0S8Ze mnr-c']"); //17-06-2020 answer card //01-06-2020");  //15-04-2020     
+                                HtmlNodeCollection nc = node.SelectNodes(".//div[@class='WvKfwe']/div|.//div[@class='WvKfwe a3spGf']/div|.//div[@class='ChlgHf']|.//div[contains(@class,'UDZeY')]|.//div[@class='a3spGf WvKfwe']/div|.//div[@class='WvKfwe a3spGf']/g-card");//16-04-2021 missing classic link//18-06-2020//|.//div[@class='uxUO1b g0S8Ze mnr-c']"); //17-06-2020 answer card //01-06-2020");  //15-04-2020     
                                 if(nc == null)
                                     nc = node.SelectNodes(".//div[@id='kp-wp-tab-overview']/div"); //15-12-2020
                                 //end of swapped
@@ -1184,7 +1184,7 @@ namespace RapidTrackingSingleThread
         }
 
         // 18-10-2019
-        public string GetCarouselURLs(ArrayList al) //25-06-2020
+        private string GetCarouselURLs(ArrayList al) //25-06-2020
         {
             StringBuilder s = new StringBuilder();
             string matchPattern = "\\Wn,\\Wx222003\\Wx22:\\Wnull\\W\\Wx22(.*?)\\Wx22,\\Wx22(.*?)\\Wx22\\W\\Wx22(.*?)\\Wx22\\Wnull";
@@ -1257,7 +1257,7 @@ namespace RapidTrackingSingleThread
         }
 
         //start 13-08-2019
-        private string ProductListedAds(HtmlNode node)
+        public string ProductListedAds(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
 
@@ -2128,7 +2128,8 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@class='vkc_np kkww4d']") != null    // changed on 05-07-2019
                 || node.SelectSingleNode(".//div[@class='UDZeY fAgajc']") != null     // 13-03-2020
                 || node.SelectSingleNode(".//div[@class='wQu7gc']") != null   //08-07-2020 mising answered card
-                || node.SelectSingleNode(".//div[@class='kp-blk OJXvsb']") != null)  //26-08-2020 included selector for answered 
+                || node.SelectSingleNode(".//div[@class='kp-blk OJXvsb']") != null  //26-08-2020 included selector for answered 
+                || (node.SelectSingleNode(".//div[@class='g card-section']") != null && node.SelectSingleNode(".//div[@class='tF2Cxc']") != null)) //22-04-2021 answered card
                 return "AnswerCard";
 
             nd = node.SelectSingleNode(".//div[@id='kx']|.//div[@class='pXvdUe']");
@@ -2393,7 +2394,11 @@ namespace RapidTrackingSingleThread
                     return false;
                 }
             }
-
+            if (node.SelectSingleNode(".//div[@class='card-section']") != null && node.SelectSingleNode(".//div[@class='tF2Cxc']") != null) //23-04-2021
+            {
+                nd = node.SelectSingleNode(".//h3[@class='yuRUbf JtG40d V7Sr0']"); //22-04-2021
+                if (nd != null) return false; //22-04-2021
+            }
             return (!node.HasClass("srg")); // && node.SelectSingleNode(".//div[@class='ZINbbc xpd']") == null);   // block                
         }
 

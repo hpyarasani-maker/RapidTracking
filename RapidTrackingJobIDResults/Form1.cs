@@ -19,7 +19,7 @@ namespace RapidTrackingJobIDResults
 {
     public partial class Form1 : Form
     {
-        string xmlPath = "C:\\inetpub\\wwwroot\\rapidtracking_Errorkeywords_9.xml";//changes
+        string xmlPath = "C:\\inetpub\\wwwroot\\NewKeywords_Jobid_GT0.xml";//changes
 
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
@@ -46,9 +46,10 @@ namespace RapidTrackingJobIDResults
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            this.Text = "RapidTracking_Errorkeywords_1"; //changes
+            //this.Text = "RapidTracking_Errorkeywords_1"; //changes
             //this.Text = "RapidTracking_SingleThread_P_A_WOC_10-09-2019";
             // this.Text = "RapidTracking_Missingkeywords_1"; // 01-09-2020
+            this.Text = "RapidTracking_NewKeywords_MissingJobIDs_GT0"; //changes //15-04-2021
 
 
             Thread t = new Thread(new ThreadStart(StartProcess));
@@ -66,10 +67,11 @@ namespace RapidTrackingJobIDResults
 
                 //string kwQry = "[GetErrorKeywords_1] '" + myDate + "'"; //changes
 
-                string kwQry = "[GetMissingKeywords_1] '" + myDate + "'"; // 01-09-2020
+                //string kwQry = "[GetMissingKeywords_1] '" + myDate + "'"; // 01-09-2020
 
                 //string kwQry = "[Tracking_DB_Keywords_Seid_103p] '" + myDate + "'";               
                 //string kwQry = "[GetCommaKeywordsP] '" + myDate + "'";               
+                string kwQry = "[GetAllNewKeywords] '" + myDate + "'"; // 15-04-2021
 
                 GetKeywords(kwQry);
 
@@ -101,6 +103,7 @@ namespace RapidTrackingJobIDResults
                             result = true;
                             doc = new HtmlAgilityPack.HtmlDocument();
                             doc.LoadHtml(html);
+                            //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
                             string res = string.Empty;
                             int count = 0;
                             try
@@ -124,7 +127,7 @@ namespace RapidTrackingJobIDResults
                                         lblCount.Text = "No. of Urls : " + count;
                                     }));
 
-                                    if (count > 20)
+                                    if (count > 0)
                                     {
                                         SendToAPI(seid, keyword, res, jobid);
                                         SendToDB(seid, keyword, res, jobid, count);

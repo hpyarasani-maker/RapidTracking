@@ -226,6 +226,66 @@ namespace RapidTrackingUnitTest
             var result = node != null ? desktop.GetJobs(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
-       
+        [TestMethod]
+        public void TestDesktopTopStuffProductListAdsExisted()
+        {
+            var doc = new HtmlDocument();
+            var html = SupportMethods.DesktopHtml;
+            doc.LoadHtml(html);
+            var desktop = new Desktop();
+            var result = desktop.GetTopStuff(doc);
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"productlistedads"));
+        }
+        [TestMethod]
+        public void TestDesktopTopStuffAdwordsExisted()
+        {
+            var doc = new HtmlDocument();
+            var html = SupportMethods.DesktopHtml;
+            doc.LoadHtml(html);
+            var desktop = new Desktop();
+            var result = desktop.GetTopStuff(doc);
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"adwords"));
+        }
+        [TestMethod]
+        public void TestDesktopTopStuffCarouselExisted()
+        {
+            var doc = new HtmlDocument();
+            var html = SupportMethods.DesktopHtml;
+            doc.LoadHtml(html);
+            var desktop = new Desktop();
+            var result = desktop.GetTopStuff(doc);
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"carousel"));
+        }
+        [TestMethod]
+        public void TestDesktopTopStuffTopStoriesExisted()
+        {
+            var doc = new HtmlDocument();
+            var html = SupportMethods.DesktopHtml;
+            doc.LoadHtml(html);
+            var desktop = new Desktop();
+            var result = desktop.GetTopStuff(doc);
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"topstories"));
+        }
+        [TestMethod]
+        public void TestDesktopTopStuffMapsExisted()
+        {
+            var doc = new HtmlDocument();
+            var html = SupportMethods.DesktopHtml;
+            doc.LoadHtml(html);
+            var desktop = new Desktop();
+            var result = desktop.GetTopStuff(doc);
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"maps"));
+        }
+        [TestMethod]
+        public void TestDesktopBottomStuffAdwordsExisted()
+        {
+            var doc = new HtmlDocument();
+            var html = SupportMethods.DesktopHtml;
+            doc.LoadHtml(html);
+            var desktop = new Desktop();
+            var result = desktop.GetBottomStuff(doc);
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"adwords"));
+        }
+
     }
 }

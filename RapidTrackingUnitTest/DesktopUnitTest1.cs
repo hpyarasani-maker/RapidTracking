@@ -287,6 +287,26 @@ namespace RapidTrackingUnitTest
             var result = desktop.GetBottomStuff(doc);
             Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"adwords"));
         }
+        [TestMethod]
+        public void TestDesktopRightStuffProductListAdsExisted()
+        {
+            var doc = new HtmlDocument();
+            var html = SupportMethods.DesktopHtml;
+            doc.LoadHtml(html);
+            var desktop = new Desktop();
+            var result = desktop.GetRightStuff(doc);
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"productlistedads"));
+        }
+        [TestMethod]
+        public void TestDesktopRightStuffKnowledgGraphExisted()
+        {
+            var doc = new HtmlDocument();
+            var html = SupportMethods.DesktopHtml;
+            doc.LoadHtml(html);
+            var desktop = new Desktop();
+            var result = desktop.GetRightStuff(doc);
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"knowledgegraph"));
+        }
         //27-04-2021 ends
     }
 }

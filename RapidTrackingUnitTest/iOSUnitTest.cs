@@ -14,7 +14,7 @@ namespace RapidTrackingUnitTest
     public class iOSUnitTest
     {
         readonly static string seid = "102";
-        readonly static string keyword = "joe biden";
+        readonly static string keyword = "movies";
 
         [ClassInitialize]
         public static void Initialize(TestContext context)
@@ -248,6 +248,123 @@ namespace RapidTrackingUnitTest
             var result = node != null ? iOS.GetJobs(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
-
+        //28-04-2021
+        [TestMethod]
+        public void TestiOSTopStuffCarouselExisted()
+        {
+            var doc = new HtmlDocument();
+            var html = SupportMethods.iOsHtml;
+            doc.LoadHtml(html);
+            var ios = new iOS();
+            var result = ios.GetTopStuff(doc);
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"carousel"));
+        }
+        [TestMethod]
+        public void TestiOSTopStuffAppsExisted()
+        {
+            var doc = new HtmlDocument();
+            var html = SupportMethods.iOsHtml;
+            doc.LoadHtml(html);
+            var ios = new iOS();
+            var result = ios.GetTopStuff(doc);
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"apps"));
+        }
+        [TestMethod]
+        public void TestiOSTopStuffProductListedAdsExisted()
+        {
+            var doc = new HtmlDocument();
+            var html = SupportMethods.iOsHtml;
+            doc.LoadHtml(html);
+            var ios = new iOS();
+            var result = ios.GetTopStuff(doc);
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"productlistedads"));
+        }
+        [TestMethod]
+        public void TestiOSTopStuffAdwordsExisted()
+        {
+            var doc = new HtmlDocument();
+            var html = SupportMethods.iOsHtml;
+            doc.LoadHtml(html);
+            var ios = new iOS();
+            var result = ios.GetTopStuff(doc);
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"adwords"));
+        }
+        [TestMethod]
+        public void TestiOSTopStuffVideoCardExisted()
+        {
+            var doc = new HtmlDocument();
+            var html = SupportMethods.iOsHtml;
+            doc.LoadHtml(html);
+            var ios = new iOS();
+            var result = ios.GetTopStuff(doc);
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"videocard"));
+        }
+        [TestMethod]
+        public void TestiOSTopStuffAnswerCardExisted()
+        {
+            var doc = new HtmlDocument();
+            var html = SupportMethods.iOsHtml;
+            doc.LoadHtml(html);
+            var ios = new iOS();
+            var result = ios.GetTopStuff(doc);
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"answercard"));
+        }
+        [TestMethod]
+        public void TestiOSTopStuffKnowledgeGraphExisted()
+        {
+            var doc = new HtmlDocument();
+            var html = SupportMethods.iOsHtml;
+            doc.LoadHtml(html);
+            var ios = new iOS();
+            var result = ios.GetTopStuff(doc);
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"knowledgegraph"));
+        }
+        [TestMethod]
+        public void TestiOSBottomStuffProductListedAdsExisted()
+        {
+            var doc = new HtmlDocument();
+            var html = SupportMethods.iOsHtml;
+            doc.LoadHtml(html);
+            var ios = new iOS();
+            var result = ios.GetBottomStuff(doc);
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"productlistedads"));
+        }
+        [TestMethod]
+        public void TestiOSBottomStuffAdwordsExisted()
+        {
+            var doc = new HtmlDocument();
+            var html = SupportMethods.iOsHtml;
+            doc.LoadHtml(html);
+            var ios = new iOS();
+            var result = ios.GetBottomStuff(doc);
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"adwords"));
+        }
+        [TestMethod]
+        public void TestiOSProcessClassicLinksExisted()
+        {
+            var doc = new HtmlDocument();
+            var html = SupportMethods.iOsHtml;
+            doc.LoadHtml(html);
+            var ios = new iOS();
+            var result = ios.ProcessClassicLinks(seid, keyword, doc);
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("<item url=\""));
+        }
+        [TestMethod]
+        public void TestiOSCarouselURLsExisted()
+        {
+            var ios = new iOS();
+            ios.html = SupportMethods.iOsHtml;
+            var result = !string.IsNullOrEmpty(ios.html) ? ios.GetCarouselURLs(new ArrayList()) : string.Empty;
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.Length > 0);
+        }
+        [TestMethod]
+        public void TestiOSImageURLsExisted()
+        {
+            var ios = new iOS();
+            ios.html = SupportMethods.iOsHtml;
+            var result = !string.IsNullOrEmpty(ios.html) ? ios.GetImageURLs() : string.Empty;
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.Length > 0);
+        }
+        //28-04-2021 ends
     }
 }

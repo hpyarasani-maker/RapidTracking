@@ -308,5 +308,33 @@ namespace RapidTrackingUnitTest
             Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"knowledgegraph"));
         }
         //27-04-2021 ends
+        //28-04-2021
+        [TestMethod]
+        public void TestDesktopCarouselURLsExisted()
+        {
+            var desktop = new Desktop();
+            desktop.html = SupportMethods.DesktopHtml;
+            var result = !string.IsNullOrEmpty(desktop.html) ? desktop.GetCarouselURLs() : string.Empty;
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.Length > 0);
+        }
+        [TestMethod]
+        public void TestDesktopImageURLsExisted()
+        {
+            var desktop = new Desktop();
+            desktop.html = SupportMethods.DesktopHtml;
+            var result = !string.IsNullOrEmpty(desktop.html) ? desktop.GetImageURLs() : string.Empty;
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.Length > 0);
+        }
+        [TestMethod]
+        public void TestDesktopProcessClassicLinksExisted()
+        {
+            var doc = new HtmlDocument();
+            var html = SupportMethods.DesktopHtml;
+            doc.LoadHtml(html);
+            var desktop = new Desktop();
+            var result = desktop.ProcessClassicLinks(seid, keyword, doc);
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("<item url=\""));
+        }
+        //28-04-2021
     }
 }

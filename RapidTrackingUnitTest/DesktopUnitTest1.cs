@@ -145,7 +145,25 @@ namespace RapidTrackingUnitTest
             string s = desktop.SanitizeXmlString("https://www.dixons.co.uk");
             Assert.AreEqual("https://www.dixons.co.uk", s);
         }
-
+        //01-05-2021
+        [TestMethod]
+        public void TestDesktopGetRedirectedURL()
+        {
+            string url = "/aclk?url=https://google.com";
+            var desktop = new Desktop();
+            var result = desktop.GetRedirectedUrl(url);
+            Assert.AreEqual("https://google.com", result);
+        }
+        [TestMethod]
+        public void TestDesktopSetURL()
+        {
+            string url = "/aclk?url=https://google.com";
+            var desktop = new Desktop();
+            var result = desktop.SetUrl(url);
+            Assert.AreEqual("https://google.com", result);
+        }
+        //01-05-2021
+        //Element test methods
         [TestMethod]
         public void TestDektopAnswerCardBlockExisted()
         {

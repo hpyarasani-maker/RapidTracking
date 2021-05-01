@@ -167,6 +167,25 @@ namespace RapidTrackingUnitTest
             string s = ios.SanitizeXmlString("https://www.dixons.co.uk");
             Assert.AreEqual("https://www.dixons.co.uk", s);
         }
+        //01-05-2021
+        [TestMethod]
+        public void TestiOSGetRedirectedURL()
+        {
+            string url = "/aclk?url=https://google.com";
+            var iOS = new iOS();
+            var result = iOS.GetRedirectedUrl(url);
+            Assert.AreEqual("https://google.com", result);
+        }
+        [TestMethod]
+        public void TestiOSSetURL()
+        {
+            string url = "/aclk?url=https://google.com";
+            var iOS = new iOS();
+            var result = iOS.SetUrl(url);
+            Assert.AreEqual("https://google.com", result);
+        }
+        //01-05-2021
+        //Element test methods
         // iOS Tests
         [TestMethod]
         public void TestiOSAnswerCardBlockExisted()

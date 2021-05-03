@@ -177,7 +177,7 @@ namespace RapidTrackingUnitTest
         [ExpectedException(typeof(NullReferenceException))]
         public void TestDesktopAnswerCardBlockException()
         {
-            var node = SupportMethods.GetiOSBlock("AnswerCard");
+            var node = SupportMethods.GetDesktopBlock("AnswerCard");
             var desktop = new Desktop();
             string s;
             desktop.html = (string)null;

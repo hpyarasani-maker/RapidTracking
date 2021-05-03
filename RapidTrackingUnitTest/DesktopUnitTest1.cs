@@ -167,7 +167,7 @@ namespace RapidTrackingUnitTest
         [TestMethod]
         public void TestDektopAnswerCardBlockExisted()
         {
-            var node = SupportMethods.GetDesktopBlock("AnswerCard");
+            var node = SupportMethods.GetDesktopBlock("AnswerCard");//It is correct
             var desktop = new Desktop();
             var result = node != null ? desktop.GetAnswerCard(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);

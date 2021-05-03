@@ -195,6 +195,20 @@ namespace RapidTrackingUnitTest
             var result = node != null ? iOS.GetAnswerCard(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
+        //03-05-2021
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void TestiOSAnswerCardBlockException()
+        {
+            var node = SupportMethods.GetiOSBlock("AnswerCard");
+            var iOS = new iOS();
+            string s;
+            iOS.html = (string)null;
+            s = iOS.GetAnswerCard(node);
+            Assert.AreEqual(iOS, s);
+
+        }
+        //03-05-2021 ends
         [TestMethod]
         public void TestiOSTopStoriesBlockExisted()
         {

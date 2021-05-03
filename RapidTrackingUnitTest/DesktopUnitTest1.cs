@@ -172,6 +172,20 @@ namespace RapidTrackingUnitTest
             var result = node != null ? desktop.GetAnswerCard(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
+        //03-05-2021
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void TestDesktopAnswerCardBlockException()
+        {
+            var node = SupportMethods.GetiOSBlock("AnswerCard");
+            var desktop = new Desktop();
+            string s;
+            desktop.html = (string)null;
+            s = desktop.GetAnswerCard(node);
+            Assert.AreEqual(desktop, s);
+
+        }
+        //03-05-2021 ends
         [TestMethod]
         public void TestDektopTopStoriesBlockExisted()
         {

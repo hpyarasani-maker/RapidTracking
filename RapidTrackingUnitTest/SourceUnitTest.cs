@@ -19,7 +19,23 @@ namespace RapidTrackingUnitTest
                 Task<ArrayList> task;
                 task = source.GetHTML((string)null, 0);
                 disposables.Add((IDisposable)task);
-                disposables.Dispose();
+                //disposables.Dispose();
+                Assert.IsNotNull((object)task);
+                Assert.AreEqual<TaskStatus>(TaskStatus.Faulted, ((Task)task).Status);
+                Assert.AreEqual<bool>(false, ((Task)task).IsCanceled);
+                Assert.IsNull(((Task)task).AsyncState);
+                Assert.AreEqual<bool>(true, ((Task)task).IsFaulted);
+            }
+        }
+        [TestMethod] //04-05-2021
+        public void TestGetOxylabsWebDataSourcesException()
+        {
+            using (PexDisposableContext disposables = PexDisposableContext.Create())
+            {
+                Task<ArrayList> task;
+                task = source.GetOxylabsWebDataSources((SearchProperties)null);
+                disposables.Add((IDisposable)task);
+                //disposables.Dispose();
                 Assert.IsNotNull((object)task);
                 Assert.AreEqual<TaskStatus>(TaskStatus.Faulted, ((Task)task).Status);
                 Assert.AreEqual<bool>(false, ((Task)task).IsCanceled);
@@ -29,3 +45,4 @@ namespace RapidTrackingUnitTest
         }
     }
 }
+

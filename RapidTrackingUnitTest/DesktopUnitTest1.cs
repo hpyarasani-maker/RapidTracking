@@ -243,6 +243,17 @@ namespace RapidTrackingUnitTest
             Assert.IsTrue(result != null && result.Length > 0);
         }
         [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void TestDesktopPeopleAlsoAskBlockExecption()
+        {
+            var node = SupportMethods.GetDesktopBlock("PeopleAlsoAsk");
+            var desktop = new Desktop();
+            string s;
+            desktop.html = (string)null;
+            s = desktop.PeopleAlsoAsk(node);
+            Assert.AreEqual(desktop, s);
+        }
+        [TestMethod]
         public void TestDesktopSiteLinksBlockExisted()
         {
             var node = SupportMethods.GetDesktopBlock("SiteLinks");

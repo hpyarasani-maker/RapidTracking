@@ -64,6 +64,7 @@
     <Compile Include="DesktopUnitTest1.cs" />
     <Compile Include="SourceUnitTest.cs" />
     <Compile Include="SupportUnitTest.cs" />
+    <Compile Include="CommonUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -25,5 +25,20 @@ namespace RapidTrackingUnitTest
             var s = Common.GetOxylabsCount();
             Assert.AreEqual(20, s);
         }
+        [TestMethod]
+        public void TestConnectDatabase()
+        {
+            Common cs = new Common();
+            bool connected = cs.Connect();
+            Assert.IsTrue(connected);
+        }
+        [TestMethod]
+        public void TestDisconnectDatabase()
+        {
+            Common cs = new Common();
+            bool disconnect = cs.Disconnect();
+            Assert.AreEqual<bool>(true, disconnect);
+            Assert.IsNotNull((object)cs);
+        }
     }
 }

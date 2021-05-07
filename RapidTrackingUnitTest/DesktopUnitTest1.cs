@@ -379,5 +379,130 @@ namespace RapidTrackingUnitTest
             Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("<item url=\""));
         }
         //28-04-2021
+        //04-05-2021 exception
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void TestDesktopTopStoriesException()
+        {
+            var node = SupportMethods.GetDesktopBlock("topStories");
+            var desktop = new Desktop();
+            string s;
+            desktop.html = (string)null;
+            s = desktop.GetTopStories(node);
+            Assert.AreEqual(desktop, s);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void TestDesktopSitelinksException()
+        {
+            var node = SupportMethods.GetDesktopBlock("sitelinks");
+            var desktop = new Desktop();
+            string s;
+            desktop.html = (string)null;
+            s = desktop.GetSiteLinks(node);
+            Assert.AreEqual(desktop, s);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void TestDesktopImagesException()
+        {
+            var node = SupportMethods.GetDesktopBlock("images");
+            var desktop = new Desktop();
+            string s;
+            desktop.html = (string)null;
+            s = desktop.GetImages(node);
+            Assert.AreEqual(desktop, s);
+
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void TestDesktopMapsException()
+        {
+            var node = SupportMethods.GetDesktopBlock("maps");
+            var desktop = new Desktop();
+            string s;
+            desktop.html = (string)null;
+            s = desktop.GetImages(node);
+            Assert.AreEqual(desktop, s);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void TestDesktopTwittersException()
+        {
+            var node = SupportMethods.GetDesktopBlock("twitters");
+            var desktop = new Desktop();
+            string s;
+            desktop.html = (string)null;
+            s = desktop.GetTwitterCards(node);
+            Assert.AreEqual(desktop, s);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void TestDesktopPeopleAlsoAsksException()
+        {
+            var node = SupportMethods.GetDesktopBlock("peopleAlsoAsk");
+            var desktop = new Desktop();
+            string s;
+            desktop.html = (string)null;
+            s = desktop.PeopleAlsoAsk(node);
+            Assert.AreEqual(desktop, s);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void TestDesktopCarouselException()
+        {
+            var node = SupportMethods.GetDesktopBlock("carousel");
+            var desktop = new Desktop();
+            string s;
+            desktop.html = (string)null;
+            s = desktop.PeopleAlsoAsk(node);
+            Assert.AreEqual(desktop, s);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void TestDesktopVideoCardException()
+        {
+            var node = SupportMethods.GetDesktopBlock("videocard");
+            var desktop = new Desktop();
+            string s;
+            desktop.html = (string)null;
+            s = desktop.GetVideoCard(node);
+            Assert.AreEqual(desktop, s);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void TestDesktopVideosException()
+        {
+            var node = SupportMethods.GetDesktopBlock("videos");
+            var desktop = new Desktop();
+            string s;
+            desktop.html = (string)null;
+            s = desktop.GetVideos(node);
+            Assert.AreEqual(desktop, s);
+        }
+        [TestMethod] 
+        [ExpectedException(typeof(NullReferenceException))]
+        public void TestDesktopJobsException()
+        {
+            var node = SupportMethods.GetDesktopBlock("jobs");
+            var desktop = new Desktop();
+            string s;
+            desktop.html = (string)null;
+            s = desktop.GetJobs(node);
+            Assert.AreEqual(desktop, s);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void TestDesktopAnswerCardException()
+        {
+            var node = SupportMethods.GetDesktopBlock("answercard");
+            var desktop = new Desktop();
+            string s;
+            desktop.html = (string)null;
+            s = desktop.GetAnswerCard(node);
+            Assert.AreEqual(desktop, s);
+        }
+        //end 04-05-2021
     }
 }

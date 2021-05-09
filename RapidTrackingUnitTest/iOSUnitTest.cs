@@ -15,7 +15,9 @@ namespace RapidTrackingUnitTest
     {
         readonly static string seid = "102";
         readonly static string keyword = "movies";
-
+        iOS ios;
+        string s;
+        string result;
         [ClassInitialize]
         public static void Initialize(TestContext context)
         {
@@ -23,6 +25,20 @@ namespace RapidTrackingUnitTest
             //generate.GenerateXml(seid, keyword);
             SupportMethods.iOsHtml = generate.GenerateXml(seid, keyword);
         }
+        //09-05-2021
+        [TestInitialize]
+        public void TestInit()
+        {
+            ios = new iOS();
+        }
+        [TestCleanup]
+        public void CleanUp()
+        {
+            ios = null;
+            s = "";
+            result = "";
+        }
+        //09-05-2021 end
 
 
         List<ArrayList> GetProcessedLists()
@@ -173,8 +189,7 @@ namespace RapidTrackingUnitTest
         public void TestiOSAnswerCardBlockExisted()
         {
             var node = SupportMethods.GetiOSBlock("AnswerCard");
-            var iOS = new iOS();
-            var result = node != null ? iOS.GetAnswerCard(node) : null;
+            var result = node != null ? ios.GetAnswerCard(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
         //03-05-2021
@@ -183,11 +198,9 @@ namespace RapidTrackingUnitTest
         public void TestiOSAnswerCardBlockException()
         {
             var node = SupportMethods.GetiOSBlock("AnswerCard");
-            var iOS = new iOS();
-            string s;
-            iOS.html = (string)null;
-            s = iOS.GetAnswerCard(node);
-            Assert.AreEqual(iOS, s);
+            ios.html = (string)null;
+            s = ios.GetAnswerCard(node);
+            Assert.AreEqual(ios, s);
 
         }
         //03-05-2021 ends
@@ -195,72 +208,63 @@ namespace RapidTrackingUnitTest
         public void TestiOSTopStoriesBlockExisted()
         {
             var node = SupportMethods.GetiOSBlock("TopStories");
-            var iOS = new iOS();
-            var result = node != null ? iOS.GetTopStories(node) : null;
+            result = node != null ? ios.GetTopStories(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
         [TestMethod]
         public void TestiOSVideosBlockExisted()
         {
             var node = SupportMethods.GetiOSBlock("Videos");
-            var iOS = new iOS();
-            var result = node != null ? iOS.GetVideos(node) : null;
+            result = node != null ? ios.GetVideos(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
         [TestMethod]
         public void TestiOSImagesBlockExisted()
         {
             var node = SupportMethods.GetiOSBlock("Images");
-            var iOS = new iOS();
-            var result = node != null ? iOS.GetImages(node) : null;
+            result = node != null ? ios.GetImages(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
         [TestMethod]
         public void TestiOSCarouselBlockExisted()
         {
             var node = SupportMethods.GetiOSBlock("Carousel");
-            var iOS = new iOS();
-            var result = node != null ? iOS.GetCarousel(node) : null;
+            result = node != null ? ios.GetCarousel(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
         [TestMethod]
         public void TestiOSTwitterCardsBlockExisted()
         {
             var node = SupportMethods.GetiOSBlock("TwitterCards");
-            var iOS = new iOS();
-            var result = node != null ? iOS.GetTwitterCards(node) : null;
+            result = node != null ? ios.GetTwitterCards(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
         [TestMethod]
         public void TestiOSVideoCardBlockExisted()
         {
             var node = SupportMethods.GetiOSBlock("VidoeCard");
-            var iOS = new iOS();
-            var result = node != null ? iOS.GetVideoCard(node) : null;
+            result = node != null ? ios.GetVideoCard(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
         [TestMethod]
         public void TestiOSPeopleAlsoAskBlockExisted()
         {
             var node = SupportMethods.GetiOSBlock("PeopleAlsoAsk");
-            var iOS = new iOS();
-            var result = node != null ? iOS.PeopleAlsoAsk(node) : null;
+            result = node != null ? ios.PeopleAlsoAsk(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
         [TestMethod]
         public void TestiOSSiteLinksBlockExisted()
         {
             var node = SupportMethods.GetiOSBlock("SiteLinks");
-            var iOS = new iOS();
-            var result = node != null ? iOS.GetSiteLinks(node) : null;
+            result = node != null ? ios.GetSiteLinks(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
         [TestMethod]
         public void TestiOSJobsBlockExisted()
         {
             var node = SupportMethods.GetiOSBlock("Jobs");
-            var iOS = new iOS();
-            var result = node != null ? iOS.GetJobs(node) : null;
+            result = node != null ? ios.GetJobs(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
         //28-04-2021
@@ -270,8 +274,7 @@ namespace RapidTrackingUnitTest
             var doc = new HtmlDocument();
             var html = SupportMethods.iOsHtml;
             doc.LoadHtml(html);
-            var ios = new iOS();
-            var result = ios.GetTopStuff(doc);
+            result = ios.GetTopStuff(doc);
             Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"carousel"));
         }
         [TestMethod]
@@ -280,8 +283,7 @@ namespace RapidTrackingUnitTest
             var doc = new HtmlDocument();
             var html = SupportMethods.iOsHtml;
             doc.LoadHtml(html);
-            var ios = new iOS();
-            var result = ios.GetTopStuff(doc);
+            result = ios.GetTopStuff(doc);
             Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"apps"));
         }
         [TestMethod]
@@ -290,8 +292,7 @@ namespace RapidTrackingUnitTest
             var doc = new HtmlDocument();
             var html = SupportMethods.iOsHtml;
             doc.LoadHtml(html);
-            var ios = new iOS();
-            var result = ios.GetTopStuff(doc);
+            result = ios.GetTopStuff(doc);
             Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"productlistedads"));
         }
         [TestMethod]
@@ -300,8 +301,7 @@ namespace RapidTrackingUnitTest
             var doc = new HtmlDocument();
             var html = SupportMethods.iOsHtml;
             doc.LoadHtml(html);
-            var ios = new iOS();
-            var result = ios.GetTopStuff(doc);
+            result = ios.GetTopStuff(doc);
             Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"adwords"));
         }
         [TestMethod]
@@ -310,8 +310,7 @@ namespace RapidTrackingUnitTest
             var doc = new HtmlDocument();
             var html = SupportMethods.iOsHtml;
             doc.LoadHtml(html);
-            var ios = new iOS();
-            var result = ios.GetTopStuff(doc);
+            result = ios.GetTopStuff(doc);
             Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"videocard"));
         }
         [TestMethod]
@@ -320,8 +319,7 @@ namespace RapidTrackingUnitTest
             var doc = new HtmlDocument();
             var html = SupportMethods.iOsHtml;
             doc.LoadHtml(html);
-            var ios = new iOS();
-            var result = ios.GetTopStuff(doc);
+            result = ios.GetTopStuff(doc);
             Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"answercard"));
         }
         [TestMethod]
@@ -330,8 +328,7 @@ namespace RapidTrackingUnitTest
             var doc = new HtmlDocument();
             var html = SupportMethods.iOsHtml;
             doc.LoadHtml(html);
-            var ios = new iOS();
-            var result = ios.GetTopStuff(doc);
+            result = ios.GetTopStuff(doc);
             Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"knowledgegraph"));
         }
         [TestMethod]
@@ -340,8 +337,7 @@ namespace RapidTrackingUnitTest
             var doc = new HtmlDocument();
             var html = SupportMethods.iOsHtml;
             doc.LoadHtml(html);
-            var ios = new iOS();
-            var result = ios.GetBottomStuff(doc);
+            result = ios.GetBottomStuff(doc);
             Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"productlistedads"));
         }
         [TestMethod]
@@ -350,8 +346,7 @@ namespace RapidTrackingUnitTest
             var doc = new HtmlDocument();
             var html = SupportMethods.iOsHtml;
             doc.LoadHtml(html);
-            var ios = new iOS();
-            var result = ios.GetBottomStuff(doc);
+            result = ios.GetBottomStuff(doc);
             Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"adwords"));
         }
         [TestMethod]
@@ -360,24 +355,21 @@ namespace RapidTrackingUnitTest
             var doc = new HtmlDocument();
             var html = SupportMethods.iOsHtml;
             doc.LoadHtml(html);
-            var ios = new iOS();
-            var result = ios.ProcessClassicLinks(seid, keyword, doc);
+            result = ios.ProcessClassicLinks(seid, keyword, doc);
             Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("<item url=\""));
         }
         [TestMethod]
         public void TestiOSCarouselURLsExisted()
         {
-            var ios = new iOS();
             ios.html = SupportMethods.iOsHtml;
-            var result = !string.IsNullOrEmpty(ios.html) ? ios.GetCarouselURLs(new ArrayList()) : string.Empty;
+            result = !string.IsNullOrEmpty(ios.html) ? ios.GetCarouselURLs(new ArrayList()) : string.Empty;
             Assert.IsTrue(!string.IsNullOrEmpty(result) && result.Length > 0);
         }
         [TestMethod]
         public void TestiOSImageURLsExisted()
         {
-            var ios = new iOS();
             ios.html = SupportMethods.iOsHtml;
-            var result = !string.IsNullOrEmpty(ios.html) ? ios.GetImageURLs() : string.Empty;
+            result = !string.IsNullOrEmpty(ios.html) ? ios.GetImageURLs() : string.Empty;
             Assert.IsTrue(!string.IsNullOrEmpty(result) && result.Length > 0);
         }
         //28-04-2021 ends

@@ -11,11 +11,13 @@ using HtmlAgilityPack;
 namespace RapidTrackingUnitTest
 {
     [TestClass]
-    public class DesktopUnitTest1
+    public class DesktopUnitTest
     {
         readonly static string seid = "58";
         readonly static string keyword = "borris johnson";
-
+        Desktop desktop;
+        string s;
+        string result;
         [ClassInitialize]
         public static void Initialize(TestContext context)
         {
@@ -23,7 +25,20 @@ namespace RapidTrackingUnitTest
             //generate.GenerateXml(seid, keyword);
             SupportMethods.DesktopHtml = generate.GenerateXml(seid, keyword);
         }
-
+        //09-05-2021
+        [TestInitialize]
+        public void TestInit()
+        {
+            desktop = new Desktop();
+        }
+        [TestCleanup]
+        public void CleanUp()
+        {
+            desktop = null;
+            s = "";
+            result = "";
+        }
+        //09-05-2021 end
 
         List<ArrayList> GetProcessedLists()
         {
@@ -141,8 +156,7 @@ namespace RapidTrackingUnitTest
         [TestMethod]
         public void TestDesktopSanitizeXmlString()
         {
-            var desktop = new Desktop();
-            string s = desktop.SanitizeXmlString("https://www.dixons.co.uk");
+            s = desktop.SanitizeXmlString("https://www.dixons.co.uk");
             Assert.AreEqual("https://www.dixons.co.uk", s);
         }
         //01-05-2021
@@ -150,16 +164,14 @@ namespace RapidTrackingUnitTest
         public void TestDesktopGetRedirectedURL()
         {
             string url = "/aclk?url=https://google.com";
-            var desktop = new Desktop();
-            var result = desktop.GetRedirectedUrl(url);
+            result = desktop.GetRedirectedUrl(url);
             Assert.AreEqual("https://google.com", result);
         }
         [TestMethod]
         public void TestDesktopSetURL()
         {
             string url = "/aclk?url=https://google.com";
-            var desktop = new Desktop();
-            var result = desktop.SetUrl(url);
+            result = desktop.SetUrl(url);
             Assert.AreEqual("https://google.com", result);
         }
         //01-05-2021
@@ -168,8 +180,7 @@ namespace RapidTrackingUnitTest
         public void TestDektopAnswerCardBlockExisted()
         {
             var node = SupportMethods.GetDesktopBlock("AnswerCard");//It is correct
-            var desktop = new Desktop();
-            var result = node != null ? desktop.GetAnswerCard(node) : null;
+            result = node != null ? desktop.GetAnswerCard(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
         //03-05-2021
@@ -178,8 +189,6 @@ namespace RapidTrackingUnitTest
         public void TestDesktopAnswerCardBlockException()
         {
             var node = SupportMethods.GetDesktopBlock("AnswerCard");
-            var desktop = new Desktop();
-            string s;
             desktop.html = (string)null;
             s = desktop.GetAnswerCard(node);
             Assert.AreEqual(desktop, s);
@@ -190,56 +199,49 @@ namespace RapidTrackingUnitTest
         public void TestDektopTopStoriesBlockExisted()
         {
             var node = SupportMethods.GetDesktopBlock("TopStories");
-            var desktop = new Desktop();
-            var result = node != null ? desktop.GetTopStories(node) : null;
+            result = node != null ? desktop.GetTopStories(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
         [TestMethod]
         public void TestDektopVideosBlockExisted()
         {
             var node = SupportMethods.GetDesktopBlock("Videos");
-            var desktop = new Desktop();
-            var result = node != null ? desktop.GetVideos(node) : null;
+            result = node != null ? desktop.GetVideos(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
         [TestMethod]
         public void TestDesktopImagesBlockExisted()
         {
             var node = SupportMethods.GetDesktopBlock("Images");
-            var desktop = new Desktop();
-            var result = node != null ? desktop.GetImages(node) : null;
+            result = node != null ? desktop.GetImages(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
         [TestMethod]
         public void TestDesktopCarouselBlockExisted()
         {
             var node = SupportMethods.GetDesktopBlock("Carousel");
-            var desktop = new Desktop();
-            var result = node != null ? desktop.GetCarousel(node) : null;
+            result = node != null ? desktop.GetCarousel(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
         [TestMethod]
         public void TestDesktopTwitterCardsBlockExisted()
         {
             var node = SupportMethods.GetDesktopBlock("TwitterCards");
-            var desktop = new Desktop();
-            var result = node != null ? desktop.GetTwitterCards(node) : null;
+            result = node != null ? desktop.GetTwitterCards(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
         [TestMethod]
         public void TestDesktopVideoCardBlockExisted()
         {
             var node = SupportMethods.GetDesktopBlock("VidoeCard");
-            var desktop = new Desktop();
-            var result = node != null ? desktop.GetVideoCard(node) : null;
+            result = node != null ? desktop.GetVideoCard(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
         [TestMethod]
         public void TestDesktopPeopleAlsoAskBlockExisted()
         {
             var node = SupportMethods.GetDesktopBlock("PeopleAlsoAsk");
-            var desktop = new Desktop();
-            var result = node != null ? desktop.PeopleAlsoAsk(node) : null;
+            result = node != null ? desktop.PeopleAlsoAsk(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
         [TestMethod]
@@ -247,8 +249,6 @@ namespace RapidTrackingUnitTest
         public void TestDesktopPeopleAlsoAskBlockExecption()
         {
             var node = SupportMethods.GetDesktopBlock("PeopleAlsoAsk");
-            var desktop = new Desktop();
-            string s;
             desktop.html = (string)null;
             s = desktop.PeopleAlsoAsk(node);
             Assert.AreEqual(desktop, s);
@@ -257,16 +257,14 @@ namespace RapidTrackingUnitTest
         public void TestDesktopSiteLinksBlockExisted()
         {
             var node = SupportMethods.GetDesktopBlock("SiteLinks");
-            var desktop = new Desktop();
-            var result = node != null ? desktop.GetSiteLinks(node) : null;
+            result = node != null ? desktop.GetSiteLinks(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
         [TestMethod]
         public void TestDesktopJobsBlockExisted()
         {
             var node = SupportMethods.GetDesktopBlock("Jobs");
-            var desktop = new Desktop();
-            var result = node != null ? desktop.GetJobs(node) : null;
+            result = node != null ? desktop.GetJobs(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
         //27-04-2021
@@ -276,8 +274,7 @@ namespace RapidTrackingUnitTest
             var doc = new HtmlDocument();
             var html = SupportMethods.DesktopHtml;
             doc.LoadHtml(html);
-            var desktop = new Desktop();
-            var result = desktop.GetTopStuff(doc);
+            result = desktop.GetTopStuff(doc);
             Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"productlistedads"));
         }
         [TestMethod]
@@ -286,8 +283,7 @@ namespace RapidTrackingUnitTest
             var doc = new HtmlDocument();
             var html = SupportMethods.DesktopHtml;
             doc.LoadHtml(html);
-            var desktop = new Desktop();
-            var result = desktop.GetTopStuff(doc);
+            result = desktop.GetTopStuff(doc);
             Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"adwords"));
         }
         [TestMethod]
@@ -296,8 +292,7 @@ namespace RapidTrackingUnitTest
             var doc = new HtmlDocument();
             var html = SupportMethods.DesktopHtml;
             doc.LoadHtml(html);
-            var desktop = new Desktop();
-            var result = desktop.GetTopStuff(doc);
+            result = desktop.GetTopStuff(doc);
             Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"carousel"));
         }
         [TestMethod]
@@ -306,8 +301,7 @@ namespace RapidTrackingUnitTest
             var doc = new HtmlDocument();
             var html = SupportMethods.DesktopHtml;
             doc.LoadHtml(html);
-            var desktop = new Desktop();
-            var result = desktop.GetTopStuff(doc);
+            result = desktop.GetTopStuff(doc);
             Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"topstories"));
         }
         [TestMethod]
@@ -316,8 +310,7 @@ namespace RapidTrackingUnitTest
             var doc = new HtmlDocument();
             var html = SupportMethods.DesktopHtml;
             doc.LoadHtml(html);
-            var desktop = new Desktop();
-            var result = desktop.GetTopStuff(doc);
+            result = desktop.GetTopStuff(doc);
             Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"maps"));
         }
         [TestMethod]
@@ -326,8 +319,7 @@ namespace RapidTrackingUnitTest
             var doc = new HtmlDocument();
             var html = SupportMethods.DesktopHtml;
             doc.LoadHtml(html);
-            var desktop = new Desktop();
-            var result = desktop.GetBottomStuff(doc);
+            result = desktop.GetBottomStuff(doc);
             Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"adwords"));
         }
         [TestMethod]
@@ -336,8 +328,7 @@ namespace RapidTrackingUnitTest
             var doc = new HtmlDocument();
             var html = SupportMethods.DesktopHtml;
             doc.LoadHtml(html);
-            var desktop = new Desktop();
-            var result = desktop.GetRightStuff(doc);
+            result = desktop.GetRightStuff(doc);
             Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"productlistedads"));
         }
         [TestMethod]
@@ -346,8 +337,7 @@ namespace RapidTrackingUnitTest
             var doc = new HtmlDocument();
             var html = SupportMethods.DesktopHtml;
             doc.LoadHtml(html);
-            var desktop = new Desktop();
-            var result = desktop.GetRightStuff(doc);
+            result = desktop.GetRightStuff(doc);
             Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"knowledgegraph"));
         }
         //27-04-2021 ends
@@ -355,17 +345,15 @@ namespace RapidTrackingUnitTest
         [TestMethod]
         public void TestDesktopCarouselURLsExisted()
         {
-            var desktop = new Desktop();
             desktop.html = SupportMethods.DesktopHtml;
-            var result = !string.IsNullOrEmpty(desktop.html) ? desktop.GetCarouselURLs() : string.Empty;
+            result = !string.IsNullOrEmpty(desktop.html) ? desktop.GetCarouselURLs() : string.Empty;
             Assert.IsTrue(!string.IsNullOrEmpty(result) && result.Length > 0);
         }
         [TestMethod]
         public void TestDesktopImageURLsExisted()
         {
-            var desktop = new Desktop();
             desktop.html = SupportMethods.DesktopHtml;
-            var result = !string.IsNullOrEmpty(desktop.html) ? desktop.GetImageURLs() : string.Empty;
+            result = !string.IsNullOrEmpty(desktop.html) ? desktop.GetImageURLs() : string.Empty;
             Assert.IsTrue(!string.IsNullOrEmpty(result) && result.Length > 0);
         }
         [TestMethod]
@@ -374,8 +362,7 @@ namespace RapidTrackingUnitTest
             var doc = new HtmlDocument();
             var html = SupportMethods.DesktopHtml;
             doc.LoadHtml(html);
-            var desktop = new Desktop();
-            var result = desktop.ProcessClassicLinks(seid, keyword, doc);
+            result = desktop.ProcessClassicLinks(seid, keyword, doc);
             Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("<item url=\""));
         }
         //28-04-2021

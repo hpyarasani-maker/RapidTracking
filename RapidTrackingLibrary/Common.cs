@@ -96,29 +96,5 @@ namespace RapidTrackingLibrary
             return count;
         }
 
-        public bool Connect()
-        {
-
-                string connectionstring;
-                SqlConnection cnn;
-                connectionstring = ReadConnection();
-                cnn = new SqlConnection(connectionstring);
-                cnn.Open();
-                return true;
-            
-        }
-        
-        public bool Disconnect()
-        {
-           
-                string connectionstring;
-                SqlConnection cnn;
-                connectionstring = ReadConnection();
-                cnn = new SqlConnection(connectionstring);
-                cnn.Close();
-                return true;
-            
-            
-        }
     }
 }

@@ -373,5 +373,39 @@ namespace RapidTrackingUnitTest
             Assert.IsTrue(!string.IsNullOrEmpty(result) && result.Length > 0);
         }
         //28-04-2021 ends
+        //Exception //09-05-2021
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void Test_GetTopStories_HtmlNode_Exception()
+        {
+            ios.html = (string)null;
+            s = ios.GetTopStories((HtmlNode)null);
+            Assert.AreEqual(ios, s);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void Test_GetCarousel_HtmlNode_Exception()
+        {
+            ios.html = (string)null;
+            s = ios.GetCarousel((HtmlNode)null);
+            Assert.AreEqual(ios, s);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void Test_GetJobs_HtmlNode_Exception()
+        {
+            ios.html = (string)null;
+            s = ios.GetJobs((HtmlNode)null);
+            Assert.AreEqual(ios, s);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void Test_GetProductListAds_HtmlDocument_Exception()
+        {
+            ios.html = (string)null;
+            s = ios.GetProductListedUrls((string)null);
+            Assert.AreEqual(ios, s);
+        }
+        //09-05-2021 ends
     }
 }

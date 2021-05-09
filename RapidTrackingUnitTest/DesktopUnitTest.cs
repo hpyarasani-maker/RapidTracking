@@ -259,6 +259,18 @@ namespace RapidTrackingUnitTest
             var node = SupportMethods.GetDesktopBlock("SiteLinks");
             result = node != null ? desktop.GetSiteLinks(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
+          
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void TestDesktopSiteLinksBlockException()
+        {
+            var node = SupportMethods.GetDesktopBlock("PeopleAlsoAsk");
+            var desktop = new Desktop();
+            string s;
+            desktop.html = (string)null;
+            s = desktop.GetSiteLinks(node);
+            Assert.AreEqual(desktop, s);
         }
         [TestMethod]
         public void TestDesktopJobsBlockExisted()

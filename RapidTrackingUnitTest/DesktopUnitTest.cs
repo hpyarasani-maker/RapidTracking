@@ -11,7 +11,7 @@ using HtmlAgilityPack;
 namespace RapidTrackingUnitTest
 {
     [TestClass]
-    public class DesktopUnitTest1
+    public class DesktopUnitTest
     {
         readonly static string seid = "58";
         readonly static string keyword = "borris johnson";
@@ -260,6 +260,18 @@ namespace RapidTrackingUnitTest
             var desktop = new Desktop();
             var result = node != null ? desktop.GetSiteLinks(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
+          
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void TestDesktopSiteLinksBlockException()
+        {
+            var node = SupportMethods.GetDesktopBlock("PeopleAlsoAsk");
+            var desktop = new Desktop();
+            string s;
+            desktop.html = (string)null;
+            s = desktop.GetSiteLinks(node);
+            Assert.AreEqual(desktop, s);
         }
         [TestMethod]
         public void TestDesktopJobsBlockExisted()

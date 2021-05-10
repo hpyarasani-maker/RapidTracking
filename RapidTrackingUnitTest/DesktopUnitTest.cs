@@ -183,18 +183,7 @@ namespace RapidTrackingUnitTest
             result = node != null ? desktop.GetAnswerCard(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
-        //03-05-2021
-        [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void TestDesktopAnswerCardBlockException()
-        {
-            var node = SupportMethods.GetDesktopBlock("AnswerCard");
-            desktop.html = (string)null;
-            s = desktop.GetAnswerCard(node);
-            Assert.AreEqual(desktop, s);
-
-        }
-        //03-05-2021 ends
+       
         [TestMethod]
         public void TestDektopTopStoriesBlockExisted()
         {
@@ -244,15 +233,7 @@ namespace RapidTrackingUnitTest
             result = node != null ? desktop.PeopleAlsoAsk(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
-        [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void TestDesktopPeopleAlsoAskBlockExecption()
-        {
-            var node = SupportMethods.GetDesktopBlock("PeopleAlsoAsk");
-            desktop.html = (string)null;
-            s = desktop.PeopleAlsoAsk(node);
-            Assert.AreEqual(desktop, s);
-        }
+        
         [TestMethod]
         public void TestDesktopSiteLinksBlockExisted()
         {
@@ -261,17 +242,7 @@ namespace RapidTrackingUnitTest
             Assert.IsTrue(result != null && result.Length > 0);
           
         }
-        [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void TestDesktopSiteLinksBlockException()
-        {
-            var node = SupportMethods.GetDesktopBlock("PeopleAlsoAsk");
-            var desktop = new Desktop();
-            string s;
-            desktop.html = (string)null;
-            s = desktop.GetSiteLinks(node);
-            Assert.AreEqual(desktop, s);
-        }
+       
         [TestMethod]
         public void TestDesktopJobsBlockExisted()
         {
@@ -382,11 +353,39 @@ namespace RapidTrackingUnitTest
         //Exception //09-05-2021
         [TestMethod]
         [ExpectedException(typeof(NullReferenceException))]
+        public void Test_AnswerCard_HtmlNode_Exception()
+        {
+            var node = SupportMethods.GetDesktopBlock("AnswerCard");
+            desktop.html = (string)null;
+            s = desktop.GetAnswerCard(node);
+            Assert.AreEqual(String.IsNullOrEmpty(s), null);
+
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void Test_PeopleAlsoAsk_HtmlNode_Exception()
+        {
+            var node = SupportMethods.GetDesktopBlock("PeopleAlsoAsk");
+            desktop.html = (string)null;
+            s = desktop.GetSiteLinks(node);
+            Assert.AreEqual(String.IsNullOrEmpty(s), null);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void Test_SiteLinks_HtmlNode_Execption()
+        {
+            var node = SupportMethods.GetDesktopBlock("SiteLinks");
+            desktop.html = (string)null;
+            s = desktop.GetSiteLinks(node);
+            Assert.AreEqual(String.IsNullOrEmpty(s), null);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
         public void Test_GetTopStories_HtmlNode_Exception()
         {
             desktop.html = (string)null;
             s = desktop.GetTopStories((HtmlNode)null);
-            Assert.AreEqual(desktop, s);
+            Assert.AreEqual(String.IsNullOrEmpty(s), null);
         }
         [TestMethod]
         [ExpectedException(typeof(NullReferenceException))]
@@ -394,7 +393,7 @@ namespace RapidTrackingUnitTest
         {
             desktop.html = (string)null;
             s = desktop.GetCarousel((HtmlNode)null);
-            Assert.AreEqual(desktop, s);
+            Assert.AreEqual(String.IsNullOrEmpty(s), null);
         }
         [TestMethod]
         [ExpectedException(typeof(NullReferenceException))]
@@ -402,7 +401,7 @@ namespace RapidTrackingUnitTest
         {
             desktop.html = (string)null;
             s = desktop.GetJobs((HtmlNode)null);
-            Assert.AreEqual(desktop, s);
+            Assert.AreEqual(String.IsNullOrEmpty(s), null);
         }
         [TestMethod]
         [ExpectedException(typeof(NullReferenceException))]
@@ -410,7 +409,15 @@ namespace RapidTrackingUnitTest
         {
             desktop.html = (string)null;
             s = desktop.GetProductListedAds((HtmlDocument)null);
-            Assert.AreEqual(desktop, s);
+            Assert.AreEqual(string.IsNullOrEmpty(s), null);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void Test_VideoCard_Exception()
+        {
+            var node = SupportMethods.GetDesktopBlock("VideoCard");
+            s = desktop.GetVideoCard(node);
+            Assert.AreEqual(string.IsNullOrEmpty(s),null);
         }
         //09-05-2021 ends
     }

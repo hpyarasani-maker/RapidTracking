@@ -59,6 +59,7 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="iOSTest.cs" />
     <Compile Include="iOSUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DesktopUnitTest.cs" />

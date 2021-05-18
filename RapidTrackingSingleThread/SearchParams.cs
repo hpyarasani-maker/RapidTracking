@@ -1961,7 +1961,7 @@ namespace RapidTrackingSingleThread
             {
                 seid =555, domain ="co.in", geo_location="New Delhi,Delhi,India", locale= "hi-in", uule = " w+CAIQICIVRGVsaGksTmV3IERlbGhpLEluZGlh",device="mobile_android"
             },
-new SearchProperties()
+            new SearchProperties()
             {
                 seid =556, domain ="co.in", geo_location="Bengaluru,Karnataka,India", locale= "kn-in", uule ="w+CAIQICIZQmVuZ2FsdXJ1LEthcm5hdGFrYSxJbmRpYQ==",device="desktop"
             },
@@ -2001,6 +2001,30 @@ new SearchProperties()
             {
                 seid =565, domain ="co.in", geo_location="Chennai,Tamil Nadu,India", locale= "ta-in", uule = "w+CAIQICIXQ2hlbm5haSxUYW1pbG5hZHUsSW5kaWE=",device="mobile_android"
             },//13-05-2021 end
+            new SearchProperties() //18-05-2021
+            {
+                seid =566, domain ="co.uk", geo_location="Milton Keynes,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIkTWlsdG9uIEtleW5lcyxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =567, domain ="co.uk", geo_location="Milton Keynes,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIkTWlsdG9uIEtleW5lcyxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =568, domain ="co.uk", geo_location="Guildford,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIgR3VpbGRmb3JkLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =569, domain ="co.uk", geo_location="Guildford,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIgR3VpbGRmb3JkLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =570, domain ="co.uk", geo_location="Wrexham,Wales,United Kingdom", locale= "en-gb", uule = "w+CAIQICIcV3JleGhhbSxXYWxlcyxVbml0ZWQgS2luZ2RvbQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =571, domain ="co.uk", geo_location="Wrexham,Wales,United Kingdom", locale= "en-gb", uule = "w+CAIQICIcV3JleGhhbSxXYWxlcyxVbml0ZWQgS2luZ2RvbQ==",device="mobile_android"
+            }, //18-05-2021 ends
 
         };
 

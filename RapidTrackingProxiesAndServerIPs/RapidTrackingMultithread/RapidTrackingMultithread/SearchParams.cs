@@ -1898,6 +1898,142 @@ namespace RapidTrackingMultithread
             {
                 seid =537, domain ="co.id", geo_location="Indonesia", locale= "en-id", uule = "w+CAIQICIJSW5kb25lc2lh",device="mobile_android"
             }, //end 07-04-2021
+            new SearchProperties() //13-05-2021
+            {
+                seid =538, domain ="co.in", geo_location="Mumbai,Maharashtra,India", locale= "en-in", uule ="w+CAIQICIYTXVtYmFpLE1haGFyYXNodHJhLEluZGlh",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =539, domain ="co.in", geo_location="Mumbai,Maharashtra,India", locale= "en-in", uule = "w+CAIQICIYTXVtYmFpLE1haGFyYXNodHJhLEluZGlh",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =540, domain ="co.in", geo_location="New Delhi,Delhi,India", locale= "en-in", uule =" w+CAIQICIVRGVsaGksTmV3IERlbGhpLEluZGlh",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =541, domain ="co.in", geo_location="New Delhi,Delhi,India", locale= "en-in", uule = " w+CAIQICIVRGVsaGksTmV3IERlbGhpLEluZGlh",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =542, domain ="co.in", geo_location="Bengaluru,Karnataka,India", locale= "en-in", uule ="w+CAIQICIZQmVuZ2FsdXJ1LEthcm5hdGFrYSxJbmRpYQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =543, domain ="co.in", geo_location="Bengaluru,Karnataka,India", locale= "en-in", uule = "w+CAIQICIZQmVuZ2FsdXJ1LEthcm5hdGFrYSxJbmRpYQ==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =544, domain ="co.in", geo_location="Hyderabad,Telangana,India", locale= "en-in", uule ="w+CAIQICIZSHlkZXJhYmFkLFRlbGFuZ2FuYSxJbmRpYQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =545, domain ="co.in", geo_location="Hyderabad,Telangana,India", locale= "en-in", uule = "w+CAIQICIZSHlkZXJhYmFkLFRlbGFuZ2FuYSxJbmRpYQ==",device="mobile_android"
+            },
+             new SearchProperties()
+            {
+                seid =546, domain ="co.in", geo_location="Ahmedabad,Gujarat,India", locale= "en-in", uule ="w+CAIQICIXQWhtZWRhYmFkLEd1amFyYXQsSW5kaWE=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =547, domain ="co.in", geo_location="Ahmedabad,Gujarat,India", locale= "en-in", uule = "w+CAIQICIXQWhtZWRhYmFkLEd1amFyYXQsSW5kaWE=",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =548, domain ="co.in", geo_location="Kolkata,West Bengal,India", locale= "en-in", uule ="w+CAIQICIYS29sa2F0YSxXZXN0QmVuZ2FsLEluZGlh",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =549, domain ="co.in", geo_location="Kolkata,West Bengal,India", locale= "en-in", uule = "w+CAIQICIYS29sa2F0YSxXZXN0QmVuZ2FsLEluZGlh",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =550, domain ="co.in", geo_location="Chennai,Tamil Nadu,India", locale= "en-in", uule ="w+CAIQICIXQ2hlbm5haSxUYW1pbG5hZHUsSW5kaWE=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =551, domain ="co.in", geo_location="Chennai,Tamil Nadu,India", locale= "en-in", uule = "w+CAIQICIXQ2hlbm5haSxUYW1pbG5hZHUsSW5kaWE=",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =552, domain ="co.in", geo_location="Mumbai,Maharashtra,India", locale= "mr-in", uule ="w+CAIQICIYTXVtYmFpLE1haGFyYXNodHJhLEluZGlh",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =553, domain ="co.in", geo_location="Mumbai,Maharashtra,India", locale= "mr-in", uule = "w+CAIQICIYTXVtYmFpLE1haGFyYXNodHJhLEluZGlh",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =554, domain ="co.in", geo_location="New Delhi,Delhi,India", locale= "hi-in", uule =" w+CAIQICIVRGVsaGksTmV3IERlbGhpLEluZGlh",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =555, domain ="co.in", geo_location="New Delhi,Delhi,India", locale= "hi-in", uule = " w+CAIQICIVRGVsaGksTmV3IERlbGhpLEluZGlh",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =556, domain ="co.in", geo_location="Bengaluru,Karnataka,India", locale= "kn-in", uule ="w+CAIQICIZQmVuZ2FsdXJ1LEthcm5hdGFrYSxJbmRpYQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =557, domain ="co.in", geo_location="Bengaluru,Karnataka,India", locale= "kn-in", uule = "w+CAIQICIZQmVuZ2FsdXJ1LEthcm5hdGFrYSxJbmRpYQ==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =558, domain ="co.in", geo_location="Hyderabad,Telangana,India", locale= "te-in", uule ="w+CAIQICIZSHlkZXJhYmFkLFRlbGFuZ2FuYSxJbmRpYQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =559, domain ="co.in", geo_location="Hyderabad,Telangana,India", locale= "te-in", uule = "w+CAIQICIZSHlkZXJhYmFkLFRlbGFuZ2FuYSxJbmRpYQ==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =560, domain ="co.in", geo_location="Ahmedabad,Gujarat,India", locale= "gu-in", uule ="w+CAIQICIXQWhtZWRhYmFkLEd1amFyYXQsSW5kaWE=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =561, domain ="co.in", geo_location="Ahmedabad,Gujarat,India", locale= "gu-in", uule = "w+CAIQICIXQWhtZWRhYmFkLEd1amFyYXQsSW5kaWE=",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =562, domain ="co.in", geo_location="Kolkata,West Bengal,India", locale= "bn-in", uule ="w+CAIQICIYS29sa2F0YSxXZXN0QmVuZ2FsLEluZGlh",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =563, domain ="co.in", geo_location="Kolkata,West Bengal,India", locale= "bn-in", uule = "w+CAIQICIYS29sa2F0YSxXZXN0QmVuZ2FsLEluZGlh",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =564, domain ="co.in", geo_location="Chennai,Tamil Nadu,India", locale= "ta-in", uule ="w+CAIQICIXQ2hlbm5haSxUYW1pbG5hZHUsSW5kaWE=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =565, domain ="co.in", geo_location="Chennai,Tamil Nadu,India", locale= "ta-in", uule = "w+CAIQICIXQ2hlbm5haSxUYW1pbG5hZHUsSW5kaWE=",device="mobile_android"
+            },//13-05-2021 end
+            new SearchProperties() //18-05-2021
+            {
+                seid =566, domain ="co.uk", geo_location="Milton Keynes,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIkTWlsdG9uIEtleW5lcyxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =567, domain ="co.uk", geo_location="Milton Keynes,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIkTWlsdG9uIEtleW5lcyxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =568, domain ="co.uk", geo_location="Guildford,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIgR3VpbGRmb3JkLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =569, domain ="co.uk", geo_location="Guildford,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIgR3VpbGRmb3JkLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =570, domain ="co.uk", geo_location="Wrexham,Wales,United Kingdom", locale= "en-gb", uule = "w+CAIQICIcV3JleGhhbSxXYWxlcyxVbml0ZWQgS2luZ2RvbQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =571, domain ="co.uk", geo_location="Wrexham,Wales,United Kingdom", locale= "en-gb", uule = "w+CAIQICIcV3JleGhhbSxXYWxlcyxVbml0ZWQgS2luZ2RvbQ==",device="mobile_android"
+            }, //18-05-2021 ends
         };
     }
 

@@ -44,6 +44,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\RapidTrackingLibrary\bin\Debug\HtmlAgilityPack.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ExtendedReflection, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Pex.Framework, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\MSTest.TestFramework.1.3.2\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
     </Reference>
@@ -57,9 +59,13 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="iOSTest.cs" />
     <Compile Include="iOSUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DesktopUnitTest1.cs" />
+    <Compile Include="DesktopUnitTest.cs" />
+    <Compile Include="SourceUnitTest.cs" />
+    <Compile Include="SupportUnitTest.cs" />
+    <Compile Include="CommonUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

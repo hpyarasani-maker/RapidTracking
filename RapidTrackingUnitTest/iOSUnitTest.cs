@@ -14,8 +14,10 @@ namespace RapidTrackingUnitTest
     public class iOSUnitTest
     {
         readonly static string seid = "102";
-        readonly static string keyword = "joe biden";
-
+        readonly static string keyword = "movies";
+        iOS ios;
+        string s;
+        string result;
         [ClassInitialize]
         public static void Initialize(TestContext context)
         {
@@ -23,6 +25,20 @@ namespace RapidTrackingUnitTest
             //generate.GenerateXml(seid, keyword);
             SupportMethods.iOsHtml = generate.GenerateXml(seid, keyword);
         }
+        //09-05-2021
+        [TestInitialize]
+        public void TestInit()
+        {
+            ios = new iOS();
+        }
+        [TestCleanup]
+        public void CleanUp()
+        {
+            ios = null;
+            s = "";
+            result = "";
+        }
+        //09-05-2021 end
 
 
         List<ArrayList> GetProcessedLists()
@@ -139,25 +155,7 @@ namespace RapidTrackingUnitTest
             //ArrayList lst = GetRegExProcessedLists();
             //Assert.IsTrue (lst.Count >= 95);
         }
-        [TestMethod]
-        public void TestReadConnection()
-        {
-            string s = Common.ReadConnection();
-            Assert.AreEqual<string>("Data Source=82.136.42.2;User ID=sa;Password = brisbane007;initial catalog = TrackingTrending;", s);
-        }
-
-        [TestMethod]
-        public void TestGetOxylabsTime()
-        {
-            var s = Common.GetOxylabsTime();
-            Assert.AreEqual(450, s);
-        }
-        [TestMethod]
-        public void TestGetOxylabsCount()
-        {
-            var s = Common.GetOxylabsCount();
-            Assert.AreEqual(20, s);
-        }
+       
 
         
         [TestMethod]
@@ -167,87 +165,247 @@ namespace RapidTrackingUnitTest
             string s = ios.SanitizeXmlString("https://www.dixons.co.uk");
             Assert.AreEqual("https://www.dixons.co.uk", s);
         }
+        //01-05-2021
+        [TestMethod]
+        public void TestiOSGetRedirectedURL()
+        {
+            string url = "/aclk?url=https://google.com";
+            var iOS = new iOS();
+            var result = iOS.GetRedirectedUrl(url);
+            Assert.AreEqual("https://google.com", result);
+        }
+        [TestMethod]
+        public void TestiOSSetURL()
+        {
+            string url = "/aclk?url=https://google.com";
+            var iOS = new iOS();
+            var result = iOS.SetUrl(url);
+            Assert.AreEqual("https://google.com", result);
+        }
+        //01-05-2021
+        //Element test methods
         // iOS Tests
         [TestMethod]
         public void TestiOSAnswerCardBlockExisted()
         {
             var node = SupportMethods.GetiOSBlock("AnswerCard");
-            var iOS = new iOS();
-            var result = node != null ? iOS.GetAnswerCard(node) : null;
+            var result = node != null ? ios.GetAnswerCard(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
+        //03-05-2021
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void TestiOSAnswerCardBlockException()
+        {
+            var node = SupportMethods.GetiOSBlock("AnswerCard");
+            ios.html = (string)null;
+            s = ios.GetAnswerCard(node);
+            Assert.AreEqual(ios, s);
+
+        }
+        //03-05-2021 ends
         [TestMethod]
         public void TestiOSTopStoriesBlockExisted()
         {
             var node = SupportMethods.GetiOSBlock("TopStories");
-            var iOS = new iOS();
-            var result = node != null ? iOS.GetTopStories(node) : null;
+            result = node != null ? ios.GetTopStories(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
         [TestMethod]
         public void TestiOSVideosBlockExisted()
         {
             var node = SupportMethods.GetiOSBlock("Videos");
-            var iOS = new iOS();
-            var result = node != null ? iOS.GetVideos(node) : null;
+            result = node != null ? ios.GetVideos(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
         [TestMethod]
         public void TestiOSImagesBlockExisted()
         {
             var node = SupportMethods.GetiOSBlock("Images");
-            var iOS = new iOS();
-            var result = node != null ? iOS.GetImages(node) : null;
+            result = node != null ? ios.GetImages(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
         [TestMethod]
         public void TestiOSCarouselBlockExisted()
         {
             var node = SupportMethods.GetiOSBlock("Carousel");
-            var iOS = new iOS();
-            var result = node != null ? iOS.GetCarousel(node) : null;
+            result = node != null ? ios.GetCarousel(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
         [TestMethod]
         public void TestiOSTwitterCardsBlockExisted()
         {
             var node = SupportMethods.GetiOSBlock("TwitterCards");
-            var iOS = new iOS();
-            var result = node != null ? iOS.GetTwitterCards(node) : null;
+            result = node != null ? ios.GetTwitterCards(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
         [TestMethod]
         public void TestiOSVideoCardBlockExisted()
         {
             var node = SupportMethods.GetiOSBlock("VidoeCard");
-            var iOS = new iOS();
-            var result = node != null ? iOS.GetVideoCard(node) : null;
+            result = node != null ? ios.GetVideoCard(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
         [TestMethod]
         public void TestiOSPeopleAlsoAskBlockExisted()
         {
             var node = SupportMethods.GetiOSBlock("PeopleAlsoAsk");
-            var iOS = new iOS();
-            var result = node != null ? iOS.PeopleAlsoAsk(node) : null;
+            result = node != null ? ios.PeopleAlsoAsk(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
         [TestMethod]
         public void TestiOSSiteLinksBlockExisted()
         {
             var node = SupportMethods.GetiOSBlock("SiteLinks");
-            var iOS = new iOS();
-            var result = node != null ? iOS.GetSiteLinks(node) : null;
+            result = node != null ? ios.GetSiteLinks(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
         [TestMethod]
         public void TestiOSJobsBlockExisted()
         {
             var node = SupportMethods.GetiOSBlock("Jobs");
-            var iOS = new iOS();
-            var result = node != null ? iOS.GetJobs(node) : null;
+            result = node != null ? ios.GetJobs(node) : null;
             Assert.IsTrue(result != null && result.Length > 0);
         }
-
+        //28-04-2021
+        [TestMethod]
+        public void TestiOSTopStuffCarouselExisted()
+        {
+            var doc = new HtmlDocument();
+            var html = SupportMethods.iOsHtml;
+            doc.LoadHtml(html);
+            result = ios.GetTopStuff(doc);
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"carousel"));
+        }
+        [TestMethod]
+        public void TestiOSTopStuffAppsExisted()
+        {
+            var doc = new HtmlDocument();
+            var html = SupportMethods.iOsHtml;
+            doc.LoadHtml(html);
+            result = ios.GetTopStuff(doc);
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"apps"));
+        }
+        [TestMethod]
+        public void TestiOSTopStuffProductListedAdsExisted()
+        {
+            var doc = new HtmlDocument();
+            var html = SupportMethods.iOsHtml;
+            doc.LoadHtml(html);
+            result = ios.GetTopStuff(doc);
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"productlistedads"));
+        }
+        [TestMethod]
+        public void TestiOSTopStuffAdwordsExisted()
+        {
+            var doc = new HtmlDocument();
+            var html = SupportMethods.iOsHtml;
+            doc.LoadHtml(html);
+            result = ios.GetTopStuff(doc);
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"adwords"));
+        }
+        [TestMethod]
+        public void TestiOSTopStuffVideoCardExisted()
+        {
+            var doc = new HtmlDocument();
+            var html = SupportMethods.iOsHtml;
+            doc.LoadHtml(html);
+            result = ios.GetTopStuff(doc);
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"videocard"));
+        }
+        [TestMethod]
+        public void TestiOSTopStuffAnswerCardExisted()
+        {
+            var doc = new HtmlDocument();
+            var html = SupportMethods.iOsHtml;
+            doc.LoadHtml(html);
+            result = ios.GetTopStuff(doc);
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"answercard"));
+        }
+        [TestMethod]
+        public void TestiOSTopStuffKnowledgeGraphExisted()
+        {
+            var doc = new HtmlDocument();
+            var html = SupportMethods.iOsHtml;
+            doc.LoadHtml(html);
+            result = ios.GetTopStuff(doc);
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"knowledgegraph"));
+        }
+        [TestMethod]
+        public void TestiOSBottomStuffProductListedAdsExisted()
+        {
+            var doc = new HtmlDocument();
+            var html = SupportMethods.iOsHtml;
+            doc.LoadHtml(html);
+            result = ios.GetBottomStuff(doc);
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"productlistedads"));
+        }
+        [TestMethod]
+        public void TestiOSBottomStuffAdwordsExisted()
+        {
+            var doc = new HtmlDocument();
+            var html = SupportMethods.iOsHtml;
+            doc.LoadHtml(html);
+            result = ios.GetBottomStuff(doc);
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("type=\"adwords"));
+        }
+        [TestMethod]
+        public void TestiOSProcessClassicLinksExisted()
+        {
+            var doc = new HtmlDocument();
+            var html = SupportMethods.iOsHtml;
+            doc.LoadHtml(html);
+            result = ios.ProcessClassicLinks(seid, keyword, doc);
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("<item url=\""));
+        }
+        [TestMethod]
+        public void TestiOSCarouselURLsExisted()
+        {
+            ios.html = SupportMethods.iOsHtml;
+            result = !string.IsNullOrEmpty(ios.html) ? ios.GetCarouselURLs(new ArrayList()) : string.Empty;
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.Length > 0);
+        }
+        [TestMethod]
+        public void TestiOSImageURLsExisted()
+        {
+            ios.html = SupportMethods.iOsHtml;
+            result = !string.IsNullOrEmpty(ios.html) ? ios.GetImageURLs() : string.Empty;
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.Length > 0);
+        }
+        //28-04-2021 ends
+        //Exception //09-05-2021
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void Test_GetTopStories_HtmlNode_Exception()
+        {
+            ios.html = (string)null;
+            s = ios.GetTopStories((HtmlNode)null);
+            Assert.AreEqual(ios, s);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void Test_GetCarousel_HtmlNode_Exception()
+        {
+            ios.html = (string)null;
+            s = ios.GetCarousel((HtmlNode)null);
+            Assert.AreEqual(ios, s);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void Test_GetJobs_HtmlNode_Exception()
+        {
+            ios.html = (string)null;
+            s = ios.GetJobs((HtmlNode)null);
+            Assert.AreEqual(ios, s);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void Test_GetProductListAds_HtmlDocument_Exception()
+        {
+            ios.html = (string)null;
+            s = ios.GetProductListedUrls((string)null);
+            Assert.AreEqual(ios, s);
+        }
+        //09-05-2021 ends
     }
 }

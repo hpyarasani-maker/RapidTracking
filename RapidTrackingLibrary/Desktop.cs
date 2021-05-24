@@ -13,7 +13,7 @@ namespace RapidTrackingLibrary
     public class Desktop
     {
         int orgLinks;
-        string html;
+        public string html;
         public string ProcessDocument(string seid, string keyword, HtmlDocument doc, out int count)
         {
             count = 0;

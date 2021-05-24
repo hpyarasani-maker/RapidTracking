@@ -660,7 +660,7 @@ namespace RapidTrackingSingleThread
                         "|.//div/g-card[@class='XqIXXe']|.//g-card[@id='tscffb']|.//g-card[@class='g F6CFcc']|.//div[@class='khgTR lWEpfd']" +
                         "|.//div[@class='khgTR R5lVqb']|.//div[@class='mnr-c fp-w qs-ic aig-grd']|.//g-card[@class='URhAHe']" +
                         "|.//div[@class='mnr-c IcwJCe']|.//div[@class='g card-section svwwZ']" + //03-11-2020//26-08-2020 incuded contains functions to the selector//29-07-2020 //20-05-2020 missing classic link //05-06-2020
-                        "|.//div[contains(@class,'card-section')]|.//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']"); //20-08-2021 included contains//15-12-2020
+                        "|.//div[contains(@class,'card-section')]|.//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']"); //20-05-2021 included contains//15-12-2020
 
                 if (nds == null)
                     if (node.Attributes["class"].Value == "mnr-c xpd O9g5cc uUPGi")
@@ -2264,7 +2264,7 @@ namespace RapidTrackingSingleThread
                 return true;
             }
 
-            if (node.SelectSingleNode(".//div[@class='g card-section svwwZ']|.//div[@class='c6gxKe card-section']") != null) //03-11-2020
+            if (node.SelectSingleNode(".//div[@class='g card-section svwwZ']|.//div[@class='c6gxKe card-section']") != null) //20-05-2021//03-11-2020
                 return false;
 
             //22-11-2019

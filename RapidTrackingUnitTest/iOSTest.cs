@@ -164,5 +164,27 @@ namespace RapidTrackingUnitTest
             var result = iOS.GetSiteLinks(node);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
         }
+        [TestMethod]
+        public void TestiOSKnowledgeGraphExisted()
+        {
+            var iOS = new iOS();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\knowledgegraph.txt";
+            doc.Load(path);
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var result = iOS.GetKnowledgePanel(node);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+        [TestMethod]
+        public void TestiOSJobsBlockExisted()
+        {
+            var iOS = new iOS();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\jobs.txt";
+            doc.Load(path);
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var result = iOS.GetJobs(node);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
     }
 }

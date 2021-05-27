@@ -186,15 +186,5 @@ namespace RapidTrackingUnitTest
             var result = iOS.GetJobs(node);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
         }
-        [TestMethod]
-        public void TestiOSTopStuffProductListedAdsExisted()
-        {
-            var iOS = new iOS();
-            HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\tsplads.txt";
-            doc.Load(path);
-            var result = iOS.GetTopStuff(doc);
-            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
-        }
     }
 }

@@ -1338,7 +1338,8 @@ namespace RapidTrackingSingleThread
                         return true;
 
                     if (node.SelectSingleNode(".//div[@class='g']") != null) //04-12-2020 select for class links
-                        return false;
+                        if (node.SelectSingleNode(".//table[@class='nrgt']") != null || node.SelectSingleNode(".//table[@class='jmjoTe']") != null)//28-05-2021
+                            return false;
                 }
                 catch { }
             }

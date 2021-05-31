@@ -485,6 +485,8 @@ namespace RapidTrackingSingleThread
                     nds = node.SelectNodes(".//div[@class='gG0TJc']");  //29-05-2020
                 if (nds == null)
                     nds = node.SelectNodes(".//div[contains(@class,'tF2Cxc')]");//07-01-2021 //18-02-2021 included contains function
+                if (nds == null)
+                    nds = node.SelectNodes(".//div[@class='yuRUbf']"); //31-05-2021
                 if (nds != null)
                     foreach (HtmlNode nd in nds)
                     {
@@ -567,6 +569,8 @@ namespace RapidTrackingSingleThread
                                     n = nd.SelectSingleNode(".//div[@class='yuRUbf']/a"); //03-09-2020  included selector for classic links                         
                                 if (n != null)
                                     title = n.SelectSingleNode(".//h3"); //03-09-2020 included selector for classic links
+                                if (n == null)
+                                    n = nd.SelectSingleNode(".//a");//31-05-2021
                                 var urls = n.Attributes["href"].Value;
                                 string t;
                                 if (title != null)
@@ -1393,7 +1397,8 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//h3[@class='r dO0Ag']") != null || node.SelectSingleNode(".//div[@class='DOqJne']") != null //27-06-2020    //29-05-2020
                 || node.SelectSingleNode(".//div[@class='rc']") != null // 03-09-2020 missing classic links selector included
                 || node.SelectSingleNode(".//div[@class='DOqJne']/g-link/a") != null //twitter classic link selector
-                || node.SelectSingleNode(".//div[contains(@class,'tF2Cxc')]/div/a") != null); //07-01-2021 missing classic link //18-02-2021 included contains fucntions
+                || node.SelectSingleNode(".//div[contains(@class,'tF2Cxc')]/div/a") != null //07-01-2021 missing classic link //18-02-2021 included contains fucntions
+                || node.SelectSingleNode(".//div[@class='yuRUbf']") != null); //31-05-2021
         }
 
         //07-11-2019

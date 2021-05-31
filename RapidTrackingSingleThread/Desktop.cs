@@ -567,10 +567,10 @@ namespace RapidTrackingSingleThread
                                     n = nd.SelectSingleNode(".//h3[@class='r dO0Ag']/a");  //29-05-2020
                                 if (n == null)
                                     n = nd.SelectSingleNode(".//div[@class='yuRUbf']/a"); //03-09-2020  included selector for classic links                         
-                                if (n != null)
-                                    title = n.SelectSingleNode(".//h3"); //03-09-2020 included selector for classic links
                                 if (n == null)
                                     n = nd.SelectSingleNode(".//a");//31-05-2021
+                                if (n != null)
+                                    title = n.SelectSingleNode(".//h3"); //03-09-2020 included selector for classic links
                                 var urls = n.Attributes["href"].Value;
                                 string t;
                                 if (title != null)

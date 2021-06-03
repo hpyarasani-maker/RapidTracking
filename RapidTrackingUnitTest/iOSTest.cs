@@ -206,5 +206,26 @@ namespace RapidTrackingUnitTest
             var result = iOS.GetTopStuff(doc);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
         }
+
+        [TestMethod]
+        public void TestiOSBottomStuffAdwordsExisted()
+        {
+            var iOS = new iOS();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\bsadwords.txt";
+            doc.Load(path);
+            var result = iOS.GetBottomStuff(doc);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+        [TestMethod]
+        public void TestiOSBottomStuffProductListedAdsExisted()
+        {
+            var iOS = new iOS();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\bsplads1.txt";
+            doc.Load(path);
+            var result = iOS.GetBottomStuff(doc);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
     }
 }

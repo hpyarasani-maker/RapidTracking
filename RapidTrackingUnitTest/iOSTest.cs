@@ -12,6 +12,8 @@ namespace RapidTrackingUnitTest
     [TestClass]
     public class iOSTest
     {
+        readonly static string seid = "106";
+        readonly static string keyword = "movies";
         [TestMethod]
         public void TestiOSAnswerCardBlockExisted()
         {
@@ -233,5 +235,14 @@ namespace RapidTrackingUnitTest
             var result = ios.GetImageURLs();
             Assert.IsTrue(!string.IsNullOrEmpty(result) && result.Length > 0);
         }
-    }
+        [TestMethod]
+        public void TestiOSProcessClassicLinksExisted()
+        {
+            var html = @"C:\inetpub\wwwroot\test\htmlsrc.html";
+            var doc = new HtmlDocument();
+            doc.Load(html);
+            var ios = new iOS();
+            var result = ios.ProcessClassicLinks(seid, keyword, doc);
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("<item url=\""));
+        }
 }

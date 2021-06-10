@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Text;
 using RapidTrackingLibrary;
 using HtmlAgilityPack;
+using System.IO;
+using System.Collections;
 
 namespace RapidTrackingUnitTest
 {
@@ -205,6 +207,31 @@ namespace RapidTrackingUnitTest
             doc.Load(path);
             var result = iOS.GetTopStuff(doc);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+        
+        [TestMethod]
+        public void TestiOSCarouselURLsExisted()
+        {
+            var html = @"C:\inetpub\wwwroot\test\htmlsrc.html";
+            var ios = new iOS();
+            using (StreamReader sr = new StreamReader(html))
+            {
+                ios.html = sr.ReadToEnd();
+            }
+            var result = ios.GetCarouselURLs(new ArrayList());
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.Length > 0);
+        }
+        [TestMethod]
+        public void TestiOSImageURLsExisted()
+        {
+            var html = @"C:\inetpub\wwwroot\test\htmlsrc.html";
+            var ios = new iOS();
+            using (StreamReader sr = new StreamReader(html))
+            {
+                ios.html = sr.ReadToEnd();
+            }
+            var result = ios.GetImageURLs();
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.Length > 0);
         }
     }
 }

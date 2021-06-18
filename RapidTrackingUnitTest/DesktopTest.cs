@@ -74,5 +74,25 @@ namespace RapidTrackingUnitTest
             var result = desktop.GetAnswerCard(node);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
         }
+        [TestMethod]
+        public void TestDesktopTopStuffProductListAdsExisted()
+        {
+            var desktop = new Desktop();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\desktop\tsproductlistedads.txt";
+            doc.Load(path);
+            var result = desktop.GetTopStuff(doc);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+        [TestMethod]
+        public void TestDesktopTopStuffAdwordsExisted()
+        {
+            var desktop = new Desktop();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\desktop\textads.txt";
+            doc.Load(path);
+            var result = desktop.GetTopStuff(doc);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
     }
 }

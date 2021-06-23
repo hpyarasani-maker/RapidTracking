@@ -210,7 +210,7 @@ namespace RapidTrackingUnitTest
             var result = iOS.GetTopStuff(doc);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
         }
-        
+
         [TestMethod]
         public void TestiOSCarouselURLsExisted()
         {
@@ -245,4 +245,5 @@ namespace RapidTrackingUnitTest
             var result = ios.ProcessClassicLinks(seid, keyword, doc);
             Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("<item url=\""));
         }
+    }
 }

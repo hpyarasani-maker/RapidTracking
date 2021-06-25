@@ -176,7 +176,7 @@ namespace RapidTrackingUnitTest
         }
         //01-05-2021
         //Element test methods
-        [TestMethod]
+        /*[TestMethod]
         public void TestDektopAnswerCardBlockExisted()
         {
             var node = SupportMethods.GetDesktopBlock("AnswerCard");//It is correct
@@ -347,7 +347,7 @@ namespace RapidTrackingUnitTest
             doc.LoadHtml(html);
             result = desktop.ProcessClassicLinks(seid, keyword, doc);
             Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("<item url=\""));
-        }
+        }*/
         //28-04-2021
 
         //Exception //09-05-2021

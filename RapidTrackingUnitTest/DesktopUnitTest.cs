@@ -420,5 +420,63 @@ namespace RapidTrackingUnitTest
             Assert.AreEqual(string.IsNullOrEmpty(s),null);
         }
         //09-05-2021 ends
+        //26-06-2021
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void Test_Images_Exception()
+        {
+            var node = SupportMethods.GetDesktopBlock("images");
+            s = desktop.GetImages(node);
+            Assert.AreEqual(string.IsNullOrEmpty(s), null);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void Test_TwitterCards_Exception()
+        {
+            var node = SupportMethods.GetDesktopBlock("Twitters");
+            s = desktop.GetTwitterCards(node);
+            Assert.AreEqual(string.IsNullOrEmpty(s), null);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void Test_Videos_Exception()
+        {
+            var node = SupportMethods.GetDesktopBlock("videos");
+            s = desktop.GetVideos(node);
+            Assert.AreEqual(string.IsNullOrEmpty(s), null);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void Test_Maps_Exception()
+        {
+            var node = SupportMethods.GetDesktopBlock("maps");
+            s = desktop.ProcessBlock(node);
+            Assert.AreEqual(string.IsNullOrEmpty(s), null);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void Test_Finance_Exception()
+        {
+            var node = SupportMethods.GetDesktopBlock("finance");
+            s = desktop.ProcessBlock(node);
+            Assert.AreEqual(string.IsNullOrEmpty(s), null);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void Test_Event_Exception()
+        {
+            var node = SupportMethods.GetDesktopBlock("event");
+            s = desktop.ProcessBlock(node);
+            Assert.AreEqual(string.IsNullOrEmpty(s), null);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void Test_Knowledgepanel_Exception()
+        {
+            var node = SupportMethods.GetDesktopBlock("knowledgepanel");
+            s = desktop.ProcessBlock(node);
+            Assert.AreEqual(string.IsNullOrEmpty(s), null);
+        }
+        //end 26-06-2021
     }
 }

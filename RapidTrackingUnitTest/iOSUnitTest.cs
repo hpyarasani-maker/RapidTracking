@@ -406,5 +406,87 @@ namespace RapidTrackingUnitTest
             Assert.AreEqual(ios, s);
         }
         //09-05-2021 ends
+        //28-06-2021
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void Test_videos_HtmlNode_Exception()
+        {
+            var node = SupportMethods.GetiOSBlock("videos");
+            s = ios.GetVideos(node);
+            Assert.AreEqual(string.IsNullOrEmpty(s), null);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void Test_Images_HtmlNode_Exception()
+        {
+            var node = SupportMethods.GetiOSBlock("images");
+            s = ios.GetImages(node);
+            Assert.AreEqual(string.IsNullOrEmpty(s), null);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void Test_PeopleAlsoAsk_HtmlNode_Exception()
+        {
+            var node = SupportMethods.GetiOSBlock("PeopleAlsoAsk");
+            s = ios.ProcessBlock(node);
+            Assert.AreEqual(string.IsNullOrEmpty(s), null);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void Test_VideoCard_HtmlNode_Exception()
+        {
+            var node = SupportMethods.GetiOSBlock("VideoCard");
+            s = ios.GetVideoCard(node);
+            Assert.AreEqual(string.IsNullOrEmpty(s), null);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void Test_TwitterCards_HtmlNode_Exception()
+        {
+            var node = SupportMethods.GetiOSBlock("Twitter");
+            s = ios.GetTwitterCards(node);
+            Assert.AreEqual(string.IsNullOrEmpty(s), null);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void Test_maps_HtmlNode_Exception()
+        {
+            var node = SupportMethods.GetiOSBlock("maps");
+            s = ios.ProcessBlock(node);
+            Assert.AreEqual(string.IsNullOrEmpty(s), null);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void Test_Finance_HtmlNode_Exception()
+        {
+            var node = SupportMethods.GetiOSBlock("finance");
+            s = ios.ProcessBlock(node);
+            Assert.AreEqual(string.IsNullOrEmpty(s), null);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void Test_EventResults_HtmlNode_Exception()
+        {
+            var node = SupportMethods.GetiOSBlock("event");
+            s = ios.ProcessBlock(node);
+            Assert.AreEqual(string.IsNullOrEmpty(s), null);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void Test_knowledgepanel_HtmlNode_Exception()
+        {
+            var node = SupportMethods.GetiOSBlock("knowledgepanel");
+            s = ios.ProcessBlock(node);
+            Assert.AreEqual(string.IsNullOrEmpty(s), null);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void Test_Appps_HtmlNode_Exception()
+        {
+            var node = SupportMethods.GetiOSBlock("apps");
+            s = ios.ProcessBlock(node);
+            Assert.AreEqual(string.IsNullOrEmpty(s), null);
+        }
+        //end 28-06-2021
     }
 }

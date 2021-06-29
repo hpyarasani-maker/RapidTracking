@@ -2004,8 +2004,9 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[@class='w8TE8']");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@id='tsuid196']");
-            if (nd != null)
-                return "Videos";
+             if (nd != null)
+                if (!node.InnerText.Contains("Popular products")) //29-06-2021 avoiding wrong block
+                    return "Videos";
 
             nd = node.SelectSingleNode(".//div[@class='TvV1fe']|.//div[@class='pXvdUe']"); //14-12-2020 videos
             if (nd == null)

@@ -245,5 +245,16 @@ namespace RapidTrackingUnitTest
             var result = ios.ProcessClassicLinks(seid, keyword, doc);
             Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("<item url=\""));
         }
+        [TestMethod]
+        public void TestiOSVideoCardBlockExisted()
+        {
+            var iOS = new iOS();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\videocard.txt";
+            doc.Load(path);
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var result = iOS.GetVideoCard(node);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
     }
 }

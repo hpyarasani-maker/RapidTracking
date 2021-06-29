@@ -137,5 +137,37 @@ namespace RapidTrackingUnitTest
             var result = desktop.GetTopStuff(doc);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
         }
+        [TestMethod]
+        public void TestDesktopJobsBlockExisted()
+        {
+            var desktop = new Desktop();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\desktop\jobs.txt";
+            doc.Load(path);
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var result = desktop.GetJobs(node);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+        [TestMethod]
+        public void TestDesktopRightStuffProductListAdsExisted()
+        {
+            var desktop = new Desktop();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\desktop\rightproductslistedads.txt";
+            doc.Load(path);
+            var result = desktop.GetRightStuff(doc);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+        [TestMethod]
+        public void TestDesktopVideoCardBlockExisted()
+        {
+            var desktop = new Desktop();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\desktop\videocard.txt";
+            doc.Load(path);
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var result = desktop.GetVideoCard(node);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
     }
 }

@@ -1258,16 +1258,17 @@ namespace RapidTrackingLibrary
                         }
                     }
                 }
+            }
+            catch { }//30-06-2021
 
-                //25-06-2020
-                foreach (string itm in al)
+            //25-06-2020
+            foreach (string itm in al)
                 {
                     if (s.ToString().Contains(itm) || string.IsNullOrEmpty(itm)) continue;
                     s.Append(itm);
                 }
                 //end 25-06-2020
-            }
-            catch { }//30-06-2021
+           
 
             return s.ToString();
         }

@@ -1189,30 +1189,34 @@ namespace RapidTrackingSingleThread
         {
             StringBuilder s = new StringBuilder();
             string matchPattern = "\\Wn,\\Wx222003\\Wx22:\\Wnull\\W\\Wx22(.*?)\\Wx22,\\Wx22(.*?)\\Wx22\\W\\Wx22(.*?)\\Wx22\\Wnull";
-            Regex re = new Regex(matchPattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
-            MatchCollection mc = re.Matches(html);
-            ArrayList alDup = new ArrayList();
-
-            foreach (Match m in mc)
+            try //30-06-2021
             {
-                string url = HttpUtility.HtmlDecode(m.Groups[2].Value);
-                string text = HttpUtility.HtmlDecode(m.Groups[3].Value);
+                Regex re = new Regex(matchPattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                MatchCollection mc = re.Matches(html);
+                ArrayList alDup = new ArrayList();
 
-                if (!url.Contains("youtube"))
+                foreach (Match m in mc)
                 {
-                    if (!url.Contains("google.com"))
+                    string url = HttpUtility.HtmlDecode(m.Groups[2].Value);
+                    string text = HttpUtility.HtmlDecode(m.Groups[3].Value);
+
+                    if (!url.Contains("youtube"))
                     {
-                        if (url.StartsWith("http") || url.StartsWith("https"))
+                        if (!url.Contains("google.com"))
                         {
-                            int n = url.IndexOf("?");
-                            if (n > 0)
-                                url = url.Remove(n);
-                            al.Add("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(text) + "\" />"); //25-06-2020
-                            //s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(text) + "\" />"); //25-06-2020
+                            if (url.StartsWith("http") || url.StartsWith("https"))
+                            {
+                                int n = url.IndexOf("?");
+                                if (n > 0)
+                                    url = url.Remove(n);
+                                al.Add("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(text) + "\" />"); //25-06-2020
+                                                                                                                 //s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(text) + "\" />"); //25-06-2020
+                            }
                         }
                     }
                 }
             }
+            catch { }//30-06-2021
 
             //25-06-2020
             foreach (string itm in al)

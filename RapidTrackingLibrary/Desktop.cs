@@ -42,6 +42,8 @@ namespace RapidTrackingLibrary
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");//09-12-2020
                 if (nodeCol == null)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-section-with-header");//03-12-2020  //01-05-2020         
+                if (nodeCol == null || nodeCol.Count == 1)
+                    nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'WvKfwe')]/div") ?? nodeCol; //02-06-2021 classic links
                 if (nodeCol == null || nodeCol.Count <= 1)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div|//div[@class='hlcw0c']/div") ?? nodeCol; //04-12-2020 //09-12-2020 no result issue
 
@@ -1365,8 +1367,8 @@ namespace RapidTrackingLibrary
                 try
                 {
                     //02-12-2020
-                    HtmlNode nd = node.SelectSingleNode(".//div[@role='heading']");
-                    if (nd != null && (nd.InnerText == "More results" || nd.InnerText == "Top results")) //03-12-2020
+                    HtmlNode nd = node.SelectSingleNode(".//div[@role='heading']|.//div[@class='UDZeY OTFaAf']"); //02-06-2021
+                    if (nd != null && (nd.InnerText == "More results" || nd.InnerText == "Top results" || nd.InnerText.Contains("Web results"))) //02-06-2021 //03-12-2020
                         return false;
                     //end 02-12-2020
 

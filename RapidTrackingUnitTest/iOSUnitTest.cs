@@ -420,8 +420,9 @@ namespace RapidTrackingUnitTest
         public void Test_Images_HtmlNode_Exception()
         {
             var node = SupportMethods.GetiOSBlock("images");
+            ios.html = (string)null;
             s = ios.GetImages(node);
-            Assert.AreEqual(string.IsNullOrEmpty(s), null);
+            Assert.AreNotEqual(ios, s);
         }
         [TestMethod]
         [ExpectedException(typeof(NullReferenceException))]

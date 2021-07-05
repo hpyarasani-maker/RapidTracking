@@ -1021,7 +1021,7 @@ namespace Oxylabs_BulkKeywords
                     s.Append("</block>");
                     break;
                 case "productlistedads"://start 13-08-2019
-                    s.Append("<block type=\"ProductListedAds\" url=\"\">");
+                    s.Append("<block type=\"productListedAds\" url=\"\">");
                     s.Append(ProductListedAds(node));
                     s.Append("</block>");
                     break;//end 13-08-2019

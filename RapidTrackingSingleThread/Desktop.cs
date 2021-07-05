@@ -920,8 +920,8 @@ namespace RapidTrackingSingleThread
         private string GetImageURLs()
         {
             StringBuilder s = new StringBuilder();
-
-            string matchPattern1 = @"]n,\[x22(.*?)x22";
+            string matchPattern1 = @"\\x22,\W\\x22(.*?)\\\\u0026s\\x22,"; //05-06-2021
+            //string matchPattern1 = @"]n,\[x22(.*?)x22"; //05-06-2021
             string matchPattern2 = @"]\n,\[x22(.*?)\?";
             string matchPattern3 = "\"ou\":\"(.*?)\",";
             string matchPattern5 = "px\\W><img data-src=\\W(.*?)(&amp;s)?\"\\s"; //06-11-2020 //24-06-2020

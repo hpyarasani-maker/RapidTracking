@@ -169,5 +169,26 @@ namespace RapidTrackingUnitTest
             var result = desktop.GetVideoCard(node);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
         }
+        [TestMethod]
+        public void TestDesktopProcessClassicLinksExisted()
+        {
+            var html = @"C:\inetpub\wwwroot\test\desktop\htmlsrc.html";
+            var desktop = new Desktop();
+            var doc = new HtmlDocument();
+            doc.Load(html);
+            var result = desktop.ProcessClassicLinks("58", "test", doc);
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("<item url=\""));
+        }
+        [TestMethod]
+        public void TestDesktopImageURLsExisted()
+        {
+            var html = @"C:\inetpub\wwwroot\test\desktop\htmlsrc.html";
+            var desktop = new Desktop();
+            var doc = new HtmlDocument();
+            doc.Load(html);
+            desktop.html = doc.DocumentNode.OuterHtml;
+            var result = desktop.GetImageURLs();
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("<item url=\""));
+        }
     }
 }

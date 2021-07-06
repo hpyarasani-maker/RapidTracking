@@ -962,8 +962,8 @@ namespace RapidTrackingLibrary
         public string GetImageURLs()
         {
             StringBuilder s = new StringBuilder();
-            string matchPattern1 = @"\\x22,\W\\x22(.*?)\\\\u0026s\\x22,"; //05-06-2021
-            //string matchPattern1 = @"]n,\[x22(.*?)x22"; //05-06-2021
+            string matchPattern1 = @"\\x22,\W\\x22(.*?)\\\\u0026s\\x22,"; //05-07-2021
+            //string matchPattern1 = @"]n,\[x22(.*?)x22"; //05-07-2021
             string matchPattern2 = @"]\n,\[x22(.*?)\?";
             string matchPattern3 = "\"ou\":\"(.*?)\",";
             string matchPattern5 = "px\\W><img data-src=\\W(.*?)(&amp;s)?\"\\s"; //06-11-2020 //24-06-2020
@@ -1145,16 +1145,17 @@ namespace RapidTrackingLibrary
         public string GetCarouselURLs()
         {
             StringBuilder s = new StringBuilder();
-            string matchPattern = "\\Wn,\\Wx222003\\Wx22:\\Wnull\\W\\Wx22(.*?)\\Wx22,\\Wx22(.*?)\\Wx22\\W\\Wx22(.*?)\\Wx22\\Wnull";
+            //string matchPattern = "\\Wn,\\Wx222003\\Wx22:\\Wnull\\W\\Wx22(.*?)\\Wx22,\\Wx22(.*?)\\Wx22\\W\\Wx22(.*?)\\Wx22\\Wnull";//06-07-2021
+            string matchPattern = @"\\x222003\\x22:\W\W\\x2226\\x22:\Wnull,2\W\\n\W\W\\n\W\W\\n','(.*?)','\Wnull,\\x22(.*?)\\x22,\W\\x22(.*?)\\\\u0026s\\x22,"; //06-07-2021
             Regex re = new Regex(matchPattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
             MatchCollection mc = re.Matches(html);
             ArrayList alDup = new ArrayList();
 
             foreach (Match m in mc)
             {
-                string url = HttpUtility.HtmlDecode(m.Groups[2].Value);
-                string text = HttpUtility.HtmlDecode(m.Groups[3].Value);
-
+                string url = HttpUtility.HtmlDecode(m.Groups[3].Value);
+                //string text = HttpUtility.HtmlDecode(m.Groups[2].Value); //06-07-2021
+                string text = string.Empty;
                 if (!url.Contains("youtube"))
                 {
                     if (url.StartsWith("http") || url.StartsWith("https"))
@@ -1367,8 +1368,8 @@ namespace RapidTrackingLibrary
                 try
                 {
                     //02-12-2020
-                    HtmlNode nd = node.SelectSingleNode(".//div[@role='heading']|.//div[@class='UDZeY OTFaAf']"); //02-06-2021
-                    if (nd != null && (nd.InnerText == "More results" || nd.InnerText == "Top results" || nd.InnerText.Contains("Web results"))) //02-06-2021 //03-12-2020
+                    HtmlNode nd = node.SelectSingleNode(".//div[@role='heading']|.//div[@class='UDZeY OTFaAf']"); //02-07-2021
+                    if (nd != null && (nd.InnerText == "More results" || nd.InnerText == "Top results" || nd.InnerText.Contains("Web results"))) //02-07-2021 //03-12-2020
                         return false;
                     //end 02-12-2020
 

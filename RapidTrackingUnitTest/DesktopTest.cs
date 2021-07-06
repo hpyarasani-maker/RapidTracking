@@ -190,5 +190,16 @@ namespace RapidTrackingUnitTest
             var result = desktop.GetImageURLs();
             Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("<item url=\""));
         }
+        [TestMethod]
+        public void TestDesktopCarouselURLsExisted()
+        {
+            var html = @"C:\inetpub\wwwroot\test\desktop\htmlsrc.html";
+            var desktop = new Desktop();
+            var doc = new HtmlDocument();
+            doc.Load(html);
+            desktop.html = doc.DocumentNode.OuterHtml;
+            var result = desktop.GetCarouselURLs();
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("<item url=\""));
+        }
     }
 }

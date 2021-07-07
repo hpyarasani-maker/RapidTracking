@@ -1555,8 +1555,8 @@ namespace RapidTrackingJobIDResults
         private string GetImageURLs()
         {
             StringBuilder s = new StringBuilder();
-
-            string matchPattern1 = @"]n,\[x22(.*?)x22";
+            //string matchPattern1 = @"]n,\[x22(.*?)x22"; //07-07-2021
+            string matchPattern1 = @"\\x22,\W\\x22(.*?)\\\\u0026s\\x22,";//07-07-2021
             string matchPattern2 = @"]\n,\[x22(.*?)\?";
             string matchPattern3 = "\"ou\":\"(.*?)\",";
             //string matchPattern4 = "\\W\\W\\Wx22http[s]*://(.*?)\\Wx22";   // 17-02-2020 included pattern

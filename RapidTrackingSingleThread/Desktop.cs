@@ -768,7 +768,6 @@ namespace RapidTrackingSingleThread
                             n = nd.SelectSingleNode(".//div[@class='CwxNSe']/div"); // 02-06-2020
                         if (n == null)
                             n = nd.SelectSingleNode(".//div[@class='s4sxYc oz3cqf p5AXld']");//07-07-2021
-
                         try
                         {
                             title = n.InnerText;

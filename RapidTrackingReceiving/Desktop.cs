@@ -749,6 +749,8 @@ namespace Oxylabs_BulkKeywords
             HtmlNodeCollection nds = node.SelectNodes(".//g-inner-card/div/a");
             if (nds == null)
                 nds = node.SelectNodes(".//div[@jsname='ibnC6b']/div/a");   //17-07-2020
+            if (nds == null)
+                nds = node.SelectNodes(".//div[@class='LYyupc']/div/a"); //07-07-2021
             if (nds != null)
                 foreach (HtmlNode nd in nds)
                 {
@@ -762,7 +764,8 @@ namespace Oxylabs_BulkKeywords
                             n = nd.SelectSingleNode(".//div[@class='wCIBKb']/div");
                         if (n == null)
                             n = nd.SelectSingleNode(".//div[@class='CwxNSe']/div"); // 02-06-2020
-
+                        if (n == null)
+                            n = nd.SelectSingleNode(".//div[@class='s4sxYc oz3cqf p5AXld']");//07-07-2021
                         try
                         {
                             title = n.InnerText;

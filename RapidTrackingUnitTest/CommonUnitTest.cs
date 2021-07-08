@@ -10,7 +10,7 @@ namespace RapidTrackingUnitTest
         public void TestReadConnection()
         {
             string s = Common.ReadConnection();
-            Assert.AreEqual<string>("Data Source=82.136.42.2;User ID=sa;Password = brisbane007;initial catalog = TrackingTrending;", s);
+            Assert.AreEqual<string>("Data Source=10.2.0.4;User ID=sa;Password = Pi*Soft1234;initial catalog = TrackingTrending;", s);
         }
 
         [TestMethod]

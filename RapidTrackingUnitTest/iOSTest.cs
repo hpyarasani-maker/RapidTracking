@@ -4,12 +4,16 @@ using System.Collections.Generic;
 using System.Text;
 using RapidTrackingLibrary;
 using HtmlAgilityPack;
+using System.IO;
+using System.Collections;
 
 namespace RapidTrackingUnitTest
 {
     [TestClass]
     public class iOSTest
     {
+        readonly static string seid = "106";
+        readonly static string keyword = "movies";
         [TestMethod]
         public void TestiOSAnswerCardBlockExisted()
         {
@@ -208,23 +212,48 @@ namespace RapidTrackingUnitTest
         }
 
         [TestMethod]
-        public void TestiOSBottomStuffAdwordsExisted()
+        public void TestiOSCarouselURLsExisted()
         {
-            var iOS = new iOS();
-            HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\bsadwords.txt";
-            doc.Load(path);
-            var result = iOS.GetBottomStuff(doc);
-            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+            var html = @"C:\inetpub\wwwroot\test\htmlsrc.html";
+            var ios = new iOS();
+            using (StreamReader sr = new StreamReader(html))
+            {
+                ios.html = sr.ReadToEnd();
+            }
+            var result = ios.GetCarouselURLs(new ArrayList());
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.Length > 0);
         }
         [TestMethod]
-        public void TestiOSBottomStuffProductListedAdsExisted()
+        public void TestiOSImageURLsExisted()
+        {
+            var html = @"C:\inetpub\wwwroot\test\htmlsrc.html";
+            var ios = new iOS();
+            using (StreamReader sr = new StreamReader(html))
+            {
+                ios.html = sr.ReadToEnd();
+            }
+            var result = ios.GetImageURLs();
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.Length > 0);
+        }
+        [TestMethod]
+        public void TestiOSProcessClassicLinksExisted()
+        {
+            var html = @"C:\inetpub\wwwroot\test\htmlsrc.html";
+            var doc = new HtmlDocument();
+            doc.Load(html);
+            var ios = new iOS();
+            var result = ios.ProcessClassicLinks(seid, keyword, doc);
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("<item url=\""));
+        }
+        [TestMethod]
+        public void TestiOSVideoCardBlockExisted()
         {
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\bsplads1.txt";
+            string path = @"C:\inetpub\wwwroot\test\videocard.txt";
             doc.Load(path);
-            var result = iOS.GetBottomStuff(doc);
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var result = iOS.GetVideoCard(node);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
         }
     }

@@ -1031,7 +1031,7 @@ namespace TrendingMobileSingleThread
                     s.Append("</block>");
                     break;
                 case "productlistedads"://start 13-08-2019
-                    s.Append("<block type=\"ProductListedAds\" url=\"\">");
+                    s.Append("<block type=\"productListedAds\" url=\"\">");
                     s.Append(ProductListedAds(node));
                     s.Append("</block>");
                     break;//end 13-08-2019
@@ -1188,30 +1188,34 @@ namespace TrendingMobileSingleThread
         {
             StringBuilder s = new StringBuilder();
             string matchPattern = "\\Wn,\\Wx222003\\Wx22:\\Wnull\\W\\Wx22(.*?)\\Wx22,\\Wx22(.*?)\\Wx22\\W\\Wx22(.*?)\\Wx22\\Wnull";
-            Regex re = new Regex(matchPattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
-            MatchCollection mc = re.Matches(html);
-            ArrayList alDup = new ArrayList();
-
-            foreach (Match m in mc)
+            try //30-06-2021
             {
-                string url = HttpUtility.HtmlDecode(m.Groups[2].Value);
-                string text = HttpUtility.HtmlDecode(m.Groups[3].Value);
+                Regex re = new Regex(matchPattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                MatchCollection mc = re.Matches(html);
+                ArrayList alDup = new ArrayList();
 
-                if (!url.Contains("youtube"))
+                foreach (Match m in mc)
                 {
-                    if (!url.Contains("google.com"))
+                    string url = HttpUtility.HtmlDecode(m.Groups[2].Value);
+                    string text = HttpUtility.HtmlDecode(m.Groups[3].Value);
+
+                    if (!url.Contains("youtube"))
                     {
-                        if (url.StartsWith("http") || url.StartsWith("https"))
+                        if (!url.Contains("google.com"))
                         {
-                            int n = url.IndexOf("?");
-                            if (n > 0)
-                                url = url.Remove(n);
-                            al.Add("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(text) + "\" />"); //25-06-2020
-                            //s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(text) + "\" />"); //25-06-2020
+                            if (url.StartsWith("http") || url.StartsWith("https"))
+                            {
+                                int n = url.IndexOf("?");
+                                if (n > 0)
+                                    url = url.Remove(n);
+                                al.Add("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(text) + "\" />"); //25-06-2020
+                                                                                                                 //s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(text) + "\" />"); //25-06-2020
+                            }
                         }
                     }
                 }
             }
+            catch { }//30-06-2021
 
             //25-06-2020
             foreach (string itm in al)
@@ -1554,14 +1558,15 @@ namespace TrendingMobileSingleThread
         private string GetImageURLs()
         {
             StringBuilder s = new StringBuilder();
-
             string matchPattern1 = @"]n,\[x22(.*?)x22";
+            string matchPattern6 = @"\\x22,\W\\x22(.*?)\\\\u0026s\\x22,";//07-07-2021
             string matchPattern2 = @"]\n,\[x22(.*?)\?";
             string matchPattern3 = "\"ou\":\"(.*?)\",";
             //string matchPattern4 = "\\W\\W\\Wx22http[s]*://(.*?)\\Wx22";   // 17-02-2020 included pattern
             string matchPattern4 = @"\[0,\\x22[\w-\d]*:\\x22,\[\\x22(.*?)\\x22,"; //18-02-2020 replaced pattern for above 17-02-2020
             //string matchPattern5 = "<img data-src=\\W(.*?)(&amp;s)?\"\\s"; //06-11-2020 //24-06-2020
-            string matchPattern5 = "\\d{3}px\\W><img data-src=\\W(.*?)(&amp;s)?\"\\s"; //13-11-2020 //06-11-2020 //24-06-2020
+            //string matchPattern5 = "\\d{3}px\\W><img data-src=\\W(.*?)(&amp;s)?\"\\s"; //13-11-2020 //06-11-2020 //24-06-2020 //02-06-20221
+            string matchPattern5 = "\\d{2,3}[px|\\W]?\\W><img data-src=\\W(.*?)(&amp;s)?\"\\s"; //02-06-2021 new pattern
             Regex re = new Regex(matchPattern1, RegexOptions.IgnoreCase | RegexOptions.Singleline);
             MatchCollection mc = re.Matches(html);
             ArrayList alDup = new ArrayList();
@@ -1635,7 +1640,18 @@ namespace TrendingMobileSingleThread
                 }
             }
             //end 24-06-2020
-
+            //07-07-2021
+            re = new Regex(matchPattern6, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+            mc = re.Matches(html);
+            foreach (Match m in mc)
+            {
+                string HtmlText = HttpUtility.HtmlDecode(m.Groups[1].Value);
+                if (HtmlText.StartsWith("http") || HtmlText.StartsWith("https"))
+                {
+                    alDup.Add(HtmlText);
+                }
+            }
+            //end 07-07-2021
             foreach (string s1 in alDup)
             {
                 if (myList.Contains(s1) || string.IsNullOrEmpty(s1)) continue;
@@ -2004,7 +2020,8 @@ namespace TrendingMobileSingleThread
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@id='tsuid196']");
             if (nd != null)
-                return "Videos";
+                if (!node.InnerText.Contains("Popular products")) //29-06-2021 avoiding wrong block
+                    return "Videos";
 
             nd = node.SelectSingleNode(".//div[@class='TvV1fe']|.//div[@class='pXvdUe']"); //14-12-2020 videos
             if (nd == null)

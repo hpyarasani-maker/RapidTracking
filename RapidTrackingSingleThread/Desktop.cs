@@ -925,8 +925,8 @@ namespace RapidTrackingSingleThread
         private string GetImageURLs()
         {
             StringBuilder s = new StringBuilder();
-            string matchPattern1 = @"\\x22,\W\\x22(.*?)\\\\u0026s\\x22,"; //05-07-2021
-            //string matchPattern1 = @"]n,\[x22(.*?)x22"; //05-07-2021
+            string matchPattern6 = @"\\x22,\W\\x22(.*?)\\\\u0026s\\x22,"; //05-07-2021
+            string matchPattern1 = @"]n,\[x22(.*?)x22"; //05-07-2021
             string matchPattern2 = @"]\n,\[x22(.*?)\?";
             string matchPattern3 = "\"ou\":\"(.*?)\",";
             string matchPattern5 = "px\\W><img data-src=\\W(.*?)(&amp;s)?\"\\s"; //06-11-2020 //24-06-2020
@@ -990,6 +990,18 @@ namespace RapidTrackingSingleThread
                 }
             }
             //end 06-11-2020
+            //05-07-2021
+            re = new Regex(matchPattern6, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+            mc = re.Matches(html);
+            foreach (Match m in mc)
+            {
+                string HtmlText = HttpUtility.HtmlDecode(m.Groups[1].Value);
+                if (HtmlText.StartsWith("http") || HtmlText.StartsWith("https"))
+                {
+                    alDup.Add(HtmlText);
+                }
+            }
+            //end 05-07-2021
             foreach (string s1 in alDup)
             {
                 if (myList.Contains(s1) || string.IsNullOrEmpty(s1)) continue;

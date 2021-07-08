@@ -1180,7 +1180,8 @@ namespace RapidTrackingSingleThread
             }
 
 
-            nd = node.SelectSingleNode(".//div[@class='kp-blk cUnQKe']|.//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']|.//div[@jsname='N760b']");//08-07-2021//04-12-2020 //11-02-2020
+            //nd = node.SelectSingleNode(".//div[@class='kp-blk cUnQKe']|.//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']|.//div[@jsname='N760b']");//08-07-2021//04-12-2020 //11-02-2020
+            nd = node.SelectSingleNode(".//div[contains(@class,'cUnQKe')]");//08-07-2021
             if (nd != null)
             {
                 return "PeopleAlsoAsk"; //11-02-2020
@@ -1308,12 +1309,13 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@class='HaXvv kfn9hb']") != null//07-02-2020
                 || (node.SelectSingleNode(".//div[@class='ifM9O']") != null && node.SelectSingleNode(".//div[@class='Wnoohf OJXvsb']") == null)   // answer card  
                 || node.SelectSingleNode(".//div[@id='cwmcwd']") != null  // answer card 
-                                                                          //|| node.SelectSingleNode(".//div[@class='vk_c card-section']") != null // answer card    
+                //|| node.SelectSingleNode(".//div[@class='vk_c card-section']") != null // answer card    
                 || node.SelectSingleNode(".//div[@class='d7sCQ kp-header']") != null  //03-06-2020                                                      
-                                                                                      //|| node.SelectSingleNode(".//div[@class='vk_c card-section']") != null // answer card                
+               //|| node.SelectSingleNode(".//div[@class='vk_c card-section']") != null // answer card                
                 || node.SelectSingleNode(".//div[@class='pcCUmf vCOSGb']") != null  //03-06-2020
-                || node.SelectSingleNode(".//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']") != null  // people also ask // 11-02-2020
-                                                                                                  //|| node.SelectSingleNode(".//span[@data-original-name='People also ask']") != null  // people also ask
+                //|| node.SelectSingleNode(".//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']") != null  // people also ask // 11-02-2020
+                || node.SelectSingleNode(".//div[contains(@class,'cUnQKe')]") != null //08-07-2021
+                //|| node.SelectSingleNode(".//span[@data-original-name='People also ask']") != null  // people also ask
                 || node.SelectSingleNode(".//h3[@class='_DM']") != null || node.SelectSingleNode(".//div[@id='imagebox_bigimages']") != null || node.SelectSingleNode(".//div[@class='mR2gOd']") != null //27-06-2020   // images
                 || node.SelectSingleNode(".//div[@class='e2BEnf']/h3") != null // videos
                 || node.SelectSingleNode(".//div[@class='e2BEnf U7izfe']/h3") != null  // videos
@@ -1324,9 +1326,7 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//h3[@class='GmE3X']") != null //16-10-2020 updated selector for videos
                 || node.SelectSingleNode(".//div[@class='twQ0Be']") != null //03-12-2020 updated selector for videocard
                 || node.SelectSingleNode(".//div[@class='vwfsqc']") != null //07-12-2020
-                || node.SelectSingleNode(".//div[@class='setTDc']") != null //07-12-2020
-                || node.SelectSingleNode(".//div[@class='Wt5Tfe']") != null); //08-07-2021
-
+                || node.SelectSingleNode(".//div[@class='setTDc']") != null); //07-12-2020
             if (bVal == true)//2019-09-11
             {
                 try

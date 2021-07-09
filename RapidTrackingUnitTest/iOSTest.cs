@@ -256,5 +256,38 @@ namespace RapidTrackingUnitTest
             var result = iOS.GetVideoCard(node);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
         }
+        [TestMethod]
+        public void TestiOSIsBlockExisted()
+        {
+            var iOS = new iOS();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\twittercard.txt";
+            doc.Load(path);
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var result = iOS.IsBlock(node);
+            Assert.AreEqual(result, true);
+        }
+        [TestMethod]
+        public void TestiOSIsBlockNotExisted()
+        {
+            var iOS = new iOS();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\classiclink.txt";
+            doc.Load(path);
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var result = iOS.IsBlock(node);
+            Assert.AreEqual(result, false);
+        }
+        [TestMethod]
+        public void TestiOSIsOrganicBlockExisted()
+        {
+            var iOS = new iOS();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\classiclink.txt";
+            doc.Load(path);
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var result = iOS.IsOrganic(node);
+            Assert.AreEqual(result, true);
+        }
     }
 }

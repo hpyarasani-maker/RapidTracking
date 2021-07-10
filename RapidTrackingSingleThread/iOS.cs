@@ -241,7 +241,10 @@ namespace RapidTrackingSingleThread
                     if (h3 != null)
                     {
                         if ((h3.SelectSingleNode(".//h3[contains(@class, 'r')]") != null && h3.SelectSingleNode(".//h3[@role='heading']") != null) ||   //12-09-2019 21-05-2020 included productlist ads
-                         (h3.InnerText.StartsWith("Shop for") || h3.InnerText.StartsWith("See ") || h3.InnerText.StartsWith("Ver ")))
+                         (h3.InnerText.StartsWith("Shop for") || h3.InnerText.StartsWith("See ") || h3.InnerText.StartsWith("Ver ")
+                         || h3.InnerText.StartsWith("Ads·Shop ") //10-07-2021 //16-07-2020
+                         || (pla.SelectSingleNode(".//h3[contains(@class,'xZu9ed mfMhoc')]") != null && pla.SelectSingleNode(".//h3[@role='heading']") != null) //10-07-2021
+                         ))
                         {
                             s.Append("<block type=\"productListedAds\" url=\"\">");
 

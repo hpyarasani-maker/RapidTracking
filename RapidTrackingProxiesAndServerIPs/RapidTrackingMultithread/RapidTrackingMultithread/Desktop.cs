@@ -795,7 +795,7 @@ namespace RapidTrackingMultithread
                 s.Append("<block type=\"siteLinks\" url=\"\">");
                 foreach (HtmlNode nd in nds)
                 {
-                    HtmlNodeCollection c = nd.SelectNodes(".//h3[@class='r']/a|.//h3[@class='r t9dkOd']/a|.//h3[@class='r X2oHVb t9dkOd']/a|.//h3[@class='r yTjVDd']/a"); //04-12-2020//03-06-2020 //01-06-2020 updated selector for sitelinks
+                    HtmlNodeCollection c = nd.SelectNodes(".//h3[@class='r']/a|.//h3[@class='r t9dkOd']/a|.//h3[@class='r X2oHVb t9dkOd']/a|.//h3[@class='r yTjVDd']/a|.//h3/a");//10-07-2021 //04-12-2020//03-06-2020 //01-06-2020 updated selector for sitelinks
                     if (c == null) continue;
                     foreach (HtmlNode a in c)
                     {

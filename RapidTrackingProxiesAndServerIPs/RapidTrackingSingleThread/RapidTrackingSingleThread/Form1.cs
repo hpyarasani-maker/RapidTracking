@@ -24,7 +24,9 @@ namespace RapidTrackingSingleThread
         ArrayList seresults = new ArrayList();
 
         //string xmlPath = "C:\\inetpub\\wwwroot\\Remaining_NewKeywords_1.xml";
-        string xmlPath = "C:\\inetpub\\wwwroot\\Remaining_NewKeywords_Proxies_GT0.xml"; //15-04-2021
+        //string xmlPath = "C:\\inetpub\\wwwroot\\Remaining_NewKeywords_Proxies_GT0.xml"; //15-04-2021
+        string xmlPath = "C:\\inetpub\\wwwroot\\Remaining_BadRequestKeywords_Proxies_GT20.xml"; //15-04-2021
+
 
 
         public string myDate = string.Empty;
@@ -70,8 +72,8 @@ namespace RapidTrackingSingleThread
             //return;
 
             //string strSql = "exec [dbo].[Tracking_DB_Keywords_SEID_102] '" + myDate + "'";                     
-            string strSql = "exec [dbo]. [GetAllNewKeywords] '" + myDate + "'";  //15-04-2021                   
-
+            //string strSql = "exec [dbo]. [GetAllNewKeywords] '" + myDate + "'";  //15-04-2021                   
+            string strSql = "exec [dbo].[Tracking_DB_Keywords_SEID_102_400] '" + myDate + "'"; //use this procedure 400 bad request or currency keywords
 
             try
             {
@@ -193,7 +195,7 @@ namespace RapidTrackingSingleThread
                 try
                 {
                     int rescount2 = int.Parse(seresults[1]);
-                    if (rescount2 > 0)
+                    if (rescount2 > 20)
                     {
                         SendToAPI(seid, kn, seresults[0]);
                         SendToDB(seid, kn, seresults[0], int.Parse(seresults[1]));
@@ -416,7 +418,7 @@ namespace RapidTrackingSingleThread
                 //date_picker.Value = DateTime.Today.AddDays(-2);
 
                 //this.Text = "D_RapidTracking_102_GT20_Proxies";
-                this.Text = "D_RapidTracking_NewKeywords_Proxies_GT0"; //15-04-2021
+                this.Text = "D_RapidTracking_BadRequestKeywords_Proxies_GT20"; //15-04-2021
 
 
             }));

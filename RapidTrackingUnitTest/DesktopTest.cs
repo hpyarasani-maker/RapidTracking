@@ -201,5 +201,38 @@ namespace RapidTrackingUnitTest
             var result = desktop.GetCarouselURLs();
             Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("<item url=\""));
         }
+        [TestMethod]
+        public void TestDesktopIsBlockExisted()
+        {
+            var desktop = new Desktop();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\desktop\twittercard.txt";
+            doc.Load(path);
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var result = desktop.IsBlock(node);
+            Assert.AreEqual(result, true);
+        }
+        [TestMethod]
+        public void TestDesktopIsBlockNotExisted()
+        {
+            var desktop = new Desktop();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\desktop\classiclink.txt";
+            doc.Load(path);
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var result = desktop.IsBlock(node);
+            Assert.AreEqual(result, false);
+        }
+        [TestMethod]
+        public void TestDesktopIsOrganicBlockExisted()
+        {
+            var desktop = new Desktop();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\desktop\classiclink.txt";
+            doc.Load(path);
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var result = desktop.IsOrganic(node);
+            Assert.AreEqual(result, true);
+        }
     }
 }

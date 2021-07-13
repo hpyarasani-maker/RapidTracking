@@ -590,8 +590,8 @@ namespace RapidTrackingSingleThread
                     string[] reslt = { "", "", "", "" };
                     response = "";
 
-                    //Uri uri = new Uri(cbUrl[1]);
-                    Uri uri = new Uri("http://data.oxylabs.io/v1/queries/6820681000482260993/results");
+                    Uri uri = new Uri(cbUrl[1]);
+                    //Uri uri = new Uri("http://data.oxylabs.io/v1/queries/6820681000482260993/results");
                     if (cbUrl[2] == "done" && cbUrl[3] == "no")
                     {
                         try

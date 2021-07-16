@@ -1323,10 +1323,10 @@ namespace RapidTrackingLibrary
                 {
                     string title = nd1.InnerText;
                     string url = "";
-                    if (url.Contains("http"))
-                    {
-                        url = nd1.Attributes["href"].Value;
-                    }
+                    //if (url.Contains("http"))
+                    //{
+                    //    url = nd1.Attributes["href"].Value;
+                    //}
                     s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                 }
             }

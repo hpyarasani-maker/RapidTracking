@@ -745,7 +745,7 @@ namespace RapidTrackingJobIDResults
             if (nds == null)
                 nds = node.SelectNodes(".//div[@jsname='ibnC6b']/div/a");   //17-07-2020
             if (nds == null)
-                nds = node.SelectNodes(".//div[@class='LYyupc']/div/a"); //07-07-2021
+                nds = node.SelectNodes(".//div[@class='LYyupc']/div/a|.//a[@class='X5OiLe']"); //07-07-2021 //23-07-2021
             if (nds != null)
                 foreach (HtmlNode nd in nds)
                 {
@@ -760,7 +760,7 @@ namespace RapidTrackingJobIDResults
                         if (n == null)
                             n = nd.SelectSingleNode(".//div[@class='CwxNSe']/div"); // 02-06-2020
                         if (n == null)
-                            n = nd.SelectSingleNode(".//div[@class='s4sxYc oz3cqf p5AXld']");//07-07-2021
+                            n = nd.SelectSingleNode(".//div[contains(@class,'oz3cqf p5AXld')]");//23-07-2021
                         try
                         {
                             title = n.InnerText;
@@ -1331,7 +1331,9 @@ namespace RapidTrackingJobIDResults
                 || node.SelectSingleNode(".//h3[@class='GmE3X']") != null //16-10-2020 updated selector for videos
                 || node.SelectSingleNode(".//div[@class='twQ0Be']") != null //03-12-2020 updated selector for videocard
                 || node.SelectSingleNode(".//div[@class='vwfsqc']") != null //07-12-2020
-                || node.SelectSingleNode(".//div[@class='setTDc']") != null); //07-12-2020
+                || node.SelectSingleNode(".//div[@class='setTDc']") != null //07-12-2020
+                || node.SelectSingleNode(".//div[@class='HnYYW']/div") != null); //23-07-2021
+
             if (bVal == true)//2019-09-11
             {
                 try

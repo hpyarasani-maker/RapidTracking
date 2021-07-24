@@ -289,5 +289,27 @@ namespace RapidTrackingUnitTest
             var result = iOS.IsOrganic(node);
             Assert.AreEqual(result, true);
         }
+        [TestMethod]
+        public void TestiOSProductListedAdsBlockExisted()
+        {
+            var iOS = new iOS();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\productlistedads.txt";
+            doc.Load(path);
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var result = iOS.ProductListedAds(node);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+        [TestMethod]
+        public void TestiOSSiteLinksBlock2Existed()
+        {
+            var iOS = new iOS();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\sitelinks1.txt";
+            doc.Load(path);
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var result = iOS.GetSiteLinks(node);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
     }
 }

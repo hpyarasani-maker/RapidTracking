@@ -70,9 +70,15 @@ namespace RapidTrackingUnitTest
             HtmlDocument doc = new HtmlDocument();
             string path = @"C:\inetpub\wwwroot\test\desktop\answercard.txt";
             doc.Load(path);
-            var node = doc.DocumentNode.SelectSingleNode("/");
-            var result = desktop.GetAnswerCard(node);
-            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+            //var node = doc.DocumentNode.SelectSingleNode("/");
+            //var result = Desktop.GetAnswerCard(node);
+            //Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+            var nodes = doc.DocumentNode.SelectNodes(".//div[@class='answercard']");
+            foreach (var node in nodes)
+            {
+                var result = desktop.GetAnswerCard(node);
+                Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+            }
         }
         [TestMethod]
         public void TestDesktopTopStuffProductListAdsExisted()
@@ -233,6 +239,17 @@ namespace RapidTrackingUnitTest
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = desktop.IsOrganic(node);
             Assert.AreEqual(result, true);
+        }
+        [TestMethod]
+        public void TestDesktopSiteLinksBlock2Existed()
+        {
+            var desktop = new Desktop();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\desktop\sitelinks1.txt";
+            doc.Load(path);
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var result = desktop.GetSiteLinks(node);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
         }
     }
 }

@@ -251,5 +251,15 @@ namespace RapidTrackingUnitTest
             var result = desktop.GetSiteLinks(node);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
         }
+        [TestMethod]
+        public void TestDesktopNoBlockTypeExisted()
+        {
+            var desktop = new Desktop();
+            HtmlDocument doc = new HtmlDocument();
+            doc.LoadHtml("<div><div>Some junk text</div></div>");
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var result = desktop.ProcessBlock(node);
+            Assert.AreEqual(string.IsNullOrEmpty(result), true);
+        }
     }
 }

@@ -1286,7 +1286,8 @@ namespace RapidTrackingSingleThread
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@id='knowledge-finance-wholepage__entity-summary']");
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@id='knowledge-currency__currency-v2-updatable']");
+                //nd = node.SelectSingleNode(".//div[@id='knowledge-currency__currency-v2-updatable']");
+                nd = node.SelectSingleNode(".//div[contains(@id,'knowledge-currency__')]"); // contains 31-07-2021
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='g obcontainer']");   // updated on 01-08-2019
             if (nd != null)

@@ -42,10 +42,10 @@ namespace RapidTrackingLibrary
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");//09-12-2020
                 if (nodeCol == null)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-section-with-header");//03-12-2020  //01-05-2020         
-                if (nodeCol == null || nodeCol.Count <= 1)
-                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div|//div[@class='hlcw0c']/div") ?? nodeCol; //04-12-2020 //09-12-2020 no result issue
                 if (nodeCol == null || nodeCol.Count == 1)
                     nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div") ?? nodeCol; //31-07-2021 //02-07-2021 classic links
+                if (nodeCol == null || nodeCol.Count <= 1)
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div|//div[@class='hlcw0c']/div") ?? nodeCol; //04-12-2020 //09-12-2020 no result issue
 
                 foreach (HtmlNode node in nodeCol)
                 {
@@ -1224,7 +1224,7 @@ namespace RapidTrackingLibrary
 
 
             //nd = node.SelectSingleNode(".//div[@class='kp-blk cUnQKe']|.//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']|.//div[@jsname='N760b']");//08-07-2021//04-12-2020 //11-02-2020
-            nd = node.SelectSingleNode(".//div[contains(@class,'cUnQKe')]");//08-07-2021
+            nd = node.SelectSingleNode(".//div[contains(@class,'cUnQKe')]|.//div[@jsname='N760b']");//08-07-2021
             if (nd != null)
             {
                 return "PeopleAlsoAsk"; //11-02-2020
@@ -1422,7 +1422,7 @@ namespace RapidTrackingLibrary
                         return true;
                 }
                 // changes on 08-07-2019
-                if (node.SelectSingleNode(".//img[@alt='map image']") != null)
+                if (node.SelectSingleNode(".//img[@alt='map image']") != null || node.SelectSingleNode(".//div[@jsname='N760b']|.//div[@class='kno-mrg kno-swp']|.//div[@class='e4xoPb']") != null)//02-08-2021 
                     return true;
 
                 HtmlNodeCollection nds = node.SelectNodes(".//div");

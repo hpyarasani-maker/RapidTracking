@@ -311,5 +311,15 @@ namespace RapidTrackingUnitTest
             var result = iOS.GetSiteLinks(node);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
         }
+        [TestMethod]
+        public void TestiOSNoBlockTypeExisted()
+        {
+            var iOS = new iOS();
+            HtmlDocument doc = new HtmlDocument();
+            doc.LoadHtml("<div><div>Some junk text</div></div>");
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var result = iOS.ProcessBlock(node);
+            Assert.AreEqual(string.IsNullOrEmpty(result), true);
+        }
     }
 }

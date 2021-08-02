@@ -81,7 +81,9 @@ namespace TrendingSending
         }
 
         private void GetOxylabsWebDataSources(SearchProperties sp)
-        {            
+        {
+            ServicePointManager.Expect100Continue = true;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             Uri queryUri = new Uri("https://data.oxylabs.io/v1/queries/batch");
             string username = "gpidatametrics";
             string password = "sdV5X3fcX6";

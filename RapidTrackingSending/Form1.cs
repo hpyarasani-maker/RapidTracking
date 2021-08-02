@@ -139,14 +139,15 @@ namespace Oxylabs_BulkKeywords
             //string strQry = "exec [dbo].[GetBulkDesktop_58_1] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkMobile_102_2] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkDesktop_1] '" + myDate + "'";
-           //string strQry = "exec [dbo].[GetBulkMobile_2] '" + myDate + "'";
+            //string strQry = "exec [dbo].[GetBulkMobile_2] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkDesktop_1_1] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkMobile_Hotel] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetCommaKeywords_Hotel] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkMobile_NotHotel] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetCommaKeywords] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulk_All] '" + myDate + "'";
-                       
+            //string strQry = "exec [dbo].[GetBulk_All_New] '" + myDate + "'";
+
             SqlConnection objCon = null;
             SqlDataReader objData = null;
 
@@ -211,12 +212,12 @@ namespace Oxylabs_BulkKeywords
 
             for (int i = 0; i < worklist.Items.Count; i++)
             {
-                mseconds = rd.Next(20, 80) * 1000; //First Sending app 29-06-2020     //SEID=58
-                //mseconds = rd.Next(11, 14) * 1000; //Second Sending app 29-06-2020 //SEID=106
-                //mseconds = rd.Next(15, 19) * 1000; //Third Sending app 29-06-2020  //SEID=OtherDesktop
-                //mseconds = rd.Next(20, 23) * 1000; //Fourth Sending app 29-06-2020 //SEID=OtherMobile
-                //mseconds = rd.Next(24, 27) * 1000; //Fifith Sending app 29-06-2020 //SEID=1
-                //mseconds = rd.Next(28, 30) * 1000; //Sixth Sending app 29-06-2020  //SEID=102
+                mseconds = rd.Next(30, 80) * 1000; //First Sending app 29-06-2020    //SEID=58
+                //mseconds = rd.Next(21, 80) * 1000; //Second Sending app 29-06-2020 //SEID=106
+                //mseconds = rd.Next(25, 80) * 1000; //Third Sending app 29-06-2020 //SEID=OtherDesktop
+                //mseconds = rd.Next(30, 80) * 1000; //Fourth Sending app 29-06-2020 //SEID=OtherMobile
+                //mseconds = rd.Next(34, 80) * 1000; //Fifith Sending app 29-06-2020 //SEID=1
+                //mseconds = rd.Next(38, 80) * 1000; //Sixth Sending app 29-06-2020 //SEID=102
                 resultsString = worklist.Items[i].ToString();
                 sep = ':';
                 resultsArray = resultsString.Split(sep);

@@ -89,7 +89,7 @@ namespace Oxylabs_BulkKeywords
             StringBuilder sb = new StringBuilder();
 
             var datetime = DateTime.Today.ToString("yyyy-MM-dd");
-            string ErrorQry = "insert into dashboard_dataerrorsSending] (date, seid, error) values('" + datetime + "', " + seid + ", N'" + response + "'); ";
+            string ErrorQry = "insert into dashboard_dataerrorsSending (date, seid, error) values('" + datetime + "', " + seid + ", N'" + response + "'); ";
             sb.Append(ErrorQry);
 
             try

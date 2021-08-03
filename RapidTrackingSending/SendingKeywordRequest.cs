@@ -89,7 +89,7 @@ namespace Oxylabs_BulkKeywords
             StringBuilder sb = new StringBuilder();
 
             var datetime = DateTime.Today.ToString("yyyy-MM-dd");
-            string ErrorQry = "insert into dashboard_dataerrorsSending] (date, seid, error) values('" + datetime + "', N'" + "', " + seid + ", N'" + response + "'); ";
+            string ErrorQry = "insert into dashboard_dataerrorsSending] (date, seid, error) values('" + datetime + "', " + seid + ", N'" + response + "'); ";
             sb.Append(ErrorQry);
 
             try
@@ -198,12 +198,13 @@ namespace Oxylabs_BulkKeywords
                 res.Close();
 
                 SendToDb(sp.seid, response);
-                ProcessError(sp.seid, response); //03-08-2021 storing error messages
+                
             }
             catch(Exception ex)
             {
+                ProcessError(sp.seid, ex.Message.ToString()); //03-08-2021 storing error messages
                 throw ex;
-            }              
+            }
         }
         
         public void getTop100(string keyword, int seid)

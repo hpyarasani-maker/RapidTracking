@@ -261,5 +261,17 @@ namespace RapidTrackingUnitTest
             var result = desktop.ProcessBlock(node);
             Assert.AreEqual(string.IsNullOrEmpty(result), true);
         }
+        //04-08-2021
+        [TestMethod]
+        public void TestDesktopProductListedAdsBlockExisted()
+        {
+            var Desktop = new Desktop();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"c:\inetpub\wwwroot\test\desktop\ProductListedAds.txt";
+            doc.Load(path);
+            var result = Desktop.GetProductListedAds(doc);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+        //end 04-08-2021
     }
 }

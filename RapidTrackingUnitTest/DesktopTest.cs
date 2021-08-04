@@ -273,5 +273,16 @@ namespace RapidTrackingUnitTest
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
         }
         //end 04-08-2021
+        [TestMethod]
+        public void TestDesktopTSBlockTypeExisted()
+        {
+            var desktop = new Desktop();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\desktop\topstories.txt";
+            doc.Load(path);
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var result = desktop.ProcessBlock(node);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
     }
 }

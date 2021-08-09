@@ -941,7 +941,7 @@ namespace RapidTrackingLibrary
         }
 
         //09-08-2021 update images item urls
-        private string GetImages(HtmlNode node)
+        public string GetImages(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'eA0Zlc PZPZlf JX86yc ivg-i')]"); //09-08-2021

@@ -1563,7 +1563,7 @@ namespace RapidTrackingLibrary
         }
 
         //09-08-2021 update images item urls
-        private string GetImages(HtmlNode node)
+        public string GetImages(HtmlNode node)
         {
             bool existed = false;
             StringBuilder s = new StringBuilder();

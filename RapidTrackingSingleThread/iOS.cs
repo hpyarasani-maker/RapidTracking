@@ -1520,24 +1520,32 @@ namespace RapidTrackingSingleThread
         }
 
 
-
+        //09-08-2021 update images item urls
         private string GetImages(HtmlNode node)
         {
             bool existed = false;
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='GNxIwf']/div[@jscontroller='xc1DSd']/div/a/g-inner-card/g-img[@class='BA0A6c']/img");  //30-10-2019
+            HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'eA0Zlc PZPZlf ITO9Cc ivg-i')]"); //09-08-2021
+            if (nds == null)
+                nds = node.SelectNodes(".//div[@class='GNxIwf']/div[@jscontroller='xc1DSd']/div/a/g-inner-card/g-img[@class='BA0A6c']/img");  //30-10-2019
             if (nds == null) //|.//div[@class='eA0Zlc JX86yc ivg-i']/g-inner-card/g-img[@class='BA0A6c']/img //30-09-2020 removed
                 nds = node.SelectNodes(".//div[@class='GNxIwf']/div[@jscontroller='xc1DSd']/a/g-inner-card/g-img[@class='BA0A6c']/img|.//div[contains(@class,'eA0Zlc')]/g-inner-card/g-img[@class='BA0A6c']/img");//30-09-2020 //05-06-2020 included selector for images //13-01-2020 included selector for images
             if (nds == null)
                 nds = node.SelectNodes(".//div[@class='eR2XS']/g-inner-card/div/a/g-img[@class='SeXxHf']/img"); //08-06-2020
             if (nds == null)
                 nds = node.SelectNodes(".//div[@class='OixsOd']/a|.//div[contains(@class,'eA0Zlc')]/g-img[@class='BA0A6c']/img");//22-03-2021 changed //15-12-2020  //17-07-2020  //13-07-2020 selector included for images
-
             if (nds != null)
-
                 foreach (HtmlNode nd in nds)
                 {
-                    if (nd.Attributes.Contains("data-src"))
+                    //09-08-2021
+                    if (nd.Attributes.Contains("data-lpage"))
+                    {
+                        string url = nd.Attributes["data-lpage"].Value.Trim();
+                        if (url.StartsWith("//www.")) url = "http:" + url;
+                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"\" />");
+                        existed = true;
+                    }//end 09-08-2021
+                    else if (nd.Attributes.Contains("data-src"))
                     {
                         string url = nd.Attributes["data-src"].Value.Trim();
                         if (url.StartsWith("//www.")) url = "http:" + url;
@@ -1557,7 +1565,6 @@ namespace RapidTrackingSingleThread
             {
                 string imgItems = GetImageURLs();
                 s.Append(imgItems);
-
             }
             return s.ToString();
         }

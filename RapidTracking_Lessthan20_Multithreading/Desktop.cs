@@ -885,18 +885,29 @@ namespace TrackingTrending
             }
             return s.ToString();
         }
-
+        //09-08-2021 update images item urls
         private string GetImages(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nds = node.SelectNodes(".//g-img/img");
+            HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'eA0Zlc PZPZlf JX86yc ivg-i')]"); //09-08-2021
+            if (nds == null)
+                nds = node.SelectNodes(".//g-img/img");
             bool existed = false;
             if (nds != null)
                 foreach (HtmlNode nd in nds)
                 {
-                    if (nd.Attributes.Contains("title"))    // 24-10-2019
+                    //09-08-2021
+                    string url = string.Empty;
+                    if (nd.Attributes.Contains("data-lpage"))
                     {
-                        string url = nd.Attributes["title"].Value.Trim();
+                        url = nd.Attributes["data-lpage"].Value.Trim();
+                        if (url.StartsWith("//www.")) url = "http:" + url;
+                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"\" />");
+                        existed = true;
+                    }//end 09-08-2021
+                    else if (nd.Attributes.Contains("title"))    // 24-10-2019
+                    {
+                        url = nd.Attributes["title"].Value.Trim();
                         if (url.StartsWith("//www.")) url = "http:" + url;
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"\" />");
                         existed = true;

@@ -78,6 +78,41 @@ namespace Oxylabs_BulkKeywords
                 throw new Exception(ex.Message.ToString());
             }
         }
+        /// <summary>
+        /// //03-08-2021 storing error messages
+        /// </summary>
+        /// <param name="seid"></param>
+        /// <param name="response"></param>
+        private void ProcessError(int seid, string response)
+        {
+            string date = DateTime.Today.ToString("yyyy-MM-dd");
+            StringBuilder sb = new StringBuilder();
+
+            var datetime = DateTime.Today.ToString("yyyy-MM-dd");
+            string ErrorQry = "insert into dashboard_dataerrorsSending (date, seid, error) values('" + datetime + "', " + seid + ", N'" + response + "'); ";
+            sb.Append(ErrorQry);
+
+            try
+            {
+                if (!string.IsNullOrEmpty(sb.ToString()))
+                {
+                    using (SqlConnection con = new SqlConnection(strConn()))
+                    {
+                        con.Open();
+                        using (SqlCommand comm = new SqlCommand(sb.ToString(), con))
+                        {
+                            comm.CommandTimeout = 0;
+                            comm.ExecuteNonQuery();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
+        ////03-08-2021 storing error messages end
 
         private void GetOxylabsWebDataSources(SearchProperties sp)
         {
@@ -163,11 +198,13 @@ namespace Oxylabs_BulkKeywords
                 res.Close();
 
                 SendToDb(sp.seid, response);
+                
             }
             catch(Exception ex)
             {
+                ProcessError(sp.seid, ex.Message.ToString()); //03-08-2021 storing error messages
                 throw ex;
-            }              
+            }
         }
         
         public void getTop100(string keyword, int seid)

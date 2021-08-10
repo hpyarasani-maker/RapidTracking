@@ -2011,6 +2011,14 @@ namespace TrackingTrending
             {
                 seid =571, domain ="co.uk", geo_location="Wrexham,Wales,United Kingdom", locale= "en-gb", uule = "w+CAIQICIcV3JleGhhbSxXYWxlcyxVbml0ZWQgS2luZ2RvbQ==",device="mobile_android"
             }, //18-05-2021 ends
+            new SearchProperties() //10-08-2021
+            {
+                seid =572, domain ="com.ec", geo_location="Ecuador", locale= "es-419-ec", uule = "w+CAIQICIHRWN1YWRvcg==",device="desktop"
+            },
+             new SearchProperties()
+            {
+                seid =573, domain ="com.ec", geo_location="Ecuador", locale= "es-419-ec", uule = "w+CAIQICIHRWN1YWRvcg==",device="mobile_android"
+            },//10-08-2021
         };
     }
     class SearchProperties

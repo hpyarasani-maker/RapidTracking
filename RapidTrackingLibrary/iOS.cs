@@ -1569,7 +1569,7 @@ namespace RapidTrackingLibrary
         {
             bool existed = false;
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'eA0Zlc PZPZlf ITO9Cc ivg-i')]"); //09-08-2021
+            HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'eA0Zlc PZPZlf ITO9Cc ivg-i')]|.//div[@jsname='dTDiAc']");//12-08-2021 //09-08-2021
             if (nds == null)
                 nds = node.SelectNodes(".//div[@class='GNxIwf']/div[@jscontroller='xc1DSd']/div/a/g-inner-card/g-img[@class='BA0A6c']/img");  //30-10-2019
             if (nds == null) //|.//div[@class='eA0Zlc JX86yc ivg-i']/g-inner-card/g-img[@class='BA0A6c']/img //30-09-2020 removed

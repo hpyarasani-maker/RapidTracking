@@ -373,5 +373,37 @@ namespace RapidTrackingUnitTest
             var result = desktop.ProcessBlock(node);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
         }
+        //13-08-2021
+        [TestMethod]
+        public void TestDesktopBottomStuffAdwordsBlockExisted1()
+        {
+            var desktop = new Desktop();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\desktop\BottomStuffAdwords1.txt";
+            doc.Load(path);
+            var result = desktop.GetBottomStuff(doc);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+        [TestMethod]
+        public void TestDesktopBottomStuffAdwordsBlockExisted2()
+        {
+            var desktop = new Desktop();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\desktop\BottomStuffAdwords2.txt";
+            doc.Load(path);
+            var result = desktop.GetBottomStuff(doc);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+        [TestMethod]
+        public void TestDesktopBottomStuffAdwordsBlockExisted3()
+        {
+            var desktop = new Desktop();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\desktop\BottomStuffAdwords3.txt";
+            doc.Load(path);
+            var result = desktop.GetBottomStuff(doc);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+        //end 13-08-2021
     }
 }

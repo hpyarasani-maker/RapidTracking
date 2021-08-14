@@ -421,5 +421,91 @@ namespace RapidTrackingUnitTest
             var result = ios.ProcessBlock(node);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
         }
+        //13-08-2021
+        [TestMethod]
+        public void TestiOSGetBottomStuffProductListedAdsExisted()
+        {
+            var ios = new iOS();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\bsplads1.txt";
+            doc.Load(path);
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var result = ios.GetBottomStuff(doc);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+
+        [TestMethod]
+        public void TestiOSBottomStuffAdwordsBlockExisted1()
+        {
+            var ios = new iOS();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\BottomStuffAdwords1.txt";
+            doc.Load(path);
+            var result = ios.GetBottomStuff(doc);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+        [TestMethod]
+        public void TestiOSBottomStuffAdwordsBlockExisted2()
+        {
+            var ios = new iOS();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\BottomStuffAdwords2.txt";
+            doc.Load(path);
+            var result = ios.GetBottomStuff(doc);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+        [TestMethod]
+        public void TestiOSBottomStuffAdwordsBlockExisted3()
+        {
+            var ios = new iOS();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\BottomStuffAdwords3.txt";
+            doc.Load(path);
+            var result = ios.GetBottomStuff(doc);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+        [TestMethod]
+        public void TestiOSTopStuffAdwordsBlockExisted1()
+        {
+            var ios = new iOS();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\TopStuffAdwords1.txt";
+            doc.Load(path);
+            var result = ios.GetTopStuff(doc);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+        [TestMethod]
+        public void TestiOSTopStuffAdwordsBlockExisted2()
+        {
+            var ios = new iOS();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\TopStuffAdwords2.txt";
+            doc.Load(path);
+            var result = ios.GetTopStuff(doc);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+        [TestMethod]
+        public void TestiOSTopStuffAdwordsBlockExisted3()
+        {
+            var ios = new iOS();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\TopStuffAdwords3.txt";
+            doc.Load(path);
+            var result = ios.GetTopStuff(doc);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+
+        [TestMethod]
+        public void TestiOSTopStuffAnswercardBlockExisted()
+        {
+            var ios = new iOS();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\TopStuffAnswercard.txt";
+            doc.Load(path);
+            var result = ios.GetTopStuff(doc);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+        //end 13-08-2021
+
     }
 }

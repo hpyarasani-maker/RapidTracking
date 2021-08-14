@@ -233,6 +233,7 @@ namespace Oxylabs_BulkKeywords
                          (h3.InnerText.StartsWith("Shop for") || h3.InnerText.StartsWith("See ") || h3.InnerText.StartsWith("Ver ")
                          || WebUtility.HtmlDecode(h3.InnerText).StartsWith("Ads·Shop ")//09-08-2021 //10-07-2021 //16-07-2020
                          || (pla.SelectSingleNode(".//h3[contains(@class,'xZu9ed mfMhoc')]") != null && pla.SelectSingleNode(".//h3[@role='heading']") != null) //10-07-2021
+                         || (pla.SelectSingleNode(".//div[@class='Mckyte']") != null) //12-08-2021
                          ))
                         {
                             s.Append("<block type=\"productListedAds\" url=\"\">");
@@ -414,6 +415,7 @@ namespace Oxylabs_BulkKeywords
                                 || h3.InnerText.StartsWith("Ver ") || WebUtility.HtmlDecode(h3.InnerText).StartsWith("Anuncios·Ver ")  //15-07-2020 included for product lists ads
                                 || h3.InnerText.StartsWith("Anúncios&middot;Ver ") || WebUtility.HtmlDecode(h3.InnerText).StartsWith("Ads·") //09-08-2021 //10-07-2021 //16-07-2020
                                 || (pla.SelectSingleNode(".//h3[contains(@class,'xZu9ed mfMhoc')]") != null && pla.SelectSingleNode(".//h3[@role='heading']") != null) //10-07-2021
+                                || (pla.SelectSingleNode(".//div[@class='Mckyte']") != null) //12-08-2021
                                 )
                             {
                                 s.Append("<block type=\"productListedAds\" url=\"\">");
@@ -1513,7 +1515,7 @@ namespace Oxylabs_BulkKeywords
         {
             bool existed = false;
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'eA0Zlc PZPZlf ITO9Cc ivg-i')]"); //09-08-2021
+            HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'eA0Zlc PZPZlf ITO9Cc ivg-i')]|.//div[@jsname='dTDiAc']");//12-08-2021 //09-08-2021
             if (nds == null)
                 nds = node.SelectNodes(".//div[@class='GNxIwf']/div[@jscontroller='xc1DSd']/div/a/g-inner-card/g-img[@class='BA0A6c']/img");  //30-10-2019
             if (nds == null) //|.//div[@class='eA0Zlc JX86yc ivg-i']/g-inner-card/g-img[@class='BA0A6c']/img //30-09-2020 removed

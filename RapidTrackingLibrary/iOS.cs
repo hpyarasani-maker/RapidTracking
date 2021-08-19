@@ -2057,6 +2057,8 @@ namespace RapidTrackingLibrary
             nd = node.SelectSingleNode(".//div[@jsmodel='uIhXXc']");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@jsname='GDPwke']"); // 18-10-2019
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='MIyI4c']"); //19-08-2021 updated for carousel block 
             if (nd != null)
                 if (node.SelectSingleNode(".//img[contains(@alt,'Map of ')]") == null) //15-05-2020
                     return "Carousel";

@@ -506,6 +506,17 @@ namespace RapidTrackingUnitTest
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
         }
         //end 13-08-2021
+        [TestMethod]
+        public void TestiOSImagesBlockExisted2()
+        {
+            var iOS = new iOS();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\images2.txt";
+            doc.Load(path);
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var result = iOS.GetImages(node);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
 
     }
 }

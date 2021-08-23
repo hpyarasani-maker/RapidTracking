@@ -490,8 +490,6 @@ namespace RapidTrackingSingleThread
                     nds = node.SelectNodes(".//div[contains(@class,'tF2Cxc')]");//07-01-2021 //18-02-2021 included contains function
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='yuRUbf']"); //31-05-2021
-                if (node.SelectNodes(".//div/div[@class='g jNVrwc Y4pkMc']") != null) //23-08-2021 root link
-                    nds = node.SelectNodes(".//div/div[@class='g jNVrwc Y4pkMc']"); //23-08-2021 sub link
                 if (nds != null)
                     foreach (HtmlNode nd in nds)
                     {

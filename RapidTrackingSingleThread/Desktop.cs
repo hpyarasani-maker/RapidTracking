@@ -753,6 +753,8 @@ namespace RapidTrackingSingleThread
                 nds = node.SelectNodes(".//div[@jsname='ibnC6b']/div/a");   //17-07-2020
             if (nds == null)
                 nds = node.SelectNodes(".//div[@class='LYyupc']/div/a|.//a[@class='X5OiLe']"); //07-07-2021 //23-07-2021
+            if (nds == null)
+                nds = node.SelectNodes(".//div[@class='ct3b9e']/a"); //23-08-2021 video block
             if (nds != null)
                 foreach (HtmlNode nd in nds)
                 {
@@ -768,7 +770,9 @@ namespace RapidTrackingSingleThread
                             n = nd.SelectSingleNode(".//div[@class='CwxNSe']/div"); // 02-06-2020
                         if (n == null)
                             n = nd.SelectSingleNode(".//div[contains(@class,'oz3cqf p5AXld')]");//23-07-2021
-                       try
+                        if (n == null)
+                            n = nd.SelectSingleNode(".//h3[@class='LC20lb DKV0Md']"); //23-08-2021 video block title
+                        try
                        {
                             title = n.InnerText;
                         }
@@ -1187,6 +1191,8 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[@class='sQkmof']");//23-07-2020 included selector for videos
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@jsname='wRSfy']"); //02-12-2020 included for videos block
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='g dFd2Tb']"); //23-08-2021 videos block
             //15-10-2020
             HtmlNode nd1 = null;
             if (nd != null)
@@ -1356,8 +1362,9 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@class='twQ0Be']") != null //03-12-2020 updated selector for videocard
                 || node.SelectSingleNode(".//div[@class='vwfsqc']") != null //07-12-2020
                 || node.SelectSingleNode(".//div[@class='setTDc']") != null //07-12-2020
-                || node.SelectSingleNode(".//div[@class='HnYYW']/div") != null); //23-07-2021
-
+                || node.SelectSingleNode(".//div[@class='HnYYW']/div") != null //23-07-2021
+                || node.SelectSingleNode(".//div[@class='g dFd2Tb']") != null); //23-08-2021 videos block 
+                
             if (bVal == true)//2019-09-11
             {
                 try

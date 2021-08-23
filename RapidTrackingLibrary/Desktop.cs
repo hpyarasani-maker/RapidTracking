@@ -1390,10 +1390,11 @@ namespace RapidTrackingLibrary
             {
                 try
                 {
-                    //02-12-2020
-                    HtmlNode nd = node.SelectSingleNode(".//div[@role='heading']|.//div[@class='UDZeY OTFaAf']"); //02-07-2021
                     if (node.SelectSingleNode(".//div[@class='osrp-blk']") != null) //20-08-2021 for ignoring wrong block
                         return false; //20-08-2021
+                    //02-12-2020
+                    HtmlNode nd = node.SelectSingleNode(".//div[@role='heading']|.//div[@class='UDZeY OTFaAf']"); //02-07-2021
+                   
                     if (nd != null && (nd.InnerText == "More results" || nd.InnerText == "Top results" || nd.InnerText.Contains("Web results"))) //02-07-2021 //03-12-2020
                         return false;
                     //end 02-12-2020

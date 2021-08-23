@@ -1297,6 +1297,8 @@ namespace RapidTrackingLibrary
             nd = node.SelectSingleNode(".//*[@id='lu_map']");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='xERobd']");  //changed on 26-06-2019
+            if (nd == null)
+                nd = node.SelectSingleNode(".//a[contains(@data-url,'/maps/')]");//23-08-2021 map selector
             //if (nd == null)
             //    nd = node.SelectSingleNode(".//div[@class='MHStgc']/span");//05-10-2020 commented //02-10-2020 maps selectors
             if (nd != null)
@@ -1438,7 +1440,7 @@ namespace RapidTrackingLibrary
                         return true;
                 }
                 // changes on 08-07-2019
-                if (node.SelectSingleNode(".//img[@alt='map image']") != null || node.SelectSingleNode(".//div[@jsname='N760b']|.//div[@class='kno-mrg kno-swp']|.//div[@class='e4xoPb']") != null)//02-08-2021 
+                if (node.SelectSingleNode(".//img[@alt='map image']") != null || node.SelectSingleNode(".//div[@jsname='N760b']|.//div[@class='kno-mrg kno-swp']|.//div[@class='e4xoPb']") != null || node.SelectSingleNode(".//img[contains(@data-bsrc,'/maps/')]") != null)//23-08-2021 map selector//02-08-2021 
                     return true;
 
                 HtmlNodeCollection nds = node.SelectNodes(".//div");

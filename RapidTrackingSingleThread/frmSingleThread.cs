@@ -205,7 +205,7 @@ namespace RapidTrackingSingleThread
 
 
             string submitURL = ReadAPI();
-            return; //03-04-2021
+            //return; //03-04-2021
             string user = "pisoftware";
             string pwd = "r00t123456";
             try
@@ -590,8 +590,8 @@ namespace RapidTrackingSingleThread
                     string[] reslt = { "", "", "", "" };
                     response = "";
 
-                    //Uri uri = new Uri(cbUrl[1]);
-                    Uri uri = new Uri("http://data.oxylabs.io/v1/queries/6835577320539966465/results");
+                    Uri uri = new Uri(cbUrl[1]);
+                    //Uri uri = new Uri("http://data.oxylabs.io/v1/queries/6835577320539966465/results");
                     if (cbUrl[2] == "done" && cbUrl[3] == "no")
                     {
                         try

@@ -521,7 +521,7 @@ namespace RapidTrackingLibrary
                 || node.HasClass("g") || node.SelectNodes(".//div[@class='g']") != null // 18-03-2020
                 || node.SelectNodes(".//div[@class='g GjRtuc']") != null // 02-06-2020
                 || node.SelectNodes(".//div[contains(@class,'g card-section')]") != null //06-10-2020 classic link
-                || node.SelectNodes(".//div[@class='g tF2Cxc']") != null) //01-06-2021
+                || node.SelectNodes(".//div[@class='g tF2Cxc']|.//div[@class='g dFd2Tb']") != null) //24-08-2021 video block //01-06-2021
             {
                 HtmlNodeCollection nds = node.SelectNodes(".//div[@class='g']|.//div[@class='HD8Pae luh4tb cUezCb xpd O9g5cc uUPGi']|.//div[contains(@class,'g card-section')]");//11-01-2021 missing classic link//04-12-2020 videos block
                 if (nds == null)
@@ -532,6 +532,10 @@ namespace RapidTrackingLibrary
                     nds = node.SelectNodes(".//div[contains(@class,'tF2Cxc')]");//07-01-2021 //18-02-2021 included contains function
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='yuRUbf']"); //31-05-2021
+                if (nds == null)
+                    nds = node.SelectNodes(".//div[contains(@class,'dFd2Tb')]"); //24-08-2021 video block
+                if (node.SelectNodes(".//div/div[@class='g jNVrwc Y4pkMc']") != null) //24-08-2021 collecting sub classic links
+                    nds = node.SelectNodes(".//div/div[@class='g jNVrwc Y4pkMc']"); //24-08-2021 collecting sub classic links
                 if (nds != null)
                     foreach (HtmlNode nd in nds)
                     {
@@ -569,9 +573,18 @@ namespace RapidTrackingLibrary
                         HtmlNode img = nd.SelectSingleNode(".//img");
                         if (img != null)
                         {
-                            if (Regex.IsMatch(nd.OuterHtml, "id=\"vidthumb\\d*\"") && nd.SelectSingleNode(".//div[@class='ij69rd UHe5G']") != null) // 17-01-2020 //19-02-2021 classic link instead without time video block
+                            if ((Regex.IsMatch(nd.OuterHtml, "id=\"vidthumb\\d*\"") && nd.SelectSingleNode(".//div[@class='ij69rd UHe5G']") != null) || nd.SelectSingleNode(".//div[@class='U1TUId LYh3vc']") != null) // 17-01-2020 //19-02-2021 classic link instead without time video block
                             {
-                                var urls = n.Attributes["href"].Value;
+                                //24-08-2021 video item urls
+                                var urls = string.Empty;
+                                if (n != null)
+                                    urls = n.Attributes["href"].Value;
+                                else
+                                {
+                                    var a = nd.SelectSingleNode(".//div[@class='ct3b9e']/a");
+                                    urls = a.Attributes["href"].Value;
+                                    title = a.SelectSingleNode(".//h3");
+                                } //24-08-2021 video block item urls
                                 if (urls.StartsWith("http") || urls.StartsWith("https") || urls.StartsWith("ftp")) //30-04-2020
                                 {
                                     // video block.
@@ -1270,7 +1283,8 @@ namespace RapidTrackingLibrary
                 || node.SelectSingleNode(".//div[@class='vk_ard']") != null || node.SelectSingleNode(".//div[@class='d7sCQ kp-header']") != null   //03-06-2020
                 || node.SelectSingleNode(".//div[@class='pcCUmf vCOSGb']") != null
                 || node.SelectSingleNode(".//div[@class='vkc_np kkww4d']") != null //21-09-2020 updated answered card selectors  //03-06-2020
-                || node.SelectSingleNode(".//div[@class='setTDc']") != null) //07-12-2020 answered card selector
+                || node.SelectSingleNode(".//div[@class='setTDc']") != null //07-12-2020 answered card selector
+                || node.SelectSingleNode(".//div[@class='kp-blk ouUsKb G45kvd']") != null) //24-08-2021 answer card selector
             {
                 if (node.SelectSingleNode(".//div[@class='BET1rd']") == null) //25-09-2020
                     return "AnswerCard";
@@ -1297,8 +1311,8 @@ namespace RapidTrackingLibrary
             nd = node.SelectSingleNode(".//*[@id='lu_map']");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='xERobd']");  //changed on 26-06-2019
-            //if (nd == null)
-            //    nd = node.SelectSingleNode(".//div[@class='MHStgc']/span");//05-10-2020 commented //02-10-2020 maps selectors
+            if (nd == null)
+                nd = node.SelectSingleNode(".//a[contains(@data-url,'/maps/')]");//23-08-2021 map selector
             if (nd != null)
             {
                 return "Maps";
@@ -1438,7 +1452,7 @@ namespace RapidTrackingLibrary
                         return true;
                 }
                 // changes on 08-07-2019
-                if (node.SelectSingleNode(".//img[@alt='map image']") != null || node.SelectSingleNode(".//div[@jsname='N760b']|.//div[@class='kno-mrg kno-swp']|.//div[@class='e4xoPb']") != null)//02-08-2021 
+                if (node.SelectSingleNode(".//img[@alt='map image']") != null || node.SelectSingleNode(".//div[@jsname='N760b']|.//div[@class='kno-mrg kno-swp']|.//div[@class='e4xoPb']") != null || node.SelectSingleNode(".//img[contains(@data-bsrc,'/maps/')]") != null)//23-08-2021 map selector//02-08-2021 
                     return true;
 
                 HtmlNodeCollection nds = node.SelectNodes(".//div");
@@ -1470,7 +1484,7 @@ namespace RapidTrackingLibrary
                 || node.SelectSingleNode(".//div[@class='DOqJne']/g-link/a") != null //twitter classic link selector
                 || node.SelectSingleNode(".//div[contains(@class,'tF2Cxc')]/div/a") != null //07-01-2021 missing classic link //18-02-2021 included contains fucntions
                 || node.SelectSingleNode(".//div[@class='yuRUbf']") != null //31-05-2021
-            || node.SelectSingleNode(".//div/div[@class='g tF2Cxc']") != null); //01-06-2021
+            || node.SelectSingleNode(".//div/div[@class='g tF2Cxc']|.//div[@class='g dFd2Tb']") != null); //24-08-2021 video block //01-06-2021
         }
 
         //07-11-2019

@@ -405,6 +405,7 @@ namespace RapidTrackingUnitTest
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
         }
         //end 13-08-2021
+        //26-08-2021
         [TestMethod]
         public void TestiOSImagesBlockExisted2()
         {
@@ -416,5 +417,29 @@ namespace RapidTrackingUnitTest
             var result = iOS.GetImages(node);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
         }
+        [TestMethod]
+        public void TestDesktopProcessNodes1()
+        {
+            var desktop = new Desktop();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\desktop\answercard.txt";
+            doc.Load(path);
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var result = desktop.ProcessNode(node);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+        [TestMethod]
+        public void TestDesktopProcessNodes2()
+        {
+            var desktop = new Desktop();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\desktop\classiclink.txt";
+            doc.Load(path);
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var result = desktop.ProcessNode(node);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+       
+        //end 26-08-2021
     }
 }

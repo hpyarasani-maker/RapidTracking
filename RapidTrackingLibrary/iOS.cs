@@ -1290,7 +1290,7 @@ namespace RapidTrackingLibrary
             {
                 url = "http://www." + url;
             }
-            else if (url.Contains("www") != true && url.Contains("http") != true)
+            else if (url.Contains("www") != true && url.Contains("http")) //27-08-2021 removed !=true
             {
                 Uri uri = new Uri(url);
                 if (uri.HostNameType == UriHostNameType.Dns)

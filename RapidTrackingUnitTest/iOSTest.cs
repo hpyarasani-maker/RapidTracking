@@ -552,6 +552,39 @@ namespace RapidTrackingUnitTest
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
         }
         //end 26-08-2021
+        [TestMethod] //27-08-2021
+        public void TestiOSGetProductListedUrls1()
+        {
+            var iOS = new iOS();
+            string url = @"http://www.google.com";
+            var result = iOS.GetProductListedUrls(url);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+        [TestMethod]
+        public void TestiOSGetProductListedUrls2()
+        {
+            var iOS = new iOS();
+            string url = @"www.google.com";
+            var result = iOS.GetProductListedUrls(url);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+        [TestMethod]
+        public void TestiOSGetProductListedUrls3()
+        {
+            var iOS = new iOS();
+            string url = @"google.com";
+            var result = iOS.GetProductListedUrls(url);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+        [TestMethod]
+        public void TestiOSGetProductListedUrls4()
+        {
+            var iOS = new iOS();
+            string url = @"http://google.com";
+            var result = iOS.GetProductListedUrls(url);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+        //end 27-08-2021
 
     }
 }

@@ -1498,7 +1498,7 @@ namespace RapidTrackingSingleThread
                 if (url.Contains("\0"))
                     url = url.Replace("\0", "%00");
 
-                if ((url.StartsWith("https://") || url.StartsWith("http://") || url.StartsWith("ftp://")) && !url.Contains("/aclk?"))  // 30-04-2020 
+                if ((url.StartsWith("https://") || url.StartsWith("http://") || url.StartsWith("ftp://")) && (!url.Contains("/aclk?") && !url.Contains("search?num=100"))) //28-08-2021  // 30-04-2020 
                     return url;
             }
             catch (Exception ex)

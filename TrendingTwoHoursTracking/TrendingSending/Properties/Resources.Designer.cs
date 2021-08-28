@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Oxylabs_TrackingComponent.Properties {
+namespace Oxylabs_BulkKeywords.Properties {
     using System;
     
     

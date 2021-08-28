@@ -73,8 +73,8 @@ namespace TrendingReceiving
 
                 if (status == "done")
                 {
-                    ServicePointManager.Expect100Continue = true;
-                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                    //ServicePointManager.Expect100Continue = true;
+                    //ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                     string resURL = job["results_url"].Value<string>();
                     HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(resURL);
                     string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));

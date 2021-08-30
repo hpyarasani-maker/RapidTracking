@@ -822,7 +822,8 @@ namespace RapidTrackingSingleThread
                              || nd.Attributes["class"].Value == "mnr-c luh4tb xpd O9g5cc uUPGi" || nd.Attributes["class"].Value == "mnr-c PHap3c" //05-01-2021
                              || nd.Attributes["class"].Value == "g card-section svwwZ" || nd.Attributes["class"].Value == "card-section"  //15-12-2020//03-11-2020 //06-10-2020 classic type block type
                              || nd.Attributes["class"].Value == "d5oMvf KJDcUb" || nd.Attributes["class"].Value == "c6gxKe card-section" //20-05-2021) //09-02-2021
-                             || nd.Attributes["class"].Value == "wU9Tkd") //10-07-2021
+                             || nd.Attributes["class"].Value == "wU9Tkd" //10-07-2021
+                             || nd.Attributes["class"].Value == "g card-section") //30-08-2021 missing classic link
                             {
                                 //17-10-2019
                                 string vdos = string.Empty;
@@ -2303,7 +2304,7 @@ namespace RapidTrackingSingleThread
                 return true;
             }
 
-            if (node.SelectSingleNode(".//div[@class='g card-section svwwZ']|.//div[@class='c6gxKe card-section']") != null) //20-05-2021//03-11-2020
+            if (node.SelectSingleNode(".//div[@class='g card-section svwwZ']|.//div[@class='c6gxKe card-section']|.//div[@class='g card-section']") != null) //30-08-2021 //20-05-2021//03-11-2020
                 return false;
 
             //22-11-2019
@@ -2460,7 +2461,8 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@class='khgTR R5lVqb']") != null //26-08-2020 selector for missing classic link
                 || node.SelectSingleNode(".//div[@class='V1nn0e R5lVqb']") != null //15-12-2020
                 || node.SelectSingleNode(".//div[@class='card-section']") != null //15-12-2020
-                || node.SelectSingleNode(".//div[contains(@class, 'Z3ngN')]") != null);//22-03-2021
+                || node.SelectSingleNode(".//div[contains(@class, 'Z3ngN')]") != null//22-03-2021
+                || node.SelectSingleNode(".//div[@class='g card-section']") != null); //30-08-2021
         }
 
         internal object GetTop100GoogleUKMobileImages_PageURLs(string kw, string v1, string v2, string v3, string v4, string v5)

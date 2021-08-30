@@ -531,7 +531,7 @@ namespace RapidTrackingSingleThread
                         HtmlNode img = nd.SelectSingleNode(".//img");
                         if (img != null)
                         {
-                            if ((Regex.IsMatch(nd.OuterHtml, "id=\"vidthumb\\d*\"") && nd.SelectSingleNode(".//div[@class='ij69rd UHe5G']") != null) || nd.SelectSingleNode(".//div[contains(@class,'U1TUId']") != null)// 30-08-2021'U1TUId LYh3vc' // 17-01-2020 //19-02-2021 classic link instead without time video block
+                            if ((Regex.IsMatch(nd.OuterHtml, "id=\"vidthumb\\d*\"") && nd.SelectSingleNode(".//div[@class='ij69rd UHe5G']") != null) || nd.SelectSingleNode(".//div[contains(@class,'U1TUId')]") != null)// 30-08-2021'U1TUId LYh3vc' // 17-01-2020 //19-02-2021 classic link instead without time video block
                             {
                                 //24-08-2021 video item urls
                                 var urls = string.Empty;
@@ -1501,7 +1501,7 @@ namespace RapidTrackingSingleThread
                 if (url.Contains("\0"))
                     url = url.Replace("\0", "%00");
 
-                if ((url.StartsWith("https://") || url.StartsWith("http://") || url.StartsWith("ftp://")) && (!url.Contains("/aclk?") && !url.Contains("search?num=100"))) //28-08-2021  // 30-04-2020 
+                if ((url.StartsWith("https://") || url.StartsWith("http://") || url.StartsWith("ftp://")) && !url.Contains("/aclk?"))// 30-04-2020 
                     return url;
             }
             catch (Exception ex)

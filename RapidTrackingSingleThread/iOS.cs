@@ -2222,7 +2222,6 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[@class='mR2gOd pptFR']"); //25-02-2021 images selector
             if (nd != null)
             {
-                //if (nd.InnerText == "Images" || nd.InnerText == "Immagini"|| nd.InnerText == "Im?genes")
                 if (node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']") == null) //30-08-2021 image wrong block issue
                     return "Images";
             }

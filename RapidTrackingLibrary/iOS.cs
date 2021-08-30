@@ -864,7 +864,8 @@ namespace RapidTrackingLibrary
                              || nd.Attributes["class"].Value == "mnr-c luh4tb xpd O9g5cc uUPGi" || nd.Attributes["class"].Value == "mnr-c PHap3c" //05-01-2021
                              || nd.Attributes["class"].Value == "g card-section svwwZ" || nd.Attributes["class"].Value == "card-section"  //15-12-2020//03-11-2020 //06-10-2020 classic type block type
                              || nd.Attributes["class"].Value == "d5oMvf KJDcUb" || nd.Attributes["class"].Value == "c6gxKe card-section" //20-05-2021) //09-02-2021
-                             || nd.Attributes["class"].Value == "wU9Tkd") //10-07-2021
+                             || nd.Attributes["class"].Value == "wU9Tkd" //10-07-2021
+                             || nd.Attributes["class"].Value == "g card-section") //30-08-2021 missing classic link
                             {
                                 //17-10-2019
                                 string vdos = string.Empty;
@@ -2004,7 +2005,8 @@ namespace RapidTrackingLibrary
 
                 nd = node.SelectSingleNode(".//div[@class='kp-blk nGydZ Wnoohf OJXvsb']|.//div[@class='NFQFxe XbtRGb qxsd xsZWvb EfDVh WDjuKe mod']|.//div[@class='NFQFxe viOShc LKPcQc mod']|.//div[@class='B3nbW mfMhoc']");//05-10-2020  // 16-06-2020
                 if (nd == null || node.SelectSingleNode(".//div[@class='kp-header']") != null || node.SelectSingleNode(".//div[@class='K2Sb0e kp-header']") != null)   //23-06-2020 //19-06-2020
-                    return "KnowledgePanel";
+                    if (node.SelectSingleNode(".//div[@class='RzdJxc']") == null) //30-08-2021 video block missing
+                        return "KnowledgePanel";
             }
             //swapped 19-03-2020
 
@@ -2252,8 +2254,8 @@ namespace RapidTrackingLibrary
                 nd = node.SelectSingleNode(".//div[@class='mR2gOd pptFR']"); //25-02-2021 images selector
             if (nd != null)
             {
-                //if (nd.InnerText == "Images" || nd.InnerText == "Immagini"|| nd.InnerText == "Im?genes")
-                return "Images";
+                if (node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']") == null) //30-08-2021 image wrong block issue
+                    return "Images";
             }
             else
             {
@@ -2332,7 +2334,7 @@ namespace RapidTrackingLibrary
                 return true;
             }
 
-            if (node.SelectSingleNode(".//div[@class='g card-section svwwZ']|.//div[@class='c6gxKe card-section']") != null) //20-05-2021//03-11-2020
+            if (node.SelectSingleNode(".//div[@class='g card-section svwwZ']|.//div[@class='c6gxKe card-section']|.//div[@class='g card-section']") != null) //30-08-2021 //20-05-2021//03-11-2020
                 return false;
 
             //22-11-2019
@@ -2489,7 +2491,8 @@ namespace RapidTrackingLibrary
                 || node.SelectSingleNode(".//div[@class='khgTR R5lVqb']") != null //26-08-2020 selector for missing classic link
                 || node.SelectSingleNode(".//div[@class='V1nn0e R5lVqb']") != null //15-12-2020
                 || node.SelectSingleNode(".//div[@class='card-section']") != null //15-12-2020
-                || node.SelectSingleNode(".//div[contains(@class, 'Z3ngN')]") != null);//22-03-2021
+                || node.SelectSingleNode(".//div[contains(@class, 'Z3ngN')]") != null//22-03-2021
+                || node.SelectSingleNode(".//div[@class='g card-section']") != null); //30-08-2021
         }
 
         internal object GetTop100GoogleUKMobileImages_PageURLs(string kw, string v1, string v2, string v3, string v4, string v5)

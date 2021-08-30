@@ -1972,7 +1972,8 @@ namespace RapidTrackingSingleThread
 
                 nd = node.SelectSingleNode(".//div[@class='kp-blk nGydZ Wnoohf OJXvsb']|.//div[@class='NFQFxe XbtRGb qxsd xsZWvb EfDVh WDjuKe mod']|.//div[@class='NFQFxe viOShc LKPcQc mod']|.//div[@class='B3nbW mfMhoc']");//05-10-2020  // 16-06-2020
                 if (nd == null || node.SelectSingleNode(".//div[@class='kp-header']") != null || node.SelectSingleNode(".//div[@class='K2Sb0e kp-header']") != null)   //23-06-2020 //19-06-2020
-                    return "KnowledgePanel";
+                    if (node.SelectSingleNode(".//div[@class='RzdJxc']") == null) //30-08-2021 video block missing
+                        return "KnowledgePanel";
             }
             //swapped 19-03-2020
 
@@ -2221,7 +2222,8 @@ namespace RapidTrackingSingleThread
             if (nd != null)
             {
                 //if (nd.InnerText == "Images" || nd.InnerText == "Immagini"|| nd.InnerText == "Im?genes")
-                return "Images";
+                if (node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']") == null) //30-08-2021 image wrong block issue
+                    return "Images";
             }
             else
             {

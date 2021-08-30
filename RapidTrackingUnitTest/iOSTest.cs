@@ -585,6 +585,62 @@ namespace RapidTrackingUnitTest
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
         }
         //end 27-08-2021
+        //30-08-2021
+        [TestMethod]
+        public void TestiOSTopStoriesBlockExisted3()
+        {
+            var iOS = new iOS();
+            HtmlDocument doc = new HtmlDocument();
+
+            string path = @"C:\inetpub\wwwroot\test\ts\tsblock3.txt";
+            doc.Load(path);
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var result = iOS.GetTopStories(node);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+        [TestMethod]
+        public void TestiOSMapsBlockTypeExisted()
+        {
+            var ios = new iOS();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\maps.txt";
+            doc.Load(path);
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var result = ios.ProcessBlock(node);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+        [TestMethod]
+        public void TestiOSvideoBlock1Existed()
+        {
+            var iOS = new iOS();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\videoblock1.txt";
+            doc.Load(path);
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var result = iOS.ProcessNode(node);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+        [TestMethod]
+        public void TestiOSvideoBlock2Existed()
+        {
+            var iOS = new iOS();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\videoblock2.txt";
+            doc.Load(path);
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var result = iOS.ProcessNode(node);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+        [TestMethod]
+        public void TestiOSTopStuffknowledgeGraphExisted()
+        {
+            var iOS = new iOS();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\tsknowledgeGraph.txt";
+            doc.Load(path);
+            var result = iOS.GetTopStuff(doc);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }//end 30-08-2021
 
     }
 }

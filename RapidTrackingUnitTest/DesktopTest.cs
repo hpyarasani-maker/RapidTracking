@@ -409,12 +409,12 @@ namespace RapidTrackingUnitTest
         [TestMethod]
         public void TestiOSImagesBlockExisted2()
         {
-            var iOS = new iOS();
+            var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
             string path = @"C:\inetpub\wwwroot\test\images2.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
-            var result = iOS.GetImages(node);
+            var result = desktop.GetImages(node);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
         }
         [TestMethod]
@@ -439,7 +439,30 @@ namespace RapidTrackingUnitTest
             var result = desktop.ProcessNode(node);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
         }
-       
         //end 26-08-2021
+        //30-08-2021
+        [TestMethod]
+        public void TestDesktopMapsBlockExisted()
+        {
+            var desktop = new Desktop();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\desktop\Maps.txt";
+            doc.Load(path);
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var result = desktop.GetJobs(node);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+        [TestMethod]
+        public void TestDesktopvideoBlockExisted()
+        {
+            var desktop = new Desktop();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\desktop\video.txt";
+            doc.Load(path);
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var result = desktop.ProcessNode(node);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }// end 30-08-2021
+
     }
 }

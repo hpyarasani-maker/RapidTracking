@@ -1378,6 +1378,7 @@ namespace RapidTrackingSingleThread
             {
                 try
                 {
+                    if (node.SelectSingleNode(".//div[@class='twQ0Be']") != null) return true;    //30-08-2021 video card
                     if (node.SelectSingleNode(".//div[@class='osrp-blk']|.//div[@class='tpa-cc']") != null) //20-08-2021 for ignoring wrong block
                         return false; //20-08-2021
                     //02-12-2020

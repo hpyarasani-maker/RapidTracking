@@ -2208,7 +2208,7 @@ namespace RapidTrackingLibrary
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='OixsOd']"); //25-06-2020
             //if (nd != null && node.SelectSingleNode(".//span[@class='FCUp0c rQMQod']").InnerText != "Images")  //13-07-2020 same selector under images block use for both images and carousel
-            if (nd != null && node.SelectSingleNode(".//span[@class='FCUp0c rQMQod']|.//span[@class='mfMhoc']").InnerText != "Images")//24-02-2021
+            if (nd != null && node.SelectSingleNode(".//span[@class='FCUp0c rQMQod']|.//span[@class='mfMhoc']|.//span[@class='r0bn4c rQMQod tP9Zud']").InnerText != "Images")//02-09-2021 Carousel block//24-02-2021
             {
                 return "Carousel";
             }

@@ -1733,7 +1733,7 @@ namespace RapidTrackingLibrary
 
             nds = node.SelectNodes(".//g-inner-card/a");
             if (nds == null)
-                nds = node.SelectNodes(".//g-inner-card/div/a|.//div[@class='kno-fb-ctx n49mp']/div/a"); //13-07-2021 TS item urls   // 30-10-2019           
+                nds = node.SelectNodes(".//g-inner-card/div/a|.//div[@class='kno-fb-ctx n49mp']/div/a|.//a[contains(@class,'amp_r')]"); //03-09-2021 TS Item urls //13-07-2021 TS item urls   // 30-10-2019           
             if (nds == null)
                 nds = node.SelectNodes(".//g-inner-card/div/div/a");    // 13-12-2019
             if (nds == null)
@@ -2079,7 +2079,7 @@ namespace RapidTrackingLibrary
             nd = node.SelectSingleNode(".//div[@class='TvV1fe']|.//div[@class='pXvdUe']"); //14-12-2020 videos
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='zK9jzc B3JUpd']");
-            if (nd != null && node.SelectSingleNode(".//div[contains(@class, ' knowledge-panel ')]") == null)
+            if (nd != null && node.SelectSingleNode(".//div[contains(@class, ' knowledge-panel ')]|.//span[@class='r0bn4c rQMQod tP9Zud']") == null) //03-09-2021 missing carousel block
             {
                 // Changes in Videos block on 25-06-2019
                 if (node.InnerText.ToLower().Contains("video") || node.InnerText.StartsWith("فيديوهات"))    // 29-11-2019//02-04-2021 removed s from videos condition

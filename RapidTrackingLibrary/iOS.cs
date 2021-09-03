@@ -2079,7 +2079,7 @@ namespace RapidTrackingLibrary
             nd = node.SelectSingleNode(".//div[@class='TvV1fe']|.//div[@class='pXvdUe']"); //14-12-2020 videos
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='zK9jzc B3JUpd']");
-            if (nd != null && node.SelectSingleNode(".//div[contains(@class, ' knowledge-panel ')]|.//span[@class='r0bn4c rQMQod tP9Zud']") == null) //03-09-2021 missing carousel block
+            if (nd != null && node.SelectSingleNode(".//div[contains(@class, ' knowledge-panel ')]|.//span[@class='V7Sr0 mfMhoc']") == null) //03-09-2021 missing carousel block
             {
                 // Changes in Videos block on 25-06-2019
                 if (node.InnerText.ToLower().Contains("video") || node.InnerText.StartsWith("فيديوهات"))    // 29-11-2019//02-04-2021 removed s from videos condition

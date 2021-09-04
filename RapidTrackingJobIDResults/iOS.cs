@@ -1697,7 +1697,7 @@ namespace RapidTrackingJobIDResults
 
             nds = node.SelectNodes(".//g-inner-card/a");
             if (nds == null)
-                nds = node.SelectNodes(".//g-inner-card/div/a|.//div[@class='kno-fb-ctx n49mp']/div/a"); //13-07-2021 TS item urls   // 30-10-2019
+                nds = node.SelectNodes(".//g-inner-card/div/a|.//div[@class='kno-fb-ctx n49mp']/div/a|.//div[@class='zZ9K7e']/a"); //03-09-2021 TS Item urls //13-07-2021 TS item urls   // 30-10-2019
             if (nds == null)
                 nds = node.SelectNodes(".//g-inner-card/div/div/a");    // 13-12-2019
             if (nds == null)
@@ -1754,7 +1754,7 @@ namespace RapidTrackingJobIDResults
             if (nds == null)
                 nds = node.SelectNodes(".//div[@data-attrid='OsrpVideos']/a|.//div[@class='ALzVK']/div/div/a");
             if (nds == null)
-                nds = node.SelectNodes(".//div[@jsname='ibnC6b']/a|.//div[@jscontroller='OmmTPc']|.//div[@class='QevLbc']/a|.//a[@class='OIDuRe']|.//div[@class='Q9mvUc']|.//div[@class='KJDcUb']|.//a[@class='ygih0']");//02-03-2021 item links for videos // 14-12-2020//30-11-2020 videos item urls selectors //30-07-2020 //26-06-2020 included select for videos
+                nds = node.SelectNodes(".//div[@jsname='ibnC6b']/a|.//div[@jscontroller='OmmTPc']|.//div[@class='QevLbc']/a|.//a[@class='OIDuRe']|.//div[@class='Q9mvUc']|.//div[@class='KJDcUb']|.//a[@class='ygih0']|.//div[@class='NBoMDb']/a[2]");//03-09-2021 item urls//02-03-2021 item links for videos // 14-12-2020//30-11-2020 videos item urls selectors //30-07-2020 //26-06-2020 included select for videos
             if (nds != null)   // 16-09-2019
                 foreach (HtmlNode nd in nds)
                 {
@@ -2043,7 +2043,7 @@ namespace RapidTrackingJobIDResults
             nd = node.SelectSingleNode(".//div[@class='TvV1fe']|.//div[@class='pXvdUe']"); //14-12-2020 videos
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='zK9jzc B3JUpd']");
-            if (nd != null && node.SelectSingleNode(".//div[contains(@class, ' knowledge-panel ')]") == null)
+            if (nd != null && node.SelectSingleNode(".//div[contains(@class, ' knowledge-panel ')]|.//span[@class='V7Sr0 mfMhoc']") == null) //03-09-2021 missing carousel block
             {
                 // Changes in Videos block on 25-06-2019
                 if (node.InnerText.ToLower().Contains("video") || node.InnerText.StartsWith("فيديوهات"))    // 29-11-2019//02-04-2021 removed s from videos condition

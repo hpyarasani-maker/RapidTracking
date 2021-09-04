@@ -524,7 +524,7 @@ namespace RapidTrackingJobIDResults
                         HtmlNode img = nd.SelectSingleNode(".//img");
                         if (img != null)
                         {
-                            if ((Regex.IsMatch(nd.OuterHtml, "id=\"vidthumb\\d*\"") && nd.SelectSingleNode(".//div[@class='ij69rd UHe5G']") != null) || nd.SelectSingleNode(".//div[@class='U1TUId LYh3vc']") != null) // 17-01-2020 //19-02-2021 classic link instead without time video block
+                            if ((Regex.IsMatch(nd.OuterHtml, "id=\"vidthumb\\d*\"") && nd.SelectSingleNode(".//div[@class='ij69rd UHe5G']") != null) || nd.SelectSingleNode(".//div[contains(@class,'U1TUId')]") != null)// 30-08-2021'U1TUId LYh3vc' // 17-01-2020 //19-02-2021 classic link instead without time video block
                             {
                                 //24-08-2021 video item urls
                                 var urls = string.Empty;
@@ -758,7 +758,7 @@ namespace RapidTrackingJobIDResults
             if (nds == null)
                 nds = node.SelectNodes(".//div[@jsname='ibnC6b']/div/a");   //17-07-2020
             if (nds == null)
-                nds = node.SelectNodes(".//div[@class='LYyupc']/div/a|.//a[@class='X5OiLe']"); //07-07-2021 //23-07-2021
+                nds = node.SelectNodes(".//div[@class='LYyupc']/div/a|.//a[@class='X5OiLe']|.//div[@class='XpiUte']/a"); //30-08-2021 videos item url//07-07-2021 //23-07-2021
             if (nds != null)
                 foreach (HtmlNode nd in nds)
                 {
@@ -774,6 +774,8 @@ namespace RapidTrackingJobIDResults
                             n = nd.SelectSingleNode(".//div[@class='CwxNSe']/div"); // 02-06-2020
                         if (n == null)
                             n = nd.SelectSingleNode(".//div[contains(@class,'oz3cqf p5AXld')]");//23-07-2021
+                        if (n == null)
+                            n = nd.SelectSingleNode(".//div[@class='lSegpf']"); //30-08-2021 vides item title
                         try
                         {
                             title = n.InnerText;
@@ -1369,6 +1371,7 @@ namespace RapidTrackingJobIDResults
             {
                 try
                 {
+                    if (node.SelectSingleNode(".//div[@class='twQ0Be']") != null) return true;    //30-08-2021 video card
                     if (node.SelectSingleNode(".//div[@class='osrp-blk']|.//div[@class='tpa-cc']") != null) //20-08-2021 for ignoring wrong block
                         return false; //20-08-2021
                     //02-12-2020
@@ -1491,7 +1494,7 @@ namespace RapidTrackingJobIDResults
                 if (url.Contains("\0"))
                     url = url.Replace("\0", "%00");
 
-                if ((url.StartsWith("https://") || url.StartsWith("http://") || url.StartsWith("ftp://")) && (!url.Contains("/aclk?") && !url.Contains("search?num=100"))) //28-08-2021  // 30-04-2020 
+                if ((url.StartsWith("https://") || url.StartsWith("http://") || url.StartsWith("ftp://")) && !url.Contains("/aclk?"))// 30-04-2020 
                     return url;
             }
             catch (Exception ex)

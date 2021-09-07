@@ -5,9 +5,12 @@ using RapidTrackingLibrary;
 
 namespace RapidTrackingUnitTest
 {
+    
     [TestClass]
     public class DesktopTest
     {
+        readonly static string seid = "58";
+        readonly static string keyword = "movies";
         [TestMethod]
         public void TestDektopTopStoriesBlockExisted()
         {
@@ -463,6 +466,15 @@ namespace RapidTrackingUnitTest
             var result = desktop.ProcessNode(node);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
         }// end 30-08-2021
-
+        [TestMethod] //07-09-2021
+        public void TestDesktopProcessDocument()
+        {
+            var desktop = new Desktop();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\desktop\htmlsrc.html";
+            doc.Load(path);
+            var result = desktop.ProcessDocument(seid, keyword, doc, out int cnt);
+            Assert.AreEqual(!string.IsNullOrEmpty(result) && cnt > 0, true);
+        }//end 07-09-2021
     }
 }

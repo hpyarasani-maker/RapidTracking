@@ -641,6 +641,16 @@ namespace RapidTrackingUnitTest
             var result = iOS.GetTopStuff(doc);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
         }//end 30-08-2021
+        [TestMethod]//07-09-2021
+        public void TestiOSProcessDocument()
+        {
+            var iOS = new iOS();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\htmlsrc.html";
+            doc.Load(path);
+            var result = iOS.ProcessDocument(seid, keyword, doc, out int cnt);
+            Assert.AreEqual(!string.IsNullOrEmpty(result) && cnt > 0, true);
+        }//end 07-09-2021
 
     }
 }

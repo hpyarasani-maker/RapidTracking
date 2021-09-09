@@ -10,7 +10,7 @@ namespace RapidTrackingUnitTest
     public class DesktopTest
     {
         readonly static string seid = "58";
-        readonly static string keyword = "movies";
+        readonly static string keyword = "joe biden";
         [TestMethod]
         public void TestDektopTopStoriesBlockExisted()
         {

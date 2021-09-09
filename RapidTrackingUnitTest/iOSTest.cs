@@ -13,7 +13,7 @@ namespace RapidTrackingUnitTest
     public class iOSTest
     {
         readonly static string seid = "106";
-        readonly static string keyword = "movies";
+        readonly static string keyword = "joe biden";
         [TestMethod]
         public void TestiOSAnswerCardBlockExisted()
         {

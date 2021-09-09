@@ -668,7 +668,7 @@ namespace TrendingMobileSingleThread
                         "|.//div[contains(@class,'card-section')]|.//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']|.//div[@class='wU9Tkd']"); //10-07-2021 //20-05-2021 included contains//15-12-2020
 
                 if (nds == null)
-                    if (node.Attributes["class"].Value == "mnr-c xpd O9g5cc uUPGi")
+                    if (node.Attributes["class"]?.Value == "mnr-c xpd O9g5cc uUPGi") //09-09-2021 applied ? condition
                         nds = node.SelectNodes(".//div[contains(@class,'KJDcUb')]"); //28-07-2020 //29-07-2020 included contains function
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='setTDc']");   // 25-10-2019
@@ -821,6 +821,7 @@ namespace TrendingMobileSingleThread
                              || nd.Attributes["class"].Value == "mnr-c luh4tb xpd O9g5cc uUPGi" || nd.Attributes["class"].Value == "mnr-c PHap3c" //05-01-2021
                              || nd.Attributes["class"].Value == "g card-section svwwZ" || nd.Attributes["class"].Value == "card-section"  //15-12-2020//03-11-2020 //06-10-2020 classic type block type
                              || nd.Attributes["class"].Value == "d5oMvf KJDcUb" || nd.Attributes["class"].Value == "c6gxKe card-section" //20-05-2021) //09-02-2021
+                             || nd.Attributes["class"].Value.Contains("KJDcUb") //09-09-2021 missing classic links
                              || nd.Attributes["class"].Value == "wU9Tkd" //10-07-2021
                              || nd.Attributes["class"].Value == "g card-section") //30-08-2021 missing classic link
                             {
@@ -2430,7 +2431,7 @@ namespace TrendingMobileSingleThread
                         return true;
                     return false;
                 }
-                else if (nd != null && node.SelectSingleNode(".//div[@class='d5oMvf KJDcUb']") != null) // 22-01-2020 included selector for classic links
+                else if (nd != null && node.SelectSingleNode(".//div[contains(@class,'KJDcUb')]") != null)//09-09-2021 applied contains // 22-01-2020 included selector for classic links
                 {
                     return false;
                 }

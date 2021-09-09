@@ -2464,7 +2464,7 @@ namespace RapidTrackingLibrary
                         return true;
                     return false;
                 }
-                else if (nd != null && node.SelectSingleNode(".//div[contains(@class,'d5oMvf KJDcUb')]") != null)//09-09-2021 applied contains // 22-01-2020 included selector for classic links
+                else if (nd != null && node.SelectSingleNode(".//div[contains(@class,'KJDcUb')]") != null)//09-09-2021 applied contains // 22-01-2020 included selector for classic links
                 {
                     return false;
                 }

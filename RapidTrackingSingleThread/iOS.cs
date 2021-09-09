@@ -669,7 +669,7 @@ namespace RapidTrackingSingleThread
                         "|.//div[contains(@class,'card-section')]|.//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']|.//div[@class='wU9Tkd']"); //10-07-2021 //20-05-2021 included contains//15-12-2020
 
                 if (nds == null)
-                    if (node.Attributes["class"].Value == "mnr-c xpd O9g5cc uUPGi")
+                    if (node.Attributes["class"]?.Value == "mnr-c xpd O9g5cc uUPGi") //09-09-2021 applied ? condition
                         nds = node.SelectNodes(".//div[contains(@class,'KJDcUb')]"); //28-07-2020 //29-07-2020 included contains function
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='setTDc']");   // 25-10-2019
@@ -2432,7 +2432,7 @@ namespace RapidTrackingSingleThread
                         return true;
                     return false;
                 }
-                else if (nd != null && node.SelectSingleNode(".//div[@class='d5oMvf KJDcUb']") != null) // 22-01-2020 included selector for classic links
+                else if (nd != null && node.SelectSingleNode(".//div[contains(@class,'d5oMvf KJDcUb')]") != null)//09-09-2021 applied contains // 22-01-2020 included selector for classic links
                 {
                     return false;
                 }

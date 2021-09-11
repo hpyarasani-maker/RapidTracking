@@ -1480,7 +1480,8 @@ namespace RapidTrackingSingleThread
 
                 Regex rx = new Regex("http[\\w]?://(.*)", RegexOptions.Singleline);
                 if (!rx.Match(url).Success && !url.Contains("/aclk?"))
-                    if (!url.Contains("://")) // 30-04-2020
+                   // if (!url.StartsWith("/")) //11-09-2021 ignore url start with "/"
+                        if (!url.Contains("://")) // 30-04-2020
                         url = "http://" + url;
 
                 if (url.StartsWith("http:////") || url.StartsWith("https:////")) //18-09-2020 condition applied if appears http:////

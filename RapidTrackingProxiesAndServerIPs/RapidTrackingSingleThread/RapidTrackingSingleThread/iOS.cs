@@ -2488,8 +2488,9 @@ namespace RapidTrackingSingleThread
                 //end 24-09-2020
                 Regex rx = new Regex("http[\\w]?://(.*)", RegexOptions.Singleline);
                 if (!rx.Match(url).Success && !url.Contains("/aclk?"))
-                    if (!url.Contains("://")) // 30-04-2020
-                        url = "http://" + url;
+                    //if (!url.StartsWith("/")) //11-09-2021 ignore url start with "/"
+                        if (!url.Contains("://")) // 30-04-2020
+                            url = "http://" + url;
 
                 if (url.StartsWith("http:////") || url.StartsWith("https:////")) //18-09-2020 condition applied if appears http:////
                     url = url.Replace("////", "//"); //18-09-2020
@@ -2550,13 +2551,13 @@ namespace RapidTrackingSingleThread
         //27-08-2020
         private string GetRedirectedUrl_TextAds(string url)
         {
-            if (string.IsNullOrEmpty(url)) return string.Empty;
             try  //28-09-2020  try catch.
             {
-                url = url.Replace("HTTPS://", "https://").Replace("HTTP://", "http://");
-                if (string.IsNullOrEmpty(url.Trim())) return string.Empty;
 
-                Regex rx = new Regex("http[\\w]?://(.*)", RegexOptions.Singleline);
+                url = url.Replace("HTTPS://", "https://").Replace("HTTP://", "http://");
+                    if (string.IsNullOrEmpty(url.Trim())) return string.Empty;
+
+                    Regex rx = new Regex("http[\\w]?://(.*)", RegexOptions.Singleline);
                 if (!rx.Match(url).Success && !url.Contains("/aclk?"))
                     if (!url.Contains("://"))
                         url = "http://" + url;

@@ -476,5 +476,16 @@ namespace RapidTrackingUnitTest
             var result = desktop.ProcessDocument(seid, keyword, doc, out int cnt);
             Assert.AreEqual(!string.IsNullOrEmpty(result) && cnt > 0, true);
         }//end 07-09-2021
+        [TestMethod]//13-09-2021
+        public void TestDesktopProcessorganicSiteLinksBlockExisted()
+        {
+            var desktop = new Desktop();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\desktop\sitelinks.txt";
+            doc.Load(path);
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var result = desktop.ProcessOrganic(node);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }//end 13-09-2021
     }
 }

@@ -1053,8 +1053,8 @@ namespace RapidTrackingSingleThread
                 nds = node.SelectNodes(".//g-inner-card/div/a");   //01-05-2020
             if (nds == null)
                 nds = node.SelectNodes(".//div[@class='HCUNre dbsr']/a"); //21-09-2020 Top Stories block item urls selector updated
-            if (nds == null && node.SelectNodes(".//div/a/div[@class='TIh7vf']|.//div/a[@class='WlydOe']") != null) //15-09-2021 selector missing TS item urls
-                    nds = node.SelectNodes(".//div/a"); //10-12-2020 
+            if (nds == null && node.SelectNodes(".//div/a/div[@class='TIh7vf']") != null) //10-12-2020  top stories selector
+                nds = node.SelectNodes(".//div/a"); //10-12-2020 
 
 
             if (nds != null)

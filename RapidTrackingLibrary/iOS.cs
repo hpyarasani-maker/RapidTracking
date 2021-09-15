@@ -2443,7 +2443,8 @@ namespace RapidTrackingLibrary
             nd = node.SelectSingleNode(".//div[@class='f570C']");
             if (nd != null)
             {
-                return true;
+                if (node.SelectSingleNode(".//table[@class='std']") == null) //15-09-2021 ignoring wrong classic links
+                    return true;
             }
             //end 06-08-2019
 

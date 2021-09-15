@@ -2405,7 +2405,8 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[contains(@class,'khgTR')]");  //16-09-2020 applied contains function
             if (nd != null)
             {
-                return false;
+                if (node.SelectSingleNode(".//table[@class='std']") == null) //15-09-2021 ignoring wrong classic links
+                    return false;
             }
             //start 06-08-2019
             nd = node.SelectSingleNode(".//div[@class='f570C']");

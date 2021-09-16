@@ -651,6 +651,49 @@ namespace RapidTrackingUnitTest
             var result = iOS.ProcessDocument(seid, keyword, doc, out int cnt);
             Assert.AreEqual(!string.IsNullOrEmpty(result) && cnt > 0, true);
         }//end 07-09-2021
+        [TestMethod] //13-09-2021
+        public void TestiOSProcessDocument1()
+        {
+            var iOS = new iOS();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\htmlsrc1.html";
+            doc.Load(path);
+            var result = iOS.ProcessDocument(seid, keyword, doc, out int cnt);
+            Assert.AreEqual(!string.IsNullOrEmpty(result) && cnt > 0, true);
+        }
+        [TestMethod]
+        public void TestiOSProcessOrganicSiteLinksBlockExisted()
+        {
+            var iOS = new iOS();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\sitelinks.txt";
+            doc.Load(path);
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var result = iOS.ProcessOrganic(node);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+        [TestMethod]
+        public void TestiOSProcessOrganicAppsBlockExisted()
+        {
+            var iOS = new iOS();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\apps\appsblock1.txt";
+            doc.Load(path);
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var result = iOS.ProcessOrganic(node);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+        [TestMethod]
+        public void TestiOSProcessOrganicVideoBlockExisted()
+        {
+            var iOS = new iOS();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\videoblock2.txt";
+            doc.Load(path);
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var result = iOS.ProcessOrganic(node);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }//end 13-09-2021
 
     }
 }

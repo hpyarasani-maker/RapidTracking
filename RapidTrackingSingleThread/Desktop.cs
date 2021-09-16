@@ -1053,7 +1053,7 @@ namespace RapidTrackingSingleThread
                 nds = node.SelectNodes(".//g-inner-card/div/a");   //01-05-2020
             if (nds == null)
                 nds = node.SelectNodes(".//div[@class='HCUNre dbsr']/a"); //21-09-2020 Top Stories block item urls selector updated
-            if (nds == null && node.SelectNodes(".//div/a/div[@class='TIh7vf']") != null) //10-12-2020  top stories selector
+            if (nds == null && node.SelectNodes(".//div/a/div[@class='TIh7vf']|.//div/a[@class='WlydOe']") != null) //15-09-2021 selector missing TS item urls
                 nds = node.SelectNodes(".//div/a"); //10-12-2020 
 
 
@@ -1480,7 +1480,8 @@ namespace RapidTrackingSingleThread
 
                 Regex rx = new Regex("http[\\w]?://(.*)", RegexOptions.Singleline);
                 if (!rx.Match(url).Success && !url.Contains("/aclk?"))
-                    if (!url.Contains("://")) // 30-04-2020
+                   // if (!url.StartsWith("/")) //11-09-2021 ignore url start with "/"
+                        if (!url.Contains("://")) // 30-04-2020
                         url = "http://" + url;
 
                 if (url.StartsWith("http:////") || url.StartsWith("https:////")) //18-09-2020 condition applied if appears http:////

@@ -2444,7 +2444,7 @@ namespace RapidTrackingLibrary
             nd = node.SelectSingleNode(".//div[@class='f570C']");
             if (nd != null)
             {
-                if (node.SelectSingleNode(".//table[@class='std']") == null) //15-09-2021 ignoring wrong classic links
+                if (node.SelectSingleNode(".//table[@class='std']|.//div[@class='di8g3 ChOqnd']") == null)//16-09-2021 ignore wrong url //15-09-2021 ignoring wrong classic links
                     return true;
             }
             //end 06-08-2019

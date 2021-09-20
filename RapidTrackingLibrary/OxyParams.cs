@@ -16,10 +16,10 @@ namespace RapidTrackingLibrary
         //public int start_page { get; set; } 
         public string locale { get; set; }
         public string geo_location { get; set; }
-        public string uule { get; set; }
+        public string uule { get;  }
         public int parse { get; set; }
         public string user_agent_type { get; set; }
-
+    
         public List<Context> context { get; set; }
     }
     class Context

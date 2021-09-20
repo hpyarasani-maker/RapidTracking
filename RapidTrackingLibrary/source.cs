@@ -34,11 +34,12 @@ namespace RapidTrackingLibrary
                 //start_page = 1,
                 locale = sp.locale,
                 geo_location = sp.geo_location,
-                //uule = uule,
+                uule = sp.uule,
                 parse = 1,
                 user_agent_type = sp.device,
                 context = new List<Context> {
-                    new Context("safe_search", 0)
+                    new Context("safe_search", 0),
+                    new Context("tbm", null),
                     }
             };
 

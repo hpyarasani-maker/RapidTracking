@@ -159,6 +159,23 @@ namespace RapidTrackingUnitTest
             s = desktop.SanitizeXmlString("https://www.dixons.co.uk");
             Assert.AreEqual("https://www.dixons.co.uk", s);
         }
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void TestDesktopSanitizeXmlStringPeek(Stream str)
+        {
+            Desktop.XmlSanitizingStream dx = new Desktop.XmlSanitizingStream(str);
+           
+            dx.Peek();
+            Assert.AreEqual(dx.Peek(), null);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void TestDesktopSanitizeXmlStringRead(Stream str)
+        {
+            Desktop.XmlSanitizingStream dx = new Desktop.XmlSanitizingStream(str);
+            dx.Read();
+            Assert.AreEqual(dx.Read(), null);
+        }
         //01-05-2021
         [TestMethod]
         public void TestDesktopGetRedirectedURL()

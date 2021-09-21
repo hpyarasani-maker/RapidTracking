@@ -495,5 +495,12 @@ namespace RapidTrackingUnitTest
             Assert.AreEqual(string.IsNullOrEmpty(s), null);
         }
         //end 26-06-2021
+        [TestMethod] //21-09-2021
+        [ExpectedException(typeof(Exception))] //should be ArgumentNullException
+        public void TestDesktopProcessDocumentException()
+        {
+            var desktop = new Desktop();
+            desktop.ProcessDocument(seid, keyword, null, out int cnt);
+        }//end 21-09-2021
     }
 }

@@ -45,7 +45,41 @@ namespace RapidTrackingUnitTest
             htmlNode = SupportMethods.GetiOSBlock("images");
             Assert.IsInstanceOfType(htmlNode, typeof(HtmlNode));
         }//end 21-09-2021
-
+        [TestMethod] //22-09-2021
+        public void TestGetiOSVideosBlock()
+        {
+            HtmlNode htmlNode;
+            htmlNode = SupportMethods.GetiOSBlock("videos");
+            Assert.IsInstanceOfType(htmlNode, typeof(HtmlNode));
+        }
+        [TestMethod]
+        public void TestGetiOSPeopleAlsoAskBlock()
+        {
+            HtmlNode htmlNode;
+            htmlNode = SupportMethods.GetiOSBlock("peoplealsoask");
+            Assert.IsInstanceOfType(htmlNode, typeof(HtmlNode));
+        }
+        [TestMethod]
+        public void TestGetiOSCarouselBlock()
+        {
+            HtmlNode htmlNode;
+            htmlNode = SupportMethods.GetiOSBlock("carousel");
+            Assert.IsInstanceOfType(htmlNode, typeof(HtmlNode));
+        }
+        [TestMethod]
+        public void TestGetiOSAnswerCardBlock()
+        {
+            HtmlNode htmlNode;
+            htmlNode = SupportMethods.GetiOSBlock("answercard");
+            Assert.IsInstanceOfType(htmlNode, typeof(HtmlNode));
+        }
+        [TestMethod]
+        public void TestGetiOSAppsBlock()
+        {
+            HtmlNode htmlNode;
+            htmlNode = SupportMethods.GetiOSBlock("apps");
+            Assert.IsInstanceOfType(htmlNode, typeof(HtmlNode));
+        }//end 22-09-2021
     }
 }
 

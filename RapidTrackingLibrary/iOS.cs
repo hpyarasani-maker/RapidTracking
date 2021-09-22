@@ -266,7 +266,7 @@ namespace RapidTrackingLibrary
         {
             StringBuilder s = new StringBuilder();
             //25-09-2019                        //swaped productlistedads 14-05-2020
-            if (doc.DocumentNode.SelectSingleNode("//div[@class='mnr-c IGtt6d imgac']") != null)
+            if (doc.DocumentNode.SelectSingleNode("//div[@class='mnr-c IGtt6d imgac']") != null || doc.DocumentNode.SelectSingleNode("//div[@class='IGtt6d imgac mnr-c']") != null) //22-06-2021 bottom PLAds 
             {
                 HtmlNode pla = doc.DocumentNode.SelectSingleNode(".//div[contains(@class, 'commercial-unit-mobile-top')]");
                 if (pla == null)

@@ -167,7 +167,7 @@ namespace Image_Page_Keywords_Sending
                 callback_url = "",
                 geo_location = location,
                // uule = uule,
-                parse = 1,
+                parse = false, //23-09-2021 changed datatype into "int to bool"
                 user_agent_type = "desktop",
                 context = new List<Context> {
                     new Context("tbm", value),
@@ -231,7 +231,7 @@ namespace Image_Page_Keywords_Sending
                 callback_url = "",
                 geo_location = location,
                 //uule = uule,
-                parse = 1,
+                parse = false,
                 user_agent_type = "mobile_ios",
                 context = new List<Context> {
                     new Context("tbm", value),

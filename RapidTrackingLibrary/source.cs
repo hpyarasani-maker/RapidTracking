@@ -35,7 +35,7 @@ namespace RapidTrackingLibrary
                 locale = sp.locale,
                 geo_location = sp.geo_location,
                 uule = sp.uule,
-                parse = 1,
+                parse = false,
                 user_agent_type = sp.device,
                 context = new List<Context> {
                     new Context("safe_search", 0),

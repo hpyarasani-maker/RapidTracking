@@ -481,7 +481,7 @@ namespace TrendingDesktopSingleThread
                 locale = sp.locale,
                 geo_location = sp.geo_location,
                 //uule = uule,
-                parse = 1,
+                parse = false, //23-09-2021 changed datatype into "int to bool"
                 user_agent_type = sp.device,
                 context = new List<Context> {
                     new Context("safe_search", 0)

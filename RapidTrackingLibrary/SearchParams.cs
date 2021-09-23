@@ -1962,7 +1962,7 @@ namespace RapidTrackingLibrary
             {
                 seid =555, domain ="co.in", geo_location="New Delhi,Delhi,India", locale= "hi-in", uule = " w+CAIQICIVRGVsaGksTmV3IERlbGhpLEluZGlh",device="mobile_android"
             },
-new SearchProperties()
+            new SearchProperties()
             {
                 seid =556, domain ="co.in", geo_location="Bengaluru,Karnataka,India", locale= "kn-in", uule ="w+CAIQICIZQmVuZ2FsdXJ1LEthcm5hdGFrYSxJbmRpYQ==",device="desktop"
             },
@@ -2146,6 +2146,7 @@ new SearchProperties()
             {
                 seid =573, domain ="com.ec", geo_location="Ecuador", locale= "es-419-ec", uule = "w+CAIQICIHRWN1YWRvcg==",device="mobile_android"
             },//10-08-2021
+          
         };
 
 
@@ -2159,7 +2160,7 @@ new SearchProperties()
         public string geo_location { get; set; }
         public string locale { get; set; }
         public string uule { get; set; }
-        public string tbm { get; set; }
+        //public string tbm { get; set; }
         public string device { get; set; }
     }
 

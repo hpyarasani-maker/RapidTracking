@@ -102,7 +102,7 @@ namespace TrendingSending
                 locale = sp.locale,
                 callback_url = callbackURL,  
                 geo_location = sp.geo_location,
-                parse = 1, 
+                parse = false,  //23-09-2021 changed datatype into "int to bool"
                 user_agent_type = sp.device,   
                 context = new List<Context> {
                     new Context("tbm", sp.tbm),

@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Xml;
-using System.Xml.Linq;
+using HtmlAgilityPack;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RapidTrackingLibrary;
-using HtmlAgilityPack;
 
 namespace RapidTrackingUnitTest
 {
@@ -159,6 +157,7 @@ namespace RapidTrackingUnitTest
             s = desktop.SanitizeXmlString("https://www.dixons.co.uk");
             Assert.AreEqual("https://www.dixons.co.uk", s);
         }
+       
         //01-05-2021
         [TestMethod]
         public void TestDesktopGetRedirectedURL()
@@ -478,5 +477,12 @@ namespace RapidTrackingUnitTest
             Assert.AreEqual(string.IsNullOrEmpty(s), null);
         }
         //end 26-06-2021
+        [TestMethod] //21-09-2021
+        [ExpectedException(typeof(Exception))] //should be ArgumentNullException
+        public void TestDesktopProcessDocumentException()
+        {
+            var desktop = new Desktop();
+            desktop.ProcessDocument(seid, keyword, null, out int cnt);
+        }//end 21-09-2021
     }
 }

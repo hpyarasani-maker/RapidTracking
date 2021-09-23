@@ -694,6 +694,33 @@ namespace RapidTrackingUnitTest
             var result = iOS.ProcessOrganic(node);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
         }//end 13-09-2021
+        [TestMethod] //22-09-2021
+        public void TestiOSSupportMethods()
+        {
+            var iOS = new iOS();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\src.txt";
+            doc.Load(path);
+            SupportMethods.iOsHtml = doc.DocumentNode.OuterHtml;
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var res = iOS.ProcessDocument(seid, keyword, doc, out int cnt);
+            var result = SupportMethods.GetiOSBlock("videos");
+            Assert.AreEqual(!string.IsNullOrEmpty(result.ToString()), true);
 
+        }
+        [TestMethod]
+        public void TestiOSSupportMethods2()
+        {
+            var iOS = new iOS();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\src1.txt";
+            doc.Load(path);
+            SupportMethods.iOsHtml = doc.DocumentNode.OuterHtml;
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var res = iOS.ProcessDocument(seid, keyword, doc, out int cnt);
+            var result = SupportMethods.GetiOSBlock("images");
+            Assert.AreEqual(!string.IsNullOrEmpty(result.ToString()), true);
+
+        }//end 22-09-2021
     }
 }

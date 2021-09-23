@@ -489,5 +489,12 @@ namespace RapidTrackingUnitTest
             Assert.AreEqual(string.IsNullOrEmpty(s), null);
         }
         //end 28-06-2021
+        [TestMethod]//21-09-2021
+        public void TestGetiOSImagesBlock()
+        {
+            HtmlNode htmlNode;
+            htmlNode = SupportMethods.GetiOSBlock("images");
+            Assert.IsInstanceOfType(htmlNode, typeof(HtmlNode));
+        }//end 21-09-2021
     }
 }

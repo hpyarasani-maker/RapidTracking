@@ -11,7 +11,7 @@ namespace Oxylabs_BulkKeywords
         public int pages { get; set; }
         public string locale { get; set; }
         public string geo_location { get; set; }        
-        public int parse { get; set; }
+        public bool parse { get; set; }//23-09-2021 changed datatype into "int to bool"
         public string callback_url { get; set; }
         public string user_agent_type { get; set; }
 

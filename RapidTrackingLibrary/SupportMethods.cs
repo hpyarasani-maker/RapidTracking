@@ -179,6 +179,12 @@ namespace RapidTrackingLibrary
 
                 foreach (HtmlNode node in nodeCol)
                 {
+                    if (blockName.ToLower() == "knowledgegraph") //24-09-2021 for test methods
+                    {
+                        string s = desktop.GetRightStuff(doc);
+                        if (s.ToLower().Contains(blockName.ToLower())) return node;
+                        return null;
+                    }//end 24-09-2021
                     if (node.HasClass("kp-wholepage"))
                     {
                         continue;

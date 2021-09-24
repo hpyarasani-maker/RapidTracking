@@ -80,6 +80,14 @@ namespace RapidTrackingUnitTest
             htmlNode = SupportMethods.GetiOSBlock("apps");
             Assert.IsInstanceOfType(htmlNode, typeof(HtmlNode));
         }//end 22-09-2021
+
+        [TestMethod] //24-09-2021
+        public void TestGetDesktopKnowledgegraphBlock()
+        {
+            HtmlNode htmlNode;
+            htmlNode = SupportMethods.GetDesktopBlock("knowledgegraph");
+            Assert.IsInstanceOfType(htmlNode, typeof(HtmlNode));
+        }//end 24-09-2021
     }
 }
 

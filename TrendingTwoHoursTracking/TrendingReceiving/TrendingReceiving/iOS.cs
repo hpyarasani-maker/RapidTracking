@@ -97,6 +97,8 @@ namespace TrendingReceiving
                     if (n == null)
                         n = node.SelectSingleNode(".//div[@class='PyJv1b gsmt PZPZlf rq9RNe']/span[@role='heading']");  // 20-11-2020 KP block selector
                     if (n == null)
+                        n = node.SelectSingleNode(".//div[@class='DoxwDb PZPZlf e8BxGf']");//23-09-2021 for missing KP block
+                    if (n == null)
                         n = node.SelectSingleNode(".//div[@class='Ftghae iirjIb']");//16-09-2019
                     if (n != null)
                     {
@@ -218,7 +220,7 @@ namespace TrendingReceiving
         {
             StringBuilder s = new StringBuilder();
             //25-09-2019                        //swaped productlistedads 14-05-2020
-            if (doc.DocumentNode.SelectSingleNode("//div[@class='mnr-c IGtt6d imgac']") != null)
+            if (doc.DocumentNode.SelectSingleNode("//div[@class='mnr-c IGtt6d imgac']") != null || doc.DocumentNode.SelectSingleNode("//div[@class='IGtt6d imgac mnr-c']") != null) //22-06-2021 bottom PLAds 
             {
                 HtmlNode pla = doc.DocumentNode.SelectSingleNode(".//div[contains(@class, 'commercial-unit-mobile-top')]");
                 if (pla == null)
@@ -655,7 +657,7 @@ namespace TrendingReceiving
                     nds = (node.SelectNodes(".//div[contains(@id,'tsuid')]//a[@class='Xhbgy']") != null && node.SelectNodes(".//div[contains(@class,'KJDcUb')]") != null) ? nds = node.SelectNodes(".//div[@class='mnr-c xpd O9g5cc uUPGi']") : nds = null;
                 //end 26-03-2021
                 if (nds == null)
-                    if (node.SelectSingleNode(".//div[contains(@class,'YgXj7b')]") == null)//08-05-2021 applied contains //19-01-2021
+                    if (node.SelectSingleNode(".//div[contains(@class,'YgXj7b')]|.//div[@class='Y37F6d Nn2Stf']/img") == null)//22-09-2021 missing video block//08-05-2021 applied contains //19-01-2021
                         nds = node.SelectNodes(".//div[contains(@class,'KJDcUb')]|.//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']|.//g-card[@id='tscffb']|.//div[@class='mnr-c PHap3c']");//09-02-2021//27-01-2021 included missing selector//05-01-2021 //04-01-2021 missing classic link//18-12-2020 sitelinks missing selector //15-12-2020
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='mnr-c O9g5cc uUPGi']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='HD8Pae mnr-c xpd O9g5cc uUPGi']" +
@@ -2038,7 +2040,7 @@ namespace TrendingReceiving
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@id='tsuid196']");
             if (nd != null)
-                if (!node.InnerText.Contains("Popular products")) //29-06-2021 avoiding wrong block
+                if (!node.InnerText.Contains("Popular products") && node.SelectSingleNode(".//div[@class='I2lQic']") == null)//24-09-2021 maps //29-06-2021 avoiding wrong block
                     return "Videos";
 
             nd = node.SelectSingleNode(".//div[@class='TvV1fe']|.//div[@class='pXvdUe']"); //14-12-2020 videos
@@ -2401,7 +2403,7 @@ namespace TrendingReceiving
                 nd = node.SelectSingleNode(".//div[contains(@class,'khgTR')]");  //16-09-2020 applied contains function
             if (nd != null)
             {
-                if (node.SelectSingleNode(".//table[@class='std']") == null) //15-09-2021 ignoring wrong classic links
+                if (node.SelectSingleNode(".//table[@class='std']|.//div[@class='di8g3 ChOqnd']") == null)//16-09-2021 ignore wrong url //15-09-2021 ignoring wrong classic links
                     return false;
             }
             //start 06-08-2019

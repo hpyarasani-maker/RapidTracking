@@ -93,6 +93,8 @@ namespace RapidTrackingSingleThread
                         if (n == null)
                             n = node.SelectSingleNode(".//div[@class='PyJv1b gsmt PZPZlf rq9RNe']/span[@role='heading']");  // 20-11-2020 KP block selector
                         if (n == null)
+                            n = node.SelectSingleNode(".//div[@class='DoxwDb PZPZlf e8BxGf']");//23-09-2021 for missing KP block
+                        if (n == null)
                             n = node.SelectSingleNode(".//div[@class='Ftghae iirjIb']");//16-09-2019 //
 
                         if (n != null)
@@ -2043,7 +2045,7 @@ namespace RapidTrackingSingleThread
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@id='tsuid196']");
              if (nd != null)
-                if (!node.InnerText.Contains("Popular products")) //29-06-2021 avoiding wrong block
+                if (!node.InnerText.Contains("Popular products") && node.SelectSingleNode(".//div[@class='I2lQic']") == null)//24-09-2021 maps //29-06-2021 avoiding wrong block
                     return "Videos";
 
             nd = node.SelectSingleNode(".//div[@class='TvV1fe']|.//div[@class='pXvdUe']"); //14-12-2020 videos

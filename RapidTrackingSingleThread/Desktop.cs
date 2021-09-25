@@ -1060,6 +1060,8 @@ namespace RapidTrackingSingleThread
             if (nds != null)
                 foreach (HtmlNode nd in nds)
                 {
+                    if (nd.SelectSingleNode(".//div[@class='EUjJDc mtqGb nlNnsd VDgVie']") != null) continue; //25-09-2021 for top stories wrong urls
+
                     string title = "";
                     HtmlNode n = nd.SelectSingleNode(".//div[@class='y9oXvf rrBdId']");
                     if (n == null)

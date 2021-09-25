@@ -1058,6 +1058,7 @@ namespace Oxylabs_BulkKeywords
             if (nds != null)
                 foreach (HtmlNode nd in nds)
                 {
+                    if (nd.SelectSingleNode(".//div[@class='EUjJDc mtqGb nlNnsd VDgVie']") != null) continue; //25-09-2021 for top stories wrong item urls
                     string title = "";
                     HtmlNode n = nd.SelectSingleNode(".//div[@class='y9oXvf rrBdId']");
                     if (n == null)
@@ -1370,7 +1371,8 @@ namespace Oxylabs_BulkKeywords
                 || node.SelectSingleNode(".//div[@class='twQ0Be']") != null //03-12-2020 updated selector for videocard
                 || node.SelectSingleNode(".//div[@class='vwfsqc']") != null //07-12-2020
                 || node.SelectSingleNode(".//div[@class='setTDc']") != null //07-12-2020
-                || node.SelectSingleNode(".//div[@class='HnYYW']/div") != null); //23-07-2021
+                || node.SelectSingleNode(".//div[@class='HnYYW']/div") != null //23-07-2021
+                || node.SelectSingleNode(".//div[@class='e2BEnf mfMhoc']") != null); //25-09-2021 missing top stories
 
             if (bVal == true)//2019-09-11
             {
@@ -1478,6 +1480,7 @@ namespace Oxylabs_BulkKeywords
 
                 Regex rx = new Regex("http[\\w]?://(.*)", RegexOptions.Singleline);
                 if (!rx.Match(url).Success && !url.Contains("/aclk?"))
+                    // if (!url.StartsWith("/")) //11-09-2021 ignore url start with "/"
                     if (!url.Contains("://")) // 30-04-2020
                         url = "http://" + url;
 

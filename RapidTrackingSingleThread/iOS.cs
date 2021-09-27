@@ -93,7 +93,7 @@ namespace RapidTrackingSingleThread
                         if (n == null)
                             n = node.SelectSingleNode(".//div[@class='PyJv1b gsmt PZPZlf rq9RNe']/span[@role='heading']");  // 20-11-2020 KP block selector
                         if (n == null)
-                            n = node.SelectSingleNode(".//div[@class='DoxwDb PZPZlf e8BxGf']");//23-09-2021 for missing KP block
+                            n = node.SelectSingleNode(".//div[contains(@class,'DoxwDb PZPZlf')]");//27-09-2021 updated contains//23-09-2021 for missing KP block
                         if (n == null)
                             n = node.SelectSingleNode(".//div[@class='Ftghae iirjIb']");//16-09-2019 //
 

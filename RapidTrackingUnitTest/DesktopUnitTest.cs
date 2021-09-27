@@ -484,5 +484,16 @@ namespace RapidTrackingUnitTest
             var desktop = new Desktop();
             desktop.ProcessDocument(seid, keyword, null, out int cnt);
         }//end 21-09-2021
+        [TestMethod] //27-09-2021
+        [ExpectedException(typeof(NullReferenceException))]
+        public void TestDesktopProcessDocumentException2()
+        {
+            var desktop = new Desktop();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\desktop\src.txt";
+            doc.Load(path);
+            s = desktop.ProcessDocument(seid, keyword, doc, out int cnt);
+            Assert.AreEqual(string.IsNullOrEmpty(s), null);
+        } //end 27-09-2021
     }
 }

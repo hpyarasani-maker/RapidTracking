@@ -26,9 +26,9 @@ namespace RapidTrackingLibrary
 
                 return name;
             }
-            catch (Exception ex)
+            catch (FileNotFoundException)
             {
-                throw ex;
+                throw new FileNotFoundException("could not found file");
             }
         }
 

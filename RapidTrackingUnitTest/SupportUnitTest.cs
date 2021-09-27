@@ -88,6 +88,35 @@ namespace RapidTrackingUnitTest
             htmlNode = SupportMethods.GetDesktopBlock("knowledgegraph");
             Assert.IsInstanceOfType(htmlNode, typeof(HtmlNode));
         }//end 24-09-2021
+
+        [TestMethod]
+        public void TestGetDesktopVideosBlock()
+        {
+            HtmlNode htmlNode;
+            htmlNode = SupportMethods.GetDesktopBlock("videos");
+            Assert.IsInstanceOfType(htmlNode, typeof(HtmlNode));
+        }
+        [TestMethod]
+        public void TestGetDesktopImagesBlock()
+        {
+            HtmlNode htmlNode;
+            htmlNode = SupportMethods.GetDesktopBlock("images");
+            Assert.IsInstanceOfType(htmlNode, typeof(HtmlNode));
+        }
+        [TestMethod]
+        public void TestGetDesktopCarouselBlock()
+        {
+            HtmlNode htmlNode;
+            htmlNode = SupportMethods.GetDesktopBlock("carousel");
+            Assert.IsInstanceOfType(htmlNode, typeof(HtmlNode));
+        }
+        [TestMethod]
+        public void TestGetDesktopAnswerCardBlock()
+        {
+            HtmlNode htmlNode;
+            htmlNode = SupportMethods.GetDesktopBlock("answercard");
+            Assert.IsInstanceOfType(htmlNode, typeof(HtmlNode));
+        }
     }
 }
 

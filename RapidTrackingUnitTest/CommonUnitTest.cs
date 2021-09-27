@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RapidTrackingLibrary;
 namespace RapidTrackingUnitTest
@@ -11,6 +12,21 @@ namespace RapidTrackingUnitTest
         {
             string s = Common.ReadConnection();
             Assert.AreEqual<string>("Data Source=10.2.0.4;User ID=sa;Password = Pi*Soft1234;initial catalog = TrackingTrending;", s);
+        }
+        [TestMethod] //27-09-2021
+        [ExpectedException(typeof(FileNotFoundException), "could not found file")]
+        public void TestReadConnectionFile()
+        {
+            string path = @"C:\Inetpub\wwwroot\Callback_TrackingTrending.xml";
+            var s = Common.ReadConnection();
+            if(File.Exists(path))
+            {
+                Assert.IsTrue(true,s);
+            }
+            else
+            {
+                  Assert.ThrowsException<FileNotFoundException>(() => s);
+            }
         }
 
         [TestMethod]
@@ -26,5 +42,6 @@ namespace RapidTrackingUnitTest
             Assert.AreEqual(20, s);
         }
        
+
     }
 }

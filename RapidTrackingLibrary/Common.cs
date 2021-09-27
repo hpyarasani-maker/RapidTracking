@@ -2,7 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Xml;
-
+using System.IO;
 namespace RapidTrackingLibrary
 {
     public class Common
@@ -13,7 +13,7 @@ namespace RapidTrackingLibrary
             try
             {
                 XmlDocument xml = new XmlDocument();
-                string fileName = @"C:\Inetpub\wwwroot\Callback_TrackingTrending.xml";
+                string fileName = @"C:\Inetpub\wwwroot\Callback_TrackingTrending1.xml";
 
                 // You'll need to put the correct path to your xml file here
                 xml.Load(fileName);
@@ -26,9 +26,9 @@ namespace RapidTrackingLibrary
 
                 return name;
             }
-            catch (Exception ex)
+            catch (FileNotFoundException)
             {
-                throw ex;
+                throw new FileNotFoundException("could not found file");
             }
         }
 

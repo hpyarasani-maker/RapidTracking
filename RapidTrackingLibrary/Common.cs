@@ -13,7 +13,7 @@ namespace RapidTrackingLibrary
             try
             {
                 XmlDocument xml = new XmlDocument();
-                string fileName = @"C:\Inetpub\wwwroot\Callback_TrackingTrending1.xml";
+                string fileName = @"C:\Inetpub\wwwroot\Callback_TrackingTrending.xml";
 
                 // You'll need to put the correct path to your xml file here
                 xml.Load(fileName);

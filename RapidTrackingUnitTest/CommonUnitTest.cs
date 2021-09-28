@@ -11,21 +11,24 @@ namespace RapidTrackingUnitTest
         public void TestReadConnection()
         {
             string s = Common.ReadConnection();
+            
             Assert.AreEqual<string>("Data Source=10.2.0.4;User ID=sa;Password = Pi*Soft1234;initial catalog = TrackingTrending;", s);
         }
         [TestMethod] //27-09-2021
         [ExpectedException(typeof(FileNotFoundException), "could not found file")]
-        public void TestReadConnectionFile()
+        public void TestReadConnectionFileNotFoundError()
         {
             string path = @"C:\Inetpub\wwwroot\Callback_TrackingTrending.xml";
             var s = Common.ReadConnection();
+            var f = Common.fileName;
+            
             if (File.Exists(path))
             {
-                Assert.IsTrue(true, s);
+                Assert.AreEqual(f,path);
             }
             else
             {
-                Assert.ThrowsException<FileNotFoundException>(() => s);
+                Assert.ThrowsException<FileNotFoundException>(() => f);
             }
         }
         [TestMethod]

@@ -9,14 +9,13 @@ namespace RapidTrackingLibrary
 {
     public class Common
     {
-
+        public static string fileName = string.Empty;
         public static string ReadConnection()
         {
             try
             {
                 XmlDocument xml = new XmlDocument();
-                string fileName = @"C:\Inetpub\wwwroot\Callback_TrackingTrending.xml";
-
+                fileName = @"C:\Inetpub\wwwroot\Callback_TrackingTrending1.xml";
                 // You'll need to put the correct path to your xml file here
                 xml.Load(fileName);
 

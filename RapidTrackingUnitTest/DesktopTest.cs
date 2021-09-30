@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using HtmlAgilityPack;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RapidTrackingLibrary;
@@ -487,5 +488,25 @@ namespace RapidTrackingUnitTest
             var result = desktop.ProcessOrganic(node);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
         }//end 13-09-2021
+        [TestMethod]//30-09-2021
+        public void TestDesktopXmlSanitizingStreamRead()
+        {
+            string path = @"C:\inetpub\wwwroot\";
+            string fileName = path + "rapidtracking_singlethread_102_GT20_WC.xml";
+            Stream stream = new FileStream(fileName, FileMode.Open);
+            Desktop.XmlSanitizingStream xmlSanitizing = new Desktop.XmlSanitizingStream(stream);
+            int n = xmlSanitizing.Read();
+            Assert.IsTrue(n != 0);
+        }
+        [TestMethod]
+        public void TestDesktopXmlSanitizingStreamPeak()
+        {
+            string path = @"C:\inetpub\wwwroot\";
+            string fileName = path + "rapidtracking_singlethread_102_GT20_WC.xml";
+            Stream stream = new FileStream(fileName, FileMode.Open);
+            Desktop.XmlSanitizingStream xmlSanitizing = new Desktop.XmlSanitizingStream(stream);
+            int n = xmlSanitizing.Peek();
+            Assert.IsTrue(n != 0);
+        }//end 30-09-2021
     }
 }

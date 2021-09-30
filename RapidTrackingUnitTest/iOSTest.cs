@@ -722,5 +722,27 @@ namespace RapidTrackingUnitTest
             Assert.AreEqual(!string.IsNullOrEmpty(result.ToString()), true);
 
         }//end 22-09-2021
+        [TestMethod]//30-09-2021
+        public void TestiOSXmlSanitizingStreamRead()
+        {
+            
+            string path = @"C:\inetpub\wwwroot\";
+            string fileName = path + "rapidtracking_singlethread_102_GT20_WC.xml";
+            Stream stream = new FileStream(fileName, FileMode.Open);
+            XmlSanitizingStream xmlSanitizing = new XmlSanitizingStream(stream);
+            int n = xmlSanitizing.Read();
+            Assert.IsTrue(n != 0);
+        }
+        [TestMethod]
+        public void TestiOSXmlSanitizingStreamPeak()
+        {
+            var iOS = new iOS();
+            string path = @"C:\inetpub\wwwroot\";
+            string fileName = path + "rapidtracking_singlethread_102_GT20_WC.xml";
+            Stream stream = new FileStream(fileName, FileMode.Open);
+            XmlSanitizingStream xmlSanitizing = new XmlSanitizingStream(stream);
+            int n = xmlSanitizing.Peek();
+            Assert.IsTrue(n != 0);
+        }//end 3-09-2021
     }
 }

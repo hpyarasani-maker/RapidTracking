@@ -2655,7 +2655,7 @@ namespace RapidTrackingLibrary
             return buffer.ToString();
         }
 
-    }
+    
     public class XmlSanitizingStream : StreamReader
     {
         public XmlSanitizingStream(Stream streamToSanitize)
@@ -2704,28 +2704,28 @@ namespace RapidTrackingLibrary
             return nextCharacter;
         }
 
-        public override int Peek()
-        {
-            // Return next legal XML char w/o reading it 
-
-            int nextCharacter;
-
-            do
+            public override int Peek()
             {
-                // See what the next character is 
-                nextCharacter = base.Peek();
+                // Return next legal XML char w/o reading it 
+
+                int nextCharacter;
+
+                do
+                {
+                    // See what the next character is 
+                    nextCharacter = base.Peek();
+                }
+                while
+                (
+                    // If it's illegal, skip over 
+                    // and try the next.
+
+                    !XmlSanitizingStream.IsLegalXmlChar(nextCharacter) &&
+                    (nextCharacter = base.Read()) != EOF
+                );
+
+                return nextCharacter;
             }
-            while
-            (
-                // If it's illegal, skip over 
-                // and try the next.
-
-                !XmlSanitizingStream.IsLegalXmlChar(nextCharacter) &&
-                (nextCharacter = base.Read()) != EOF
-            );
-
-            return nextCharacter;
-
         }
     }
 }

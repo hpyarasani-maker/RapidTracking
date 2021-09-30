@@ -726,10 +726,10 @@ namespace RapidTrackingUnitTest
         public void TestiOSXmlSanitizingStreamRead()
         {
             
-            string path = @"C:\inetpub\wwwroot\";
+            string path = @"C:\inetpub\wwwroot\test\desktop\";
             string fileName = path + "rapidtracking_singlethread_102_GT20_WC.xml";
             Stream stream = new FileStream(fileName, FileMode.Open);
-            XmlSanitizingStream xmlSanitizing = new XmlSanitizingStream(stream);
+            iOS.XmlSanitizingStream xmlSanitizing = new iOS.XmlSanitizingStream(stream);
             int n = xmlSanitizing.Read();
             Assert.IsTrue(n != 0);
         }
@@ -737,10 +737,10 @@ namespace RapidTrackingUnitTest
         public void TestiOSXmlSanitizingStreamPeak()
         {
             var iOS = new iOS();
-            string path = @"C:\inetpub\wwwroot\";
+            string path = @"C:\inetpub\wwwroot\test\desktop\";
             string fileName = path + "rapidtracking_singlethread_102_GT20_WC.xml";
             Stream stream = new FileStream(fileName, FileMode.Open);
-            XmlSanitizingStream xmlSanitizing = new XmlSanitizingStream(stream);
+            iOS.XmlSanitizingStream xmlSanitizing = new iOS.XmlSanitizingStream(stream);
             int n = xmlSanitizing.Peek();
             Assert.IsTrue(n != 0);
         }//end 3-09-2021

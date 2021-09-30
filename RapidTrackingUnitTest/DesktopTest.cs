@@ -491,7 +491,7 @@ namespace RapidTrackingUnitTest
         [TestMethod]//30-09-2021
         public void TestDesktopXmlSanitizingStreamRead()
         {
-            string path = @"C:\inetpub\wwwroot\";
+            string path = @"C:\inetpub\wwwroot\test\desktop\";
             string fileName = path + "rapidtracking_singlethread_102_GT20_WC.xml";
             Stream stream = new FileStream(fileName, FileMode.Open);
             Desktop.XmlSanitizingStream xmlSanitizing = new Desktop.XmlSanitizingStream(stream);
@@ -501,7 +501,7 @@ namespace RapidTrackingUnitTest
         [TestMethod]
         public void TestDesktopXmlSanitizingStreamPeak()
         {
-            string path = @"C:\inetpub\wwwroot\";
+            string path = @"C:\inetpub\wwwroot\test\desktop\";
             string fileName = path + "rapidtracking_singlethread_102_GT20_WC.xml";
             Stream stream = new FileStream(fileName, FileMode.Open);
             Desktop.XmlSanitizingStream xmlSanitizing = new Desktop.XmlSanitizingStream(stream);

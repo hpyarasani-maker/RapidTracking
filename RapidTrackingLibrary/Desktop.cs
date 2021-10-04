@@ -1405,7 +1405,8 @@ namespace RapidTrackingLibrary
                 || node.SelectSingleNode(".//div[@class='vwfsqc']") != null //07-12-2020
                 || node.SelectSingleNode(".//div[@class='setTDc']") != null //07-12-2020
                 || node.SelectSingleNode(".//div[@class='HnYYW']/div") != null //23-07-2021
-                 || node.SelectSingleNode(".//div[@class='e2BEnf mfMhoc']") != null); //25-09-2021 missing top stories
+                 || node.SelectSingleNode(".//div[@class='e2BEnf mfMhoc']") != null //25-09-2021 missing top stories
+            || node.SelectSingleNode(".//div[@class='e2BEnf']") != null); //04-10-2021 top stories
             if (bVal == true)//2019-09-11
             {
                 try

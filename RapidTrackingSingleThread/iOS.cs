@@ -1186,7 +1186,7 @@ namespace RapidTrackingSingleThread
                     {
                         HtmlNode a = nd1.SelectSingleNode(".//a");
                         url = a.Attributes["href"].Value;
-                        HtmlNode hn = nd1.SelectSingleNode(".//span[@class='rQMQod Xb5VRe']");
+                        HtmlNode hn = nd1.SelectSingleNode(".//span[@class='rQMQod Xb5VRe']|.//span[@class='UMOHqf EDgFbc']"); //04-10-2021 missing carousel block
                         string title = hn.InnerText;
                         al.Add("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                     }

@@ -1079,8 +1079,9 @@ namespace RapidTrackingSingleThread
                         title = n.InnerText;
                     else
                         title = nd.InnerText;
-
-                    s.Append("<item url=\"" + SetUrl(nd.Attributes["href"].Value) + "\" title=\"" + SetTitle(title) + "\" />");
+                    string itemURL = nd.Attributes["href"].Value; //04-10-2021
+                    if (!itemURL.Contains("/search?num=100"))//04-10-2021
+                        s.Append("<item url=\"" + SetUrl(itemURL) + "\" title=\"" + SetTitle(title) + "\" />");//04-10-2021
                 }
             else
             {

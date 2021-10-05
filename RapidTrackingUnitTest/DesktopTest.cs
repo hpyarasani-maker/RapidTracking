@@ -410,17 +410,7 @@ namespace RapidTrackingUnitTest
         }
         //end 13-08-2021
         //26-08-2021
-        [TestMethod]
-        public void TestiOSImagesBlockExisted2()
-        {
-            var desktop = new Desktop();
-            HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\images2.txt";
-            doc.Load(path);
-            var node = doc.DocumentNode.SelectSingleNode("/");
-            var result = desktop.GetImages(node);
-            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
-        }
+        
         [TestMethod]
         public void TestDesktopProcessNodes1()
         {
@@ -508,5 +498,46 @@ namespace RapidTrackingUnitTest
             int n = xmlSanitizing.Peek();
             Assert.IsTrue(n != 0);
         }//end 30-09-2021
+        //05-10-2021
+        [TestMethod]
+        public void TestDesktopTopStuffAdwords2Existed()
+        {
+            var desktop = new Desktop();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\desktop\textads2.txt";
+            doc.Load(path);
+            var result = desktop.GetTopStuff(doc);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+        [TestMethod]
+        public void TestDesktopTopStuffAdwords3Existed()
+        {
+            var desktop = new Desktop();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\desktop\textads3.txt";
+            doc.Load(path);
+            var result = desktop.GetTopStuff(doc);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+        [TestMethod]
+        public void TestDesktopTopStuffKnowledgepanelExisted()
+        {
+            var desktop = new Desktop();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\desktop\tsknowledgepanel.txt";
+            doc.Load(path);
+            var result = desktop.GetTopStuff(doc);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+        [TestMethod]
+        public void TestDesktopTopStuffTopstoriesExisted()
+        {
+            var desktop = new Desktop();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\desktop\tstopstories.txt";
+            doc.Load(path);
+            var result = desktop.GetTopStuff(doc);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }//end 05-10-2021
     }
 }

@@ -1737,7 +1737,7 @@ namespace RapidTrackingLibrary
 
             nds = node.SelectNodes(".//g-inner-card/a");
             if (nds == null)
-                nds = node.SelectNodes(".//g-inner-card/div/a|.//div[@class='kno-fb-ctx n49mp']/div/a|.//div[@class='zZ9K7e']/a"); //03-09-2021 TS Item urls //13-07-2021 TS item urls   // 30-10-2019           
+                nds = node.SelectNodes(".//g-inner-card/div/a|.//div[@class='kno-fb-ctx n49mp']/div/a|.//div[@class='zZ9K7e']/a|.//div[@class='kno-fb-ctx n49mp']/div/div/a|.//g-inner-card/div/div/a");//07-10-2021 TS item urls //03-09-2021 TS Item urls //13-07-2021 TS item urls   // 30-10-2019           
             if (nds == null)
                 nds = node.SelectNodes(".//g-inner-card/div/div/a");    // 13-12-2019
             if (nds == null)

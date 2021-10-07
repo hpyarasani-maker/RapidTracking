@@ -539,5 +539,42 @@ namespace RapidTrackingUnitTest
             var result = desktop.GetTopStuff(doc);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
         }//end 05-10-2021
+
+        //07-10-2021
+        [TestMethod]
+        public void TestDesktopProcessOrganicSubClassicLinks()
+        {
+            var desktop = new Desktop();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\desktop\SubClassicLinks.txt";
+            doc.Load(path);
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var result = desktop.ProcessOrganic(node);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+        [TestMethod]
+        public void TestDesktopProcessClassicLinksExisted2()
+        {
+            var html = @"C:\inetpub\wwwroot\test\desktop\htmlsrc1.html";
+            var desktop = new Desktop();
+            var doc = new HtmlDocument();
+            doc.Load(html);
+            SupportMethods.DesktopHtml = doc.DocumentNode.OuterHtml;
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var res = SupportMethods.GetDesktopBlock("topstories");
+            var result = desktop.ProcessDocument("58", "coronavirus usa cases", doc, out int cnt);
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("<item url=\""));
+        }
+        [TestMethod]
+        public void TestDesktopTopStuffProductListAdsExisted2()
+        {
+            var desktop = new Desktop();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\desktop\textads4.txt";
+            doc.Load(path);
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var result = desktop.GetTopStuff(doc);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        } //end 07-10-2021
     }
 }

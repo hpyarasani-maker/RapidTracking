@@ -616,6 +616,8 @@ namespace RapidTrackingSingleThread
                     col = node.SelectNodes(".//div[@class='zTpPx']/g-link/a");  //28-05-2020
                 if (col == null)
                     col = node.SelectNodes(".//div[@class='DOqJne']/g-link/a"); //07-12-2020 twitter classic link selector
+                if (col == null)
+                    col = node.SelectNodes(".//div[@class='yuRUbf']/a"); //08-10-2021 for missing classic links
                 foreach (HtmlNode nd in col)
                 {
                     string u = nd.Attributes["href"].Value.Replace("/url?q=", "").Replace("&amp;", "&").Replace("&", "&#38;");

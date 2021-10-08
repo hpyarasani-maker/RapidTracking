@@ -41,7 +41,7 @@ namespace RapidTrackingLibrary
                 if (nodeCol == null)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");//09-12-2020
                 if (nodeCol == null)
-                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-section-with-header");//03-12-2020  //01-05-2020         
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-section-with-header|//div[@class='Hpbsqe']");//08-10-2021 images//03-12-2020  //01-05-2020         
                 if (nodeCol == null || nodeCol.Count == 1)
                     nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div") ?? nodeCol; //31-07-2021 //02-07-2021 classic links
                 if (nodeCol == null || nodeCol.Count <= 1)
@@ -1307,6 +1307,8 @@ namespace RapidTrackingLibrary
                 nd = node.SelectSingleNode(".//div[@class='LnbJhc']");  //16-01-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@jscontroller='IkchZc']");//13-03-2020
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@jscontroller='hFvNdd']");//08-10-2021 images
 
             if (nd != null)
             {
@@ -1406,7 +1408,8 @@ namespace RapidTrackingLibrary
                 || node.SelectSingleNode(".//div[@class='setTDc']") != null //07-12-2020
                 || node.SelectSingleNode(".//div[@class='HnYYW']/div") != null //23-07-2021
                  || node.SelectSingleNode(".//div[@class='e2BEnf mfMhoc']") != null //25-09-2021 missing top stories
-            || node.SelectSingleNode(".//div[@class='e2BEnf']") != null); //04-10-2021 top stories
+            || node.SelectSingleNode(".//div[@class='e2BEnf']") != null //04-10-2021 top stories
+             || node.SelectSingleNode(".//div[@jscontroller='hFvNdd']") != null); //08-10-2021 images
             if (bVal == true)//2019-09-11
             {
                 try

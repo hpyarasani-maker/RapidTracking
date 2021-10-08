@@ -41,7 +41,7 @@ namespace RapidTrackingSingleThread
                 if (nodeCol == null)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");//09-12-2020
                 if (nodeCol == null)
-                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-section-with-header");//03-12-2020  //01-05-2020 
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-section-with-header|//div[@class='Hpbsqe']");//08-10-2021 images //03-12-2020  //01-05-2020 
                 if (nodeCol == null || nodeCol.Count == 1)
                     nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div") ?? nodeCol; //31-07-2021 //02-07-2021 classic links
                 if (nodeCol == null || nodeCol.Count <= 1)
@@ -1274,6 +1274,8 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[@class='LnbJhc']");  //16-01-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@jscontroller='IkchZc']");//13-03-2020
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@jscontroller='hFvNdd']");//08-10-2021 images
 
             if (nd != null)
             {
@@ -1356,13 +1358,13 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@class='HaXvv kfn9hb']") != null//07-02-2020
                 || (node.SelectSingleNode(".//div[@class='ifM9O']") != null && node.SelectSingleNode(".//div[@class='Wnoohf OJXvsb']") == null)   // answer card  
                 || node.SelectSingleNode(".//div[@id='cwmcwd']") != null  // answer card 
-                                                                          //|| node.SelectSingleNode(".//div[@class='vk_c card-section']") != null // answer card    
+                //|| node.SelectSingleNode(".//div[@class='vk_c card-section']") != null // answer card    
                 || node.SelectSingleNode(".//div[@class='d7sCQ kp-header']") != null  //03-06-2020                                                      
-                                                                                      //|| node.SelectSingleNode(".//div[@class='vk_c card-section']") != null // answer card                
+                //|| node.SelectSingleNode(".//div[@class='vk_c card-section']") != null // answer card                
                 || node.SelectSingleNode(".//div[@class='pcCUmf vCOSGb']") != null  //03-06-2020
-                                                                                    //|| node.SelectSingleNode(".//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']") != null  // people also ask // 11-02-2020
+                //|| node.SelectSingleNode(".//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']") != null  // people also ask // 11-02-2020
                 || node.SelectSingleNode(".//div[contains(@class,'cUnQKe')]") != null //08-07-2021
-                                                                                      //|| node.SelectSingleNode(".//span[@data-original-name='People also ask']") != null  // people also ask
+                //|| node.SelectSingleNode(".//span[@data-original-name='People also ask']") != null  // people also ask
                 || node.SelectSingleNode(".//h3[@class='_DM']") != null || node.SelectSingleNode(".//div[@id='imagebox_bigimages']") != null || node.SelectSingleNode(".//div[@class='mR2gOd']") != null //27-06-2020   // images
                 || node.SelectSingleNode(".//div[@class='e2BEnf']/h3") != null // videos
                 || node.SelectSingleNode(".//div[@class='e2BEnf U7izfe']/h3") != null  // videos
@@ -1376,7 +1378,8 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@class='setTDc']") != null //07-12-2020
                 || node.SelectSingleNode(".//div[@class='HnYYW']/div") != null //23-07-2021
                 || node.SelectSingleNode(".//div[@class='e2BEnf mfMhoc']") != null //25-09-2021 missing top stories
-                || node.SelectSingleNode(".//div[@class='e2BEnf']") != null); //04-10-2021 top stories
+                || node.SelectSingleNode(".//div[@class='e2BEnf']") != null //04-10-2021 top stories
+                || node.SelectSingleNode(".//div[@jscontroller='hFvNdd']") != null); //08-10-2021 images
             if (bVal == true)//2019-09-11
             {
                 try

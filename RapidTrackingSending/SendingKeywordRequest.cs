@@ -55,6 +55,8 @@ namespace Oxylabs_BulkKeywords
                 string jobid = link["id"].Value<string>();
 
                 string qry = "insert into dashboard_data_sending (date, name, seid, jobid) values('" + datetime + "', N'" + kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "'); ";
+                //string qry = "insert into dashboard_data_sendingP (date, name, seid, jobid) values('" + datetime + "', N'" + kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "'); "; //previous date
+
                 sb.Append(qry);
             }
 

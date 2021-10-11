@@ -423,6 +423,7 @@ namespace Oxylabs_BulkKeywords
                         comm.CommandTimeout = 0;
                         comm.CommandType = CommandType.StoredProcedure;
                         comm.CommandText = "Insert_dashboard_data";
+                        //comm.CommandText = "Insert_dashboard_dataP"; //previous date
                         comm.Parameters.Add("Date", SqlDbType.DateTime).Value = myDate;
                         comm.Parameters.Add("Name", SqlDbType.NVarChar).Value = keyword; //.Replace("'", "''");
                         comm.Parameters.Add("Seid", SqlDbType.Int).Value = seid;

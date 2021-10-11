@@ -66,6 +66,7 @@ namespace Oxylabs_BulkKeywords
             //string url = "http://previous.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking mobile
             //string url = "http://previous.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
             //string url = "http://previous.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking other desktop
+            //string url = "http://previous.azurewebsites.net/api/callbackuk58desktop/";       // 58 sending for previous date
 
             Uri ul = new Uri(url);
             using (var client = new HttpClient())

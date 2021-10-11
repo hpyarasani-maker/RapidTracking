@@ -18,15 +18,15 @@ namespace DownloadKeywords
             try
             {
                 XmlDocument xml = new XmlDocument();
-                string fileName = @"C:\Inetpub\wwwroot\downloadKeywords.xml";
-                //string fileName = @"C:\Inetpub\wwwroot\Callback_TrackingTrending.xml";
+                string fileName = @"C:\Inetpub\wwwroot\downloadKeywords.xml"; //download remaining keywords
+                //string fileName = @"C:\Inetpub\wwwroot\Callback_TrackingTrending.xml"; // downloading full keywords
 
                 // You'll need to put the correct path to your xml file here
                 xml.Load(fileName);
 
                 // Select a specific node
-                XmlNode node = xml.SelectSingleNode("ConnectionString/con");
-                //XmlNode node = xml.SelectSingleNode("ConnectionString/con");
+                //XmlNode node = xml.SelectSingleNode("ConnectionString/con"); // downloading full keywords
+                XmlNode node = xml.SelectSingleNode("download/con");//download remaining keywords
 
                 // Get its value
                 string name = node.InnerText;
@@ -48,7 +48,8 @@ namespace DownloadKeywords
         {
             try
             {
-                string qry = "Exec [dbo].[DeleteKeywords] ";
+                //string qry = "Exec [dbo].[DeleteKeywords] ";
+                string qry = "Exec [dbo].[DeleteKeywordsP]";
                 ProcessDB(qry);
             }
             catch (SqlException se)
@@ -60,9 +61,10 @@ namespace DownloadKeywords
                 Console.WriteLine("Error: " + ex.Message);
             }
 
-            string myDate = DateTime.Today.ToString("yyyy-MM-dd");
+            //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
+            string myDate = "2021-10-11"; //change the previous date
 
-            string url = "https://incoming.pi-datametrics.com/provider-api/tracking/get-required-searches?date=" + myDate + "&remaining-only=true";
+            string url = "https://incoming.pi-datametrics.com/provider-api/tracking/get-required-searches?date=" + myDate + "&remaining-only=true"; //true means only remaining and false means all keywords
 
             string authInfo = "pisoftware" + ":" + "r00t123456";
             StringBuilder stringBuilder = new StringBuilder();
@@ -99,12 +101,13 @@ namespace DownloadKeywords
                         using (var sqlBulk = new SqlBulkCopy(StrConn()))
                         {
                             sqlBulk.BulkCopyTimeout = 0;
-                            sqlBulk.DestinationTableName = "tracking_keywords";
+                            //sqlBulk.DestinationTableName = "tracking_keywords";
+                            sqlBulk.DestinationTableName = "tracking_keywordsP"; //download the previous date keywords
                             sqlBulk.WriteToServer(dt);
                         }
 
                     Console.WriteLine("Keywords downloaded.");
-
+                    //Console.ReadLine(); //to read the any message 
                     Environment.Exit(0);
 
                 }

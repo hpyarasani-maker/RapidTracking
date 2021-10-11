@@ -108,7 +108,7 @@ namespace Oxylabs_BulkKeywords
             //Text = "D_Oxylabs_TrackingTrending_NewCommaKeywords_1"; //15-04-2021
             //Text = "D_Oxylabs_TrackingTrending_NewMobile_4"; //15-04-2021
             Text = "D_Oxylabs_TrackingTrending_NewDesktop_4"; //15-04-2021
-
+            //Text = "D_Oxylabs_Receiving_Previous_Keywords"; //11-10-2021 receiving previous date keywords
 
 
             //27th what is bitcoin

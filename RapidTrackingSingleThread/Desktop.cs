@@ -1381,7 +1381,7 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@class='HnYYW']/div") != null //23-07-2021
                 || node.SelectSingleNode(".//div[@class='e2BEnf mfMhoc']") != null //25-09-2021 missing top stories
                 || node.SelectSingleNode(".//div[@class='e2BEnf']") != null //04-10-2021 top stories
-                || node.SelectSingleNode(".//div[@jscontroller='hFvNdd']") != null); //08-10-2021 images
+                || node.SelectSingleNode(".//div[@jscontroller='hFvNdd']") != null) && node.SelectSingleNode(".//div[@class='yuRUbf']") == null; //11-10-2021 //08-10-2021 images
             if (bVal == true)//2019-09-11
             {
                 try

@@ -711,7 +711,7 @@ namespace RapidTrackingLibrary
                         "|.//div/g-card[@class='XqIXXe']|.//g-card[@id='tscffb']|.//g-card[@class='g F6CFcc']|.//div[@class='khgTR lWEpfd']" +
                         "|.//div[@class='khgTR R5lVqb']|.//div[@class='mnr-c fp-w qs-ic aig-grd']|.//g-card[@class='URhAHe']" +
                         "|.//div[@class='mnr-c IcwJCe']|.//div[@class='g card-section svwwZ']" + //03-11-2020//26-08-2020 incuded contains functions to the selector//29-07-2020 //20-05-2020 missing classic link //05-06-2020
-                        "|.//div[contains(@class,'card-section')]|.//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']|.//div[@class='wU9Tkd']"); //10-07-2021 //20-05-2021 included contains//15-12-2020
+                         "|.//div[contains(@class,'card-section')]|.//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']|.//div[@class='wU9Tkd']|.//div[@jsname='wRSfy']");//11-10-2021 VB //10-07-2021 //20-05-2021 included contains//15-12-2020
 
                 if (nds == null)
                     if (node.Attributes["class"]?.Value == "mnr-c xpd O9g5cc uUPGi") //09-09-2021 applied ? condition
@@ -757,7 +757,7 @@ namespace RapidTrackingLibrary
                         try
                         {
                             // 17-10-2019
-                            if (nd.Name == "g-card" || nd.Attributes["class"].Value == "HD8Pae mnr-c xpd O9g5cc uUPGi")
+                            if (nd.Name == "g-card" || nd.Attributes["class"]?.Value == "HD8Pae mnr-c xpd O9g5cc uUPGi" || nd.Attributes["jsname"]?.Value == "wRSfy" || nd.Attributes["jsname"]?.Value == "haAclf") //12-10-2021 //11-10-2021
                             {
                                 if (nd.SelectNodes(".//div[@class='g card-section jiwmWe']") == null)  //27-12-2019
                                 {
@@ -1028,7 +1028,8 @@ namespace RapidTrackingLibrary
                 videos = nd.SelectSingleNode(".//div[@class='zK9jzc B3JUpd']");
             if (videos == null)
                 videos = nd.SelectSingleNode(".//jsname[@class='ibnC6b']/a|.//div[@jsname='ibnC6b']/a");
-
+            if (videos == null)
+                videos = nd.SelectSingleNode(".//div[@class='BycXVc']/a|.//g-inner-card/a ");//12-10-2021 //11-10-2021
             if (videos != null)
             {
                 s.Append("<block type=\"videos\" url=\"\">");
@@ -2318,6 +2319,8 @@ namespace RapidTrackingLibrary
                      || nd.InnerText.ToLower().Contains("notícias")) //08-01-2021 top stories
                     if ((node.SelectSingleNode(".//div[@id='tscffb']") != null || node.SelectSingleNode(".//div[@class='KJDcUb']") == null) && node.SelectSingleNode(".//div/a[contains(@class,'C8nzq BmP5tf')]") == null) //25-05-2021 //04-01-2021 video block
                         return true;
+                if (node.SelectSingleNode(".//div[contains(@class,'KJDcUb')]") != null)//12-10-2021
+                    return false;//12-10-2021
                 if (node.SelectSingleNode(".//div[@class='ttfMne']|.//div[@class='N60dNb mfMhoc']|.//h2[@class='OEsCyf mfMhoc']|.//div[@class='kp-blk c2xzTb OJXvsb']") != null) //01-09-2021 missing AC block//12-07-2021 job block //12-07-2021 carousel block //19-01-2021 missing top stories
                     return true;
                 if (nd.InnerText == "More results" || nd.InnerText == "Top results" || nd.InnerText == "Toppresultater"

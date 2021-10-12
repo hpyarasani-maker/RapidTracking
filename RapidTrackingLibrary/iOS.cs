@@ -757,7 +757,7 @@ namespace RapidTrackingLibrary
                         try
                         {
                             // 17-10-2019
-                            if (nd.Name == "g-card" || nd.Attributes["class"]?.Value == "HD8Pae mnr-c xpd O9g5cc uUPGi" || nd.Attributes["jsname"]?.Value == "wRSfy" || nd.Attributes["jsname"]?.Value == "haAclf") //12-10-2021 //11-10-2021
+                            if (nd.Name == "g-card" || nd.Attributes["class"]?.Value == "HD8Pae mnr-c xpd O9g5cc uUPGi" || nd.Attributes["jsname"]?.Value == "wRSfy") //12-10-2021 //11-10-2021
                             {
                                 if (nd.SelectNodes(".//div[@class='g card-section jiwmWe']") == null)  //27-12-2019
                                 {
@@ -1029,7 +1029,7 @@ namespace RapidTrackingLibrary
             if (videos == null)
                 videos = nd.SelectSingleNode(".//jsname[@class='ibnC6b']/a|.//div[@jsname='ibnC6b']/a");
             if (videos == null)
-                videos = nd.SelectSingleNode(".//div[@class='BycXVc']/a|.//g-inner-card/a ");//12-10-2021 //11-10-2021
+                videos = nd.SelectSingleNode(".//div[@class='BycXVc']/a");//12-10-2021 //11-10-2021
             if (videos != null)
             {
                 s.Append("<block type=\"videos\" url=\"\">");
@@ -2284,7 +2284,7 @@ namespace RapidTrackingLibrary
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='dDoNo vk_bk gsrt']");
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='aviV4d']");
+                nd = node.SelectSingleNode(".//div[@class='aviV4d']|.//div[@class='ILuMad t6aJGf']");//12-10-2021
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[contains(@class,'rbR0cd')]");//08-05-2021 contains //21-05-2020 finance block included selector
             if (nd != null)
@@ -2319,10 +2319,11 @@ namespace RapidTrackingLibrary
                      || nd.InnerText.ToLower().Contains("notícias")) //08-01-2021 top stories
                     if ((node.SelectSingleNode(".//div[@id='tscffb']") != null || node.SelectSingleNode(".//div[@class='KJDcUb']") == null) && node.SelectSingleNode(".//div/a[contains(@class,'C8nzq BmP5tf')]") == null) //25-05-2021 //04-01-2021 video block
                         return true;
-                if (node.SelectSingleNode(".//div[contains(@class,'KJDcUb')]") != null)//12-10-2021
-                    return false;//12-10-2021
                 if (node.SelectSingleNode(".//div[@class='ttfMne']|.//div[@class='N60dNb mfMhoc']|.//h2[@class='OEsCyf mfMhoc']|.//div[@class='kp-blk c2xzTb OJXvsb']") != null) //01-09-2021 missing AC block//12-07-2021 job block //12-07-2021 carousel block //19-01-2021 missing top stories
-                    return true;
+                    if (node.SelectSingleNode(".//div[@class='WvKfwe a3spGf']") != null) //12-10-2021
+                        return false;
+                    else
+                        return true;//12-11-2021
                 if (nd.InnerText == "More results" || nd.InnerText == "Top results" || nd.InnerText == "Toppresultater"
                      || nd.InnerText == "Fler resultat" || nd.InnerText == "Flere resultater" || nd.InnerText == "Plus de résultats")    // 13-12-2019
                     return false;

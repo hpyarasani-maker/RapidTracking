@@ -1025,7 +1025,7 @@ namespace RapidTrackingLibrary
             if (videos == null)
                 videos = nd.SelectSingleNode(".//div[@class='TvV1fe']");
             if (videos == null)
-                videos = nd.SelectSingleNode(".//div[@class='zK9jzc B3JUpd']");
+                videos = nd.SelectSingleNode(".//div[contains(@class,'B3JUpd')]"); //12-10-2021
             if (videos == null)
                 videos = nd.SelectSingleNode(".//jsname[@class='ibnC6b']/a|.//div[@jsname='ibnC6b']/a");
             if (videos == null)

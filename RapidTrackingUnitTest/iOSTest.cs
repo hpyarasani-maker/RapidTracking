@@ -722,5 +722,55 @@ namespace RapidTrackingUnitTest
             Assert.AreEqual(!string.IsNullOrEmpty(result.ToString()), true);
 
         }//end 22-09-2021
+       
+        [TestMethod]//30-09-2021
+        public void TestiOSXmlSanitizingStreamRead()
+        {
+            
+            string path = @"C:\inetpub\wwwroot\test\desktop\";
+            string fileName = path + "results.xml";
+            Stream stream = new FileStream(fileName, FileMode.Open);
+            iOS.XmlSanitizingStream xmlSanitizing = new iOS.XmlSanitizingStream(stream);
+            int n = xmlSanitizing.Read();
+            Assert.IsTrue(n != 0);
+        }
+        [TestMethod]
+        public void TestiOSXmlSanitizingStreamPeak()
+        {
+            var iOS = new iOS();
+            string path = @"C:\inetpub\wwwroot\test\desktop\";
+            string fileName = path + "results.xml";
+            Stream stream = new FileStream(fileName, FileMode.Open);
+            iOS.XmlSanitizingStream xmlSanitizing = new iOS.XmlSanitizingStream(stream);
+            int n = xmlSanitizing.Peek();
+            Assert.IsTrue(n != 0);
+        }//end 03-09-2021
+        //07-10-2021
+        [TestMethod]
+        public void TestiOSSupportMethods3()
+        {
+            var iOS = new iOS();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\src2.txt";
+            doc.Load(path);
+            SupportMethods.iOsHtml = doc.DocumentNode.OuterHtml;
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var res = iOS.ProcessDocument(seid, keyword, doc, out int cnt);
+            var result = SupportMethods.GetiOSBlock("KnowledgePanel");
+            Assert.AreEqual(!string.IsNullOrEmpty(result.ToString()), true);
+        }
+        [TestMethod]
+        public void TestiOSSupportMethods4()
+        {
+            var iOS = new iOS();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\htmlsrc2.html";
+            doc.Load(path);
+            SupportMethods.iOsHtml = doc.DocumentNode.OuterHtml;
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var res = iOS.ProcessDocument(seid, keyword, doc, out int cnt);
+            var result = SupportMethods.GetiOSBlock("Topstories");
+            Assert.AreEqual(!string.IsNullOrEmpty(result.ToString()), true);
+        }//07-10-2021
     }
 }

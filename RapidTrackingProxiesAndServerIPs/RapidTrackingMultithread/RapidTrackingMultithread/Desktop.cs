@@ -40,7 +40,7 @@ namespace RapidTrackingMultithread
             if (nodeCol == null)
                 nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");//09-12-2020
             if (nodeCol == null)
-                nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-section-with-header");//03-12-2020  //01-05-2020     
+                nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-section-with-header|//div[@class='Hpbsqe']");//08-10-2021 images //03-12-2020  //01-05-2020 
             if (nodeCol == null || nodeCol.Count == 1)
                 nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div") ?? nodeCol; //31-07-2021 //02-07-2021 classic links
             if (nodeCol == null || nodeCol.Count <= 1)
@@ -606,6 +606,8 @@ namespace RapidTrackingMultithread
                     col = node.SelectNodes(".//div[@class='zTpPx']/g-link/a");  //28-05-2020
                 if (col == null)
                     col = node.SelectNodes(".//div[@class='DOqJne']/g-link/a"); //07-12-2020 twitter classic link selector
+                if (col == null)
+                    col = node.SelectNodes(".//div[@class='yuRUbf']/a"); //08-10-2021 for missing classic links
                 foreach (HtmlNode nd in col)
                 {
                     string u = nd.Attributes["href"].Value.Replace("/url?q=", "").Replace("&amp;", "&").Replace("&", "&#38;");
@@ -1069,8 +1071,9 @@ namespace RapidTrackingMultithread
                         title = n.InnerText;
                     else
                         title = nd.InnerText;
-
-                    s.Append("<item url=\"" + SetUrl(nd.Attributes["href"].Value) + "\" title=\"" + SetTitle(title) + "\" />");
+                    string itemURL = nd.Attributes["href"].Value; //04-10-2021
+                    if (!itemURL.Contains("/search?num=100"))//04-10-2021
+                        s.Append("<item url=\"" + SetUrl(itemURL) + "\" title=\"" + SetTitle(title) + "\" />");//04-10-2021
                 }
             else
             {
@@ -1247,7 +1250,8 @@ namespace RapidTrackingMultithread
                 || node.SelectSingleNode(".//div[@class='setTDc']") != null //07-12-2020 answered card selector
                 || node.SelectSingleNode(".//div[@class='kp-blk ouUsKb G45kvd']") != null) //24-08-2021 answer card selector
             {
-                if (node.SelectSingleNode(".//div[@class='BET1rd']") == null && node.SelectSingleNode(".//div[@class='tpa-cc']") == null) //21-08-2021 //25-09-2020
+                if (node.SelectSingleNode(".//div[@class='BET1rd']") == null && node.SelectSingleNode(".//div[@class='tpa-cc']") == null //21-08-2021 //25-09-2020
+                    && node.SelectSingleNode(".//div[contains(@class,'kno-fb-ctx')]") == null) //13-10-2021
                     return "AnswerCard";
             }
             //05-10-2020 KP Block selectors updated
@@ -1263,6 +1267,8 @@ namespace RapidTrackingMultithread
                 nd = node.SelectSingleNode(".//div[@class='LnbJhc']");  //16-01-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@jscontroller='IkchZc']");//13-03-2020
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@jscontroller='hFvNdd']");//08-10-2021 images
 
             if (nd != null)
             {
@@ -1311,6 +1317,8 @@ namespace RapidTrackingMultithread
                 nd = node.SelectSingleNode(".//div[contains(@id,'knowledge-currency__')]"); // contains 31-07-2021
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='g obcontainer']");   // updated on 01-08-2019
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[contains(@class,'kno-fb-ctx')]"); //13-10-2021
             if (nd != null)
             {
                 return "Finance";
@@ -1364,8 +1372,10 @@ namespace RapidTrackingMultithread
                 || node.SelectSingleNode(".//div[@class='vwfsqc']") != null //07-12-2020
                 || node.SelectSingleNode(".//div[@class='setTDc']") != null //07-12-2020
                 || node.SelectSingleNode(".//div[@class='HnYYW']/div") != null //23-07-2021
-                || node.SelectSingleNode(".//div[@class='e2BEnf mfMhoc']") != null); //25-09-2021 missing top stories
-
+                || node.SelectSingleNode(".//div[@class='e2BEnf mfMhoc']") != null //25-09-2021 missing top stories
+                || node.SelectSingleNode(".//div[@class='e2BEnf']") != null //04-10-2021 top stories
+                || node.SelectSingleNode(".//div[@jscontroller='hFvNdd']") != null);//13-10-2021
+                                                                                    //&& node.SelectSingleNode(".//div[@class='yuRUbf']") == null; //11-10-2021 //08-10-2021 images
             if (bVal == true)//2019-09-11
             {
                 try
@@ -1401,6 +1411,8 @@ namespace RapidTrackingMultithread
 
                     if (node.SelectSingleNode(".//div[@class='g']") != null) //04-12-2020 select for class links
                         return false;
+                    if (node.SelectSingleNode(".//div[@class='d3zsgb']") != null) //13-10-2021
+                        return false;
                 }
                 catch { }
             }
@@ -1411,6 +1423,9 @@ namespace RapidTrackingMultithread
                 if (nd != null)
                     if (nd.InnerText == "Top stories" || nd.InnerText == "Huvudnyheter" || nd.InnerText == "Videos" || nd.InnerText == "Video" || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws" || nd.InnerText == "Vertaalresultaat" || nd.InnerText == "Recipes" || nd.InnerText == "Vidéos")//02-12-2020 videos//05-08-2020 //29-06-2020//03-06-2020 // 02-06-2020  // 08-04-2020
                         return true;
+
+                if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null) //13-10-2021
+                    return true;
 
                 // changes in map block on 19-06-2019.
                 nd = node.SelectSingleNode(".//g-img/img");

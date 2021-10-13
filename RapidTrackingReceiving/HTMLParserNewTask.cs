@@ -65,6 +65,7 @@ namespace Oxylabs_BulkKeywords
             //string url = "http://previous.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking mobile
             //string url = "http://previous.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
             //string url = "http://previous.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking other desktop
+            //string url = "http://previous.azurewebsites.net/api/callbackuk58desktop/";       // 58 sending for previous date
 
             Uri ul = new Uri(url);
             using (var client = new HttpClient())
@@ -421,6 +422,7 @@ namespace Oxylabs_BulkKeywords
                         comm.CommandTimeout = 0;
                         comm.CommandType = CommandType.StoredProcedure;
                         comm.CommandText = "Insert_dashboard_data";
+                        //comm.CommandText = "Insert_dashboard_dataP"; //previous date
                         comm.Parameters.Add("Date", SqlDbType.DateTime).Value = myDate;
                         comm.Parameters.Add("Name", SqlDbType.NVarChar).Value = keyword; //.Replace("'", "''");
                         comm.Parameters.Add("Seid", SqlDbType.Int).Value = seid;

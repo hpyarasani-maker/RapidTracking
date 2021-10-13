@@ -55,6 +55,8 @@ namespace Oxylabs_BulkKeywords
                 string jobid = link["id"].Value<string>();
 
                 string qry = "insert into dashboard_data_sending (date, name, seid, jobid) values('" + datetime + "', N'" + kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "'); ";
+                //string qry = "insert into dashboard_data_sendingP (date, name, seid, jobid) values('" + datetime + "', N'" + kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "'); "; //previous date
+
                 sb.Append(qry);
             }
 
@@ -150,7 +152,7 @@ namespace Oxylabs_BulkKeywords
             //string callbackURL = "http://previous.azurewebsites.net/api/callbackrapidtrackingmobile/";
             //string callbackURL = "http://previous.azurewebsites.net/api/callbackrapidtrackingdesktop/";
             // string callbackURL = "http://previous.azurewebsites.net/api/callbackus1desktop/";     // 1 2019-10-10
-            //string callbackURL = "http://previous.azurewebsites.net/api/callbackuk58desktop/";       // 58
+            //string callbackURL = "http://previous.azurewebsites.net/api/callbackuk58desktop/";       // 58 sending for previous date
             OxyParams op = new OxyParams()
             {
                 source = "google_search",

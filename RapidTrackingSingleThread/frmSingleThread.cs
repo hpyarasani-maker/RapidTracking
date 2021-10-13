@@ -66,7 +66,7 @@ namespace RapidTrackingSingleThread
                 string kwQry = "[Tracking_DB_Keywords_Seid_102] '" + myDate + "'";
                 //string kwQry = "[Tracking_DB_Keywords_Seid_103p] '" + myDate + "'";               
                 //string kwQry = "[GetCommaKeywordsP] '" + myDate + "'";               
-
+                //string kwQry = "[Tracking_DB_Keywords_Seid_102_P] '" + myDate + "'"; //tracking previous date single keywords
                 GetKeywords(kwQry);
 
                 if (lstKWs.Items.Count <= 0)
@@ -298,7 +298,7 @@ namespace RapidTrackingSingleThread
                 //lstKWs.Items.Add("160:malmö ff");
                 //lstKWs.Items.Add("102:terry crews");
                 //lstKWs.Items.Add("102:the uninhabitable earth summary");
-                lstKWs.Items.Add("106:chicken curry");
+                lstKWs.Items.Add("106:alghero flights");
             });
             return;
 
@@ -589,7 +589,7 @@ namespace RapidTrackingSingleThread
                     response = "";
 
                     Uri uri = new Uri(cbUrl[1]);
-                    //Uri uri = new Uri("http://data.oxylabs.io/v1/queries/6835577320539966465/results");
+                    //Uri uri = new Uri("http://data.oxylabs.io/v1/queries/6852031555750084609/results");
                     if (cbUrl[2] == "done" && cbUrl[3] == "no")
                     {
                         try

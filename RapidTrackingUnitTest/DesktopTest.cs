@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using HtmlAgilityPack;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RapidTrackingLibrary;
@@ -409,17 +410,7 @@ namespace RapidTrackingUnitTest
         }
         //end 13-08-2021
         //26-08-2021
-        [TestMethod]
-        public void TestiOSImagesBlockExisted2()
-        {
-            var desktop = new Desktop();
-            HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\images2.txt";
-            doc.Load(path);
-            var node = doc.DocumentNode.SelectSingleNode("/");
-            var result = desktop.GetImages(node);
-            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
-        }
+        
         [TestMethod]
         public void TestDesktopProcessNodes1()
         {
@@ -487,5 +478,103 @@ namespace RapidTrackingUnitTest
             var result = desktop.ProcessOrganic(node);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
         }//end 13-09-2021
+        [TestMethod]//30-09-2021
+        public void TestDesktopXmlSanitizingStreamRead()
+        {
+            string path = @"C:\inetpub\wwwroot\test\desktop\";
+            string fileName = path + "rapidtracking_singlethread_102_GT20_WC.xml";
+            Stream stream = new FileStream(fileName, FileMode.Open);
+            Desktop.XmlSanitizingStream xmlSanitizing = new Desktop.XmlSanitizingStream(stream);
+            int n = xmlSanitizing.Read();
+            Assert.IsTrue(n != 0);
+        }
+        [TestMethod]
+        public void TestDesktopXmlSanitizingStreamPeak()
+        {
+            string path = @"C:\inetpub\wwwroot\test\desktop\";
+            string fileName = path + "rapidtracking_singlethread_102_GT20_WC.xml";
+            Stream stream = new FileStream(fileName, FileMode.Open);
+            Desktop.XmlSanitizingStream xmlSanitizing = new Desktop.XmlSanitizingStream(stream);
+            int n = xmlSanitizing.Peek();
+            Assert.IsTrue(n != 0);
+        }//end 30-09-2021
+        //05-10-2021
+        [TestMethod]
+        public void TestDesktopTopStuffAdwords2Existed()
+        {
+            var desktop = new Desktop();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\desktop\textads2.txt";
+            doc.Load(path);
+            var result = desktop.GetTopStuff(doc);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+        [TestMethod]
+        public void TestDesktopTopStuffAdwords3Existed()
+        {
+            var desktop = new Desktop();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\desktop\textads3.txt";
+            doc.Load(path);
+            var result = desktop.GetTopStuff(doc);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+        [TestMethod]
+        public void TestDesktopTopStuffKnowledgepanelExisted()
+        {
+            var desktop = new Desktop();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\desktop\tsknowledgepanel.txt";
+            doc.Load(path);
+            var result = desktop.GetTopStuff(doc);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+        [TestMethod]
+        public void TestDesktopTopStuffTopstoriesExisted()
+        {
+            var desktop = new Desktop();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\desktop\tstopstories.txt";
+            doc.Load(path);
+            var result = desktop.GetTopStuff(doc);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }//end 05-10-2021
+
+        //07-10-2021
+        [TestMethod]
+        public void TestDesktopProcessOrganicSubClassicLinks()
+        {
+            var desktop = new Desktop();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\desktop\SubClassicLinks.txt";
+            doc.Load(path);
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var result = desktop.ProcessOrganic(node);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }
+        [TestMethod]
+        public void TestDesktopProcessClassicLinksExisted2()
+        {
+            var html = @"C:\inetpub\wwwroot\test\desktop\htmlsrc1.html";
+            var desktop = new Desktop();
+            var doc = new HtmlDocument();
+            doc.Load(html);
+            SupportMethods.DesktopHtml = doc.DocumentNode.OuterHtml;
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var res = SupportMethods.GetDesktopBlock("topstories");
+            var result = desktop.ProcessDocument("58", "coronavirus usa cases", doc, out int cnt);
+            Assert.IsTrue(!string.IsNullOrEmpty(result) && result.ToLower().Contains("<item url=\""));
+        }
+        [TestMethod]
+        public void TestDesktopTopStuffProductListAdsExisted2()
+        {
+            var desktop = new Desktop();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\desktop\textads4.txt";
+            doc.Load(path);
+            var node = doc.DocumentNode.SelectSingleNode("/");
+            var result = desktop.GetTopStuff(doc);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        } //end 07-10-2021
     }
 }

@@ -528,7 +528,7 @@ namespace TrendingDesktopSingleThread
                         HtmlNode img = nd.SelectSingleNode(".//img");
                         if (img != null)
                         {
-                            if ((Regex.IsMatch(nd.OuterHtml, "id=\"vidthumb\\d*\"") && nd.SelectSingleNode(".//div[@class='ij69rd UHe5G']") != null) || nd.SelectSingleNode(".//div[contains(@class,'U1TUId')]") != null)// 30-08-2021'U1TUId LYh3vc' // 17-01-2020 //19-02-2021 classic link instead without time video block
+                            if ((Regex.IsMatch(nd.OuterHtml, "id=\"vidthumb\\d*\"") && (nd.SelectSingleNode(".//div[@class='ij69rd UHe5G']") != null || nd.SelectSingleNode(".//div[@class='ij69rd TUOsUe UHe5G']") != null)) || nd.SelectSingleNode(".//div[contains(@class,'U1TUId')]") != null) //18-10-2021 video block selector
                             {
                                 //24-08-2021 video item urls
                                 var urls = string.Empty;

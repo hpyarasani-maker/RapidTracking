@@ -2032,6 +2032,70 @@ namespace RapidTrackingMultiThreadJobIDs
             {
                 seid =573, domain ="com.ec", geo_location="Ecuador", locale= "es-419-ec", uule = "w+CAIQICIHRWN1YWRvcg==",device="mobile_android"
             },//10-08-2021
+               new SearchProperties() //21-10-2021  Google TH(Bangkok)
+            {
+            seid=574, domain="co.th", geo_location="Bangkok,Thailand", locale= "th-th", uule = "w+CAIQICIQQmFuZ2tvayxUaGFpbGFuZA==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid=575, domain="co.th", geo_location="Bangkok,Thailand", locale= "th-th", uule = "w+CAIQICIQQmFuZ2tvayxUaGFpbGFuZA==",device="mobile_android"
+            },
+            new SearchProperties() //Google TH(Udon Thani)
+            {
+            seid=576, domain="co.th", geo_location="Udon Thani,Thailand", locale= "th-th", uule = "w+CAIQICITVWRvbiBUaGFuaSxUaGFpbGFuZA==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid=577, domain="co.th", geo_location="Udon Thani,Thailand", locale= "th-th", uule = "w+CAIQICITVWRvbiBUaGFuaSxUaGFpbGFuZA==",device="mobile_android"
+            },
+            new SearchProperties() //Goolge TH(Pattaya)
+            {
+            seid=578, domain="co.th", geo_location="Pattaya City,Chon Buri,Thailand", locale= "th-th", uule = "w+CAIQICIfUGF0dGF5YSBDaXR5LENob24gQnVyaSxUaGFpbGFuZA==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid=579, domain="co.th", geo_location="Pattaya City,Chon Buri,Thailand", locale= "th-th", uule = "w+CAIQICIfUGF0dGF5YSBDaXR5LENob24gQnVyaSxUaGFpbGFuZA==",device="mobile_android"
+            },
+            new SearchProperties()//Goolge TH(Nakhon Ratchasima)
+            {
+            seid =580, domain="co.th", geo_location="Nakhon Ratchasima,Thailand", locale= "th-th", uule = "w+CAIQICIaTmFraG9uIFJhdGNoYXNpbWEsVGhhaWxhbmQ=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid=581, domain="co.th", geo_location="Nakhon Ratchasima,Thailand", locale= "th-th", uule = "w+CAIQICIaTmFraG9uIFJhdGNoYXNpbWEsVGhhaWxhbmQ=",device="mobile_android"
+            },
+            new SearchProperties()//Goolge TH(Chiang Mai)
+            {
+            seid =582, domain="co.th", geo_location="Chiang Mai,Thailand", locale= "th-th", uule = "w+CAIQICITQ2hpYW5nIE1haSxUaGFpbGFuZA==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid=583, domain="co.th", geo_location="Chiang Mai,Thailand", locale= "th-th", uule = "w+CAIQICITQ2hpYW5nIE1haSxUaGFpbGFuZA==",device="mobile_android"
+            },
+            new SearchProperties()//Goolge TH(Hat Yai)
+            {
+            seid=584, domain ="co.th", geo_location="Hat Yai,Songkhla,Thailand", locale= "th-th", uule = "w+CAIQICIZSGF0IFlhaSxTb25na2hsYSxUaGFpbGFuZA==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid=585, domain="co.th", geo_location="Hat Yai,Songkhla,Thailand", locale= "th-th", uule = "w+CAIQICIZSGF0IFlhaSxTb25na2hsYSxUaGFpbGFuZA==",device="mobile_android"
+            },
+            new SearchProperties()//Goolge TH(Phuket)
+            {
+            seid=586, domain="co.th", geo_location="Phuket,Thailand", locale= "th-th", uule = "w+CAIQICIPUGh1a2V0LFRoYWlsYW5k",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid=587, domain="co.th", geo_location="Phuket,Thailand", locale= "th-th", uule = "w+CAIQICIPUGh1a2V0LFRoYWlsYW5k",device="mobile_android"
+            },
+            new SearchProperties() //Goolge TH(Surat Thani)
+            {
+            seid=588, domain="co.th", geo_location="Surat Thani,Thailand", locale= "th-th", uule = "w+CAIQICIUU3VyYXQgVGhhbmksVGhhaWxhbmQ=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid=589, domain="co.th", geo_location="Surat Thani,Thailand", locale= "th-th", uule = "w+CAIQICIUU3VyYXQgVGhhbmksVGhhaWxhbmQ=",device="mobile_android"
+            },//end 21-10-2021
         };
     }
     class SearchProperties

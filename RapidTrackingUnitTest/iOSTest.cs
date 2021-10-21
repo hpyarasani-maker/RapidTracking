@@ -772,5 +772,16 @@ namespace RapidTrackingUnitTest
             var result = SupportMethods.GetiOSBlock("Topstories");
             Assert.AreEqual(!string.IsNullOrEmpty(result.ToString()), true);
         }//07-10-2021
+
+        [TestMethod]//20-10-2021
+        public void TestiOSTopStuffAppsBlockExisted()
+        {
+            var ios = new iOS();
+            HtmlDocument doc = new HtmlDocument();
+            string path = @"C:\inetpub\wwwroot\test\tsapps.txt";
+            doc.Load(path);
+            var result = ios.GetTopStuff(doc);
+            Assert.AreEqual(!string.IsNullOrEmpty(result), true);
+        }//end 20-10-2021
     }
 }

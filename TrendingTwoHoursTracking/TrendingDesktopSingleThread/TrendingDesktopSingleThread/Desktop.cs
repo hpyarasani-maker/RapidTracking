@@ -897,6 +897,8 @@ namespace TrendingDesktopSingleThread
 
                 HtmlNodeCollection nds = node.SelectNodes(".//g-inner-card/div/div[2]/div/g-link/a");
                 if (nds == null)
+                    nds = node.SelectNodes(".//g-inner-card/div/a"); //21-10-2021 twitter item urls
+                if (nds == null)
                     nds = node.SelectNodes(".//g-inner-card/div/div[1]/a");
                 if (nds == null)
                     nds = node.SelectNodes(".//g-inner-card/div/div/div[1]/a[1]");  //02-06-2020
@@ -1188,6 +1190,8 @@ namespace TrendingDesktopSingleThread
                 nd = node.SelectSingleNode(".//div[@class='qmv19b']");    // 09-12-2019
             if (nd == null)
                 nd = node.SelectSingleNode(".//div/a/div[@class='TIh7vf']"); // 10-12-2019 topstories block type selector
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div/a/div[@class='vJOb1e']"); //20-10-2021 top stories block
             if (nd != null)
                 return "topstories";
             if (nd == null)

@@ -900,6 +900,8 @@ namespace RapidTrackingSingleThread
 
                 HtmlNodeCollection nds = node.SelectNodes(".//g-inner-card/div/div[2]/div/g-link/a");
                 if (nds == null)
+                    nds = node.SelectNodes(".//g-inner-card/div/a"); //21-10-2021 twitter item urls
+                if (nds == null)
                     nds = node.SelectNodes(".//g-inner-card/div/div[1]/a");
                 if (nds == null)
                     nds = node.SelectNodes(".//g-inner-card/div/div/div[1]/a[1]");  //02-06-2020

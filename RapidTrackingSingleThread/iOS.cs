@@ -1120,6 +1120,8 @@ namespace RapidTrackingSingleThread
             HtmlNodeCollection nd = node.SelectNodes(".//div[@jsmodel='uIhXXc']/div/g-scrolling-carousel/div/div/div/ul[@class='Kjd0sd']/div/div/g-inner-card/a");
             if (nd == null)
                 nd = node.SelectNodes(".//div[@jsname='WUSFrc']/g-link/a|.//div[@jsname='WUSFrc']/div/g-link/a|.//div[@class='v1uiFd']/g-link/a"); //26-10-2020 selector included for item url// 06-01-2020 Included new selector for carousel
+            if (nd == null)//22-10-2021
+                nd = node.SelectNodes(".//g-scrolling-carousel/div/div/ul/li/g-inner-card/g-link/a");//22-10-2021
             string url = "";
             if (nd != null)
             {
@@ -1132,6 +1134,8 @@ namespace RapidTrackingSingleThread
                         hn = nd1.SelectSingleNode(".//div[contains(@class,'hfac6d')]"); //22-07-2020 included selector for carousel title and applied contains class
                     //if (hn == null)
                     //    hn = nd1.SelectSingleNode(".//div[@class='hfac6d oz3cqf vH5Lmd']");  //22-07-2020 commented // 02-06-2020
+                    if (hn == null)//22-10-2021
+                        hn = nd1.SelectSingleNode(".//div[@class='iORXPe']");//22-10-2021
                     string title = hn.InnerText;
                     al.Add("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");  //25-06-2020
                     //s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />"); //25-06-2020
@@ -1973,6 +1977,8 @@ namespace RapidTrackingSingleThread
                 // 24-04-2020
                 //nd = node.SelectSingleNode(".//h2"); //22-07-2020 commented
                 nd = node.SelectSingleNode(".//div[@class='g8xmv']");//22-07-2020
+                if (nd == null)//22-10-2021
+                    nd = node.SelectSingleNode(".//g-scrolling-carousel[@jscontroller='pgCXqb']");//22-10-2021
                 if (nd != null)
                     return "Carousel";
                 // 24-04-2020
@@ -2415,7 +2421,7 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[contains(@class,'khgTR')]");  //16-09-2020 applied contains function
             if (nd != null)
             {
-                if (node.SelectSingleNode(".//table[@class='std']|.//div[@class='di8g3 ChOqnd']") == null)//16-09-2021 ignore wrong url //15-09-2021 ignoring wrong classic links
+                if (node.SelectSingleNode(".//table[@class='std']|.//div[@class='di8g3 ChOqnd']|.//div[@class='g8xmv']|.//g-scrolling-carousel[@jscontroller='pgCXqb']") == null)//22-10-2021//16-09-2021 ignore wrong url //15-09-2021 ignoring wrong classic links
                     return false;
             }
             //start 06-08-2019
@@ -2439,8 +2445,10 @@ namespace RapidTrackingSingleThread
                 if (nd != null && node.SelectSingleNode(".//div[@class='EDblX m8vZ3d']") == null)   // 16-10-2019
                 {
                     //if (node.SelectSingleNode(".//div[contains(@class,'BNeawe')]") != null && node.SelectSingleNode(".//div[@class='au0C1b u78HIe']") == null)//commented on 02-03-2021//15-12-2020 commented //14-12-2020 //11-12-2020 not for popular products
-                    //if (node.SelectSingleNode(".//div[contains(@class,'BNeawe')]") != null && node.SelectSingleNode(".//div[contains(@class,'au0C1b')]") == null)//02-03-2021 included contains for classic links
-                    if (node.SelectSingleNode(".//div[contains(@class,'BNeawe')]") != null && node.SelectSingleNode(".//div[contains(@class,'au0C1b')]") == null && node.SelectSingleNode(".//div[@class='pXvdUe']") == null)//21-10-2021 wrong carousel block
+                    if (node.SelectSingleNode(".//span[@class='xUrNXd UMOHqf']") != null) //22-10-2021
+                        return false;//22-10-2021
+                    if (node.SelectSingleNode(".//div[contains(@class,'BNeawe')]") != null && node.SelectSingleNode(".//div[contains(@class,'au0C1b')]") == null)//02-03-2021 included contains for classic links
+                    //if (node.SelectSingleNode(".//div[contains(@class,'BNeawe')]") != null && node.SelectSingleNode(".//div[contains(@class,'au0C1b')]") == null && node.SelectSingleNode(".//div[@class='pXvdUe']") == null)//21-10-2021 wrong carousel block
                         return true;
                     return false;
                 }

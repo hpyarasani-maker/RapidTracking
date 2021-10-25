@@ -6,15 +6,15 @@ using System.IO;
 
 namespace RapidTrackingUnitTest
 {
-   
-    
     [TestClass]
     public class SupportUnitTest //04-05-2021
     {
+
         [ClassInitialize] //21-09-2021
         public static void Initialize(TestContext context)
         {
-            string iOSPath = "C:\\inetpub\\wwwroot\\test\\htmlsrc.html";
+            string startupPath = Directory.GetCurrentDirectory();
+            string iOSPath = startupPath + @"\test\htmlsrc.html";
             SupportMethods.iOsHtml = File.ReadAllText(iOSPath);
         }//end 21-09-2021
         [TestMethod]

@@ -14,13 +14,14 @@ namespace RapidTrackingUnitTest
     {
         readonly static string seid = "106";
         readonly static string keyword = "joe biden";
+        string startupPath = Directory.GetCurrentDirectory();
         [TestMethod]
         public void TestiOSAnswerCardBlockExisted()
         {
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
 
-            string path = @"C:\inetpub\wwwroot\test\answercard.txt";
+            string path = startupPath + @"\test\answercard.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = iOS.GetAnswerCard(node);
@@ -34,7 +35,7 @@ namespace RapidTrackingUnitTest
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
 
-            string path = @"C:\inetpub\wwwroot\test\ts\tsblock1.txt";
+            string path = startupPath + @"\test\ts\tsblock1.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = iOS.GetTopStories(node);
@@ -47,7 +48,7 @@ namespace RapidTrackingUnitTest
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
 
-            string path = @"C:\inetpub\wwwroot\test\ts\tsblock2.txt";
+            string path = startupPath + @"\test\ts\tsblock2.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = iOS.GetTopStories(node);
@@ -60,7 +61,7 @@ namespace RapidTrackingUnitTest
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
 
-            string path = @"C:\inetpub\wwwroot\test\apps\appsblock1.txt";
+            string path = startupPath + @"\test\apps\appsblock1.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = iOS.GetApps(node);
@@ -73,7 +74,7 @@ namespace RapidTrackingUnitTest
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
 
-            string path = @"C:\inetpub\wwwroot\test\apps\appsblock2.txt";
+            string path = startupPath + @"\test\apps\appsblock2.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = iOS.GetApps(node);
@@ -86,7 +87,7 @@ namespace RapidTrackingUnitTest
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
 
-            string path = @"C:\inetpub\wwwroot\test\carousel\carousel1.txt";
+            string path = startupPath + @"\test\carousel\carousel1.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = iOS.GetCarousel(node);
@@ -99,7 +100,7 @@ namespace RapidTrackingUnitTest
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
 
-            string path = @"C:\inetpub\wwwroot\test\carousel\carousel2.txt";
+            string path = startupPath + @"\test\carousel\carousel2.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = iOS.GetCarousel(node);
@@ -112,7 +113,7 @@ namespace RapidTrackingUnitTest
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
 
-            string path = @"C:\inetpub\wwwroot\test\twittercard.txt";
+            string path = startupPath + @"\test\twittercard.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = iOS.GetTwitterCards(node);
@@ -125,7 +126,7 @@ namespace RapidTrackingUnitTest
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
 
-            string path = @"C:\inetpub\wwwroot\test\peoplealsoask.txt";
+            string path = startupPath + @"\test\peoplealsoask.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = iOS.PeopleAlsoAsk(node);
@@ -138,7 +139,7 @@ namespace RapidTrackingUnitTest
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
 
-            string path = @"C:\inetpub\wwwroot\test\images.txt";
+            string path = startupPath + @"\test\images.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = iOS.GetImages(node);
@@ -151,7 +152,7 @@ namespace RapidTrackingUnitTest
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
 
-            string path = @"C:\inetpub\wwwroot\test\videos\videosblock1.txt";
+            string path = startupPath + @"\test\videos\videosblock1.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = iOS.GetVideos(node);
@@ -162,7 +163,7 @@ namespace RapidTrackingUnitTest
         {
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\sitelinks.txt";
+            string path = startupPath + @"\test\sitelinks.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = iOS.GetSiteLinks(node);
@@ -173,7 +174,7 @@ namespace RapidTrackingUnitTest
         {
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\knowledgegraph.txt";
+            string path = startupPath + @"\test\knowledgegraph.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = iOS.GetKnowledgePanel(node);
@@ -184,7 +185,7 @@ namespace RapidTrackingUnitTest
         {
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\jobs.txt";
+            string path = startupPath + @"\test\jobs.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = iOS.GetJobs(node);
@@ -195,7 +196,7 @@ namespace RapidTrackingUnitTest
         {
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\tsplads.txt";
+            string path = startupPath + @"\test\tsplads.txt";
             doc.Load(path);
             var result = iOS.GetTopStuff(doc);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
@@ -205,7 +206,7 @@ namespace RapidTrackingUnitTest
         {
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\tsadwords.txt";
+            string path = startupPath + @"\test\tsadwords.txt";
             doc.Load(path);
             var result = iOS.GetTopStuff(doc);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
@@ -214,7 +215,7 @@ namespace RapidTrackingUnitTest
         [TestMethod]
         public void TestiOSCarouselURLsExisted()
         {
-            var html = @"C:\inetpub\wwwroot\test\htmlsrc.html";
+            var html = startupPath + @"\test\htmlsrc.html";
             var ios = new iOS();
             using (StreamReader sr = new StreamReader(html))
             {
@@ -226,7 +227,7 @@ namespace RapidTrackingUnitTest
         [TestMethod]
         public void TestiOSImageURLsExisted()
         {
-            var html = @"C:\inetpub\wwwroot\test\htmlsrc.html";
+            var html = startupPath + @"\test\htmlsrc.html";
             var ios = new iOS();
             using (StreamReader sr = new StreamReader(html))
             {
@@ -238,7 +239,7 @@ namespace RapidTrackingUnitTest
         [TestMethod]
         public void TestiOSProcessClassicLinksExisted()
         {
-            var html = @"C:\inetpub\wwwroot\test\htmlsrc.html";
+            var html = startupPath + @"\test\htmlsrc.html";
             var doc = new HtmlDocument();
             doc.Load(html);
             var ios = new iOS();
@@ -250,7 +251,7 @@ namespace RapidTrackingUnitTest
         {
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\videocard.txt";
+            string path = startupPath + @"\test\videocard.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = iOS.GetVideoCard(node);
@@ -261,7 +262,7 @@ namespace RapidTrackingUnitTest
         {
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\twittercard.txt";
+            string path = startupPath + @"\test\twittercard.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = iOS.IsBlock(node);
@@ -272,7 +273,7 @@ namespace RapidTrackingUnitTest
         {
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\classiclink.txt";
+            string path = startupPath + @"\test\classiclink.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = iOS.IsBlock(node);
@@ -283,7 +284,7 @@ namespace RapidTrackingUnitTest
         {
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\classiclink.txt";
+            string path = startupPath + @"\test\classiclink.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = iOS.IsOrganic(node);
@@ -294,7 +295,7 @@ namespace RapidTrackingUnitTest
         {
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\productlistedads.txt";
+            string path = startupPath + @"\test\productlistedads.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = iOS.ProductListedAds(node);
@@ -305,7 +306,7 @@ namespace RapidTrackingUnitTest
         {
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\sitelinks1.txt";
+            string path = startupPath + @"\test\sitelinks1.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = iOS.GetSiteLinks(node);
@@ -327,7 +328,7 @@ namespace RapidTrackingUnitTest
         {
             var ios = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\topstories.txt";
+            string path = startupPath + @"\test\topstories.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = ios.ProcessBlock(node);
@@ -338,7 +339,7 @@ namespace RapidTrackingUnitTest
         {
             var ios = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\videos.txt";
+            string path = startupPath + @"\test\videos.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = ios.ProcessBlock(node);
@@ -349,7 +350,7 @@ namespace RapidTrackingUnitTest
         {
             var ios = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\twittercard.txt";
+            string path = startupPath + @"\test\twittercard.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = ios.ProcessBlock(node);
@@ -360,7 +361,7 @@ namespace RapidTrackingUnitTest
         {
             var ios = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\answercard.txt";
+            string path = startupPath + @"\test\answercard.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = ios.ProcessBlock(node);
@@ -371,7 +372,7 @@ namespace RapidTrackingUnitTest
         {
             var ios = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\peoplealsoask.txt";
+            string path = startupPath + @"\test\peoplealsoask.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = ios.ProcessBlock(node);
@@ -382,7 +383,7 @@ namespace RapidTrackingUnitTest
         {
             var ios = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\images.txt";
+            string path = startupPath + @"\test\images.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = ios.ProcessBlock(node);
@@ -393,7 +394,7 @@ namespace RapidTrackingUnitTest
         {
             var ios = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\sitelinks.txt";
+            string path = startupPath + @"\test\sitelinks.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = ios.ProcessBlock(node);
@@ -404,7 +405,7 @@ namespace RapidTrackingUnitTest
         {
             var ios = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\jobs.txt";
+            string path = startupPath + @"\test\jobs.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = ios.ProcessBlock(node);
@@ -415,7 +416,7 @@ namespace RapidTrackingUnitTest
         {
             var ios = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\knowledgegraph.txt";
+            string path = startupPath + @"\test\knowledgegraph.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = ios.ProcessBlock(node);
@@ -427,7 +428,7 @@ namespace RapidTrackingUnitTest
         {
             var ios = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\bsplads1.txt";
+            string path = startupPath + @"\test\bsplads1.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = ios.GetBottomStuff(doc);
@@ -439,7 +440,7 @@ namespace RapidTrackingUnitTest
         {
             var ios = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\BottomStuffAdwords1.txt";
+            string path = startupPath + @"\test\BottomStuffAdwords1.txt";
             doc.Load(path);
             var result = ios.GetBottomStuff(doc);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
@@ -449,7 +450,7 @@ namespace RapidTrackingUnitTest
         {
             var ios = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\BottomStuffAdwords2.txt";
+            string path = startupPath + @"\test\BottomStuffAdwords2.txt";
             doc.Load(path);
             var result = ios.GetBottomStuff(doc);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
@@ -459,7 +460,7 @@ namespace RapidTrackingUnitTest
         {
             var ios = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\BottomStuffAdwords3.txt";
+            string path = startupPath + @"\test\BottomStuffAdwords3.txt";
             doc.Load(path);
             var result = ios.GetBottomStuff(doc);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
@@ -469,7 +470,7 @@ namespace RapidTrackingUnitTest
         {
             var ios = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\TopStuffAdwords1.txt";
+            string path = startupPath + @"\test\TopStuffAdwords1.txt";
             doc.Load(path);
             var result = ios.GetTopStuff(doc);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
@@ -479,7 +480,7 @@ namespace RapidTrackingUnitTest
         {
             var ios = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\TopStuffAdwords2.txt";
+            string path = startupPath + @"\test\TopStuffAdwords2.txt";
             doc.Load(path);
             var result = ios.GetTopStuff(doc);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
@@ -489,7 +490,7 @@ namespace RapidTrackingUnitTest
         {
             var ios = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\TopStuffAdwords3.txt";
+            string path = startupPath + @"\test\TopStuffAdwords3.txt";
             doc.Load(path);
             var result = ios.GetTopStuff(doc);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
@@ -500,7 +501,7 @@ namespace RapidTrackingUnitTest
         {
             var ios = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\TopStuffAnswercard.txt";
+            string path = startupPath + @"\test\TopStuffAnswercard.txt";
             doc.Load(path);
             var result = ios.GetTopStuff(doc);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
@@ -512,7 +513,7 @@ namespace RapidTrackingUnitTest
         {
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\images2.txt";
+            string path = startupPath + @"\test\images2.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = iOS.GetImages(node);
@@ -523,7 +524,7 @@ namespace RapidTrackingUnitTest
         {
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\answercard.txt";
+            string path = startupPath + @"\test\answercard.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = iOS.ProcessNode(node);
@@ -534,7 +535,7 @@ namespace RapidTrackingUnitTest
         {
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\classiclink.txt";
+            string path = startupPath + @"\test\classiclink.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = iOS.ProcessNode(node);
@@ -545,7 +546,7 @@ namespace RapidTrackingUnitTest
         {
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\carousel\carousel3.txt";
+            string path = startupPath + @"\test\carousel\carousel3.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = iOS.GetCarousel(node);
@@ -592,7 +593,7 @@ namespace RapidTrackingUnitTest
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
 
-            string path = @"C:\inetpub\wwwroot\test\ts\tsblock3.txt";
+            string path = startupPath + @"\test\ts\tsblock3.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = iOS.GetTopStories(node);
@@ -603,7 +604,7 @@ namespace RapidTrackingUnitTest
         {
             var ios = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\maps.txt";
+            string path = startupPath + @"\test\maps.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = ios.ProcessBlock(node);
@@ -614,7 +615,7 @@ namespace RapidTrackingUnitTest
         {
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\videoblock1.txt";
+            string path = startupPath + @"\test\videoblock1.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = iOS.ProcessNode(node);
@@ -625,7 +626,7 @@ namespace RapidTrackingUnitTest
         {
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\videoblock2.txt";
+            string path = startupPath + @"\test\videoblock2.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = iOS.ProcessNode(node);
@@ -636,7 +637,7 @@ namespace RapidTrackingUnitTest
         {
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\tsknowledgeGraph.txt";
+            string path = startupPath + @"\test\tsknowledgeGraph.txt";
             doc.Load(path);
             var result = iOS.GetTopStuff(doc);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
@@ -646,7 +647,7 @@ namespace RapidTrackingUnitTest
         {
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\htmlsrc.html";
+            string path = startupPath + @"\test\htmlsrc.html";
             doc.Load(path);
             var result = iOS.ProcessDocument(seid, keyword, doc, out int cnt);
             Assert.AreEqual(!string.IsNullOrEmpty(result) && cnt > 0, true);
@@ -656,7 +657,7 @@ namespace RapidTrackingUnitTest
         {
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\htmlsrc1.html";
+            string path = startupPath + @"\test\htmlsrc1.html";
             doc.Load(path);
             var result = iOS.ProcessDocument(seid, keyword, doc, out int cnt);
             Assert.AreEqual(!string.IsNullOrEmpty(result) && cnt > 0, true);
@@ -666,7 +667,7 @@ namespace RapidTrackingUnitTest
         {
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\sitelinks.txt";
+            string path = startupPath + @"\test\sitelinks.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = iOS.ProcessOrganic(node);
@@ -677,7 +678,7 @@ namespace RapidTrackingUnitTest
         {
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\apps\appsblock1.txt";
+            string path = startupPath + @"\test\apps\appsblock1.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = iOS.ProcessOrganic(node);
@@ -688,7 +689,7 @@ namespace RapidTrackingUnitTest
         {
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\videoblock2.txt";
+            string path = startupPath + @"\test\videoblock2.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = iOS.ProcessOrganic(node);
@@ -699,7 +700,7 @@ namespace RapidTrackingUnitTest
         {
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\src.txt";
+            string path = startupPath + @"\test\src.txt";
             doc.Load(path);
             SupportMethods.iOsHtml = doc.DocumentNode.OuterHtml;
             var node = doc.DocumentNode.SelectSingleNode("/");
@@ -713,7 +714,7 @@ namespace RapidTrackingUnitTest
         {
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\src1.txt";
+            string path = startupPath + @"\test\src1.txt";
             doc.Load(path);
             SupportMethods.iOsHtml = doc.DocumentNode.OuterHtml;
             var node = doc.DocumentNode.SelectSingleNode("/");
@@ -727,7 +728,7 @@ namespace RapidTrackingUnitTest
         public void TestiOSXmlSanitizingStreamRead()
         {
             
-            string path = @"C:\inetpub\wwwroot\test\desktop\";
+            string path = startupPath + @"\test\desktop\";
             string fileName = path + "results.xml";
             Stream stream = new FileStream(fileName, FileMode.Open);
             iOS.XmlSanitizingStream xmlSanitizing = new iOS.XmlSanitizingStream(stream);
@@ -738,7 +739,7 @@ namespace RapidTrackingUnitTest
         public void TestiOSXmlSanitizingStreamPeak()
         {
             var iOS = new iOS();
-            string path = @"C:\inetpub\wwwroot\test\desktop\";
+            string path = startupPath + @"\test\";
             string fileName = path + "results.xml";
             Stream stream = new FileStream(fileName, FileMode.Open);
             iOS.XmlSanitizingStream xmlSanitizing = new iOS.XmlSanitizingStream(stream);
@@ -751,7 +752,7 @@ namespace RapidTrackingUnitTest
         {
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\src2.txt";
+            string path = startupPath + @"\test\src2.txt";
             doc.Load(path);
             SupportMethods.iOsHtml = doc.DocumentNode.OuterHtml;
             var node = doc.DocumentNode.SelectSingleNode("/");
@@ -764,7 +765,7 @@ namespace RapidTrackingUnitTest
         {
             var iOS = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\htmlsrc2.html";
+            string path = startupPath + @"\test\htmlsrc2.html";
             doc.Load(path);
             SupportMethods.iOsHtml = doc.DocumentNode.OuterHtml;
             var node = doc.DocumentNode.SelectSingleNode("/");
@@ -778,7 +779,7 @@ namespace RapidTrackingUnitTest
         {
             var ios = new iOS();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\tsapps.txt";
+            string path = startupPath + @"\test\tsapps.txt";
             doc.Load(path);
             var result = ios.GetTopStuff(doc);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);

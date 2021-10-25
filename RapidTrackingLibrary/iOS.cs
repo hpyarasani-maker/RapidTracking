@@ -2472,8 +2472,8 @@ namespace RapidTrackingLibrary
                 if (nd != null && node.SelectSingleNode(".//div[@class='EDblX m8vZ3d']") == null)   // 16-10-2019
                 {
                     //if (node.SelectSingleNode(".//div[contains(@class,'BNeawe')]") != null && node.SelectSingleNode(".//div[@class='au0C1b u78HIe']") == null)//commented on 02-03-2021//15-12-2020 commented //14-12-2020 //11-12-2020 not for popular products
-                    //if (node.SelectSingleNode(".//div[contains(@class,'BNeawe')]") != null && node.SelectSingleNode(".//div[contains(@class,'au0C1b')]") == null)//02-03-2021 included contains for classic links
-                    if (node.SelectSingleNode(".//div[contains(@class,'BNeawe')]") != null && node.SelectSingleNode(".//div[contains(@class,'au0C1b')]") == null && node.SelectSingleNode(".//div[@class='pXvdUe']") == null)//21-10-2021 wrong carousel block
+                    if (node.SelectSingleNode(".//div[contains(@class,'BNeawe')]") != null && node.SelectSingleNode(".//div[contains(@class,'au0C1b')]") == null)//02-03-2021 included contains for classic links
+                    //if (node.SelectSingleNode(".//div[contains(@class,'BNeawe')]") != null && node.SelectSingleNode(".//div[contains(@class,'au0C1b')]") == null && node.SelectSingleNode(".//div[@class='pXvdUe']") == null)//21-10-2021 wrong carousel block
                         return true;
                     return false;
                 }

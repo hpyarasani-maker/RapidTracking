@@ -2264,7 +2264,7 @@ namespace RapidTrackingLibrary
                 nd = node.SelectSingleNode(".//div[@class='mR2gOd pptFR']"); //25-02-2021 images selector
             if (nd != null)
             {
-                if (node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']") != null) //25-10-2021
+                if (node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']") != null || node.SelectSingleNode(".//div[@class='N60dNb mfMhoc']") != null) //26-10-2021//27-102-2021
                     return "Images";
             }
             else

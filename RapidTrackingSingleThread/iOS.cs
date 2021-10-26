@@ -2232,7 +2232,7 @@ namespace RapidTrackingSingleThread
             if (nd != null)
             {
                 //if (node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']") == null) //30-08-2021 image wrong block issue
-                if (node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']") != null) //25-10-2021
+                if (node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']") != null || node.SelectSingleNode(".//div[@class='N60dNb mfMhoc']") != null) //26-10-2021//27-102-2021
                     return "Images";
             }
             else

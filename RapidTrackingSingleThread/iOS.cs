@@ -1518,8 +1518,7 @@ namespace RapidTrackingSingleThread
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='uR34qf dJMePd BmP5tf']/a");
                 if (nds == null)
-                    nds = node.SelectNodes(".//g-scrolling-carousel//g-card-section[@class='a02Mp jDsVJf']/a"); //included on 2019-06-24
-
+                     nds = node.SelectNodes(".//g-card-section[contains(@class,'jDsVJf')]/a"); //27-10-2021
                 if (nds != null)
                     foreach (HtmlNode nd in nds)
                     {
@@ -2290,12 +2289,12 @@ namespace RapidTrackingSingleThread
                      || nd.InnerText.ToLower().Contains("notícias")) //08-01-2021 top stories
                 if ((node.SelectSingleNode(".//div[@id='tscffb']") != null || node.SelectSingleNode(".//div[@class='KJDcUb']") == null) && node.SelectSingleNode(".//div/a[contains(@class,'C8nzq BmP5tf')]") == null) //25-05-2021 //04-01-2021 video block
                         return true;
-                if (node.SelectSingleNode(".//div[@class='ttfMne']|.//div[@class='N60dNb mfMhoc']|.//h2[@class='OEsCyf mfMhoc']|.//div[@class='kp-blk c2xzTb OJXvsb']") != null) //01-09-2021 missing AC block//12-07-2021 job block //12-07-2021 carousel block //19-01-2021 missing top stories
+                if (node.SelectSingleNode(".//div[@class='ttfMne']|.//div[@class='N60dNb mfMhoc']|.//h2[@class='OEsCyf mfMhoc']|.//div[@class='kp-blk c2xzTb OJXvsb']|.//div[@class='WpKAof']") != null) //27-10-2021 //01-09-2021 missing AC block//12-07-2021 job block //12-07-2021 carousel block //19-01-2021 missing top stories
                     if (node.SelectSingleNode(".//div[@class='WvKfwe a3spGf']") != null) //12-10-2021
-                        return false;
+                            return false;
                     else
                         return true;//12-11-2021
-                if (nd.InnerText == "More results" || nd.InnerText == "Top results" || nd.InnerText == "Toppresultater"
+                if (nd.InnerText == "More results" || nd.InnerText == "Top results" || nd.InnerText == "Toppresultater" || nd.InnerText == "También se buscó" //27-10-2021
                      || nd.InnerText == "Fler resultat" || nd.InnerText == "Flere resultater" || nd.InnerText == "Plus de résultats")    // 13-12-2019
                     return false;
             }
@@ -2352,7 +2351,7 @@ namespace RapidTrackingSingleThread
             {
                 return true;
             }
-            nd = node.SelectSingleNode(".//div[@class='oLO3I']");
+            nd = node.SelectSingleNode(".//div[@class='oLO3I']|.//div[contains(@class, 'tw-res')]"); //27-10-2021
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='aZVgnb']/h2");  // 08-06-2020  
             if (nd != null)

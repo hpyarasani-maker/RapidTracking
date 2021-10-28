@@ -663,7 +663,7 @@ namespace RapidTrackingSingleThread
                 //end 26-03-2021
                 if (nds == null)
                     if (node.SelectSingleNode(".//div[contains(@class,'YgXj7b')]|.//div[@class='Y37F6d Nn2Stf']/img") == null)//22-09-2021 missing video block//08-05-2021 applied contains //19-01-2021
-                        nds = node.SelectNodes(".//div[contains(@class,'KJDcUb')]|.//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']|.//g-card[@id='tscffb']|.//div[@class='mnr-c PHap3c']|.//div[@jsname='wRSfy']");//12-10-2021//09-02-2021//27-01-2021 included missing selector//05-01-2021 //04-01-2021 missing classic link//18-12-2020 sitelinks missing selector //15-12-2020
+                        nds = node.SelectNodes(".//div[contains(@class,'KJDcUb')]|.//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']|.//g-card[@id='tscffb']|.//div[@class='mnr-c PHap3c']|.//div[@jsname='wRSfy']|.//g-card[@class='g F6CFcc']"); //28-10-2021//12-10-2021//09-02-2021//27-01-2021 included missing selector//05-01-2021 //04-01-2021 missing classic link//18-12-2020 sitelinks missing selector //15-12-2020
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='mnr-c O9g5cc uUPGi']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='HD8Pae mnr-c xpd O9g5cc uUPGi']" +
                         "|.//div/g-card[@class='XqIXXe']|.//g-card[@id='tscffb']|.//g-card[@class='g F6CFcc']|.//div[@class='khgTR lWEpfd']" +
@@ -701,7 +701,7 @@ namespace RapidTrackingSingleThread
                         //27-09-2019
                         if (nd.HasClass("F6CFcc"))  // twitter block    
                         {
-                            if (nd.SelectSingleNode(".//div[@class='qdrjAc Dwsemf']") != null)  //11-11-2019
+                            if (nd.SelectSingleNode(".//div[contains(@class,'qdrjAc Dwsemf')]") != null) //28-10-2021  //11-11-2019
                             {
                                 s.Append(GetTwitterCards(nd));
                                 continue;
@@ -2355,7 +2355,10 @@ namespace RapidTrackingSingleThread
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='aZVgnb']/h2");  // 08-06-2020  
             if (nd != null)
-                return true;
+                if (node.SelectSingleNode(".//div[@class='WvKfwe a3spGf']") != null)//28-10-2021
+                    return false;//28-10-2021
+             else//28-10-2021
+            return true;
             // Changes in Finance block on 25-06-2019
             nd = node.SelectSingleNode(".//div[@id='fac-tc']");
             if (nd != null)

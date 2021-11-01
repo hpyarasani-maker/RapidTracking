@@ -15,6 +15,7 @@ namespace RapidTrackingUnitTest
     {
         readonly static string seid = "102";
         readonly static string keyword = "movies";
+        string startupPath = Directory.GetCurrentDirectory();
         iOS ios;
         string s;
         string result;
@@ -43,8 +44,8 @@ namespace RapidTrackingUnitTest
 
         List<ArrayList> GetProcessedLists()
         {
-            string xml1 = "C:\\inetpub\\wwwroot\\selector.xml";
-            string xml2 = "C:\\inetpub\\wwwroot\\regex.xml";
+            string xml1 = startupPath + @"\test\selector.xml";
+            string xml2 = startupPath + @"\test\regex.xml";
 
             List<ArrayList> al = new List<ArrayList>();
             ArrayList list1 = new ArrayList();
@@ -119,7 +120,7 @@ namespace RapidTrackingUnitTest
         //31-03-2021
         ArrayList GetRegExProcessedLists()
         {
-            string xml2 = "C:\\inetpub\\wwwroot\\regex.xml";
+            string xml2 = startupPath + @"\test\regex.xml";
             ArrayList al = new ArrayList();
             XmlDocument xml = new XmlDocument();            
             xml.Load(xml2);

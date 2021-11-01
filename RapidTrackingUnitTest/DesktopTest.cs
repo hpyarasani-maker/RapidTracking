@@ -12,12 +12,13 @@ namespace RapidTrackingUnitTest
     {
         readonly static string seid = "58";
         readonly static string keyword = "joe biden";
+        string startupPath = Directory.GetCurrentDirectory();
         [TestMethod]
         public void TestDektopTopStoriesBlockExisted()
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\topstories.txt";
+            string path = startupPath+@"\test\desktop\topstories.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = desktop.GetTopStories(node);
@@ -28,7 +29,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\twittercard.txt";
+            string path = startupPath + @"\test\desktop\twittercard.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = desktop.GetTwitterCards(node);
@@ -39,7 +40,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\videos.txt";
+            string path =startupPath + @"\test\desktop\videos.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = desktop.GetVideos(node);
@@ -50,7 +51,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\images.txt";
+            string path =startupPath + @"\test\desktop\images.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = desktop.GetImages(node);
@@ -61,7 +62,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\peoplealsoask.txt";
+            string path =startupPath + @"\test\desktop\peoplealsoask.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = desktop.PeopleAlsoAsk(node);
@@ -72,7 +73,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\answercard.txt";
+            string path =startupPath + @"\test\desktop\answercard.txt";
             doc.Load(path);
             //var node = doc.DocumentNode.SelectSingleNode("/");
             //var result = Desktop.GetAnswerCard(node);
@@ -89,7 +90,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\tsproductlistedads.txt";
+            string path =startupPath + @"\test\desktop\tsproductlistedads.txt";
             doc.Load(path);
             var result = desktop.GetTopStuff(doc);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
@@ -99,7 +100,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\textads.txt";
+            string path =startupPath + @"\test\desktop\textads.txt";
             doc.Load(path);
             var result = desktop.GetTopStuff(doc);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
@@ -109,7 +110,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\sitelinks.txt";
+            string path =startupPath + @"\test\desktop\sitelinks.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = desktop.GetSiteLinks(node);
@@ -120,7 +121,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\carousel1.txt";
+            string path =startupPath + @"\test\desktop\carousel1.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = desktop.GetCarousel(node);
@@ -131,7 +132,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\carousel2.txt";
+            string path =startupPath + @"\test\desktop\carousel2.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = desktop.GetCarousel(node);
@@ -142,7 +143,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\tscarousel.txt";
+            string path =startupPath + @"\test\desktop\tscarousel.txt";
             doc.Load(path);
             var result = desktop.GetTopStuff(doc);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
@@ -152,7 +153,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\jobs.txt";
+            string path =startupPath + @"\test\desktop\jobs.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = desktop.GetJobs(node);
@@ -163,7 +164,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\rightproductslistedads.txt";
+            string path =startupPath + @"\test\desktop\rightproductslistedads.txt";
             doc.Load(path);
             var result = desktop.GetRightStuff(doc);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
@@ -173,7 +174,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\videocard.txt";
+            string path =startupPath + @"\test\desktop\videocard.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = desktop.GetVideoCard(node);
@@ -182,7 +183,7 @@ namespace RapidTrackingUnitTest
         [TestMethod]
         public void TestDesktopProcessClassicLinksExisted()
         {
-            var html = @"C:\inetpub\wwwroot\test\desktop\htmlsrc.html";
+            var html =startupPath + @"\test\desktop\htmlsrc.html";
             var desktop = new Desktop();
             var doc = new HtmlDocument();
             doc.Load(html);
@@ -192,7 +193,7 @@ namespace RapidTrackingUnitTest
         [TestMethod]
         public void TestDesktopImageURLsExisted()
         {
-            var html = @"C:\inetpub\wwwroot\test\desktop\htmlsrc.html";
+            var html =startupPath + @"\test\desktop\htmlsrc.html";
             var desktop = new Desktop();
             var doc = new HtmlDocument();
             doc.Load(html);
@@ -203,7 +204,7 @@ namespace RapidTrackingUnitTest
         [TestMethod]
         public void TestDesktopCarouselURLsExisted()
         {
-            var html = @"C:\inetpub\wwwroot\test\desktop\htmlsrc.html";
+            var html =startupPath + @"\test\desktop\htmlsrc.html";
             var desktop = new Desktop();
             var doc = new HtmlDocument();
             doc.Load(html);
@@ -216,7 +217,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\twittercard.txt";
+            string path =startupPath + @"\test\desktop\twittercard.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = desktop.IsBlock(node);
@@ -227,7 +228,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\classiclink.txt";
+            string path =startupPath + @"\test\desktop\classiclink.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = desktop.IsBlock(node);
@@ -238,7 +239,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\classiclink.txt";
+            string path =startupPath + @"\test\desktop\classiclink.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = desktop.IsOrganic(node);
@@ -249,7 +250,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\sitelinks1.txt";
+            string path =startupPath + @"\test\desktop\sitelinks1.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = desktop.GetSiteLinks(node);
@@ -271,7 +272,7 @@ namespace RapidTrackingUnitTest
         {
             var Desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"c:\inetpub\wwwroot\test\desktop\ProductListedAds.txt";
+            string path =startupPath + @"\test\desktop\ProductListedAds.txt";
             doc.Load(path);
             var result = Desktop.GetProductListedAds(doc);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
@@ -283,7 +284,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\topstories.txt";
+            string path =startupPath + @"\test\desktop\topstories.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = desktop.ProcessBlock(node);
@@ -294,7 +295,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\videos.txt";
+            string path =startupPath + @"\test\desktop\videos.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = desktop.ProcessBlock(node);
@@ -305,7 +306,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\twittercard.txt";
+            string path =startupPath + @"\test\desktop\twittercard.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = desktop.ProcessBlock(node);
@@ -316,7 +317,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\answercard.txt";
+            string path =startupPath + @"\test\desktop\answercard.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = desktop.ProcessBlock(node);
@@ -327,7 +328,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\peoplealsoask.txt";
+            string path =startupPath + @"\test\desktop\peoplealsoask.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = desktop.ProcessBlock(node);
@@ -338,7 +339,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\images.txt";
+            string path =startupPath + @"\test\desktop\images.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = desktop.ProcessBlock(node);
@@ -349,7 +350,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\sitelinks.txt";
+            string path =startupPath + @"\test\desktop\sitelinks.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = desktop.ProcessBlock(node);
@@ -360,7 +361,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\jobs.txt";
+            string path =startupPath + @"\test\desktop\jobs.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = desktop.ProcessBlock(node);
@@ -371,7 +372,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\knowledgepanel.txt";
+            string path =startupPath + @"\test\desktop\knowledgepanel.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = desktop.ProcessBlock(node);
@@ -383,7 +384,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\BottomStuffAdwords1.txt";
+            string path =startupPath + @"\test\desktop\BottomStuffAdwords1.txt";
             doc.Load(path);
             var result = desktop.GetBottomStuff(doc);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
@@ -393,7 +394,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\BottomStuffAdwords2.txt";
+            string path =startupPath + @"\test\desktop\BottomStuffAdwords2.txt";
             doc.Load(path);
             var result = desktop.GetBottomStuff(doc);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
@@ -403,7 +404,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\BottomStuffAdwords3.txt";
+            string path =startupPath + @"\test\desktop\BottomStuffAdwords3.txt";
             doc.Load(path);
             var result = desktop.GetBottomStuff(doc);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
@@ -416,7 +417,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\answercard.txt";
+            string path =startupPath + @"\test\desktop\answercard.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = desktop.ProcessNode(node);
@@ -427,7 +428,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\classiclink.txt";
+            string path =startupPath + @"\test\desktop\classiclink.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = desktop.ProcessNode(node);
@@ -440,7 +441,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\Maps.txt";
+            string path =startupPath + @"\test\desktop\Maps.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = desktop.GetJobs(node);
@@ -451,7 +452,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\video.txt";
+            string path =startupPath + @"\test\desktop\video.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = desktop.ProcessNode(node);
@@ -462,7 +463,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\htmlsrc.html";
+            string path =startupPath + @"\test\desktop\htmlsrc.html";
             doc.Load(path);
             var result = desktop.ProcessDocument(seid, keyword, doc, out int cnt);
             Assert.AreEqual(!string.IsNullOrEmpty(result) && cnt > 0, true);
@@ -472,7 +473,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\sitelinks.txt";
+            string path =startupPath + @"\test\desktop\sitelinks.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = desktop.ProcessOrganic(node);
@@ -481,8 +482,8 @@ namespace RapidTrackingUnitTest
         [TestMethod]//30-09-2021
         public void TestDesktopXmlSanitizingStreamRead()
         {
-            string path = @"C:\inetpub\wwwroot\test\desktop\";
-            string fileName = path + "rapidtracking_singlethread_102_GT20_WC.xml";
+            string path =startupPath + @"\test\desktop\";
+            string fileName = path + "results.xml";
             Stream stream = new FileStream(fileName, FileMode.Open);
             Desktop.XmlSanitizingStream xmlSanitizing = new Desktop.XmlSanitizingStream(stream);
             int n = xmlSanitizing.Read();
@@ -491,8 +492,8 @@ namespace RapidTrackingUnitTest
         [TestMethod]
         public void TestDesktopXmlSanitizingStreamPeak()
         {
-            string path = @"C:\inetpub\wwwroot\test\desktop\";
-            string fileName = path + "rapidtracking_singlethread_102_GT20_WC.xml";
+            string path =startupPath + @"\test\desktop\";
+            string fileName = path + "results.xml";
             Stream stream = new FileStream(fileName, FileMode.Open);
             Desktop.XmlSanitizingStream xmlSanitizing = new Desktop.XmlSanitizingStream(stream);
             int n = xmlSanitizing.Peek();
@@ -504,7 +505,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\textads2.txt";
+            string path =startupPath + @"\test\desktop\textads2.txt";
             doc.Load(path);
             var result = desktop.GetTopStuff(doc);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
@@ -514,7 +515,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\textads3.txt";
+            string path =startupPath + @"\test\desktop\textads3.txt";
             doc.Load(path);
             var result = desktop.GetTopStuff(doc);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
@@ -524,7 +525,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\tsknowledgepanel.txt";
+            string path =startupPath + @"\test\desktop\tsknowledgepanel.txt";
             doc.Load(path);
             var result = desktop.GetTopStuff(doc);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
@@ -534,7 +535,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\tstopstories.txt";
+            string path =startupPath + @"\test\desktop\tstopstories.txt";
             doc.Load(path);
             var result = desktop.GetTopStuff(doc);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
@@ -546,7 +547,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\SubClassicLinks.txt";
+            string path =startupPath + @"\test\desktop\SubClassicLinks.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = desktop.ProcessOrganic(node);
@@ -555,7 +556,7 @@ namespace RapidTrackingUnitTest
         [TestMethod]
         public void TestDesktopProcessClassicLinksExisted2()
         {
-            var html = @"C:\inetpub\wwwroot\test\desktop\htmlsrc1.html";
+            var html =startupPath + @"\test\desktop\htmlsrc1.html";
             var desktop = new Desktop();
             var doc = new HtmlDocument();
             doc.Load(html);
@@ -570,7 +571,7 @@ namespace RapidTrackingUnitTest
         {
             var desktop = new Desktop();
             HtmlDocument doc = new HtmlDocument();
-            string path = @"C:\inetpub\wwwroot\test\desktop\textads4.txt";
+            string path =startupPath + @"\test\desktop\textads4.txt";
             doc.Load(path);
             var node = doc.DocumentNode.SelectSingleNode("/");
             var result = desktop.GetTopStuff(doc);

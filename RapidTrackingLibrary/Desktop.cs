@@ -1360,7 +1360,8 @@ namespace RapidTrackingLibrary
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@id='knowledge-currency__currency-v2-updatable']");
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='g obcontainer']");   // updated on 01-08-2019
+                //nd = node.SelectSingleNode(".//div[@class='g obcontainer']");   // updated on 01-08-2019
+                nd = node.SelectSingleNode(".//div[contains(@class,'obcontainer')]"); //02-11-2021 finance block
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[contains(@class,'kno-fb-ctx')]"); //13-10-2021 finance
             if (nd != null)

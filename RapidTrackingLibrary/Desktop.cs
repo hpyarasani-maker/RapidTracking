@@ -1087,6 +1087,8 @@ namespace RapidTrackingLibrary
             if (nds == null)
                 nds = node.SelectNodes(".//g-inner-card/div/a");   //01-05-2020
             if (nds == null)
+                nds = node.SelectNodes(".//g-inner-card/div/div/a");//03-11-2021 TS item urlsS
+            if (nds == null)
                 nds = node.SelectNodes(".//div[@class='HCUNre dbsr']/a"); //21-09-2020 Top Stories block item urls selector updated
             if (nds == null && node.SelectNodes(".//div/a/div[@class='TIh7vf']") != null) //10-12-2020  top stories selector
                 nds = node.SelectNodes(".//div/a"); //10-12-2020 
@@ -1316,7 +1318,6 @@ namespace RapidTrackingLibrary
                 nd = node.SelectSingleNode(".//div[@jscontroller='IkchZc']");//13-03-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@jscontroller='hFvNdd']");//08-10-2021 images
-
             if (nd != null)
             {
                 return "Images";
@@ -1349,7 +1350,7 @@ namespace RapidTrackingLibrary
             }
             // end of map changes.
 
-            nd = node.SelectSingleNode(".//div[@id='kx']|.//div[@id='rrg']|.//div[@class='oHJrJb']");//05-08-2020 included selector for carousel
+            nd = node.SelectSingleNode(".//div[@id='kx']|.//div[@id='rrg']|.//div[@class='oHJrJb']|.//div[@class='q6PGbe']");//03-11-2021 CS Block///05-08-2020 included selector for carousel
             if (nd != null)
             {
                 return "Carousel";
@@ -1360,7 +1361,8 @@ namespace RapidTrackingLibrary
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@id='knowledge-currency__currency-v2-updatable']");
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='g obcontainer']");   // updated on 01-08-2019
+                //nd = node.SelectSingleNode(".//div[@class='g obcontainer']");   // updated on 01-08-2019
+                nd = node.SelectSingleNode(".//div[contains(@class,'obcontainer')]"); //02-11-2021 finance block
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[contains(@class,'kno-fb-ctx')]"); //13-10-2021 finance
             if (nd != null)

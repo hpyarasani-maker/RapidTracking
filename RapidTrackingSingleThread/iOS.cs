@@ -295,7 +295,7 @@ namespace RapidTrackingSingleThread
                 s.Append("<block type=\"adwords\" url=\"\">");
                 foreach (HtmlNode nd in col)
                 {
-                    HtmlNode n = nd.SelectSingleNode(".//div[@class='d5oMvf KJDcUb']/a");
+                    HtmlNode n = nd.SelectSingleNode(".//div[@class='d5oMvf KJDcUb']/a|.//div[contains(@class,'v5yQqb')]/a"); //11-11-2021
                     if (n == null)
                         n = nd.SelectSingleNode(".//div[@class='d5oMvf KJDcUb dJMePd T4Yo']/a");  //22-06-2020
                     if (n == null)
@@ -505,7 +505,7 @@ namespace RapidTrackingSingleThread
                     {
                         HtmlNode n = nd.SelectSingleNode(".//div[@class='ad_cclk']/a[2]");
                         if (n == null)
-                            n = nd.SelectSingleNode(".//div[@class='d5oMvf']/a");
+                            n = nd.SelectSingleNode(".//div[@class='d5oMvf']/a|.//div[contains(@class,'v5yQqb')]/a"); //11-11-2021
                         if (n == null)
                             n = nd.SelectSingleNode(".//div[@class='d5oMvf KJDcUb']/a");
                         if (n == null)
@@ -514,8 +514,6 @@ namespace RapidTrackingSingleThread
                             n = nd.SelectSingleNode(".//div/a[@class='V0MxL']");    // changes on 28-06-2019
                         if (n == null)
                             n = nd.SelectSingleNode(".//a[@jsname='wOJZib']");  // 01-04-2020
-                        if (n == null)
-                            n = nd.SelectSingleNode(".//div[@class='v5yQqb jqWpsc']/a"); //11-11-2021 adwords
                         if (n != null)
                         {
                             string title = (n.SelectSingleNode(".//h3") != null) ? n.SelectSingleNode(".//h3").InnerText
@@ -750,7 +748,7 @@ namespace RapidTrackingSingleThread
                                 {
                                     if (Regex.IsMatch(img.OuterHtml, "id=\"vidthumb\\d*\"") || Regex.IsMatch(img.OuterHtml, "id=\"dimg_\\d*\"") || img.Attributes["class"].Value.Contains("__video-result")) //22-03-2021
                                     {
-                                        HtmlNode vdo = nd.SelectSingleNode(".//a[@class='C8nzq BmP5tf']");
+                                        HtmlNode vdo = nd.SelectSingleNode(".//a[contains(@class,'BmP5tf')]"); //11-11-2021
                                         // video block.
                                         if (vdo == null)
                                             vdo = nd.SelectSingleNode(".//div[@class='th N3nEGc']/a");
@@ -859,12 +857,13 @@ namespace RapidTrackingSingleThread
                                             // video block.
                                             if (n == null)
                                                 n = nd.SelectSingleNode(".//div[@class='th N3nEGc']/a");
-                                            if (n == null)
-                                                n = nd.SelectSingleNode(".//a[@class='C8nzq BmP5tf amp_r']");  // 10-06-2020 swapped from below //08-01-2020 //included selector for video block
-                                            if (n == null)
-                                                n = nd.SelectSingleNode(".//a[@class='C8nzq BmP5tf']");  // 10-06-2020 swapped from above
-                                            if (n == null)
-                                                n = nd.SelectSingleNode(".//a[@class='C8nzq Tj0U2 BmP5tf']");    // 29-11-2019
+                                            if (n == null) //11-11-2021
+                                                n = nd.SelectSingleNode(".//a[contains(@class,'BmP5tf')]");  // 10-06-2020 swapped from below //08-01-2020 //included selector for video block
+                                            //if (n == null)
+                                            //    n = nd.SelectSingleNode(".//a[@class='C8nzq BmP5tf']");  // 10-06-2020 swapped from above
+                                            //if (n == null)
+                                            //    n = nd.SelectSingleNode(".//a[@class='C8nzq Tj0U2 BmP5tf']");    // 29-11-2019
+                                            //end 11-11-2021
                                             if (n == null)
                                                 n = nd.SelectSingleNode(".//div[@class='au0C1b u78HIe']/a"); //15-12-2020 video selector
                                             string url = n.Attributes["href"].Value;
@@ -2453,7 +2452,7 @@ namespace RapidTrackingSingleThread
                         return true;
                     return false;
                 }
-                else if (nd != null && node.SelectSingleNode(".//div[contains(@class,'KJDcUb')]") != null)//09-09-2021 applied contains // 22-01-2020 included selector for classic links
+                else if (nd != null && (node.SelectSingleNode(".//div[contains(@class,'KJDcUb')]") != null || node.SelectSingleNode(".//div[@class='U3THc']") != null)) //11-11-2021    //09-09-2021 applied contains // 22-01-2020 included selector for classic links
                 {
                     return false;
                 }

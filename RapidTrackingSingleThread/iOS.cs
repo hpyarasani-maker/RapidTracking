@@ -24,8 +24,8 @@ namespace RapidTrackingSingleThread
 
             html = doc.DocumentNode.OuterHtml;
             StringBuilder sb = new StringBuilder();
-            sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" date=\"2021-11-10\" >"); //previous date
-            //sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" date=\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\" >");
+            //sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" date=\"2021-11-10\" >"); //previous date
+            sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" date=\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\" >");
             try  //28-09-2020  try catch.
             {
                 sb.Append("<section col=\"main\">");

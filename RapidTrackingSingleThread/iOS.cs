@@ -684,7 +684,12 @@ namespace RapidTrackingSingleThread
                 {
                     try
                     {
-                        //14-11-2019
+                        //12-11-2021 duplicates CLs
+                        if (nd.Attributes["class"]?.Value != null)
+                        {
+                            if (nd.SelectSingleNode(".//div[@class='" + nd.Attributes["class"].Value + "']") != null)
+                                continue;
+                        }//12-11-2021
                         if (nd.SelectSingleNode(".//div[@jscontroller='i5z2Rc']") != null
                             || nd.SelectSingleNode(".//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']") != null //13-12-2019
                              || nd.SelectSingleNode(".//div[@class='MUxGbd v0nnCb lyLwlc']") != null)   //16-12-2020

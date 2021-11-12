@@ -658,7 +658,7 @@ namespace RapidTrackingSingleThread
                 nds = node.SelectNodes(".//div[@jscontroller='iht5n']/div");
             else
             {
-                nds = node.SelectNodes(".//div[@class='mnr-c waTp2e xpd O9g5cc uUPGi']|.//div[@class='mnr-c luh4tb xpd O9g5cc uUPGi']");//24-03-2021//15-12-2020 removed selector//06-10-2020 classic link selector //19-06-2020   //20-01-2020 selector changed for two classic links
+                nds = node.SelectNodes(".//div[@class='mnr-c waTp2e xpd O9g5cc uUPGi']|.//div[@class='mnr-c luh4tb xpd O9g5cc uUPGi']|.//div[@class='mnr-c xpd O9g5cc uUPGi']");//12-11-2021//24-03-2021//15-12-2020 removed selector//06-10-2020 classic link selector //19-06-2020   //20-01-2020 selector changed for two classic links
                 if (nds == null)//26-03-2021
                     nds = (node.SelectNodes(".//div[contains(@id,'tsuid')]//a[@class='Xhbgy']") != null && node.SelectNodes(".//div[contains(@class,'KJDcUb')]") != null) ? nds = node.SelectNodes(".//div[@class='mnr-c xpd O9g5cc uUPGi']") : nds = null;
                 //end 26-03-2021
@@ -670,7 +670,7 @@ namespace RapidTrackingSingleThread
                         "|.//div/g-card[@class='XqIXXe']|.//g-card[@id='tscffb']|.//g-card[@class='g F6CFcc']|.//div[@class='khgTR lWEpfd']" +
                         "|.//div[@class='khgTR R5lVqb']|.//div[@class='mnr-c fp-w qs-ic aig-grd']|.//g-card[@class='URhAHe']" +
                         "|.//div[@class='mnr-c IcwJCe']|.//div[@class='g card-section svwwZ']" + //03-11-2020//26-08-2020 incuded contains functions to the selector//29-07-2020 //20-05-2020 missing classic link //05-06-2020
-                        "|.//div[contains(@class,'card-section')]|.//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']|.//div[@class='wU9Tkd']|.//div[@jsname='wRSfy']");//11-10-2021 VB //10-07-2021 //20-05-2021 included contains//15-12-2020
+                        "|.//div[contains(@class,'card-section')]|.//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']|.//div[@class='wU9Tkd']|.//div[@jsname='wRSfy']|.//div[@class='tKdlvb jqWpsc']");//12-11-2021//11-10-2021 VB //10-07-2021 //20-05-2021 included contains//15-12-2020
 
                 if (nds == null)
                     if (node.Attributes["class"]?.Value == "mnr-c xpd O9g5cc uUPGi") //09-09-2021 applied ? condition

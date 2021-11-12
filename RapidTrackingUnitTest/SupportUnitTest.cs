@@ -16,7 +16,12 @@ namespace RapidTrackingUnitTest
             string startupPath = Directory.GetCurrentDirectory();
             string iOSPath = startupPath + @"\test\htmlsrc.html";
             SupportMethods.iOsHtml = File.ReadAllText(iOSPath);
+            //08-11-2021
+            string desktopPath = startupPath + @"\test\desktop\htmlsrc2.html";
+            SupportMethods.DesktopHtml = File.ReadAllText(desktopPath);
+            //end //08-11-2021
         }//end 21-09-2021
+
         [TestMethod]
         public void TestGetiOSBlockException()
         {
@@ -69,6 +74,11 @@ namespace RapidTrackingUnitTest
         [TestMethod]
         public void TestGetiOSAnswerCardBlock()
         {
+            //08-11-2021
+            string startupPath = Directory.GetCurrentDirectory();
+            string iOSPath = startupPath + @"\test\htmlsrc3.html";
+            //end 08-11-2021
+            SupportMethods.iOsHtml = File.ReadAllText(iOSPath);
             HtmlNode htmlNode;
             htmlNode = SupportMethods.GetiOSBlock("answercard");
             Assert.IsInstanceOfType(htmlNode, typeof(HtmlNode));
@@ -76,6 +86,11 @@ namespace RapidTrackingUnitTest
         [TestMethod]
         public void TestGetiOSAppsBlock()
         {
+            //08-11-2021
+            string startupPath = Directory.GetCurrentDirectory();
+            string iOSPath = startupPath + @"\test\htmlsrc3.html";
+            SupportMethods.iOsHtml = File.ReadAllText(iOSPath);
+            //end 08-11-2021
             HtmlNode htmlNode;
             htmlNode = SupportMethods.GetiOSBlock("apps");
             Assert.IsInstanceOfType(htmlNode, typeof(HtmlNode));
@@ -112,6 +127,8 @@ namespace RapidTrackingUnitTest
         [TestMethod]
         public void TestGetDesktopAnswerCardBlock()
         {
+            //string startupPath = Directory.GetCurrentDirectory();
+
             HtmlNode htmlNode;
             htmlNode = SupportMethods.GetDesktopBlock("answercard");
             Assert.IsInstanceOfType(htmlNode, typeof(HtmlNode));

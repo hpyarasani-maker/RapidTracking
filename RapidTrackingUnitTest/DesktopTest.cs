@@ -485,7 +485,7 @@ namespace RapidTrackingUnitTest
             string path =startupPath + @"\test\desktop\";
             string fileName = path + "results.xml";
             Stream stream = new FileStream(fileName, FileMode.Open);
-            Desktop.XmlSanitizingStream xmlSanitizing = new Desktop.XmlSanitizingStream(stream);
+            XmlSanitizingStream xmlSanitizing = new XmlSanitizingStream(stream);
             int n = xmlSanitizing.Read();
             Assert.IsTrue(n != 0);
         }
@@ -495,7 +495,7 @@ namespace RapidTrackingUnitTest
             string path =startupPath + @"\test\desktop\";
             string fileName = path + "results.xml";
             Stream stream = new FileStream(fileName, FileMode.Open);
-            Desktop.XmlSanitizingStream xmlSanitizing = new Desktop.XmlSanitizingStream(stream);
+            XmlSanitizingStream xmlSanitizing = new XmlSanitizingStream(stream);
             int n = xmlSanitizing.Peek();
             Assert.IsTrue(n != 0);
         }//end 30-09-2021

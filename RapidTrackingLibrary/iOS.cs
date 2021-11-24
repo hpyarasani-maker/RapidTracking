@@ -214,7 +214,7 @@ namespace RapidTrackingLibrary
                 //        "(<div class=\\WXv4xee\\W>*<h3 class=\\WyuRUbf JtG40d V7Sr0\\W><a class=\\W[sXtWJb|sXtWJb gsrt amp_r|sXtWJb amp_r\\W data-amp=|\\W|\\W href=]*\"(.*?)\") ";
                 string matchPattern = "<[a-z0-9\\W]{11}[a-z0-9A-Z\\s]*[0-9|a-b]{1}\"\\S<[a-z\\D]{9}[A-Z|a-z{1}][A-Z|0-9{1}]([a-z]{3}|[A-Za-z]{4})[a-zA-Z0-9\\s_]*\"\\s(data-amp|href|data-idx)\\D\"(.*?)\"";
                 string URLpattern = "([\\w-./+?()&~'%!,-_.?$=;:]*)?";
-                Regex re = new Regex(matchPattern+URLpattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                Regex re = new Regex(matchPattern + URLpattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
                 MatchCollection mc = re.Matches(html);
                 foreach (Match m in mc)
                 {
@@ -714,7 +714,7 @@ namespace RapidTrackingLibrary
                         "|.//div/g-card[@class='XqIXXe']|.//g-card[@id='tscffb']|.//g-card[@class='g F6CFcc']|.//div[@class='khgTR lWEpfd']" +
                         "|.//div[@class='khgTR R5lVqb']|.//div[@class='mnr-c fp-w qs-ic aig-grd']|.//g-card[@class='URhAHe']" +
                         "|.//div[@class='mnr-c IcwJCe']|.//div[@class='g card-section svwwZ']|.//div[@class='g mnr-c']" + //15-11-2021  //03-11-2020//26-08-2020 incuded contains functions to the selector//29-07-2020 //20-05-2020 missing classic link //05-06-2020
-                       //"|.//div[contains(@class,'card-section')]|.//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']|.//div[@class='wU9Tkd']|.//div[@jsname='wRSfy']|.//div[@class='tKdlvb jqWpsc']");//12-11-2021//12-11-2021//11-10-2021 VB //10-07-2021 //20-05-2021 included contains//15-12-2020
+                                                                                                                          //"|.//div[contains(@class,'card-section')]|.//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']|.//div[@class='wU9Tkd']|.//div[@jsname='wRSfy']|.//div[@class='tKdlvb jqWpsc']");//12-11-2021//12-11-2021//11-10-2021 VB //10-07-2021 //20-05-2021 included contains//15-12-2020
                         "|.//div[contains(@class,'card-section')]|.//div[@class='wU9Tkd']|.//div[@jsname='wRSfy']|.//div[@class='tKdlvb jqWpsc']");//15-11-2021
 
                 if (nds == null)
@@ -1294,12 +1294,12 @@ namespace RapidTrackingLibrary
 
             //25-06-2020
             foreach (string itm in al)
-                {
-                    if (s.ToString().Contains(itm) || string.IsNullOrEmpty(itm)) continue;
-                    s.Append(itm);
-                }
-                //end 25-06-2020
-           
+            {
+                if (s.ToString().Contains(itm) || string.IsNullOrEmpty(itm)) continue;
+                s.Append(itm);
+            }
+            //end 25-06-2020
+
 
             return s.ToString();
         }
@@ -1646,9 +1646,9 @@ namespace RapidTrackingLibrary
             string matchPattern3 = "\"ou\":\"(.*?)\",";
             //string matchPattern4 = "\\W\\W\\Wx22http[s]*://(.*?)\\Wx22";   // 17-02-2020 included pattern
             string matchPattern4 = @"\[0,\\x22[\w-\d]*:\\x22,\[\\x22(.*?)\\x22,"; //18-02-2020 replaced pattern for above 17-02-2020
-            //string matchPattern5 = "<img data-src=\\W(.*?)(&amp;s)?\"\\s"; //06-11-2020 //24-06-2020
-            //string matchPattern5 = "\\d{3}px\\W><img data-src=\\W(.*?)(&amp;s)?\"\\s"; //13-11-2020 //06-11-2020 //24-06-2020 //02-06-2021
-             string matchPattern5 = "\\d{2,3}[px|\\W]?\\W><img data-src=\\W(.*?)(&amp;s)?\"\\s"; //02-06-2021 new pattern
+                                                                                  //string matchPattern5 = "<img data-src=\\W(.*?)(&amp;s)?\"\\s"; //06-11-2020 //24-06-2020
+                                                                                  //string matchPattern5 = "\\d{3}px\\W><img data-src=\\W(.*?)(&amp;s)?\"\\s"; //13-11-2020 //06-11-2020 //24-06-2020 //02-06-2021
+            string matchPattern5 = "\\d{2,3}[px|\\W]?\\W><img data-src=\\W(.*?)(&amp;s)?\"\\s"; //02-06-2021 new pattern
             Regex re = new Regex(matchPattern1, RegexOptions.IgnoreCase | RegexOptions.Singleline);
             MatchCollection mc = re.Matches(html);
             ArrayList alDup = new ArrayList();
@@ -2683,79 +2683,6 @@ namespace RapidTrackingLibrary
             }
 
             return buffer.ToString();
-        }
-
-    
-    public class XmlSanitizingStream : StreamReader
-    {
-        public XmlSanitizingStream(Stream streamToSanitize)
-        : base(streamToSanitize, true)
-        { }
-
-        /// <summary>
-        /// Whether a given character is allowed by XML 1.0.
-        /// </summary>
-        public static bool IsLegalXmlChar(int character)
-        {
-            return
-            (
-                 character == 0x9 /* == '\t' == 9   */          ||
-                 character == 0xA /* == '\n' == 10  */          ||
-                 character == 0xD /* == '\r' == 13  */          ||
-                (character >= 0x20 && character <= 0xD7FF) ||
-                (character >= 0xE000 && character < 0xFFFD) ||       //02-11-2020 changed <= 0xFFFD to < 0xFFFD
-                (character >= 0x10000 && character <= 0x10FFFF)
-            );
-        }
-        private const int EOF = -1;
-
-        public override int Read()
-        {
-            // Read each char, skipping ones XML has prohibited
-
-            int nextCharacter;
-
-            do
-            {
-                // Read a character
-
-                if ((nextCharacter = base.Read()) == EOF)
-                {
-                    // If the char denotes end of file, stop
-                    break;
-                }
-            }
-
-            // Skip char if it's illegal, and try the next
-
-            while (!XmlSanitizingStream.
-                    IsLegalXmlChar(nextCharacter));
-
-            return nextCharacter;
-        }
-
-            public override int Peek()
-            {
-                // Return next legal XML char w/o reading it 
-
-                int nextCharacter;
-
-                do
-                {
-                    // See what the next character is 
-                    nextCharacter = base.Peek();
-                }
-                while
-                (
-                    // If it's illegal, skip over 
-                    // and try the next.
-
-                    !XmlSanitizingStream.IsLegalXmlChar(nextCharacter) &&
-                    (nextCharacter = base.Read()) != EOF
-                );
-
-                return nextCharacter;
-            }
         }
     }
 }

@@ -58,6 +58,7 @@
     <Compile Include="SearchParams.cs" />
     <Compile Include="source.cs" />
     <Compile Include="SupportMethods.cs" />
+    <Compile Include="XmlSanitizingStream.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -9,7 +9,7 @@ namespace RapidTrackingUnitTest
     [TestClass]
     public class SourceUnitTest
     {
-        [TestMethod]
+        /*[TestMethod]
         [PexGeneratedBy(typeof(SourceUnitTest))]
        
         public void TestGetHTMLException()
@@ -42,6 +42,12 @@ namespace RapidTrackingUnitTest
                 Assert.IsNull(((Task)task).AsyncState);
                 Assert.AreEqual<bool>(true, ((Task)task).IsFaulted);
             }
+        }*/
+        [TestMethod]
+        public void TestGetOxylabsWebDataSources()
+        {
+            var src = source.GetHTML("testing", 1);
+            Assert.AreEqual(src.Count, 1);
         }
     }
 }

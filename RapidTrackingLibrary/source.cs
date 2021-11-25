@@ -176,7 +176,7 @@ namespace RapidTrackingLibrary
 
         }
 
-        public static async Task<ArrayList> GetHTML(string keyword, int seid)
+        /*public static async Task<ArrayList> GetHTML(string keyword, int seid)
         {
 
             ArrayList alResult = new ArrayList();
@@ -193,9 +193,23 @@ namespace RapidTrackingLibrary
             }
 
             return await Task.FromResult(alResult);
+        }*/
+        public static ArrayList GetHTML(string keyword, int seid)
+        {
+            ArrayList alResult = new ArrayList();
+            try
+            {
+                SearchProperties sp = SearchParams.searches.Where(s => s.seid == seid).SingleOrDefault();
+                sp.query = keyword;
+                if (sp != null)
+                    alResult = GetOxylabsWebDataSources(sp).Result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return alResult;
         }
-       
-
 
     }
 }

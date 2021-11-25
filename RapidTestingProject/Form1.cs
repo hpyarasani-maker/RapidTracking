@@ -80,9 +80,9 @@ namespace RapidTestingProject
                     try
                     {
                         var doc = new HtmlAgilityPack.HtmlDocument();
-                        Task<ArrayList> alresult = source.GetHTML(kw, Convert.ToInt32(seid));
+                        ArrayList alresult = source.GetHTML(kw, Convert.ToInt32(seid));
 
-                        foreach (string[] src in alresult.Result)
+                        foreach (string[] src in alresult)
                         {
                             string keyword = src[0];
                             JObject obj = JObject.Parse(src[1]);

@@ -16,8 +16,8 @@ namespace RapidTrackingLibrary
         {
             try
             {
-                ArrayList alresult = source.GetHTML(kwd, Convert.ToInt32(seid));
-                string[] src = (string[])alresult[0];
+                Task<ArrayList> alresult = source.GetHTML(kwd, Convert.ToInt32(seid));
+                string[] src = (string[])alresult.Result[0];
                 //foreach (string[] src in alresult.Result)
                 //{
                 string keyword = src[0];

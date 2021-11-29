@@ -56,7 +56,7 @@
     <Compile Include="OxyParams.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchParams.cs" />
-    <Compile Include="source.cs" />
+    <Compile Include="Source.cs" />
     <Compile Include="SupportMethods.cs" />
     <Compile Include="XmlSanitizingStream.cs" />
   </ItemGroup>

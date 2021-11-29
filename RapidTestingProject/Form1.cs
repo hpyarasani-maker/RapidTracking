@@ -80,7 +80,7 @@ namespace RapidTestingProject
                     try
                     {
                         var doc = new HtmlAgilityPack.HtmlDocument();
-                        Task<ArrayList> alresult = source.GetHTML(kw, Convert.ToInt32(seid));
+                        Task<ArrayList> alresult = Source.GetHTML(kw, Convert.ToInt32(seid));
 
                         foreach (string[] src in alresult.Result)
                         {

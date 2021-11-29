@@ -11,7 +11,7 @@ using Newtonsoft.Json.Linq;
 using System.Windows.Forms;
 namespace RapidTrackingLibrary
 {
-    public class source
+    public class Source
     {
         public static async Task<ArrayList> GetOxylabsWebDataSources(SearchProperties sp)
         {

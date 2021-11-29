@@ -17,7 +17,7 @@ namespace RapidTrackingUnitTest
             using (PexDisposableContext disposables = PexDisposableContext.Create())
             {
                 Task<ArrayList> task;
-                task = source.GetHTML((string)null, 0);
+                task = Source.GetHTML((string)null, 0);
                 disposables.Add((IDisposable)task);
                 //disposables.Dispose();
                 Assert.IsNotNull((object)task);
@@ -33,7 +33,7 @@ namespace RapidTrackingUnitTest
             using (PexDisposableContext disposables = PexDisposableContext.Create())
             {
                 Task<ArrayList> task;
-                task = source.GetOxylabsWebDataSources((SearchProperties)null);
+                task = Source.GetOxylabsWebDataSources((SearchProperties)null);
                 disposables.Add((IDisposable)task);
                 //disposables.Dispose();
                 Assert.IsNotNull((object)task);

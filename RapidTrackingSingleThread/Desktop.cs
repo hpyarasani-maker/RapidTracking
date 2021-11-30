@@ -847,6 +847,8 @@ namespace RapidTrackingSingleThread
             if (nds == null)
                 nds = node.SelectNodes(".//div[@jsname='jIA8B']"); //08-07-2021
             if (nds == null)
+                nds = node.SelectNodes(".//div[@jsname='Cpkphb']"); //30-11-2021 people also ask titles
+            if (nds == null)
                 return string.Empty;
             foreach (HtmlNode nd in nds)
             {

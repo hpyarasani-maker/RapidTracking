@@ -2319,7 +2319,7 @@ namespace RapidTrackingLibrary
             //13-08-2019
             nd = node.SelectSingleNode(".//div[@class='aJegcc']");
             if (nd != null)
-                if (node.SelectNodes(".//div[@class='xCCdqb']") == null)//16-09-2019
+                if (node.SelectNodes(".//div[contains(@class,'xCCdqb')]") == null)//06-12-2021 wrong PL block//16-09-2019
                 {
                     return "ProductListedAds";
                 }

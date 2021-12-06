@@ -1995,7 +1995,7 @@ namespace RapidTrackingSingleThread
 
                 nd = node.SelectSingleNode(".//div[@class='kp-blk nGydZ Wnoohf OJXvsb']|.//div[@class='NFQFxe XbtRGb qxsd xsZWvb EfDVh WDjuKe mod']|.//div[@class='NFQFxe viOShc LKPcQc mod']|.//div[@class='B3nbW mfMhoc']");//05-10-2020  // 16-06-2020
                 if (nd == null || node.SelectSingleNode(".//div[@class='kp-header']") != null || node.SelectSingleNode(".//div[@class='K2Sb0e kp-header']") != null)   //23-06-2020 //19-06-2020
-                    if (node.SelectSingleNode(".//div[@class='RzdJxc']") == null) //30-08-2021 video block missing
+                    if (node.SelectSingleNode(".//div[@class='RzdJxc']|.//div[@class='EDblX DAVP1 qIfKhf yUxSId']") == null) //06-12-2021 wrong block //30-08-2021 video block missing
                         return "KnowledgePanel";
             }
             //swapped 19-03-2020

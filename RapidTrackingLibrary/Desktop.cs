@@ -1321,6 +1321,8 @@ namespace RapidTrackingLibrary
                 nd = node.SelectSingleNode(".//div[@jscontroller='IkchZc']");//13-03-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@jscontroller='hFvNdd']");//08-10-2021 images
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']"); //07-12-2021 for images block
             if (nd != null)
             {
                 return "Images";
@@ -1424,7 +1426,8 @@ namespace RapidTrackingLibrary
                  || node.SelectSingleNode(".//div[@class='e2BEnf mfMhoc']") != null //25-09-2021 missing top stories
             || node.SelectSingleNode(".//div[@class='e2BEnf']") != null //04-10-2021 top stories
              || node.SelectSingleNode(".//div[@jscontroller='hFvNdd']") != null //08-10-2021 images
-             || node.SelectSingleNode(".//div[@class='g jNVrwc Y4pkMc']") != null); //07-12-2021
+             || node.SelectSingleNode(".//div[@class='g jNVrwc Y4pkMc']") != null //07-12-2021
+             || node.SelectSingleNode(".//div[@class='e2BEnf q8U8x']") != null); //07-12-2021
             if (bVal == true)//2019-09-11
             {
                 try

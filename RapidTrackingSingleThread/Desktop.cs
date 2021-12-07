@@ -1062,8 +1062,11 @@ namespace RapidTrackingSingleThread
             if (nds == null)
                 nds = node.SelectNodes(".//div[@class='HCUNre dbsr']/a"); //21-09-2020 Top Stories block item urls selector updated
             if (nds == null && node.SelectNodes(".//div/a/div[@class='TIh7vf']|.//div/a[@class='WlydOe']") != null) //15-09-2021 selector missing TS item urls
-                nds = node.SelectNodes(".//div/a"); //10-12-2020 
-
+            {    //07-12-2021                                                                                                    //nds = node.SelectNodes(".//div/a"); //10-12-2020 
+                nds = node.SelectNodes(".//div/a[@class='WlydOe']");
+                if (nds == null)
+                    nds = node.SelectNodes(".//div/a");
+            }//07-12-2021
 
             if (nds != null)
                 foreach (HtmlNode nd in nds)
@@ -1393,12 +1396,14 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@class='HnYYW']/div") != null //23-07-2021
                 || node.SelectSingleNode(".//div[@class='e2BEnf mfMhoc']") != null //25-09-2021 missing top stories
                 || node.SelectSingleNode(".//div[@class='e2BEnf']") != null //04-10-2021 top stories
-                || node.SelectSingleNode(".//div[@jscontroller='hFvNdd']") != null);//13-10-2021
+                || node.SelectSingleNode(".//div[@jscontroller='hFvNdd']") != null//13-10-2021
+                || node.SelectSingleNode(".//div[@class='g jNVrwc Y4pkMc']") != null); //07-12-2021
                 //&& node.SelectSingleNode(".//div[@class='yuRUbf']") == null; //11-10-2021 //08-10-2021 images
             if (bVal == true)//2019-09-11
             {
                 try
                 {
+                    if (node.SelectSingleNode(".//div[@class='g']/div[@class='g jNVrwc Y4pkMc']") != null) return false; //07-12-2021
                     if (node.SelectSingleNode(".//div[@class='twQ0Be']") != null) return true;    //30-08-2021 video card
                     if (node.SelectSingleNode(".//div[@class='osrp-blk']|.//div[@class='tpa-cc']") != null) //20-08-2021 for ignoring wrong block
                         return false; //20-08-2021

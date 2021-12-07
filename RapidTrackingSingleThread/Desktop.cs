@@ -1399,8 +1399,9 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@class='e2BEnf']") != null //04-10-2021 top stories
                 || node.SelectSingleNode(".//div[@jscontroller='hFvNdd']") != null//13-10-2021
                 || node.SelectSingleNode(".//div[@class='g jNVrwc Y4pkMc']") != null //07-12-2021
-                || node.SelectSingleNode(".//div[@class='e2BEnf q8U8x']") != null); //07-12-2021
-                //&& node.SelectSingleNode(".//div[@class='yuRUbf']") == null; //11-10-2021 //08-10-2021 images
+                || node.SelectSingleNode(".//div[@class='e2BEnf q8U8x']") != null //07-12-2021
+                || node.SelectSingleNode(".//div[@jsname='wRSfy']") != null); //07-12-2021
+                 //&& node.SelectSingleNode(".//div[@class='yuRUbf']") == null; //11-10-2021 //08-10-2021 images
             if (bVal == true)//2019-09-11
             {
                 try

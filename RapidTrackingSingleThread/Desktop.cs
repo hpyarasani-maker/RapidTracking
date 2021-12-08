@@ -775,6 +775,7 @@ namespace RapidTrackingSingleThread
                     try
                     {
                         string title = "";
+                        if (nd.Attributes["href"].Value.Contains("/search?num=100")) continue; //08-12-2021 avoid wrong urls
                         HtmlNode n = nd.SelectSingleNode(".//div[@class='Igo7ld mRnBbe QgUve xIqs0b']");
                         if (n == null)
                             n = nd.SelectSingleNode(".//div[@class='KiGY3d mB12kf JRhSae ZyAH8d']");
@@ -793,9 +794,7 @@ namespace RapidTrackingSingleThread
                             title = n.InnerText;
                         }
                         catch { title = ""; }
-
                         string url = nd.Attributes["href"].Value.Trim();
-                        if (!url.Contains("/search?num=100")) //08-12-2021 avoid wrong urls
                             s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                     }
                     catch { }
@@ -1077,6 +1076,7 @@ namespace RapidTrackingSingleThread
                 {
                     if (nd.SelectSingleNode(".//div[@class='EUjJDc mtqGb nlNnsd VDgVie']") != null) continue; //25-09-2021 for top stories wrong item urls
                     string title = "";
+                    if (nd.Attributes["href"].Value.Contains("/search?num=100")) continue;//08-12-2021 avoid wrong urls
                     HtmlNode n = nd.SelectSingleNode(".//div[@class='y9oXvf rrBdId']");
                     if (n == null)
                         n = nd.SelectSingleNode(".//div[@class='y9oXvf']"); // 13-03-2020
@@ -1095,7 +1095,7 @@ namespace RapidTrackingSingleThread
                     else
                         title = nd.InnerText;
                     string itemURL = nd.Attributes["href"].Value; //04-10-2021
-                    if (!itemURL.Contains("/search?num=100"))//04-10-2021
+                   // if (!itemURL.Contains("/search?num=100"))//04-10-2021
                         s.Append("<item url=\"" + SetUrl(itemURL) + "\" title=\"" + SetTitle(title) + "\" />");//04-10-2021
                 }
             else

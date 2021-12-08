@@ -763,12 +763,13 @@ namespace RapidTrackingSingleThread
         private string GetVideos(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nds = node.SelectNodes(".//g-inner-card/div/a");
+            HtmlNodeCollection nds = node.SelectNodes(".//g-inner-card/div/a|.//a[@class='X5OiLe']"); //08-12-2021 videos item urls sel
             if (nds == null)
                 nds = node.SelectNodes(".//div[@jsname='ibnC6b']/div/a");   //17-07-2020
             if (nds == null)
-                nds = node.SelectNodes(".//div[@class='LYyupc']/div/a|.//a[@class='X5OiLe']|.//div[@class='XpiUte']/a"); //30-08-2021 videos item url//07-07-2021 //23-07-2021
-            if (nds != null)
+                //nds = node.SelectNodes(".//div[@class='LYyupc']/div/a|.//a[@class='X5OiLe']|.//div[@class='XpiUte']/a"); //30-08-2021 videos item url//07-07-2021 //23-07-2021
+                nds = node.SelectNodes(".//div[@class='LYyupc']/div/a|.//div[@class='XpiUte']/a"); //08-12-2021 videos item urls //30-08-2021 videos item url//07-07-2021 //23-07-2021
+                if (nds != null)
                 foreach (HtmlNode nd in nds)
                 {
                     try
@@ -785,6 +786,8 @@ namespace RapidTrackingSingleThread
                             n = nd.SelectSingleNode(".//div[contains(@class,'oz3cqf p5AXld')]");//23-07-2021
                         if (n == null)
                             n = nd.SelectSingleNode(".//div[@class='lSegpf']"); //30-08-2021 vides item title
+                        if (n == null)
+                            n = nd.SelectSingleNode(".//div[@class='fc9yUc tNxQIb ynAwRc OSrXXb']"); //08-12-2021 titles
                         try
                        {
                             title = n.InnerText;
@@ -792,7 +795,8 @@ namespace RapidTrackingSingleThread
                         catch { title = ""; }
 
                         string url = nd.Attributes["href"].Value.Trim();
-                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                        if (!url.Contains("/search?num=100")) //08-12-2021 avoid wrong urls
+                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                     }
                     catch { }
                 }

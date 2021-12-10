@@ -1467,7 +1467,10 @@ namespace RapidTrackingSingleThread
                 }
                 // changes on 08-07-2019
                 if (node.SelectSingleNode(".//img[@alt='map image']") != null || node.SelectSingleNode(".//div[@jsname='N760b']|.//div[@class='kno-mrg kno-swp']|.//div[@class='e4xoPb']") != null || node.SelectSingleNode(".//img[contains(@data-bsrc,'/maps/')]") != null)//23-08-2021 map selector//02-08-2021
-                    return true;
+                    if (node.SelectSingleNode(".//div[@class='tF2Cxc']") != null) //10-12-2021
+                        return false;//10-12-2021
+                    else //10-12-2021
+                        return true;
 
                 HtmlNodeCollection nds = node.SelectNodes(".//div");
                 if (nds != null)

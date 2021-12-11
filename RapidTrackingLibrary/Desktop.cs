@@ -761,9 +761,7 @@ namespace RapidTrackingLibrary
         public string GetJobs(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
-
             s.Append("<block type=\"jobs\" url=\"\">");
-
             HtmlNodeCollection nodes = node.SelectNodes(".//ul/li/div[@class='PwjeAc']");
             if (nodes != null)
             {
@@ -805,17 +803,19 @@ namespace RapidTrackingLibrary
         public string GetVideos(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nds = node.SelectNodes(".//g-inner-card/div/a");
+            HtmlNodeCollection nds = node.SelectNodes(".//g-inner-card/div/a|.//a[@class='X5OiLe']"); //08-12-2021 videos item urls sel
             if (nds == null)
                 nds = node.SelectNodes(".//div[@jsname='ibnC6b']/div/a");   //17-07-2020
             if (nds == null)
-                nds = node.SelectNodes(".//div[@class='LYyupc']/div/a|.//a[@class='X5OiLe']|.//div[@class='XpiUte']/a"); //30-08-2021 videos item url //07-07-2021 //23-07-2021
+                // nds = node.SelectNodes(".//div[@class='LYyupc']/div/a|.//a[@class='X5OiLe']|.//div[@class='XpiUte']/a"); //30-08-2021 videos item url //07-07-2021 //23-07-2021
+                nds = node.SelectNodes(".//div[@class='LYyupc']/div/a|.//div[@class='XpiUte']/a"); //08-12-2021 videos item urls //30-08-2021 videos item url//07-07-2021 //23-07-2021
             if (nds != null)
                 foreach (HtmlNode nd in nds)
                 {
                     try
                     {
                         string title = "";
+                        if (nd.Attributes["href"].Value.Contains("/search?num=100")) continue;//08-12-2021 avoid wrong urls
                         HtmlNode n = nd.SelectSingleNode(".//div[@class='Igo7ld mRnBbe QgUve xIqs0b']");
                         if (n == null)
                             n = nd.SelectSingleNode(".//div[@class='KiGY3d mB12kf JRhSae ZyAH8d']");
@@ -827,6 +827,8 @@ namespace RapidTrackingLibrary
                             n = nd.SelectSingleNode(".//div[contains(@class,'oz3cqf p5AXld')]");//23-07-2021
                         if (n == null)
                             n = nd.SelectSingleNode(".//div[@class='lSegpf']"); //30-08-2021 vides item title
+                        if (n == null)
+                            n = nd.SelectSingleNode(".//div[@class='fc9yUc tNxQIb ynAwRc OSrXXb']"); //08-12-2021 titles
                         try
                         {
                             title = n.InnerText;
@@ -834,7 +836,7 @@ namespace RapidTrackingLibrary
                         catch { title = ""; }
 
                         string url = nd.Attributes["href"].Value.Trim();
-                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                     }
                     catch { }
                 }
@@ -1090,15 +1092,19 @@ namespace RapidTrackingLibrary
                 nds = node.SelectNodes(".//g-inner-card/div/div/a");//03-11-2021 TS item urlsS
             if (nds == null)
                 nds = node.SelectNodes(".//div[@class='HCUNre dbsr']/a"); //21-09-2020 Top Stories block item urls selector updated
-            if (nds == null && node.SelectNodes(".//div/a/div[@class='TIh7vf']") != null) //10-12-2020  top stories selector
-                nds = node.SelectNodes(".//div/a"); //10-12-2020 
-
+            if (nds == null && node.SelectNodes(".//div/a/div[@class='TIh7vf']|.//div/a[@class='WlydOe']") != null) //15-09-2021 selector missing TS item urls
+            {    //07-12-2021                                                                   
+                nds = node.SelectNodes(".//div/a[@class='WlydOe']");
+                if (nds == null)
+                    nds = node.SelectNodes(".//div/a");
+            }//07-12-2021
 
             if (nds != null)
                 foreach (HtmlNode nd in nds)
                 {
                     if (nd.SelectSingleNode(".//div[@class='EUjJDc mtqGb nlNnsd VDgVie']") != null) continue; //25-09-2021 for top stories wrong item urls
                     string title = "";
+                    if (nd.Attributes["href"].Value.Contains("/search?num=100")) continue;//08-12-2021 avoid wrong urls
                     HtmlNode n = nd.SelectSingleNode(".//div[@class='y9oXvf rrBdId']");
                     if (n == null)
                         n = nd.SelectSingleNode(".//div[@class='y9oXvf']"); // 13-03-2020
@@ -1118,7 +1124,7 @@ namespace RapidTrackingLibrary
                         title = nd.InnerText;
 
                     string itemURL = nd.Attributes["href"].Value; //04-10-2021
-                    if (!itemURL.Contains("/search?num=100"))//04-10-2021
+                    //if (!itemURL.Contains("/search?num=100"))//04-10-2021
                         s.Append("<item url=\"" + SetUrl(itemURL) + "\" title=\"" + SetTitle(title) + "\" />");//04-10-2021
                 }
             else
@@ -1318,6 +1324,8 @@ namespace RapidTrackingLibrary
                 nd = node.SelectSingleNode(".//div[@jscontroller='IkchZc']");//13-03-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@jscontroller='hFvNdd']");//08-10-2021 images
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']"); //07-12-2021 for images block
             if (nd != null)
             {
                 return "Images";
@@ -1420,12 +1428,16 @@ namespace RapidTrackingLibrary
                 || node.SelectSingleNode(".//div[@class='HnYYW']/div") != null //23-07-2021
                  || node.SelectSingleNode(".//div[@class='e2BEnf mfMhoc']") != null //25-09-2021 missing top stories
             || node.SelectSingleNode(".//div[@class='e2BEnf']") != null //04-10-2021 top stories
-             || node.SelectSingleNode(".//div[@jscontroller='hFvNdd']") != null); //08-10-2021 images
+             || node.SelectSingleNode(".//div[@jscontroller='hFvNdd']") != null //08-10-2021 images
+             || node.SelectSingleNode(".//div[@class='g jNVrwc Y4pkMc']") != null //07-12-2021
+             || node.SelectSingleNode(".//div[@class='e2BEnf q8U8x']") != null //07-12-2021
+            || node.SelectSingleNode(".//div[@jsname='wRSfy']") != null); //07-12-2021
             if (bVal == true)//2019-09-11
             {
                 try
                 {
-                    if (node.SelectSingleNode(".//div[@class='twQ0Be']") != null) return true;    //30-08-2021 video card
+                    if (node.SelectSingleNode(".//div[@class='g']/div[@class='g jNVrwc Y4pkMc']") != null) return false; //07-12-2021
+                    if (node.SelectSingleNode(".//div[@class='twQ0Be']|.//div[@jsname='N760b']|.//div[@jsname='wRSfy']") != null) return true;//09-12-2021 //08-12-2021 PAlsoB //30-08-2021 video card
                     if (node.SelectSingleNode(".//div[@class='osrp-blk']") != null) //20-08-2021 for ignoring wrong block
                         return false; //20-08-2021
                     //02-12-2020
@@ -1651,80 +1663,6 @@ namespace RapidTrackingLibrary
             return buffer.ToString();
         }
         //end 23-09-2020
-
-        public class XmlSanitizingStream : StreamReader
-        {
-            public XmlSanitizingStream(Stream streamToSanitize)
-            : base(streamToSanitize, true)
-            { }
-
-            /// <summary>
-            /// Whether a given character is allowed by XML 1.0.
-            /// </summary>
-            public static bool IsLegalXmlChar(int character)
-            {
-                return
-                (
-                     character == 0x9 /* == '\t' == 9   */          ||
-                     character == 0xA /* == '\n' == 10  */          ||
-                     character == 0xD /* == '\r' == 13  */          ||
-                    (character >= 0x20 && character <= 0xD7FF) ||
-                    (character >= 0xE000 && character < 0xFFFD) ||  //02-11-2020 changed <= 0xFFFD to < 0xFFFD
-                    (character >= 0x10000 && character <= 0x10FFFF)
-                );
-            }
-            private const int EOF = -1;
-
-            public override int Read()
-            {
-                // Read each char, skipping ones XML has prohibited
-
-                int nextCharacter;
-
-                do
-                {
-                    // Read a character
-
-                    if ((nextCharacter = base.Read()) == EOF)
-                    {
-                        // If the char denotes end of file, stop
-                        break;
-                    }
-                }
-
-                // Skip char if it's illegal, and try the next
-
-                while (!XmlSanitizingStream.
-                        IsLegalXmlChar(nextCharacter));
-
-                return nextCharacter;
-            }
-
-            public override int Peek()
-            {
-                // Return next legal XML char w/o reading it 
-
-                int nextCharacter;
-
-                do
-                {
-                    // See what the next character is 
-                    nextCharacter = base.Peek();
-                }
-                while
-                (
-                    // If it's illegal, skip over 
-                    // and try the next.
-
-                    !XmlSanitizingStream.IsLegalXmlChar(nextCharacter) &&
-                    (nextCharacter = base.Read()) != EOF
-                );
-
-                return nextCharacter;
-
-            }
-        }
-
     }
 
 }

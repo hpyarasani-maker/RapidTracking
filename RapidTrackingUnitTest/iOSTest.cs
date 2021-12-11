@@ -731,7 +731,7 @@ namespace RapidTrackingUnitTest
             string path = startupPath + @"\test\desktop\";
             string fileName = path + "results.xml";
             Stream stream = new FileStream(fileName, FileMode.Open);
-            iOS.XmlSanitizingStream xmlSanitizing = new iOS.XmlSanitizingStream(stream);
+            XmlSanitizingStream xmlSanitizing = new XmlSanitizingStream(stream);
             int n = xmlSanitizing.Read();
             Assert.IsTrue(n != 0);
         }
@@ -742,7 +742,7 @@ namespace RapidTrackingUnitTest
             string path = startupPath + @"\test\";
             string fileName = path + "results.xml";
             Stream stream = new FileStream(fileName, FileMode.Open);
-            iOS.XmlSanitizingStream xmlSanitizing = new iOS.XmlSanitizingStream(stream);
+            XmlSanitizingStream xmlSanitizing = new XmlSanitizingStream(stream);
             int n = xmlSanitizing.Peek();
             Assert.IsTrue(n != 0);
         }//end 03-09-2021

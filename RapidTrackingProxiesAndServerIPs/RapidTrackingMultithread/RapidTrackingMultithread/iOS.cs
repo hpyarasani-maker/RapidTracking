@@ -1984,7 +1984,7 @@ namespace RapidTrackingMultithread
 
                 nd = node.SelectSingleNode(".//div[@class='kp-blk nGydZ Wnoohf OJXvsb']|.//div[@class='NFQFxe XbtRGb qxsd xsZWvb EfDVh WDjuKe mod']|.//div[@class='NFQFxe viOShc LKPcQc mod']|.//div[@class='B3nbW mfMhoc']");//05-10-2020  // 16-06-2020
                 if (nd == null || node.SelectSingleNode(".//div[@class='kp-header']") != null || node.SelectSingleNode(".//div[@class='K2Sb0e kp-header']") != null)   //23-06-2020 //19-06-2020
-                    if (node.SelectSingleNode(".//div[@class='RzdJxc']") == null) //30-08-2021 video block missing
+                    if (node.SelectSingleNode(".//div[@class='RzdJxc']|.//div[@class='EDblX DAVP1 qIfKhf yUxSId']") == null) //06-12-2021 wrong block //30-08-2021 video block missing
                         return "KnowledgePanel";
             }
             //swapped 19-03-2020
@@ -2224,13 +2224,15 @@ namespace RapidTrackingMultithread
                                                                                                                                                   //if (nd == null)
                                                                                                                                                   // nd = node.SelectSingleNode(".//div[@class='bUNBRd mnr-c']/g-tray-header/div[@class='N60dNb i8lZMc']/a"); //21-07-2020 commented    //17-02-2020 included selector for images
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='gID6df']|.//div[@id='iur']/a"); //12-06-2020//05-06-2020
+                nd = node.SelectSingleNode(".//div[@class='gID6df']|.//div[@id='iur']/a|.//div[@id='iur']");//06-12-2021 image block //12-06-2020//05-06-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='GNxIwf']");  // 18-03-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='BNeawe UwRFLe']/span"); //15-12-2020 applied selector to avoid wrong item urls
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='mR2gOd pptFR']"); //25-02-2021 images selector
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='u4WRYb']");//06-12-2021 image block
             if (nd != null)
             {
                 //if (node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']") == null) //30-08-2021 image wrong block issue
@@ -2273,7 +2275,7 @@ namespace RapidTrackingMultithread
             //13-08-2019
             nd = node.SelectSingleNode(".//div[@class='aJegcc']");
             if (nd != null)
-                if (node.SelectNodes(".//div[@class='xCCdqb']") == null)//16-09-2019
+                if (node.SelectNodes(".//div[contains(@class,'xCCdqb')]") == null)//06-12-2021 wrong PL block//16-09-2019
                 {
                     return "ProductListedAds";
                 }

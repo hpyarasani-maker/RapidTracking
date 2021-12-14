@@ -1534,6 +1534,8 @@ namespace RapidTrackingLibrary
             if (nds == null)
                 nds = node.SelectNodes(".//div[@jsname='ARU61']"); // 14-12-2020
             if (nds == null)
+                nds = node.SelectNodes(".//div[@jsname='lN6iy']"); //14-12-2021 tiles for Peope also ask block
+            if (nds == null)
                 return string.Empty;
             foreach (HtmlNode nd in nds)
             {

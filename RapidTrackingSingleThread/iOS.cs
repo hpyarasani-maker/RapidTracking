@@ -2275,6 +2275,8 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[@class='aviV4d']|.//div[@class='ILuMad t6aJGf']");//12-10-2021
             if (nd == null)
                  nd = node.SelectSingleNode(".//div[contains(@class,'rbR0cd')]"); //08-05-2021 in contains //21-05-2020 finance block included selector
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='knowledge-finance-wholepage-chart__fw-uch']"); //16-12-2021 finance block
             if (nd != null)
             {
                 return "Finance";

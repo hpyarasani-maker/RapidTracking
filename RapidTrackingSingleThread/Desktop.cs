@@ -1464,10 +1464,12 @@ namespace RapidTrackingSingleThread
                 {
                     if (nd.Attributes["alt"].Value.StartsWith("Map of "))
                         return true;
+                    if (node.SelectSingleNode(".//div[@class='U1TUId LYh3vc']") != null) //16-12-2021
+                        return false; //16-12-2021
                 }
                 // changes on 08-07-2019
                 if (node.SelectSingleNode(".//img[@alt='map image']") != null || node.SelectSingleNode(".//div[@jsname='N760b']|.//div[@class='kno-mrg kno-swp']|.//div[@class='e4xoPb']") != null || node.SelectSingleNode(".//img[contains(@data-bsrc,'/maps/')]") != null)//23-08-2021 map selector//02-08-2021
-                    if (node.SelectSingleNode(".//div[@class='tF2Cxc']") != null) //10-12-2021
+                    if (node.SelectSingleNode(".//div[@class='tF2Cxc']") != null || node.Attributes["id"]?.Value == "rhs")//16-12-2021 //10-12-2021
                         return false;//10-12-2021
                     else //10-12-2021
                         return true;

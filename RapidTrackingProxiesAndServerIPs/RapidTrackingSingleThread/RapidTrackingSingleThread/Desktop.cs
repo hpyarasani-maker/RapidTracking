@@ -1356,9 +1356,9 @@ namespace RapidTrackingSingleThread
         {
             bool bVal = (node.SelectSingleNode(".//h3[@class='zQlLed']") != null  // top stories       
                 || node.SelectSingleNode(".//div[@class='wXlZre B03h3d V14nKc ptcLIOszQJu__wholepage-card wp-msss']") != null//topstories 08-04-2020
-                || node.SelectSingleNode(".//div[@class='e2BEnf U7izfe']") != null//topstories 01-06-2020
-                || node.SelectSingleNode(".//div[@class='e2BEnf U7izfe hWIMdd mfMhoc']") != null //29-07-2021 topstories selector
-                || node.SelectSingleNode(".//div[@class='e2BEnf U7izfe mfMhoc']") != null //21-09-2020 images selectors
+                                                                                                                             //|| node.SelectSingleNode(".//div[@class='e2BEnf U7izfe']") != null//topstories 01-06-2020 //14-12-2021 commented
+                                                                                                                             //|| node.SelectSingleNode(".//div[@class='e2BEnf U7izfe hWIMdd mfMhoc']") != null //29-07-2021 topstories selector //14-12-2021 commented
+                                                                                                                             //|| node.SelectSingleNode(".//div[@class='e2BEnf U7izfe mfMhoc']") != null //21-09-2020 images selectors //14-12-2021 commented
                 || node.SelectSingleNode(".//div[contains(@class, 'e2BEnf U7izfe')]") != null //28-07-2021 images selectors
                 || node.SelectSingleNode(".//table[@class='nrgt']") != null || node.SelectSingleNode(".//table[@class='jmjoTe']") != null      // site links  22-08-2020 included block type selector
                 || node.SelectSingleNode(".//img[@id='lu_map']") != null      // maps
@@ -1457,10 +1457,12 @@ namespace RapidTrackingSingleThread
                 {
                     if (nd.Attributes["alt"].Value.StartsWith("Map of "))
                         return true;
+                    if (node.SelectSingleNode(".//div[@class='U1TUId LYh3vc']") != null) //16-12-2021
+                        return false; //16-12-2021
                 }
                 // changes on 08-07-2019
                 if (node.SelectSingleNode(".//img[@alt='map image']") != null || node.SelectSingleNode(".//div[@jsname='N760b']|.//div[@class='kno-mrg kno-swp']|.//div[@class='e4xoPb']") != null || node.SelectSingleNode(".//img[contains(@data-bsrc,'/maps/')]") != null)//23-08-2021 map selector//02-08-2021
-                    if (node.SelectSingleNode(".//div[@class='tF2Cxc']") != null) //10-12-2021
+                    if (node.SelectSingleNode(".//div[@class='tF2Cxc']") != null || node.Attributes["id"]?.Value == "rhs")//16-12-2021 //10-12-2021
                         return false;//10-12-2021
                     else //10-12-2021
                         return true;

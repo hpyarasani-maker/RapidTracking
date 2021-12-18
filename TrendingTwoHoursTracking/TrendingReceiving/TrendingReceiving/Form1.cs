@@ -22,7 +22,7 @@ namespace TrendingReceiving
 
         void timerExit()
         {
-            timer.Interval = 110 * 60000;
+            timer.Interval = 15 * 60000;
             timer.Tick += new EventHandler(timer_Tick);
             timer.Start();
         }

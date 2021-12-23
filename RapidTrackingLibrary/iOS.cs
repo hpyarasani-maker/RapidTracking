@@ -1549,6 +1549,8 @@ namespace RapidTrackingLibrary
             HtmlNodeCollection nds = node.SelectNodes(".//h3[@class='r']/a");
             if (nds == null)
                 nds = node.SelectNodes(".//a[contains(@class,'sXtWJb')]"); //05-10-2020 for answer card     //26-11-2019
+            if (nds == null)//23-12-2021
+                nds = node.SelectNodes(".//a[@class='GBgvb']");//23-12-2021
             if (nds == null)
                 nds = node.SelectNodes(".//div[@class='WcS13d']/a");  //05-10-2020 included selector for missing classic links
             if (nds == null)

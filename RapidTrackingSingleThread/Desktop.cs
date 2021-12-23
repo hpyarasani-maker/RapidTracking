@@ -41,7 +41,7 @@ namespace RapidTrackingSingleThread
                 if (nodeCol == null)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");//09-12-2020
                 if (nodeCol == null)
-                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-section-with-header|//div[@class='Hpbsqe']");//08-10-2021 images //03-12-2020  //01-05-2020 
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-section-with-header|//div[@class='Hpbsqe']|//div[@class='kp-blk c2xzTb']");//23-12-2021//08-10-2021 images //03-12-2020  //01-05-2020 
                 if (nodeCol == null || nodeCol.Count == 1)
                     nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div") ?? nodeCol; //31-07-2021 //02-07-2021 classic links
                 if (nodeCol == null || nodeCol.Count <= 1)
@@ -866,6 +866,8 @@ namespace RapidTrackingSingleThread
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='r']/a");
             if (nds == null)
                 nds = node.SelectNodes(".//div[@class='yuRUbf']/a");  //03-09-2020 included selector for missing classic links
+            if (nds == null)//23-12-2021
+                nds = node.SelectNodes(".//a[@class='GBgvb']");//23-12-2021
             if (nds == null)
                 nds = node.SelectNodes(".//div[@class='WcS13d']"); //removed /a //05-10-2020 included selector for missing classic links
             if (nds == null)
@@ -874,10 +876,10 @@ namespace RapidTrackingSingleThread
             {
                 //05-10-2020
                 string title = "";
-                HtmlNodeCollection nds1 = nd.SelectNodes(".//h3");
+                HtmlNodeCollection nds1 = nd.SelectNodes(".//h3|.//div[@class='wKZW5d']"); //23-12-2021
                 if (nds1 != null)
                 {
-                    title = nd.SelectSingleNode(".//h3").InnerText;
+                    title = nd.SelectSingleNode(".//h3|.//div[@class='wKZW5d']").InnerText; //23-12-2021
                     s.Append("<item url=\"" + SetUrl(nd.Attributes["href"].Value) + "\" title=\"" + SetTitle(title) + "\" />");
                 }
                 nds1 = nd.SelectNodes(".//a");
@@ -1273,7 +1275,8 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@class='pcCUmf vCOSGb']") != null
                 || node.SelectSingleNode(".//div[@class='vkc_np kkww4d']") != null //21-09-2020 updated answered card selectors  //03-06-2020
                 || node.SelectSingleNode(".//div[@class='setTDc']") != null //07-12-2020 answered card selector
-                || node.SelectSingleNode(".//div[@class='kp-blk ouUsKb G45kvd']") != null) //24-08-2021 answer card selector
+                || node.SelectSingleNode(".//div[@class='kp-blk ouUsKb G45kvd']") != null //24-08-2021 answer card selector
+                || node.SelectSingleNode(".//div[@class='M0XuFe mnr-c vk_c']") != null)//23-12-2021
             {
                 if (node.SelectSingleNode(".//div[@class='BET1rd']") == null && node.SelectSingleNode(".//div[@class='tpa-cc']") == null //21-08-2021 //25-09-2020
                     && node.SelectSingleNode(".//div[contains(@class,'kno-fb-ctx')]") == null) //13-10-2021
@@ -1432,12 +1435,12 @@ namespace RapidTrackingSingleThread
                         && node.SelectSingleNode(".//div[@class='Brgz0 tw-res']|.//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']") == null)
                         bVal = false;
 
-                    if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null)//07-12-2020 for answercard block 
-                        //return true;//22-12-2021 commented
-                    if (node.SelectSingleNode(".//div[@class='kp-blk Wnoohf OJXvsb']") != null)//22-12-2021
-                        return false;
-                    else
-                        return true;//22-12-2021
+                    if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null||node.Attributes["class"]?.Value == "kp-blk c2xzTb")//23-12-2021//07-12-2020 for answercard block 
+                        return true;//22-12-2021 commented
+                    //if (node.SelectSingleNode(".//div[@class='kp-blk Wnoohf OJXvsb']") != null)//22-12-2021
+                    //    return false;
+                    //else
+                    //    return true;//22-12-2021
                     //28-05-2021
                     if (node.SelectSingleNode(".//div[@class='g']") != null)
                         if (node.SelectSingleNode(".//table[@class='nrgt']") != null || node.SelectSingleNode(".//table[@class='jmjoTe']") != null)  // 28-05-2021

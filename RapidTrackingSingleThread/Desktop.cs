@@ -1278,7 +1278,7 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@class='kp-blk ouUsKb G45kvd']") != null //24-08-2021 answer card selector
                 || node.SelectSingleNode(".//div[@class='M0XuFe mnr-c vk_c']") != null)//23-12-2021
             {
-                if (node.SelectSingleNode(".//div[@class='BET1rd']") == null && node.SelectSingleNode(".//div[@class='tpa-cc']") == null //21-08-2021 //25-09-2020
+                if (node.SelectSingleNode(".//div[@class='BET1rd']|.//div[@class='EfDVh wDYxhc NFQFxe']") == null && node.SelectSingleNode(".//div[@class='tpa-cc']") == null //23-12-2021 //21-08-2021 //25-09-2020
                     && node.SelectSingleNode(".//div[contains(@class,'kno-fb-ctx')]") == null) //13-10-2021
                     return "AnswerCard";
             }

@@ -1301,7 +1301,8 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[@jscontroller='hFvNdd']");//08-10-2021 images
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']"); //07-12-2021 for images block
-            if (nd != null)
+            if (nd != null && node.Attributes["id"]?.Value != "Odp5De") //29-12-2021
+            //if (nd != null)
             {
                 return "Images";
             }

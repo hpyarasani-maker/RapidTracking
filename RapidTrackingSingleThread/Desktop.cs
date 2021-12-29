@@ -1369,9 +1369,9 @@ namespace RapidTrackingSingleThread
         {
             bool bVal = (node.SelectSingleNode(".//h3[@class='zQlLed']") != null  // top stories       
                 || node.SelectSingleNode(".//div[@class='wXlZre B03h3d V14nKc ptcLIOszQJu__wholepage-card wp-msss']") != null//topstories 08-04-2020
-                //|| node.SelectSingleNode(".//div[@class='e2BEnf U7izfe']") != null//topstories 01-06-2020 //14-12-2021 commented
-                //|| node.SelectSingleNode(".//div[@class='e2BEnf U7izfe hWIMdd mfMhoc']") != null //29-07-2021 topstories selector //14-12-2021 commented
-                //|| node.SelectSingleNode(".//div[@class='e2BEnf U7izfe mfMhoc']") != null //21-09-2020 images selectors //14-12-2021 commented
+                                                                                                                             //|| node.SelectSingleNode(".//div[@class='e2BEnf U7izfe']") != null//topstories 01-06-2020 //14-12-2021 commented
+                                                                                                                             //|| node.SelectSingleNode(".//div[@class='e2BEnf U7izfe hWIMdd mfMhoc']") != null //29-07-2021 topstories selector //14-12-2021 commented
+                                                                                                                             //|| node.SelectSingleNode(".//div[@class='e2BEnf U7izfe mfMhoc']") != null //21-09-2020 images selectors //14-12-2021 commented
                 || node.SelectSingleNode(".//div[contains(@class, 'e2BEnf U7izfe')]") != null //28-07-2021 images selectors
                 || node.SelectSingleNode(".//table[@class='nrgt']") != null || node.SelectSingleNode(".//table[@class='jmjoTe']") != null      // site links  22-08-2020 included block type selector
                 || node.SelectSingleNode(".//img[@id='lu_map']") != null      // maps
@@ -1410,7 +1410,8 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@jscontroller='hFvNdd']") != null//13-10-2021
                 || node.SelectSingleNode(".//div[@class='g jNVrwc Y4pkMc']") != null //07-12-2021
                 || node.SelectSingleNode(".//div[@class='e2BEnf q8U8x']") != null //07-12-2021
-                || node.SelectSingleNode(".//div[@jsname='wRSfy']") != null); //07-12-2021
+                || node.SelectSingleNode(".//div[@jsname='wRSfy']") != null) //07-12-2021
+                || node.SelectSingleNode(".//div[@class='e2BEnf axf3qc q8U8x']") != null;//29-12-2021 top stories
                  //&& node.SelectSingleNode(".//div[@class='yuRUbf']") == null; //11-10-2021 //08-10-2021 images
             if (bVal == true)//2019-09-11
             {

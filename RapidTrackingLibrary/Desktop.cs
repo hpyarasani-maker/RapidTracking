@@ -1444,7 +1444,7 @@ namespace RapidTrackingLibrary
             {
                 try
                 {
-                    if (node.SelectSingleNode(".//div[@class='g']/div[@class='g jNVrwc Y4pkMc']") != null) return false; //07-12-2021
+                    if (node.SelectSingleNode(".//div[@class='g jNVrwc Y4pkMc']") != null) return false;//31-12-2021 missing CLinks
                     if (node.SelectSingleNode(".//div[@class='twQ0Be']|.//div[@jsname='N760b']|.//div[@jsname='wRSfy']|.//div[@jsname='A6RGif']") != null) return true;//28-12-2021//09-12-2021 //08-12-2021 PAlsoB //30-08-2021 video card
                     if (node.SelectSingleNode(".//div[@class='osrp-blk']") != null) //20-08-2021 for ignoring wrong block
                         return false; //20-08-2021
@@ -1468,11 +1468,6 @@ namespace RapidTrackingLibrary
 
                     if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null | node.Attributes["class"]?.Value == "kp-blk c2xzTb")//23-12-2021 //07-12-2020 for answercard block
                         return true;//22-12-2021 commented
-                        //if (node.SelectSingleNode(".//div[@class='kp-blk Wnoohf OJXvsb']") != null)//22-12-2021
-                        //    return false;
-                        //else
-                        //    return true;//22-12-2021
-                    //28-05-2021
                     if (node.SelectSingleNode(".//div[@class='g']") != null)
                         if (node.SelectSingleNode(".//table[@class='nrgt']") != null || node.SelectSingleNode(".//table[@class='jmjoTe']") != null)  // 28-05-2021
                             return true;

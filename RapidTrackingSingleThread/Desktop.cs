@@ -1288,7 +1288,7 @@ namespace RapidTrackingSingleThread
             nd = node.SelectSingleNode(".//div[@class='kp-wholepage EyBRub kp-wholepage-osrp HSryR']");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='kp-wholepage kp-wholepage-osrp HSryR EyBRub']");
-            if (nd != null)
+            if (nd != null && node.SelectSingleNode(".//div[@class='q6PGbe']") == null && node.SelectSingleNode(".//div[@class='l44Vof']") == null) //31-12-2021 KP
                 return "KnowledgePanel";
             //end 05-10-2020
 
@@ -1301,7 +1301,7 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[@jscontroller='hFvNdd']");//08-10-2021 images
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']"); //07-12-2021 for images block
-            if (nd != null && node.Attributes["id"]?.Value != "Odp5De") //29-12-2021
+            if (nd != null && node.Attributes["id"]?.Value != "Odp5De" && node.SelectSingleNode(".//div[@class='q6PGbe']") == null && node.SelectSingleNode(".//div[@class='l44Vof']") == null)//31-12-2021
             //if (nd != null)
             {
                 return "Images";
@@ -1420,7 +1420,7 @@ namespace RapidTrackingSingleThread
                     //if (node.SelectSingleNode(".//div[@class='g']/div[@class='g jNVrwc Y4pkMc']") != null) return false; //07-12-2021
                     if (node.SelectSingleNode(".//div[@class='g jNVrwc Y4pkMc']") != null) return false;//31-12-2021 missing CLinks
                     if (node.SelectSingleNode(".//div[@class='twQ0Be']|.//div[@jsname='N760b']|.//div[@jsname='wRSfy']|.//div[@class='e2BEnf U7izfe hWIMdd q8U8x']|.//div[@jsname='A6RGif']") != null) return true;//28-12-2021//10-12-2021//09-12-2021 //08-12-2021 PAlsoB   //30-08-2021 video card
-                    if (node.SelectSingleNode(".//div[@class='osrp-blk']|.//div[@class='tpa-cc']") != null) //20-08-2021 for ignoring wrong block
+                    if (node.SelectSingleNode(".//div[@class='osrp-blk']|.//div[@class='tpa-cc']") != null && node.SelectSingleNode(".//div[@class='l44Vof']") == null) //31-12-2021
                         return false; //20-08-2021
                     //02-12-2020
                     HtmlNode nd = node.SelectSingleNode(".//div[@role='heading']|.//div[@class='UDZeY OTFaAf']"); //02-07-2021

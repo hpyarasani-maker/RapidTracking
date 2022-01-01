@@ -2084,6 +2084,30 @@ namespace TrendingDesktopSingleThread
             {
                 seid=589, domain="co.th", geo_location="Surat Thani,Thailand", locale= "th-th", uule = "w+CAIQICIUU3VyYXQgVGhhbmksVGhhaWxhbmQ=",device="mobile_android"
             },//end 21-10-2021
+             new SearchProperties()//20-12-2021 France Paris, Lyon, Marseille
+            {
+                seid=590, domain="fr", geo_location="Paris,Paris,Ile-de-France,France", locale= "fr-fr", uule = "w+CAIQICIgUGFyaXMsUGFyaXMsSWxlLWRlLUZyYW5jZSxGcmFuY2U=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid=591, domain="fr", geo_location="Paris,Paris,Ile-de-France,France", locale= "fr-fr", uule = "w+CAIQICIgUGFyaXMsUGFyaXMsSWxlLWRlLUZyYW5jZSxGcmFuY2U=",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid=592, domain="fr", geo_location="Lyon,Auvergne-Rhone-Alpes,France", locale= "fr-fr", uule = "w+CAIQICIgTHlvbixBdXZlcmduZS1SaG9uZS1BbHBlcyxGcmFuY2U=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid=593, domain="fr", geo_location="Lyon,Auvergne-Rhone-Alpes,France", locale= "fr-fr", uule = "w+CAIQICIgTHlvbixBdXZlcmduZS1SaG9uZS1BbHBlcyxGcmFuY2U=",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                 seid=594, domain="fr", geo_location="Marseille,Provence-Alpes-Cote d'Azur,France", locale= "fr-fr", uule = "w+CAIQICIrTWFyc2VpbGxlLFByb3ZlbmNlLUFscGVzLUNvdGUgZCdBenVyLEZyYW5jZQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid=595, domain="fr", geo_location="Marseille,Provence-Alpes-Cote d'Azur,France", locale= "fr-fr", uule = "w+CAIQICIrTWFyc2VpbGxlLFByb3ZlbmNlLUFscGVzLUNvdGUgZCdBenVyLEZyYW5jZQ==",device="mobile_android"
+            },//end 20-12-2021
         };
     }
 

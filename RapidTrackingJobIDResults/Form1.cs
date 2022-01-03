@@ -144,26 +144,33 @@ namespace RapidTrackingJobIDResults
                             }
                             catch (Exception ex)
                             {
-                                try
+                                try //change 03-01-2022
                                 {
                                     bool isOldPage = false;
                                     if (ex.Message == "Old page found.")
                                         isOldPage = true;
-                                    SendToDBFailure(kw, seid, jobid, isOldPage);
+                                    this.Invoke((MethodInvoker)delegate ()
+                                    {
+                                        txtError.Text = txtError.Text + seid + ": " + kw + ": " + jobid + Environment.NewLine + ex.Message.ToString() +
+                                            Environment.NewLine + Environment.NewLine;
+                                        txtError.Refresh();
+                                    });
+                                    SendToDBFailure(kw, seid, jobid, isOldPage, ex.Message);
                                 }
-                                finally { }
+                                finally { }//end 03-01-2022
                             }
 
                         }
                     }
                     catch (Exception ex)
                     {
-                        this.Invoke((MethodInvoker)delegate ()
+                        this.Invoke((MethodInvoker)delegate () //change 03-01-2022
                         {
-                            txtError.Text = ex.Message.ToString();
-                            string errorDesk = ex.Message.ToString() + seid + "=" + kw + Environment.NewLine;
-                            File.WriteAllText(@"C:\inetpub\wwwroot\errorDesk.txt", errorDesk);
+                            txtError.Text = txtError.Text + seid + ": " + kw + ": " + jobid + Environment.NewLine + ex.Message.ToString() +
+                                Environment.NewLine + Environment.NewLine;
+                            txtError.Refresh();
                         });
+                        SendToDBFailure(kw, seid, jobid, false, ex.Message); //end 03-01-2022
                     }
                     finally { }
                     this.Invoke((MethodInvoker)delegate ()
@@ -378,16 +385,16 @@ namespace RapidTrackingJobIDResults
                 throw ex;
             }
         }
-        private void SendToDBFailure(string seid, string kw, string jobid, bool isOldPage)
+        private void SendToDBFailure(string seid, string kw, string jobid, bool isOldPage, string errMsg = "")
         {
             string myDate = DateTime.Today.ToString("yyyy-MM-dd");
             //string myDate = "2019-10-10";
 
-            string qry = "insert into dashboard_dataerrors (date, name, seid, jobid) values(Convert(varchar(10),'" + myDate + "',103), N'" +
-                  kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "' )";
+            string qry = "insert into dashboard_dataerrors (date, name, seid, jobid,message) values(Convert(varchar(10),'" + myDate + "',103), N'" +
+                    kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "', N'" + errMsg + "')"; //03-01-2022
 
             string qryOld = "insert into dashboard_oldgooglepage (date, keyword, seid, jobid) values('" + DateTime.Now + "', N'" +
-                 kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "' )";
+                  kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "')"; 
 
             using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
             {
@@ -490,7 +497,7 @@ namespace RapidTrackingJobIDResults
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw ex.InnerException;//03-01-2022
             }
 
             return await Task.FromResult(alResult);
@@ -550,7 +557,8 @@ namespace RapidTrackingJobIDResults
                         }
                         catch (Exception ex)
                         {
-                            Console.WriteLine("Result Request: " + ex.Message);
+                            // Console.WriteLine("Result Request: " + ex.Message);//03-01-2022
+                            throw ex;//03-01-2022
                         }
                     }
                     

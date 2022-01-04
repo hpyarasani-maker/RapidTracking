@@ -93,7 +93,8 @@ namespace RapidTrackingJobIDResults
                     {
                         var doc = new HtmlAgilityPack.HtmlDocument();
                         Task<ArrayList> alresult = GetHTML(kw, Convert.ToInt32(seid),jobid);
-
+                        if (alresult.Status.ToString() == "Faulted")//04-01-2021
+                            throw alresult.Exception.InnerException;//04-01-2021
                         foreach (string[] src in alresult.Result)
                         {
                             string keyword = src[0];

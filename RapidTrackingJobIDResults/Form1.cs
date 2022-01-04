@@ -93,8 +93,8 @@ namespace RapidTrackingJobIDResults
                     {
                         var doc = new HtmlAgilityPack.HtmlDocument();
                         Task<ArrayList> alresult = GetHTML(kw, Convert.ToInt32(seid),jobid);
-                        if (alresult.Status.ToString() == "Faulted")//04-01-2021
-                            throw alresult.Exception.InnerException;//04-01-2021
+                        if (alresult.Status.ToString() == "Faulted")//04-01-2022
+                            throw alresult.Exception.InnerException;//04-01-2022
                         foreach (string[] src in alresult.Result)
                         {
                             string keyword = src[0];
@@ -156,7 +156,7 @@ namespace RapidTrackingJobIDResults
                                             Environment.NewLine + Environment.NewLine;
                                         txtError.Refresh();
                                     });
-                                    SendToDBFailure(kw, seid, jobid, isOldPage, ex.Message);
+                                    SendToDBFailure(seid, kw, jobid, isOldPage, ex.Message);
                                 }
                                 finally { }//end 03-01-2022
                             }
@@ -171,7 +171,7 @@ namespace RapidTrackingJobIDResults
                                 Environment.NewLine + Environment.NewLine;
                             txtError.Refresh();
                         });
-                        SendToDBFailure(kw, seid, jobid, false, ex.Message); //end 03-01-2022
+                        SendToDBFailure(seid, kw, jobid, false, ex.Message); //end 03-01-2022
                     }
                     finally { }
                     this.Invoke((MethodInvoker)delegate ()
@@ -313,11 +313,11 @@ namespace RapidTrackingJobIDResults
                 //lstKWs.Items.Add("102:terry crews");
                 //lstKWs.Items.Add("102:the uninhabitable earth summary");
                 //lstKWs.Items.Add("1:rhubarbarone");
-                //lstKws.Items.Add("58|protective mask|6672286483061148673");
+                lstKws.Items.Add("58:protective mask:6878538795415785473");
                 //coronavirus rd case	140	6672286477201717249
 
             });
-            //return;
+            return;
 
             try
             {
@@ -555,18 +555,39 @@ namespace RapidTrackingJobIDResults
                                 reslt[3] = cbUrl[5];
                                 alResult.Add(reslt);
                             }
+                            else//04-01-2022
+                            {
+                                string resURL = "http://data.oxylabs.io/v1/queries/" + jobid;
+                                httpWebRequest = (HttpWebRequest)WebRequest.Create(resURL);
+                                httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
+                                HttpWebResponse res1 = (HttpWebResponse)httpWebRequest.GetResponse();
+                                Stream resStream = res1.GetResponseStream();
+                                reader = new StreamReader(resStream, Encoding.UTF8);
+                                response = reader.ReadToEnd();
+                                resStream.Close();
+                                res1.Close();
+                                JObject obj = JObject.Parse(response);
+                                status = obj["status"].Value<string>();
+                                if (status == "faulted")
+                                {
+                                    throw new Exception("status is faulted");
+                                }
+                            }//04-01-2022
                         }
+                       
                         catch (Exception ex)
                         {
                             // Console.WriteLine("Result Request: " + ex.Message);//03-01-2022
                             throw ex;//03-01-2022
                         }
                     }
+
                     
                     else
                         cnt++;
                     Task.Delay(200).Wait();
                 }
+                 
 
                 if (lst.Count == cnt) break;
 

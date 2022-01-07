@@ -2451,7 +2451,7 @@ namespace RapidTrackingSingleThread
                     return false;
             }
             //start 06-08-2019
-            nd = node.SelectSingleNode(".//div[@class='f570C']");
+            nd = node.SelectSingleNode(".//div[@class='f570C']|.//div[@class='Q9mvUc']");//07-01-2022
             if (nd != null)
             {
                 return true;

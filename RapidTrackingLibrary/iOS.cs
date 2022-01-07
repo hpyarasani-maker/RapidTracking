@@ -2484,7 +2484,7 @@ namespace RapidTrackingLibrary
                 return false;
             }
             //start 06-08-2019
-            nd = node.SelectSingleNode(".//div[@class='f570C']");
+            nd = node.SelectSingleNode(".//div[@class='f570C']|.//div[@class='Q9mvUc']");//07-01-2022
             if (nd != null)
             {
                 if (node.SelectSingleNode(".//table[@class='std']|.//div[@class='di8g3 ChOqnd']") == null)//16-09-2021 ignore wrong url //15-09-2021 ignoring wrong classic links

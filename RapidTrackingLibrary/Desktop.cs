@@ -942,8 +942,9 @@ namespace RapidTrackingLibrary
                 hn = node.SelectSingleNode(".//g-link/a"); //included on 2019-06-24
             if (hn != null)
             {
-                s.Append("<block type=\"twitterCards\" url=\"" + SetUrl(hn.Attributes["href"].Value) + "\">");
-
+                string url = hn.Attributes["href"].Value; //10-01-2022
+                if (url.Contains("/search?num=100")) url = string.Empty; //10-01-2022
+                s.Append("<block type=\"twitterCards\" url=\"" + SetUrl(url) + "\">"); //10-01-2022
                 HtmlNodeCollection nds = node.SelectNodes(".//g-inner-card/div/div[2]/div/g-link/a");
                 if (nds == null)
                     nds = node.SelectNodes(".//g-inner-card/div/a"); //21-10-2021 twitter item urls

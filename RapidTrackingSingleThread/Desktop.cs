@@ -46,7 +46,8 @@ namespace RapidTrackingSingleThread
                     nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div") ?? nodeCol; //31-07-2021 //02-07-2021 classic links
                 if (nodeCol == null || nodeCol.Count <= 1)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div|//div[@class='hlcw0c']/div") ?? nodeCol; //04-12-2020 //09-12-2020 no result issue
-
+                if (nodeCol == null)
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='main']/div"); //12-01-2022
                 foreach (HtmlNode node in nodeCol)
                 {
                     if (node.HasClass("kp-wholepage"))
@@ -618,15 +619,18 @@ namespace RapidTrackingSingleThread
                     col = node.SelectNodes(".//div[@class='DOqJne']/g-link/a"); //07-12-2020 twitter classic link selector
                 if (col == null)
                     col = node.SelectNodes(".//div[@class='yuRUbf']/a"); //08-10-2021 for missing classic links
+                if (col == null)
+                    col = node.SelectNodes(".//div[@class='kCrYT']/a"); //12-01-2022
                 foreach (HtmlNode nd in col)
                 {
+                    
                     string u = nd.Attributes["href"].Value.Replace("/url?q=", "").Replace("&amp;", "&").Replace("&", "&#38;");
-
                     //u = nd.Attributes["href"].Value.StartsWith("http").ToString();
                     if (u.Contains("&sa="))
                         u = u.Substring(0, u.IndexOf("&sa="));
                     if (orgLinks < 100)
                     {
+                        u = SetUrl(u);//12-01-2022
                         if (u.StartsWith("http") || u.StartsWith("https") || u.StartsWith("ftp")) //30-04-2020
                         {
                             // string links1 = HttpUtility.UrlDecode(u);
@@ -1514,6 +1518,7 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//h3[@class='r dO0Ag']") != null || node.SelectSingleNode(".//div[@class='DOqJne']") != null //27-06-2020    //29-05-2020
                 || node.SelectSingleNode(".//div[@class='rc']") != null // 03-09-2020 missing classic links selector included
                 || node.SelectSingleNode(".//div[@class='DOqJne']/g-link/a") != null //twitter classic link selector
+                || node.SelectSingleNode(".//div[@class='kCrYT']") != null //12-01-2022
                 || node.SelectSingleNode(".//div[contains(@class,'tF2Cxc')]/div/a") != null //07-01-2021 missing classic link //18-02-2021 included contains fucntions
                 || node.SelectSingleNode(".//div[@class='yuRUbf']") != null //31-05-2021
                 || node.SelectSingleNode(".//div/div[@class='g tF2Cxc']|.//div[@class='g dFd2Tb']") != null); //24-08-2021 video block //01-06-2021

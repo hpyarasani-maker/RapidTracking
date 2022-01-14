@@ -1398,7 +1398,8 @@ namespace RapidTrackingLibrary
             StringBuilder s = new StringBuilder();
             HtmlNode n = node.SelectSingleNode(".//h3[@class='r']/a");
             if (n == null)
-                n = node.SelectSingleNode(".//a[contains(@class,'C8nzq BmP5tf')]");//14-01-2022
+                // n = node.SelectSingleNode(".//a[@class='C8nzq JTuIPc']");
+                n = node.SelectSingleNode(".//a[contains(@class,'BmP5tf')]");//14-01-2022
             if (n == null)
                 n = node.SelectSingleNode(".//a[contains(@class,'C8nzq BmP5tf')]"); //14-09-2020 contains
             if (n == null)

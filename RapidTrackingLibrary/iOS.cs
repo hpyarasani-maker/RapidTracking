@@ -1567,7 +1567,7 @@ namespace RapidTrackingLibrary
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//h3[@class='r']/a");
             if (nds == null)
-                nds = node.SelectNodes(".//a[contains(@class,'sXtWJb')]"); //05-10-2020 for answer card     //26-11-2019
+                nds = node.SelectNodes(".//h3/a[contains(@class,'sXtWJb')]"); //17-01-2022 //05-10-2020 for answer card     //26-11-2019
             if (nds == null)//23-12-2021
                 nds = node.SelectNodes(".//a[@class='GBgvb']");//23-12-2021
             if (nds == null)

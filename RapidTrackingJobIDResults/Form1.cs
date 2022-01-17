@@ -93,7 +93,8 @@ namespace RapidTrackingJobIDResults
                     {
                         var doc = new HtmlAgilityPack.HtmlDocument();
                         Task<ArrayList> alresult = GetHTML(kw, Convert.ToInt32(seid),jobid);
-
+                        if (alresult.Status.ToString() == "Faulted")//04-01-2022
+                            throw alresult.Exception.InnerException;//04-01-2022
                         foreach (string[] src in alresult.Result)
                         {
                             string keyword = src[0];
@@ -144,26 +145,33 @@ namespace RapidTrackingJobIDResults
                             }
                             catch (Exception ex)
                             {
-                                try
+                                try //change 03-01-2022
                                 {
                                     bool isOldPage = false;
                                     if (ex.Message == "Old page found.")
                                         isOldPage = true;
-                                    SendToDBFailure(kw, seid, jobid, isOldPage);
+                                    this.Invoke((MethodInvoker)delegate ()
+                                    {
+                                        txtError.Text = txtError.Text + seid + ": " + kw + ": " + jobid + Environment.NewLine + ex.Message.ToString() +
+                                            Environment.NewLine + Environment.NewLine;
+                                        txtError.Refresh();
+                                    });
+                                    SendToDBFailure(seid, kw, jobid, isOldPage, ex.Message);
                                 }
-                                finally { }
+                                finally { }//end 03-01-2022
                             }
 
                         }
                     }
                     catch (Exception ex)
                     {
-                        this.Invoke((MethodInvoker)delegate ()
+                        this.Invoke((MethodInvoker)delegate () //change 03-01-2022
                         {
-                            txtError.Text = ex.Message.ToString();
-                            string errorDesk = ex.Message.ToString() + seid + "=" + kw + Environment.NewLine;
-                            File.WriteAllText(@"C:\inetpub\wwwroot\errorDesk.txt", errorDesk);
+                            txtError.Text = txtError.Text + seid + ": " + kw + ": " + jobid + Environment.NewLine + ex.Message.ToString() +
+                                Environment.NewLine + Environment.NewLine;
+                            txtError.Refresh();
                         });
+                        SendToDBFailure(seid, kw, jobid, false, ex.Message); //end 03-01-2022
                     }
                     finally { }
                     this.Invoke((MethodInvoker)delegate ()
@@ -305,11 +313,11 @@ namespace RapidTrackingJobIDResults
                 //lstKWs.Items.Add("102:terry crews");
                 //lstKWs.Items.Add("102:the uninhabitable earth summary");
                 //lstKWs.Items.Add("1:rhubarbarone");
-                //lstKws.Items.Add("58|protective mask|6672286483061148673");
+                lstKws.Items.Add("58:protective mask:6878538795415785473");
                 //coronavirus rd case	140	6672286477201717249
 
             });
-            //return;
+            return;
 
             try
             {
@@ -378,16 +386,16 @@ namespace RapidTrackingJobIDResults
                 throw ex;
             }
         }
-        private void SendToDBFailure(string seid, string kw, string jobid, bool isOldPage)
+        private void SendToDBFailure(string seid, string kw, string jobid, bool isOldPage, string errMsg = "")
         {
             string myDate = DateTime.Today.ToString("yyyy-MM-dd");
             //string myDate = "2019-10-10";
 
-            string qry = "insert into dashboard_dataerrors (date, name, seid, jobid) values(Convert(varchar(10),'" + myDate + "',103), N'" +
-                  kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "' )";
+            string qry = "insert into dashboard_dataerrors (date, name, seid, jobid,message) values(Convert(varchar(10),'" + myDate + "',103), N'" +
+                    kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "', N'" + errMsg + "')"; //03-01-2022
 
             string qryOld = "insert into dashboard_oldgooglepage (date, keyword, seid, jobid) values('" + DateTime.Now + "', N'" +
-                 kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "' )";
+                  kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "')"; 
 
             using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
             {
@@ -490,7 +498,7 @@ namespace RapidTrackingJobIDResults
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw ex.InnerException;//03-01-2022
             }
 
             return await Task.FromResult(alResult);
@@ -547,17 +555,39 @@ namespace RapidTrackingJobIDResults
                                 reslt[3] = cbUrl[5];
                                 alResult.Add(reslt);
                             }
+                            else//04-01-2022
+                            {
+                                string resURL = "http://data.oxylabs.io/v1/queries/" + jobid;
+                                httpWebRequest = (HttpWebRequest)WebRequest.Create(resURL);
+                                httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
+                                HttpWebResponse res1 = (HttpWebResponse)httpWebRequest.GetResponse();
+                                Stream resStream = res1.GetResponseStream();
+                                reader = new StreamReader(resStream, Encoding.UTF8);
+                                response = reader.ReadToEnd();
+                                resStream.Close();
+                                res1.Close();
+                                JObject obj = JObject.Parse(response);
+                                status = obj["status"].Value<string>();
+                                if (status == "faulted")
+                                {
+                                    throw new Exception("status is faulted");
+                                }
+                            }//04-01-2022
                         }
+                       
                         catch (Exception ex)
                         {
-                            Console.WriteLine("Result Request: " + ex.Message);
+                            // Console.WriteLine("Result Request: " + ex.Message);//03-01-2022
+                            throw ex;//03-01-2022
                         }
                     }
+
                     
                     else
                         cnt++;
                     Task.Delay(200).Wait();
                 }
+                 
 
                 if (lst.Count == cnt) break;
 

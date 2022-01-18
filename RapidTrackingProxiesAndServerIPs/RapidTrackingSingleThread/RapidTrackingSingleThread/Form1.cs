@@ -71,9 +71,9 @@ namespace RapidTrackingSingleThread
             string myDate = date_picker.Text;
             //return;
 
-            //string strSql = "exec [dbo].[Tracking_DB_Keywords_SEID_102] '" + myDate + "'";                     
+            string strSql = "exec [dbo].[Tracking_DB_Keywords_SEID_102] '" + myDate + "'";                     
             //string strSql = "exec [dbo]. [GetAllNewKeywords] '" + myDate + "'";  //15-04-2021                   
-            string strSql = "exec [dbo].[Tracking_DB_Keywords_SEID_102_400] '" + myDate + "'"; //use this procedure 400 bad request or currency keywords
+            //string strSql = "exec [dbo].[Tracking_DB_Keywords_SEID_102_400] '" + myDate + "'"; //use this procedure 400 bad request or currency keywords
 
             try
             {

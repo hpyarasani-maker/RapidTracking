@@ -10,7 +10,7 @@ namespace RapidTrackingSingleThread
         internal static DataTable GetIPsFromDB()
         {
             DataTable dt = new DataTable();
-            string strQry = "Select id, address From oxylabs_proxies order by newID()";
+            string strQry = "Select id, address From oxylabs_proxies";
             //string strQry = "Select id, address From IP_Address where id between 1 and 120 ";
 
             using (SqlDataAdapter da = new SqlDataAdapter(strQry, ReadConnection()))

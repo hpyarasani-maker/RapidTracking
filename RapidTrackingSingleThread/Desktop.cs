@@ -839,7 +839,7 @@ namespace RapidTrackingSingleThread
             return s.ToString();
         }
 
-        private string PeopleAlsoAsk(HtmlNode node)
+        /*private string PeopleAlsoAsk(HtmlNode node) //commented 19-01-2022
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='_eHi']/div"); // (".//h3[@class='r']/a");
@@ -860,7 +860,40 @@ namespace RapidTrackingSingleThread
                 s.Append("<item url=\"\" title=\"" + SetTitle(nd.InnerText) + "\" />");
             }
             return s.ToString();
+        }*/ //end comments 19-01-2022
+        private string PeopleAlsoAsk(HtmlNode node) //new method to pick item urls in people also block 19-01-2022
+        {
+            StringBuilder s = new StringBuilder();
+            HtmlNodeCollection nds = node.SelectNodes(".//div[@jsname='F79BRe']");
+            if (nds == null)
+                return string.Empty;
+            foreach (HtmlNode nd in nds)
+            {
+                HtmlNode ndTitle = nd.SelectSingleNode(".//div[@class='psDd8d']/div");
+                if (ndTitle == null)
+                    ndTitle = nd.SelectSingleNode(".//div[@class='DUeSlb']/div");
+                if (ndTitle == null)
+                    ndTitle = nd.SelectSingleNode(".//div[@jsname='xXq91c']");
+                if (ndTitle == null)
+                    ndTitle = nd.SelectSingleNode(".//div[@jsname='bVEB4e']");
+                if (ndTitle == null)
+                    ndTitle = nd.SelectSingleNode(".//div[@jsname='ARU61']");
+                if (ndTitle == null)
+                    ndTitle = nd.SelectSingleNode(".//div[@jsname='lN6iy']");
+                if (ndTitle == null)
+                    continue;
+                HtmlNode ndUrl = nd.SelectSingleNode(".//div[@jsname='MgN2vf']/a");
+                string title = ndTitle.InnerText;
+                string url = string.Empty;
+                if (ndUrl != null)
+                    url = ndUrl.Attributes["href"].Value;
+                if (url.StartsWith("/search?"))
+                    url = string.Empty;
+                s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+            }
+            return s.ToString();
         }
+        (
 
         private string GetAnswerCard(HtmlNode node)
         {

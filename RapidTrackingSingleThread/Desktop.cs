@@ -893,7 +893,7 @@ namespace RapidTrackingSingleThread
             }
             return s.ToString();
         }
-        (
+        
 
         private string GetAnswerCard(HtmlNode node)
         {

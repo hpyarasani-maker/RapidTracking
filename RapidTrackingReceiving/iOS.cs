@@ -2261,8 +2261,8 @@ namespace Oxylabs_BulkKeywords
             if (nd != null)
             {
                 //if (node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']") == null) //30-08-2021 image wrong block issue
-                if (node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']") != null || node.SelectSingleNode(".//div[@class='N60dNb mfMhoc']") != null || node.SelectSingleNode(".//div[@jsmodel='vqHyhf']") != null) //12-11-2021 images //26-10-2021//27-102-2021
-                    return "Images";
+                if (node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']") != null || node.SelectSingleNode(".//div[@class='N60dNb mfMhoc']") != null || node.SelectSingleNode(".//div[@jsmodel='vqHyhf']|.//div[@jsmodel='Wn3aEc']") != null) //20-01-2022
+                        return "Images";
             }
             else
             {

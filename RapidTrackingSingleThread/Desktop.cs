@@ -1345,7 +1345,7 @@ namespace RapidTrackingSingleThread
 
             nd = node.SelectSingleNode(".//*[@id='lu_map']");
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='xERobd']");  //changed on 26-06-2019
+                nd = node.SelectSingleNode(".//div[@class='xERobd']|.//div[@class='H93uF']");//22-01-2022  //changed on 26-06-2019
             if (nd == null)
                 nd = node.SelectSingleNode(".//a[contains(@data-url,'/maps/')]");//23-08-2021 map selector
             if (nd == null)
@@ -1516,7 +1516,7 @@ namespace RapidTrackingSingleThread
                         return false; //16-12-2021
                 }
                 // changes on 08-07-2019
-                if (node.SelectSingleNode(".//img[@alt='map image']") != null || node.SelectSingleNode(".//div[@jsname='N760b']|.//div[@class='kno-mrg kno-swp']|.//div[@class='e4xoPb']") != null || node.SelectSingleNode(".//img[contains(@data-bsrc,'/maps/')]") != null)//23-08-2021 map selector//02-08-2021
+                if (node.SelectSingleNode(".//img[@alt='map image']") != null || node.SelectSingleNode(".//div[@jsname='N760b']|.//div[@class='kno-mrg kno-swp']|.//div[@class='e4xoPb']|.//div[@class='H93uF']") != null || node.SelectSingleNode(".//img[contains(@data-bsrc,'/maps/')]") != null)//22-01-2022//23-08-2021 map selector//02-08-2021
                     if (node.SelectSingleNode(".//div[@class='tF2Cxc']") != null || node.Attributes["id"]?.Value == "rhs")//16-12-2021 //10-12-2021
                         return false;//10-12-2021
                     else //10-12-2021

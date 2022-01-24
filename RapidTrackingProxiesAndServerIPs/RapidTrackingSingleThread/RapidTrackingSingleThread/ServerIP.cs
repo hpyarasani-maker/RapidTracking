@@ -23,11 +23,6 @@ namespace RapidTrackingSingleThread
 
         readonly string strConn = string.Empty;
         public string sIP = string.Empty;
-        const string googleurl = "https://www.google.";
-        const string safesearch = "0";
-        const string safe = "off";
-        const string num = "100";
-        const string aomd = "1";
         string url = string.Empty;
 
         public ServerIP()

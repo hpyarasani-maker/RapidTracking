@@ -24,7 +24,7 @@ namespace RapidTrackingMultithread
         const string safesearch = "0";
         const string safe = "off";
         const string num = "100";
-        const string aomd = "1";
+        const string aomd = "1";        
         string url = string.Empty;
 
 
@@ -34,10 +34,10 @@ namespace RapidTrackingMultithread
             dtIPs = Common.GetIPsFromDB();
         }
 
-
+        
         public int x = 0;
         public DataTable dtIPs;
-
+        
         Random rnd;
         public string GetWebDataSource(string url)
         {
@@ -148,61 +148,69 @@ namespace RapidTrackingMultithread
 
         public string[] GetTop100Desktop(string keyword, int seid, out string oIP, string domain, string locale, string uule)
         {
-            ArrayList DesktopResult = new ArrayList();
+            
+                ArrayList DesktopResult = new ArrayList();
 
-            string[] locale1 = locale.Split('-');
+                string[] locale1 = locale.Split('-');
 
-            if (locale1.Length == 3)
-            {
-                if (locale1[1] == "419" || locale1[1] == "TW")
+                if (locale1.Length == 3)
                 {
-                    locale1[0] = locale1[0] + "-" + locale1[1];
-                }
+                    if (locale1[1] == "419" || locale1[1] == "TW")
+                    {
+                        locale1[0] = locale1[0] + "-" + locale1[1];
+                    }
                 //url = "" + googleurl + "" + domain + "/search?q=" + keyword + "&gl=" + locale1[2] + "&hl=" + locale1[0] + "&num=" + num + "&safe_search=" + safesearch + "&safe=" + safe + "&aomd=" + aomd + "&uule=" + uule + "&gs_l=" + device + "&gws_rd=ssl,cr";
                 url = "http://www.google." + domain + "/search?q=" + keyword + "&gl=" + locale1[2] + "&hl=" + locale1[0] + "&num=100&safe_search=0&aomd=1" + "&uule=" + uule;
+
             }
+
             else if (locale1.Length == 2)
-            {
+                {
                 //url = "" + googleurl + "" + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&num=" + num + "&safe_search=" + safesearch + "&safe=" + safe + "&aomd=" + aomd + "&uule=" + uule + "&gs_l=" + device + "&gws_rd=ssl,cr";
                 url = "http://www.google." + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&num=100&safe_search=0&aomd=1" + "&uule=" + uule;
 
             }
-            string HTML = GetWebDataSource(url);
-            //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + seid + "_" + keyword + ".html", HTML, Encoding.UTF8);
-            string[] dr = DesktoppatternTrending(HTML, keyword, seid.ToString());
-            oIP = sIP;
-            return dr;
 
+            string HTML = GetWebDataSource(url);
+                string[] dr = DesktoppatternTrending(HTML, keyword, seid.ToString());
+
+                oIP = sIP;
+                return dr;
+            
         }
         //----------------------------------------------- For Non Hotel Keywords -------------------------------------//
-        public string[] GetTop100Mobile(string keyword, int seid, out string oIP, string domain, string locale, string uule)
-        {
-            ArrayList MobileResult = new ArrayList();
+         public string[] GetTop100Mobile(string keyword, int seid, out string oIP, string domain, string locale, string uule)
+         {
+                ArrayList MobileResult = new ArrayList();
 
-            string[] locale1 = locale.Split('-');
+                string[] locale1 = locale.Split('-');
 
-            if (locale1.Length == 3)
-            {
-                if (locale1[1] == "419" || locale1[1] == "TW")
+                if (locale1.Length == 3)
                 {
-                    locale1[0] = locale1[0] + "-" + locale1[1];
-                }
+                    if (locale1[1] == "419" || locale1[1] == "TW")
+                    {
+                        locale1[0] = locale1[0] + "-" + locale1[1];
+                    }
                 //url = "" + googleurl + "" + domain + "/search?q=" + keyword + "&gl=" + locale1[2] + "&hl=" + locale1[0] + "&num=" + num + "&safe_search=" + safesearch + "&safe=" + safe + "&aomd=" + aomd + "&uule=" + uule + "&gs_l=" + device + "-gws-serp.3.0&gws_rd=ssl,cr";
                 url = "http://www.google." + domain + "/search?q=" + keyword + "&gl=" + locale1[2] + "&hl=" + locale1[0] + "&num=100&safe_search=0&aomd=1" + "&uule=" + uule;
+
             }
             else if (locale1.Length == 2)
-            {
+                {
                 //url = "" + googleurl + "" + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&num=" + num + "&safe_search=" + safesearch + "&safe=" + safe + "&aomd=" + aomd + "&uule=" + uule + "&gs_l=" + device + "-gws-serp.3.0&gws_rd=ssl,cr";
                 url = "http://www.google." + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&num=100&safe_search=0&aomd=1" + "&uule=" + uule;
+
             }
+
             string HTML = GetWebDataMobileSource(url);
-            //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + seid + "_" + keyword + ".html", HTML, Encoding.UTF8);
-            string[] mr = MobilepatternTrending(HTML, keyword, seid.ToString());
-            oIP = sIP;
-            return mr;
-        }
+                //File.WriteAllText(@"c:\inetpub\wwwroot\dallas.html", HTML);
+                string[] mr = MobilepatternTrending(HTML, keyword, seid.ToString());
+                oIP = sIP;
+                return mr;
+            
+         }
 
-
+        
         //---------------------------------------For Hotel Keywords---------------------------//
         /*public string[] getTop100Mobile(string keyword, int seid, out string oIP, string domain, string locale, string uule, string device)
         {
@@ -264,7 +272,7 @@ namespace RapidTrackingMultithread
             var doc = new HtmlAgilityPack.HtmlDocument();
 
             iOS clsMobile = new iOS();
-
+           
             doc = new HtmlAgilityPack.HtmlDocument();
             doc.LoadHtml(html);
             res = clsMobile.ProcessDocument(seid, keyword, doc);

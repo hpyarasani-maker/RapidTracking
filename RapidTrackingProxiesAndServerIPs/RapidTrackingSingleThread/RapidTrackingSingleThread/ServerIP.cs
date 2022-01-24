@@ -31,6 +31,8 @@ namespace RapidTrackingSingleThread
             dtIPs = Common.GetIPsFromDB();
         }
 
+       
+
         public string GetIPAddress(int id)
         {
             string address = string.Empty;
@@ -75,19 +77,19 @@ namespace RapidTrackingSingleThread
             System.Threading.Thread.Sleep(1000);
 
             // getting IPs from db.
-            //if (dtIPs == null)
-            //{
-            //    dtIPs = Common.GetIPsFromDB();
-            //    if (dtIPs == null || dtIPs.Rows.Count == 0)
-            //    {
-            //        throw new Exception("There is no IP to continue...");
-            //    }
-            //}
+            if (dtIPs == null)
+            {
+                dtIPs = Common.GetIPsFromDB();
+                if (dtIPs == null || dtIPs.Rows.Count == 0)
+                {
+                    throw new Exception("There is no IP to continue...");
+                }
+            }
 
-            //Random rnd = new Random();
-            //x = rnd.Next(0, dtIPs.Rows.Count);
+            Random rnd = new Random();
+            x = rnd.Next(0, dtIPs.Rows.Count);
 
-            //string sendingIp = dtIPs.Rows[x][1].ToString();
+            string sendingIp = dtIPs.Rows[x][1].ToString();
             //string sendingIp = this.GetIP();
             //int sendingPort = 0;
             StringBuilder stringBuilder = new StringBuilder();
@@ -122,18 +124,18 @@ namespace RapidTrackingSingleThread
             System.Threading.Thread.Sleep(1000);
 
             // getting IPs from db.
-            //if (dtIPs == null)
-            //{
-            //    dtIPs = Common.GetIPsFromDB();
-            //    if (dtIPs == null || dtIPs.Rows.Count == 0)
-            //    {
-            //        throw new Exception("There is no IP to continue...");
-            //    }
-            //}
-            //Random rnd = new Random();
-            //x = rnd.Next(0, dtIPs.Rows.Count);
+            if (dtIPs == null)
+            {
+                dtIPs = Common.GetIPsFromDB();
+                if (dtIPs == null || dtIPs.Rows.Count == 0)
+                {
+                    throw new Exception("There is no IP to continue...");
+                }
+            }
+            Random rnd = new Random();
+            x = rnd.Next(0, dtIPs.Rows.Count);
 
-            //string sendingIp = dtIPs.Rows[x][1].ToString();
+            string sendingIp = dtIPs.Rows[x][1].ToString();
             //string sendingIp = this.GetIP();
             //int sendingPort = 0;
             StringBuilder stringBuilder = new StringBuilder();
@@ -160,7 +162,6 @@ namespace RapidTrackingSingleThread
             return stringBuilder.ToString();
         }
 
-        string carona = "&stick=H4sIAAAAAAAAAONgVuLVT9c3NMwySk6OL8zJecTozS3w8sc9YSmnSWtOXmO04eIKzsgvd80rySypFNLjYoOyVLgEpVB1ajBI8XOhCvHsYuLIL0stKstMLV_Eyu2cX5Sfl1iWWVRaDADEmcfgeAAAAA&ictx=1&ved=2ahUKEwizy5j8x_HvAhWg7HMBHer6DvAQyNoBKAB6BQiGARAG";
 
         public string[] GetTop100Desktop(string keyword, int seid, out string oIP, string domain, string locale, string uule)
         {
@@ -182,7 +183,7 @@ namespace RapidTrackingSingleThread
                 url = "http://www.google." + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&num=100&safe_search=0&aomd=1" + "&uule=" + uule;
             }
             string HTML = GetWebDataSource(url);
-            //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + seid + "_" + keyword + ".html", HTML, Encoding.UTF8);
+
             string[] dr = DesktoppatternTrending(HTML, keyword, seid.ToString());
             oIP = sIP;
             return dr;
@@ -209,7 +210,6 @@ namespace RapidTrackingSingleThread
                 url = "http://www.google." + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&num=100&safe_search=0&aomd=1" + "&uule=" + uule;
             }
             string HTML = GetWebDataMobileSource(url);
-            //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + seid + "_" + keyword + ".html", HTML, Encoding.UTF8);
             string[] mr = MobilepatternTrending(HTML, keyword, seid.ToString());
             oIP = sIP;
             return mr;

@@ -22,6 +22,7 @@ namespace RapidTrackingSingleThread
         public string sIP = string.Empty;
         string url = string.Empty;
 
+
         public OxylabsProxies()
         {
             strConn = Common.ReadConnection();
@@ -174,6 +175,7 @@ namespace RapidTrackingSingleThread
                 url = "http://www.google."+domain+"/search?q="+keyword+"&gl="+locale1[1]+"&hl="+locale1[0]+"&num=100&safe_search=0&aomd=1"+"&uule=" + uule;
                 
             }
+
             string HTML = GetWebDataSource(url);
             //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + seid + "_" + keyword + ".html", HTML, Encoding.UTF8);
             string[] dr = DesktoppatternTrending(HTML, keyword, seid.ToString());
@@ -202,8 +204,8 @@ namespace RapidTrackingSingleThread
                 //url = "" + googleurl + "" + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&num=" + num + "&safe_search=" + safesearch + "&safe=" + safe + "&aomd=" + aomd + "&uule=" + uule + "&gs_l=" + device + "-gws-serp.3.0&gws_rd=ssl,cr";
                 url = "http://www.google." + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&num=100&safe_search=0&aomd=1" + "&uule=" + uule;
             }
+
             string HTML = GetWebDataMobileSource(url);
-            //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + seid + "_" + keyword + ".html", HTML, Encoding.UTF8);
             string[] mr = MobilepatternTrending(HTML, keyword, seid.ToString());
             oIP = sIP;
             return mr;

@@ -96,7 +96,7 @@ namespace RapidTrackingSingleThread
 
             string sendingIp = dtIPs.Rows[x][1].ToString();
             //string sendingIp = this.GetIP();
-            int sendingPort = 0;
+            //int sendingPort = 0;
             StringBuilder stringBuilder = new StringBuilder();
             string value = string.Empty;
             Uri uri = new Uri(url);
@@ -107,9 +107,9 @@ namespace RapidTrackingSingleThread
 
             try
             {
-                ServicePoint servicePoint2 = ServicePointManager.FindServicePoint(uri);
-                servicePoint2.BindIPEndPointDelegate = ((ServicePoint servicePoint, IPEndPoint remoteEp, int retryCount) => new IPEndPoint(IPAddress.Parse(sendingIp), sendingPort));
-                servicePoint2.ConnectionLeaseTimeout = 0;
+                //ServicePoint servicePoint2 = ServicePointManager.FindServicePoint(uri);
+                //servicePoint2.BindIPEndPointDelegate = ((ServicePoint servicePoint, IPEndPoint remoteEp, int retryCount) => new IPEndPoint(IPAddress.Parse(sendingIp), sendingPort));
+                //servicePoint2.ConnectionLeaseTimeout = 0;
                 HttpWebResponse res = (HttpWebResponse)httpWebRequest.GetResponse();
                 if (res.StatusCode != HttpStatusCode.OK) throw new Exception(res.StatusDescription);
                 value = new StreamReader(res.GetResponseStream(), Encoding.UTF8).ReadToEnd();
@@ -142,7 +142,7 @@ namespace RapidTrackingSingleThread
 
             string sendingIp = dtIPs.Rows[x][1].ToString();
             //string sendingIp = this.GetIP();
-            int sendingPort = 0;
+            //int sendingPort = 0;
             StringBuilder stringBuilder = new StringBuilder();
             string value = string.Empty;
             Uri uri = new Uri(url);            
@@ -151,9 +151,9 @@ namespace RapidTrackingSingleThread
             httpWebRequest.UserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 12_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.2 Mobile/15E148 Safari/604.1";
             try
             {
-                ServicePoint servicePoint2 = ServicePointManager.FindServicePoint(uri);
-                servicePoint2.BindIPEndPointDelegate = ((ServicePoint servicePoint, IPEndPoint remoteEp, int retryCount) => new IPEndPoint(IPAddress.Parse(sendingIp), sendingPort));
-                servicePoint2.ConnectionLeaseTimeout = 0;
+                //ServicePoint servicePoint2 = ServicePointManager.FindServicePoint(uri);
+                //servicePoint2.BindIPEndPointDelegate = ((ServicePoint servicePoint, IPEndPoint remoteEp, int retryCount) => new IPEndPoint(IPAddress.Parse(sendingIp), sendingPort));
+                //servicePoint2.ConnectionLeaseTimeout = 0;
                 HttpWebResponse res = (HttpWebResponse)httpWebRequest.GetResponse();
                 if (res.StatusCode != HttpStatusCode.OK) throw new Exception(res.StatusDescription);
                 value = new StreamReader(res.GetResponseStream(), Encoding.UTF8).ReadToEnd();
@@ -168,7 +168,7 @@ namespace RapidTrackingSingleThread
         }
 
 
-        public string[] GetTop100Desktop(string keyword, int seid, out string oIP, string domain, string locale, string uule, string device)
+        public string[] GetTop100Desktop(string keyword, int seid, out string oIP, string domain, string locale, string uule)
         {
             ArrayList DesktopResult = new ArrayList();
             string[] locale1 = locale.Split('-');
@@ -179,12 +179,13 @@ namespace RapidTrackingSingleThread
                 {
                     locale1[0] = locale1[0] + "-" + locale1[1];
                 }
-                url = "" + googleurl + "" + domain + "/search?q=" + keyword + "&gl=" + locale1[2] + "&hl=" + locale1[0] + "&num=" + num + "&safe_search=" + safesearch + "&safe=" + safe + "&aomd=" + aomd + "&uule=" + uule + "&gs_l=" + device + "&gws_rd=ssl,cr";
-
+                //url = "" + googleurl + "" + domain + "/search?q=" + keyword + "&gl=" + locale1[2] + "&hl=" + locale1[0] + "&num=" + num + "&safe_search=" + safesearch + "&safe=" + safe + "&aomd=" + aomd + "&uule=" + uule + "&gs_l=" + device + "&gws_rd=ssl,cr";
+                url = "http://www.google." + domain + "/search?q=" + keyword + "&gl=" + locale1[2] + "&hl=" + locale1[0] + "&num=100&safe_search=0&aomd=1" + "&uule=" + uule;
             }
             else if (locale1.Length == 2)
             {
-                url = "" + googleurl + "" + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&num=" + num + "&safe_search=" + safesearch + "&safe=" + safe + "&aomd=" + aomd + "&uule=" + uule + "&gs_l=" + device + "&gws_rd=ssl,cr";
+                //url = "" + googleurl + "" + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&num=" + num + "&safe_search=" + safesearch + "&safe=" + safe + "&aomd=" + aomd + "&uule=" + uule + "&gs_l=" + device + "&gws_rd=ssl,cr";
+                url = "http://www.google." + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&num=100&safe_search=0&aomd=1" + "&uule=" + uule;
             }
             string HTML = GetWebDataSource(url);
 
@@ -193,7 +194,7 @@ namespace RapidTrackingSingleThread
             return dr;
         }
 
-        public string[] GetTop100Mobile(string keyword, int seid, out string oIP, string domain, string locale, string uule, string device)
+        public string[] GetTop100Mobile(string keyword, int seid, out string oIP, string domain, string locale, string uule)
         {
             ArrayList MobileResult = new ArrayList();
 
@@ -205,11 +206,13 @@ namespace RapidTrackingSingleThread
                 {
                     locale1[0] = locale1[0] + "-" + locale1[1];
                 }
-                url = "" + googleurl + "" + domain + "/search?q=" + keyword + "&gl=" + locale1[2] + "&hl=" + locale1[0] + "&num=" + num + "&safe_search=" + safesearch + "&safe=" + safe + "&aomd=" + aomd + "&uule=" + uule + "&gs_l=" + device + "-gws-serp.3.0&gws_rd=ssl,cr";
+                //url = "" + googleurl + "" + domain + "/search?q=" + keyword + "&gl=" + locale1[2] + "&hl=" + locale1[0] + "&num=" + num + "&safe_search=" + safesearch + "&safe=" + safe + "&aomd=" + aomd + "&uule=" + uule + "&gs_l=" + device + "-gws-serp.3.0&gws_rd=ssl,cr";
+                url = "http://www.google." + domain + "/search?q=" + keyword + "&gl=" + locale1[2] + "&hl=" + locale1[0] + "&num=100&safe_search=0&aomd=1" + "&uule=" + uule;
             }
             else if (locale1.Length == 2)
             {
-                url = "" + googleurl + "" + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&num=" + num + "&safe_search=" + safesearch + "&safe=" + safe + "&aomd=" + aomd + "&uule=" + uule + "&gs_l=" + device + "-gws-serp.3.0&gws_rd=ssl,cr";
+                //url = "" + googleurl + "" + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&num=" + num + "&safe_search=" + safesearch + "&safe=" + safe + "&aomd=" + aomd + "&uule=" + uule + "&gs_l=" + device + "-gws-serp.3.0&gws_rd=ssl,cr";
+                url = "http://www.google." + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&num=100&safe_search=0&aomd=1" + "&uule=" + uule;
             }
             string HTML = GetWebDataMobileSource(url);
             string[] mr = MobilepatternTrending(HTML, keyword, seid.ToString());
@@ -261,11 +264,11 @@ namespace RapidTrackingSingleThread
                 {
                     if (value.device == "desktop")
                     {
-                        seresults = GetTop100Desktop(keyword, seid, out sIP, value.domain, value.locale, value.uule, value.device);
+                        seresults = GetTop100Desktop(keyword, seid, out sIP, value.domain, value.locale, value.uule);
                     }
                     else if (value.device == "mobile_android")
                     {
-                        seresults = GetTop100Mobile(keyword, seid, out sIP, value.domain, value.locale, value.uule, value.device);
+                        seresults = GetTop100Mobile(keyword, seid, out sIP, value.domain, value.locale, value.uule);
                     }
                 }
             }

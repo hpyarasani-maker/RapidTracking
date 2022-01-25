@@ -523,13 +523,15 @@ namespace RapidTrackingLibrary
                 || node.SelectNodes(".//div[contains(@class,'g card-section')]") != null //06-10-2020 classic link
                 || node.SelectNodes(".//div[@class='g tF2Cxc']|.//div[@class='g dFd2Tb']") != null) //24-08-2021 video block //01-06-2021
             {
-                HtmlNodeCollection nds = node.SelectNodes(".//div[@class='g']|.//div[@class='HD8Pae luh4tb cUezCb xpd O9g5cc uUPGi']|.//div[contains(@class,'g card-section')]");//11-01-2021 missing classic link//04-12-2020 videos block
+                HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'tF2Cxc')]"); //25-01-2022
+                if (nds == null) //25-01-2022
+                    nds = node.SelectNodes(".//div[@class='g']|.//div[@class='HD8Pae luh4tb cUezCb xpd O9g5cc uUPGi']|.//div[contains(@class,'g card-section')]");//25-01-2022
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='rc']");
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='gG0TJc']");  //29-05-2020
-                if (nds == null)
-                    nds = node.SelectNodes(".//div[contains(@class,'tF2Cxc')]");//07-01-2021 //18-02-2021 included contains function
+                //if (nds == null)
+                //    nds = node.SelectNodes(".//div[contains(@class,'tF2Cxc')]");//07-01-2021 //18-02-2021 included contains function
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='yuRUbf']"); //31-05-2021
                 if (nds == null)

@@ -56,7 +56,9 @@ namespace RapidTrackingMultithread
                 x = rnd.Next(0, dtIPs.Rows.Count);
                 Uri uri = new Uri(url);
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create(uri);
+                req.CookieContainer = new CookieContainer();
                 req.Headers.Clear();
+                req.UseDefaultCredentials = true;
                 //req.UserAgent = @"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36";
                 //req.UserAgent = @"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36";
                 req.UserAgent = @"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36";
@@ -108,7 +110,9 @@ namespace RapidTrackingMultithread
                 x = rnd.Next(0, dtIPs.Rows.Count);
                 Uri uri = new Uri(url);
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create(uri);
+                req.CookieContainer = new CookieContainer();
                 req.Headers.Clear();
+                req.UseDefaultCredentials = true;
                 req.UserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 12_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.2 Mobile/15E148 Safari/604.1";
                 //req.UserAgent = @"Mozilla /5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1";
                 //req.UserAgent = @"Mozilla/5.0 (iPod; CPU iPhone OS 12_0 like macOS) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/12.0 Mobile/14A5335d Safari/602.1.50";
@@ -144,7 +148,7 @@ namespace RapidTrackingMultithread
             }
         }
 
-        public string[] GetTop100Desktop(string keyword, int seid, out string oIP, string domain, string locale, string uule, string device)
+        public string[] GetTop100Desktop(string keyword, int seid, out string oIP, string domain, string locale, string uule)
         {
             
                 ArrayList DesktopResult = new ArrayList();
@@ -157,15 +161,19 @@ namespace RapidTrackingMultithread
                     {
                         locale1[0] = locale1[0] + "-" + locale1[1];
                     }
-                    url = "" + googleurl + "" + domain + "/search?q=" + keyword + "&gl=" + locale1[2] + "&hl=" + locale1[0] + "&num=" + num + "&safe_search=" + safesearch + "&safe=" + safe + "&aomd=" + aomd + "&uule=" + uule + "&gs_l=" + device + "&gws_rd=ssl,cr";
-                }
+                //url = "" + googleurl + "" + domain + "/search?q=" + keyword + "&gl=" + locale1[2] + "&hl=" + locale1[0] + "&num=" + num + "&safe_search=" + safesearch + "&safe=" + safe + "&aomd=" + aomd + "&uule=" + uule + "&gs_l=" + device + "&gws_rd=ssl,cr";
+                url = "https://www.google." + domain + "/search?q=" + keyword + "&gl=" + locale1[2] + "&hl=" + locale1[0] + "&num=100&safe_search=0&aomd=1" + "&uule=" + uule;
 
-                else if (locale1.Length == 2)
+            }
+
+            else if (locale1.Length == 2)
                 {
-                    url = "" + googleurl + "" + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&num=" + num + "&safe_search=" + safesearch + "&safe=" + safe + "&aomd=" + aomd + "&uule=" + uule + "&gs_l=" + device + "&gws_rd=ssl,cr";
-                }
+                //url = "" + googleurl + "" + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&num=" + num + "&safe_search=" + safesearch + "&safe=" + safe + "&aomd=" + aomd + "&uule=" + uule + "&gs_l=" + device + "&gws_rd=ssl,cr";
+                url = "https://www.google." + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&num=100&safe_search=0&aomd=1" + "&uule=" + uule;
 
-                string HTML = GetWebDataSource(url);
+            }
+
+            string HTML = GetWebDataSource(url);
                 string[] dr = DesktoppatternTrending(HTML, keyword, seid.ToString());
 
                 oIP = sIP;
@@ -173,7 +181,7 @@ namespace RapidTrackingMultithread
             
         }
         //----------------------------------------------- For Non Hotel Keywords -------------------------------------//
-         public string[] GetTop100Mobile(string keyword, int seid, out string oIP, string domain, string locale, string uule, string device)
+         public string[] GetTop100Mobile(string keyword, int seid, out string oIP, string domain, string locale, string uule)
          {
                 ArrayList MobileResult = new ArrayList();
 
@@ -185,14 +193,18 @@ namespace RapidTrackingMultithread
                     {
                         locale1[0] = locale1[0] + "-" + locale1[1];
                     }
-                    url = "" + googleurl + "" + domain + "/search?q=" + keyword + "&gl=" + locale1[2] + "&hl=" + locale1[0] + "&num=" + num + "&safe_search=" + safesearch + "&safe=" + safe + "&aomd=" + aomd + "&uule=" + uule + "&gs_l=" + device + "-gws-serp.3.0&gws_rd=ssl,cr";
-                }
-                else if (locale1.Length == 2)
-                {
-                    url = "" + googleurl + "" + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&num=" + num + "&safe_search=" + safesearch + "&safe=" + safe + "&aomd=" + aomd + "&uule=" + uule + "&gs_l=" + device + "-gws-serp.3.0&gws_rd=ssl,cr";
-                }
+                //url = "" + googleurl + "" + domain + "/search?q=" + keyword + "&gl=" + locale1[2] + "&hl=" + locale1[0] + "&num=" + num + "&safe_search=" + safesearch + "&safe=" + safe + "&aomd=" + aomd + "&uule=" + uule + "&gs_l=" + device + "-gws-serp.3.0&gws_rd=ssl,cr";
+                url = "https://www.google." + domain + "/search?q=" + keyword + "&gl=" + locale1[2] + "&hl=" + locale1[0] + "&num=100&safe_search=0&aomd=1" + "&uule=" + uule;
 
-                string HTML = GetWebDataMobileSource(url);
+            }
+            else if (locale1.Length == 2)
+                {
+                //url = "" + googleurl + "" + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&num=" + num + "&safe_search=" + safesearch + "&safe=" + safe + "&aomd=" + aomd + "&uule=" + uule + "&gs_l=" + device + "-gws-serp.3.0&gws_rd=ssl,cr";
+                url = "https://www.google." + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&num=100&safe_search=0&aomd=1" + "&uule=" + uule;
+
+            }
+
+            string HTML = GetWebDataMobileSource(url);
                 //File.WriteAllText(@"c:\inetpub\wwwroot\dallas.html", HTML);
                 string[] mr = MobilepatternTrending(HTML, keyword, seid.ToString());
                 oIP = sIP;
@@ -280,11 +292,11 @@ namespace RapidTrackingMultithread
             {
                 if (value.device == "desktop")
                 {
-                    seresults = GetTop100Desktop(keyword, seid, out sIP, value.domain, value.locale, value.uule, value.device);
+                    seresults = GetTop100Desktop(keyword, seid, out sIP, value.domain, value.locale, value.uule);
                 }
                 else if (value.device == "mobile_android")
                 {
-                    seresults = GetTop100Mobile(keyword, seid, out sIP, value.domain, value.locale, value.uule, value.device);
+                    seresults = GetTop100Mobile(keyword, seid, out sIP, value.domain, value.locale, value.uule);
                 }
 
             }

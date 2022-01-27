@@ -72,6 +72,7 @@ namespace RapidTrackingSingleThread
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create(uri);
                 req.CookieContainer = new CookieContainer();
                 req.Headers.Clear();
+                req.UseDefaultCredentials = true;
                 //req.UserAgent = @"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36";
                 req.UserAgent = @"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36";
                 // port is changed from '6747' to '6747'.
@@ -124,6 +125,7 @@ namespace RapidTrackingSingleThread
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create(uri);
                 req.CookieContainer = new CookieContainer();
                 req.Headers.Clear();
+                req.UseDefaultCredentials = true;
                 req.UserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 12_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.2 Mobile/15E148 Safari/604.1";
                 WebProxy proxy = new WebProxy("http://" + dtIPs.Rows[x][1].ToString());
                 NetworkCredential cred = new NetworkCredential("pidatametrics", "sbj4A3PLyZ");
@@ -167,12 +169,12 @@ namespace RapidTrackingSingleThread
                     locale1[0] = locale1[0] + "-" + locale1[1];
                 }
                 //url = "" + googleurl + "" + domain + "/search?q=" + keyword + "&gl=" + locale1[2] + "&hl=" + locale1[0] + "&num=" + num + "&safe_search=" + safesearch + "&safe=" + safe + "&aomd=" + aomd + "&uule=" + uule + "&gs_l=" + device + "&gws_rd=ssl,cr";
-                url = "http://www.google."+domain +"/search?q="+keyword+"&gl="+locale1[2]+"&hl="+locale1[0]+"&num=100&safe_search=0&aomd=1"+"&uule="+uule;
+                url = "https://www.google."+domain +"/search?q="+keyword+"&gl="+locale1[2]+"&hl="+locale1[0]+"&num=100&safe_search=0&aomd=1"+"&uule="+uule;
             }
             else if (locale1.Length == 2)
             {
                 //url = "" + googleurl + "" + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&num=" + num + "&safe_search=" + safesearch + "&safe=" + safe + "&aomd=" + aomd + "&uule=" + uule + "&gs_l=" + device + "&gws_rd=ssl,cr";
-                url = "http://www.google."+domain+"/search?q="+keyword+"&gl="+locale1[1]+"&hl="+locale1[0]+"&num=100&safe_search=0&aomd=1"+"&uule=" + uule;
+                url = "https://www.google."+domain+"/search?q="+keyword+"&gl="+locale1[1]+"&hl="+locale1[0]+"&num=100&safe_search=0&aomd=1"+"&uule=" + uule;
                 
             }
 
@@ -197,12 +199,12 @@ namespace RapidTrackingSingleThread
                     locale1[0] = locale1[0] + "-" + locale1[1];
                 }
                 //url = "" + googleurl + "" + domain + "/search?q=" + keyword + "&gl=" + locale1[2] + "&hl=" + locale1[0] + "&num=" + num + "&safe_search=" + safesearch + "&safe=" + safe + "&aomd=" + aomd + "&uule=" + uule + "&gs_l=" + device + "-gws-serp.3.0&gws_rd=ssl,cr";
-                url = "http://www.google." + domain + "/search?q=" + keyword + "&gl=" + locale1[2] + "&hl=" + locale1[0] + "&num=100&safe_search=0&aomd=1" + "&uule=" + uule;
+                url = "https://www.google." + domain + "/search?q=" + keyword + "&gl=" + locale1[2] + "&hl=" + locale1[0] + "&num=100&safe_search=0&aomd=1" + "&uule=" + uule;
             }
             else if (locale1.Length == 2)
             {
                 //url = "" + googleurl + "" + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&num=" + num + "&safe_search=" + safesearch + "&safe=" + safe + "&aomd=" + aomd + "&uule=" + uule + "&gs_l=" + device + "-gws-serp.3.0&gws_rd=ssl,cr";
-                url = "http://www.google." + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&num=100&safe_search=0&aomd=1" + "&uule=" + uule;
+                url = "https://www.google." + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&num=100&safe_search=0&aomd=1" + "&uule=" + uule;
             }
 
             string HTML = GetWebDataMobileSource(url);

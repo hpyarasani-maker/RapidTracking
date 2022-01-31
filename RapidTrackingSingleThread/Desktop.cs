@@ -857,7 +857,7 @@ namespace RapidTrackingSingleThread
                 nds = node.SelectNodes(".//div[@jsname='Cpkphb']"); //30-11-2021 people also ask titles
             if (nds == null)
                 return string.Empty;
-           string[] titles = new string[nds.Count];
+           string[] titles = new string[nds.Count];//31-01-2022
             int x = 0;
             foreach (HtmlNode nd in nds)
             {
@@ -868,7 +868,7 @@ namespace RapidTrackingSingleThread
             if(string.IsNullOrEmpty(res))
                 foreach(var t in titles)
                     s.Append("<item url=\"\" title=\"" + SetTitle(t) + "\" />");
-            s.Append(res);
+            s.Append(res);//31-01-2022
             return s.ToString();
         }//end of item urls code 31-01-2022
         private string GetPeopleAlsoAskUrls(string[] titles) //People also method 31-01-2022

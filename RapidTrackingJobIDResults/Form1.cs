@@ -93,7 +93,7 @@ namespace RapidTrackingJobIDResults
                     {
                         var doc = new HtmlAgilityPack.HtmlDocument();
                         Task<ArrayList> alresult = GetHTML(kw, Convert.ToInt32(seid),jobid);
-                        if (alresult.Status.ToString() == "Faulted")//04-01-2022
+                        if (alresult.Status.ToString() == "Faulted" || alresult.Status.ToString()=="Pending") //31-01-2022//04-01-2022
                             throw alresult.Exception.InnerException;//04-01-2022
                         foreach (string[] src in alresult.Result)
                         {
@@ -313,7 +313,7 @@ namespace RapidTrackingJobIDResults
                 //lstKWs.Items.Add("102:terry crews");
                 //lstKWs.Items.Add("102:the uninhabitable earth summary");
                 //lstKWs.Items.Add("1:rhubarbarone");
-                lstKws.Items.Add("58:protective mask:6878538795415785473");
+                lstKws.Items.Add("1:galls bop uniforms:6893010325650552833");
                 //coronavirus rd case	140	6672286477201717249
 
             });
@@ -571,6 +571,10 @@ namespace RapidTrackingJobIDResults
                                 if (status == "faulted")
                                 {
                                     throw new Exception("status is faulted");
+                                }
+                                if (status == "pending") //31-01-2022
+                                {
+                                    throw new Exception("status is pending");
                                 }
                             }//04-01-2022
                         }

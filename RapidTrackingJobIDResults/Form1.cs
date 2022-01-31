@@ -56,7 +56,13 @@ namespace RapidTrackingJobIDResults
             t.SetApartmentState(ApartmentState.STA);
             t.Start();
         }
-
+        public enum stats
+        {
+            Faulted,
+            Pending,
+            Empty
+            
+        }
         private void StartProcess()
         {
             while (true)
@@ -93,7 +99,7 @@ namespace RapidTrackingJobIDResults
                     {
                         var doc = new HtmlAgilityPack.HtmlDocument();
                         Task<ArrayList> alresult = GetHTML(kw, Convert.ToInt32(seid),jobid);
-                        if (alresult.Status.ToString() == "Faulted" || alresult.Status.ToString()=="Pending") //31-01-2022//04-01-2022
+                        if (alresult.Status.ToString() == stats.Faulted.ToString() || alresult.Status.ToString()==stats.Pending.ToString() || alresult.Status.ToString() == stats.Empty.ToString()) //31-01-2022//04-01-2022
                             throw alresult.Exception.InnerException;//04-01-2022
                         foreach (string[] src in alresult.Result)
                         {
@@ -546,7 +552,10 @@ namespace RapidTrackingJobIDResults
 
                             cbUrl[3] = "yes";
                             cnt++;
-
+                            if (response == "")//31-01-2022
+                            {
+                                throw new Exception("empty");
+                            }//31-01-2022
                             if (!string.IsNullOrEmpty(response))
                             {
                                 reslt[0] = cbUrl[0];
@@ -582,7 +591,8 @@ namespace RapidTrackingJobIDResults
                         catch (Exception ex)
                         {
                             // Console.WriteLine("Result Request: " + ex.Message);//03-01-2022
-                            throw ex;//03-01-2022
+                            
+                            throw new Exception(ex.Message);//31-01-2022//03-01-2022
                         }
                     }
 

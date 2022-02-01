@@ -450,7 +450,7 @@ namespace RapidTrackingLibrary
                 // product listed ads //start of change 11-01-2022 line number 409 to 498
                 if (doc.DocumentNode.SelectSingleNode("//div[@class='mnr-c IGtt6d imgac cTMkTb']") != null
                    || doc.DocumentNode.SelectSingleNode("//div[@class='mnr-c IGtt6d imgac qs-ic fp-w cTMkTb']") != null
-                   || doc.DocumentNode.SelectSingleNode("//div[@class='IGtt6d imgac mnr-c cTMkTb']") != null //16-09-2021 missing ProductListAds
+                   || doc.DocumentNode.SelectSingleNode("//div[contains(@class,'IGtt6d imgac mnr-c')]") != null //01-02-2022 //16-09-2021 missing ProductListAds
                    || doc.DocumentNode.SelectSingleNode("//div[@id='activities-carousel-container']") != null //11-01-2022
                    )
                 {
@@ -459,6 +459,8 @@ namespace RapidTrackingLibrary
                         pla = doc.DocumentNode.SelectSingleNode(".//div[contains(@class, 'commercial-unit-mobile-bottom')]");   // 18-09-2018
                     if (pla == null)
                         pla = doc.DocumentNode.SelectSingleNode(".//div[@id='tauc']/div[contains(@class, 'mnr-c')]");   // 11-01-2022
+                    if (pla == null)
+                        pla = doc.DocumentNode.SelectSingleNode(".//div[@class='ptJHdc']");//01-02-2022
                     if (pla != null)
                     {
                         HtmlNode h3 = pla.SelectSingleNode(".//div[@class='dxR8gf']/h3");
@@ -1538,7 +1540,7 @@ namespace RapidTrackingLibrary
             return s.ToString();
         }
 
-        public string PeopleAlsoAsk(HtmlNode node)
+        private string PeopleAlsoAsk(HtmlNode node) //included item urls code 31-01-2022
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='_eHi']/div"); // (".//h3[@class='r']/a");
@@ -1556,9 +1558,39 @@ namespace RapidTrackingLibrary
                 nds = node.SelectNodes(".//div[@jsname='lN6iy']"); //14-12-2021 tiles for Peope also ask block
             if (nds == null)
                 return string.Empty;
+            string[] titles = new string[nds.Count];//31-01-2022
+            int x = 0;
             foreach (HtmlNode nd in nds)
             {
-                s.Append("<item url=\"\" title=\"" + SetTitle(nd.InnerText) + "\" />");
+                //s.Append("<item url=\"\" title=\"" + SetTitle(nd.InnerText) + "\" />");
+                titles[x++] = nd.InnerText;
+            }
+            var res = GetPeopleAlsoAskUrls(titles);
+            if (string.IsNullOrEmpty(res))
+                foreach (var t in titles)
+                    s.Append("<item url=\"\" title=\"" + SetTitle(t) + "\" />");
+            s.Append(res);//31-01-2022
+            return s.ToString();
+        }//31-01-2022
+
+        private string GetPeopleAlsoAskUrls(string[] titles) //People also method 31-01-2022
+        {
+            StringBuilder s = new StringBuilder();
+            string pattern = @"WEB_ANSWERS_STANDARD_RESULT_(.*?)div class\\x3d\\x22Xv4xee\\x22\\x3e\\x3ch3 class\\x3d\\x22yuRUbf JtG40d MBeuO q8U8x\\x22\\x3e\\x3ca class\\x3d\\x22sXtWJb\\x22 href\\x3d\\x22(.*?)\\x22";
+            Regex re = new Regex(pattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+            MatchCollection mc = re.Matches(html);
+            ArrayList myList = new ArrayList();
+            int x = 0;
+            foreach (Match m in mc)
+            {
+                string url = HttpUtility.HtmlDecode(m.Groups[2].Value);
+                if (url.StartsWith("http") || url.StartsWith("https"))
+                {
+                    int n = url.IndexOf("?");
+                    if (n > 0)
+                        url = url.Remove(n);
+                    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");
+                }
             }
             return s.ToString();
         }

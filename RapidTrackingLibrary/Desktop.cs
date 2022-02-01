@@ -882,7 +882,7 @@ namespace RapidTrackingLibrary
             return s.ToString();
         }
 
-        public string PeopleAlsoAsk(HtmlNode node)
+        private string PeopleAlsoAsk(HtmlNode node) //included item urls code 31-01-2022
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='_eHi']/div"); // (".//h3[@class='r']/a");
@@ -895,10 +895,42 @@ namespace RapidTrackingLibrary
             if (nds == null)
                 nds = node.SelectNodes(".//div[@jsname='jIA8B']"); //08-07-2021
             if (nds == null)
+                nds = node.SelectNodes(".//div[@jsname='Cpkphb']"); //30-11-2021 people also ask titles
+            if (nds == null)
                 return string.Empty;
+            string[] titles = new string[nds.Count];//31-01-2022
+            int x = 0;
             foreach (HtmlNode nd in nds)
             {
-                s.Append("<item url=\"\" title=\"" + SetTitle(nd.InnerText) + "\" />");
+                //s.Append("<item url=\"\" title=\"" + SetTitle(nd.InnerText) + "\" />");
+                titles[x++] = nd.InnerText;
+            }
+            var res = GetPeopleAlsoAskUrls(titles);
+            if (string.IsNullOrEmpty(res))
+                foreach (var t in titles)
+                    s.Append("<item url=\"\" title=\"" + SetTitle(t) + "\" />");
+            s.Append(res);//31-01-2022
+            return s.ToString();
+        }//end of item urls code 31-01-2022
+        private string GetPeopleAlsoAskUrls(string[] titles) //People also method 31-01-2022
+        {
+            StringBuilder s = new StringBuilder();
+            //string pattern = @"WEB_ANSWERS_STANDARD_RESULT_(.*?)div class\\x3d\\x22yuRUbf\\x22\\x3e\\x3ca href\\x3d\\x22(.*?)\\x22 data-jsarwt";
+            string pattern = @"WEB_ANSWERS_STANDARD_RESULT_(.*?)div class\\x3d\\x22tF2Cxc\\x22\\x3e\\x3cdiv class\\x3d\\x22yuRUbf\\x22\\x3e\\x3ca href\\x3d\\x22(.*?)\\x22";
+            Regex re = new Regex(pattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+            MatchCollection mc = re.Matches(html);
+            ArrayList myList = new ArrayList();
+            int x = 0;
+            foreach (Match m in mc)
+            {
+                string url = HttpUtility.HtmlDecode(m.Groups[2].Value);
+                if (url.StartsWith("http") || url.StartsWith("https"))
+                {
+                    int n = url.IndexOf("?");
+                    if (n > 0)
+                        url = url.Remove(n);
+                    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");
+                }
             }
             return s.ToString();
         }

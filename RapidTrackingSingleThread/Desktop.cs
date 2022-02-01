@@ -874,7 +874,8 @@ namespace RapidTrackingSingleThread
         private string GetPeopleAlsoAskUrls(string[] titles) //People also method 31-01-2022
         {
             StringBuilder s = new StringBuilder();
-            string pattern = @"WEB_ANSWERS_STANDARD_RESULT_(.*?)div class\\x3d\\x22yuRUbf\\x22\\x3e\\x3ca href\\x3d\\x22(.*?)\\x22 data-jsarwt";
+            //string pattern = @"WEB_ANSWERS_STANDARD_RESULT_(.*?)div class\\x3d\\x22yuRUbf\\x22\\x3e\\x3ca href\\x3d\\x22(.*?)\\x22 data-jsarwt";
+            string pattern = @"WEB_ANSWERS_STANDARD_RESULT_(.*?)div class\\x3d\\x22tF2Cxc\\x22\\x3e\\x3cdiv class\\x3d\\x22yuRUbf\\x22\\x3e\\x3ca href\\x3d\\x22(.*?)\\x22";
             Regex re = new Regex(pattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
             MatchCollection mc = re.Matches(html);
             ArrayList myList = new ArrayList();
@@ -892,40 +893,6 @@ namespace RapidTrackingSingleThread
             }
             return s.ToString();
         }
-        /*private string PeopleAlsoAsk(HtmlNode node) //new method to pick item urls in people also block 19-01-2022
-        {
-            StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nds = node.SelectNodes(".//div[@jsname='F79BRe']");
-            if (nds == null)
-                return string.Empty;
-            foreach (HtmlNode nd in nds)
-            {
-                HtmlNode ndTitle = nd.SelectSingleNode(".//div[@class='psDd8d']/div");
-                if (ndTitle == null)
-                    ndTitle = nd.SelectSingleNode(".//div[@class='DUeSlb']/div");
-                if (ndTitle == null)
-                    ndTitle = nd.SelectSingleNode(".//div[@jsname='xXq91c']");
-                if (ndTitle == null)
-                    ndTitle = nd.SelectSingleNode(".//div[@jsname='bVEB4e']");
-                if (ndTitle == null)
-                    ndTitle = nd.SelectSingleNode(".//div[@jsname='ARU61']");
-                if (ndTitle == null)
-                    ndTitle = nd.SelectSingleNode(".//div[@jsname='lN6iy']");
-                if (ndTitle == null)
-                    continue;
-                HtmlNode ndUrl = nd.SelectSingleNode(".//div[@jsname='MgN2vf']/a");
-                string title = ndTitle.InnerText;
-                string url = string.Empty;
-                if (ndUrl != null)
-                    url = ndUrl.Attributes["href"].Value;
-                if (url.StartsWith("/search?"))
-                    url = string.Empty;
-                s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
-            }
-            return s.ToString();
-        }*/
-
-
         private string GetAnswerCard(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();

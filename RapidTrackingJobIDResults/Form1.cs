@@ -48,15 +48,21 @@ namespace RapidTrackingJobIDResults
 
             //this.Text = "RapidTracking_Errorkeywords_1"; //changes
             //this.Text = "RapidTracking_SingleThread_P_A_WOC_10-09-2019";
-            // this.Text = "RapidTracking_Missingkeywords_1"; // 01-09-2020
-            this.Text = "RapidTracking_NewKeywords_MissingJobIDs_GT0"; //changes //15-04-2021
+             this.Text = "RapidTracking_Missingkeywords_1"; // 01-09-2020
+            //this.Text = "RapidTracking_NewKeywords_MissingJobIDs_GT0"; //changes //15-04-2021
 
 
             Thread t = new Thread(new ThreadStart(StartProcess));
             t.SetApartmentState(ApartmentState.STA);
             t.Start();
         }
-
+        public enum stats
+        {
+            Faulted,
+            Pending,
+            Empty
+            
+        }
         private void StartProcess()
         {
             while (true)
@@ -67,11 +73,11 @@ namespace RapidTrackingJobIDResults
 
                 //string kwQry = "[GetErrorKeywords_1] '" + myDate + "'"; //changes
 
-                //string kwQry = "[GetMissingKeywords_1] '" + myDate + "'"; // 01-09-2020
+                string kwQry = "[GetMissingKeywords_1] '" + myDate + "'"; // 01-09-2020
 
                 //string kwQry = "[Tracking_DB_Keywords_Seid_103p] '" + myDate + "'";               
                 //string kwQry = "[GetCommaKeywordsP] '" + myDate + "'";               
-                string kwQry = "[GetAllNewKeywords] '" + myDate + "'"; // 15-04-2021
+                //string kwQry = "[GetAllNewKeywords] '" + myDate + "'"; // 15-04-2021
 
                 GetKeywords(kwQry);
 
@@ -93,7 +99,7 @@ namespace RapidTrackingJobIDResults
                     {
                         var doc = new HtmlAgilityPack.HtmlDocument();
                         Task<ArrayList> alresult = GetHTML(kw, Convert.ToInt32(seid),jobid);
-                        if (alresult.Status.ToString() == "Faulted")//04-01-2022
+                        if (alresult.Status.ToString() == stats.Faulted.ToString() || alresult.Status.ToString()==stats.Pending.ToString() || alresult.Status.ToString() == stats.Empty.ToString()) //31-01-2022//04-01-2022
                             throw alresult.Exception.InnerException;//04-01-2022
                         foreach (string[] src in alresult.Result)
                         {
@@ -128,7 +134,7 @@ namespace RapidTrackingJobIDResults
                                         lblCount.Text = "No. of Urls : " + count;
                                     }));
 
-                                    if (count > 0)
+                                    if (count > 20)
                                     {
                                         SendToAPI(seid, keyword, res, jobid);
                                         SendToDB(seid, keyword, res, jobid, count);
@@ -313,11 +319,11 @@ namespace RapidTrackingJobIDResults
                 //lstKWs.Items.Add("102:terry crews");
                 //lstKWs.Items.Add("102:the uninhabitable earth summary");
                 //lstKWs.Items.Add("1:rhubarbarone");
-                lstKws.Items.Add("58:protective mask:6878538795415785473");
+                //lstKws.Items.Add("1:galls bop uniforms:6893010325650552833");
                 //coronavirus rd case	140	6672286477201717249
 
             });
-            return;
+            //return;
 
             try
             {
@@ -546,7 +552,10 @@ namespace RapidTrackingJobIDResults
 
                             cbUrl[3] = "yes";
                             cnt++;
-
+                            if (response == "")//31-01-2022
+                            {
+                                throw new Exception("empty");
+                            }//31-01-2022
                             if (!string.IsNullOrEmpty(response))
                             {
                                 reslt[0] = cbUrl[0];
@@ -572,13 +581,18 @@ namespace RapidTrackingJobIDResults
                                 {
                                     throw new Exception("status is faulted");
                                 }
+                                if (status == "pending") //31-01-2022
+                                {
+                                    throw new Exception("status is pending");
+                                }
                             }//04-01-2022
                         }
                        
                         catch (Exception ex)
                         {
                             // Console.WriteLine("Result Request: " + ex.Message);//03-01-2022
-                            throw ex;//03-01-2022
+                            
+                            throw new Exception(ex.Message);//31-01-2022//03-01-2022
                         }
                     }
 

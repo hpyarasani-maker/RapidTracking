@@ -1495,8 +1495,7 @@ namespace RapidTrackingSingleThread
 
             return s.ToString();
         }
-
-        private string PeopleAlsoAsk(HtmlNode node) //included item urls code 31-01-2022
+        private string PeopleAlsoAsk(HtmlNode node)//commented 19-01-2022
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='_eHi']/div"); // (".//h3[@class='r']/a");
@@ -1514,20 +1513,45 @@ namespace RapidTrackingSingleThread
                 nds = node.SelectNodes(".//div[@jsname='lN6iy']"); //14-12-2021 tiles for Peope also ask block
             if (nds == null)
                 return string.Empty;
-            string[] titles = new string[nds.Count];//31-01-2022
-            int x = 0;
             foreach (HtmlNode nd in nds)
             {
-                //s.Append("<item url=\"\" title=\"" + SetTitle(nd.InnerText) + "\" />");
-                titles[x++] = nd.InnerText;
+                s.Append("<item url=\"\" title=\"" + SetTitle(nd.InnerText) + "\" />");
             }
-            var res = GetPeopleAlsoAskUrls(titles);
-            if (string.IsNullOrEmpty(res))
-                foreach (var t in titles)
-                    s.Append("<item url=\"\" title=\"" + SetTitle(t) + "\" />");
-            s.Append(res);//31-01-2022
             return s.ToString();
-        }//31-01-2022
+        }
+
+        /* private string PeopleAlsoAsk(HtmlNode node) //included item urls code 31-01-2022
+         {
+             StringBuilder s = new StringBuilder();
+             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='_eHi']/div"); // (".//h3[@class='r']/a");
+             if (nds == null)
+                 nds = node.SelectNodes(".//div[@class='psDd8d']/div");
+             if (nds == null)
+                 nds = node.SelectNodes(".//div[@class='DUeSlb']/div");
+             if (nds == null)
+                 nds = node.SelectNodes(".//div[@jsname='xXq91c']");
+             if (nds == null)
+                 nds = node.SelectNodes(".//div[@jsname='bVEB4e']");//12-07-2020 //missing people also ask block for recipes keywords
+             if (nds == null)
+                 nds = node.SelectNodes(".//div[@jsname='ARU61']"); // 14-12-2020
+             if (nds == null)
+                 nds = node.SelectNodes(".//div[@jsname='lN6iy']"); //14-12-2021 tiles for Peope also ask block
+             if (nds == null)
+                 return string.Empty;
+             string[] titles = new string[nds.Count];//31-01-2022
+             int x = 0;
+             foreach (HtmlNode nd in nds)
+             {
+                 //s.Append("<item url=\"\" title=\"" + SetTitle(nd.InnerText) + "\" />");
+                 titles[x++] = nd.InnerText;
+             }
+             var res = GetPeopleAlsoAskUrls(titles);
+             if (string.IsNullOrEmpty(res))
+                 foreach (var t in titles)
+                     s.Append("<item url=\"\" title=\"" + SetTitle(t) + "\" />");
+             s.Append(res);//31-01-2022
+             return s.ToString();
+         }//31-01-2022*/
 
         private string GetPeopleAlsoAskUrls(string[] titles) //People also method 31-01-2022
         {

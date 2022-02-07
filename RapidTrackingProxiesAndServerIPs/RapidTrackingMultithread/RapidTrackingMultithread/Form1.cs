@@ -516,9 +516,9 @@ namespace RapidTrackingMultithread
                     }
                     catch (Exception ex)
                     {
-                        errorList.Invoke((MethodInvoker)(delegate ()
+                        txtError.Invoke((MethodInvoker)(delegate ()
                         {
-                            errorList.Items.Add(ex.Message.ToString());
+                            txtError.Text += ex.Message.ToString() + ":" + DateTime.Now.ToString() + "\r\n";
                         }));
                     }
 
@@ -566,9 +566,9 @@ namespace RapidTrackingMultithread
                     }
                     catch (Exception ex)
                     {
-                        errorList.Invoke((MethodInvoker)(delegate ()
+                        txtError.Invoke((MethodInvoker)(delegate ()
                         {
-                            errorList.Items.Add(ex.Message.ToString());
+                            txtError.Text += ex.Message.ToString() + ":" + DateTime.Now.ToString() + "\r\n";
                         }));
                     }
 
@@ -616,9 +616,9 @@ namespace RapidTrackingMultithread
                     }
                     catch (Exception ex)
                     {
-                        errorList.Invoke((MethodInvoker)(delegate ()
+                        txtError.Invoke((MethodInvoker)(delegate ()
                         {
-                            errorList.Items.Add(ex.Message.ToString());
+                            txtError.Text += ex.Message.ToString() + ":" + DateTime.Now.ToString() + "\r\n";
                         }));
                     }
                     progress_seid12.Invoke((MethodInvoker)(delegate ()

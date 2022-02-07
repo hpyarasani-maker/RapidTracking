@@ -49,6 +49,7 @@
             this.txtError.Location = new System.Drawing.Point(350, 326);
             this.txtError.Multiline = true;
             this.txtError.Name = "txtError";
+            this.txtError.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtError.Size = new System.Drawing.Size(510, 210);
             this.txtError.TabIndex = 6;
             // 

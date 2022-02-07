@@ -60,8 +60,9 @@ namespace RapidTrackingJobIDResults
         {
             Faulted,
             Pending,
-            Empty
-            
+            Empty,
+            statuscode
+
         }
         private void StartProcess()
         {
@@ -99,7 +100,7 @@ namespace RapidTrackingJobIDResults
                     {
                         var doc = new HtmlAgilityPack.HtmlDocument();
                         Task<ArrayList> alresult = GetHTML(kw, Convert.ToInt32(seid),jobid);
-                        if (alresult.Status.ToString() == stats.Faulted.ToString() || alresult.Status.ToString()==stats.Pending.ToString() || alresult.Status.ToString() == stats.Empty.ToString()) //31-01-2022//04-01-2022
+                        if (alresult.Status.ToString() == stats.Faulted.ToString() || alresult.Status.ToString()==stats.Pending.ToString() || alresult.Status.ToString() == stats.Empty.ToString() || alresult.Status.ToString() == stats.statuscode.ToString()) //07-02-2022//31-01-2022//04-01-2022
                             throw alresult.Exception.InnerException;//04-01-2022
                         foreach (string[] src in alresult.Result)
                         {
@@ -319,7 +320,7 @@ namespace RapidTrackingJobIDResults
                 //lstKWs.Items.Add("102:terry crews");
                 //lstKWs.Items.Add("102:the uninhabitable earth summary");
                 //lstKWs.Items.Add("1:rhubarbarone");
-                //lstKws.Items.Add("1:galls bop uniforms:6893010325650552833");
+                //lstKws.Items.Add("1:oscar de la renta womens shoes:6896288853636694017");
                 //coronavirus rd case	140	6672286477201717249
 
             });
@@ -511,7 +512,8 @@ namespace RapidTrackingJobIDResults
         }
 
         async Task<ArrayList> GetOxylabsWebDataSources(SearchProperties sp,string jobid)
-        {           
+        {
+            JObject obj = null;//07-02-2022
             string username = "gpidatametrics";
             string password = "sdV5X3fcX6";
             string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
@@ -556,6 +558,13 @@ namespace RapidTrackingJobIDResults
                             {
                                 throw new Exception("empty");
                             }//31-01-2022
+                            obj = JObject.Parse(response);//07-02-2022
+                            string statuscode = obj["results"][0]["status_code"].Value<string>();//07-02-2022
+                            if (statuscode != "200")
+                            {
+                                throw new Exception("Status code : " + statuscode);
+                            }//07-02-2022 end
+
                             if (!string.IsNullOrEmpty(response))
                             {
                                 reslt[0] = cbUrl[0];
@@ -575,7 +584,7 @@ namespace RapidTrackingJobIDResults
                                 response = reader.ReadToEnd();
                                 resStream.Close();
                                 res1.Close();
-                                JObject obj = JObject.Parse(response);
+                                obj = JObject.Parse(response);
                                 status = obj["status"].Value<string>();
                                 if (status == "faulted")
                                 {
@@ -585,6 +594,7 @@ namespace RapidTrackingJobIDResults
                                 {
                                     throw new Exception("status is pending");
                                 }
+
                             }//04-01-2022
                         }
                        

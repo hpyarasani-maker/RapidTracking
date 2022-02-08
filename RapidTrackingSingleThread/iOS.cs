@@ -330,6 +330,10 @@ namespace RapidTrackingSingleThread
                             {
                                 url = GetRedirectedUrl_TextAds(n.Attributes["data-pcu"].Value);
                             }
+                            else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["data-tu"]?.Value)))//08-02-2022
+                            {
+                                url = GetRedirectedUrl_TextAds(n.Attributes["data-tu"].Value);
+                            }//08-02-2022
                             else
                             {
                                 HtmlNode n1 = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite|.//div[@class='QNz0M ellip GsCRYb']/cite");
@@ -2681,7 +2685,7 @@ namespace RapidTrackingSingleThread
         //27-08-2020
         private string GetRedirectedUrl_TextAds(string url)
         {
-            if (string.IsNullOrEmpty(url)) return string.Empty;
+            if (string.IsNullOrEmpty(url) || url.StartsWith("#")) return string.Empty; //08-02-2022
             try  //28-09-2020  try catch.
             {
                 url = url.Replace("HTTPS://", "https://").Replace("HTTP://", "http://");

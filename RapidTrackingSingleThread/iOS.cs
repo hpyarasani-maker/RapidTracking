@@ -330,9 +330,9 @@ namespace RapidTrackingSingleThread
                             {
                                 url = GetRedirectedUrl_TextAds(n.Attributes["data-pcu"].Value);
                             }
-                            else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["data-tu"]?.Value)))//08-02-2022
+                            else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.SelectSingleNode(".//span[@class='yKd8Hd qzEoUe']")?.InnerText)))//08-02-2022
                             {
-                                url = GetRedirectedUrl_TextAds(n.Attributes["data-tu"].Value);
+                                url = GetRedirectedUrl_TextAds(n.SelectSingleNode(".//span[@class='yKd8Hd qzEoUe']")?.InnerText);
                             }//08-02-2022
                             else
                             {

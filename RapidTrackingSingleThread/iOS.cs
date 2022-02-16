@@ -2075,7 +2075,7 @@ namespace RapidTrackingSingleThread
             //if (nd == null)
             //    nd = node.SelectSingleNode(".//div[@class='kp-blk EyBRub knowledge-panel OJXvsb']");//05-10-2020 commented  //13-07-2020 images block type and KP block type
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[contains(@class,'kp-blk EyBRub')]|.//div[@class='kp-hc']"); //16-02-2022//05-10-2020 included selector for missing KP block
+                nd = node.SelectSingleNode(".//div[contains(@class,'kp-blk EyBRub')]|.//div[contains(@class,'kp-hc')]"); //16-02-2022//05-10-2020 included selector for missing KP block
             if (nd != null)
             {
                 // 24-04-2020

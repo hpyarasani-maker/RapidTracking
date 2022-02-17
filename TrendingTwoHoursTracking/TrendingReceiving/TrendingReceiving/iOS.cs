@@ -1504,7 +1504,7 @@ namespace TrendingReceiving
 
             return s.ToString();
         }
-        private string PeopleAlsoAsk(HtmlNode node)//commented 19-01-2022
+        /*private string PeopleAlsoAsk(HtmlNode node)//commented 19-01-2022
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='_eHi']/div"); // (".//h3[@class='r']/a");
@@ -1527,9 +1527,9 @@ namespace TrendingReceiving
                 s.Append("<item url=\"\" title=\"" + SetTitle(nd.InnerText) + "\" />");
             }
             return s.ToString();
-        }
+        }*/
 
-        /*private string PeopleAlsoAsk(HtmlNode node) //included item urls code 31-01-2022
+        private string PeopleAlsoAsk(HtmlNode node) //included item urls code 31-01-2022
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='_eHi']/div"); // (".//h3[@class='r']/a");
@@ -2205,6 +2205,8 @@ namespace TrendingReceiving
                 nd = node.SelectSingleNode(".//div[@class='I2lQic']");//05-11-2019
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='utyL0c']");//01-05-2020
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='IbDT9d q8U8x aTI8gc RES9jf']"); //17-02-2022
             if (nd != null)
             {
                 return "Maps";

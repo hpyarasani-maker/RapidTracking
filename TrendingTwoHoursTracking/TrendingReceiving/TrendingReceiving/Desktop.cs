@@ -837,7 +837,7 @@ namespace TrendingReceiving
             }
             return s.ToString();
         }
-         private string PeopleAlsoAsk(HtmlNode node) //commented 19-01-2022
+        /* private string PeopleAlsoAsk(HtmlNode node) //commented 19-01-2022
          {
              StringBuilder s = new StringBuilder();
              HtmlNodeCollection nds = node.SelectNodes(".//div[@class='_eHi']/div"); // (".//h3[@class='r']/a");
@@ -858,8 +858,8 @@ namespace TrendingReceiving
                  s.Append("<item url=\"\" title=\"" + SetTitle(nd.InnerText) + "\" />");
              }
              return s.ToString();
-         }
-        /*private string PeopleAlsoAsk(HtmlNode node) //included item urls code 31-01-2022
+         }*/
+        private string PeopleAlsoAsk(HtmlNode node) //included item urls code 31-01-2022
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='_eHi']/div"); // (".//h3[@class='r']/a");
@@ -1533,7 +1533,7 @@ namespace TrendingReceiving
                 }
                 // changes on 08-07-2019
                 if (node.SelectSingleNode(".//img[@alt='map image']") != null || node.SelectSingleNode(".//div[@jsname='N760b']|.//div[@class='kno-mrg kno-swp']|.//div[@class='e4xoPb']|.//div[@class='H93uF']") != null || node.SelectSingleNode(".//img[contains(@data-bsrc,'/maps/')]") != null)//22-01-2022//23-08-2021 map selector//02-08-2021
-                    if (node.SelectSingleNode(".//div[@class='tF2Cxc']") != null || node.Attributes["id"]?.Value == "rhs")//16-12-2021 //10-12-2021
+                    if (node.SelectSingleNode(".//div[@class='tF2Cxc']|.//div[@class='jtfYYd']") != null || node.Attributes["id"]?.Value == "rhs") //17-02-2022//16-12-2021 //10-12-2021
                         return false;//10-12-2021
                     else //10-12-2021
                         return true;

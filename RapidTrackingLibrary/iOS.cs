@@ -371,6 +371,10 @@ namespace RapidTrackingLibrary
                             {
                                 url = GetRedirectedUrl_TextAds(n.Attributes["data-pcu"].Value);
                             }
+                            else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.SelectSingleNode(".//span[@class='yKd8Hd qzEoUe']")?.InnerText)))//08-02-2022
+                            {
+                                url = GetRedirectedUrl_TextAds(n.SelectSingleNode(".//span[@class='yKd8Hd qzEoUe']")?.InnerText);
+                            }//08-02-2022
                             else
                             {
                                 HtmlNode n1 = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite|.//div[@class='QNz0M ellip GsCRYb']/cite");
@@ -452,6 +456,7 @@ namespace RapidTrackingLibrary
                    || doc.DocumentNode.SelectSingleNode("//div[@class='mnr-c IGtt6d imgac qs-ic fp-w cTMkTb']") != null
                    || doc.DocumentNode.SelectSingleNode("//div[@class='IGtt6d imgac mnr-c cTMkTb']") != null //01-02-2022 //16-09-2021 missing ProductListAds
                    || doc.DocumentNode.SelectSingleNode("//div[@id='activities-carousel-container']") != null //11-01-2022
+                   || doc.DocumentNode.SelectSingleNode("//div[@class='mnr-c Ioy6jb']") != null //07-02-2022
                    )
                 {
                     HtmlNode pla = crNode.SelectSingleNode(".//div[contains(@class, 'commercial-unit-mobile-top')]");
@@ -471,11 +476,13 @@ namespace RapidTrackingLibrary
                         if (h3 == null)
                             h3 = pla.SelectSingleNode(".//div[@class='qgYQZb']/div");   // 29-11-2019
                         if (h3 == null)
+                            h3 = pla.SelectSingleNode(".//div[@class='jGAUQb']"); //07-02-2022
+                        if (h3 == null)
                             h3 = pla.SelectSingleNode(".//h3[@class='TWApbd']/div[@class='xc15De']");  //11-01-2022
                         if (h3 != null)
                         {
                             if ((pla.SelectSingleNode(".//h3[contains(@class,'r')]") != null && pla.SelectSingleNode(".//h3[@role='heading']") != null) //13-11-2019 //20-07-2020 included "contains" 
-                                || h3.InnerText.StartsWith("Shop for") || h3.InnerText.StartsWith("See ") || WebUtility.HtmlDecode(h3.InnerText).StartsWith("Ads·See ")
+                                || h3.InnerText.StartsWith("Shop for") || h3.InnerText.StartsWith("See ") || WebUtility.HtmlDecode(h3.InnerText).StartsWith("Ads·See ") || h3.InnerText.StartsWith("See&nbsp;")//07-02-2022
                                 || h3.InnerText.StartsWith("Ver ") || WebUtility.HtmlDecode(h3.InnerText).StartsWith("Anuncios·Ver ")  //15-07-2020 included for product lists ads
                                 || h3.InnerText.StartsWith("Anúncios&middot;Ver ") || WebUtility.HtmlDecode(h3.InnerText).StartsWith("Ads·") //09-08-2021 //10-07-2021 //16-07-2020
                                 || (pla.SelectSingleNode(".//h3[contains(@class,'xZu9ed mfMhoc')]") != null && pla.SelectSingleNode(".//h3[@role='heading']") != null) //10-07-2021
@@ -485,7 +492,8 @@ namespace RapidTrackingLibrary
                                 s.Append("<block type=\"productListedAds\" url=\"\">");
 
                                 HtmlNodeCollection cl = pla.SelectNodes(".//a[@class='pla-unit eUPzHb']|.//div[@class='mnr-c pla-unit']/a[2]|.//a[@class='plantl pla-unit-single-clickable-target clickable-card']|.//g-inner-card[contains(@class,'stOtnd VoEfsd')]/div/div/a");//25-09-2020 updated contains //15-07-2020 product list ads
-
+                                if (cl == null)
+                                    cl = pla.SelectNodes(".//div[@class='ZPze1e']/a"); //07-02-2022
                                 if (cl == null)
                                     cl = pla.SelectNodes(".//a[@class='pla-unit']");
                                 if (cl == null)
@@ -598,6 +606,10 @@ namespace RapidTrackingLibrary
                                 {
                                     url = GetRedirectedUrl_TextAds(n.Attributes["data-pcu"].Value);
                                 }
+                                else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.SelectSingleNode(".//span[@class='yKd8Hd qzEoUe']")?.InnerText)))//08-02-2022
+                                {
+                                    url = GetRedirectedUrl_TextAds(n.SelectSingleNode(".//span[@class='yKd8Hd qzEoUe']")?.InnerText);
+                                }//08-02-2022
                                 else
                                 {
                                     HtmlNode n1 = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite|.//div[@class='QNz0M ellip GsCRYb']/cite");
@@ -2072,7 +2084,7 @@ namespace RapidTrackingLibrary
             //if (nd == null)
             //    nd = node.SelectSingleNode(".//div[@class='kp-blk EyBRub knowledge-panel OJXvsb']");//05-10-2020 commented  //13-07-2020 images block type and KP block type
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[contains(@class,'kp-blk EyBRub')]"); //05-10-2020 included selector for missing KP block
+                nd = node.SelectSingleNode(".//div[contains(@class,'kp-blk EyBRub')]|.//div[contains(@class,'kp-hc')]"); //16-02-2022 //05-10-2020 included selector for missing KP block
             if (nd != null)
             {
                 // 24-04-2020
@@ -2207,6 +2219,8 @@ namespace RapidTrackingLibrary
                 nd = node.SelectSingleNode(".//div[@class='I2lQic']");//05-11-2019
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='utyL0c']");//01-05-2020
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='IbDT9d q8U8x aTI8gc RES9jf']"); //17-02-2022
             if (nd != null)
             {
                 return "Maps";
@@ -2432,7 +2446,7 @@ namespace RapidTrackingLibrary
                 return false;
 
             //22-11-2019
-            nd = node.SelectSingleNode(".//div[@class='g kno-result rQUFld mnr-c g-blk']|.//w-answer/div[@class='MUxGbd t51gnb lyLwlc lEBKkf']"); //01-10-2020 Answered Card selector included
+            nd = node.SelectSingleNode(".//div[@class='g kno-result rQUFld mnr-c g-blk']|.//w-answer/div[@class='MUxGbd t51gnb lyLwlc lEBKkf']|.//div[@class='ifM9O']");//16-02-2022 //01-10-2020 Answered Card selector included
             if (nd != null)
             {
                 return true;
@@ -2687,7 +2701,7 @@ namespace RapidTrackingLibrary
         //27-08-2020
         public string GetRedirectedUrl_TextAds(string url)
         {
-            if (string.IsNullOrEmpty(url)) return string.Empty;
+            if (string.IsNullOrEmpty(url) || url.StartsWith("#")) return string.Empty; //08-02-2022
             try  //28-09-2020  try catch.
             {
                 url = url.Replace("HTTPS://", "https://").Replace("HTTP://", "http://");

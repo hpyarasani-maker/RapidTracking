@@ -830,7 +830,29 @@ namespace RapidTrackingMultithread
             }
             return s.ToString();
         }
-        private string PeopleAlsoAsk(HtmlNode node) //commented 19-01-2022
+        /* private string PeopleAlsoAsk(HtmlNode node) //commented 19-01-2022
+         {
+             StringBuilder s = new StringBuilder();
+             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='_eHi']/div"); // (".//h3[@class='r']/a");
+             if (nds == null)
+                 nds = node.SelectNodes(".//div[@class='psDd8d']/div");
+             if (nds == null)
+                 nds = node.SelectNodes(".//div[@class='DUeSlb']/div");
+             if (nds == null)
+                 nds = node.SelectNodes(".//div[@jsname='xXq91c']");
+             if (nds == null)
+                 nds = node.SelectNodes(".//div[@jsname='jIA8B']"); //08-07-2021
+             if (nds == null)
+                 nds = node.SelectNodes(".//div[@jsname='Cpkphb']"); //30-11-2021 people also ask titles
+             if (nds == null)
+                 return string.Empty;
+             foreach (HtmlNode nd in nds)
+             {
+                 s.Append("<item url=\"\" title=\"" + SetTitle(nd.InnerText) + "\" />");
+             }
+             return s.ToString();
+         }*/
+        private string PeopleAlsoAsk(HtmlNode node) //included item urls code 31-01-2022
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='_eHi']/div"); // (".//h3[@class='r']/a");
@@ -846,29 +868,7 @@ namespace RapidTrackingMultithread
                 nds = node.SelectNodes(".//div[@jsname='Cpkphb']"); //30-11-2021 people also ask titles
             if (nds == null)
                 return string.Empty;
-            foreach (HtmlNode nd in nds)
-            {
-                s.Append("<item url=\"\" title=\"" + SetTitle(nd.InnerText) + "\" />");
-            }
-            return s.ToString();
-        }
-        /*private string PeopleAlsoAsk(HtmlNode node) //included item urls code 31-01-2022
-        {
-            StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='_eHi']/div"); // (".//h3[@class='r']/a");
-            if (nds == null)
-                nds = node.SelectNodes(".//div[@class='psDd8d']/div");
-            if (nds == null)
-                nds = node.SelectNodes(".//div[@class='DUeSlb']/div");
-            if (nds == null)
-                nds = node.SelectNodes(".//div[@jsname='xXq91c']");
-            if (nds == null)
-                nds = node.SelectNodes(".//div[@jsname='jIA8B']"); //08-07-2021
-            if (nds == null)
-                nds = node.SelectNodes(".//div[@jsname='Cpkphb']"); //30-11-2021 people also ask titles
-            if (nds == null)
-                return string.Empty;
-           string[] titles = new string[nds.Count];//31-01-2022
+            string[] titles = new string[nds.Count];//31-01-2022
             int x = 0;
             foreach (HtmlNode nd in nds)
             {
@@ -876,8 +876,8 @@ namespace RapidTrackingMultithread
                 titles[x++] = nd.InnerText;
             }
             var res = GetPeopleAlsoAskUrls(titles);
-            if(string.IsNullOrEmpty(res))
-                foreach(var t in titles)
+            if (string.IsNullOrEmpty(res))
+                foreach (var t in titles)
                     s.Append("<item url=\"\" title=\"" + SetTitle(t) + "\" />");
             s.Append(res);//31-01-2022
             return s.ToString();
@@ -1463,7 +1463,7 @@ namespace RapidTrackingMultithread
                 try
                 {
                     //if (node.SelectSingleNode(".//div[@class='g']/div[@class='g jNVrwc Y4pkMc']") != null) return false; //07-12-2021
-                    if (node.SelectSingleNode(".//div[@class='g jNVrwc Y4pkMc']|.//div[@class='g eejeod up9jud']") != null) return false;//02-02-2022//31-12-2021 missing CLinks
+                    if (node.SelectSingleNode(".//div[@class='g jNVrwc Y4pkMc']|.//div[@class='g tF2Cxc']|.//div[@class='g eejeod up9jud']") != null) return false;//15-02-2022//02-02-2022//31-12-2021 missing CLinks
                     if (node.SelectSingleNode(".//div[@class='twQ0Be']|.//div[@jsname='N760b']|.//div[@jsname='wRSfy']|.//div[@class='e2BEnf U7izfe hWIMdd q8U8x']|.//div[@jsname='A6RGif']") != null) return true;//28-12-2021//10-12-2021//09-12-2021 //08-12-2021 PAlsoB   //30-08-2021 video card
                     if (node.SelectSingleNode(".//div[@class='osrp-blk']|.//div[@class='tpa-cc']") != null && node.SelectSingleNode(".//div[@class='l44Vof']") == null) //31-12-2021
                         return false; //20-08-2021
@@ -1485,7 +1485,7 @@ namespace RapidTrackingMultithread
                         && node.SelectSingleNode(".//div[@class='Brgz0 tw-res']|.//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']") == null)
                         bVal = false;
 
-                    if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null || node.Attributes["class"]?.Value == "kp-blk c2xzTb")//23-12-2021//07-12-2020 for answercard block 
+                    if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]|.//div[contains(@class,'c2xzTb')]") != null || node.Attributes["class"]?.Value == "kp-blk c2xzTb")//16-02-2022//23-12-2021//07-12-2020 for answercard block 
                         return true;//22-12-2021 commented
                     //if (node.SelectSingleNode(".//div[@class='kp-blk Wnoohf OJXvsb']") != null)//22-12-2021
                     //    return false;
@@ -1526,7 +1526,7 @@ namespace RapidTrackingMultithread
                 }
                 // changes on 08-07-2019
                 if (node.SelectSingleNode(".//img[@alt='map image']") != null || node.SelectSingleNode(".//div[@jsname='N760b']|.//div[@class='kno-mrg kno-swp']|.//div[@class='e4xoPb']|.//div[@class='H93uF']") != null || node.SelectSingleNode(".//img[contains(@data-bsrc,'/maps/')]") != null)//22-01-2022//23-08-2021 map selector//02-08-2021
-                    if (node.SelectSingleNode(".//div[@class='tF2Cxc']") != null || node.Attributes["id"]?.Value == "rhs")//16-12-2021 //10-12-2021
+                    if (node.SelectSingleNode(".//div[@class='tF2Cxc']|.//div[@class='jtfYYd']") != null || node.Attributes["id"]?.Value == "rhs") //17-02-2022//16-12-2021 //10-12-2021
                         return false;//10-12-2021
                     else //10-12-2021
                         return true;

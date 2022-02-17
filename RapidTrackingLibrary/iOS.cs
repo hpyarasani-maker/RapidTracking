@@ -736,7 +736,7 @@ namespace RapidTrackingLibrary
                     nds = (node.SelectNodes(".//div[contains(@id,'tsuid')]//a[@class='Xhbgy']") != null && node.SelectNodes(".//div[contains(@class,'KJDcUb')]") != null) ? nds = node.SelectNodes(".//div[@class='mnr-c xpd O9g5cc uUPGi']") : nds = null;
                 //end 26-03-2021
                 if (nds == null)
-                    nds = node.SelectNodes(".//div[@class='BYM4Nd']|.//div[@class='mnr-c OH1ZUd xpd O9g5cc uUPGi']");//27-01-2022 classic links //14-01-2022
+                    nds = node.SelectNodes(".//div[@class='BYM4Nd']|.//div[@class='mnr-c OH1ZUd xpd O9g5cc uUPGi']|.//div[contains(@class,'jGGQ5e')]");//17-02-2022;//27-01-2022 classic links //14-01-2022
                 if (nds == null)
                     if (node.SelectSingleNode(".//div[contains(@class,'YgXj7b')]") == null) //08-05-2021 applied contains//19-01-2021
                         nds = node.SelectNodes(".//div[contains(@class,'KJDcUb')]|.//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']|.//g-card[@id='tscffb']|.//div[@class='mnr-c PHap3c']|.//div[@jsname='wRSfy']|.//g-card[@class='g F6CFcc']|.//div[@class='mnr-c xpd O9g5cc uUPGi']"); //19-11-2021 //28-10-2021//12-10-2021//09-02-2021//27-01-2021 included missing selector//05-01-2021 //04-01-2021 missing classic link//18-12-2020 sitelinks missing selector //15-12-2020
@@ -910,7 +910,7 @@ namespace RapidTrackingLibrary
                              || nd.Attributes["class"].Value == "d5oMvf KJDcUb" || nd.Attributes["class"].Value == "c6gxKe card-section" //20-05-2021) //09-02-2021
                              || nd.Attributes["class"].Value.Contains("KJDcUb") || nd.Attributes["class"].Value == "mnr-c OH1ZUd xpd O9g5cc uUPGi" //27-01-2022 //09-09-2021 missing classic links //09-09-2021 missing classic links
                               || nd.Attributes["class"].Value == "wU9Tkd" || nd.Attributes["class"].Value == "P8ujBc v5yQqb jqWpsc" //01-02-2022 //10-07-2021
-                             || nd.Attributes["class"].Value == "g card-section") //30-08-2021 missing classic link
+                             || nd.Attributes["class"].Value.Contains("jGGQ5e") || nd.Attributes["class"].Value == "g card-section") //17-02-2022 //30-08-2021 missing classic link
                             {
                                 //17-10-2019
                                 string vdos = string.Empty;

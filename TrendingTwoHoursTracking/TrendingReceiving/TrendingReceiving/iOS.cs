@@ -1581,6 +1581,8 @@ namespace TrendingReceiving
                     s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");
                 }
             }
+            for (; x < titles.Length; x++)//18-02-2022
+                s.Append("<item url=\"\" title=\"" + SetTitle(titles[x]) + "\" />");//18-02-2022
             return s.ToString();
         }
         private string GetAnswerCard(HtmlNode node)

@@ -1601,9 +1601,12 @@ namespace RapidTrackingLibrary
                     int n = url.IndexOf("?");
                     if (n > 0)
                         url = url.Remove(n);
-                    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");
+                    if (x < titles.Length)//22-02-2022
+                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");//22-02-2022
                 }
             }
+            for (; x < titles.Length; x++)//18-02-2022
+                s.Append("<item url=\"\" title=\"" + SetTitle(titles[x]) + "\" />");//18-02-2022
             return s.ToString();
         }
 

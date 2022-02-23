@@ -902,7 +902,8 @@ namespace RapidTrackingJobIDResults
                     int n = url.IndexOf("?");
                     if (n > 0)
                         url = url.Remove(n);
-                    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");
+                    if (x < titles.Length)//22-02-2022
+                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");//22-02-2022
                 }
             }
             for (; x < titles.Length; x++)//18-02-2022
@@ -1363,7 +1364,7 @@ namespace RapidTrackingJobIDResults
             if (nd == null)
                 nd = node.SelectSingleNode(".//a[contains(@data-url,'/maps/')]");//23-08-2021 map selector
             if (nd == null)
-                nd = node.SelectSingleNode(".//img[contains(@alt,'Map of')]");//27-12-2021 maps
+                nd = node.SelectSingleNode(".//img[contains(@alt,'Map of')]|.//div[@jscontroller='TVzfQb']");//21-02-2022//27-12-2021 maps
             if (nd != null)
             {
                 return "Maps";

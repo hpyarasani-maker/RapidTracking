@@ -2140,6 +2140,8 @@ namespace RapidTrackingLibrary
                 nd = node.SelectSingleNode(".//w-answer/div[@class='MUxGbd t51gnb lyLwlc lEBKkf']"); //29-09-2020 answer card
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='PZPZlf hb8SAc']");//21-12-2020 selector for answer card block
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='ifM9O']"); //28-02-2022
             if (nd != null)
             {
                 if (node.SelectSingleNode(".//div[@class='FEoF4d']") == null)//08-10-2021 Answer Card

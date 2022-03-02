@@ -892,7 +892,7 @@ namespace RapidTrackingSingleThread
             s.Append(res);//31-01-2022
             return s.ToString();
         }//end of item urls code 31-01-2022*/
-        private string GetPeopleAlsoAskUrls(string[] titles) //People also method 31-01-2022
+        /*private string GetPeopleAlsoAskUrls(string[] titles) //People also method 31-01-2022
         {
             StringBuilder s = new StringBuilder();
             //string pattern = @"WEB_ANSWERS_STANDARD_RESULT_(.*?)div class\\x3d\\x22yuRUbf\\x22\\x3e\\x3ca href\\x3d\\x22(.*?)\\x22 data-jsarwt";
@@ -915,6 +915,42 @@ namespace RapidTrackingSingleThread
             }
             for (; x < titles.Length; x++)//18-02-2022
                 s.Append("<item url=\"\" title=\"" + SetTitle(titles[x]) + "\" />");//18-02-2022
+            return s.ToString();
+        }*/
+        private string GetPeopleAlsoAskUrls(string[] titles) //People also method 02-03-2022
+        {
+            StringBuilder s = new StringBuilder();
+            string pattern = @"WEB_ANSWERS_STANDARD_RESULT_(.*?)div class\\x3d\\x22tF2Cxc\\x22\\x3e\\x3cdiv class\\x3d\\x22yuRUbf\\x22\\x3e\\x3ca href\\x3d\\x22(.*?)\\x22";
+            Regex re = new Regex(pattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+            MatchCollection mc = re.Matches(html);
+            ArrayList myList = new ArrayList();
+            int x = 0;
+            foreach (Match m in mc)
+            {
+                string url = HttpUtility.HtmlDecode(m.Groups[2].Value);
+                if (url.StartsWith("http") || url.StartsWith("https"))
+                {
+                    int n = url.IndexOf("?");
+                    if (n > 0)
+                        url = url.Remove(n);
+                    //02-03-2022
+                    //if(x < titles.Length)
+                    //s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");
+                }
+                string textPattern = @"\\x3cspan class\\x3d\\x22hgKElc\\x22\\x3e(.*?)\\x3c/span\\x3e";
+                Regex _rx = new Regex(textPattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                Match _m = _rx.Match(m.Groups[0].Value);
+                string text = string.Empty;
+                if (_m.Success)
+                {
+                    text = HttpUtility.HtmlDecode(_m.Groups[1].Value).Replace(@"\x3cb\x3e", "").Replace(@"\x3c/b\x3e", "");
+                }
+                if (x < titles.Length)
+                    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" text=\"" + text + "\" />");
+                //end 02-03-2022
+            }
+            for (; x < titles.Length; x++)
+                s.Append("<item url=\"\" title=\"" + SetTitle(titles[x]) + "\" text=\"\" />");
             return s.ToString();
         }
         private string GetAnswerCard(HtmlNode node)

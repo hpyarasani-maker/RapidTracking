@@ -199,7 +199,8 @@ namespace RapidTrackingSingleThread
                 node = rcNode.SelectSingleNode(".//div[@class='UDZeY fAgajc OTFaAf']");  // 27-05-2020
             if (node == null)
                 node = rcNode.SelectSingleNode(".//div[@class='NFQFxe mod']");  // 01-06-2020
-
+            if (node == null)
+                node = rcNode.SelectSingleNode(".//div[contains(@class, 'knowledge-panel')]");//03-03-2022
             if (node != null)     //'kp-blk knowledge-panel _Rqb _RJe']") != null) //|.//div[@role='heading']/div[1]/span
             {
                 s.Append("<block type=\"knowledgeGraph\" url=\"\" />");
@@ -1516,6 +1517,7 @@ namespace RapidTrackingSingleThread
                     if (node.SelectSingleNode(".//div[@class='twQ0Be']|.//div[@jsname='N760b']|.//div[@jsname='wRSfy']|.//div[@class='e2BEnf U7izfe hWIMdd q8U8x']|.//div[@jsname='A6RGif']") != null) return true;//28-12-2021//10-12-2021//09-12-2021 //08-12-2021 PAlsoB   //30-08-2021 video card
                     if (node.SelectSingleNode(".//div[@class='osrp-blk']|.//div[@class='tpa-cc']") != null && node.SelectSingleNode(".//div[@class='l44Vof']") == null) //31-12-2021
                         return false; //20-08-2021
+                    if (node.Attributes["id"]?.Value == "rhs") return false;//03-03-2022
                     //02-12-2020
                     HtmlNode nd = node.SelectSingleNode(".//div[@role='heading']|.//div[@class='UDZeY OTFaAf']"); //02-07-2021
                     

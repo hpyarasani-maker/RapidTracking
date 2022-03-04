@@ -2267,6 +2267,8 @@ namespace RapidTrackingLibrary
                 nd = node.SelectSingleNode(".//div[@class='utyL0c']");//01-05-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='IbDT9d q8U8x aTI8gc RES9jf']"); //17-02-2022
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='IEBeid']"); //04-03-2022
             if (nd != null)
             {
                 return "Maps";

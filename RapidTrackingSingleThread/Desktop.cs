@@ -1404,7 +1404,7 @@ namespace RapidTrackingSingleThread
 
             nd = node.SelectSingleNode(".//*[@id='lu_map']");
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='xERobd']|.//div[@class='H93uF']");//22-01-2022  //changed on 26-06-2019
+                nd = node.SelectSingleNode(".//div[@class='xERobd']|.//div[@class='H93uF']|.//div[@class='CH6Bmd']");//05-03-2022//22-01-2022  //changed on 26-06-2019
             if (nd == null)
                 nd = node.SelectSingleNode(".//a[contains(@data-url,'/maps/')]");//23-08-2021 map selector
             if (nd == null)

@@ -2204,7 +2204,7 @@ namespace RapidTrackingSingleThread
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@id='tsuid196']");
              if (nd != null)
-                if (!node.InnerText.Contains("Popular products") && node.SelectSingleNode(".//div[@class='I2lQic']") == null)//24-09-2021 maps //29-06-2021 avoiding wrong block
+                if (!node.InnerText.Contains("Popular products") && node.SelectSingleNode(".//div[@class='I2lQic']") == null && node.SelectSingleNode(".//div[@class='IEBeid']") == null)//09-03-2022//24-09-2021 maps //29-06-2021 avoiding wrong block
                     if (node.SelectSingleNode(".//div[contains(@class,'qdrjAc Dwsemf')]|.//div[contains(@class,'zTpPx')]") == null) //28-10-2021
                         return "Videos";
 

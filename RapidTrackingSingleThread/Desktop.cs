@@ -882,14 +882,14 @@ namespace RapidTrackingSingleThread
             int x = 0;
             foreach (Match m in mc)
             {
-                string url = HttpUtility.HtmlDecode(m.Groups[2].Value);
+                string url = HttpUtility.HtmlDecode(HttpUtility.HtmlEncode(m.Groups[2].Value));
                 if (url.StartsWith("http") || url.StartsWith("https"))
                 {
                     //int n = url.IndexOf("\x3d");
                     //if (n > 0)
                     //    url = url.Remove(n);
-                    if (url.Contains(@"\x3d"))
-                        url = url.Replace(@"\x3d","="); //10-02-2022
+                    if (url.Contains(@"\x3d") || url.Contains(@"\x26amp;vl=en"))
+                        url = url.Replace(@"\x3d", "=").Replace(@"\x26amp;vl=en", ""); //10-03-2022
                     if (x < titles.Length)//22-02-2022
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");//22-02-2022
                 }

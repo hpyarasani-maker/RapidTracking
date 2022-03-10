@@ -1626,9 +1626,11 @@ namespace RapidTrackingLibrary
                 string url = HttpUtility.HtmlDecode(m.Groups[2].Value);
                 if (url.StartsWith("http") || url.StartsWith("https"))
                 {
-                    int n = url.IndexOf("%3F");
-                    if (n > 0)
-                        url = url.Remove(n);
+                    //int n = url.IndexOf("%3F");
+                    //if (n > 0)
+                    //    url = url.Remove(n);
+                   if (url.Contains(@"\x3d") || url.Contains(@"\x26amp;vl=en"))
+                    url = url.Replace(@"\x3d", "=").Replace(@"\x26amp;vl=en",""); //10-03-2022
                     if (x < titles.Length)//22-02-2022
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");//22-02-2022
                 }
@@ -1650,9 +1652,11 @@ namespace RapidTrackingLibrary
                 string url = HttpUtility.HtmlDecode(m.Groups[2].Value);
                 if (url.StartsWith("http") || url.StartsWith("https"))
                 {
-                    int n = url.IndexOf("%3F");
-                    if (n > 0)
-                        url = url.Remove(n);
+                    //int n = url.IndexOf("%3F");
+                    //if (n > 0)
+                    //    url = url.Remove(n);
+                    if (url.Contains(@"\x3d") || url.Contains(@"\x26amp;vl=en"))
+                        url = url.Replace(@"\x3d", "=").Replace(@"\x26amp;vl=en", ""); //10-03-2022
                     //04-03-2022
                     //    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");
                     //}

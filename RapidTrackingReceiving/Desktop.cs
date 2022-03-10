@@ -887,6 +887,8 @@ namespace Oxylabs_BulkKeywords
                     //int n = url.IndexOf("%3F");
                     //if (n > 0)
                     //    url = url.Remove(n);
+                    if (url.Contains(@"\x3d"))
+                        url = url.Replace(@"\x3d", "="); //10-02-2022
                     if (x < titles.Length)//22-02-2022
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");//22-02-2022
                 }

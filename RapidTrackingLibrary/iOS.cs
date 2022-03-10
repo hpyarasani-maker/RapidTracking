@@ -1556,6 +1556,31 @@ namespace RapidTrackingLibrary
 
             return s.ToString();
         }
+        /*private string PeopleAlsoAsk(HtmlNode node)//commented 19-01-2022
+       {
+           StringBuilder s = new StringBuilder();
+           HtmlNodeCollection nds = node.SelectNodes(".//div[@class='_eHi']/div"); // (".//h3[@class='r']/a");
+           if (nds == null)
+               nds = node.SelectNodes(".//div[@class='psDd8d']/div");
+           if (nds == null)
+               nds = node.SelectNodes(".//div[@class='DUeSlb']/div");
+           if (nds == null)
+               nds = node.SelectNodes(".//div[@jsname='xXq91c']");
+           if (nds == null)
+               nds = node.SelectNodes(".//div[@jsname='bVEB4e']");//12-07-2020 //missing people also ask block for recipes keywords
+           if (nds == null)
+               nds = node.SelectNodes(".//div[@jsname='ARU61']"); // 14-12-2020
+           if (nds == null)
+               nds = node.SelectNodes(".//div[@jsname='lN6iy']"); //14-12-2021 tiles for Peope also ask block
+           if (nds == null)
+               return string.Empty;
+           foreach (HtmlNode nd in nds)
+           {
+               s.Append("<item url=\"\" title=\"" + SetTitle(nd.InnerText) + "\" />");
+           }
+           return s.ToString();
+       }*/
+
 
         private string PeopleAlsoAsk(HtmlNode node) //included item urls code 31-01-2022
         {
@@ -1603,7 +1628,7 @@ namespace RapidTrackingLibrary
                 string url = HttpUtility.HtmlDecode(m.Groups[2].Value);
                 if (url.StartsWith("http") || url.StartsWith("https"))
                 {
-                    int n = url.IndexOf("?");
+                    int n = url.IndexOf("%3F");
                     if (n > 0)
                         url = url.Remove(n);
                     if (x < titles.Length)//22-02-2022
@@ -1627,7 +1652,7 @@ namespace RapidTrackingLibrary
                 string url = HttpUtility.HtmlDecode(m.Groups[2].Value);
                 if (url.StartsWith("http") || url.StartsWith("https"))
                 {
-                    int n = url.IndexOf("?");
+                    int n = url.IndexOf("%3F");
                     if (n > 0)
                         url = url.Remove(n);
                     //04-03-2022

@@ -841,28 +841,6 @@ namespace RapidTrackingSingleThread
             }
             return s.ToString();
         }
-       /* private string PeopleAlsoAsk(HtmlNode node) //commented 19-01-2022
-        {
-            StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='_eHi']/div"); // (".//h3[@class='r']/a");
-            if (nds == null)
-                nds = node.SelectNodes(".//div[@class='psDd8d']/div");
-            if (nds == null)
-                nds = node.SelectNodes(".//div[@class='DUeSlb']/div");
-            if (nds == null)
-                nds = node.SelectNodes(".//div[@jsname='xXq91c']");
-            if (nds == null)
-                nds = node.SelectNodes(".//div[@jsname='jIA8B']"); //08-07-2021
-            if (nds == null)
-                nds = node.SelectNodes(".//div[@jsname='Cpkphb']"); //30-11-2021 people also ask titles
-            if (nds == null)
-                return string.Empty;
-            foreach (HtmlNode nd in nds)
-            {
-                s.Append("<item url=\"\" title=\"" + SetTitle(nd.InnerText) + "\" />");
-            }
-            return s.ToString();
-        }*/
         private string PeopleAlsoAsk(HtmlNode node) //included item urls code 31-01-2022
         {
             StringBuilder s = new StringBuilder();
@@ -893,7 +871,7 @@ namespace RapidTrackingSingleThread
             s.Append(res);//31-01-2022
             return s.ToString();
         }//end of item urls code 31-01-2022*/
-        /*private string GetPeopleAlsoAskUrls(string[] titles) //People also method 31-01-2022
+        private string GetPeopleAlsoAskUrls(string[] titles) //People also method 31-01-2022
         {
             StringBuilder s = new StringBuilder();
             //string pattern = @"WEB_ANSWERS_STANDARD_RESULT_(.*?)div class\\x3d\\x22yuRUbf\\x22\\x3e\\x3ca href\\x3d\\x22(.*?)\\x22 data-jsarwt";
@@ -907,7 +885,7 @@ namespace RapidTrackingSingleThread
                 string url = HttpUtility.HtmlDecode(m.Groups[2].Value);
                 if (url.StartsWith("http") || url.StartsWith("https"))
                 {
-                    int n = url.IndexOf("?");
+                    int n = url.IndexOf("%3F");
                     if (n > 0)
                         url = url.Remove(n);
                     if (x < titles.Length)//22-02-2022
@@ -917,8 +895,8 @@ namespace RapidTrackingSingleThread
             for (; x < titles.Length; x++)//18-02-2022
                 s.Append("<item url=\"\" title=\"" + SetTitle(titles[x]) + "\" />");//18-02-2022
             return s.ToString();
-        }*/
-        private string GetPeopleAlsoAskUrls(string[] titles) //People also method 02-03-2022
+        }
+        /*private string GetPeopleAlsoAskUrls(string[] titles) //People also method 02-03-2022
         {
             StringBuilder s = new StringBuilder();
             string pattern = @"WEB_ANSWERS_STANDARD_RESULT_(.*?)div class\\x3d\\x22tF2Cxc\\x22\\x3e\\x3cdiv class\\x3d\\x22yuRUbf\\x22\\x3e\\x3ca href\\x3d\\x22(.*?)\\x22";
@@ -931,7 +909,7 @@ namespace RapidTrackingSingleThread
                 string url = HttpUtility.HtmlDecode(m.Groups[2].Value);
                 if (url.StartsWith("http") || url.StartsWith("https"))
                 {
-                    int n = url.IndexOf("?");
+                    int n = url.IndexOf("%3F");
                     if (n > 0)
                         url = url.Remove(n);
                     //02-03-2022
@@ -953,7 +931,7 @@ namespace RapidTrackingSingleThread
             for (; x < titles.Length; x++)
                 s.Append("<item url=\"\" title=\"" + SetTitle(titles[x]) + "\" text=\"\" />");
             return s.ToString();
-        }
+        }*/
         private string GetAnswerCard(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();

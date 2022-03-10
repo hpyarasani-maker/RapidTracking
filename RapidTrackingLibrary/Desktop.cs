@@ -882,7 +882,28 @@ namespace RapidTrackingLibrary
             }
             return s.ToString();
         }
-
+      /*private string PeopleAlsoAsk(HtmlNode node) //commented 19-01-2022
+        {
+          StringBuilder s = new StringBuilder();
+          HtmlNodeCollection nds = node.SelectNodes(".//div[@class='_eHi']/div"); // (".//h3[@class='r']/a");
+          if (nds == null)
+              nds = node.SelectNodes(".//div[@class='psDd8d']/div");
+          if (nds == null)
+              nds = node.SelectNodes(".//div[@class='DUeSlb']/div");
+          if (nds == null)
+              nds = node.SelectNodes(".//div[@jsname='xXq91c']");
+          if (nds == null)
+              nds = node.SelectNodes(".//div[@jsname='jIA8B']"); //08-07-2021
+          if (nds == null)
+              nds = node.SelectNodes(".//div[@jsname='Cpkphb']"); //30-11-2021 people also ask titles
+          if (nds == null)
+              return string.Empty;
+          foreach (HtmlNode nd in nds)
+          {
+              s.Append("<item url=\"\" title=\"" + SetTitle(nd.InnerText) + "\" />");
+          }
+          return s.ToString();
+        }*/
         private string PeopleAlsoAsk(HtmlNode node) //included item urls code 31-01-2022
         {
             StringBuilder s = new StringBuilder();
@@ -926,7 +947,7 @@ namespace RapidTrackingLibrary
                 string url = HttpUtility.HtmlDecode(m.Groups[2].Value);
                 if (url.StartsWith("http") || url.StartsWith("https"))
                 {
-                    int n = url.IndexOf("?");
+                    int n = url.IndexOf("%3F");
                     if (n > 0)
                         url = url.Remove(n);
                     //02-03-2022

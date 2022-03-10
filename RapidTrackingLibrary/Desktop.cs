@@ -904,7 +904,7 @@ namespace RapidTrackingLibrary
           }
           return s.ToString();
         }*/
-        private string PeopleAlsoAsk(HtmlNode node) //included item urls code 31-01-2022
+        public string PeopleAlsoAsk(HtmlNode node) //included item urls code 31-01-2022
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='_eHi']/div"); // (".//h3[@class='r']/a");

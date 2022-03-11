@@ -891,9 +891,17 @@ namespace RapidTrackingSingleThread
                     //    url = url.Remove(n);
                     if (url.Contains(@"\x3d"))
                         url = url.Replace(@"\x3d", "="); //10-03-2022
-                    int n = url.IndexOfAny(yt);
-                    if (n > 0)
-                        url = url.Replace(url.Remove(0, n), "");//11-03-2022
+                    if (url.Contains("youtube.com"))
+                    {
+                        int n = url.IndexOfAny(yt);
+                        if (n > 0)
+                            url = url.Replace(url.Remove(0, n), "");//11-03-2022
+                    }
+                    if (url.Contains(@"\x26"))
+                        url = url.Replace(@"\x26amp;", "&"); //10-03-2022
+
+                    if (url.Contains(@"\x27"))
+                        url = url.Replace(@"\x27", "'"); //11-03-2022
                     if (x < titles.Length)//22-02-2022
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");//22-02-2022
                 }

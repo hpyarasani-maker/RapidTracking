@@ -880,6 +880,7 @@ namespace RapidTrackingSingleThread
             MatchCollection mc = re.Matches(html);
             ArrayList myList = new ArrayList();
             int x = 0;
+            char[] yt = { '\\', '2', '6' };
             foreach (Match m in mc)
             {
                 string url = HttpUtility.HtmlDecode(HttpUtility.HtmlEncode(m.Groups[2].Value));
@@ -888,8 +889,11 @@ namespace RapidTrackingSingleThread
                     //int n = url.IndexOf("\x3d");
                     //if (n > 0)
                     //    url = url.Remove(n);
-                    if (url.Contains(@"\x3d") || url.Contains(@"\x26amp;vl=en"))
-                        url = url.Replace(@"\x3d", "=").Replace(@"\x26amp;vl=en", ""); //10-03-2022
+                    if (url.Contains(@"\x3d"))
+                        url = url.Replace(@"\x3d", "="); //10-03-2022
+                    int n = url.IndexOfAny(yt);
+                    if (n > 0)
+                        url = url.Replace(url.Remove(0, n), "");//11-03-2022
                     if (x < titles.Length)//22-02-2022
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");//22-02-2022
                 }

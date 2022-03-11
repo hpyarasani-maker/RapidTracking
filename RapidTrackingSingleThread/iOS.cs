@@ -1,6 +1,7 @@
 ﻿using HtmlAgilityPack;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -1556,7 +1557,8 @@ namespace RapidTrackingSingleThread
              MatchCollection mc = re.Matches(html);
              ArrayList myList = new ArrayList();
              int x = 0;
-             foreach (Match m in mc)
+            char[] yt = {'\\','2','6'};
+            foreach (Match m in mc)
              {
                  string url = HttpUtility.HtmlDecode(m.Groups[2].Value);
                  if (url.StartsWith("http") || url.StartsWith("https"))
@@ -1564,9 +1566,12 @@ namespace RapidTrackingSingleThread
                     //int n = url.IndexOf("%3F");
                     //if (n > 0)
                     //     url = url.Remove(n);
-                    if (url.Contains(@"\x3d") || url.Contains(@"\x26amp;vl=en"))
-                    url = url.Replace(@"\x3d", "=").Replace(@"\x26amp;vl=en",""); //10-03-2022
-                    
+                    if (url.Contains(@"\x3d"))
+                        url = url.Replace(@"\x3d", "="); //10-03-2022
+                    int n = url.IndexOfAny(yt);
+                    if (n > 0)
+                        url = url.Replace(url.Remove(0,n),"");//11-03-2022
+                      
                     if (x < titles.Length)//22-02-2022
                          s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");//22-02-2022
                  }

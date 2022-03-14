@@ -1634,7 +1634,29 @@ namespace RapidTrackingMultithread
             return string.Empty;
 
         }
+        /// <summary>
+        /// peoplealsoask block url and youtube urls cleaning method
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public string SetYTUrl(string url, char[] yt)//12-03-202
+        {
+            if (string.IsNullOrEmpty(url)) return string.Empty;
+            if (url.Contains(@"\x3d"))
+                url = url.Replace(@"\x3d", "="); //10-03-2022
+            if (url.Contains("youtube.com"))
+            {
+                int n = url.IndexOfAny(yt);
+                if (n > 0)
+                    url = url.Replace(url.Remove(0, n), "");//11-03-2022
+            }
+            if (url.Contains(@"\x26"))
+                url = url.Replace(@"\x26amp;", "&"); //10-03-2022
 
+            if (url.Contains(@"\x27"))
+                url = url.Replace(@"\x27", "'"); //11-03-2022
+            return url;
+        }//12-03-2022 end
         // There are chances method was used for title contains in case any issues in xml applied decode/encode.
         public string SetTitle(string unicodestring)
         {

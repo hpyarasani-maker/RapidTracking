@@ -1575,14 +1575,13 @@ namespace RapidTrackingJobIDResults
             MatchCollection mc = re.Matches(html);
             ArrayList myList = new ArrayList();
             int x = 0;
+            char[] yt = { '\\', '2', '6' };
             foreach (Match m in mc)
             {
                 string url = HttpUtility.HtmlDecode(m.Groups[2].Value);
                 if (url.StartsWith("http") || url.StartsWith("https"))
                 {
-                    int n = url.IndexOf("%3F");
-                    if (n > 0)
-                        url = url.Remove(n);
+                    url = SetYTUrl(url, yt); //12-03-2022
                     //04-03-2022
                     //    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");
                     //}

@@ -1556,16 +1556,13 @@ namespace RapidTrackingSingleThread
             MatchCollection mc = re.Matches(html);
             ArrayList myList = new ArrayList();
             int x = 0;
+            char[] yt = { '\\', '2', '6' };
             foreach (Match m in mc)
             {
                 string url = HttpUtility.HtmlDecode(m.Groups[2].Value);
                 if (url.StartsWith("http") || url.StartsWith("https"))
                 {
-                    //int n = url.IndexOf("%3F");
-                    //if (n > 0)
-                    //    url = url.Remove(n);
-                    if (url.Contains(@"\x3d") || url.Contains(@"\x26amp;vl=en"))
-                        url = url.Replace(@"\x3d", "=").Replace(@"\x26amp;vl=en", ""); //10-03-2022
+                    url = SetYTUrl(url, yt); //12-03-2022
                     if (x < titles.Length)//22-02-2022
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");//22-02-2022
                 }
@@ -1582,14 +1579,13 @@ namespace RapidTrackingSingleThread
             MatchCollection mc = re.Matches(html);
             ArrayList myList = new ArrayList();
             int x = 0;
+            char[] yt = { '\\', '2', '6' };
             foreach (Match m in mc)
             {
                 string url = HttpUtility.HtmlDecode(m.Groups[2].Value);
                 if (url.StartsWith("http") || url.StartsWith("https"))
                 {
-                    int n = url.IndexOf("%3F");
-                    if (n > 0)
-                        url = url.Remove(n);
+                    url = SetYTUrl(url, yt); //12-03-2022
                     //04-03-2022
                     //    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");
                     //}
@@ -2687,7 +2683,29 @@ namespace RapidTrackingSingleThread
             return string.Empty;
 
         }
+        /// <summary>
+        /// peoplealsoask block url and youtube urls cleaning method
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public string SetYTUrl(string url, char[] yt)//12-03-202
+        {
+            if (string.IsNullOrEmpty(url)) return string.Empty;
+            if (url.Contains(@"\x3d"))
+                url = url.Replace(@"\x3d", "="); //10-03-2022
+            if (url.Contains("youtube.com"))
+            {
+                int n = url.IndexOfAny(yt);
+                if (n > 0)
+                    url = url.Replace(url.Remove(0, n), "");//11-03-2022
+            }
+            if (url.Contains(@"\x26"))
+                url = url.Replace(@"\x26amp;", "&"); //10-03-2022
 
+            if (url.Contains(@"\x27"))
+                url = url.Replace(@"\x27", "'"); //11-03-2022
+            return url;
+        }//12-03-2022 end
         // There are chances method was used for title contains in case any issues in xml applied decode/encode.
         public string SetTitle(string unicodestring)
         {

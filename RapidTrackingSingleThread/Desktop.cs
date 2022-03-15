@@ -871,7 +871,7 @@ namespace RapidTrackingSingleThread
             s.Append(res);//31-01-2022
             return s.ToString();
         }//end of item urls code 31-01-2022*/
-        private string GetPeopleAlsoAskUrls(string[] titles) //People also method 31-01-2022
+        /*private string GetPeopleAlsoAskUrls(string[] titles) //People also method 31-01-2022
         {
             StringBuilder s = new StringBuilder();
             //string pattern = @"WEB_ANSWERS_STANDARD_RESULT_(.*?)div class\\x3d\\x22yuRUbf\\x22\\x3e\\x3ca href\\x3d\\x22(.*?)\\x22 data-jsarwt";
@@ -894,8 +894,8 @@ namespace RapidTrackingSingleThread
             for (; x < titles.Length; x++)//18-02-2022
                 s.Append("<item url=\"\" title=\"" + SetTitle(titles[x]) + "\" />");//18-02-2022
             return s.ToString();
-        }
-        /*private string GetPeopleAlsoAskUrls(string[] titles) //People also method 02-03-2022
+        }*/
+        private string GetPeopleAlsoAskUrls(string[] titles) //People also method 02-03-2022
         {
             StringBuilder s = new StringBuilder();
             string pattern = @"WEB_ANSWERS_STANDARD_RESULT_(.*?)div class\\x3d\\x22tF2Cxc\\x22\\x3e\\x3cdiv class\\x3d\\x22yuRUbf\\x22\\x3e\\x3ca href\\x3d\\x22(.*?)\\x22";
@@ -920,7 +920,8 @@ namespace RapidTrackingSingleThread
                 string text = string.Empty;
                 if (_m.Success)
                 {
-                    text = HttpUtility.HtmlDecode(_m.Groups[1].Value).Replace(@"\x3cb\x3e", "").Replace(@"\x3c/b\x3e", "");
+                    text = HttpUtility.HtmlDecode(_m.Groups[1].Value);
+                    text = SetYTUrl(text, yt); //15-03-2022
                 }
                 if (x < titles.Length)
                     s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" text=\"" + text + "\" />");
@@ -929,7 +930,7 @@ namespace RapidTrackingSingleThread
             for (; x < titles.Length; x++)
                 s.Append("<item url=\"\" title=\"" + SetTitle(titles[x]) + "\" text=\"\" />");
             return s.ToString();
-        }*/
+        }
         private string GetAnswerCard(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
@@ -1661,6 +1662,12 @@ namespace RapidTrackingSingleThread
 
             if (url.Contains(@"\x27"))
                 url = url.Replace(@"\x27", "'"); //11-03-2022
+
+            if (url.Contains(@"\x3cb\x3e"))
+                url = url.Replace(@"\x3cb\x3e", ""); //15-03-2022 for text
+
+            if (url.Contains(@"\x3cb\x3e"))
+                url = url.Replace(@"\x3c/b\x3e", "");//15-03-2022 for text
             return url;
         }//12-03-2022 end
 

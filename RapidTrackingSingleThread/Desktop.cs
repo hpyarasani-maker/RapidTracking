@@ -897,39 +897,56 @@ namespace RapidTrackingSingleThread
         }*/
         private string GetPeopleAlsoAskUrls(string[] titles) //People also method 02-03-2022
         {
-            StringBuilder s = new StringBuilder();
-            string pattern = @"WEB_ANSWERS_STANDARD_RESULT_(.*?)div class\\x3d\\x22tF2Cxc\\x22\\x3e\\x3cdiv class\\x3d\\x22yuRUbf\\x22\\x3e\\x3ca href\\x3d\\x22(.*?)\\x22";
-            Regex re = new Regex(pattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
-            MatchCollection mc = re.Matches(html);
-            ArrayList myList = new ArrayList();
-            int x = 0;
-            char[] yt = { '\\', '2', '6' };
-            foreach (Match m in mc)
+            try
             {
-                string url = HttpUtility.HtmlDecode(m.Groups[2].Value);
-                if (url.StartsWith("http") || url.StartsWith("https"))
+                StringBuilder s = new StringBuilder();
+                string pattern = @"WEB_ANSWERS_STANDARD_RESULT_(.*?)div class\\x3d\\x22tF2Cxc\\x22\\x3e\\x3cdiv class\\x3d\\x22yuRUbf\\x22\\x3e\\x3ca href\\x3d\\x22(.*?)\\x22";
+                Regex re = new Regex(pattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                MatchCollection mc = re.Matches(html);
+                ArrayList myList = new ArrayList();
+                int x = 0;
+                char[] yt = { '\\', '2', '6' };
+                foreach (Match m in mc)
                 {
-                    url= SetYTUrl(url,yt); //12-03-2022
-                    //02-03-2022
-                    //if(x < titles.Length)
-                    //s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");
+                    string url = HttpUtility.HtmlDecode(m.Groups[2].Value);
+                    if (url.StartsWith("http") || url.StartsWith("https"))
+                    {
+                        url = SetYTUrl(url, yt); //12-03-2022
+                                                 //02-03-2022
+                                                 //if(x < titles.Length)
+                                                 //s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");
+                    }
+                    string textPattern = @"\\x3cspan class\\x3d\\x22hgKElc\\x22\\x3e(.*?)\\x3c/span\\x3e";
+                    //string imagePattern = @"data-src\\x3d\\x22(.*?)s\\";  // img
+                    //string imagePattern = @"data-src\\x3d\\x22(.*?)\\x26(amp;s)\\x22";
+                    string imagePattern = @"\\x3cimg data-src\\x3d\\x22(.*?)\\x22";
+                    Regex _rx = new Regex(textPattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                    Match _m = _rx.Match(m.Groups[0].Value);
+                    string txt, text = string.Empty;
+                    string imag, img = string.Empty;
+                    if (_m.Success)
+                    {
+                        txt = HttpUtility.HtmlDecode(_m.Groups[1].Value);
+                        text = SetYTUrl(txt, yt); //15-03-2022
+                    }
+                    Regex rimage = new Regex(imagePattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                    Match mi = rimage.Match(m.Groups[0].Value);
+                    if (mi.Success)
+                    {
+                        imag = HttpUtility.HtmlDecode(mi.Groups[1].Value);
+                        img = SetYTUrl(imag, yt); //15-03-2022
+                    }
+                    if (x < titles.Length)
+                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" text=\"" + SetTitle(text) + "\" image=\"" + SetUrl(img) + "\"  />"); //17-03-2022
                 }
-                string textPattern = @"\\x3cspan class\\x3d\\x22hgKElc\\x22\\x3e(.*?)\\x3c/span\\x3e";
-                Regex _rx = new Regex(textPattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
-                Match _m = _rx.Match(m.Groups[0].Value);
-                string text = string.Empty;
-                if (_m.Success)
-                {
-                    text = HttpUtility.HtmlDecode(_m.Groups[1].Value);
-                    text = SetYTUrl(text, yt); //15-03-2022
-                }
-                if (x < titles.Length)
-                    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" text=\"" + text + "\" />");
-                //end 02-03-2022
+                for (; x < titles.Length; x++)
+                    s.Append("<item url=\"\" title=\"" + SetTitle(titles[x]) + "\" text=\"\" image=\"\" />"); //17-03-2022
+                return s.ToString();
             }
-            for (; x < titles.Length; x++)
-                s.Append("<item url=\"\" title=\"" + SetTitle(titles[x]) + "\" text=\"\" />");
-            return s.ToString();
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         private string GetAnswerCard(HtmlNode node)
         {
@@ -1658,13 +1675,19 @@ namespace RapidTrackingSingleThread
                     url = url.Replace(url.Remove(0, n), "");//11-03-2022
             }
             if (url.Contains(@"\x26"))
-                url = url.Replace(@"\x26amp;", "&"); //10-03-2022
+                url = url.Replace(@"\x26amp;", "&"); //10-03-2022\x26#39;
+
+            if (url.Contains(@"\x26#39;"))
+                url = url.Replace(@"\x26#39;", "'"); //17-03-2022
 
             if (url.Contains(@"\x27"))
                 url = url.Replace(@"\x27", "'"); //11-03-2022
 
             if (url.Contains(@"\x3cb\x3e"))
                 url = url.Replace(@"\x3cb\x3e", ""); //15-03-2022 for text
+
+            if (url.Contains(@"\x3c/b\x3e"))
+                url = url.Replace(@"\x3c/b\x3e", ""); //17-03-2022 for text
 
             if (url.Contains(@"\x3cb\x3e"))
                 url = url.Replace(@"\x3c/b\x3e", "");//15-03-2022 for text
@@ -1675,7 +1698,7 @@ namespace RapidTrackingSingleThread
         public string SetTitle(string unicodestring)
         {
             //return WebUtility.HtmlEncode(WebUtility.HtmlDecode(unicodestring));
-            return WebUtility.HtmlEncode(WebUtility.HtmlDecode(unicodestring)).Replace("\\x27", "'").Replace("\\\\u0026", "&amp;").Replace("\\\\\\x22", "&quot;");
+            return WebUtility.HtmlEncode(WebUtility.HtmlDecode(unicodestring)).Replace("\\x27", "'").Replace("\\\\u0026", "&amp;").Replace("\\\\\\x22", "&quot;").Replace("\\u2013", "–"); //17-03-2022
         }
 
         public string SetUrl(string url)

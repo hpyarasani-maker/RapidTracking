@@ -1595,18 +1595,27 @@ namespace RapidTrackingSingleThread
                 string textPattern = @"\\x3cspan class\\x3d\\x22hgKElc\\x22\\x3e(.*?)\\x3c/span\\x3e";
                 Regex _rx = new Regex(textPattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
                 Match _m = _rx.Match(m.Groups[0].Value);
-                string text = string.Empty;
+                string txt,text = string.Empty;
+                string imag,img = string.Empty;
                 if (_m.Success)
                 {
-                    text = HttpUtility.HtmlDecode(_m.Groups[1].Value);
-                    text = SetYTUrl(text, yt); //15-03-2022
+                    txt = HttpUtility.HtmlDecode(_m.Groups[1].Value);
+                    text = SetYTUrl(txt, yt); //15-03-2022
+                }
+                string imagePattern = @"\Wtsuid\d{1,3}\W:\W(.*?)"; //17-03-2022
+                Regex rimage = new Regex(imagePattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                Match mi = rimage.Match(m.Groups[0].Value);
+                if (mi.Success)
+                {
+                    imag = HttpUtility.HtmlDecode(mi.Groups[1].Value);
+                    img = SetYTUrl(imag, yt); //15-03-2022
                 }
                 if (x < titles.Length)
-                    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" text=\"" + text + "\" />");
+                    s.Append(" <item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" text=\"" + SetTitle(text) + "\" image=\"" + SetUrl(img) + "\"  />"); //17-03-2022
                 //end 04-03-2022
             }
             for (; x < titles.Length; x++)
-                s.Append("<item url=\"\" title=\"" + SetTitle(titles[x]) + "\" text=\"\" />");
+                s.Append("<item url=\"\" title=\"" + SetTitle(titles[x]) + "\" text=\"\" image=\"\" />"); //17-03-2022
             return s.ToString();
         }
         private string GetAnswerCard(HtmlNode node)
@@ -2705,11 +2714,17 @@ namespace RapidTrackingSingleThread
             if (url.Contains(@"\x26"))
                 url = url.Replace(@"\x26amp;", "&"); //10-03-2022
 
+            if (url.Contains(@"\x26#39;"))
+                url = url.Replace(@"\x26#39;", "'"); //17-03-2022
+
             if (url.Contains(@"\x27"))
                 url = url.Replace(@"\x27", "'"); //11-03-2022
 
             if (url.Contains(@"\x3cb\x3e"))
                 url = url.Replace(@"\x3cb\x3e", ""); //15-03-2022 for text
+
+            if (url.Contains(@"\x3c/b\x3e"))
+                url = url.Replace(@"\x3c/b\x3e", ""); //17-03-2022 for text
 
             if (url.Contains(@"\x3cb\x3e"))
                 url = url.Replace(@"\x3c/b\x3e", "");//15-03-2022 for text
@@ -2721,7 +2736,7 @@ namespace RapidTrackingSingleThread
         public string SetTitle(string unicodestring)
         {
             //return WebUtility.HtmlEncode(WebUtility.HtmlDecode(unicodestring));
-            return WebUtility.HtmlEncode(WebUtility.HtmlDecode(unicodestring)).Replace("\\x27", "'").Replace("\\\\u0026", "&amp;").Replace("\\\\\\x22", "&quot;");
+            return WebUtility.HtmlEncode(WebUtility.HtmlDecode(unicodestring)).Replace("\\x27", "'").Replace("\\\\u0026", "&amp;").Replace("\\\\\\x22", "&quot;").Replace("\\u2013", "–"); //17-03-2022
 
         }
 

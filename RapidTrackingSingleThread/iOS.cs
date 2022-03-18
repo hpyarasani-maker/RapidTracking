@@ -1588,9 +1588,6 @@ namespace RapidTrackingSingleThread
                 if (url.StartsWith("http") || url.StartsWith("https"))
                 {
                     url = SetYTUrl(url, yt); //12-03-2022
-                    //04-03-2022
-                    //    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");
-                    //}
                 }
                 string textPattern = @"\\x3cspan class\\x3d\\x22hgKElc\\x22\\x3e(.*?)\\x3c/span\\x3e";
                 Regex _rx = new Regex(textPattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
@@ -1602,7 +1599,7 @@ namespace RapidTrackingSingleThread
                     txt = HttpUtility.HtmlDecode(_m.Groups[1].Value);
                     text = SetYTUrl(txt, yt); //15-03-2022
                 }
-                string imagePattern = @"\Wtsuid\d{1,3}\W:\W(.*?)"; //17-03-2022
+                string imagePattern = @"\Wtsuid\d{1,3}\W:\W(.*?)"""; //17-03-2022
                 Regex rimage = new Regex(imagePattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
                 Match mi = rimage.Match(m.Groups[0].Value);
                 if (mi.Success)
@@ -1610,6 +1607,62 @@ namespace RapidTrackingSingleThread
                     imag = HttpUtility.HtmlDecode(mi.Groups[1].Value);
                     img = SetYTUrl(imag, yt); //15-03-2022
                 }
+                //18-03-2022
+                //table
+                string tblPattern = @"\\x3ctable\\x3e\\x3ctbody\\x3e(.*?)\\x3c/tbody\\x3e\\x3c/table\\x3e";
+                _rx = new Regex(tblPattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                _m = _rx.Match(m.Groups[0].Value);
+                string tbl = string.Empty;
+                string tblValues = string.Empty;
+                if (_m.Success)
+                {
+                    tbl = HttpUtility.HtmlDecode(_m.Groups[1].Value);
+                    //rows
+                    string rowPattern = @"\\x3ctr(.*?)\\x3c/tr\\x3e";
+                    _rx = new Regex(rowPattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                    MatchCollection _mcrows = _rx.Matches(tbl);
+                    tblValues = "<table>";
+                    foreach (Match mrow in _mcrows)
+                    {
+                        string row = HttpUtility.HtmlDecode(mrow.Groups[1].Value);
+                        //th
+                        string thPattern = @"\\x3cth(.*?)\\x3e(.*?)\\x3c/th\\x3e";
+                        _rx = new Regex(thPattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                        MatchCollection _mcth = _rx.Matches(row);
+                        tblValues += "<row>";
+                        foreach (Match mth in _mcth)
+                        {
+                            string th = HttpUtility.HtmlDecode(mth.Groups[2].Value);
+                            tblValues += "<th>";
+                            tblValues += th.Replace(@"\x3cb\x3e", "").Replace(@"\x3c/b\x3e", "");
+                            tblValues += "</th>";
+                        }
+                        //td
+                        string tdPattern = @"\\x3ctd(.*?)\\x3e(.*?)\\x3c/td\\x3e";
+                        _rx = new Regex(tdPattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                        MatchCollection _mctd = _rx.Matches(row);
+                        foreach (Match mtd in _mctd)
+                        {
+                            string td = HttpUtility.HtmlDecode(mtd.Groups[2].Value);
+                            tblValues += "<td>";
+                            tblValues += td.Replace(@"\x3cb\x3e", "").Replace(@"\x3c/b\x3e", "");
+                            tblValues += "</td>";
+                        }
+                        tblValues += "</row>";
+                    }
+                    tblValues += "</table>";
+                }
+
+                if (x < titles.Length)
+                {
+                    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" text=\"" + SetTitle(text) + "\" image=\"" + SetUrl(img) + "\" >");
+                    if (!string.IsNullOrEmpty(tblValues))
+                    {
+                        s.Append(tblValues);
+                    }
+                    s.Append("</item>");
+                }
+                //end 18-03-2022
                 if (x < titles.Length)
                     s.Append(" <item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" text=\"" + SetTitle(text) + "\" image=\"" + SetUrl(img) + "\"  />"); //17-03-2022
                 //end 04-03-2022

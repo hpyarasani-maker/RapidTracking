@@ -1736,13 +1736,14 @@ namespace RapidTrackingSingleThread
 
             if (url.Contains(@"\x3cb\x3e"))
                 url = url.Replace(@"\x3cb\x3e", ""); //15-03-2022 for text
+
             if (url.Contains(@"\x3cbr\x3e"))
                 url = url.Replace(@"\x3cbr\x3e", ""); //21-03-2022 for text
+
             if (url.Contains(@"\x3c/b\x3e"))
                 url = url.Replace(@"\x3c/b\x3e", ""); //17-03-2022 for text
-
-            if (url.Contains(@"\x3cb\x3e"))
-                url = url.Replace(@"\x3c/b\x3e", "");//15-03-2022 for text
+            if (url.Contains(@"\x26quot;"))
+                url = url.Replace(@"\x26quot;", "\"");//21-03-2022
             return url;
         }//12-03-2022 end
 

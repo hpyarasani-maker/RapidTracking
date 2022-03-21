@@ -1601,8 +1601,8 @@ namespace RapidTrackingSingleThread
                 }
                 string imagePattern = @"\Wtsuid\d{1,3}\W:\W(.*?)"""; //17-03-2022
                 
-                Regex rimage = new Regex(imagePattern, RegexOptions.IgnoreCase);
-                Match mi = rimage.Match(m.Groups[1].Value);
+                Regex rimage = new Regex(imagePattern, RegexOptions.Compiled);
+                Match mi = rimage.Match(m.Groups[0].Value);
                 if (mi.Success)
                 {
                     imag = HttpUtility.HtmlDecode(mi.Groups[1].Value);
@@ -2781,9 +2781,8 @@ namespace RapidTrackingSingleThread
 
             if (url.Contains(@"\x3c/b\x3e"))
                 url = url.Replace(@"\x3c/b\x3e", ""); //17-03-2022 for text
-
-            if (url.Contains(@"\x3cb\x3e"))
-                url = url.Replace(@"\x3c/b\x3e", "");//15-03-2022 for text
+            if (url.Contains(@"\x26quot;"))
+                url = url.Replace(@"\x26quot;", "\"");//21-03-2022
 
             return url;
         }//12-03-2022 end

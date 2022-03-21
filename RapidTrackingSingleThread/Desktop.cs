@@ -955,7 +955,7 @@ namespace RapidTrackingSingleThread
                             string thPattern = @"\\x3cth(.*?)\\x3e(.*?)\\x3c/th\\x3e";
                             _rx = new Regex(thPattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
                             MatchCollection _mcth = _rx.Matches(row);
-                            tblValues += "<row>";
+                            tblValues += "<tr>";
                             foreach (Match mth in _mcth)
                             {
                                 string th = HttpUtility.HtmlDecode(mth.Groups[2].Value);
@@ -974,7 +974,7 @@ namespace RapidTrackingSingleThread
                                 tblValues += td.Replace(@"\x3cb\x3e", "").Replace(@"\x3c/b\x3e", "");
                                 tblValues += "</td>";
                             }
-                            tblValues += "</row>";
+                            tblValues += "</tr>";
                         }
                         tblValues += "</table>";
                     }

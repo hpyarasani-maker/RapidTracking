@@ -1600,8 +1600,9 @@ namespace RapidTrackingSingleThread
                     text = SetYTUrl(txt, yt); //15-03-2022
                 }
                 string imagePattern = @"\Wtsuid\d{1,3}\W:\W(.*?)"""; //17-03-2022
-                Regex rimage = new Regex(imagePattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
-                Match mi = rimage.Match(m.Groups[0].Value);
+                
+                Regex rimage = new Regex(imagePattern, RegexOptions.IgnoreCase);
+                Match mi = rimage.Match(m.Groups[1].Value);
                 if (mi.Success)
                 {
                     imag = HttpUtility.HtmlDecode(mi.Groups[1].Value);
@@ -1629,7 +1630,7 @@ namespace RapidTrackingSingleThread
                         string thPattern = @"\\x3cth(.*?)\\x3e(.*?)\\x3c/th\\x3e";
                         _rx = new Regex(thPattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
                         MatchCollection _mcth = _rx.Matches(row);
-                        tblValues += "<row>";
+                        tblValues += "<tr>";
                         foreach (Match mth in _mcth)
                         {
                             string th = HttpUtility.HtmlDecode(mth.Groups[2].Value);
@@ -1648,7 +1649,7 @@ namespace RapidTrackingSingleThread
                             tblValues += td.Replace(@"\x3cb\x3e", "").Replace(@"\x3c/b\x3e", "");
                             tblValues += "</td>";
                         }
-                        tblValues += "</row>";
+                        tblValues += "</tr>";
                     }
                     tblValues += "</table>";
                 }

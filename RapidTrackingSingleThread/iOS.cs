@@ -1549,37 +1549,48 @@ namespace RapidTrackingSingleThread
              return s.ToString();
          }//31-01-2022*/
 
-         /*private string GetPeopleAlsoAskUrls(string[] titles) //People also method 31-01-2022
-         {
-             StringBuilder s = new StringBuilder();
-             string pattern = @"WEB_ANSWERS_STANDARD_RESULT_(.*?)div class\\x3d\\x22Xv4xee\\x22\\x3e\\x3ch3 class\\x3d\\x22yuRUbf JtG40d MBeuO q8U8x\\x22\\x3e\\x3ca class\\x3d\\x22sXtWJb\\x22 href\\x3d\\x22(.*?)\\x22";
-             Regex re = new Regex(pattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
-             MatchCollection mc = re.Matches(html);
-             ArrayList myList = new ArrayList();
-             int x = 0;
-            char[] yt = {'\\','2','6'};
-            foreach (Match m in mc)
-             {
-                 string url = HttpUtility.HtmlDecode(m.Groups[2].Value);
-                 if (url.StartsWith("http") || url.StartsWith("https"))
-                 {
-                    url = SetYTUrl(url, yt); //12-03-2022
-                    if (x < titles.Length)//22-02-2022
-                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");//22-02-2022
-                 }
-             }
-             for (; x < titles.Length; x++)//18-02-2022
-                 s.Append("<item url=\"\" title=\"" + SetTitle(titles[x]) + "\" />");//18-02-2022
-             return s.ToString();
-         }*/
-
-        private string GetPeopleAlsoAskUrls(string[] titles) //People also method 04-03-2022
+        /*private string GetPeopleAlsoAskUrls(string[] titles) //People also method 31-01-2022
         {
             StringBuilder s = new StringBuilder();
             string pattern = @"WEB_ANSWERS_STANDARD_RESULT_(.*?)div class\\x3d\\x22Xv4xee\\x22\\x3e\\x3ch3 class\\x3d\\x22yuRUbf JtG40d MBeuO q8U8x\\x22\\x3e\\x3ca class\\x3d\\x22sXtWJb\\x22 href\\x3d\\x22(.*?)\\x22";
             Regex re = new Regex(pattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
             MatchCollection mc = re.Matches(html);
             ArrayList myList = new ArrayList();
+            int x = 0;
+           char[] yt = {'\\','2','6'};
+           foreach (Match m in mc)
+            {
+                string url = HttpUtility.HtmlDecode(m.Groups[2].Value);
+                if (url.StartsWith("http") || url.StartsWith("https"))
+                {
+                   url = SetYTUrl(url, yt); //12-03-2022
+                   if (x < titles.Length)//22-02-2022
+                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");//22-02-2022
+                }
+            }
+            for (; x < titles.Length; x++)//18-02-2022
+                s.Append("<item url=\"\" title=\"" + SetTitle(titles[x]) + "\" />");//18-02-2022
+            return s.ToString();
+        }*/
+
+        private string GetPeopleAlsoAskUrls(string[] titles) //People also method 04-03-2022
+        {
+            StringBuilder s = new StringBuilder();
+            //22-03-2022
+            //images
+            string imagePattern = @"\Wtsuid\d{1,3}\W:\W(.*?)""";
+            Regex rimage = new Regex(imagePattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+            MatchCollection _mcimg = rimage.Matches(html);
+            ArrayList alImages = new ArrayList();
+            foreach (Match mi in _mcimg)
+            {
+                string[] imgs = { HttpUtility.HtmlDecode(mi.Groups[0].Value), HttpUtility.HtmlDecode(mi.Groups[1].Value) };
+                alImages.Add(imgs);
+            }
+            //end 22-03-2022
+            string pattern = @"WEB_ANSWERS_STANDARD_RESULT_(.*?)div class\\x3d\\x22Xv4xee\\x22\\x3e\\x3ch3 class\\x3d\\x22yuRUbf JtG40d MBeuO q8U8x\\x22\\x3e\\x3ca class\\x3d\\x22sXtWJb\\x22 href\\x3d\\x22(.*?)\\x22";
+            Regex re = new Regex(pattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+            MatchCollection mc = re.Matches(html);
             int x = 0;
             char[] yt = { '\\', '2', '6' };
             foreach (Match m in mc)
@@ -1589,25 +1600,37 @@ namespace RapidTrackingSingleThread
                 {
                     url = SetYTUrl(url, yt); //12-03-2022
                 }
+                //text
                 string textPattern = @"\\x3cspan class\\x3d\\x22hgKElc\\x22\\x3e(.*?)\\x3c/span\\x3e";
                 Regex _rx = new Regex(textPattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
                 Match _m = _rx.Match(m.Groups[0].Value);
-                string txt,text = string.Empty;
-                string imag,img = string.Empty;
+                string txt, text = string.Empty;
                 if (_m.Success)
                 {
                     txt = HttpUtility.HtmlDecode(_m.Groups[1].Value);
                     text = SetYTUrl(txt, yt); //15-03-2022
                 }
-                string imagePattern = @"\Wtsuid\d{1,3}\W:\W(.*?)"""; //17-03-2022
-                
-                Regex rimage = new Regex(imagePattern, RegexOptions.Compiled);
-                Match mi = rimage.Match(m.Groups[0].Value);
-                if (mi.Success)
+                //22-03-2022
+                //image
+                string img = string.Empty;
+                if (alImages.Count > 0)
                 {
-                    imag = HttpUtility.HtmlDecode(mi.Groups[1].Value);
-                    img = SetYTUrl(imag, yt); //15-03-2022
+                    imagePattern = @"tsuid\d{1,3}";
+                    _rx = new Regex(imagePattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                    _m = _rx.Match(m.Groups[0].Value);
+                    if (_m.Success)
+                    {
+                        foreach (string[] imgUrl in alImages)
+                        {
+                            if (imgUrl[0].StartsWith("\"" + _m.Value + "\":"))
+                            {
+                                img = SetYTUrl(imgUrl[1], yt);
+                                break;
+                            }
+                        }
+                    }
                 }
+                //end 22-03-2022
                 //18-03-2022
                 //table
                 string tblPattern = @"\\x3ctable\\x3e\\x3ctbody\\x3e(.*?)\\x3c/tbody\\x3e\\x3c/table\\x3e";
@@ -1663,10 +1686,7 @@ namespace RapidTrackingSingleThread
                     }
                     s.Append("</item>");
                 }
-                //end 18-03-2022
-                if (x < titles.Length)
-                    s.Append(" <item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" text=\"" + SetTitle(text) + "\" image=\"" + SetUrl(img) + "\"  />"); //17-03-2022
-                //end 04-03-2022
+                //end 18-03-2022                                                                                                                                                                                
             }
             for (; x < titles.Length; x++)
                 s.Append("<item url=\"\" title=\"" + SetTitle(titles[x]) + "\" text=\"\" image=\"\" />"); //17-03-2022

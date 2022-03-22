@@ -1727,6 +1727,12 @@ namespace RapidTrackingSingleThread
                 if (n > 0)
                     url = url.Replace(url.Remove(0, n), "");//11-03-2022
             }
+            if (url.Contains(@"\u003d"))
+                url = url.Replace(@"\u003d", "="); //22-03-2022 \u003d
+
+            if (url.Contains(@"\u0026"))
+                url = url.Replace(@"\u0026", "&"); //22-03-2022
+
             if (url.Contains(@"\x26"))
                 url = url.Replace(@"\x26amp;", "&"); //10-03-2022\x26#39;
 

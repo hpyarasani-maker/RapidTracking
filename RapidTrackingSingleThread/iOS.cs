@@ -1658,7 +1658,8 @@ namespace RapidTrackingSingleThread
                         {
                             string th = HttpUtility.HtmlDecode(mth.Groups[2].Value);
                             tblValues += "<th>";
-                            tblValues += th.Replace(@"\x3cb\x3e", "").Replace(@"\x3c/b\x3e", "");
+                            //tblValues += th.Replace(@"\x3cb\x3e", "").Replace(@"\x3c/b\x3e", "");
+                            tblValues += SetYTUrl(th,yt);//22-03-2022
                             tblValues += "</th>";
                         }
                         //td
@@ -1669,7 +1670,8 @@ namespace RapidTrackingSingleThread
                         {
                             string td = HttpUtility.HtmlDecode(mtd.Groups[2].Value);
                             tblValues += "<td>";
-                            tblValues += td.Replace(@"\x3cb\x3e", "").Replace(@"\x3c/b\x3e", "");
+                            //tblValues += td.Replace(@"\x3cb\x3e", "").Replace(@"\x3c/b\x3e", "");
+                            tblValues += SetYTUrl(td, yt);//22-03-2022
                             tblValues += "</td>";
                         }
                         tblValues += "</tr>";
@@ -2803,6 +2805,10 @@ namespace RapidTrackingSingleThread
                 url = url.Replace(@"\x3c/b\x3e", ""); //17-03-2022 for text
             if (url.Contains(@"\x26quot;"))
                 url = url.Replace(@"\x26quot;", "\"");//21-03-2022
+            if (url.Contains(@"\u201c"))
+                url = url.Replace(@"\u201c", "“"); //22-03-2022
+            if (url.Contains(@"\u201d"))
+                url = url.Replace(@"\u201d", "”"); //22-03-2022
 
             return url;
         }//12-03-2022 end

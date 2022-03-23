@@ -106,12 +106,12 @@ namespace RapidTrackingSingleThread
                             {
                                 if (device == "desktop")
                                 {
-                                    Desktop clsDesktop = new Desktop();
+                                    DesktopTest clsDesktop = new DesktopTest();
                                     res = clsDesktop.ProcessDocument(seid, keyword, doc, out count);
                                 }
                                 else
                                 {
-                                    iOS clsiOS = new iOS();
+                                    iOSTest clsiOS = new iOSTest();
                                     res = clsiOS.ProcessDocument(seid, keyword, doc, out count);
                                 }
 

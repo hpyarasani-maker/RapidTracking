@@ -1341,10 +1341,25 @@ namespace RapidTrackingSingleThread
 
             return s.ToString();
         }
-        private string GetTopSights(HtmlNode node) //23-03-2022 new element topsights
+        private string GetTopSights(HtmlNode node)//23-03-2022 new element top sights
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='rqTuzc']/a");
+            //top
+            HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'EDblX DAVP1')]/a");
+            s.Append("<top>");
+            foreach (HtmlNode nd in nds)
+            {
+                string url = nd.Attributes["href"].Value;
+                string title = nd.InnerText;
+                if (url.StartsWith("/"))
+                    url = "https://www.googole.com" + url;
+                if (!string.IsNullOrEmpty(url) || !string.IsNullOrEmpty(title))
+                    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+            }
+            s.Append("</top>");
+            //bottom
+            nds = node.SelectNodes(".//div[@class='rqTuzc']/a");
+            s.Append("<bottom>");
             foreach (HtmlNode nd in nds)
             {
                 string url = nd.Attributes["href"].Value;
@@ -1354,8 +1369,9 @@ namespace RapidTrackingSingleThread
                 if (!string.IsNullOrEmpty(url) || !string.IsNullOrEmpty(title))
                     s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
             }
+            s.Append("</bottom>");
             return s.ToString();
-        } //23-03-2022
+        }//23-03-2022
         private string GetFlights(HtmlNode node)//23-03-2022 new element flights
         {
             StringBuilder s = new StringBuilder();

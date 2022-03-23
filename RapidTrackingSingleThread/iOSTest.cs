@@ -1128,6 +1128,11 @@ namespace RapidTrackingSingleThread
                 case "jobs":  //20-11-2020
                     s.Append(GetJobs(node));
                     break;
+                case "topsights": //23-03-2022
+                    s.Append("<block type=\"topSights\" url=\"\">");
+                    s.Append(GetTopSights(node));
+                    s.Append("</block>");
+                    break;//23-03-2022
                 default:
                     break;
             }
@@ -2101,6 +2106,21 @@ namespace RapidTrackingSingleThread
             } // end of 23-01-2020  // 21-02-2020
             return s.ToString();
         }
+        private string GetTopSights(HtmlNode node) //23-03-2022 new elemtn topsights
+        {
+            StringBuilder s = new StringBuilder();
+            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='rqTuzc']/a");
+            foreach (HtmlNode nd in nds)
+            {
+                string url = nd.Attributes["href"].Value;
+                string title = nd.SelectSingleNode(".//span[@class='aVSTQd tNxQIb OSrXXb']").InnerText;
+                if (url.StartsWith("/"))
+                    url = "https://www.googole.com" + url;
+                if (!string.IsNullOrEmpty(url) || !string.IsNullOrEmpty(title))
+                    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+            }
+            return s.ToString();
+        } //23-03-2022
 
         private string GetBlockType(HtmlNode node)
         {
@@ -2151,6 +2171,9 @@ namespace RapidTrackingSingleThread
                 if (ts)
                     return "Topstories";
             }
+            nd = node.SelectSingleNode(".//g-tray-header[@class='kno-fb-ctx gsrt AX8YBc']"); //23-03-2022
+            if (nd != null)
+                return "TopSights"; //23-03-2022
 
             if (node.SelectSingleNode(".//g-card[@class='cvoI5e']") != null || node.SelectSingleNode(".//g-card[@class='U8KfXc']") != null) //23-11-2020 //20-11-2020
             {
@@ -2508,7 +2531,7 @@ namespace RapidTrackingSingleThread
             if (nd != null)
             {
                 if (nd.InnerText.Trim() == "Top stories" || nd.InnerText.ToLower().Contains("noticias") || nd.InnerText.Trim() == "Notizie principali" || nd.InnerText.Trim() == "Interesting finds" //04-11-2020//16-09-2020
-                     || nd.InnerText.ToLower().Contains("últimas noticias") || nd.InnerText.ToLower().Contains("det senaste")
+                     || nd.InnerText.ToLower().Contains("últimas noticias") || nd.InnerText.ToLower().Contains("det senaste") || nd.InnerText.Trim().StartsWith("Top sights")//23-03-2022
                      || nd.InnerText.ToLower().StartsWith("latest") || nd.InnerText.ToLower().Contains("map")//07-08-2020  //23-06-2020 //22-06-2020
                      || nd.InnerText.ToLower().Contains("notícias")) //08-01-2021 top stories
                 if ((node.SelectSingleNode(".//div[@id='tscffb']") != null || node.SelectSingleNode(".//div[@class='KJDcUb']") == null) && node.SelectSingleNode(".//div/a[contains(@class,'C8nzq BmP5tf')]") == null && node.SelectSingleNode(".//div/a[contains(@class,'cz3goc BmP5tf')]") == null)//12-11-2021 //25-05-2021 //04-01-2021 video block

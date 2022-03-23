@@ -716,7 +716,12 @@ namespace RapidTrackingSingleThread
                     s.Append("<block type=\"topSights\" url=\"\">");
                     s.Append(GetTopSights(node));
                     s.Append("</block>");
-                    break;//23-03-2022
+                    break;
+                case "flights":
+                    s.Append("<block type=\"flights\" url=\"\">");
+                    s.Append(GetFlights(node));
+                    s.Append("</block>");
+                    break; //23-02-2022
                 default:
                     break;
             }
@@ -1336,7 +1341,7 @@ namespace RapidTrackingSingleThread
 
             return s.ToString();
         }
-        private string GetTopSights(HtmlNode node) //23-03-2022 new elemtn topsights
+        private string GetTopSights(HtmlNode node) //23-03-2022 new element topsights
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='rqTuzc']/a");
@@ -1351,6 +1356,24 @@ namespace RapidTrackingSingleThread
             }
             return s.ToString();
         } //23-03-2022
+        private string GetFlights(HtmlNode node)//23-03-2022 new element flights
+        {
+            StringBuilder s = new StringBuilder();
+            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='aieQre']/div/a");
+            foreach (HtmlNode nd in nds)
+            {
+                try
+                {
+                    string airline = nd.SelectSingleNode(".//span[@class='ps0VMc']")?.InnerText.Trim() ?? "";
+                    string hours = nd.SelectSingleNode(".//span[@class='sRcB8']")?.InnerText.Trim() ?? "";
+                    string connecting = nd.SelectSingleNode(".//span[@class='u85UCd']")?.InnerText.Trim() ?? "";
+                    string price = nd.SelectSingleNode(".//span[@class='xqqLDd']")?.InnerText.Trim() ?? "";
+                    s.Append("<item airline=\"" + SetTitle(airline) + "\" hours=\"" + SetTitle(hours) + "\" connecting=\"" + SetTitle(connecting) + "\" price=\"" + price + "\" />");
+                }
+                catch { }
+            }
+            return s.ToString();
+        }//23-03-2022 
         private string GetBlockType(HtmlNode node)
         {
             HtmlNode nd = node.SelectSingleNode(".//div[@class='_ELb']/a");
@@ -1402,6 +1425,9 @@ namespace RapidTrackingSingleThread
             if (nd != null)
                 return "TopSights";//23-03-2022
 
+            nd = node.SelectSingleNode(".//div[@class='WlTAzf mnr-c']");//23-03-2022
+            if (nd != null)
+                return "Flights";//23-03-2022
             //nd = node.SelectSingleNode(".//div[@class='kp-blk cUnQKe']|.//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']|.//div[@jsname='N760b']");//08-07-2021//04-12-2020 //11-02-2020
             nd = node.SelectSingleNode(".//div[contains(@class,'cUnQKe')]|.//div[@jsname='N760b']");//02-08-2021//08-07-2021
             if (nd != null)
@@ -1575,8 +1601,8 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@class='g jNVrwc Y4pkMc']") != null //07-12-2021
                 || node.SelectSingleNode(".//div[@class='e2BEnf q8U8x']") != null //07-12-2021
                 || node.SelectSingleNode(".//div[@jsname='wRSfy']") != null) //07-12-2021
-                || node.SelectSingleNode(".//div[@class='e2BEnf axf3qc q8U8x']") != null;//29-12-2021 top stories
-                 //&& node.SelectSingleNode(".//div[@class='yuRUbf']") == null; //11-10-2021 //08-10-2021 images
+                || node.SelectSingleNode(".//div[@class='e2BEnf axf3qc q8U8x']") != null //29-12-2021 top stories
+                || node.SelectSingleNode(".//div[@class='WlTAzf mnr-c']") != null; //23-03-2022
             if (bVal == true)//2019-09-11
             {
                 try

@@ -1401,9 +1401,9 @@ namespace RapidTrackingSingleThread
             {
                 try
                 {
-                    string title = nd.SelectSingleNode(".//div[@class='BTPx6e yMArdc']")?.InnerText.Trim() ?? "";
+                    string title = nd.SelectSingleNode(".//div[@class='BTPx6e bOYhNc']")?.InnerText.Trim() ?? "";
                     string rating = nd.SelectSingleNode(".//span[@class='YDIN4c YrbPuc']")?.InnerText.Trim() ?? "";
-                    string price = nd.SelectSingleNode(".//div[@class='VSZCrf']/span")?.InnerText.Trim() ?? "";
+                    string price = nd.SelectSingleNode(".//span[@class='dv1Q3e']")?.InnerText.Trim() ?? "";
                     s.Append("<item price=\"" + SetTitle(price) + "\" rating=\"" + SetTitle(rating) + "\" title=\"" + SetTitle(title) + "\" />");
                 }
                 catch { }

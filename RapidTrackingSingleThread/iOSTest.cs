@@ -2919,7 +2919,7 @@ namespace RapidTrackingSingleThread
             if (url.Contains(@"\u201d"))
                 url = url.Replace(@"\u201d", "”"); //22-03-2022
 
-            return url;
+            return WebUtility.HtmlEncode(WebUtility.HtmlDecode(url)); 
         }//12-03-2022 end
 
         // There are chances method was used for title contains in case any issues in xml applied decode/encode.

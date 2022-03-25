@@ -441,9 +441,11 @@ namespace RapidTrackingSingleThread
                             h3 = pla.SelectSingleNode(".//div[@class='jGAUQb']"); //07-02-2022
                         if (h3 == null)
                             h3 = pla.SelectSingleNode(".//h3[@class='TWApbd']/div[@class='xc15De']");  //11-01-2022
+                        if (h3 == null)
+                            h3 = pla.SelectSingleNode(".//div[@class='YW615c']"); //25-03-2022
                         if (h3 != null)
                         {
-                            if ((pla.SelectSingleNode(".//h3[contains(@class,'r')]") != null && pla.SelectSingleNode(".//h3[@role='heading']") != null) //13-11-2019 //20-07-2020 included "contains" 
+                            if ((pla.SelectSingleNode(".//h3[contains(@class,'r')]") != null && pla.SelectSingleNode(".//h3[@role='heading']") != null || (pla.SelectSingleNode(".//div[@class='YW615c']") != null && pla.SelectSingleNode(".//div[@role='heading']") != null)) //13-11-2019 //20-07-2020 included "contains" 
                                 || h3.InnerText.StartsWith("Shop for") || h3.InnerText.StartsWith("See ") || WebUtility.HtmlDecode(h3.InnerText).StartsWith("Ads·See ") || h3.InnerText.StartsWith("See&nbsp;")//07-02-2022
                                 || h3.InnerText.StartsWith("Ver ") || WebUtility.HtmlDecode(h3.InnerText).StartsWith("Anuncios·Ver ")  //15-07-2020 included for product lists ads
                                 || h3.InnerText.StartsWith("Anúncios&middot;Ver ") || WebUtility.HtmlDecode(h3.InnerText).StartsWith("Ads·") //09-08-2021 //10-07-2021 //16-07-2020
@@ -456,6 +458,8 @@ namespace RapidTrackingSingleThread
                                 HtmlNodeCollection cl = pla.SelectNodes(".//a[@class='pla-unit eUPzHb']|.//div[@class='mnr-c pla-unit']/a[2]|.//a[@class='plantl pla-unit-single-clickable-target clickable-card']|.//g-inner-card[contains(@class,'stOtnd VoEfsd')]/div/div/a");//25-09-2020 updated contains //15-07-2020 product list ads
                                 if (cl == null)
                                     cl = pla.SelectNodes(".//div[@class='ZPze1e']/a"); //07-02-2022
+                                if (cl == null)
+                                    cl = pla.SelectNodes(".//div[@class='yprotb']/a"); //25-03-2022
                                 if (cl == null)
                                     cl = pla.SelectNodes(".//a[@class='pla-unit']");
                                 if (cl == null)

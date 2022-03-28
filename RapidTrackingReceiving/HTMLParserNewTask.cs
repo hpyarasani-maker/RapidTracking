@@ -31,11 +31,11 @@ namespace Oxylabs_BulkKeywords
 
             Thread t1 = new Thread(new ThreadStart(StartProcess))
             {
-                //Name = "All_5"
+                Name = "All_1"
                 // Name = "Mobile_102_10"
                 ///Name = "CommaKeywords_1"
                 //Name = "ODesktop_20"
-                Name = "NewMobile_4"
+                //Name = "NewMobile_4"
                 //Name = "NewComma"
             };
             t1.Start();
@@ -43,11 +43,11 @@ namespace Oxylabs_BulkKeywords
 
         private void StartProcess()
         {
-            // string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking desktop and all keywords
+             string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking desktop and all keywords
             //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking mobile
             // string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
             //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobilehotel/";  // rapid tracking mobile
-            string url = "http://seresults.azurewebsites.net/api/callbackrapidTrackingnewdesktop/"; //Desktop new keywords
+            //string url = "http://seresults.azurewebsites.net/api/callbackrapidTrackingnewdesktop/"; //Desktop new keywords
             //string url = "http://seresults.azurewebsites.net/api/callbackrapidTrackingnewmobile/"; //mobile new keywords
             // string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingnewcommakeywords/";  // new comma keywords
 

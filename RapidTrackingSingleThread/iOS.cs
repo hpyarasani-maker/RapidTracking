@@ -530,7 +530,7 @@ namespace RapidTrackingSingleThread
 
                 HtmlNodeCollection col = crNode.SelectNodes(".//div[contains(@id,'tads')]/ol/li");
                 if (col == null)
-                    col = doc.DocumentNode.SelectNodes("//div[@id='tads']/div/ol/li|//div[@jsname='hWE2jd']|//div[@id='tads']/div[@class='uEierd']|.//div[@id='tadsb']/div/div[@class='uEierd']|//div[@id='tads']/div[@class='mnr-c O9g5cc uUPGi']");//28-03-2022 "/div" included//04-10-2021 updated selector for missing adwords
+                    col = doc.DocumentNode.SelectNodes("//div[@id='tads']/div/ol/li|//div[@jsname='hWE2jd']|//div[@id='tads']/div[@class='uEierd']|.//div[@id='tads']/div/div[@class='uEierd']|//div[@id='tads']/div[@class='mnr-c O9g5cc uUPGi']");//28-03-2022 "/div" included//04-10-2021 updated selector for missing adwords
 
                 if (col != null)
                 {

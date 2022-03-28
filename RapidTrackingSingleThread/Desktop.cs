@@ -886,7 +886,7 @@ namespace RapidTrackingSingleThread
             s.Append(res);//31-01-2022
             return s.ToString();
         }//end of item urls code 31-01-2022*/
-         /*private string GetPeopleAlsoAskUrls(string[] titles) //People also method 31-01-2022
+         private string GetPeopleAlsoAskUrls(string[] titles) //People also method 31-01-2022
          {
              StringBuilder s = new StringBuilder();
              //string pattern = @"WEB_ANSWERS_STANDARD_RESULT_(.*?)div class\\x3d\\x22yuRUbf\\x22\\x3e\\x3ca href\\x3d\\x22(.*?)\\x22 data-jsarwt";
@@ -909,8 +909,8 @@ namespace RapidTrackingSingleThread
              for (; x < titles.Length; x++)//18-02-2022
                  s.Append("<item url=\"\" title=\"" + SetTitle(titles[x]) + "\" />");//18-02-2022
              return s.ToString();
-         }*/
-        private string GetPeopleAlsoAskUrls(string[] titles) //People also method 02-03-2022
+         }
+        /*private string GetPeopleAlsoAskUrls(string[] titles) //People also method 02-03-2022
         {
             try
             {
@@ -1015,7 +1015,7 @@ namespace RapidTrackingSingleThread
             {
                 throw ex;
             }
-        }
+        }*/
         private string GetAnswerCard(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();

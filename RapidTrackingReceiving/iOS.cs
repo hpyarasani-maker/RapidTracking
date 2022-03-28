@@ -280,7 +280,7 @@ namespace Oxylabs_BulkKeywords
                 }
             }//25-09-2019
             // Ads  added or condition
-            HtmlNodeCollection col = doc.DocumentNode.SelectNodes("//div[@id='tadsb']/div[@class='C4eCVc c']/ol/li|.//div[@id='tadsb']/div[@class='uEierd']"); //18-09-2020 included selector for bottom adwords // 24-04-2020   included class selector
+            HtmlNodeCollection col = doc.DocumentNode.SelectNodes("//div[@id='tadsb']/div[@class='C4eCVc c']/ol/li|.//div[@id='tadsb']/div[@class='uEierd']|.//div[@id='tadsb']/div/div[@class='uEierd']");//28-03-2022 "/div" included //18-09-2020 included selector for bottom adwords // 24-04-2020   included class selector
             if (col != null)
             {
                 s.Append("<block type=\"adwords\" url=\"\">");
@@ -429,9 +429,11 @@ namespace Oxylabs_BulkKeywords
                             h3 = pla.SelectSingleNode(".//div[@class='jGAUQb']"); //07-02-2022
                         if (h3 == null)
                             h3 = pla.SelectSingleNode(".//h3[@class='TWApbd']/div[@class='xc15De']");  //11-01-2022
+                        if (h3 == null)
+                            h3 = pla.SelectSingleNode(".//div[@class='YW615c']"); //25-03-2022
                         if (h3 != null)
                         {
-                            if ((pla.SelectSingleNode(".//h3[contains(@class,'r')]") != null && pla.SelectSingleNode(".//h3[@role='heading']") != null) //13-11-2019 //20-07-2020 included "contains" 
+                            if ((pla.SelectSingleNode(".//h3[contains(@class,'r')]") != null && pla.SelectSingleNode(".//h3[@role='heading']") != null || (pla.SelectSingleNode(".//div[@class='YW615c']") != null && pla.SelectSingleNode(".//div[@role='heading']") != null))//25-03-2022 //13-11-2019 //20-07-2020 included "contains" 
                                 || h3.InnerText.StartsWith("Shop for") || h3.InnerText.StartsWith("See ") || WebUtility.HtmlDecode(h3.InnerText).StartsWith("Ads·See ") || h3.InnerText.StartsWith("See&nbsp;")//07-02-2022
                                 || h3.InnerText.StartsWith("Ver ") || WebUtility.HtmlDecode(h3.InnerText).StartsWith("Anuncios·Ver ")  //15-07-2020 included for product lists ads
                                 || h3.InnerText.StartsWith("Anúncios&middot;Ver ") || WebUtility.HtmlDecode(h3.InnerText).StartsWith("Ads·") //09-08-2021 //10-07-2021 //16-07-2020
@@ -444,6 +446,8 @@ namespace Oxylabs_BulkKeywords
                                 HtmlNodeCollection cl = pla.SelectNodes(".//a[@class='pla-unit eUPzHb']|.//div[@class='mnr-c pla-unit']/a[2]|.//a[@class='plantl pla-unit-single-clickable-target clickable-card']|.//g-inner-card[contains(@class,'stOtnd VoEfsd')]/div/div/a");//25-09-2020 updated contains //15-07-2020 product list ads
                                 if (cl == null)
                                     cl = pla.SelectNodes(".//div[@class='ZPze1e']/a"); //07-02-2022
+                                if (cl == null)
+                                    cl = pla.SelectNodes(".//div[@class='yprotb']/a"); //25-03-2022
                                 if (cl == null)
                                     cl = pla.SelectNodes(".//a[@class='pla-unit']");
                                 if (cl == null)
@@ -514,7 +518,7 @@ namespace Oxylabs_BulkKeywords
 
                 HtmlNodeCollection col = crNode.SelectNodes(".//div[contains(@id,'tads')]/ol/li");
                 if (col == null)
-                    col = doc.DocumentNode.SelectNodes("//div[@id='tads']/div/ol/li|//div[@jsname='hWE2jd']|//div[@id='tads']/div[@class='uEierd']|//div[@id='tads']/div[@class='mnr-c O9g5cc uUPGi']");//04-10-2021 updated selector for missing adwords
+                    col = doc.DocumentNode.SelectNodes("//div[@id='tads']/div/ol/li|//div[@jsname='hWE2jd']|//div[@id='tads']/div[@class='uEierd']|.//div[@id='tads']/div/div[@class='uEierd']|//div[@id='tads']/div[@class='mnr-c O9g5cc uUPGi']");//28-03-2022 "/div" included//04-10-2021 updated selector for missing adwords
 
                 if (col != null)
                 {
@@ -693,7 +697,7 @@ namespace Oxylabs_BulkKeywords
                     if (node.SelectSingleNode(".//div[contains(@class,'YgXj7b')]|.//div[@class='Y37F6d Nn2Stf']/img") == null)//22-09-2021 missing video block//08-05-2021 applied contains //19-01-2021
                         nds = node.SelectNodes(".//div[contains(@class,'KJDcUb')]|.//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']|.//g-card[@id='tscffb']|.//div[@class='mnr-c PHap3c']|.//div[@jsname='wRSfy']|.//g-card[@class='g F6CFcc']|.//div[@class='mnr-c xpd O9g5cc uUPGi']"); //19-11-2021 //28-10-2021//12-10-2021//09-02-2021//27-01-2021 included missing selector//05-01-2021 //04-01-2021 missing classic link//18-12-2020 sitelinks missing selector //15-12-2020
                 if (nds == null)
-                    nds = node.SelectNodes(".//div[@class='mnr-c O9g5cc uUPGi']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='HD8Pae mnr-c xpd O9g5cc uUPGi']|.//div[@class='mnr-c']/div/div[contains(@class,'P8ujBc')]" + //22-02-2022
+                    nds = node.SelectNodes(".//div[@class='mnr-c O9g5cc uUPGi']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='HD8Pae mnr-c xpd O9g5cc uUPGi']|.//div[@class='mnr-c']/div/div[contains(@class,'P8ujBc')]|.//div[@class='mnr-c P5XtRe']" + //25-03-2022 //22-02-2022
                         "|.//div/g-card[@class='XqIXXe']|.//g-card[@id='tscffb']|.//g-card[@class='g F6CFcc']|.//div[@class='khgTR lWEpfd']" +
                         "|.//div[@class='khgTR R5lVqb']|.//div[@class='mnr-c fp-w qs-ic aig-grd']|.//g-card[@class='URhAHe']" +
                         "|.//div[@class='mnr-c IcwJCe']|.//div[@class='g card-section svwwZ']|.//div[@class='g mnr-c']" + //15-11-2021 //03-11-2020//26-08-2020 incuded contains functions to the selector//29-07-2020 //20-05-2020 missing classic link //05-06-2020
@@ -781,7 +785,7 @@ namespace Oxylabs_BulkKeywords
                             {
                                 try
                                 {
-                                    if (Regex.IsMatch(img.OuterHtml, "id=\"vidthumb\\d*\"") || Regex.IsMatch(img.OuterHtml, "id=\"dimg_\\d*\"") || img.Attributes["class"].Value.Contains("__video-result") || nd.SelectSingleNode(".//video-voyager[@class='LnSx5b']") != null)//16-12-2021 //22-03-2021
+                                    if (Regex.IsMatch(img.OuterHtml, "id=\"vidthumb\\d*\"") || Regex.IsMatch(img.OuterHtml, "id=\"dimg_\\d*\"") || img.Attributes["class"].Value.Contains("__video-result") || nd.SelectSingleNode(".//video-voyager[@class='LnSx5b']") != null || nd.SelectSingleNode(".//video-voyager[@class='Jd7Wbb']") != null)//25-03-2022//16-12-2021 //22-03-2021
                                     {
                                         HtmlNode vdo = nd.SelectSingleNode(".//a[contains(@class,'BmP5tf')]"); //11-11-2021
                                         // video block.
@@ -1072,6 +1076,11 @@ namespace Oxylabs_BulkKeywords
                 case "maps":
                     s.Append("<block type=\"maps\" url=\"\"></block>");
                     break;
+                /*case "maps":
+                    s.Append("<block type=\"maps\" url=\"\">");//24-03-2022
+                    s.Append(GetMaps(node));
+                    s.Append("</block>");//24-03-2022
+                    break;*/
                 case "twitters":
                     //get twitter urls;
                     s.Append(GetTwitterCards(node));
@@ -1116,6 +1125,16 @@ namespace Oxylabs_BulkKeywords
                 case "jobs":  //20-11-2020
                     s.Append(GetJobs(node));
                     break;
+                /*case "topsights": //23-03-2022
+                    s.Append("<block type=\"topSights\" url=\"\">");
+                    s.Append(GetTopSights(node));
+                    s.Append("</block>");
+                    break;
+                case "flights":
+                    s.Append("<block type=\"flights\" url=\"\">");
+                    s.Append(GetFlights(node));
+                    s.Append("</block>");//23-03-2022
+                    break;*/
                 default:
                     break;
             }
@@ -1560,13 +1579,25 @@ namespace Oxylabs_BulkKeywords
                 s.Append("<item url=\"\" title=\"" + SetTitle(titles[x]) + "\" />");//18-02-2022
             return s.ToString();
         }
+
         /*private string GetPeopleAlsoAskUrls(string[] titles) //People also method 04-03-2022
         {
             StringBuilder s = new StringBuilder();
+            //22-03-2022
+            //images
+            string imagePattern = @"\Wtsuid\d{1,3}\W:\W(.*?)""";
+            Regex rimage = new Regex(imagePattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+            MatchCollection _mcimg = rimage.Matches(html);
+            ArrayList alImages = new ArrayList();
+            foreach (Match mi in _mcimg)
+            {
+                string[] imgs = { HttpUtility.HtmlDecode(mi.Groups[0].Value), HttpUtility.HtmlDecode(mi.Groups[1].Value) };
+                alImages.Add(imgs);
+            }
+            //end 22-03-2022
             string pattern = @"WEB_ANSWERS_STANDARD_RESULT_(.*?)div class\\x3d\\x22Xv4xee\\x22\\x3e\\x3ch3 class\\x3d\\x22yuRUbf JtG40d MBeuO q8U8x\\x22\\x3e\\x3ca class\\x3d\\x22sXtWJb\\x22 href\\x3d\\x22(.*?)\\x22";
             Regex re = new Regex(pattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
             MatchCollection mc = re.Matches(html);
-            ArrayList myList = new ArrayList();
             int x = 0;
             char[] yt = { '\\', '2', '6' };
             foreach (Match m in mc)
@@ -1575,24 +1606,99 @@ namespace Oxylabs_BulkKeywords
                 if (url.StartsWith("http") || url.StartsWith("https"))
                 {
                     url = SetYTUrl(url, yt); //12-03-2022
-                    //04-03-2022
-                    //    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");
-                    //}
                 }
+                //text
                 string textPattern = @"\\x3cspan class\\x3d\\x22hgKElc\\x22\\x3e(.*?)\\x3c/span\\x3e";
                 Regex _rx = new Regex(textPattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
                 Match _m = _rx.Match(m.Groups[0].Value);
-                string text = string.Empty;
+                string txt, text = string.Empty;
                 if (_m.Success)
                 {
-                    text = HttpUtility.HtmlDecode(_m.Groups[1].Value).Replace(@"\x3cb\x3e", "").Replace(@"\x3c/b\x3e", "");
+                    txt = HttpUtility.HtmlDecode(_m.Groups[1].Value);
+                    text = SetYTUrl(txt, yt); //15-03-2022
                 }
+                //22-03-2022
+                //image
+                string img = string.Empty;
+                if (alImages.Count > 0)
+                {
+                    imagePattern = @"tsuid\d{1,3}";
+                    _rx = new Regex(imagePattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                    _m = _rx.Match(m.Groups[0].Value);
+                    if (_m.Success)
+                    {
+                        foreach (string[] imgUrl in alImages)
+                        {
+                            if (imgUrl[0].StartsWith("\"" + _m.Value + "\":"))
+                            {
+                                img = SetYTUrl(imgUrl[1], yt);
+                                break;
+                            }
+                        }
+                    }
+                }
+                //end 22-03-2022
+                //18-03-2022
+                //table
+                string tblPattern = @"\\x3ctable\\x3e\\x3ctbody\\x3e(.*?)\\x3c/tbody\\x3e\\x3c/table\\x3e";
+                _rx = new Regex(tblPattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                _m = _rx.Match(m.Groups[0].Value);
+                string tbl = string.Empty;
+                string tblValues = string.Empty;
+                if (_m.Success)
+                {
+                    tbl = HttpUtility.HtmlDecode(_m.Groups[1].Value);
+                    //rows
+                    string rowPattern = @"\\x3ctr(.*?)\\x3c/tr\\x3e";
+                    _rx = new Regex(rowPattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                    MatchCollection _mcrows = _rx.Matches(tbl);
+                    tblValues = "<table>";
+                    foreach (Match mrow in _mcrows)
+                    {
+                        string row = HttpUtility.HtmlDecode(mrow.Groups[1].Value);
+                        //th
+                        string thPattern = @"\\x3cth(.*?)\\x3e(.*?)\\x3c/th\\x3e";
+                        _rx = new Regex(thPattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                        MatchCollection _mcth = _rx.Matches(row);
+                        tblValues += "<tr>";
+                        foreach (Match mth in _mcth)
+                        {
+                            string th = HttpUtility.HtmlDecode(mth.Groups[2].Value);
+                            tblValues += "<th>";
+                            //tblValues += th.Replace(@"\x3cb\x3e", "").Replace(@"\x3c/b\x3e", "");
+                            tblValues += SetYTUrl(th,yt);//22-03-2022
+                            tblValues += "</th>";
+                        }
+                        //td
+                        string tdPattern = @"\\x3ctd(.*?)\\x3e(.*?)\\x3c/td\\x3e";
+                        _rx = new Regex(tdPattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                        MatchCollection _mctd = _rx.Matches(row);
+                        foreach (Match mtd in _mctd)
+                        {
+                            string td = HttpUtility.HtmlDecode(mtd.Groups[2].Value);
+                            tblValues += "<td>";
+                            //tblValues += td.Replace(@"\x3cb\x3e", "").Replace(@"\x3c/b\x3e", "");
+                            tblValues += SetYTUrl(td, yt);//22-03-2022
+                            tblValues += "</td>";
+                        }
+                        tblValues += "</tr>";
+                    }
+                    tblValues += "</table>";
+                }
+
                 if (x < titles.Length)
-                    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" text=\"" + text + "\" />");
-                //end 04-03-2022
+                {
+                    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" text=\"" + SetTitle(text) + "\" image=\"" + SetUrl(img) + "\" >");
+                    if (!string.IsNullOrEmpty(tblValues))
+                    {
+                        s.Append(tblValues);
+                    }
+                    s.Append("</item>");
+                }
+                //end 18-03-2022                                                                                                                                                                                
             }
             for (; x < titles.Length; x++)
-                s.Append("<item url=\"\" title=\"" + SetTitle(titles[x]) + "\" text=\"\" />");
+                s.Append("<item url=\"\" title=\"" + SetTitle(titles[x]) + "\" text=\"\" image=\"\" />"); //17-03-2022
             return s.ToString();
         }*/
         private string GetAnswerCard(HtmlNode node)
@@ -2002,7 +2108,74 @@ namespace Oxylabs_BulkKeywords
             } // end of 23-01-2020  // 21-02-2020
             return s.ToString();
         }
+        private string GetTopSights(HtmlNode node)//23-03-2022 new element top sights
+        {
+            StringBuilder s = new StringBuilder();
+            //top
+            HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'EDblX DAVP1')]/a");
+            s.Append("<top>");
+            foreach (HtmlNode nd in nds)
+            {
+                string url = nd.Attributes["href"].Value;
+                string title = nd.InnerText;
+                if (url.StartsWith("/"))
+                    url = "https://www.googole.com" + url;
+                if (!string.IsNullOrEmpty(url) || !string.IsNullOrEmpty(title))
+                    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+            }
+            s.Append("</top>");
+            //bottom
+            nds = node.SelectNodes(".//div[@class='rqTuzc']/a");
+            s.Append("<bottom>");
+            foreach (HtmlNode nd in nds)
+            {
+                string url = nd.Attributes["href"].Value;
+                string title = nd.SelectSingleNode(".//span[@class='aVSTQd tNxQIb OSrXXb']").InnerText;
+                if (url.StartsWith("/"))
+                    url = "https://www.googole.com" + url;
+                if (!string.IsNullOrEmpty(url) || !string.IsNullOrEmpty(title))
+                    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+            }
+            s.Append("</bottom>");
+            return s.ToString();
+        } //23-03-2022
 
+        private string GetFlights(HtmlNode node) //23-03-2022 new element flights
+        {
+            StringBuilder s = new StringBuilder();
+            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='aieQre']/div/a|.//div[@class='LQQ1Bd']/div/a");
+            foreach (HtmlNode nd in nds)
+            {
+                try
+                {
+                    string airline = nd.SelectSingleNode(".//span[@class='ps0VMc']|.//div[@class='A4fsl']")?.InnerText.Trim() ?? "";
+                    string hours = nd.SelectSingleNode(".//span[@class='sRcB8']|.//div[@class='QTPlac']")?.InnerText.Trim() ?? "";
+                    string connecting = nd.SelectSingleNode(".//span[@class='u85UCd']")?.InnerText.Trim() ?? "";
+                    string price = nd.SelectSingleNode(".//span[@class='xqqLDd']|.//div[@class='yuVWKd']")?.InnerText.Trim() ?? "";
+                    s.Append("<item airline=\"" + SetTitle(airline) + "\" hours=\"" + SetTitle(hours) + "\" connecting=\"" + SetTitle(connecting) + "\" price=\"" + price + "\" />");
+                }
+                catch { }
+            }
+            return s.ToString();
+        }//23-03-2022
+        private string GetMaps(HtmlNode node)//24-03-2022 new element Maps
+        {
+            StringBuilder s = new StringBuilder();
+            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='M0T4Vc EXwDJb']");
+            foreach (HtmlNode nd in nds)
+            {
+                try
+                {
+                    string title = nd.SelectSingleNode(".//div[@class='BTPx6e yMArdc']")?.InnerText.Trim() ?? "";
+                    string rating = nd.SelectSingleNode(".//span[@class='YDIN4c YrbPuc']")?.InnerText.Trim() ?? "";
+                    string price = nd.SelectSingleNode(".//div[@class='VSZCrf']/span")?.InnerText.Trim() ?? "";
+                    s.Append("<item price=\"" + SetTitle(price) + "\" rating=\"" + SetTitle(rating) + "\" title=\"" + SetTitle(title) + "\" />");
+                    //s.Append($"<item price={SetTitle(price)}\trating={SetTitle(rating)}\ttitle={SetTitle(title)}\t />");
+                }
+                catch { }
+            }
+            return s.ToString();
+        }//24-03-2022
         private string GetBlockType(HtmlNode node)
         {
             HtmlNode nd = node.SelectSingleNode(".//div[@class='KNcnob']/g-img");
@@ -2052,6 +2225,11 @@ namespace Oxylabs_BulkKeywords
                 if (ts)
                     return "Topstories";
             }
+            /*nd = node.SelectSingleNode(".//g-tray-header[@class='kno-fb-ctx gsrt AX8YBc']"); //23-03-2022 //Top Sights and Flights
+            if (nd != null)
+                return "TopSights"; //23-03-2022
+            if (node.SelectSingleNode(".//div[@class='WlTAzf mnr-c vk_c']") != null || node.Attributes["class"]?.Value == "WlTAzf mnr-c vk_c") //23-03-2022
+                return "Flights";//23-03-2022*/
 
             if (node.SelectSingleNode(".//g-card[@class='cvoI5e']") != null || node.SelectSingleNode(".//g-card[@class='U8KfXc']") != null) //23-11-2020 //20-11-2020
             {
@@ -2453,7 +2631,7 @@ namespace Oxylabs_BulkKeywords
                 return true;
             }
             //29-11-2019
-            nd = node.SelectSingleNode(".//div[@class='KJDcUb WzRKRb']|.//div[contains(@class,'P8ujBc')]");//22-02-2022//01-02-2022
+            nd = node.SelectSingleNode(".//div[@class='KJDcUb WzRKRb']|.//div[contains(@class,'P8ujBc')]|.//div[@class='mnr-c P5XtRe']");//25-03-2022//22-02-2022//01-02-2022
             if (nd != null)
             {
                 return false;
@@ -2607,7 +2785,8 @@ namespace Oxylabs_BulkKeywords
                 || node.SelectSingleNode(".//div[contains(@class, 'Z3ngN')]") != null//22-03-2021
                 || node.SelectSingleNode(".//div[@class='g card-section']") != null) && node.SelectSingleNode(".//div[@class='BNeawe']") == null //08-10-2021//30-08-2021
                 || node.SelectSingleNode(".//video-voyager[@class='LnSx5b']") != null //16-12-2021
-                || node.SelectSingleNode(".//div[contains(@class,'P8ujBc')]") != null; //22-02-2022 //01-02-2022
+                || node.SelectSingleNode(".//div[contains(@class,'P8ujBc')]") != null //22-02-2022 //01-02-2022
+                || node.SelectSingleNode(".//div[@class='mnr-c P5XtRe']") != null; //25-03-2022
         }
 
         internal object GetTop100GoogleUKMobileImages_PageURLs(string kw, string v1, string v2, string v3, string v4, string v5)
@@ -2672,6 +2851,7 @@ namespace Oxylabs_BulkKeywords
             return string.Empty;
 
         }
+        /// <summary>
         /// peoplealsoask block url and youtube urls cleaning method
         /// </summary>
         /// <param name="url"></param>
@@ -2687,18 +2867,43 @@ namespace Oxylabs_BulkKeywords
                 if (n > 0)
                     url = url.Replace(url.Remove(0, n), "");//11-03-2022
             }
+            if (url.Contains(@"\u003d"))
+                url = url.Replace(@"\u003d", "="); //22-03-2022 \u003d
+
+            if (url.Contains(@"\u0026"))
+                url = url.Replace(@"\u0026", "&"); //22-03-2022
+
             if (url.Contains(@"\x26"))
-                url = url.Replace(@"\x26amp;", "&"); //10-03-2022
+                url = url.Replace(@"\x26amp;", "&"); //10-03-2022\x26#39;
+
+            if (url.Contains(@"\x26#39;"))
+                url = url.Replace(@"\x26#39;", "'"); //17-03-2022
 
             if (url.Contains(@"\x27"))
                 url = url.Replace(@"\x27", "'"); //11-03-2022
-            return url;
+
+            if (url.Contains(@"\x3cb\x3e"))
+                url = url.Replace(@"\x3cb\x3e", ""); //15-03-2022 for text
+            if (url.Contains(@"\x3cbr\x3e"))
+                url = url.Replace(@"\x3cbr\x3e", ""); //21-03-2022 for text
+
+            if (url.Contains(@"\x3c/b\x3e"))
+                url = url.Replace(@"\x3c/b\x3e", ""); //17-03-2022 for text
+            if (url.Contains(@"\x26quot;"))
+                url = url.Replace(@"\x26quot;", "\"");//21-03-2022
+            if (url.Contains(@"\u201c"))
+                url = url.Replace(@"\u201c", "“"); //22-03-2022
+            if (url.Contains(@"\u201d"))
+                url = url.Replace(@"\u201d", "”"); //22-03-2022
+
+            return WebUtility.HtmlEncode(WebUtility.HtmlDecode(url));
         }//12-03-2022 end
+
         // There are chances method was used for title contains in case any issues in xml applied decode/encode.
         public string SetTitle(string unicodestring)
         {
             //return WebUtility.HtmlEncode(WebUtility.HtmlDecode(unicodestring));
-            return WebUtility.HtmlEncode(WebUtility.HtmlDecode(unicodestring)).Replace("\\x27", "'").Replace("\\\\u0026", "&amp;").Replace("\\\\\\x22", "&quot;");
+            return WebUtility.HtmlEncode(WebUtility.HtmlDecode(unicodestring)).Replace("\\x27", "'").Replace("\\\\u0026", "&amp;").Replace("\\\\\\x22", "&quot;").Replace("\\u2013", "–"); //17-03-2022
 
         }
 

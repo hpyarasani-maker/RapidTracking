@@ -1518,7 +1518,7 @@ namespace RapidTrackingSingleThread
             nd = node.SelectSingleNode(".//div[@class='kp-wholepage EyBRub kp-wholepage-osrp HSryR']");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='kp-wholepage kp-wholepage-osrp HSryR EyBRub']");
-            if (nd != null && node.SelectSingleNode(".//div[@class='q6PGbe']") == null && node.SelectSingleNode(".//div[@class='l44Vof']") == null && node.SelectSingleNode(".//div[@class='P9Jfrb']") == null && node.SelectSingleNode(".//div[@class='LnbJhc']") == null) //18-03-2022
+            if (nd != null && node.SelectSingleNode(".//div[@class='q6PGbe']|.//div[@class='wDYxhc']/div") == null && node.SelectSingleNode(".//div[@class='l44Vof']") == null && node.SelectSingleNode(".//div[@class='P9Jfrb']") == null && node.SelectSingleNode(".//div[@class='LnbJhc']") == null) //31-03-2022//18-03-2022
                     return "KnowledgePanel";
             //end 05-10-2020
 
@@ -1645,6 +1645,7 @@ namespace RapidTrackingSingleThread
             {
                 try
                 {
+                    if (node.SelectSingleNode(".//div[@class='wDYxhc']/div") != null) return true;//31-03-2022 duplicate CL
                     //if (node.SelectSingleNode(".//div[@class='g']/div[@class='g jNVrwc Y4pkMc']") != null) return false; //07-12-2021
                     if (node.SelectSingleNode(".//div[@class='g jNVrwc Y4pkMc']|.//div[@class='g tF2Cxc']|.//div[@class='g eejeod up9jud']") != null) return false;//15-02-2022//02-02-2022//31-12-2021 missing CLinks
                     if (node.SelectSingleNode(".//div[@class='twQ0Be']|.//div[@jsname='N760b']|.//div[@jsname='wRSfy']|.//div[contains(@class,'e2BEnf U7izfe')]|.//div[@jsname='A6RGif']|.//div[@class='P9Jfrb']") != null) return true;//08-03-2022//07-03-2022//28-12-2021//10-12-2021//09-12-2021 //08-12-2021 PAlsoB   //30-08-2021 video card

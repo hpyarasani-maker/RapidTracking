@@ -2106,6 +2106,30 @@ namespace Oxylabs_BulkKeywords
             {
                 seid=595, domain="fr", geo_location="Marseille,Provence-Alpes-Cote d'Azur,France", locale= "fr-fr", uule = "w+CAIQICIrTWFyc2VpbGxlLFByb3ZlbmNlLUFscGVzLUNvdGUgZCdBenVyLEZyYW5jZQ==",device="mobile_android"
             },//end 20-12-2021
+            new SearchProperties() //01-04-2022 Barcelona
+            {
+                seid =596, domain ="es", geo_location="Barcelona,Catalonia,Spain", locale= "es-es", uule = "w+CAIQICIZQmFyY2Vsb25hLENhdGFsb25pYSxTcGFpbg==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =597, domain ="es", geo_location="Barcelona,Catalonia,Spain", locale= "es-es", uule = "w+CAIQICIZQmFyY2Vsb25hLENhdGFsb25pYSxTcGFpbg==",device="mobile_android"
+            },
+            new SearchProperties()//01-04-2022 Madrid
+            {
+                seid =598, domain ="es", geo_location="Province of Madrid,Madrid,Spain", locale= "en-es", uule = "w+CAIQICIfUHJvdmluY2Ugb2YgTWFkcmlkLE1hZHJpZCxTcGFpbg==",device="desktop"
+            },
+           new SearchProperties()
+           {
+                seid =599, domain ="es", geo_location="Province of Madrid,Madrid,Spain", locale= "en-es", uule = "w+CAIQICIfUHJvdmluY2Ugb2YgTWFkcmlkLE1hZHJpZCxTcGFpbg==",device="mobile_android"
+           },
+           new SearchProperties() //01-04-2022 Valencia
+           {
+              seid =600, domain ="es", geo_location="Province of Valencia,Valencia,Spain", locale= "es-es", uule = "w+CAIQICIjUHJvdmluY2Ugb2YgVmFsZW5jaWEsVmFsZW5jaWEsU3BhaW4=",device="desktop"
+           },
+           new SearchProperties()
+           {
+              seid =601, domain ="es", geo_location="Province of Valencia,Valencia,Spain", locale= "es-es", uule = "w+CAIQICIjUHJvdmluY2Ugb2YgVmFsZW5jaWEsVmFsZW5jaWEsU3BhaW4=",device="mobile_android"
+           },//end 01-04-2022
         };
         
 

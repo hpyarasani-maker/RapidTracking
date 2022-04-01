@@ -652,6 +652,7 @@ namespace RapidTrackingLibrary
             }
             else
             {
+                if (node.SelectSingleNode("./div[@id='rhs']") != null) return string.Empty;  //01-04-2022 to avoid other links
                 HtmlNodeCollection col = node.SelectNodes(".//h3[@class='r']/a");
                 if (col == null)
                     col = node.SelectNodes(".//div[@class='r']/a"); // 02-06-2020

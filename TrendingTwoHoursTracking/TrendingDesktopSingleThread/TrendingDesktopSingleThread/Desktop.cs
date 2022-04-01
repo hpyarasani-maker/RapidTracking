@@ -607,6 +607,7 @@ namespace TrendingDesktopSingleThread
             }
             else
             {
+                if (node.SelectSingleNode("./div[@id='rhs']") != null || node.Attributes["id"]?.Value == "rhs") return string.Empty; //01-04-202
                 HtmlNodeCollection col = node.SelectNodes(".//h3[@class='r']/a");
                 if (col == null)
                     col = node.SelectNodes(".//div[@class='r']/a"); // 02-06-2020

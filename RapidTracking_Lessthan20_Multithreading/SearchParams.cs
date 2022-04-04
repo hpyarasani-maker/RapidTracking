@@ -2117,11 +2117,11 @@ namespace TrackingTrending
            },
            new SearchProperties()//01-04-2022 Madrid
            {
-              seid =598, domain ="es", geo_location="Province of Madrid,Madrid,Spain", locale= "en-es", uule = "w+CAIQICIfUHJvdmluY2Ugb2YgTWFkcmlkLE1hZHJpZCxTcGFpbg==",device="desktop"
+              seid =598, domain ="es", geo_location="Province of Madrid,Madrid,Spain", locale= "es-es", uule = "w+CAIQICIfUHJvdmluY2Ugb2YgTWFkcmlkLE1hZHJpZCxTcGFpbg==",device="desktop"
            },
            new SearchProperties()
            {
-              seid =599, domain ="es", geo_location="Province of Madrid,Madrid,Spain", locale= "en-es", uule = "w+CAIQICIfUHJvdmluY2Ugb2YgTWFkcmlkLE1hZHJpZCxTcGFpbg==",device="mobile_android"
+              seid =599, domain ="es", geo_location="Province of Madrid,Madrid,Spain", locale= "es-es", uule = "w+CAIQICIfUHJvdmluY2Ugb2YgTWFkcmlkLE1hZHJpZCxTcGFpbg==",device="mobile_android"
            },
             new SearchProperties() //01-04-2022 Valencia
            {

@@ -1434,6 +1434,8 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div/a/div[@class='TIh7vf']"); // 10-12-2019 topstories block type selector
             if (nd == null)
                 nd = node.SelectSingleNode(".//div/a/div[@class='vJOb1e']"); //20-10-2021 top stories block
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='iJ1Kvb']"); //05-04-2022 TS
             if (nd != null)
                 return "topstories";
             if (nd == null)

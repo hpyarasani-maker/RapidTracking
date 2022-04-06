@@ -613,7 +613,11 @@ namespace RapidTrackingSingleThread
             }
             else
             {
-                if (node.SelectSingleNode("./div[@id='rhs']") != null || node.Attributes["id"]?.Value == "rhs") return string.Empty; //01-04-2022
+                if (node.SelectSingleNode(".//div[@id='rhs']") != null || node.Attributes["id"]?.Value == "rhs")
+                {
+                    node = node.SelectSingleNode(".//div[@class='g']");
+                    if (node == null) return string.Empty;
+                }//06-04-2022 //01-04-2022
                 HtmlNodeCollection col = node.SelectNodes(".//h3[@class='r']/a");
                 if (col == null)
                     col = node.SelectNodes(".//div[@class='r']/a"); // 02-06-2020

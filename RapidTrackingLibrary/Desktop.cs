@@ -1447,7 +1447,7 @@ namespace RapidTrackingLibrary
             {
                 return "Carousel";
             }
-            nd = node.SelectSingleNode(".//div[@id='fac-ut']");
+            nd = node.SelectSingleNode(".//div[@id='fac-ut']|.//div[@class='dzpFPb']");//06-04-2022
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@id='knowledge-finance-wholepage__entity-summary']");
             if (nd == null)
@@ -1564,7 +1564,7 @@ namespace RapidTrackingLibrary
                 if (nd != null)
                     if (nd.InnerText == "Top stories" || nd.InnerText == "Huvudnyheter" || nd.InnerText == "Videos" || nd.InnerText == "Video" || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws" || nd.InnerText == "Vertaalresultaat" || nd.InnerText == "Recipes" || nd.InnerText == "Vidéos")//02-12-2020 videos//05-08-2020 //29-06-2020//03-06-2020 // 02-06-2020  // 08-04-2020
                         return true;
-                if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null) //13-10-2021
+                if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null || node.SelectSingleNode(".//div[@class='dzpFPb']") != null)//06-04-2022 //13-10-2021
                     return true;
                 // changes in map block on 19-06-2019.
                 nd = node.SelectSingleNode(".//g-img/img");

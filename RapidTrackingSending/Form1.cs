@@ -34,14 +34,13 @@ namespace Oxylabs_BulkKeywords
                
         private void Form1_Load(object sender, EventArgs e)
         {
+            Text = "D_Oxylabs_NewSEIDs";
             //Text = "D_Oxylabs_TrackingTrending_KwdSending_106_1";
             //Text = "D_Oxylabs_TrackingTrending_KwdSending_102_2";
             //Text = "D_Oxylabs_TrackingTrending_KwdSending_OtherMobile_2";
             // Text = "D_Oxylabs_TrackingTrending_KwdSending_OtherDesktop_1";
             //Text = "D_Oxylabs_RapidTracking_KwdSending_Desktop_1";
-
             //Text = "D_Oxylabs_TrackingTrending_KwdSending_58_2";
-
             //Text = "D_Oxylabs_TrackingTrending_KwdSending_All";
             //Text = "D_Oxylabs_Tracking New Keywords_Sending";
             //Text = "D_Oxylabs_RapidTracking_KwdSending_Mobile_Yesterdays";
@@ -132,12 +131,12 @@ namespace Oxylabs_BulkKeywords
             Cursor.Current = Cursors.WaitCursor;
             string myDate = date_picker.Text;
 
-
+            string strQry = "exec [dbo].[GetBulk_NewSeids] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkUKDesktop_Temp_1] '" + myDate + "'";    // seid: 503
             //string strQry = "exec [dbo].[GetBulk_All] '" + myDate + "'";
             //string strQry = "exec [dbo]. [GetBulkDesktop_NewKeywords] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkDesktop_58_1] '" + myDate + "'";
-            string strQry = "exec [dbo].[GetBulkMobile_102_2] '" + myDate + "'";
+            //string strQry = "exec [dbo].[GetBulkMobile_102_2] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkDesktop_1] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkMobile_2] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkDesktop_1_1] '" + myDate + "'";

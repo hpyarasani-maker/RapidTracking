@@ -31,7 +31,8 @@ namespace Oxylabs_BulkKeywords
 
             Thread t1 = new Thread(new ThreadStart(StartProcess))
             {
-                Name = "All_1"
+                //Name = "All_1"
+                Name = "NewSEIDs_3"
                 // Name = "Mobile_102_10"
                 ///Name = "CommaKeywords_1"
                 //Name = "ODesktop_20"
@@ -43,7 +44,7 @@ namespace Oxylabs_BulkKeywords
 
         private void StartProcess()
         {
-             string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking desktop and all keywords
+            //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking desktop and all keywords
             //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking mobile
             // string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
             //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobilehotel/";  // rapid tracking mobile
@@ -51,7 +52,7 @@ namespace Oxylabs_BulkKeywords
             //string url = "http://seresults.azurewebsites.net/api/callbackrapidTrackingnewmobile/"; //mobile new keywords
             // string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingnewcommakeywords/";  // new comma keywords
 
-            //string url = "http://seresults.azurewebsites.net/api/callbackuk503desktoptemp/";
+            string url = "http://seresults.azurewebsites.net/api/callbackuk503desktoptemp/"; //receiving New SEIDs
             //string url = "http://seresults.azurewebsites.net/api/trackingtrending/";
             //string url = "http://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58
             //string url = "http://seresults.azurewebsites.net/api/callbackuk106mobile/";      // 106
@@ -432,13 +433,13 @@ namespace Oxylabs_BulkKeywords
 
                         comm.ExecuteNonQuery();
 
-                        if (urlcount < 20)
-                        {
-                            string qry = "exec [InsertLessthan20] '" + myDate + "',N'" + keyword.Replace("'", "''") + "'," + seid + ",N''," + urlcount + ",'" + jobid + "'";
-                            comm.CommandText = qry;
-                            comm.CommandType = CommandType.Text;
-                            comm.ExecuteNonQuery();
-                        }
+                        //if (urlcount < 20)
+                        //{
+                        //    string qry = "exec [InsertLessthan20] '" + myDate + "',N'" + keyword.Replace("'", "''") + "'," + seid + ",N''," + urlcount + ",'" + jobid + "'";
+                        //    comm.CommandText = qry;
+                        //    comm.CommandType = CommandType.Text;
+                        //    comm.ExecuteNonQuery();
+                        //}
                     }
                 }
 

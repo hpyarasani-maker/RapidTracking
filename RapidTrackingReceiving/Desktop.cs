@@ -481,7 +481,10 @@ namespace Oxylabs_BulkKeywords
                 || node.SelectNodes(".//div[contains(@class,'g card-section')]|.//div[@class='N3nEGc']") != null //03-03-2022 //06-10-2020 classic link
                 || node.SelectNodes(".//div[@class='g tF2Cxc']|.//div[@class='g dFd2Tb']") != null) //24-08-2021 video block //01-06-2021
             {
-                HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'tF2Cxc')]"); //25-01-2022
+                //HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'tF2Cxc')]"); //25-01-2022
+                HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'g tF2Cxc')]"); //04-04-2022
+                if (nds == null)
+                    nds = node.SelectNodes(".//div[contains(@class,'tF2Cxc')]");
                 if (nds == null) //25-01-2022
                     nds = node.SelectNodes(".//div[@class='g']|.//div[@class='HD8Pae luh4tb cUezCb xpd O9g5cc uUPGi']|.//div[contains(@class,'g card-section')]");//25-01-2022
                 if (nds == null)
@@ -609,7 +612,11 @@ namespace Oxylabs_BulkKeywords
             }
             else
             {
-                if (node.SelectSingleNode("./div[@id='rhs']") != null || node.Attributes["id"]?.Value == "rhs") return string.Empty; //01-04-2022
+                if (node.SelectSingleNode(".//div[@id='rhs']") != null || node.Attributes["id"]?.Value == "rhs")
+                {
+                    node = node.SelectSingleNode(".//div[@class='g']");
+                    if (node == null) return string.Empty;
+                }//06-04-2022 //01-04-2022
                 HtmlNodeCollection col = node.SelectNodes(".//h3[@class='r']/a");
                 if (col == null)
                     col = node.SelectNodes(".//div[@class='r']/a"); // 02-06-2020
@@ -1430,6 +1437,8 @@ namespace Oxylabs_BulkKeywords
                 nd = node.SelectSingleNode(".//div/a/div[@class='TIh7vf']"); // 10-12-2019 topstories block type selector
             if (nd == null)
                 nd = node.SelectSingleNode(".//div/a/div[@class='vJOb1e']"); //20-10-2021 top stories block
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='CEMjEf NUnG9d']/g-img"); //06-04-2022 TS
             if (nd != null)
                 return "topstories";
             if (nd == null)
@@ -1504,7 +1513,8 @@ namespace Oxylabs_BulkKeywords
                 || node.SelectSingleNode(".//div[@class='vkc_np kkww4d']") != null //21-09-2020 updated answered card selectors  //03-06-2020
                 || node.SelectSingleNode(".//div[@class='setTDc']") != null //07-12-2020 answered card selector
                 || node.SelectSingleNode(".//div[@class='kp-blk ouUsKb G45kvd']") != null //24-08-2021 answer card selector
-                || node.SelectSingleNode(".//div[@class='M0XuFe mnr-c vk_c']") != null)//23-12-2021
+                || node.SelectSingleNode(".//div[@class='M0XuFe mnr-c vk_c']") != null //23-12-2021
+                || node.SelectSingleNode(".//div[@id='wob_wc']") != null) //06-04-2022//31-03-2022 
             {
                 if (node.SelectSingleNode(".//div[@class='BET1rd']|.//div[@class='EfDVh wDYxhc NFQFxe']") == null && node.SelectSingleNode(".//div[@class='tpa-cc']") == null //23-12-2021 //21-08-2021 //25-09-2020
                     && node.SelectSingleNode(".//div[contains(@class,'kno-fb-ctx')]") == null) //13-10-2021
@@ -1570,7 +1580,7 @@ namespace Oxylabs_BulkKeywords
             {
                 return "Carousel";
             }
-            nd = node.SelectSingleNode(".//div[@id='fac-ut']");
+            nd = node.SelectSingleNode(".//div[@id='fac-ut']|.//div[@class='dzpFPb']");//06-04-2022
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@id='knowledge-finance-wholepage__entity-summary']");
             if (nd == null)
@@ -1695,7 +1705,7 @@ namespace Oxylabs_BulkKeywords
                     if (nd.InnerText == "Top stories" || nd.InnerText == "Huvudnyheter" || nd.InnerText == "Videos" || nd.InnerText == "Video" || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws" || nd.InnerText == "Vertaalresultaat" || nd.InnerText == "Recipes" || nd.InnerText == "Vidéos")//02-12-2020 videos//05-08-2020 //29-06-2020//03-06-2020 // 02-06-2020  // 08-04-2020
                         return true;
 
-                if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null) //13-10-2021
+                if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null || node.SelectSingleNode(".//div[@class='dzpFPb']") != null)//06-04-2022 //13-10-2021
                     return true;
 
                 // changes in map block on 19-06-2019.

@@ -1384,7 +1384,7 @@ namespace RapidTrackingLibrary
                 || node.SelectSingleNode(".//div[@class='pcCUmf vCOSGb']") != null
                 || node.SelectSingleNode(".//div[@class='vkc_np kkww4d']") != null //21-09-2020 updated answered card selectors  //03-06-2020
                 || node.SelectSingleNode(".//div[@class='setTDc']") != null //07-12-2020 answered card selector
-                || node.SelectSingleNode(".//div[@class='kp-blk ouUsKb G45kvd']") != null) //24-08-2021 answer card selector
+                || node.SelectSingleNode(".//div[@class='kp-blk ouUsKb G45kvd']") != null //24-08-2021 answer card selector
                 || node.SelectSingleNode(".//div[@class='M0XuFe mnr-c vk_c']") != null //23-12-2021
                 || node.SelectSingleNode(".//div[@id='wob_wc']") != null) //06-04-2022//31-03-2022 
             {

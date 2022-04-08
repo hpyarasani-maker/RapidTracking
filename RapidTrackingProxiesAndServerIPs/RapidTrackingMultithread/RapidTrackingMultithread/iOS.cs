@@ -790,7 +790,7 @@ namespace RapidTrackingMultithread
                             {
                                 try
                                 {
-                                    if (Regex.IsMatch(img.OuterHtml, "id=\"vidthumb\\d*\"") || Regex.IsMatch(img.OuterHtml, "id=\"dimg_\\d*\"") || img.Attributes["class"].Value.Contains("__video-result") || nd.SelectSingleNode(".//video-voyager[@class='LnSx5b']") != null || nd.SelectSingleNode(".//video-voyager[@class='Jd7Wbb']") != null)//25-03-2022//16-12-2021 //22-03-2021
+                                    if (Regex.IsMatch(img.OuterHtml, "id=\"vidthumb\\d*\"") || Regex.IsMatch(img.OuterHtml, "id=\"dimg_\\d*\"") || img.Attributes["class"].Value.Contains("__video-result") || nd.SelectSingleNode(".//video-voyager") != null) //08-04-2022 videos
                                     {
                                         HtmlNode vdo = nd.SelectSingleNode(".//a[contains(@class,'BmP5tf')]"); //11-11-2021
                                         // video block.
@@ -884,11 +884,7 @@ namespace RapidTrackingMultithread
                                 }
                                 // end 17-10-2019
 
-
-
-
-                                //HtmlNode img = nd.SelectSingleNode(".//img");
-                                HtmlNode img = nd.SelectSingleNode(".//g-img[@class='P64nJb BA0A6c onqIhd']//img|.//div[@class='BNeawe wyrwXc HrGdeb']|.//div[@class='Y37F6d Nn2Stf']/img");//25-02-2021//02-03-2021 //15-02-2021
+                                HtmlNode img = nd.SelectSingleNode(".//g-img[contains(@class,'P64nJb')]//img|.//div[@class='BNeawe wyrwXc HrGdeb']|.//div[@class='Y37F6d Nn2Stf']/img"); //08-04-2022
                                 if (img != null)
                                 {
                                     try
@@ -1989,7 +1985,7 @@ namespace RapidTrackingMultithread
             if (nds == null)
                 nds = node.SelectNodes(".//div[@data-attrid='OsrpVideos']/a|.//div[@class='ALzVK']/div/div/a");
             if (nds == null)
-                nds = node.SelectNodes(".//div[@jsname='ibnC6b']/a|.//div[@jscontroller='OmmTPc']|.//div[@class='QevLbc']/a|.//a[@class='OIDuRe']|.//div[@class='Q9mvUc']|.//div[@class='KJDcUb']|.//a[@class='ygih0']|.//div[@class='NBoMDb']/a[2]");//03-09-2021 item urls//02-03-2021 item links for videos // 14-12-2020//30-11-2020 videos item urls selectors //30-07-2020 //26-06-2020 included select for videos
+                nds = node.SelectNodes(".//div[@jsname='ibnC6b']/a|.//div[@jscontroller='OmmTPc']|.//div[@class='QevLbc']/a|.//a[@class='OIDuRe']|.//div[@class='Q9mvUc']|.//div[@class='KJDcUb']|.//a[@class='ygih0']|.//div[@class='NBoMDb']/a"); //07-04-2022 videos item urls
             if (nds != null)   // 16-09-2019
                 foreach (HtmlNode nd in nds)
                 {
@@ -2314,7 +2310,7 @@ namespace RapidTrackingMultithread
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='PZPZlf hb8SAc']");//21-12-2020 selector for answer card block
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='ifM9O']"); //28-02-2022
+                nd = node.SelectSingleNode(".//div[@class='ifM9O']|.//div[contains(@class,'wob_ans')]");//31-03-2022 //28-02-2022
             if (nd != null)
             {
                 if (node.SelectSingleNode(".//div[@class='FEoF4d']") == null)//08-10-2021 Answer Card

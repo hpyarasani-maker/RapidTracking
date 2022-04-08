@@ -32,7 +32,7 @@ namespace Oxylabs_BulkKeywords
             Thread t1 = new Thread(new ThreadStart(StartProcess))
             {
                 //Name = "All_1"
-                Name = "NewSEIDs_3"
+                Name = "NewSEIDs_2"
                 // Name = "Mobile_102_10"
                 ///Name = "CommaKeywords_1"
                 //Name = "ODesktop_20"
@@ -434,13 +434,13 @@ namespace Oxylabs_BulkKeywords
 
                         comm.ExecuteNonQuery();
 
-                        //if (urlcount < 20)
-                        //{
-                        //    string qry = "exec [InsertLessthan20] '" + myDate + "',N'" + keyword.Replace("'", "''") + "'," + seid + ",N''," + urlcount + ",'" + jobid + "'";
-                        //    comm.CommandText = qry;
-                        //    comm.CommandType = CommandType.Text;
-                        //    comm.ExecuteNonQuery();
-                        //}
+                        if (urlcount < 20)
+                        {
+                            string qry = "exec [InsertLessthan20] '" + myDate + "',N'" + keyword.Replace("'", "''") + "'," + seid + ",N''," + urlcount + ",'" + jobid + "'";
+                            comm.CommandText = qry;
+                            comm.CommandType = CommandType.Text;
+                            comm.ExecuteNonQuery();
+                        }
                     }
                 }
 

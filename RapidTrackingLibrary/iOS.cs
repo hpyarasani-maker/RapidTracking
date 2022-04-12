@@ -1981,9 +1981,9 @@ namespace RapidTrackingLibrary
                         else
                             url = nd.Attributes["data-url"].Value;
                         //end 26-06-2020
-                        if (url.Contains("/search?")) url = "";
-                        //if(!string.IsNullOrEmpty(url.Trim()) || !string.IsNullOrEmpty(title.Trim()))
-                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                        if (url.Contains("/search?") || url.StartsWith("#")) url = "";//11-04-2022
+                        if (!string.IsNullOrEmpty(url.Trim()) || !string.IsNullOrEmpty(title.Trim())) //11-04-2022
+                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                     }
                     catch { }
                 }

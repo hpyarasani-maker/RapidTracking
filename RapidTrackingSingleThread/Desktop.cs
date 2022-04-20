@@ -484,7 +484,9 @@ namespace RapidTrackingSingleThread
                 || node.SelectNodes(".//div[@class='d3zsgb']/div[@class='yuRUbf']") != null) //13-04-2022 missing CLinks
             {
                 //HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'tF2Cxc')]"); //25-01-2022
-                HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'g tF2Cxc')]"); //04-04-2022
+                HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'g tF2Cxc')]|.//div[@class='g']");//20-04-2022 //04-04-2022
+                if (nds == null && node.Attributes["class"]?.Value == "g tF2Cxc")//20-04-2022
+                    nds = node.SelectNodes(".");//20-04-2022 
                 if (nds == null)
                     nds = node.SelectNodes(".//div[contains(@class,'tF2Cxc')]");
                 if (nds == null) //25-01-2022

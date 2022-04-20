@@ -525,7 +525,9 @@ namespace RapidTrackingLibrary
                 || node.SelectNodes(".//div[@class='g tF2Cxc']|.//div[@class='g dFd2Tb']|.//div[@class='g ZYT4Gf']") != null //07-04-2022 //24-08-2021 video block //01-06-2021
                 || node.SelectNodes(".//div[@class='d3zsgb']/div[@class='yuRUbf']") != null) //13-04-2022 missing CLinks
             {
-                HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'g tF2Cxc')]"); //04-04-2022
+                HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'g tF2Cxc')]|.//div[@class='g']");//20-04-2022 //04-04-2022
+                if (nds == null && node.Attributes["class"]?.Value == "g tF2Cxc")//20-04-2022
+                    nds = node.SelectNodes(".");//20-04-2022 
                 if (nds == null) //25-01-2022
                     nds = node.SelectNodes(".//div[@class='g']|.//div[@class='HD8Pae luh4tb cUezCb xpd O9g5cc uUPGi']|.//div[contains(@class,'g card-section')]");//25-01-2022
                 if (nds == null)

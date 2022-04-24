@@ -88,13 +88,13 @@ namespace RapidTrackingLoopSingleThread
                         var doc = new HtmlAgilityPack.HtmlDocument();
                         Task<ArrayList> alresult = GetHTML(kw, Convert.ToInt32(seid));
 
-                        foreach(ArrayList src in alresult.Result)
+                        foreach(string[] src in alresult.Result)
                         {
-                            string keyword = src[0].ToString();
-                            JObject obj = JObject.Parse(src[1].ToString());
+                            string keyword = src[0];
+                            JObject obj = JObject.Parse(src[1]);
                             string html = obj["results"][0]["content"].Value<string>();
-                            string jobid = src[2].ToString();
-                            string device = src[3].ToString();
+                            string jobid = src[2];
+                            string device = src[3];
                             File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
                             //File.WriteAllText(@"C:\inetpub\wwwroot\"+jobid+"_withOut filter_"+".html", html, Encoding.UTF8);
                             result = true;

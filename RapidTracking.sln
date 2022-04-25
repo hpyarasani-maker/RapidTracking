@@ -55,6 +55,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RapidTrackingLibrary", "Rap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RapidTrackingLoopSingleThread", "RapidTrackingLoopSingleThread\RapidTrackingLoopSingleThread.csproj", "{0F493665-42FE-43C0-A31A-D7B9F097917B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RapidTrackingFindButton", "RapidTrackingFindButton\RapidTrackingFindButton.csproj", "{5B5127E4-B395-482B-9984-D2CBCBD3A108}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -153,6 +155,10 @@ Global
 		{0F493665-42FE-43C0-A31A-D7B9F097917B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F493665-42FE-43C0-A31A-D7B9F097917B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F493665-42FE-43C0-A31A-D7B9F097917B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B5127E4-B395-482B-9984-D2CBCBD3A108}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B5127E4-B395-482B-9984-D2CBCBD3A108}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B5127E4-B395-482B-9984-D2CBCBD3A108}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B5127E4-B395-482B-9984-D2CBCBD3A108}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

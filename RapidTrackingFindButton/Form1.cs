@@ -15,17 +15,17 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 
-namespace RapidTrackingLoopSingleThread
+namespace RapidTrackingFindButton
 {
-    public partial class frmLoopSingleThread : Form
+    public partial class Form1 : Form
     {
-        string xmlPath = "C:\\inetpub\\wwwroot\\rapidtracking_Loopsinglethread_102_GT20_WC.xml";
+        string xmlPath = "C:\\inetpub\\wwwroot\\NewKeywords_Jobid_GT0.xml";//changes
 
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
         //int count; 
 
-        public frmLoopSingleThread()
+        public Form1()
         {
             InitializeComponent();
             //count = 0;   // Common.GetOxylabsCount();          
@@ -43,18 +43,27 @@ namespace RapidTrackingLoopSingleThread
             Environment.Exit(Environment.ExitCode);
         }
 
-        private void frmLoopSingleThread_Load(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
 
-            this.Text = "RapidTracking_LoopSingleThread_102_GT20_WC";
+            //this.Text = "RapidTracking_Errorkeywords_1"; //changes
             //this.Text = "RapidTracking_SingleThread_P_A_WOC_10-09-2019";
+             this.Text = "RapidTracking_Missingkeywords_1"; // 01-09-2020
+            //this.Text = "RapidTracking_NewKeywords_MissingJobIDs_GT0"; //changes //15-04-2021
 
 
             Thread t = new Thread(new ThreadStart(StartProcess));
             t.SetApartmentState(ApartmentState.STA);
             t.Start();
         }
+        public enum stats
+        {
+            Faulted,
+            Pending,
+            Empty,
+            statuscode
 
+        }
         private void StartProcess()
         {
             while (true)
@@ -63,130 +72,113 @@ namespace RapidTrackingLoopSingleThread
                 //string myDate = "2019-11-20";
 
 
-                string kwQry = "[Tracking_DB_Keywords_Seid_102] '" + myDate + "'";
+                //string kwQry = "[GetErrorKeywords_1] '" + myDate + "'"; //changes
+
+                string kwQry = "[GetMissingKeywords_1] '" + myDate + "'"; // 01-09-2020
+
                 //string kwQry = "[Tracking_DB_Keywords_Seid_103p] '" + myDate + "'";               
                 //string kwQry = "[GetCommaKeywordsP] '" + myDate + "'";               
-                //string kwQry = "[Tracking_DB_Keywords_Seid_102_P] '" + myDate + "'"; //tracking previous date single keywords
+                //string kwQry = "[GetAllNewKeywords] '" + myDate + "'"; // 15-04-2021
+
                 GetKeywords(kwQry);
 
-                if (lstKWs.Items.Count <= 0)
+                if (lstKws.Items.Count <= 0)
                     break;
 
-                int cnt = 0;
-                //this.Invoke((MethodInvoker)delegate ()
-                //{
-                //    label1.Text = cnt + " of " + itmCount1 + " Completed";
-                //    label1.Refresh();
-                //});
-                foreach (string s in lstKWs.Items)
+                int cnt = 0;                
+                foreach (string s in lstKws.Items)
                 {
+                    //26-10-2020 changed character as ':'
                     string seid = s.Split(':')[0];
                     string kw = s.Split(':')[1];
+                    string jobid = s.Split(':')[2];
+                    //end of 26-10-2020 changed character as ':'
+
+
                     bool result = false;
                     try
                     {
                         var doc = new HtmlAgilityPack.HtmlDocument();
-                        Task<ArrayList> alresult = GetHTML(kw, Convert.ToInt32(seid));
-                        try
+                        Task<ArrayList> alresult = GetHTML(kw, Convert.ToInt32(seid),jobid);
+                        if (alresult.Status.ToString() == stats.Faulted.ToString() || alresult.Status.ToString()==stats.Pending.ToString() || alresult.Status.ToString() == stats.Empty.ToString() || alresult.Status.ToString() == stats.statuscode.ToString()) //07-02-2022//31-01-2022//04-01-2022
+                            throw alresult.Exception.InnerException;//04-01-2022
+                        foreach (string[] src in alresult.Result)
                         {
-                            string keyword = "";
-                            string jobid = "";
-                            int count = 0;
+                            string keyword = src[0];
+                            JObject obj = JObject.Parse(src[1]);
+                            string html = obj["results"][0]["content"].Value<string>();                            
+                            string device = src[3];                            
+                            result = true;
+                            doc = new HtmlAgilityPack.HtmlDocument();
+                            doc.LoadHtml(html);
+                            //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
                             string res = string.Empty;
-                            ArrayList alXml = new ArrayList();
-
-                            foreach (ArrayList arList in alresult.Result)
-                                foreach (string[] src in arList)
-                                {
-                                    keyword = src[0];
-                                    JObject obj = JObject.Parse(src[1]);
-                                    string html = obj["results"][0]["content"].Value<string>();
-                                    jobid = src[2];
-                                    string device = src[3];
-                                    File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
-                                    //File.WriteAllText(@"C:\inetpub\wwwroot\"+jobid+"_withOut filter_"+".html", html, Encoding.UTF8);
-                                    result = true;
-                                    doc = new HtmlAgilityPack.HtmlDocument();
-                                    doc.LoadHtml(html);
-                                    int curCount = 0;
-                                    if (device == "desktop")
-                                    {
-                                        Desktop clsDesktop = new Desktop();
-                                        alXml.Add(clsDesktop.ProcessDocument(seid, keyword, doc, out curCount));
-                                    }
-                                    else
-                                    {
-                                        iOS clsiOS = new iOS();
-                                        alXml.Add(clsiOS.ProcessDocument(seid, keyword, doc, out curCount));
-                                    }
-                                    count += curCount;
-                                }
-
-                            int x = 0;
-                            XmlDocument xmlDoc = new XmlDocument();
-                            foreach (string xml in alXml)
-                            {
-                                if (x == 0)
-                                {
-                                    x++;
-                                    xmlDoc.LoadXml(xml);
-                                    continue;
-                                }
-                                XmlDocument xmlDoc1 = new XmlDocument();
-                                xmlDoc1.LoadXml(xml);
-
-                                XmlNode node = xmlDoc.SelectSingleNode(".//section[@col='main']");
-                                XmlNode node1 = xmlDoc1.SelectSingleNode(".//section[@col='main']");
-
-                                foreach (XmlNode nd in node1.ChildNodes)
-                                {
-                                    XmlNode imported = xmlDoc.ImportNode(nd, true);
-                                    node.AppendChild(imported);
-                                }
-                            }
-                            res = xmlDoc.InnerXml;
-                            if (!string.IsNullOrEmpty(res))
-                            {
-                                lblCount.Invoke((MethodInvoker)(delegate ()
-                                {
-                                    lblCount.Text = "No. of Urls : " + count;
-                                }));
-                                if (count > 20)
-                                {
-                                    SendToAPI(seid, keyword, res, jobid);
-                                    //SendToDB(seid, keyword, res, jobid, count);
-                                }
-                            }
-                            //else
-                            //{
-                            //    SendToAPI(seid, keyword, res, jobid);
-                            //    SendToDB(seid, keyword, res, jobid, count);
-                            //}
-
-                        }
-                        catch (Exception ex)
-                        {
+                            int count = 0;
                             try
                             {
-                                bool isOldPage = false;
-                                if (ex.Message == "Old page found.")
-                                    isOldPage = true;
-                                //SendToDBFailure(kw, seid, jobid, isOldPage);
+                                         if (device == "desktop")
+                                {
+                                    //Desktop clsDesktop = new Desktop();
+                                    //res = clsDesktop.ProcessDocument(seid, keyword, doc, out count);
+
+                                }
+                                else
+                                {
+                                    //iOS clsiOS = new iOS();
+                                    //res = clsiOS.ProcessDocument(seid, keyword, doc, out count);
+                                }
+                                
+                                if (!string.IsNullOrEmpty(res))
+                                {
+                                    lblCount.Invoke((MethodInvoker)(delegate ()
+                                    {
+                                        lblCount.Text = "No. of Urls : " + count;
+                                    }));
+
+                                    if (count > 20)
+                                    {
+                                        SendToAPI(seid, keyword, res, jobid);
+                                        SendToDB(seid, keyword, res, jobid, count);
+                                    }
+                                }
+                                //else
+                                //{
+                                //    SendToAPI(seid, keyword, res, jobid);
+                                //    SendToDB(seid, keyword, res, jobid, count);
+                                //}
+                               
+                                
+
                             }
-                            finally { }
+                            catch (Exception ex)
+                            {
+                                try //change 03-01-2022
+                                {
+                                    bool isOldPage = false;
+                                    if (ex.Message == "Old page found.")
+                                        isOldPage = true;
+                                    this.Invoke((MethodInvoker)delegate ()
+                                    {
+                                        txtError.Text = txtError.Text + seid + ": " + kw + ": " + jobid + Environment.NewLine + ex.Message.ToString() +
+                                            Environment.NewLine + Environment.NewLine;
+                                        txtError.Refresh();
+                                    });
+                                    SendToDBFailure(seid, kw, jobid, isOldPage, ex.Message);
+                                }
+                                finally { }//end 03-01-2022
+                            }
+
                         }
-
-
-
                     }
                     catch (Exception ex)
                     {
-                        this.Invoke((MethodInvoker)delegate ()
+                        this.Invoke((MethodInvoker)delegate () //change 03-01-2022
                         {
-                            txtError.Text = ex.Message.ToString();
-                            string errorDesk = ex.Message.ToString() + seid + "=" + kw + Environment.NewLine;
-                            File.WriteAllText(@"C:\inetpub\wwwroot\errorDesk.txt", errorDesk);
+                            txtError.Text = txtError.Text + seid + ": " + kw + ": " + jobid + Environment.NewLine + ex.Message.ToString() +
+                                Environment.NewLine + Environment.NewLine;
+                            txtError.Refresh();
                         });
+                        SendToDBFailure(seid, kw, jobid, false, ex.Message); //end 03-01-2022
                     }
                     finally { }
                     this.Invoke((MethodInvoker)delegate ()
@@ -195,7 +187,7 @@ namespace RapidTrackingLoopSingleThread
                         {
                             textBox1.Text = s;
                             //textBox1.Refresh();
-                            label1.Text = ++cnt + " of " + lstKWs.Items.Count + " Completed";
+                            label1.Text = ++cnt + " of " + lstKws.Items.Count + " Completed";
                             label1.Refresh();
                         }
                         else
@@ -213,8 +205,6 @@ namespace RapidTrackingLoopSingleThread
 
         private void SendToAPI(string seid, string kw, string res, string jobid)
         {
-            //string r = "[\x00-\x08\x0B\x0C\x0E-\x1F\x26]";
-            //res = Regex.Replace(res, r, "", RegexOptions.Compiled);
             //if (res == string.Empty)
             //{
             //    XmlDocument xd = new XmlDocument();
@@ -230,13 +220,13 @@ namespace RapidTrackingLoopSingleThread
             res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + res;
             xd.LoadXml(res);
             xd.Save(xmlPath);
-
+            //File.WriteAllText(@"D:\23-03-2020\" + seid + "_" + kw + jobid + ".xml", res);
             //}
             //SendToURL
-
+            //return;
 
             string submitURL = ReadAPI();
-            //return; //03-04-2021
+
             string user = "pisoftware";
             string pwd = "r00t123456";
             try
@@ -322,16 +312,19 @@ namespace RapidTrackingLoopSingleThread
         {
             this.Invoke((MethodInvoker)delegate ()
             {
-                lstKWs.Items.Clear();
+                lstKws.Items.Clear();
                 //lstKWs.Items.Add("58:praivat medicashe insh");
                 //lstKWs.Items.Add("106:st.vincent discography");
                 //lstKWs.Items.Add("106:romeo and juliet tickets");
                 //lstKWs.Items.Add("160:malmö ff");
                 //lstKWs.Items.Add("102:terry crews");
                 //lstKWs.Items.Add("102:the uninhabitable earth summary");
-                lstKWs.Items.Add("145:kia sportage");
+                //lstKWs.Items.Add("1:rhubarbarone");
+                //lstKws.Items.Add("1:oscar de la renta womens shoes:6896288853636694017");
+                //coronavirus rd case	140	6672286477201717249
+
             });
-            return;
+            //return;
 
             try
             {
@@ -347,7 +340,7 @@ namespace RapidTrackingLoopSingleThread
                             {
                                 this.Invoke((MethodInvoker)delegate ()
                                 {
-                                    lstKWs.Items.Add(dr[0].ToString() + ":" + dr[1].ToString());
+                                    lstKws.Items.Add(dr.GetValue(0) + ":" + dr.GetValue(1) + ":" + dr.GetValue(2)); //26-10-2020 applied ":"
                                 });
                             }
                         }
@@ -366,6 +359,7 @@ namespace RapidTrackingLoopSingleThread
                 });
             }
             finally { }
+
         }
 
         private string GetTextFromXMLFile(string file)
@@ -399,16 +393,16 @@ namespace RapidTrackingLoopSingleThread
                 throw ex;
             }
         }
-        private void SendToDBFailure(string seid, string kw, string jobid, bool isOldPage)
+        private void SendToDBFailure(string seid, string kw, string jobid, bool isOldPage, string errMsg = "")
         {
             string myDate = DateTime.Today.ToString("yyyy-MM-dd");
             //string myDate = "2019-10-10";
 
-            string qry = "insert into dashboard_dataerrors (date, name, seid, jobid) values(Convert(varchar(10),'" + myDate + "',103), N'" +
-                  kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "' )";
+            string qry = "insert into dashboard_dataerrors (date, name, seid, jobid,message) values(Convert(varchar(10),'" + myDate + "',103), N'" +
+                    kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "', N'" + errMsg + "')"; //03-01-2022
 
             string qryOld = "insert into dashboard_oldgooglepage (date, keyword, seid, jobid) values('" + DateTime.Now + "', N'" +
-                 kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "' )";
+                  kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "')"; 
 
             using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
             {
@@ -449,36 +443,18 @@ namespace RapidTrackingLoopSingleThread
             }
 
 
-
-            //string qry = "Insert into KeywordsFailure(date, seid, keyword, status) values('" + DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ") + "', " + seid + ", N'" + kw.Replace("'", "''") + "', '-1')";
-
-            //try
-            //{
-            //    using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
-            //    {
-            //        con.Open();
-            //        using (SqlCommand comm = new SqlCommand(qry, con))
-            //        {
-            //            comm.CommandTimeout = 0;
-            //            comm.CommandType = CommandType.Text;
-            //            comm.ExecuteNonQuery();
-            //        }
-            //    }
-            //}
-            //finally { }
+            
         }
 
         private void SendToDB(string seid, string keyword, string xml, string jobid, int urlcount)
         {
             try
             {
-                string myDate = DateTime.Today.ToString("yyyy-MM-dd");
-                //string myDate = "2019-11-20";
+                string myDate = DateTime.Today.ToString("yyyy-MM-dd");               
 
                 using (SqlConnection con = new SqlConnection(Common.ReadConnection()))  // 12-05-2020
                 {
                     con.Open();
-
                     using (SqlCommand comm = con.CreateCommand())
                     {
                         comm.CommandTimeout = 0;
@@ -513,105 +489,43 @@ namespace RapidTrackingLoopSingleThread
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message.ToString());
+                throw ex;
             }
         }
 
-        public async Task<ArrayList> GetHTML(string keyword, int seid)
+        public async Task<ArrayList> GetHTML(string keyword, int seid,string jobid)
         {
             ArrayList alResult = new ArrayList();
             try
             {
                 SearchProperties sp = SearchParams.searches.Where(s => s.seid == seid).SingleOrDefault();
                 sp.query = keyword;
-                
-                for (int i=1;i<=3;i++)
-                {
-                    if (sp != null)
-                        alResult.Add(GetOxylabsWebDataSources(sp, i).Result);
-                }
+                if (sp != null)
+                    alResult = GetOxylabsWebDataSources(sp, jobid).Result;
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw ex.InnerException;//03-01-2022
             }
 
             return await Task.FromResult(alResult);
         }
 
-        async Task<ArrayList> GetOxylabsWebDataSources(SearchProperties sp,int i)
+        async Task<ArrayList> GetOxylabsWebDataSources(SearchProperties sp,string jobid)
         {
-            Uri queryUri = new Uri("http://data.oxylabs.io/v1/queries/batch");
+            JObject obj = null;//07-02-2022
             string username = "gpidatametrics";
             string password = "sdV5X3fcX6";
             string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
-            string[] keyword = { sp.query };
-
-            OxyParams op = new OxyParams()
-            {
-                source = "google_search",
-                domain = sp.domain,
-                //query = sp.query.Split(','),
-                query = keyword,
-                limit = 10,
-                pages = 1,
-                start_page = i,
-                locale = sp.locale,
-                geo_location = sp.geo_location,
-                //uule = uule,
-                parse = false, //23-09-2021 changed datatype into "int to bool"
-                user_agent_type = sp.device,
-                context = new List<Context> {
-                    new Context("safe_search", 0)
-                     }
-            };
-
-
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(queryUri);
-            req.Headers.Clear();
-
-            req.Method = "POST";
-            req.ContentType = "application/json";
-            req.Headers.Add(HttpRequestHeader.Authorization, "Basic " + authInfo);
-
-            using (var streamWriter = new StreamWriter(req.GetRequestStream()))
-            {
-                var json = JsonConvert.SerializeObject(op, new JsonSerializerSettings
-                {
-                    Formatting = Newtonsoft.Json.Formatting.Indented,
-                });
-
-                streamWriter.Write(json);
-            }
-
-            string response;
-            try
-            {
-                HttpWebResponse res = (HttpWebResponse)await req.GetResponseAsync();
-                using (StreamReader reader = new StreamReader(res.GetResponseStream(), Encoding.UTF8))
-                {
-                    response = reader.ReadToEnd();
-                }
-                res.Close();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            JObject jo = JObject.Parse(response);
-            var links = from p in jo["queries"] select p;
-            ArrayList lst = new ArrayList();
-            foreach (JToken link in links)
-            {
-                string kw = link["query"].Value<string>();
-                string href = link["_links"][1]["href"].Value<string>();
-                string status = link["status"].Value<string>();
-                string jobid = link["id"].Value<string>();
-                string device = link["user_agent_type"].Value<string>();
+            string[] keyword = { sp.query };                 
+            string response;        
+            ArrayList lst = new ArrayList();            
+                string kw = sp.query;
+                string href ="" ;
+                string status = "done";                
+                string device = sp.device;
                 string[] s = { kw, href, status, "no", jobid, device };    // keyword, url, status, isdownloaded, jobid, device.
-                lst.Add(s);
-            }
+                lst.Add(s);            
 
             if (lst.Count <= 0) return lst;
             ArrayList alResult = new ArrayList();
@@ -621,10 +535,8 @@ namespace RapidTrackingLoopSingleThread
                 foreach (string[] cbUrl in lst)
                 {
                     string[] reslt = { "", "", "", "" };
-                    response = "";
-
-                    Uri uri = new Uri(cbUrl[1]);
-                    //Uri uri = new Uri("http://data.oxylabs.io/v1/queries/6913998180291983361/results");
+                    response = "";                    
+                    Uri uri = new Uri("http://data.oxylabs.io/v1/queries/"+jobid+"/results");
                     if (cbUrl[2] == "done" && cbUrl[3] == "no")
                     {
                         try
@@ -642,6 +554,16 @@ namespace RapidTrackingLoopSingleThread
 
                             cbUrl[3] = "yes";
                             cnt++;
+                            if (response == "")//31-01-2022
+                            {
+                                throw new Exception("empty");
+                            }//31-01-2022
+                            obj = JObject.Parse(response);//07-02-2022
+                            string statuscode = obj["results"][0]["status_code"].Value<string>();//07-02-2022
+                            if (statuscode != "200")
+                            {
+                                throw new Exception("Status code : " + statuscode);
+                            }//07-02-2022 end
 
                             if (!string.IsNullOrEmpty(response))
                             {
@@ -651,46 +573,45 @@ namespace RapidTrackingLoopSingleThread
                                 reslt[3] = cbUrl[5];
                                 alResult.Add(reslt);
                             }
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine("Result Request: " + ex.Message);
-                        }
-                    }
-                    else if (cbUrl[2] == "faulted" && cbUrl[3] == "no")
-                    {
-                        cbUrl[3] = "yes";
-                        cnt++;
-                    }
-                    else if (cbUrl[2] == "pending" && cbUrl[3] == "no")
-                    {
-                        try
-                        {
-                            HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(uri.ToString().Replace("/results", ""));
-                            httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
-                            HttpWebResponse res = (HttpWebResponse)await httpWebRequest.GetResponseAsync();
-
-                            string doneresp = "";
-                            using (StreamReader reader = new StreamReader(res.GetResponseStream(), Encoding.UTF8))
+                            else//04-01-2022
                             {
-                                doneresp = reader.ReadToEnd();
-                            }
-                            res.Close();
+                                string resURL = "http://data.oxylabs.io/v1/queries/" + jobid;
+                                httpWebRequest = (HttpWebRequest)WebRequest.Create(resURL);
+                                httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
+                                HttpWebResponse res1 = (HttpWebResponse)httpWebRequest.GetResponse();
+                                Stream resStream = res1.GetResponseStream();
+                                reader = new StreamReader(resStream, Encoding.UTF8);
+                                response = reader.ReadToEnd();
+                                resStream.Close();
+                                res1.Close();
+                                obj = JObject.Parse(response);
+                                status = obj["status"].Value<string>();
+                                if (status == "faulted")
+                                {
+                                    throw new Exception("status is faulted");
+                                }
+                                if (status == "pending") //31-01-2022
+                                {
+                                    throw new Exception("status is pending");
+                                }
 
-                            JObject job = JObject.Parse(doneresp);
-                            string status = job["status"].Value<string>();
-                            cbUrl[2] = status;
+                            }//04-01-2022
                         }
+                       
                         catch (Exception ex)
                         {
-                            Console.WriteLine("Status Request: " + ex.Message);
-                            txtError.Text = ex.Message.ToString();
+                            // Console.WriteLine("Result Request: " + ex.Message);//03-01-2022
+                            
+                            throw new Exception(ex.Message);//31-01-2022//03-01-2022
                         }
                     }
+
+                    
                     else
                         cnt++;
                     Task.Delay(200).Wait();
                 }
+                 
 
                 if (lst.Count == cnt) break;
 
@@ -701,4 +622,5 @@ namespace RapidTrackingLoopSingleThread
         }
 
     }
+
 }

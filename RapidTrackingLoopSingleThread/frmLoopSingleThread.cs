@@ -525,7 +525,7 @@ namespace RapidTrackingLoopSingleThread
                 SearchProperties sp = SearchParams.searches.Where(s => s.seid == seid).SingleOrDefault();
                 sp.query = keyword;
                 
-                for (int i=1;i<=3;i++)
+                for (int i=1;i<=10;i++)
                 {
                     if (sp != null)
                         alResult.Add(GetOxylabsWebDataSources(sp, i).Result);

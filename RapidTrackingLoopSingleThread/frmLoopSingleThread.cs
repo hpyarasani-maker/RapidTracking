@@ -87,97 +87,66 @@ namespace RapidTrackingLoopSingleThread
                     {
                         var doc = new HtmlAgilityPack.HtmlDocument();
                         Task<ArrayList> alresult = GetHTML(kw, Convert.ToInt32(seid));
-                        try
+
+                        foreach(ArrayList src in alresult.Result)
                         {
-                            string keyword = "";
-                            string jobid = "";
-                            int count = 0;
+                            string keyword = src[0].ToString();
+                            JObject obj = JObject.Parse(src[1].ToString());
+                            string html = obj["results"][0]["content"].Value<string>();
+                            string jobid = src[2].ToString();
+                            string device = src[3].ToString();
+                            File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
+                            //File.WriteAllText(@"C:\inetpub\wwwroot\"+jobid+"_withOut filter_"+".html", html, Encoding.UTF8);
+                            result = true;
+                            doc = new HtmlAgilityPack.HtmlDocument();
+                            doc.LoadHtml(html);
                             string res = string.Empty;
-                            ArrayList alXml = new ArrayList();
-
-                            foreach (ArrayList arList in alresult.Result)
-                                foreach (string[] src in arList)
-                                {
-                                    keyword = src[0];
-                                    JObject obj = JObject.Parse(src[1]);
-                                    string html = obj["results"][0]["content"].Value<string>();
-                                    jobid = src[2];
-                                    string device = src[3];
-                                    File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
-                                    //File.WriteAllText(@"C:\inetpub\wwwroot\"+jobid+"_withOut filter_"+".html", html, Encoding.UTF8);
-                                    result = true;
-                                    doc = new HtmlAgilityPack.HtmlDocument();
-                                    doc.LoadHtml(html);
-                                    int curCount = 0;
-                                    if (device == "desktop")
-                                    {
-                                        Desktop clsDesktop = new Desktop();
-                                        alXml.Add(clsDesktop.ProcessDocument(seid, keyword, doc, out curCount));
-                                    }
-                                    else
-                                    {
-                                        iOS clsiOS = new iOS();
-                                        alXml.Add(clsiOS.ProcessDocument(seid, keyword, doc, out curCount));
-                                    }
-                                    count += curCount;
-                                }
-
-                            int x = 0;
-                            XmlDocument xmlDoc = new XmlDocument();
-                            foreach (string xml in alXml)
-                            {
-                                if (x == 0)
-                                {
-                                    x++;
-                                    xmlDoc.LoadXml(xml);
-                                    continue;
-                                }
-                                XmlDocument xmlDoc1 = new XmlDocument();
-                                xmlDoc1.LoadXml(xml);
-
-                                XmlNode node = xmlDoc.SelectSingleNode(".//section[@col='main']");
-                                XmlNode node1 = xmlDoc1.SelectSingleNode(".//section[@col='main']");
-
-                                foreach (XmlNode nd in node1.ChildNodes)
-                                {
-                                    XmlNode imported = xmlDoc.ImportNode(nd, true);
-                                    node.AppendChild(imported);
-                                }
-                            }
-                            res = xmlDoc.InnerXml;
-                            if (!string.IsNullOrEmpty(res))
-                            {
-                                lblCount.Invoke((MethodInvoker)(delegate ()
-                                {
-                                    lblCount.Text = "No. of Urls : " + count;
-                                }));
-                                if (count > 20)
-                                {
-                                    SendToAPI(seid, keyword, res, jobid);
-                                    //SendToDB(seid, keyword, res, jobid, count);
-                                }
-                            }
-                            //else
-                            //{
-                            //    SendToAPI(seid, keyword, res, jobid);
-                            //    SendToDB(seid, keyword, res, jobid, count);
-                            //}
-
-                        }
-                        catch (Exception ex)
-                        {
+                            int count = 0;
                             try
                             {
-                                bool isOldPage = false;
-                                if (ex.Message == "Old page found.")
-                                    isOldPage = true;
-                                //SendToDBFailure(kw, seid, jobid, isOldPage);
+                                if (device == "desktop")
+                                {
+                                    Desktop clsDesktop = new Desktop();
+                                    res = clsDesktop.ProcessDocument(seid, keyword, doc, out count);
+                                }
+                                else
+                                {
+                                    iOS clsiOS = new iOS();
+                                    res = clsiOS.ProcessDocument(seid, keyword, doc, out count);
+                                }
+
+                                if (!string.IsNullOrEmpty(res))
+                                {
+                                    lblCount.Invoke((MethodInvoker)(delegate ()
+                                    {
+                                        lblCount.Text = "No. of Urls : " + count;
+                                    }));
+                                    if (count > 20)
+                                    {
+                                        SendToAPI(seid, keyword, res, jobid);
+                                        SendToDB(seid, keyword, res, jobid, count);
+                                    }
+                                }
+                                //else
+                                //{
+                                //    SendToAPI(seid, keyword, res, jobid);
+                                //    SendToDB(seid, keyword, res, jobid, count);
+                                //}
+
                             }
-                            finally { }
+                            catch (Exception ex)
+                            {
+                                try
+                                {
+                                    bool isOldPage = false;
+                                    if (ex.Message == "Old page found.")
+                                        isOldPage = true;
+                                    SendToDBFailure(kw, seid, jobid, isOldPage);
+                                }
+                                finally { }
+                            }
+
                         }
-
-
-
                     }
                     catch (Exception ex)
                     {

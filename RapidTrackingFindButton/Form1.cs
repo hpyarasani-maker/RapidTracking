@@ -19,7 +19,7 @@ namespace RapidTrackingFindButton
 {
     public partial class Form1 : Form
     {
-        string xmlPath = "C:\\inetpub\\wwwroot\\NewKeywords_Jobid_GT0.xml";//changes
+        string xmlPath = "C:\\inetpub\\wwwroot\\FindMessage.xml";//changes
 
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
@@ -48,7 +48,7 @@ namespace RapidTrackingFindButton
 
             //this.Text = "RapidTracking_Errorkeywords_1"; //changes
             //this.Text = "RapidTracking_SingleThread_P_A_WOC_10-09-2019";
-             this.Text = "RapidTracking_Missingkeywords_1"; // 01-09-2020
+             this.Text = "RapidTracking_FindSeeMoreMessage"; // 01-09-2020
             //this.Text = "RapidTracking_NewKeywords_MissingJobIDs_GT0"; //changes //15-04-2021
 
 
@@ -113,43 +113,13 @@ namespace RapidTrackingFindButton
                             doc.LoadHtml(html);
                             //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
                             string res = string.Empty;
-                            int count = 0;
                             try
                             {
-                                         if (device == "desktop")
-                                {
-                                    //Desktop clsDesktop = new Desktop();
-                                    //res = clsDesktop.ProcessDocument(seid, keyword, doc, out count);
-
-                                }
-                                else
-                                {
-                                    //iOS clsiOS = new iOS();
-                                    //res = clsiOS.ProcessDocument(seid, keyword, doc, out count);
-                                }
-                                
-                                if (!string.IsNullOrEmpty(res))
-                                {
-                                    lblCount.Invoke((MethodInvoker)(delegate ()
-                                    {
-                                        lblCount.Text = "No. of Urls : " + count;
-                                    }));
-
-                                    if (count > 20)
-                                    {
-                                        SendToAPI(seid, keyword, res, jobid);
-                                        SendToDB(seid, keyword, res, jobid, count);
-                                    }
-                                }
-                                //else
-                                //{
-                                //    SendToAPI(seid, keyword, res, jobid);
-                                //    SendToDB(seid, keyword, res, jobid, count);
-                                //}
                                
-                                
-
-                            }
+                                    Message m = new Message();
+                                    res = m.GetSeeMoreText(seid, keyword, doc);
+                                    SendToDB(seid, keyword, res, jobid);
+                             }
                             catch (Exception ex)
                             {
                                 try //change 03-01-2022
@@ -203,110 +173,7 @@ namespace RapidTrackingFindButton
         }
 
 
-        private void SendToAPI(string seid, string kw, string res, string jobid)
-        {
-            //if (res == string.Empty)
-            //{
-            //    XmlDocument xd = new XmlDocument();
-            //    res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
-            //    res += "<searchResult searchEngine =\"" + seid + "\" keyword=\"" + kw + "\" date =\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\">";
-            //    res += "<section col = \"main\" /> <section col=\"right\" /> </searchResult> ";
-            //    xd.LoadXml(res);
-            //    xd.Save(xmlPath);
-            //}
-            //else
-            //{
-            XmlDocument xd = new XmlDocument();
-            res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + res;
-            xd.LoadXml(res);
-            xd.Save(xmlPath);
-            //File.WriteAllText(@"D:\23-03-2020\" + seid + "_" + kw + jobid + ".xml", res);
-            //}
-            //SendToURL
-            //return;
-
-            string submitURL = ReadAPI();
-
-            string user = "pisoftware";
-            string pwd = "r00t123456";
-            try
-            {
-                HttpWebRequest httpWReq = (HttpWebRequest)WebRequest.Create(submitURL);
-                httpWReq.UseDefaultCredentials = true;
-                httpWReq.PreAuthenticate = true;
-                httpWReq.Credentials = CredentialCache.DefaultCredentials;
-
-                Encoding encoding = new UTF8Encoding();
-                string postData = GetTextFromXMLFile(xmlPath);
-                byte[] data = encoding.GetBytes(postData);
-
-                httpWReq.ProtocolVersion = HttpVersion.Version11;
-                httpWReq.Method = "POST";
-                httpWReq.ContentType = "application/x-www-form-urlencoded";
-
-
-                string auth = string.Format("{0}:{1}", user, pwd);
-                string enc = Convert.ToBase64String(Encoding.ASCII.GetBytes(auth));
-                string cred = string.Format("{0} {1}", "Basic", enc);
-
-
-                httpWReq.Headers[HttpRequestHeader.Authorization] = cred;
-                httpWReq.ContentLength = data.Length;
-                //httpWReq.Timeout = 0;
-
-                Stream stream = httpWReq.GetRequestStream();
-                stream.Write(data, 0, data.Length);
-                stream.Close();
-
-                HttpWebResponse response = (HttpWebResponse)httpWReq.GetResponse();
-                //string s = response.ToString();
-                StreamReader reader = new StreamReader(response.GetResponseStream());
-
-                if (response.StatusCode != HttpStatusCode.OK)
-                {
-                    reader.Close();
-                    response.Close();
-                    throw new Exception(response.StatusCode + ": " + response.StatusDescription);
-                }
-                String xmlResponse = "";
-                String temp = null;
-                while ((temp = reader.ReadLine()) != null)
-                {
-                    xmlResponse += temp;
-                }
-                reader.Close();
-                response.Close();
-            }
-            catch (WebException ex)
-            {
-
-                ////store into keywordfail table.
-                SendToDBFailure(seid, kw, jobid, false);
-
-
-                string errorMsg = string.Empty;
-                using (WebResponse response = ex.Response)
-                {
-                    HttpWebResponse httpResponse = (HttpWebResponse)response;
-                    errorMsg = string.Format("API Error: StatusCode {0}", httpResponse.StatusCode);
-
-                    using (Stream data = response.GetResponseStream())
-                    using (var reader = new StreamReader(data))
-                    {
-                        errorMsg += "\r\n" + reader.ReadToEnd();
-                        txtError.Text = errorMsg;
-                    }
-                }
-
-                throw new Exception(errorMsg);
-
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error: " + ex.Message);
-            }
-
-        }
+       
 
         private void GetKeywords(string qry)
         {
@@ -320,11 +187,14 @@ namespace RapidTrackingFindButton
                 //lstKWs.Items.Add("102:terry crews");
                 //lstKWs.Items.Add("102:the uninhabitable earth summary");
                 //lstKWs.Items.Add("1:rhubarbarone");
-                //lstKws.Items.Add("1:oscar de la renta womens shoes:6896288853636694017");
+                lstKws.Items.Add("290:kia sportage:6924740114128070657");
+                lstKws.Items.Add("312:kia sportage:6924740118095862785");
+                lstKws.Items.Add("145:kia sportage:6924739756941121537");
+                lstKws.Items.Add("160:kia sportage:6924739902466711555");
                 //coronavirus rd case	140	6672286477201717249
 
             });
-            //return;
+            return;
 
             try
             {
@@ -446,7 +316,7 @@ namespace RapidTrackingFindButton
             
         }
 
-        private void SendToDB(string seid, string keyword, string xml, string jobid, int urlcount)
+        private void SendToDB(string seid, string keyword, string msg, string jobid)
         {
             try
             {
@@ -459,13 +329,11 @@ namespace RapidTrackingFindButton
                     {
                         comm.CommandTimeout = 0;
                         comm.CommandType = CommandType.StoredProcedure;
-                        comm.CommandText = "Insert_dashboard_data";
-                        comm.Parameters.Add("Date", SqlDbType.DateTime).Value = myDate;
+                        comm.CommandText = "Insert_Dashboard_Data_message";
                         comm.Parameters.Add("Name", SqlDbType.NVarChar).Value = keyword; //.Replace("'", "''");
                         comm.Parameters.Add("Seid", SqlDbType.Int).Value = seid;
                         comm.Parameters.Add("JobId", SqlDbType.NVarChar).Value = jobid;
-                        comm.Parameters.Add("Count", SqlDbType.Int).Value = urlcount;
-                        comm.Parameters.Add("XmlData", SqlDbType.Xml).Value = xml.Replace("'", "''");
+                        comm.Parameters.Add("message", SqlDbType.NVarChar).Value = msg.Replace("'", "''");
 
                         comm.ExecuteNonQuery();
                     }

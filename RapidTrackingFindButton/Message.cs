@@ -13,11 +13,17 @@ namespace RapidTrackingFindButton
 
         public string GetSeeMoreText(string seid, string keyword, HtmlDocument doc)
         {
-            var nodes = doc.DocumentNode.SelectNodes(".//div[@class='tF2Cxc']/div/a");
-            if (nodes == null)
-                nodes = doc.DocumentNode.SelectNodes(".//div[@class='g tF2Cxc']/div/a");
-
-            return nodes.ToString();
+            string msg = string.Empty;
+            HtmlNode node = doc.DocumentNode.SelectSingleNode(".//h3/div[@class='GNJvt ipz2Oe']/span[@class='RVQdVd']");
+            if (node != null)
+            {
+                 msg = node.InnerText;
+            }
+            else
+            {
+                msg = "No Link button";
+            }
+            return msg;
         }
     }
 }

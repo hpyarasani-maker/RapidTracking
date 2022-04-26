@@ -187,14 +187,14 @@ namespace RapidTrackingFindButton
                 //lstKWs.Items.Add("102:terry crews");
                 //lstKWs.Items.Add("102:the uninhabitable earth summary");
                 //lstKWs.Items.Add("1:rhubarbarone");
-                lstKws.Items.Add("290:kia sportage:6924740114128070657");
-                lstKws.Items.Add("312:kia sportage:6924740118095862785");
-                lstKws.Items.Add("145:kia sportage:6924739756941121537");
-                lstKws.Items.Add("160:kia sportage:6924739902466711555");
+                //lstKws.Items.Add("290:kia sportage:6924740114128070657");
+                //lstKws.Items.Add("312:kia sportage:6924740118095862785");
+                //lstKws.Items.Add("145:kia sportage:6924739756941121537");
+                //lstKws.Items.Add("160:kia sportage:6924739902466711555");
                 //coronavirus rd case	140	6672286477201717249
 
             });
-            return;
+            //return;
 
             try
             {

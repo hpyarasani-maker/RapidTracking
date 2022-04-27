@@ -57,6 +57,7 @@ namespace RapidTrackingSingleThread
         Random rnd;
         public string GetWebDataSource(string url)
         {
+            System.Threading.Thread.Sleep(1000);
             int x = 0;
             sIP = string.Empty;
             try
@@ -109,7 +110,7 @@ namespace RapidTrackingSingleThread
         ArrayList al = new ArrayList();
         public string GetWebDataMobileSource(string url)
         {
-
+            System.Threading.Thread.Sleep(1000);
             int x = 0;
             sIP = string.Empty;
             try

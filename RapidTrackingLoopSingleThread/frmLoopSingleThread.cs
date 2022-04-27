@@ -154,7 +154,7 @@ namespace RapidTrackingLoopSingleThread
                                 if (count > 20)
                                 {
                                     SendToAPI(seid, keyword, res, jobid);
-                                    //SendToDB(seid, keyword, res, jobid, count);
+                                    SendToDB(seid, keyword, res, jobid, count);
                                 }
                             }
                             //else

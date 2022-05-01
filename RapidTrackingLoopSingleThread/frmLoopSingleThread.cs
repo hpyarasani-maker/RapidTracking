@@ -329,7 +329,15 @@ namespace RapidTrackingLoopSingleThread
                 //lstKWs.Items.Add("160:malmö ff");
                 //lstKWs.Items.Add("102:terry crews");
                 //lstKWs.Items.Add("102:the uninhabitable earth summary");
-                lstKWs.Items.Add("145:kia sportage");
+                //lstKWs.Items.Add("145:kia sportage");
+                //lstKWs.Items.Add("280:kia sportage");
+                //lstKWs.Items.Add("314:kia sportage");
+                //lstKWs.Items.Add("290:kia sportage");
+                //lstKWs.Items.Add("282:kia sportage");
+                //lstKWs.Items.Add("312:kia sportage");
+                //lstKWs.Items.Add("102:note 8 specs");
+                //lstKWs.Items.Add("102:iphone 11 camera specs");
+                lstKWs.Items.Add("427:mamypoko kkuljam pants");
             });
             return;
 

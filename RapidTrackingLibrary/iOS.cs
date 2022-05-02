@@ -2298,7 +2298,7 @@ namespace RapidTrackingLibrary
                         return "Maps";
 
                 // changes on 08-07-2019
-                nd = node.SelectSingleNode(".//img[@alt='map image']|.//img[@alt='Affected area map']|.//img[contains(@alt,'Map of ')]|.//img[@alt='Affected area']|.//img[@alt='Immagine mappa']|.//img[contains(@alt,'Map from')]");//22-11-2021//30-11-2020 //19-06-2020 // 13-03-2020 //01-05-2020
+                nd = node.SelectSingleNode(".//img[@alt='map image']|.//img[@alt='Affected area map']|.//img[contains(@alt,'Map of ')]|.//img[@alt='Affected area']|.//img[@alt='Immagine mappa']|.//img[contains(@alt,'Map from')]|.//img[contains(@alt,'Mappa di')]");//02-05-2022//22-11-2021//30-11-2020 //19-06-2020 // 13-03-2020 //01-05-2020
                 if (nd != null)
                     return "Maps";
             }

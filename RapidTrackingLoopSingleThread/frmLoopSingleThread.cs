@@ -63,7 +63,7 @@ namespace RapidTrackingLoopSingleThread
                 //string myDate = "2019-11-20";
 
 
-                string kwQry = "[Tracking_DB_Keywords_Seid_102] '" + myDate + "'";
+                string kwQry = "[Tracking_DB_Keywords_SEID_102_last] '" + myDate + "'";
                 //string kwQry = "[Tracking_DB_Keywords_Seid_103p] '" + myDate + "'";               
                 //string kwQry = "[GetCommaKeywordsP] '" + myDate + "'";               
                 //string kwQry = "[Tracking_DB_Keywords_Seid_102_P] '" + myDate + "'"; //tracking previous date single keywords
@@ -131,7 +131,7 @@ namespace RapidTrackingLoopSingleThread
                             XmlDocument xmlDoc = new XmlDocument();
                             foreach (string xml in alXml)
                             {
-                               
+                                if (string.IsNullOrEmpty(xml.Trim())) continue;//02-05-2022
                                 if (x == 0)
                                 {
                                     x++;
@@ -343,7 +343,7 @@ namespace RapidTrackingLoopSingleThread
                 //lstKWs.Items.Add("312:kia sportage");
                 //lstKWs.Items.Add("102:note 8 specs");
                 //lstKWs.Items.Add("102:iphone 11 camera specs");
-                lstKWs.Items.Add("258:令吉匯率");
+                lstKWs.Items.Add("154:fête des pères 2021");
             });
             return;
 

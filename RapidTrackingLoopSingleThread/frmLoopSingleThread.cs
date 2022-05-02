@@ -98,34 +98,40 @@ namespace RapidTrackingLoopSingleThread
                             foreach (ArrayList arList in alresult.Result)
                                 foreach (string[] src in arList)
                                 {
-                                    keyword = src[0];
-                                    JObject obj = JObject.Parse(src[1]);
-                                    string html = obj["results"][0]["content"].Value<string>();
-                                    jobid = src[2];
-                                    string device = src[3];
-                                    File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
-                                    //File.WriteAllText(@"C:\inetpub\wwwroot\"+jobid+"_withOut filter_"+".html", html, Encoding.UTF8);
-                                    result = true;
-                                    doc = new HtmlAgilityPack.HtmlDocument();
-                                    doc.LoadHtml(html);
-                                    int curCount = 0;
-                                    if (device == "desktop")
+                                    try //02-05-2022
                                     {
-                                        Desktop clsDesktop = new Desktop();
-                                        alXml.Add(clsDesktop.ProcessDocument(seid, keyword, doc, out curCount));
+                                        keyword = src[0];
+                                        JObject obj = JObject.Parse(src[1]);
+                                        string html = obj["results"][0]["content"].Value<string>();
+                                        jobid = src[2];
+                                        string device = src[3];
+                                        File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
+                                        //File.WriteAllText(@"C:\inetpub\wwwroot\"+jobid+"_withOut filter_"+".html", html, Encoding.UTF8);
+                                        result = true;
+                                        doc = new HtmlAgilityPack.HtmlDocument();
+                                        doc.LoadHtml(html);
+                                        int curCount = 0;
+                                        if (device == "desktop")
+                                        {
+                                            Desktop clsDesktop = new Desktop();
+                                            alXml.Add(clsDesktop.ProcessDocument(seid, keyword, doc, out curCount));
+                                        }
+                                        else
+                                        {
+                                            iOS clsiOS = new iOS();
+                                            alXml.Add(clsiOS.ProcessDocument(seid, keyword, doc, out curCount));
+                                        }
+                                        count += curCount;
                                     }
-                                    else
-                                    {
-                                        iOS clsiOS = new iOS();
-                                        alXml.Add(clsiOS.ProcessDocument(seid, keyword, doc, out curCount));
-                                    }
-                                    count += curCount;
+                                    catch { }//05-02-2022
+
                                 }
 
                             int x = 0;
                             XmlDocument xmlDoc = new XmlDocument();
                             foreach (string xml in alXml)
                             {
+                               
                                 if (x == 0)
                                 {
                                     x++;
@@ -337,7 +343,7 @@ namespace RapidTrackingLoopSingleThread
                 //lstKWs.Items.Add("312:kia sportage");
                 //lstKWs.Items.Add("102:note 8 specs");
                 //lstKWs.Items.Add("102:iphone 11 camera specs");
-                lstKWs.Items.Add("427:mamypoko kkuljam pants");
+                lstKWs.Items.Add("258:令吉匯率");
             });
             return;
 

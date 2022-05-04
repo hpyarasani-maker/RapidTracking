@@ -22,7 +22,7 @@ namespace RapidTrackingMultithread
         string strCon = string.Empty;
         string liveurl = string.Empty;
         public string myDate = string.Empty;
-
+        static Random rd = new Random();
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
         public Form1()
@@ -244,6 +244,8 @@ namespace RapidTrackingMultithread
 
         public void ProcessResults2(string seid, string kn)
         {
+            
+            int mseconds = rd.Next(30, 80) * 1000;
             string[] seresults = new string[1];
             date_picker.Format = DateTimePickerFormat.Custom;
             date_picker.CustomFormat = "yyyy-MM-dd";
@@ -321,10 +323,17 @@ namespace RapidTrackingMultithread
                     }
                 }
             }
+
+            this.Invoke((MethodInvoker)delegate ()
+            {
+                rnd_lbl4.Text = (mseconds / 1000).ToString() + " " + "seconds";
+            });
+            Thread.Sleep(mseconds); 
         }
 
         public void ProcessResults6(string seid, string kn)
-        {            
+        {
+            int mseconds = rd.Next(30, 100) * 1000;
             string[] seresults = new string[1];
             date_picker.Format = DateTimePickerFormat.Custom;
             date_picker.CustomFormat = "yyyy-MM-dd";
@@ -406,11 +415,18 @@ namespace RapidTrackingMultithread
                     string error1 = ex.Message;
                 }
             }
+
+            this.Invoke((MethodInvoker)delegate ()
+            {
+                rnd_lbl5.Text = (mseconds / 1000).ToString() + " " + "seconds";
+            });
+            Thread.Sleep(mseconds);
         }
 
 
         public void ProcessResults12(string seid, string kn)
         {
+            int mseconds = rd.Next(30, 120) * 1000;
             string[] seresults = new string[1];
             date_picker.Format = DateTimePickerFormat.Custom;
             date_picker.CustomFormat = "yyyy-MM-dd";
@@ -490,6 +506,12 @@ namespace RapidTrackingMultithread
                     }
                 }
             }
+
+            this.Invoke((MethodInvoker)delegate ()
+            {
+                rnd_lbl6.Text = (mseconds / 1000).ToString() + " " + "seconds";
+            });
+            Thread.Sleep(mseconds);
         }
 
         public void ProcessWorklist2()

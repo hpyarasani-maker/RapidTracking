@@ -44,6 +44,9 @@
             this.worklist1 = new System.Windows.Forms.ListBox();
             this.date_picker = new System.Windows.Forms.DateTimePicker();
             this.Process_btn = new System.Windows.Forms.Button();
+            this.rnd_lbl4 = new System.Windows.Forms.Label();
+            this.rnd_lbl5 = new System.Windows.Forms.Label();
+            this.rnd_lbl6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label3
@@ -110,9 +113,9 @@
             // 
             // progress_seid2
             // 
-            this.progress_seid2.Location = new System.Drawing.Point(437, 25);
+            this.progress_seid2.Location = new System.Drawing.Point(410, 25);
             this.progress_seid2.Name = "progress_seid2";
-            this.progress_seid2.Size = new System.Drawing.Size(296, 23);
+            this.progress_seid2.Size = new System.Drawing.Size(323, 23);
             this.progress_seid2.TabIndex = 24;
             // 
             // results3
@@ -175,11 +178,41 @@
             this.Process_btn.UseVisualStyleBackColor = true;
             this.Process_btn.Click += new System.EventHandler(this.Process_btn_Click);
             // 
+            // rnd_lbl4
+            // 
+            this.rnd_lbl4.AutoSize = true;
+            this.rnd_lbl4.Location = new System.Drawing.Point(537, 25);
+            this.rnd_lbl4.Name = "rnd_lbl4";
+            this.rnd_lbl4.Size = new System.Drawing.Size(14, 13);
+            this.rnd_lbl4.TabIndex = 33;
+            this.rnd_lbl4.Text = "#";
+            // 
+            // rnd_lbl5
+            // 
+            this.rnd_lbl5.AutoSize = true;
+            this.rnd_lbl5.Location = new System.Drawing.Point(537, 254);
+            this.rnd_lbl5.Name = "rnd_lbl5";
+            this.rnd_lbl5.Size = new System.Drawing.Size(14, 13);
+            this.rnd_lbl5.TabIndex = 34;
+            this.rnd_lbl5.Text = "#";
+            // 
+            // rnd_lbl6
+            // 
+            this.rnd_lbl6.AutoSize = true;
+            this.rnd_lbl6.Location = new System.Drawing.Point(537, 513);
+            this.rnd_lbl6.Name = "rnd_lbl6";
+            this.rnd_lbl6.Size = new System.Drawing.Size(14, 13);
+            this.rnd_lbl6.TabIndex = 35;
+            this.rnd_lbl6.Text = "#";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1026, 750);
+            this.Controls.Add(this.rnd_lbl6);
+            this.Controls.Add(this.rnd_lbl5);
+            this.Controls.Add(this.rnd_lbl4);
             this.Controls.Add(this.Process_btn);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -222,6 +255,9 @@
         private System.Windows.Forms.ListBox worklist1;
         private System.Windows.Forms.DateTimePicker date_picker;
         private System.Windows.Forms.Button Process_btn;
+        private System.Windows.Forms.Label rnd_lbl4;
+        private System.Windows.Forms.Label rnd_lbl5;
+        private System.Windows.Forms.Label rnd_lbl6;
     }
 }
 

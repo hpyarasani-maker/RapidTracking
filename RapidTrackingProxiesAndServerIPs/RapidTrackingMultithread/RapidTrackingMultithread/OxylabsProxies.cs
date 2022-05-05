@@ -26,7 +26,7 @@ namespace RapidTrackingMultithread
         const string num = "100";
         const string aomd = "1";        
         string url = string.Empty;
-
+        public string IP = string.Empty;
 
         public OxylabsProxies()
         {
@@ -41,8 +41,6 @@ namespace RapidTrackingMultithread
         Random rnd;
         public string GetWebDataSource(string url)
         {
-            System.Threading.Thread.Sleep(1000);
-
             int x = 0;
             sIP = string.Empty;
             try
@@ -54,6 +52,7 @@ namespace RapidTrackingMultithread
                 }
                 rnd = new Random();
                 x = rnd.Next(0, dtIPs.Rows.Count);
+                IP = dtIPs.Rows[x][1].ToString();
                 Uri uri = new Uri(url);
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create(uri);
                 req.CookieContainer = new CookieContainer();
@@ -95,9 +94,7 @@ namespace RapidTrackingMultithread
 
         public string GetWebDataMobileSource(string url)
         {
-            System.Threading.Thread.Sleep(1000);
-
-            int x = 0;
+           int x = 0;
             sIP = string.Empty;
             try
             {

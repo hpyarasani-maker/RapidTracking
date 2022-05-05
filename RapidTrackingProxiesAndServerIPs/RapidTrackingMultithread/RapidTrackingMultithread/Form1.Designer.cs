@@ -47,6 +47,7 @@
             this.rnd_lbl4 = new System.Windows.Forms.Label();
             this.rnd_lbl5 = new System.Windows.Forms.Label();
             this.rnd_lbl6 = new System.Windows.Forms.Label();
+            this.iptxt_txt = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label3
@@ -83,18 +84,18 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtError.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtError.Location = new System.Drawing.Point(767, 52);
+            this.txtError.Location = new System.Drawing.Point(1102, 52);
             this.txtError.Multiline = true;
             this.txtError.Name = "txtError";
             this.txtError.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtError.Size = new System.Drawing.Size(242, 686);
+            this.txtError.Size = new System.Drawing.Size(315, 686);
             this.txtError.TabIndex = 28;
             // 
             // errorList
             // 
             this.errorList.Location = new System.Drawing.Point(-2, 751);
             this.errorList.Name = "errorList";
-            this.errorList.Size = new System.Drawing.Size(1016, 56);
+            this.errorList.Size = new System.Drawing.Size(1419, 56);
             this.errorList.TabIndex = 27;
             // 
             // progress_seid12
@@ -205,11 +206,20 @@
             this.rnd_lbl6.TabIndex = 35;
             this.rnd_lbl6.Text = "#";
             // 
+            // iptxt_txt
+            // 
+            this.iptxt_txt.Location = new System.Drawing.Point(768, 52);
+            this.iptxt_txt.Multiline = true;
+            this.iptxt_txt.Name = "iptxt_txt";
+            this.iptxt_txt.Size = new System.Drawing.Size(328, 686);
+            this.iptxt_txt.TabIndex = 36;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1026, 750);
+            this.ClientSize = new System.Drawing.Size(1429, 805);
+            this.Controls.Add(this.iptxt_txt);
             this.Controls.Add(this.rnd_lbl6);
             this.Controls.Add(this.rnd_lbl5);
             this.Controls.Add(this.rnd_lbl4);
@@ -258,6 +268,7 @@
         private System.Windows.Forms.Label rnd_lbl4;
         private System.Windows.Forms.Label rnd_lbl5;
         private System.Windows.Forms.Label rnd_lbl6;
+        private System.Windows.Forms.TextBox iptxt_txt;
     }
 }
 

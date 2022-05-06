@@ -12,7 +12,7 @@ namespace RapidTrackingMultithread
             DataTable dt = new DataTable();
 
             //string strQry = "Select id, address From IP_Address where id between 1 and 120 ";
-            string strQry = "Select id, address From oxylabs_proxies where id between 1 and 1000";
+            string strQry = "Select id, address From oxylabs_proxies order by newID()";
             using (SqlDataAdapter da = new SqlDataAdapter(strQry, ReadConnection()))
             {
                 da.Fill(dt);

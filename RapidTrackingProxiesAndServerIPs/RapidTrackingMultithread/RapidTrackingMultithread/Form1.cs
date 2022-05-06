@@ -242,7 +242,7 @@ namespace RapidTrackingMultithread
 
         public void ProcessResults2(string seid, string kn)
         {
-            string IP;
+            
             int mseconds = rd.Next(20, 30) * 1000;
             string[] seresults = new string[1];
             date_picker.Format = DateTimePickerFormat.Custom;
@@ -251,10 +251,10 @@ namespace RapidTrackingMultithread
 
             try
             {
-                seresults = server0.GetTop100(kn, int.Parse(seid),out IP);
+                seresults = server0.GetTop100(kn, int.Parse(seid));
                 txtError.Invoke((MethodInvoker)(delegate ()
                 {
-                    iptxt_txt.Text += seid + "\t" + kn + "\t" + server0.IP + "\t" + DateTime.Now.ToString() + "\r\n";
+                    iptxt_txt.Text += seid + kn + server0.IP + DateTime.Now.ToString() + "\r\n";
                 }));
             }
             catch (WebException ex)
@@ -335,7 +335,6 @@ namespace RapidTrackingMultithread
 
         public void ProcessResults6(string seid, string kn)
         {
-            string IP;
             int mseconds = rd.Next(20, 40) * 1000;
             string[] seresults = new string[1];
             date_picker.Format = DateTimePickerFormat.Custom;
@@ -344,10 +343,10 @@ namespace RapidTrackingMultithread
 
             try
             {
-                seresults = server0.GetTop100(kn, int.Parse(seid),out IP);
+                seresults = server0.GetTop100(kn, int.Parse(seid));
                 txtError.Invoke((MethodInvoker)(delegate ()
                 {
-                    iptxt_txt.Text += seid + "\t" + kn + "\t" + server0.IP + "\t" + DateTime.Now.ToString() + "\r\n";
+                    iptxt_txt.Text += seid + kn + server0.IP + DateTime.Now.ToString() + "\r\n";
                 }));
             }
             catch (WebException ex)
@@ -433,7 +432,6 @@ namespace RapidTrackingMultithread
 
         public void ProcessResults12(string seid, string kn)
         {
-            string IP;
             int mseconds = rd.Next(20, 60) * 1000;
             string[] seresults = new string[1];
             date_picker.Format = DateTimePickerFormat.Custom;
@@ -442,10 +440,10 @@ namespace RapidTrackingMultithread
 
             try
             {
-                seresults = server0.GetTop100(kn, int.Parse(seid),out IP);
+                seresults = server0.GetTop100(kn, int.Parse(seid));
                 txtError.Invoke((MethodInvoker)(delegate ()
                 {
-                    iptxt_txt.Text += seid +"\t"+ kn + "\t" + server0.IP + "\t" + DateTime.Now.ToString() + "\r\n";
+                    iptxt_txt.Text += seid + kn + server0.IP + DateTime.Now.ToString() + "\r\n";
                 }));
             }
             catch (WebException ex)

@@ -24,7 +24,7 @@ namespace RapidTrackingMultithread
         const string safesearch = "0";
         const string safe = "off";
         const string num = "100";
-        const string aomd = "1";
+        const string aomd = "1";        
         string url = string.Empty;
         public string IP = string.Empty;
 
@@ -34,12 +34,12 @@ namespace RapidTrackingMultithread
             dtIPs = Common.GetIPsFromDB();
         }
 
-
+        
         public int x = 0;
         public DataTable dtIPs;
-
         
-        public string GetWebDataSource(string url, out string ip)
+        Random rnd;
+        public string GetWebDataSource(string url)
         {
             int x = 0;
             sIP = string.Empty;
@@ -50,7 +50,7 @@ namespace RapidTrackingMultithread
                 {
                     dtIPs = Common.GetIPsFromDB();
                 }
-                Random rnd = new Random();
+                rnd = new Random();
                 x = rnd.Next(0, dtIPs.Rows.Count);
                 IP = dtIPs.Rows[x][1].ToString();
                 Uri uri = new Uri(url);
@@ -60,17 +60,16 @@ namespace RapidTrackingMultithread
                 req.UseDefaultCredentials = true;
                 //req.UserAgent = @"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36";
                 //req.UserAgent = @"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36";
-                //req.UserAgent = @"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36";
-                req.UserAgent = @"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36";
+                req.UserAgent = @"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36";
 
                 // port is changed from '6747' to '6747'.
                 WebProxy proxy = new WebProxy("http://" + dtIPs.Rows[x][1].ToString());
                 NetworkCredential cred = new NetworkCredential("pidatametrics", "sbj4A3PLyZ");
-                
+
                 proxy.Credentials = cred;
 
                 req.Proxy = proxy;
-                ip = IP;
+
                 HttpWebResponse res = (HttpWebResponse)req.GetResponse();
 
                 if (res.StatusCode != HttpStatusCode.OK) throw new Exception(res.StatusDescription);
@@ -93,9 +92,9 @@ namespace RapidTrackingMultithread
             }
         }
 
-        public string GetWebDataMobileSource(string url, out string ip)
+        public string GetWebDataMobileSource(string url)
         {
-            int x = 0;
+           int x = 0;
             sIP = string.Empty;
             try
             {
@@ -104,7 +103,7 @@ namespace RapidTrackingMultithread
                 {
                     dtIPs = Common.GetIPsFromDB();
                 }
-                Random rnd = new Random();
+                rnd = new Random();
                 x = rnd.Next(0, dtIPs.Rows.Count);
                 Uri uri = new Uri(url);
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create(uri);
@@ -125,7 +124,6 @@ namespace RapidTrackingMultithread
 
                 req.Proxy = proxy;
 
-                ip = IP;
                 HttpWebResponse res = (HttpWebResponse)req.GetResponse();
                 if (res.StatusCode != HttpStatusCode.OK) throw new Exception(res.StatusDescription);
 
@@ -149,65 +147,69 @@ namespace RapidTrackingMultithread
 
         public string[] GetTop100Desktop(string keyword, int seid, out string oIP, string domain, string locale, string uule)
         {
+            
+                ArrayList DesktopResult = new ArrayList();
 
-            ArrayList DesktopResult = new ArrayList();
+                string[] locale1 = locale.Split('-');
 
-            string[] locale1 = locale.Split('-');
-
-            if (locale1.Length == 3)
-            {
-                if (locale1[1] == "419" || locale1[1] == "TW")
+                if (locale1.Length == 3)
                 {
-                    locale1[0] = locale1[0] + "-" + locale1[1];
-                }
+                    if (locale1[1] == "419" || locale1[1] == "TW")
+                    {
+                        locale1[0] = locale1[0] + "-" + locale1[1];
+                    }
                 //url = "" + googleurl + "" + domain + "/search?q=" + keyword + "&gl=" + locale1[2] + "&hl=" + locale1[0] + "&num=" + num + "&safe_search=" + safesearch + "&safe=" + safe + "&aomd=" + aomd + "&uule=" + uule + "&gs_l=" + device + "&gws_rd=ssl,cr";
                 url = "https://www.google." + domain + "/search?q=" + keyword + "&gl=" + locale1[2] + "&hl=" + locale1[0] + "&num=100&safe_search=0&safe=off&aomd=1" + "&uule=" + uule;
+
             }
+
             else if (locale1.Length == 2)
-            {
+                {
                 //url = "" + googleurl + "" + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&num=" + num + "&safe_search=" + safesearch + "&safe=" + safe + "&aomd=" + aomd + "&uule=" + uule + "&gs_l=" + device + "&gws_rd=ssl,cr";
                 url = "https://www.google." + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&num=100&safe_search=0&safe=off&aomd=1" + "&uule=" + uule;
+
             }
-            string HTML = GetWebDataSource(url, out sIP);
-            string[] dr = DesktoppatternTrending(HTML, keyword, seid.ToString());
-            oIP = sIP;
-            return dr;
+
+            string HTML = GetWebDataSource(url);
+                string[] dr = DesktoppatternTrending(HTML, keyword, seid.ToString());
+
+                oIP = sIP;
+                return dr;
+            
         }
-
-
         //----------------------------------------------- For Non Hotel Keywords -------------------------------------//
-        public string[] GetTop100Mobile(string keyword, int seid, out string oIP, string domain, string locale, string uule)
-        {
-            ArrayList MobileResult = new ArrayList();
+         public string[] GetTop100Mobile(string keyword, int seid, out string oIP, string domain, string locale, string uule)
+         {
+                ArrayList MobileResult = new ArrayList();
 
-            string[] locale1 = locale.Split('-');
+                string[] locale1 = locale.Split('-');
 
-            if (locale1.Length == 3)
-            {
-                if (locale1[1] == "419" || locale1[1] == "TW")
+                if (locale1.Length == 3)
                 {
-                    locale1[0] = locale1[0] + "-" + locale1[1];
-                }
+                    if (locale1[1] == "419" || locale1[1] == "TW")
+                    {
+                        locale1[0] = locale1[0] + "-" + locale1[1];
+                    }
                 //url = "" + googleurl + "" + domain + "/search?q=" + keyword + "&gl=" + locale1[2] + "&hl=" + locale1[0] + "&num=" + num + "&safe_search=" + safesearch + "&safe=" + safe + "&aomd=" + aomd + "&uule=" + uule + "&gs_l=" + device + "-gws-serp.3.0&gws_rd=ssl,cr";
                 url = "https://www.google." + domain + "/search?q=" + keyword + "&gl=" + locale1[2] + "&hl=" + locale1[0] + "&num=100&safe_search=0&safe=off&aomd=1" + "&uule=" + uule;
 
             }
             else if (locale1.Length == 2)
-            {
+                {
                 //url = "" + googleurl + "" + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&num=" + num + "&safe_search=" + safesearch + "&safe=" + safe + "&aomd=" + aomd + "&uule=" + uule + "&gs_l=" + device + "-gws-serp.3.0&gws_rd=ssl,cr";
                 url = "https://www.google." + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&num=100&safe_search=0&safe=off&aomd=1" + "&uule=" + uule;
 
             }
 
-            string HTML = GetWebDataMobileSource(url,out sIP);
-            //File.WriteAllText(@"c:\inetpub\wwwroot\dallas.html", HTML);
-            string[] mr = MobilepatternTrending(HTML, keyword, seid.ToString());
-            oIP = sIP;
-            return mr;
+            string HTML = GetWebDataMobileSource(url);
+                //File.WriteAllText(@"c:\inetpub\wwwroot\dallas.html", HTML);
+                string[] mr = MobilepatternTrending(HTML, keyword, seid.ToString());
+                oIP = sIP;
+                return mr;
+            
+         }
 
-        }
-
-
+        
         //---------------------------------------For Hotel Keywords---------------------------//
         /*public string[] getTop100Mobile(string keyword, int seid, out string oIP, string domain, string locale, string uule, string device)
         {
@@ -269,7 +271,7 @@ namespace RapidTrackingMultithread
             var doc = new HtmlAgilityPack.HtmlDocument();
 
             iOS clsMobile = new iOS();
-
+           
             doc = new HtmlAgilityPack.HtmlDocument();
             doc.LoadHtml(html);
             res = clsMobile.ProcessDocument(seid, keyword, doc);
@@ -277,7 +279,7 @@ namespace RapidTrackingMultithread
             array[1] = clsMobile.orgLinks.ToString();
             return array;
         }
-        public string[] GetTop100(string keyword, int seid, out string ip)
+        public string[] GetTop100(string keyword, int seid)
         {
             string[] seresults = new string[1];
 
@@ -287,14 +289,14 @@ namespace RapidTrackingMultithread
             {
                 if (value.device == "desktop")
                 {
-                    seresults = GetTop100Desktop(keyword, seid, out ip, value.domain, value.locale, value.uule);
+                    seresults = GetTop100Desktop(keyword, seid, out sIP, value.domain, value.locale, value.uule);
                 }
                 else if (value.device == "mobile_android")
                 {
-                    seresults = GetTop100Mobile(keyword, seid, out ip, value.domain, value.locale, value.uule);
+                    seresults = GetTop100Mobile(keyword, seid, out sIP, value.domain, value.locale, value.uule);
                 }
+
             }
-            ip = sIP;
             return seresults;
         }
     }

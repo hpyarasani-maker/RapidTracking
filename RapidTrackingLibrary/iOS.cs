@@ -934,8 +934,7 @@ namespace RapidTrackingLibrary
                                     try
                                     {
                                         //19-10-2021 commented
-                                        if (Regex.IsMatch(img.OuterHtml, "id=\"vidthumb\\d*\"") || nd.SelectSingleNode(".//div[contains(@class,'YgXj7b')]|.//div[contains(@class,'qW7zYd')]") != null || node.SelectSingleNode(".//div[@class='YgXj7b Qc4Zr']|.//div[@class='Y37F6d Nn2Stf']") != null || nd.SelectSingleNode(".//div[@class='hq7Nmd']") != null)//08-05-2021 contains//09-02-2021 //05-01-2021 //21-12-2020//16-12-2020 //14-12-2020
-                                        //if (Regex.IsMatch(img.OuterHtml, "id=\"vidthumb\\d*\"") || nd.SelectSingleNode(".//div[@class='YgXj7b Qc4Zr']|.//div[contains(@class,'qW7zYd')]") != null || nd.SelectSingleNode(".//div[@class='YgXj7b Qc4Zr']") != null || nd.SelectSingleNode(".//div[@class='hq7Nmd']") != null)//19-01-2021 //05-01-2021 //21-12-2020//16-12-2020 //14-12-2020
+                                        if (Regex.IsMatch(img.OuterHtml, "id=\"vidthumb\\d*\"") || nd.SelectSingleNode(".//div[contains(@class,'YgXj7b')]|.//div[contains(@class,'qW7zYd')]") != null || node.SelectSingleNode(".//div[@class='YgXj7b']") != null || nd.SelectSingleNode(".//div[@class='hq7Nmd']") != null)//06-05-2022//08-05-2021 contains//09-02-2021 //05-01-2021 //21-12-2020//16-12-2020 //14-12-2020
                                         {
                                             HtmlNode n = nd.SelectSingleNode(".//h3[@class='r']/a");
                                             // video block.

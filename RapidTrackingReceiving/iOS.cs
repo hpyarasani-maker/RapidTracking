@@ -885,8 +885,8 @@ namespace Oxylabs_BulkKeywords
                                     try
                                     {
                                         //19-10-2021 commented
-                                        if (Regex.IsMatch(img.OuterHtml, "id=\"vidthumb\\d*\"") || nd.SelectSingleNode(".//div[contains(@class,'YgXj7b')]|.//div[contains(@class,'qW7zYd')]") != null || node.SelectSingleNode(".//div[@class='YgXj7b']|.//div[@class='Y37F6d Nn2Stf']") != null || nd.SelectSingleNode(".//div[@class='hq7Nmd']") != null)//08-05-2021 contains//09-02-2021 //05-01-2021 //21-12-2020//16-12-2020 //14-12-2020
-                                        //if (Regex.IsMatch(img.OuterHtml, "id=\"vidthumb\\d*\"") || nd.SelectSingleNode(".//div[@class='YgXj7b Qc4Zr']|.//div[contains(@class,'qW7zYd')]") != null || nd.SelectSingleNode(".//div[@class='YgXj7b Qc4Zr']") != null || nd.SelectSingleNode(".//div[@class='hq7Nmd']") != null)//19-01-2021 //05-01-2021 //21-12-2020//16-12-2020 //14-12-2020
+                                        //if (Regex.IsMatch(img.OuterHtml, "id=\"vidthumb\\d*\"") || nd.SelectSingleNode(".//div[contains(@class,'YgXj7b')]|.//div[contains(@class,'qW7zYd')]") != null || node.SelectSingleNode(".//div[@class='YgXj7b']|.//div[@class='Y37F6d Nn2Stf']") != null || nd.SelectSingleNode(".//div[@class='hq7Nmd']|.//div[@class='UT9Awd S3PB2d']") != null) //04-05-2022
+                                        if (Regex.IsMatch(img.OuterHtml, "id=\"vidthumb\\d*\"") || nd.SelectSingleNode(".//div[contains(@class,'YgXj7b')]|.//div[contains(@class,'qW7zYd')]") != null || node.SelectSingleNode(".//div[@class='YgXj7b']") != null || nd.SelectSingleNode(".//div[@class='hq7Nmd']") != null)//06-05-2022//08-05-2021 contains//09-02-2021 //05-01-2021 //21-12-2020//16-12-2020 //14-12-2020
                                         {
                                             HtmlNode n = nd.SelectSingleNode(".//h3[@class='r']/a");
                                             // video block.
@@ -1178,7 +1178,7 @@ namespace Oxylabs_BulkKeywords
             HtmlNodeCollection nd = node.SelectNodes(".//div[@jsmodel='uIhXXc']/div/g-scrolling-carousel/div/div/div/ul[@class='Kjd0sd']/div/div/g-inner-card/a");
             if (nd == null)
                 //nd = node.SelectNodes(".//div[@jsname='WUSFrc']/g-link/a|.//div[@jsname='WUSFrc']/div/g-link/a|.//div[@class='v1uiFd']/g-link/a"); //26-10-2020 selector included for item url// 06-01-2020 Included new selector for carousel
-                nd = node.SelectNodes(".//div[@jsname='WUSFrc']/g-link/a|.//div[@jsname='WUSFrc']/div/g-link/a|.//div[@class='v1uiFd']/g-link/a|.//g-inner-card[@class='VoEfsd']/g-link/a|.//div[@class='SuG7wd']/g-inner-card/g-link/a");///23-11-2021/25-10-2021
+                nd = node.SelectNodes(".//div[@jsname='WUSFrc']/g-link/a|.//div[@jsname='WUSFrc']/div/g-link/a|.//div[@class='v1uiFd']/g-link/a|.//g-inner-card[@class='VoEfsd']/g-link/a|.//div[@class='SuG7wd']/g-inner-card/g-link/a|.//div[@class='LAALze']/g-inner-card/g-link/a");//14-04-2022 ///23-11-2021/25-10-2021
             string url = "";
             if (nd != null)
             {
@@ -2342,7 +2342,7 @@ namespace Oxylabs_BulkKeywords
                 nd = node.SelectSingleNode(".//div[@id='tsuid196']");
             if (nd != null)
                 if (!node.InnerText.Contains("Popular products") && node.SelectSingleNode(".//div[@class='I2lQic']") == null && node.SelectSingleNode(".//div[@class='IEBeid']") == null)//09-03-2022//24-09-2021 maps //29-06-2021 avoiding wrong block
-                    if (node.SelectSingleNode(".//div[contains(@class,'qdrjAc Dwsemf')]|.//div[contains(@class,'zTpPx')]") == null) //28-10-2021
+                    if (node.SelectSingleNode(".//div[contains(@class,'qdrjAc Dwsemf')]|.//div[contains(@class,'zTpPx')]") == null && node.SelectSingleNode(".//img[contains(@alt,'Map of ')]") == null)//05-05-2022 //28-10-2021
                         return "Videos";
 
             nd = node.SelectSingleNode(".//div[@class='TvV1fe']|.//div[@class='pXvdUe']"); //14-12-2020 videos
@@ -2409,7 +2409,7 @@ namespace Oxylabs_BulkKeywords
                         return "Maps";
 
                 // changes on 08-07-2019
-                nd = node.SelectSingleNode(".//img[@alt='map image']|.//img[@alt='Affected area map']|.//img[contains(@alt,'Map of ')]|.//img[@alt='Affected area']|.//img[@alt='Immagine mappa']|.//img[contains(@alt,'Map from')]");//22-11-2021//30-11-2020 //19-06-2020 // 13-03-2020 //01-05-2020
+                nd = node.SelectSingleNode(".//img[@alt='map image']|.//img[@alt='Affected area map']|.//img[contains(@alt,'Map of ')]|.//img[@alt='Affected area']|.//img[@alt='Immagine mappa']|.//img[contains(@alt,'Map from')]|.//img[contains(@alt,'Mappa di')]");//02-05-2022//22-11-2021//30-11-2020 //19-06-2020 // 13-03-2020 //01-05-2020
                 if (nd != null)
                     return "Maps";
             }
@@ -2589,7 +2589,7 @@ namespace Oxylabs_BulkKeywords
                     if ((node.SelectSingleNode(".//div[@id='tscffb']") != null || node.SelectSingleNode(".//div[@class='KJDcUb']") == null) && node.SelectSingleNode(".//div/a[contains(@class,'C8nzq BmP5tf')]") == null && node.SelectSingleNode(".//div/a[contains(@class,'cz3goc BmP5tf')]") == null)//12-11-2021 //25-05-2021 //04-01-2021 video block
                         return true;
                 if (node.SelectSingleNode(".//div[@class='ttfMne']|.//div[@class='N60dNb mfMhoc']|.//h2[@class='OEsCyf mfMhoc']|.//div[@class='kp-blk c2xzTb OJXvsb']|.//div[@class='WpKAof']|.//g-card/div[@class='mnr-c']") != null) //23-11-2021 CB //27-10-2021 //01-09-2021 missing AC block//12-07-2021 job block //12-07-2021 carousel block //19-01-2021 missing top stories
-                    if (node.SelectSingleNode(".//div[@class='WvKfwe a3spGf']|.//div[@class='V1nn0e wgFKp']|.//div[@jscontroller='rMVp5e']|.//div[@jscontroller='rQR4vd']") != null)//21-01-2022//13-01-2022//17-12-2021 //12-10-2021
+                    if (node.SelectSingleNode(".//div[@class='WvKfwe a3spGf']|.//div[@class='V1nn0e wgFKp']|.//div[@jscontroller='rMVp5e']|.//div[@jscontroller='rQR4vd']|.//div[contains(@class,'P8ujBc')]") != null)//06-05-2022//21-01-2022//13-01-2022//17-12-2021 //12-10-2021
                         return false;
                     else
                         return true;//12-11-2021

@@ -22,7 +22,7 @@ namespace RapidTrackingMultithread
         string strCon = string.Empty;
         string liveurl = string.Empty;
         public string myDate = string.Empty;
-
+        static Random rd = new Random();
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
         public Form1()
@@ -61,9 +61,8 @@ namespace RapidTrackingMultithread
             myDate = date_picker.Text;
             //return;
             //string strSql = "exec [dbo].[GetKeywordsAdult_1] '" + myDate + "'";
-
-            string strSql = "exec [dbo].[GetAllKeywords_ServerIps_1] '" + myDate + "'";
-
+            //string strSql = "exec [dbo].[GetAllKeywords_ServerIps_1] '" + myDate + "'";
+            string strSql = "Exec GetAllKeywords_Remaining_1 '" + myDate + "'";
             try
             {
                 using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
@@ -120,9 +119,8 @@ namespace RapidTrackingMultithread
             myDate = date_picker.Text;
             //return;
             //string strSql = "exec [dbo].[GetKeywordsAdult_2] '" + myDate + "'";
-
-            string strSql = "exec [dbo].[GetAllKeywords_ServerIps_2] '" + myDate + "'";
-
+            //string strSql = "exec [dbo].[GetAllKeywords_ServerIps_2] '" + myDate + "'";
+            string strSql = "Exec GetAllKeywords_Remaining_2 '" + myDate + "'";
             try
             {
                 using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
@@ -179,8 +177,8 @@ namespace RapidTrackingMultithread
             //return;
             //string strSql = "exec [dbo].[GetKeywordsAdult_3] '" + myDate + "'";
 
-            string strSql = "exec [dbo].[GetAllKeywords_ServerIps_3] '" + myDate + "'";
-
+            //string strSql = "exec [dbo].[GetAllKeywords_ServerIps_3] '" + myDate + "'";
+            string strSql = "Exec GetAllKeywords_Remaining_3 '" + myDate + "'";
             try
             {
                 using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
@@ -244,6 +242,8 @@ namespace RapidTrackingMultithread
 
         public void ProcessResults2(string seid, string kn)
         {
+            
+            int mseconds = rd.Next(20, 30) * 1000;
             string[] seresults = new string[1];
             date_picker.Format = DateTimePickerFormat.Custom;
             date_picker.CustomFormat = "yyyy-MM-dd";
@@ -252,6 +252,10 @@ namespace RapidTrackingMultithread
             try
             {
                 seresults = server0.GetTop100(kn, int.Parse(seid));
+                txtError.Invoke((MethodInvoker)(delegate ()
+                {
+                    iptxt_txt.Text += seid + kn + server0.IP + DateTime.Now.ToString() + "\r\n";
+                }));
             }
             catch (WebException ex)
             {
@@ -321,10 +325,17 @@ namespace RapidTrackingMultithread
                     }
                 }
             }
+
+            this.Invoke((MethodInvoker)delegate ()
+            {
+                rnd_lbl4.Text = (mseconds / 1000).ToString() + " " + "seconds";
+            });
+            Thread.Sleep(mseconds); 
         }
 
         public void ProcessResults6(string seid, string kn)
-        {            
+        {
+            int mseconds = rd.Next(20, 40) * 1000;
             string[] seresults = new string[1];
             date_picker.Format = DateTimePickerFormat.Custom;
             date_picker.CustomFormat = "yyyy-MM-dd";
@@ -333,6 +344,10 @@ namespace RapidTrackingMultithread
             try
             {
                 seresults = server0.GetTop100(kn, int.Parse(seid));
+                txtError.Invoke((MethodInvoker)(delegate ()
+                {
+                    iptxt_txt.Text += seid + kn + server0.IP + DateTime.Now.ToString() + "\r\n";
+                }));
             }
             catch (WebException ex)
             {
@@ -406,11 +421,18 @@ namespace RapidTrackingMultithread
                     string error1 = ex.Message;
                 }
             }
+
+            this.Invoke((MethodInvoker)delegate ()
+            {
+                rnd_lbl5.Text = (mseconds / 1000).ToString() + " " + "seconds";
+            });
+            Thread.Sleep(mseconds);
         }
 
 
         public void ProcessResults12(string seid, string kn)
         {
+            int mseconds = rd.Next(20, 60) * 1000;
             string[] seresults = new string[1];
             date_picker.Format = DateTimePickerFormat.Custom;
             date_picker.CustomFormat = "yyyy-MM-dd";
@@ -419,6 +441,10 @@ namespace RapidTrackingMultithread
             try
             {
                 seresults = server0.GetTop100(kn, int.Parse(seid));
+                txtError.Invoke((MethodInvoker)(delegate ()
+                {
+                    iptxt_txt.Text += seid + kn + server0.IP + DateTime.Now.ToString() + "\r\n";
+                }));
             }
             catch (WebException ex)
             {
@@ -490,6 +516,12 @@ namespace RapidTrackingMultithread
                     }
                 }
             }
+
+            this.Invoke((MethodInvoker)delegate ()
+            {
+                rnd_lbl6.Text = (mseconds / 1000).ToString() + " " + "seconds";
+            });
+            Thread.Sleep(mseconds);
         }
 
         public void ProcessWorklist2()
@@ -513,6 +545,7 @@ namespace RapidTrackingMultithread
                     try
                     {
                         ProcessResults2(seid, kn);
+                       
                     }
                     catch (Exception ex)
                     {

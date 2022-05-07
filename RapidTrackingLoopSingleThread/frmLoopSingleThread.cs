@@ -63,7 +63,7 @@ namespace RapidTrackingLoopSingleThread
                 //string myDate = "2019-11-20";
 
 
-                string kwQry = "[Tracking_DB_Keywords_Seid_102] '" + myDate + "'";
+                string kwQry = "[Tracking_DB_Keywords_SEID_102_last] '" + myDate + "'";
                 //string kwQry = "[Tracking_DB_Keywords_Seid_103p] '" + myDate + "'";               
                 //string kwQry = "[GetCommaKeywordsP] '" + myDate + "'";               
                 //string kwQry = "[Tracking_DB_Keywords_Seid_102_P] '" + myDate + "'"; //tracking previous date single keywords
@@ -98,34 +98,40 @@ namespace RapidTrackingLoopSingleThread
                             foreach (ArrayList arList in alresult.Result)
                                 foreach (string[] src in arList)
                                 {
-                                    keyword = src[0];
-                                    JObject obj = JObject.Parse(src[1]);
-                                    string html = obj["results"][0]["content"].Value<string>();
-                                    jobid = src[2];
-                                    string device = src[3];
-                                    File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
-                                    //File.WriteAllText(@"C:\inetpub\wwwroot\"+jobid+"_withOut filter_"+".html", html, Encoding.UTF8);
-                                    result = true;
-                                    doc = new HtmlAgilityPack.HtmlDocument();
-                                    doc.LoadHtml(html);
-                                    int curCount = 0;
-                                    if (device == "desktop")
+                                    try //02-05-2022
                                     {
-                                        Desktop clsDesktop = new Desktop();
-                                        alXml.Add(clsDesktop.ProcessDocument(seid, keyword, doc, out curCount));
+                                        keyword = src[0];
+                                        JObject obj = JObject.Parse(src[1]);
+                                        string html = obj["results"][0]["content"].Value<string>();
+                                        jobid = src[2];
+                                        string device = src[3];
+                                        File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
+                                        //File.WriteAllText(@"C:\inetpub\wwwroot\"+jobid+"_withOut filter_"+".html", html, Encoding.UTF8);
+                                        result = true;
+                                        doc = new HtmlAgilityPack.HtmlDocument();
+                                        doc.LoadHtml(html);
+                                        int curCount = 0;
+                                        if (device == "desktop")
+                                        {
+                                            Desktop clsDesktop = new Desktop();
+                                            alXml.Add(clsDesktop.ProcessDocument(seid, keyword, doc, out curCount));
+                                        }
+                                        else
+                                        {
+                                            iOS clsiOS = new iOS();
+                                            alXml.Add(clsiOS.ProcessDocument(seid, keyword, doc, out curCount));
+                                        }
+                                        count += curCount;
                                     }
-                                    else
-                                    {
-                                        iOS clsiOS = new iOS();
-                                        alXml.Add(clsiOS.ProcessDocument(seid, keyword, doc, out curCount));
-                                    }
-                                    count += curCount;
+                                    catch { }//05-02-2022
+
                                 }
 
                             int x = 0;
                             XmlDocument xmlDoc = new XmlDocument();
                             foreach (string xml in alXml)
                             {
+                                if (string.IsNullOrEmpty(xml.Trim())) continue;//02-05-2022
                                 if (x == 0)
                                 {
                                     x++;
@@ -154,7 +160,7 @@ namespace RapidTrackingLoopSingleThread
                                 if (count > 20)
                                 {
                                     SendToAPI(seid, keyword, res, jobid);
-                                    //SendToDB(seid, keyword, res, jobid, count);
+                                    SendToDB(seid, keyword, res, jobid, count);
                                 }
                             }
                             //else
@@ -329,7 +335,15 @@ namespace RapidTrackingLoopSingleThread
                 //lstKWs.Items.Add("160:malmö ff");
                 //lstKWs.Items.Add("102:terry crews");
                 //lstKWs.Items.Add("102:the uninhabitable earth summary");
-                lstKWs.Items.Add("145:kia sportage");
+                //lstKWs.Items.Add("145:kia sportage");
+                //lstKWs.Items.Add("280:kia sportage");
+                //lstKWs.Items.Add("314:kia sportage");
+                //lstKWs.Items.Add("290:kia sportage");
+                //lstKWs.Items.Add("282:kia sportage");
+                //lstKWs.Items.Add("312:kia sportage");
+                //lstKWs.Items.Add("102:note 8 specs");
+                //lstKWs.Items.Add("102:iphone 11 camera specs");
+                lstKWs.Items.Add("154:fête des pères 2021");
             });
             return;
 

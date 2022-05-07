@@ -44,6 +44,10 @@
             this.worklist1 = new System.Windows.Forms.ListBox();
             this.date_picker = new System.Windows.Forms.DateTimePicker();
             this.Process_btn = new System.Windows.Forms.Button();
+            this.rnd_lbl4 = new System.Windows.Forms.Label();
+            this.rnd_lbl5 = new System.Windows.Forms.Label();
+            this.rnd_lbl6 = new System.Windows.Forms.Label();
+            this.iptxt_txt = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label3
@@ -80,18 +84,18 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtError.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtError.Location = new System.Drawing.Point(767, 52);
+            this.txtError.Location = new System.Drawing.Point(1102, 52);
             this.txtError.Multiline = true;
             this.txtError.Name = "txtError";
             this.txtError.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtError.Size = new System.Drawing.Size(242, 686);
+            this.txtError.Size = new System.Drawing.Size(315, 686);
             this.txtError.TabIndex = 28;
             // 
             // errorList
             // 
             this.errorList.Location = new System.Drawing.Point(-2, 751);
             this.errorList.Name = "errorList";
-            this.errorList.Size = new System.Drawing.Size(1016, 56);
+            this.errorList.Size = new System.Drawing.Size(1419, 56);
             this.errorList.TabIndex = 27;
             // 
             // progress_seid12
@@ -110,9 +114,9 @@
             // 
             // progress_seid2
             // 
-            this.progress_seid2.Location = new System.Drawing.Point(437, 25);
+            this.progress_seid2.Location = new System.Drawing.Point(410, 25);
             this.progress_seid2.Name = "progress_seid2";
-            this.progress_seid2.Size = new System.Drawing.Size(296, 23);
+            this.progress_seid2.Size = new System.Drawing.Size(323, 23);
             this.progress_seid2.TabIndex = 24;
             // 
             // results3
@@ -175,11 +179,50 @@
             this.Process_btn.UseVisualStyleBackColor = true;
             this.Process_btn.Click += new System.EventHandler(this.Process_btn_Click);
             // 
+            // rnd_lbl4
+            // 
+            this.rnd_lbl4.AutoSize = true;
+            this.rnd_lbl4.Location = new System.Drawing.Point(537, 25);
+            this.rnd_lbl4.Name = "rnd_lbl4";
+            this.rnd_lbl4.Size = new System.Drawing.Size(14, 13);
+            this.rnd_lbl4.TabIndex = 33;
+            this.rnd_lbl4.Text = "#";
+            // 
+            // rnd_lbl5
+            // 
+            this.rnd_lbl5.AutoSize = true;
+            this.rnd_lbl5.Location = new System.Drawing.Point(537, 254);
+            this.rnd_lbl5.Name = "rnd_lbl5";
+            this.rnd_lbl5.Size = new System.Drawing.Size(14, 13);
+            this.rnd_lbl5.TabIndex = 34;
+            this.rnd_lbl5.Text = "#";
+            // 
+            // rnd_lbl6
+            // 
+            this.rnd_lbl6.AutoSize = true;
+            this.rnd_lbl6.Location = new System.Drawing.Point(537, 513);
+            this.rnd_lbl6.Name = "rnd_lbl6";
+            this.rnd_lbl6.Size = new System.Drawing.Size(14, 13);
+            this.rnd_lbl6.TabIndex = 35;
+            this.rnd_lbl6.Text = "#";
+            // 
+            // iptxt_txt
+            // 
+            this.iptxt_txt.Location = new System.Drawing.Point(768, 52);
+            this.iptxt_txt.Multiline = true;
+            this.iptxt_txt.Name = "iptxt_txt";
+            this.iptxt_txt.Size = new System.Drawing.Size(328, 686);
+            this.iptxt_txt.TabIndex = 36;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1026, 750);
+            this.ClientSize = new System.Drawing.Size(1429, 805);
+            this.Controls.Add(this.iptxt_txt);
+            this.Controls.Add(this.rnd_lbl6);
+            this.Controls.Add(this.rnd_lbl5);
+            this.Controls.Add(this.rnd_lbl4);
             this.Controls.Add(this.Process_btn);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -222,6 +265,10 @@
         private System.Windows.Forms.ListBox worklist1;
         private System.Windows.Forms.DateTimePicker date_picker;
         private System.Windows.Forms.Button Process_btn;
+        private System.Windows.Forms.Label rnd_lbl4;
+        private System.Windows.Forms.Label rnd_lbl5;
+        private System.Windows.Forms.Label rnd_lbl6;
+        private System.Windows.Forms.TextBox iptxt_txt;
     }
 }
 

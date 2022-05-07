@@ -2732,7 +2732,7 @@ namespace TrendingReceiving
             }
             //start 06-08-2019
             nd = node.SelectSingleNode(".//div[@class='f570C']|.//div[@class='Q9mvUc']");//07-01-2022
-            if (nd != null)
+            if (nd != null && node.SelectSingleNode(".//div[@class='KoYIdc']") == null) //06-05-2022
             {
                 return true;
             }

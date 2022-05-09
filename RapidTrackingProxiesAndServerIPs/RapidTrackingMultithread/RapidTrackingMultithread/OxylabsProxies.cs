@@ -20,7 +20,6 @@ namespace RapidTrackingMultithread
     class OxylabsProxies
     {
         readonly string strConn = string.Empty;
-        //public string sIP = string.Empty;
         const string googleurl = "https://www.google.";
         const string safesearch = "0";
         const string safe = "off";
@@ -43,7 +42,6 @@ namespace RapidTrackingMultithread
         public string GetWebDataSource(string url, out string ip)
         {
             int x = 0;
-           // sIP = string.Empty;
             try
             {
                 // getting IPs from db.
@@ -65,7 +63,7 @@ namespace RapidTrackingMultithread
                 req.UserAgent = @"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36";
 
                 // port is changed from '6747' to '6747'.
-                WebProxy proxy = new WebProxy("http://" + dtIPs.Rows[x][1].ToString());
+                WebProxy proxy = new WebProxy(dtIPs.Rows[x][1].ToString());
                 NetworkCredential cred = new NetworkCredential("pidatametrics", "sbj4A3PLyZ");
 
                 proxy.Credentials = cred;
@@ -97,7 +95,6 @@ namespace RapidTrackingMultithread
         public string GetWebDataMobileSource(string url, out string ip)
         {
            int x = 0;
-            //sIP = string.Empty;
             try
             {
                 // getting IPs from db.
@@ -120,7 +117,7 @@ namespace RapidTrackingMultithread
                 //req.UserAgent = @"Mozilla/5.0 (Linux; Android 8.1.0; Mi A2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.105 Mobile Safari/537.36";
                 //req.UserAgent = @"Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Mobile Safari/537.36";
                 //req.UserAgent = @"Mozilla/5.0 (iPod; CPU iPhone OS 12_0 like macOS) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/12.0 Mobile/14A5335d Safari/602.1.50";
-                WebProxy proxy = new WebProxy("http://" + dtIPs.Rows[x][1].ToString());
+                WebProxy proxy = new WebProxy(dtIPs.Rows[x][1].ToString());
                 NetworkCredential cred = new NetworkCredential("pidatametrics", "sbj4A3PLyZ");
 
                 proxy.Credentials = cred;

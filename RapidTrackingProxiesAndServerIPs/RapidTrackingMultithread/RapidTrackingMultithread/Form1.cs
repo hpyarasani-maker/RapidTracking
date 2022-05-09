@@ -434,7 +434,7 @@ namespace RapidTrackingMultithread
 
         public void ProcessResults12(string seid, string kn)
         {
-            int mseconds = rd.Next(20, 60) * 1000;
+            int mseconds = rd.Next(20, 50) * 1000;
             string[] seresults = new string[1];
             date_picker.Format = DateTimePickerFormat.Custom;
             date_picker.CustomFormat = "yyyy-MM-dd";

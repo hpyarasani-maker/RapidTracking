@@ -20,7 +20,7 @@ namespace RapidTrackingSingleThread
     {
         OxylabsProxies WOWS = new OxylabsProxies();
         //ServerIP WOWS = new ServerIP();
-
+        static Random rd = new Random();
         ArrayList seresults = new ArrayList();
 
         //string xmlPath = "C:\\inetpub\\wwwroot\\Remaining_NewKeywords_1.xml";
@@ -101,7 +101,8 @@ namespace RapidTrackingSingleThread
                 string errMsg = "Database Connection is temporarily not working\n" + e.ToString();
                 errorList.Invoke((MethodInvoker)(delegate ()
                 {
-                    errorList.Items.Add(errMsg);
+                    errorList.Text+=errMsg;
+                    
                 }));
 
             }
@@ -109,7 +110,7 @@ namespace RapidTrackingSingleThread
             {
                 errorList.Invoke((MethodInvoker)(delegate ()
                 {
-                    errorList.Items.Add(ex.ToString());
+                    errorList.Text+=ex.ToString();
                 }));
             }
             finally
@@ -125,6 +126,7 @@ namespace RapidTrackingSingleThread
 
         public void ProcessResults(string seid, string kn)
         {
+            int mseconds = rd.Next(10, 30) * 1000;
             string[] seresults = new string[1];
             date_picker.Format = DateTimePickerFormat.Custom;
             date_picker.CustomFormat = "yyyy-MM-dd";
@@ -133,7 +135,11 @@ namespace RapidTrackingSingleThread
             //included try catch for capturing error 429 and threading happening up and down included return; has been solved - 20-01-2020
             try
             {
-                seresults = WOWS.GetTop100(kn, int.Parse(seid));
+                seresults = WOWS.GetTop100(kn, int.Parse(seid),out string ip);
+                this.Invoke((MethodInvoker)(delegate ()
+                {
+                    iptxt_txt.Text += seid + ", " + kn + ", \r\nIP: " + ip + ",  " + DateTime.Now.ToString() + "\r\n\r\n";
+                }));
             }
             catch (WebException ex)
             {
@@ -206,6 +212,11 @@ namespace RapidTrackingSingleThread
                     string error = ex.Message;
                 }
             }
+            this.Invoke((MethodInvoker)delegate ()
+            {
+                rnd_lbl4.Text = (mseconds / 1000).ToString() + " " + "seconds";
+            });
+            Thread.Sleep(mseconds);
         }
 
         private void SendToDB(string seid, string keyword, string xml, int urlcount)
@@ -371,7 +382,7 @@ namespace RapidTrackingSingleThread
                     {
                         errorList.Invoke((MethodInvoker)(delegate ()
                         {
-                            errorList.Items.Add(ex.Message.ToString());
+                            errorList.Text += ex.Message.ToString();
                         }));
                     }
                     progress_lbl.Invoke((MethodInvoker)(delegate ()
@@ -386,7 +397,7 @@ namespace RapidTrackingSingleThread
             {
                 errorList.Invoke((MethodInvoker)(delegate ()
                 {
-                    errorList.Items.Add(ex.Message.ToString());
+                    errorList.Text+=ex.Message.ToString();
                 }));
 
             }

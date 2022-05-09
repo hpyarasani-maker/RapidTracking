@@ -10,6 +10,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Xml;
@@ -19,14 +20,14 @@ namespace RapidTrackingMultithread
     class OxylabsProxies
     {
         readonly string strConn = string.Empty;
-        public string sIP = string.Empty;
+        //public string sIP = string.Empty;
         const string googleurl = "https://www.google.";
         const string safesearch = "0";
         const string safe = "off";
         const string num = "100";
         const string aomd = "1";        
         string url = string.Empty;
-        public string IP = string.Empty;
+        //public string IP = string.Empty;
 
         public OxylabsProxies()
         {
@@ -39,10 +40,10 @@ namespace RapidTrackingMultithread
         public DataTable dtIPs;
         
         Random rnd;
-        public string GetWebDataSource(string url)
+        public string GetWebDataSource(string url, out string ip)
         {
             int x = 0;
-            sIP = string.Empty;
+           // sIP = string.Empty;
             try
             {
                 // getting IPs from db.
@@ -51,8 +52,9 @@ namespace RapidTrackingMultithread
                     dtIPs = Common.GetIPsFromDB();
                 }
                 rnd = new Random();
-                x = rnd.Next(0, dtIPs.Rows.Count);
-                IP = dtIPs.Rows[x][1].ToString();
+                x = rnd.Next(dtIPs.Rows.Count);
+                ip = dtIPs.Rows[x][1].ToString();
+                               
                 Uri uri = new Uri(url);
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create(uri);
                 req.CookieContainer = new CookieContainer();
@@ -92,10 +94,10 @@ namespace RapidTrackingMultithread
             }
         }
 
-        public string GetWebDataMobileSource(string url)
+        public string GetWebDataMobileSource(string url, out string ip)
         {
            int x = 0;
-            sIP = string.Empty;
+            //sIP = string.Empty;
             try
             {
                 // getting IPs from db.
@@ -105,6 +107,7 @@ namespace RapidTrackingMultithread
                 }
                 rnd = new Random();
                 x = rnd.Next(0, dtIPs.Rows.Count);
+                ip = dtIPs.Rows[x][1].ToString();
                 Uri uri = new Uri(url);
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create(uri);
                 req.CookieContainer = new CookieContainer();
@@ -145,7 +148,7 @@ namespace RapidTrackingMultithread
             }
         }
 
-        public string[] GetTop100Desktop(string keyword, int seid, out string oIP, string domain, string locale, string uule)
+        public string[] GetTop100Desktop(string keyword, int seid, out string ip, string domain, string locale, string uule)
         {
             
                 ArrayList DesktopResult = new ArrayList();
@@ -170,15 +173,14 @@ namespace RapidTrackingMultithread
 
             }
 
-            string HTML = GetWebDataSource(url);
+            string HTML = GetWebDataSource(url, out ip);
                 string[] dr = DesktoppatternTrending(HTML, keyword, seid.ToString());
 
-                oIP = sIP;
                 return dr;
             
         }
         //----------------------------------------------- For Non Hotel Keywords -------------------------------------//
-         public string[] GetTop100Mobile(string keyword, int seid, out string oIP, string domain, string locale, string uule)
+         public string[] GetTop100Mobile(string keyword, int seid, out string ip, string domain, string locale, string uule)
          {
                 ArrayList MobileResult = new ArrayList();
 
@@ -201,10 +203,9 @@ namespace RapidTrackingMultithread
 
             }
 
-            string HTML = GetWebDataMobileSource(url);
+            string HTML = GetWebDataMobileSource(url, out ip);
                 //File.WriteAllText(@"c:\inetpub\wwwroot\dallas.html", HTML);
                 string[] mr = MobilepatternTrending(HTML, keyword, seid.ToString());
-                oIP = sIP;
                 return mr;
             
          }
@@ -279,24 +280,24 @@ namespace RapidTrackingMultithread
             array[1] = clsMobile.orgLinks.ToString();
             return array;
         }
-        public string[] GetTop100(string keyword, int seid)
+        public string[] GetTop100(string keyword, int seid, out string ip)
         {
             string[] seresults = new string[1];
 
             IEnumerable<SearchProperties> list = SearchParams.searches.ToList<SearchProperties>().Where(s => s.seid == seid);
-
+            string sip = string.Empty;
             foreach (var value in list)
             {
                 if (value.device == "desktop")
                 {
-                    seresults = GetTop100Desktop(keyword, seid, out sIP, value.domain, value.locale, value.uule);
+                    seresults = GetTop100Desktop(keyword, seid, out sip, value.domain, value.locale, value.uule);
                 }
                 else if (value.device == "mobile_android")
                 {
-                    seresults = GetTop100Mobile(keyword, seid, out sIP, value.domain, value.locale, value.uule);
+                    seresults = GetTop100Mobile(keyword, seid, out sip, value.domain, value.locale, value.uule);
                 }
-
             }
+            ip = sip;
             return seresults;
         }
     }

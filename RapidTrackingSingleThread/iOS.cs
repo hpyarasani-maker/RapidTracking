@@ -2408,7 +2408,7 @@ namespace RapidTrackingSingleThread
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='IbDT9d q8U8x aTI8gc RES9jf']"); //17-02-2022
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='IEBeid']"); //04-03-2022
+                nd = node.SelectSingleNode(".//div[@class='IEBeid']|.//g-img[@class='o8ebK']");//10-05-2022 //04-03-2022
             if (nd != null)
             {
                 return "Maps";

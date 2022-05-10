@@ -259,14 +259,15 @@ namespace TrackingTrending
                         foreach (string[] src in alresult)
                         {
                             string keyword = src[0];
-                            string html = src[1].Replace(@"\", "");
+                            JObject obj = JObject.Parse(src[1]);
+                            string html = obj["results"][0]["content"].Value<string>();
                             string jobid = src[2];
                             string device = src[3];
-
                             doc = new HtmlAgilityPack.HtmlDocument();
                             doc.LoadHtml(html);
                             string res = string.Empty;
                             int count = 0;
+
                             if (device == "desktop")
                             {
                                 Desktop clsDesktop = new Desktop();
@@ -347,14 +348,15 @@ namespace TrackingTrending
                         foreach (string[] src in alresult)
                         {
                             string keyword = src[0];
-                            string html = src[1].Replace(@"\", "");
+                            JObject obj = JObject.Parse(src[1]);
+                            string html = obj["results"][0]["content"].Value<string>();
                             string jobid = src[2];
                             string device = src[3];
-
                             doc = new HtmlAgilityPack.HtmlDocument();
                             doc.LoadHtml(html);
                             string res = string.Empty;
                             int count = 0;
+
                             if (device == "desktop")
                             {
                                 Desktop clsDesktop = new Desktop();

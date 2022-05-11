@@ -210,12 +210,18 @@ namespace Oxylabs_BulkKeywords
 
             for (int i = 0; i < worklist.Items.Count; i++)
             {
-                mseconds = rd.Next(30, 80) * 1000; //First Sending app 29-06-2020    //SEID=58
-                //mseconds = rd.Next(21, 80) * 1000; //Second Sending app 29-06-2020 //SEID=106
-                //mseconds = rd.Next(25, 80) * 1000; //Third Sending app 29-06-2020 //SEID=OtherDesktop
-                //mseconds = rd.Next(30, 80) * 1000; //Fourth Sending app 29-06-2020 //SEID=OtherMobile
-                //mseconds = rd.Next(34, 80) * 1000; //Fifith Sending app 29-06-2020 //SEID=1
-                //mseconds = rd.Next(38, 80) * 1000; //Sixth Sending app 29-06-2020 //SEID=102
+                mseconds = rd.Next(30, 40) * 1000; //First Sending app 29-06-2020    //SEID=58-1
+                //mseconds = rd.Next(30, 45) * 1000; //First Sending app 29-06-2020    //SEID=58-2
+                //mseconds = rd.Next(30, 50) * 1000; //Second Sending app 29-06-2020 //SEID=106-1
+                //mseconds = rd.Next(30, 55) * 1000; //Second Sending app 29-06-2020 //SEID=106-2
+                //mseconds = rd.Next(30, 60) * 1000; //Third Sending app 29-06-2020 //SEID=OtherDesktop-1
+                //mseconds = rd.Next(30, 65) * 1000; //Third Sending app 29-06-2020 //SEID=OtherDesktop-2
+                //mseconds = rd.Next(30, 70) * 1000; //Fourth Sending app 29-06-2020 //SEID=OtherMobile-1
+                //mseconds = rd.Next(30, 75) * 1000; //Fourth Sending app 29-06-2020 //SEID=OtherMobile-2
+                //mseconds = rd.Next(30, 80) * 1000; //Fifith Sending app 29-06-2020 //SEID=1-1
+                //mseconds = rd.Next(30, 85) * 1000; //Fifith Sending app 29-06-2020 //SEID=1-2
+                //mseconds = rd.Next(20, 90) * 1000; //Sixth Sending app 29-06-2020 //SEID=102-1
+                //mseconds = rd.Next(20, 95) * 1000; //Sixth Sending app 29-06-2020 //SEID=102-2
                 resultsString = worklist.Items[i].ToString();
                 sep = ':';
                 resultsArray = resultsString.Split(sep);

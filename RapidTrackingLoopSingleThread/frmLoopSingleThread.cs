@@ -29,11 +29,11 @@ namespace RapidTrackingLoopSingleThread
         {
             InitializeComponent();
             //count = 0;   // Common.GetOxylabsCount();          
-            //timerExit();
+            //TimerExit();
         }
         void TimerExit()
         {
-            timer.Interval = 25 * 60000;
+            timer.Interval = 360 * 60000;
             timer.Tick += new EventHandler(Timer_Tick);
             timer.Start();
         }

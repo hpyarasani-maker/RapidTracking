@@ -251,10 +251,11 @@ namespace RapidTrackingMultithread
 
             try
             {
-                seresults = server0.GetTop100(kn, int.Parse(seid));
-                txtError.Invoke((MethodInvoker)(delegate ()
+                seresults = server0.GetTop100(kn, int.Parse(seid), out string ip);
+                string tName = Thread.CurrentThread.Name;
+                this.Invoke((MethodInvoker)(delegate ()
                 {
-                    iptxt_txt.Text += seid + kn + server0.IP + DateTime.Now.ToString() + "\r\n";
+                    iptxt_txt.Text += tName + ": " + seid + ", " + kn + ", \r\nIP: " + ip + ",  " + DateTime.Now.ToString() + "\r\n\r\n";
                 }));
             }
             catch (WebException ex)
@@ -343,10 +344,11 @@ namespace RapidTrackingMultithread
 
             try
             {
-                seresults = server0.GetTop100(kn, int.Parse(seid));
-                txtError.Invoke((MethodInvoker)(delegate ()
+                seresults = server0.GetTop100(kn, int.Parse(seid), out string ip);
+                string tName = Thread.CurrentThread.Name;
+                this.Invoke((MethodInvoker)(delegate ()
                 {
-                    iptxt_txt.Text += seid + kn + server0.IP + DateTime.Now.ToString() + "\r\n";
+                    iptxt_txt.Text += tName + ": " + seid + ", " + kn + ", \r\nIP: " + ip + ",  " + DateTime.Now.ToString() + "\r\n\r\n";
                 }));
             }
             catch (WebException ex)
@@ -432,7 +434,7 @@ namespace RapidTrackingMultithread
 
         public void ProcessResults12(string seid, string kn)
         {
-            int mseconds = rd.Next(20, 60) * 1000;
+            int mseconds = rd.Next(20, 50) * 1000;
             string[] seresults = new string[1];
             date_picker.Format = DateTimePickerFormat.Custom;
             date_picker.CustomFormat = "yyyy-MM-dd";
@@ -440,10 +442,11 @@ namespace RapidTrackingMultithread
 
             try
             {
-                seresults = server0.GetTop100(kn, int.Parse(seid));
-                txtError.Invoke((MethodInvoker)(delegate ()
+                seresults = server0.GetTop100(kn, int.Parse(seid), out string ip);
+                string tName = Thread.CurrentThread.Name;
+                this.Invoke((MethodInvoker)(delegate ()
                 {
-                    iptxt_txt.Text += seid + kn + server0.IP + DateTime.Now.ToString() + "\r\n";
+                    iptxt_txt.Text += tName + ": " + seid + ", " + kn + ", \r\nIP: " + ip + ",  " + DateTime.Now.ToString() + "\r\n\r\n";
                 }));
             }
             catch (WebException ex)
@@ -684,6 +687,8 @@ namespace RapidTrackingMultithread
 
         public void MainLoop6()
         {
+            Thread.Sleep(3000);
+
             //generateWorklist6();
             while (GetWorklistSize6() > 0)
             {
@@ -694,6 +699,8 @@ namespace RapidTrackingMultithread
 
         public void MainLoop12()
         {
+            Thread.Sleep(6000);
+
             //generateWorklist12();
             while (GetWorklistSize12() > 0)
             {
@@ -727,6 +734,7 @@ namespace RapidTrackingMultithread
             }));
 
             Thread myThread2 = new Thread(new ThreadStart(MainLoop2));
+            myThread2.Name = "Thread 1";
             GenerateWorklist2();
 
             if (GetWorklistSize2() > 0)
@@ -737,8 +745,9 @@ namespace RapidTrackingMultithread
             {
                 myThread2.Abort();
             }
-
+            
             Thread myThread6 = new Thread(new ThreadStart(MainLoop6));
+            myThread6.Name = "Thread 2";
             GenerateWorklist6();
             if (GetWorklistSize6() > 0)
             {
@@ -750,6 +759,7 @@ namespace RapidTrackingMultithread
             }
 
             Thread myThread12 = new Thread(new ThreadStart(MainLoop12));
+            myThread12.Name = "Thread 3";
             GenerateWorklist12();
             if (GetWorklistSize12() > 0)
             {

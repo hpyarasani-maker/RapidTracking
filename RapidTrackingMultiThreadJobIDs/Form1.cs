@@ -181,14 +181,15 @@ namespace RapidTrackingMultiThreadJobIDs
                         foreach (string[] src in alresult)
                         {
                             string keyword = src[0];
-                            string html = src[1].Replace(@"\", "");
-                            
+                            JObject obj = JObject.Parse(src[1]);
+                            string html = obj["results"][0]["content"].Value<string>();
                             string device = src[3];
                             //File.WriteAllText(@"D:\23-03-2020\" + seid + "_" + kw + jobid + ".html", html);
                             doc = new HtmlAgilityPack.HtmlDocument();
                             doc.LoadHtml(html);
                             string res = string.Empty;
                             int count = 0;
+
                             if (device == "desktop")
                             {
                                 Desktop clsDesktop = new Desktop();
@@ -265,14 +266,15 @@ namespace RapidTrackingMultiThreadJobIDs
                         foreach (string[] src in alresult)
                         {
                             string keyword = src[0];
-                            string html = src[1].Replace(@"\", "");
-                            
+                            JObject obj = JObject.Parse(src[1]);
+                            string html = obj["results"][0]["content"].Value<string>();
                             string device = src[3];
                             //File.WriteAllText(@"D:\23-03-2020\" + seid + "_" + kw + jobid + ".html", html);
                             doc = new HtmlAgilityPack.HtmlDocument();
                             doc.LoadHtml(html);
                             string res = string.Empty;
                             int count = 0;
+
                             if (device == "desktop")
                             {
                                 Desktop clsDesktop = new Desktop();

@@ -829,7 +829,7 @@ namespace RapidTrackingLibrary
                                 continue;
 
 
-                            HtmlNode img = nd.SelectSingleNode(".//div[@class='G5NbBd']/div|.//g-img/img[@class='rISBZc zr758c']|.//span[@class='z1asCe UIgqBe']");//16-12-2021 //22-03-2021
+                            HtmlNode img = nd.SelectSingleNode(".//div[@class='G5NbBd']/div|.//g-img/img[@class='rISBZc zr758c']|.//span[@class='z1asCe UIgqBe']|.//div[@class='i5w0Le']");//26-05-2022//16-12-2021
 
                             if (img != null)
                             {

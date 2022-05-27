@@ -8,7 +8,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Xml;
 
-namespace RapidTrackingSingleThread
+namespace RapidTrackingCloudSingleThread
 {
     public class SearchParams
     {

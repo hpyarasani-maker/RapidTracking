@@ -18,7 +18,7 @@ namespace RapidTrackingCloudSingleThread
 {
     class CloudSource
     {
-        CloudSourceService.Service1Client cs = new CloudSourceService.Service1Client("GetGoogleSource");
+        CloudSourceService.Service1Client cs = new CloudSourceService.Service1Client();
 
         readonly string strConn = string.Empty;
         string url = string.Empty;

@@ -18,7 +18,7 @@ namespace RapidTrackingCloudSingleThread
 {
     class CloudSource
     {
-        CloudSourceService.Service1Client cs = new CloudSourceService.Service1Client();
+        CloudSourceService.Service1Client cs;
 
         readonly string strConn = string.Empty;
         string url = string.Empty;
@@ -30,7 +30,7 @@ namespace RapidTrackingCloudSingleThread
         
         public string[] GetTop100Desktop(string keyword, int seid)
         {
-
+            cs = new CloudSourceService.Service1Client();
             string HTML = cs.GetGoogleSource(seid.ToString(), keyword);
             string[] dr = DesktoppatternTrending(HTML, keyword, seid.ToString());
             return dr;
@@ -38,7 +38,7 @@ namespace RapidTrackingCloudSingleThread
         //----------------------------------------------- For Non Hotel Keywords -------------------------------------//
          public string[] GetTop100Mobile(string keyword, int seid)
          {
-
+            cs = new CloudSourceService.Service1Client();
             string HTML = cs.GetGoogleSource(seid.ToString(),keyword);
                 //File.WriteAllText(@"c:\inetpub\wwwroot\dallas.html", HTML);
                 string[] mr = MobilepatternTrending(HTML, keyword, seid.ToString());

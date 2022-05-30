@@ -157,7 +157,7 @@ namespace RapidTrackingLoopSingleThread
                                 {
                                     lblCount.Text = "No. of Urls : " + count;
                                 }));
-                                if (count > 20)
+                                if (count > 0)
                                 {
                                     SendToAPI(seid, keyword, res, jobid);
                                     SendToDB(seid, keyword, res, jobid, count);
@@ -335,7 +335,7 @@ namespace RapidTrackingLoopSingleThread
                 //lstKWs.Items.Add("160:malmö ff");
                 //lstKWs.Items.Add("102:terry crews");
                 //lstKWs.Items.Add("102:the uninhabitable earth summary");
-                //lstKWs.Items.Add("145:kia sportage");
+                //lstKWs.Items.Add("106:kia sportage");
                 //lstKWs.Items.Add("280:kia sportage");
                 //lstKWs.Items.Add("314:kia sportage");
                 //lstKWs.Items.Add("290:kia sportage");
@@ -343,7 +343,7 @@ namespace RapidTrackingLoopSingleThread
                 //lstKWs.Items.Add("312:kia sportage");
                 //lstKWs.Items.Add("102:note 8 specs");
                 //lstKWs.Items.Add("102:iphone 11 camera specs");
-                lstKWs.Items.Add("154:fête des pères 2021");
+                lstKWs.Items.Add("66:papeis de parede bts");
             });
             return;
 

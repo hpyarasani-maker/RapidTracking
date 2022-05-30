@@ -16,14 +16,14 @@ using System.Xml;
 
 namespace RapidTrackingCloudSingleThread
 {
-    class SourceService
+    class CloudService
     {
         SourceService.Service1Client cs;
 
         readonly string strConn = string.Empty;
         string url = string.Empty;
 
-        public SourceService()
+        public CloudService()
         {
             strConn = Common.ReadConnection();
         }

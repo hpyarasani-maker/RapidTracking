@@ -54,7 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common.cs" />
-    <Compile Include="Connected Services\CloudSourceService\Reference.cs">
+    <Compile Include="Connected Services\SourceService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -67,7 +67,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="iOS.cs" />
-    <Compile Include="CloudSource.cs" />
+    <Compile Include="SourceService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchParams.cs" />
@@ -80,11 +80,17 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="Connected Services\CloudSourceService\Source.wsdl" />
-    <None Include="Connected Services\CloudSourceService\Source.xsd">
+    <None Include="Connected Services\SourceService\RapidTrackingCloudSingleThread.SourceService.CompositeType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\SourceService\Service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\CloudSourceService\Source1.xsd">
+    <None Include="Connected Services\SourceService\Service1.wsdl" />
+    <None Include="Connected Services\SourceService\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\SourceService\Service2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\Settings.settings">
@@ -104,19 +110,19 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\CloudSourceService\" />
+    <WCFMetadataStorage Include="Connected Services\SourceService\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\CloudSourceService\Source.disco" />
+    <None Include="Connected Services\SourceService\Service.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\CloudSourceService\configuration91.svcinfo" />
+    <None Include="Connected Services\SourceService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\CloudSourceService\configuration.svcinfo" />
+    <None Include="Connected Services\SourceService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\CloudSourceService\Reference.svcmap">
+    <None Include="Connected Services\SourceService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

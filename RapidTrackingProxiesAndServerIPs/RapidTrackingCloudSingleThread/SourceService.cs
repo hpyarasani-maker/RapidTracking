@@ -16,32 +16,33 @@ using System.Xml;
 
 namespace RapidTrackingCloudSingleThread
 {
-    class CloudSource
+    class SourceService
     {
-        CloudSourceService.Service1Client cs;
+        SourceService.Service1Client cs;
 
         readonly string strConn = string.Empty;
         string url = string.Empty;
 
-        public CloudSource()
+        public SourceService()
         {
             strConn = Common.ReadConnection();
         }
         
         public string[] GetTop100Desktop(string keyword, int seid)
         {
-            cs = new CloudSourceService.Service1Client();
+            cs = new SourceService.Service1Client();
             string HTML = cs.GetGoogleSource(seid.ToString(), keyword);
-            string[] dr = DesktoppatternTrending(HTML, keyword, seid.ToString());
+            File.WriteAllText(@"c:\inetpub\wwwroot\html\cartyres.html", HTML);
+            string[] dr = DesktoppatternTrending(System.Net.WebUtility.HtmlDecode(HTML), keyword, seid.ToString());
             return dr;
         }
         //----------------------------------------------- For Non Hotel Keywords -------------------------------------//
          public string[] GetTop100Mobile(string keyword, int seid)
          {
-            cs = new CloudSourceService.Service1Client();
+            cs = new SourceService.Service1Client();
             string HTML = cs.GetGoogleSource(seid.ToString(),keyword);
-                //File.WriteAllText(@"c:\inetpub\wwwroot\dallas.html", HTML);
-                string[] mr = MobilepatternTrending(HTML, keyword, seid.ToString());
+            File.WriteAllText(@"c:\inetpub\wwwroot\html\cartyres.html", HTML);
+            string[] mr = MobilepatternTrending(System.Net.WebUtility.HtmlDecode(HTML), keyword, seid.ToString());
                 return mr;
          }
 

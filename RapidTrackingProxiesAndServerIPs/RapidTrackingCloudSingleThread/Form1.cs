@@ -18,7 +18,7 @@ namespace RapidTrackingCloudSingleThread
 {
     public partial class Form1 : Form
     {
-        CloudSource WOWS = new CloudSource();
+        SourceService WOWS = new SourceService();
         //ServerIP WOWS = new ServerIP();
         static Random rd = new Random();
         ArrayList seresults = new ArrayList();

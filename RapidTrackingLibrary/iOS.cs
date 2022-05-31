@@ -747,7 +747,7 @@ namespace RapidTrackingLibrary
                                         "|.//div[@jsname='wRSfy']|.//g-card[@class='g F6CFcc']|.//div[@class='mnr-c xpd O9g5cc uUPGi']" +
                                         "|.//div[@class='mnr-c']/div/div[@class='P8ujBc v5yQqb jqWpsc']"); //24-05-2022 //19-11-2021 //28-10-2021//12-10-2021//09-02-2021//27-01-2021 included missing selector//05-01-2021 //04-01-2021 missing classic link//18-12-2020 sitelinks missing selector //15-12-2020
                 if (nds == null)
-                    nds = node.SelectNodes(".//div[@class='mnr-c O9g5cc uUPGi']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='HD8Pae mnr-c xpd O9g5cc uUPGi']" +
+                    nds = node.SelectNodes(".//div[@class='mnr-c O9g5cc uUPGi']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='HD8Pae mnr-c xpd O9g5cc uUPGi']|.//div[@class='urrG9 v5yQqb jqWpsc']" + //31-05-2022
                         "|.//div/g-card[@class='XqIXXe']|.//g-card[@id='tscffb']|.//g-card[@class='g F6CFcc']|.//div[@class='khgTR lWEpfd']" +
                         "|.//div[@class='khgTR R5lVqb']|.//div[@class='mnr-c fp-w qs-ic aig-grd']|.//g-card[@class='URhAHe']" +
                         "|.//div[@class='mnr-c IcwJCe']|.//div[@class='g card-section svwwZ']|.//div[@class='g mnr-c']" + //15-11-2021  //03-11-2020//26-08-2020 incuded contains functions to the selector//29-07-2020 //20-05-2020 missing classic link //05-06-2020
@@ -875,6 +875,8 @@ namespace RapidTrackingLibrary
                                 n = nd.SelectSingleNode(".//a[@class='C8nzq BmP5tf']");   // 10-06-2020 swapped from above
                             if (n == null)
                                 n = nd.SelectSingleNode(".//a[@class='C8nzq Tj0U2 BmP5tf amp_r']"); // 29-11-2019
+                            if (n == null)
+                                n = nd.SelectSingleNode(".//a[@class='cz3goc BmP5tf']"); //31-05-2022
                             if (n == null)
                                 n = nd.SelectSingleNode(".//a[contains(@class,'sXtWJb')]"); //16-12-2020
                             if (n == null)
@@ -2527,7 +2529,7 @@ namespace RapidTrackingLibrary
             }
 
             //29-11-2019
-            nd = node.SelectSingleNode(".//div[@class='KJDcUb WzRKRb']|.//div[contains(@class,'P8ujBc')]");//22-02-2022//01-02-2022
+            nd = node.SelectSingleNode(".//div[@class='KJDcUb WzRKRb']|.//div[contains(@class,'P8ujBc')]|.//div[@class='urrG9 v5yQqb jqWpsc']");//31-05-2022//22-02-2022//01-02-2022
             if (nd != null)
             {
                 return false;
@@ -2682,7 +2684,8 @@ namespace RapidTrackingLibrary
                 || node.SelectSingleNode(".//div[contains(@class, 'Z3ngN')]") != null//22-03-2021
                 || node.SelectSingleNode(".//div[@class='g card-section']") != null) && node.SelectSingleNode(".//div[@class='BNeawe']") == null //08-10-2021//30-08-2021
                 || node.SelectSingleNode(".//video-voyager[@class='LnSx5b']") != null //16-12-2021
-               || node.SelectSingleNode(".//div[contains(@class,'P8ujBc')]") != null; //22-02-2022 //01-02-2022
+                || node.SelectSingleNode(".//div[@class='mnr-c P5XtRe']") != null //25-03-2022
+                || node.SelectSingleNode(".//div[@class='urrG9 v5yQqb jqWpsc']") != null; //31-05-2022
         }
 
         internal object GetTop100GoogleUKMobileImages_PageURLs(string kw, string v1, string v2, string v3, string v4, string v5)

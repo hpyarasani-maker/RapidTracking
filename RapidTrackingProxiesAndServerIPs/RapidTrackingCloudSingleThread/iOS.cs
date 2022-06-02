@@ -7,165 +7,166 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 
-namespace RapidTrackingMultithread
+namespace RapidTrackingCloudSingleThread
 {
     class iOS
     {
         public int orgLinks;
         string html;
+
+        public int count;
         public string ProcessDocument(string seid, string keyword, HtmlDocument doc)
         {
-            //count = 0;
+            count = 0;
 
-            //if (doc == null) throw new Exception("No source found.");
-            if (string.IsNullOrEmpty(doc.ToString())) return string.Empty;
-
-
+            if (doc == null) throw new Exception("No source found.");
 
             orgLinks = 0;
             string ndText = "";
 
             html = doc.DocumentNode.OuterHtml;
             StringBuilder sb = new StringBuilder();
+            //sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" date=\"2020-02-06\" >");
             sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" date=\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\" >");
             sb.Append("<section col=\"main\">");
             string topStuff = GetTopStuff(doc);
             ndText = topStuff;
             sb.Append(topStuff);
 
-            HtmlNodeCollection nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-card|//div[@id='taw']/div[@class='med']/div[2]/div|//div[@id='rso']/nav|//div[@id='rso']/block-component/div");//07-01-2022 event results
-            if (nodeCol != null && nodeCol.Count == 1)
-                nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@class='vC5Ym DhKAUb']/div");    //17-09-2019
-            if (nodeCol == null)
-                nodeCol = doc.DocumentNode.SelectNodes("//*[@id='tscffb']");
-            //if (nodeCol == null)
-            //    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='mnr-c IGtt6d imgac']");
-            //if (nodeCol == null)
-            //    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");
-
-            //if (nodeCol == null) throw new Exception("No block found.");  
-             if (string.IsNullOrEmpty(nodeCol.ToString())) return string.Empty;
-
-
-            //if (nodeCol == null) goto BOTTOMSTUFF;             
-
-            foreach (HtmlNode node in nodeCol)
+            HtmlNodeCollection nodeCol = null;
+            try
             {
-                HtmlNode fsh = node.SelectSingleNode(".//*[@id='knowledge-finance-wholepage__fw-sticky-header']");
-                if (fsh != null)
-                {
-                    HtmlNodeCollection nc = node.SelectNodes(".//*[@class='knowledge-finance-wholepage__section wp-ms']"); // /div[1]
-                    if (node.HasClass("kp-wholepage"))
-                    {
-                        continue;
-                    }
-                    try
-                    {
-                        if (nc != null)
-                        {
-                            foreach (HtmlNode nd in nc)
-                            {
-                                string s = ProcessNode(nd);
-                                ndText += s;
-                                if (s.Length > 0)
-                                    sb.Append(s);
-                            }
-                            break;
-                        }
-                    }
-                    catch { }
+                nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-card|//div[@id='taw']/div[@class='med']/div[2]/div|//div[@id='rso']/block-component/div");//07-01-2022 event results
+                if (nodeCol.Count == 1)
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@class='vC5Ym DhKAUb']/div");    //17-09-2019
+                if (nodeCol == null)
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='tscffb']");
+                //if (nodeCol == null)
+                //    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='mnr-c IGtt6d imgac']");
+                //if (nodeCol == null)
+                //    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");
 
-                }
-                //changes on 06-08-2019
-                if ((node.SelectSingleNode(".//div[@id='knowledge-finance-wholepage__entity-summary']") != null
-                    || node.InnerText.Contains("Finance results")) && node.SelectSingleNode(".//div[@class='srg']") != null)
-                {
-                    sb.Append("<block type=\"finance\" url=\"\"></block>");
-                }
+                if (nodeCol == null) throw new Exception("No block found.");
 
-                if (node.HasClass("kp-wholepage") || node.SelectNodes(".//div[contains(@class, 'kp-wholepage')]") != null)
-                {
-                    // changed on 05-07-2019
-                    HtmlNode n = node.SelectSingleNode(".//div[@class='PyJv1b kno-fb-ctx gsmt PZPZlf']/span[@role='heading']");
-                    if (n == null)
-                        n = node.SelectSingleNode(".//div[@class='PyJv1b kno-fb-ctx gsmt PZPZlf lV8Nyd']/span[@role='heading']");
-                    if (n == null)
-                        n = node.SelectSingleNode(".//div[@class='PyJv1b gsmt PZPZlf']/span[@role='heading']"); // 06-11-2019
-                    if (n == null)
-                        n = node.SelectSingleNode(".//div[@class='PyJv1b gsmt PZPZlf lV8Nyd']/span[@role='heading']"); // 11-11-2019
-                    if (n == null)
-                        n = node.SelectSingleNode(".//div[@class='PyJv1b gsmt PZPZlf rq9RNe']/span[@role='heading']");  // 20-11-2020 KP block selector
-                    if (n == null)
-                        n = node.SelectSingleNode(".//div[@class='DoxwDb PZPZlf e8BxGf']");//23-09-2021 for missing KP block
-                    if (n == null)
-                        n = node.SelectSingleNode(".//div[@class='Ftghae iirjIb']");//16-09-2019 //
-                    if (n == null)
-                        n = node.SelectSingleNode(".//div[contains(@class,'ssJ7i PZPZlf')]"); //15-11-2021 KP
-                    if (n != null)
-                    {
-                        string heading = n.InnerText;
-                        sb.Append("<block type=\"knowledgeGraph\" url=\"\" title=\"" + SetTitle(heading) + "\" />");
-                    }
+                //if (nodeCol == null) goto BOTTOMSTUFF;             
 
-                    continue;
-                }
-                try
-                {
-                    if (node.InnerHtml != "")
-                    {
-                        string s = ProcessNode(node);
-                        ndText += s;
-                        if (s.Length > 0)
-                            sb.Append(s);
-                    }
-                }
-                catch
-                { }
-            }
-
-            if (string.IsNullOrEmpty(ndText.Trim()) || orgLinks == 0)
-            {
                 foreach (HtmlNode node in nodeCol)
                 {
-                    try
+                    HtmlNode fsh = node.SelectSingleNode(".//*[@id='knowledge-finance-wholepage__fw-sticky-header']");
+                    if (fsh != null)
                     {
-                        if (node.HasClass("kp-wholepage") || node.SelectNodes(".//div[contains(@class, 'kp-wholepage')]") != null)
+                        HtmlNodeCollection nc = node.SelectNodes(".//*[@class='knowledge-finance-wholepage__section wp-ms']"); // /div[1]
+                        if (node.HasClass("kp-wholepage"))
                         {
-                            //Current 15-12-2020 swapped from bottom HtmlNodeCollection
-                            HtmlNodeCollection nc = node.SelectNodes(".//div[@class='WvKfwe']/div|.//div[@class='WvKfwe a3spGf']/div" +
-                                "|.//div[@class='ChlgHf']|.//div[contains(@class,'UDZeY')]|.//div[@class='a3spGf WvKfwe']/div" +
-                                "|.//div[@class='WvKfwe a3spGf']/g-card|.//div[@class='WvKfwe a3spGf']/block-component");//20-05-2022  
-                            if (nc == null || node.SelectNodes(".//div[@id='kp-wp-tab-overview']/div") != null)//07-10-2021 answer card and PAA blocks
-                                nc = node.SelectNodes(".//div[@id='kp-wp-tab-overview']/div"); //15-12-2020
-                            //end of swapped
-                            if (nc == null) //|.//div[@class='a3spGf WvKfwe']/div //23-05-2020
-                                nc = node.SelectNodes(".//div[@class='Kot7x eXEBMb Znsfnf']/div[@class='GhpATe pttBJc']"); //15-04-2020
-                            if (nc == null)//|.//div[@class='kp-blk c2xzTb OJXvsb']//23-05-2020
-                                nc = node.SelectNodes(".//div[@class='UDZeY']/div|.//div[@class='vC5Ym']/div|.//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']");       //23-05-2020
-                            if (nc == null)
-                                nc = node.SelectNodes(".//div[@class='MRWHue']");
-                            if (nc == null)
-                                nc = node.SelectNodes(".//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']/div"); //22-01-2020
-                            if (nc == null)
-                                nc = node.SelectNodes(".//div[@class='a3spGf WvKfwe']");
-                            foreach (HtmlNode nd in nc)
+                            continue;
+                        }
+                        try
+                        {
+                            if (nc != null)
                             {
-                                if (nd.InnerHtml != "")
+                                foreach (HtmlNode nd in nc)
                                 {
                                     string s = ProcessNode(nd);
                                     ndText += s;
                                     if (s.Length > 0)
                                         sb.Append(s);
                                 }
+                                break;
                             }
-                            break;
+                        }
+                        catch { }
+
+                    }
+                    //changes on 06-08-2019
+                    if ((node.SelectSingleNode(".//div[@id='knowledge-finance-wholepage__entity-summary']") != null || node.InnerText.Contains("Finance results")) && node.SelectSingleNode(".//div[@class='srg']") != null)
+                    {
+                        sb.Append("<block type=\"finance\" url=\"\"></block>");
+
+                    }
+
+                    if (node.HasClass("kp-wholepage") || node.SelectNodes(".//div[contains(@class, 'kp-wholepage')]") != null)
+                    {
+                        // changed on 05-07-2019
+                        HtmlNode n = node.SelectSingleNode(".//div[@class='PyJv1b kno-fb-ctx gsmt PZPZlf']/span[@role='heading']");
+                        if (n == null)
+                            n = node.SelectSingleNode(".//div[@class='PyJv1b kno-fb-ctx gsmt PZPZlf lV8Nyd']/span[@role='heading']");
+                        if (n == null)
+                            n = node.SelectSingleNode(".//div[@class='PyJv1b gsmt PZPZlf']/span[@role='heading']"); // 06-11-2019
+                        if (n == null)
+                            n = node.SelectSingleNode(".//div[@class='PyJv1b gsmt PZPZlf lV8Nyd']/span[@role='heading']"); // 11-11-2019
+                        if (n == null)
+                            n = node.SelectSingleNode(".//div[@class='PyJv1b gsmt PZPZlf rq9RNe']/span[@role='heading']");  // 20-11-2020 KP block selector
+                        if (n == null)
+                            n = node.SelectSingleNode(".//div[@class='DoxwDb PZPZlf e8BxGf']");//23-09-2021 for missing KP block
+                        if (n == null)
+                            n = node.SelectSingleNode(".//div[@class='Ftghae iirjIb']");//16-09-2019
+                        if (n == null)
+                            n = node.SelectSingleNode(".//div[contains(@class,'ssJ7i PZPZlf')]"); //15-11-2021 KP
+                        if (n != null)
+                        {
+                            string heading = n.InnerText;
+                            sb.Append("<block type=\"knowledgeGraph\" url=\"\" title=\"" + SetTitle(heading) + "\" />");
+                        }
+                        continue;
+                    }
+                    try
+                    {
+                        if (node.InnerHtml != "")
+                        {
+                            string s = ProcessNode(node);
+                            ndText += s;
+                            if (s.Length > 0)
+                                sb.Append(s);
                         }
                     }
-                    catch (WebException ex)
+                    catch { }
+                }
+
+                if (string.IsNullOrEmpty(ndText.Trim()) || orgLinks == 0)
+                {
+                    foreach (HtmlNode node in nodeCol)
                     {
-                        return ex.Message.ToString();
+                        try
+                        {
+                            if (node.HasClass("kp-wholepage") || node.SelectNodes(".//div[contains(@class, 'kp-wholepage')]") != null)
+                            {
+                                //Current 15-12-2020 swapped from bottom HtmlNodeCollection
+                                HtmlNodeCollection nc = node.SelectNodes(".//div[@class='WvKfwe']/div|.//div[@class='WvKfwe a3spGf']/div" +
+                                    "|.//div[@class='ChlgHf']|.//div[contains(@class,'UDZeY')]|.//div[@class='a3spGf WvKfwe']/div" +
+                                    "|.//div[@class='WvKfwe a3spGf']/g-card|.//div[@class='WvKfwe a3spGf']/block-component");//20-05-2022  
+                                if (nc == null || node.SelectNodes(".//div[@id='kp-wp-tab-overview']/div") != null)//07-10-2021 answer card and PAA blocks
+                                    nc = node.SelectNodes(".//div[@id='kp-wp-tab-overview']/div"); //15-12-2020
+                                //end of swapped
+                                if (nc == null) //|.//div[@class='a3spGf WvKfwe']/div //23-05-2020
+                                    nc = node.SelectNodes(".//div[@class='Kot7x eXEBMb Znsfnf']/div[@class='GhpATe pttBJc']"); //15-04-2020
+                                if (nc == null)//|.//div[@class='kp-blk c2xzTb OJXvsb']//23-05-2020
+                                    nc = node.SelectNodes(".//div[@class='UDZeY']/div|.//div[@class='vC5Ym']/div|.//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']");       //23-05-2020
+                                if (nc == null)
+                                    nc = node.SelectNodes(".//div[@class='MRWHue']");
+                                if (nc == null)
+                                    nc = node.SelectNodes(".//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']/div"); //22-01-2020
+                                if (nc == null)
+                                    nc = node.SelectNodes(".//div[@class='a3spGf WvKfwe']");
+                                foreach (HtmlNode nd in nc)
+                                {
+                                    if (nd.InnerHtml != "")
+                                    {
+                                        string s = ProcessNode(nd);
+                                        ndText += s;
+                                        if (s.Length > 0)
+                                            sb.Append(s);
+                                    }
+                                }
+                                break;
+                            }
+                        }
+                        catch { }
                     }
                 }
+            }
+            catch
+            {
+
             }
 
             //BOTTOMSTUFF:
@@ -183,7 +184,7 @@ namespace RapidTrackingMultithread
 
             if (ndText.Length > 0)
             {
-                //count = orgLinks;
+                count = orgLinks;
                 return sb.ToString();
             }
 

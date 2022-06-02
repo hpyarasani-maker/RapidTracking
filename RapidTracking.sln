@@ -57,6 +57,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RapidTrackingLoopSingleThre
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RapidTrackingFindButton", "RapidTrackingFindButton\RapidTrackingFindButton.csproj", "{5B5127E4-B395-482B-9984-D2CBCBD3A108}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RapidTrackingCloudSingleThread", "RapidTrackingProxiesAndServerIPs\RapidTrackingCloudSingleThread\RapidTrackingCloudSingleThread.csproj", "{0F6266E6-AA79-4AC4-A1E5-DF8A7CBB9000}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -159,6 +161,10 @@ Global
 		{5B5127E4-B395-482B-9984-D2CBCBD3A108}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B5127E4-B395-482B-9984-D2CBCBD3A108}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B5127E4-B395-482B-9984-D2CBCBD3A108}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F6266E6-AA79-4AC4-A1E5-DF8A7CBB9000}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F6266E6-AA79-4AC4-A1E5-DF8A7CBB9000}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F6266E6-AA79-4AC4-A1E5-DF8A7CBB9000}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F6266E6-AA79-4AC4-A1E5-DF8A7CBB9000}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -173,6 +179,7 @@ Global
 		{1699DEFA-CE3B-49FB-A753-8351146D0C85} = {104B593A-3D64-46F5-8DA7-749FFFC06950}
 		{58522B09-1CEA-4C6B-85CF-B06C08559994} = {104B593A-3D64-46F5-8DA7-749FFFC06950}
 		{F9D76B2A-F842-4F61-8563-9E48BDC25AC4} = {43FDC851-9700-4C4B-997A-B4A9BC905A77}
+		{0F6266E6-AA79-4AC4-A1E5-DF8A7CBB9000} = {104B593A-3D64-46F5-8DA7-749FFFC06950}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3CC0E919-BB8B-43E6-8485-F143616171A0}

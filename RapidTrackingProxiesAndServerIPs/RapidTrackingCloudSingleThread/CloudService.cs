@@ -46,9 +46,6 @@ namespace RapidTrackingCloudSingleThread
                 return mr;
          }
 
-        
-       
-
         private string[] DesktoppatternTrending(string html, string keyword, string seid)
         {
             string[] array = new string[2];

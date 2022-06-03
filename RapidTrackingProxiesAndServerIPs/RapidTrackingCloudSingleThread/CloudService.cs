@@ -33,7 +33,7 @@ namespace RapidTrackingCloudSingleThread
             cs = new SourceService.Service1Client();
             string HTML = cs.GetGoogleSource(seid.ToString(), keyword);
             File.WriteAllText(@"c:\inetpub\wwwroot\html\cartyres.html", HTML);
-            string[] dr = DesktoppatternTrending(System.Net.WebUtility.HtmlDecode(HTML), keyword, seid.ToString());
+            string[] dr = DesktoppatternTrending(HTML, keyword, seid.ToString());
             return dr;
         }
         //----------------------------------------------- For Non Hotel Keywords -------------------------------------//

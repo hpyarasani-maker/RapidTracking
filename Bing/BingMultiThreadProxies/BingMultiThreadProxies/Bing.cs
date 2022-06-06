@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -259,6 +260,10 @@ namespace BingMultiThreadProxies
                                 indx = urls.LastIndexOf("https://");
                             }
                             urls = urls.Remove(0, indx);
+                            if (urls.Contains("www.bing.com/ck/a"))
+                            {
+                                alDup.Add(redirecturls(new Uri(urls)).Result);
+                            }
                             alDup.Add(HttpUtility.HtmlDecode(urls));
                         }
                     }
@@ -307,6 +312,10 @@ namespace BingMultiThreadProxies
                                 indx = urls.LastIndexOf("https://");
                             }
                             urls = urls.Remove(0, indx);
+                            if (urls.Contains("www.bing.com/ck/a"))
+                            {
+                                alDup.Add(redirecturls(new Uri(urls)).Result);
+                            }
                             alDup.Add(HttpUtility.HtmlDecode(urls));
                         }
                     }
@@ -679,6 +688,35 @@ namespace BingMultiThreadProxies
                 top100BingUKMobile.Add(errorBingUkMobile);
             }
             return top100BingUKMobile;
+        }
+        public async Task<string> redirecturls(Uri url)
+        {
+            string redirectedUrl = null;
+            try
+            {
+                var a = new HttpClientHandler()
+                {
+                    AllowAutoRedirect = false
+                };
+                using (HttpClient client = new HttpClient(a))
+                using (HttpResponseMessage response = await client.GetAsync(url))
+                using (HttpContent content = response.Content)
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.Found)
+                    {
+                        HttpResponseHeaders headers = response.Headers;
+                        if (headers != null && headers.Location != null)
+                        {
+                            redirectedUrl = headers.Location.AbsoluteUri;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("No url match,  " + ex.Message);
+            }
+            return redirectedUrl;
         }
     }
 }

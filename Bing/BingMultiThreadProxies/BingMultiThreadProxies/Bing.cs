@@ -16,6 +16,7 @@ namespace BingMultiThreadProxies
 {
     public class Bing
     {
+        CloudBingSource.Service1Client cs;
         string HtmlText1 = string.Empty;
         string strConn = string.Empty;
 
@@ -233,7 +234,7 @@ namespace BingMultiThreadProxies
             }
             return myArrayList;
         }
-
+    
         private ArrayList DesktopPattern(string htmlsource, string ipstore, string kwd, string seid)
         {
             ArrayList googleList1 = new ArrayList();
@@ -338,10 +339,12 @@ namespace BingMultiThreadProxies
             }
             return googleList;
         }
-
+        string desktopUserAgent = @"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36";
+        string mobileUserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 12_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.2 Mobile/15E148 Safari/604.1";
 
         public ArrayList getTop100MSNUS(string keyword)
         {
+            cs = new CloudBingSource.Service1Client();
             string HTML1 = "";
             string url = string.Empty;
             ArrayList top100MSNUS = new ArrayList();
@@ -358,7 +361,7 @@ namespace BingMultiThreadProxies
                     url = "http://www.bing.com/search?q=" + keyword + "&search=&mkt=en-us&cc=us&form=QBRE&filt=all&first=" + st;
 
                     HTML1 = getWebDataSource(url).Result;
-
+                    //HTML1 = cs.GetBingSource(url, desktopUserAgent);
                     //System.IO.File.WriteAllText(@"c:\inetpub\wwwroot\html\" + kwd + st + ".html", HTML1, Encoding.UTF8);
 
                     if (HTML1.Contains("No results found for") || HTML1.Contains("There are no results for"))
@@ -401,7 +404,7 @@ namespace BingMultiThreadProxies
                     HTML1 = string.Empty;
                     url = "https://www.bing.com/search?q=" + keyword + "&mkt=en-GB&cc=GB&filt=all&form=QBRE&first=" + st;
                     HTML1 = getWebDataSource(url).Result;
-
+                    //HTML1 = cs.GetBingSource(url, desktopUserAgent);
                     //System.IO.File.WriteAllText(@"c:\inetpub\wwwroot\html\" + kwd + st + ".html", HTML1, Encoding.UTF8);
 
                     if (HTML1.Contains("No results found for") || HTML1.Contains("There are no results for"))
@@ -444,7 +447,7 @@ namespace BingMultiThreadProxies
                     HTML1 = string.Empty;                    
                     url = "http://www.bing.com/search?q=" + keyword + " &go=&form=MSNZHP&mkt=en-nz&filt=all&first=" + st + "&cc=nz";
                     HTML1 = getWebDataSource(url).Result;
-
+                    //HTML1 = cs.GetBingSource(url, desktopUserAgent);
                     //System.IO.File.WriteAllText(@"c:\inetpub\wwwroot\html\" + kwd + st + ".html", HTML1, Encoding.UTF8);
 
                     if (HTML1.Contains("No results found for") || HTML1.Contains("There are no results for"))
@@ -489,7 +492,7 @@ namespace BingMultiThreadProxies
                     url = "http://www.bing.com/search?q=" + keyword + "&form=QBRE&mkt=en-za&cc=za&first=" + st;
 
                     HTML1 = getWebDataSource(url).Result;
-
+                    //HTML1 = cs.GetBingSource(url, desktopUserAgent);
                     //System.IO.File.WriteAllText(@"c:\inetpub\wwwroot\html\" + kwd + st + ".html", HTML1, Encoding.UTF8);
                     if (HTML1.Contains("No results found for") || HTML1.Contains("There are no results for"))
                         break;
@@ -531,7 +534,7 @@ namespace BingMultiThreadProxies
                     HTML1 = string.Empty;                    
                     url = "http://www.bing.com/search?q=" + keyword + "&form=QBLR&filt=all&first=" + st + "&mkt=en-it&cc=it";
                     HTML1 = getWebDataSource(url).Result;
-
+                    //HTML1 = cs.GetBingSource(url, desktopUserAgent);
                     //System.IO.File.WriteAllText(@"c:\inetpub\wwwroot\html\" + kwd + st + ".html", HTML1, Encoding.UTF8);
                     if (HTML1.Contains("No results found for") || HTML1.Contains("There are no results for"))
                         break;
@@ -574,7 +577,7 @@ namespace BingMultiThreadProxies
 
                     url = "http://www.bing.com/search?q=" + keyword + "&form=QBLR&filt=all&first=" + st + "&mkt=en-it&cc=it";
                     HTML1 = getWebDataSource(url).Result;
-
+                    //HTML1 = cs.GetBingSource(url, desktopUserAgent);
                     //System.IO.File.WriteAllText(@"c:\inetpub\wwwroot\html\" + kwd + st + ".html", HTML1, Encoding.UTF8);
                     if (HTML1.Contains("No results found for") || HTML1.Contains("There are no results for"))
                         break;
@@ -616,7 +619,7 @@ namespace BingMultiThreadProxies
                     HTML1 = string.Empty;                    
                     url = "http://www.bing.com/search?q=" + keyword + "&mkt=en-us&cc=us&form=QBLH&filt=all&first=" + st;    // + "&count=10";
                     HTML1 = getWebDataMobileSource(url).Result;
-
+                    //HTML1 = cs.GetBingSource(url,mobileUserAgent);
                     //System.IO.File.WriteAllText(@"c:\inetpub\wwwroot\html\" + kwd + st + ".html", HTML1, Encoding.UTF8);
 
                     if (HTML1.Contains("No results found for") || HTML1.Contains("There are no results for"))
@@ -661,7 +664,7 @@ namespace BingMultiThreadProxies
 
                     url = "http://www.bing.com/search?q=" + keyword + "&form=QBRE&first=" + st + "&mkt=en-gb&cc=gb&filt=all";
                     HTML1 = getWebDataMobileSource(url).Result;
-
+                    //HTML1 = cs.GetBingSource(url,mobileUserAgent);
                     //System.IO.File.WriteAllText(@"c:\inetpub\wwwroot\html\" + kwd + st + ".html", HTML1, Encoding.UTF8);
                     if (HTML1.Contains("No results found for") || HTML1.Contains("There are no results for"))
                         break;

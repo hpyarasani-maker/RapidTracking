@@ -942,11 +942,12 @@ namespace RapidTrackingLibrary
             s.Append(res);//31-01-2022
             return s.ToString();
         }//end of item urls code 31-01-2022
-        private string GetPeopleAlsoAskUrls(string[] titles) //People also method 02-03-2022
+        private string GetPeopleAlsoAskUrls(string[] titles) //People also method 31-01-2022
         {
             StringBuilder s = new StringBuilder();
-            //string pattern = @"WEB_ANSWERS_STANDARD_RESULT_(.*?)div class\\x3d\\x22tF2Cxc\\x22\\x3e\\x3cdiv class\\x3d\\x22yuRUbf\\x22\\x3e\\x3ca href\\x3d\\x22(.*?)\\x22";
-            string pattern = @"WEB_ANSWERS_STANDARD_RESULT_(.*?)div class\\x3d\\x22tF2Cxc\\x22\\x3e\\x3cdiv class\\x3d\\x22yuRUbf\\x22[ style\\x3d\\x22(white-space\Wnowrap|position:relative)\\x22]*\\x3e\\x3ca href\\x3d\\x22(.*?)\\x22"; //06-05-2022
+            //string pattern = @"WEB_ANSWERS_STANDARD_RESULT_(.*?)div class\\x3d\\x22tF2Cxc\\x22\\x3e\\x3cdiv class\\x3d\\x22yuRUbf\\x22[ style\\x3d\\x22white-space\Wnowrap\\x22]*\\x3e\\x3ca href\\x3d\\x22(.*?)\\x22"; //29-03-2022
+            //string pattern = @"WEB_ANSWERS_STANDARD_RESULT_(.*?)div class\\x3d\\x22tF2Cxc\\x22\\x3e\\x3cdiv class\\x3d\\x22yuRUbf\\x22[ style\\x3d\\x22(white-space\Wnowrap|position:relative)\\x22]*\\x3e\\x3ca href\\x3d\\x22(.*?)\\x22"; //06-05-2022
+            string pattern = @"div class\\x3d\\x22tF2Cxc\\x22\\x3e\\x3cdiv class\\x3d\\x22yuRUbf\\x22[ style\\x3d\\x22(white-space\Wnowrap|position:relative)\\x22]*\\x3e\\x3ca href\\x3d\\x22(.*?)\\x22";//07-06-2022 //06-05-2022
             Regex re = new Regex(pattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
             MatchCollection mc = re.Matches(html);
             ArrayList myList = new ArrayList();
@@ -954,28 +955,16 @@ namespace RapidTrackingLibrary
             char[] yt = { '\\', '2', '6' };
             foreach (Match m in mc)
             {
-                string url = HttpUtility.HtmlDecode(m.Groups[2].Value);
+                string url = HttpUtility.HtmlDecode(HttpUtility.HtmlEncode(m.Groups[1].Value));
                 if (url.StartsWith("http") || url.StartsWith("https"))
                 {
                     url = SetYTUrl(url, yt); //12-03-2022
-                    //02-03-2022
-                    //if(x < titles.Length)
-                    //s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");
+                    if (x < titles.Length)//22-02-2022
+                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");//22-02-2022
                 }
-                string textPattern = @"\\x3cspan class\\x3d\\x22hgKElc\\x22\\x3e(.*?)\\x3c/span\\x3e";
-                Regex _rx = new Regex(textPattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
-                Match _m = _rx.Match(m.Groups[0].Value);
-                string text = string.Empty;
-                if (_m.Success)
-                {
-                    text = HttpUtility.HtmlDecode(_m.Groups[1].Value).Replace(@"\x3cb\x3e", "").Replace(@"\x3c/b\x3e", "");
-                }
-                if (x < titles.Length)
-                    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" text=\"" + text + "\" />");
-                //end 02-03-2022
             }
-            for (; x < titles.Length; x++)
-                s.Append("<item url=\"\" title=\"" + SetTitle(titles[x]) + "\" text=\"\" />");
+            for (; x < titles.Length; x++)//18-02-2022
+                s.Append("<item url=\"\" title=\"" + SetTitle(titles[x]) + "\" />");//18-02-2022
             return s.ToString();
         }
 

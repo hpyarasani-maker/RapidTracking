@@ -285,6 +285,8 @@ namespace RapidTrackingCloudSingleThread
 
                 Encoding encoding = new UTF8Encoding();
                 string postData = GetTextFromXMLFile(xmlPath);
+                //if (!postData.Contains("<block type=\"productListedAds\"")) //08-06-2022
+                //    throw new Exception("'ProductListedAds' block not found."); //08-06-2022
                 byte[] data = encoding.GetBytes(postData);
 
                 httpWReq.ProtocolVersion = HttpVersion.Version11;

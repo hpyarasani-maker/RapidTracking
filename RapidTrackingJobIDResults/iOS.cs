@@ -1568,9 +1568,11 @@ namespace RapidTrackingJobIDResults
         private string GetPeopleAlsoAskUrls(string[] titles) //People also method 31-01-2022 //06-06-2022
         {
             StringBuilder s = new StringBuilder();
-            TimeSpan ts = TimeSpan.FromMilliseconds(500);
-            string pattern = @"[WEB_ANSWERS_STANDARD_RESULT_|K3M0Td g1Khaf MUmB9 zbA8Me](.*?)div class\\x3d\\x22Xv4xee\\x22\\x3e\\x3ch3 class\\x3d\\x22yuRUbf JtG40d MBeuO q8U8x\\x22\\x3e\\x3ca class\\x3d\\x22sXtWJb\\x22 href\\x3d\\x22(.*?)\\x22";
-            Regex re = new Regex(pattern, RegexOptions.IgnoreCase | RegexOptions.Singleline, ts);
+            //TimeSpan ts = TimeSpan.FromMilliseconds(500);
+            //string pattern = @"[WEB_ANSWERS_STANDARD_RESULT_|K3M0Td g1Khaf MUmB9 zbA8Me](.*?)div class\\x3d\\x22Xv4xee\\x22\\x3e\\x3ch3 class\\x3d\\x22yuRUbf JtG40d MBeuO q8U8x\\x22\\x3e\\x3ca class\\x3d\\x22sXtWJb\\x22 href\\x3d\\x22(.*?)\\x22";
+            string pattern = @"div class\\x3d\\x22Xv4xee\\x22\\x3e\\x3ch3 class\\x3d\\x22yuRUbf JtG40d MBeuO q8U8x\\x22\\x3e\\x3ca class\\x3d\\x22sXtWJb\\x22 href\\x3d\\x22(.*?)\\x22"; //09-06-2022
+            //Regex re = new Regex(pattern, RegexOptions.IgnoreCase | RegexOptions.Singleline,ts);
+            Regex re = new Regex(pattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
             MatchCollection mc = re.Matches(html);
             ArrayList myList = new ArrayList();
             int x = 0;
@@ -1579,7 +1581,8 @@ namespace RapidTrackingJobIDResults
             {
                 foreach (Match m in mc)
                 {
-                    string url = HttpUtility.HtmlDecode(m.Groups[2].Value);
+                    //string url = HttpUtility.HtmlDecode(m.Groups[2].Value);
+                    string url = HttpUtility.HtmlDecode(m.Groups[1].Value); //09-06-2022
                     if (url.StartsWith("http") || url.StartsWith("https"))
                     {
                         url = SetYTUrl(url, yt); //12-03-2022

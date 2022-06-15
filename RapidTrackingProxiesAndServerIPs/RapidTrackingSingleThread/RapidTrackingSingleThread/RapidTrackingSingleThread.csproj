@@ -64,6 +64,7 @@
     <Compile Include="iOS.cs" />
     <Compile Include="OxylabsProxies.cs" />
     <Compile Include="OxylabsProxiesSeeMore.cs" />
+    <Compile Include="OxylabsProxies_Ads.cs" />
     <Compile Include="OxyParams.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

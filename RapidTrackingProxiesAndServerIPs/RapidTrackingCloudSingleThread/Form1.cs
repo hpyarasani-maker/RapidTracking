@@ -63,7 +63,7 @@ namespace RapidTrackingCloudSingleThread
                 //worklist.Items.Add("1:@diabetes_101");
                 //worklist.Items.Add("1:@fionamartin123");
                 //worklist.Items.Add("1:@smith101sam");
-                worklist.Items.Add("58:car tyres");
+                worklist.Items.Add("106:car tyres");
             }));
             Cursor.Current = System.Windows.Forms.Cursors.WaitCursor;
             date_picker.Format = DateTimePickerFormat.Custom;
@@ -285,6 +285,8 @@ namespace RapidTrackingCloudSingleThread
 
                 Encoding encoding = new UTF8Encoding();
                 string postData = GetTextFromXMLFile(xmlPath);
+                //if (!postData.Contains("<block type=\"productListedAds\"")) //08-06-2022
+                //    throw new Exception("'ProductListedAds' block not found."); //08-06-2022
                 byte[] data = encoding.GetBytes(postData);
 
                 httpWReq.ProtocolVersion = HttpVersion.Version11;

@@ -12,6 +12,8 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
 using System.Net.Http;
+using System.Threading.Tasks;
+using System.Net.Http.Headers;
 
 namespace Bing_Receiving
 { 
@@ -142,6 +144,7 @@ namespace Bing_Receiving
                         if (device == "desktop")
                         {
                             //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + kw + ".html", sb.ToString(), Encoding.UTF8);
+
                             arRes = DesktopPattern(sb.ToString()); 
                         }
                         else
@@ -556,7 +559,11 @@ namespace Bing_Receiving
                             {
                                 indx = urls.LastIndexOf("https://");
                             }
-                            urls = urls.Remove(0, indx);                           
+                            urls = urls.Remove(0, indx);
+                            if (urls.Contains("www.bing.com/ck/a"))
+                            {
+                                alDup.Add(redirecturls(new Uri(urls)).Result);
+                            }
                             alDup.Add(HttpUtility.HtmlDecode(urls));
                         }
                     }
@@ -606,6 +613,10 @@ namespace Bing_Receiving
                                 indx = urls.LastIndexOf("https://");
                             }
                             urls = urls.Remove(0, indx);
+                            if (urls.Contains("www.bing.com/ck/a"))
+                            {
+                                alDup.Add(redirecturls(new Uri(urls)).Result);
+                            }
                             alDup.Add(HttpUtility.HtmlDecode(urls));
                         }
                     }
@@ -628,7 +639,36 @@ namespace Bing_Receiving
                 throw new Exception("No pattern match,  " + ex.Message);
             }
             return googleList;
-        } 
+        }
+        public async Task<string> redirecturls(Uri url)
+        {
+            string redirectedUrl = null;
+            try
+            {
+                var a = new HttpClientHandler()
+                {
+                    AllowAutoRedirect = false
+                };
+                using (HttpClient client = new HttpClient(a))
+                using (HttpResponseMessage response = await client.GetAsync(url))
+                using (HttpContent content = response.Content)
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.Found)
+                    {
+                        HttpResponseHeaders headers = response.Headers;
+                        if (headers != null && headers.Location != null)
+                        {
+                            redirectedUrl = headers.Location.AbsoluteUri;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("No url match,  " + ex.Message);
+            }
+            return redirectedUrl;
+        }
     }
 }
 

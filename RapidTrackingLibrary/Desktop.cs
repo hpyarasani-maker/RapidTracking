@@ -1380,12 +1380,15 @@ namespace RapidTrackingLibrary
                 || node.SelectSingleNode(".//div[@class='kp-blk ouUsKb G45kvd']") != null //24-08-2021 answer card selector
                 || node.SelectSingleNode(".//div[@class='M0XuFe mnr-c vk_c']") != null //23-12-2021
                 || node.SelectSingleNode(".//div[@id='wob_wc']") != null //06-04-2022//31-03-2022 
-                || node.SelectSingleNode(".//div[@class='YXEKBb']") != null) //06-06-2022 Ansered Card
+                || node.SelectSingleNode(".//div[@class='YXEKBb']") != null //06-06-2022 Ansered Card
+                 || node.SelectSingleNode(".//div[@class='ellip vk_h lxZILe']") != null) //16-06-2022
             {
                 if (node.SelectSingleNode(".//div[@class='BET1rd']|.//div[@class='EfDVh wDYxhc NFQFxe']") == null && node.SelectSingleNode(".//div[@class='tpa-cc']") == null //23-12-2021 //21-08-2021 //25-09-2020
                      && node.SelectSingleNode(".//div[contains(@class,'kno-fb-ctx')]") == null) //13-10-2021
                     return "AnswerCard";
-                else if (node.SelectSingleNode(".//div[@class='WcS13d']") != null && node.SelectSingleNode(".//div[@class='EfDVh wDYxhc NFQFxe']") != null) //27-12-2021
+                else if (node.SelectSingleNode(".//div[@class='WcS13d']") != null && node.SelectSingleNode(".//div[@class='EfDVh wDYxhc NFQFxe']") != null //27-12-2021
+                    || node.SelectSingleNode(".//div[@class='nmVgI3FLyE0__answer']") != null
+                    || node.SelectSingleNode(".//div[@class='N6Sb2c i29hTd']") != null)//16-06-2022 //23-03-2022
                     return "AnswerCard";//27-12-2021
             }
             //05-10-2020 KP Block selectors updated

@@ -1601,7 +1601,8 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[contains(@class,'kno-fb-ctx')]"); //13-10-2021
             if (nd != null)
             {
-                return "Finance";
+                if (node.SelectSingleNode(".//div[@class='NhRr3b']") != null)//17-06-2022
+                    return "Finance";
             }
             nd = node.SelectSingleNode(".//table[@class='nrgt']|.//table[@class='jmjoTe']");   //22-08-2020 included selector for sitelinks
             if (nd != null)

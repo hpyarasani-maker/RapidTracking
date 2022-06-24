@@ -88,16 +88,18 @@ namespace Image_Page_Keywords_Sending
             //string callbackURL = "http://seresults.azurewebsites.net/api/callbackotherdesktop/";  // other desktop
             //string callbackURL = "http://seresults.azurewebsites.net/api/callbackothermobile/";  // other mobile
 
-            string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidtrackingimagedesktop/"; // images
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidtrackingimagedesktop/"; // images //74
+            string callbackURL = "http://seresults.azurewebsites.net/api/callback74images/"; // page urls
             //string callbackURL = "http://seresults.azurewebsites.net/api/callbackimages/"; // images
             //string callbackURL = "http://seresults.azurewebsites.net/api/callbacknews/"; // news
 
-
+            string[] keyword = { sp.query };
             OxyParams op = new OxyParams()
             {
                 source = "google_search",
                 domain = sp.domain,
-                query = sp.query.Split(','),
+                //query = sp.query.Split(','),
+                query = keyword,
                 limit = 20,
                 pages = 5,
                 start_page = 1,
@@ -141,7 +143,7 @@ namespace Image_Page_Keywords_Sending
                 }
                 res.Close();
 
-               // SendToDb(sp.seid, response);
+                SendToDb(sp.seid, response);
             }
             catch(Exception ex)
             {

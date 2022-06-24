@@ -693,11 +693,11 @@ namespace Image_Page_Results_Receiving
                 }
                 else
                 {
-                    if (urlType == "ImageLinks")
+                    if (urlType == "PageLinks")
                     {
-                        string pattern = "<div class=\"NZWO1b\"><img class=\"yWs4tf\" alt=\"\" src=(.*?)\"/>";
+                        string pattern1 = "<table class=\\WIkMU6e\\W><tr><td><a href=(.*?)&";
                         //string pattern = @"\]n,\[""http(.*?)\"",";
-                        Regex rx = new Regex(pattern, RegexOptions.IgnoreCase);
+                        Regex rx = new Regex(pattern1, RegexOptions.IgnoreCase);
                         MatchCollection mc = rx.Matches(htmlsource);
 
                         foreach (Match m in mc)

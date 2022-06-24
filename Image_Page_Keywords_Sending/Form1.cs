@@ -103,14 +103,14 @@ namespace Image_Page_Keywords_Sending
             this.Invoke((MethodInvoker)delegate()
             {
                 worklist.Items.Clear();
-                //worklist.Items.Add("106:iphone,dvd,digital camera");
+                worklist.Items.Add("74:iphone, dvd");
                
                 worklist.Refresh();
                 date_picker.Format = DateTimePickerFormat.Custom;
                 date_picker.CustomFormat = "yyyy-MM-dd";
             });
 
-            //return;
+            return;
 
             Cursor.Current = Cursors.WaitCursor;
             string myDate = date_picker.Text;
@@ -214,7 +214,7 @@ namespace Image_Page_Keywords_Sending
                     progress_lbl.Refresh();
                     lblIP.Text = ts.TotalSeconds.ToString();
                 });
-                Thread.Sleep(60000);
+                //Thread.Sleep(60000);
             }
         }
         

@@ -39,9 +39,10 @@ namespace Image_Page_Results_Receiving
             //string url = "http://seresults.azurewebsites.net/api/callbackotherdesktop/";  // other desktop
             //string url = "http://seresults.azurewebsites.net/api/callbackothermobile/";   // other mobiles
 
-            //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingimagedesktop/"; // image urls
-            string url = "http://seresults.azurewebsites.net/api/callback74images/"; // page urls
-                                                                                     //string url = "http://seresults.azurewebsites.net/api/callbacknews/";      // news         140
+            string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingimagedesktop/"; // image urls
+            //string url = "http://seresults.azurewebsites.net/api/callback74images/"; // page urls
+            //string url = "http://seresults.azurewebsites.net/api/callbackimages/"; // images
+            //string url = "http://seresults.azurewebsites.net/api/callbacknews/";      // news         140
 
 
 
@@ -97,7 +98,7 @@ namespace Image_Page_Results_Receiving
                         JObject obj = JObject.Parse(response);
                         response = obj["results"][0]["content"].Value<string>();
 
-                        //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + kw + ".html", response, Encoding.UTF8);
+                        File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + kw + ".html", response, Encoding.UTF8);
                         //// Image Links
                         //SearchProperties sp = SearchParamsImageUrls.searches.Where(s => s.locale == hl && s.device == device && s.geo_location == gl && s.tbm == "isch").SingleOrDefault();
 
@@ -693,10 +694,11 @@ namespace Image_Page_Results_Receiving
                 }
                 else
                 {
-                    if (urlType == "ImageLinks")
+                    if (urlType == "PageLinks")
                     {
-                        string pattern = @"\]n,\[""http(.*?)\"",";
-                        Regex rx = new Regex(pattern, RegexOptions.IgnoreCase);
+                        string pattern1 = "<table class=\\WIkMU6e\\W><tr><td><a href=(.*?)&";
+                        //string pattern = @"\]n,\[""http(.*?)\"",";
+                        Regex rx = new Regex(pattern1, RegexOptions.IgnoreCase);
                         MatchCollection mc = rx.Matches(htmlsource);
 
                         foreach (Match m in mc)

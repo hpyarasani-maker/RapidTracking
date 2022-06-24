@@ -546,8 +546,9 @@ namespace Image_Page_Loop_Keywords
                 SearchProperties sp = SearchParams.searches.Where(s => s.seid == seid).SingleOrDefault();
                 sp.query = keyword;
                 
-                for (int i=1;i<=10;i++)
+                for (int i=1;i<=5;i++)
                 {
+                    i = i + 20;
                     if (sp != null)
                         alResult.Add(GetOxylabsWebDataSources(sp, i).Result);
                 }
@@ -576,7 +577,7 @@ namespace Image_Page_Loop_Keywords
                 query = keyword,
                 limit = 20,
                 pages = 5,
-                start_page = 1,
+                start_page = i,
                 locale = sp.locale,
                 geo_location = sp.geo_location,
                 parse = false, //23-09-2021 changed datatype into "int to bool"

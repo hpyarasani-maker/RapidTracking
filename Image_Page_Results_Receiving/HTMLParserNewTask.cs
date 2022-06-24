@@ -93,11 +93,9 @@ namespace Image_Page_Results_Receiving
                     resStream.Close();
                     res.Close();
                     ArrayList arRes = new ArrayList();
+
                     try
                     {
-                        JObject obj = JObject.Parse(response);
-                        response = obj["results"][0]["content"].Value<string>();
-
                         File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + kw + ".html", response, Encoding.UTF8);
                         //// Image Links
                         //SearchProperties sp = SearchParamsImageUrls.searches.Where(s => s.locale == hl && s.device == device && s.geo_location == gl && s.tbm == "isch").SingleOrDefault();
@@ -109,26 +107,27 @@ namespace Image_Page_Results_Receiving
                         //SearchProperties sp = SearchParamsImageUrls.searches.Where(s => s.locale == hl && s.device == device && s.geo_location == gl && s.tbm == "nws").SingleOrDefault();
 
                         seid = sp.seid;
-                    }
-                    catch (Exception ex)
-                    {
-                        throw ex;
-                    }
-                    try
-                    {
-                        //// Image Links
-                        //if (device == "desktop")
-                        //    arRes = ImagesPatternDesktop(response, "ImageLinks");
-                        //else
-                        //    arRes = ImagesPatternMobile(response, "ImageLinks");
+                    
+                        JObject obj = JObject.Parse(response);
+                        var contents = obj["results"];
+
+                        for (int x = 0; x < contents.Count(); x++)
+                        {
+                            response = contents[x]["content"].Value<string>();
+
+                            //// Image Links
+                            //if (device == "desktop")
+                            //    arRes = ImagesPatternDesktop(response, "ImageLinks", arRes);
+                            //else
+                            //    arRes = ImagesPatternMobile(response, "ImageLinks", arRes);
 
 
-                        //Page Links
-                        if (device == "desktop")
-                            arRes = ImagesPatternDesktop(response, "PageLinks");
-                        else
-                            arRes = ImagesPatternMobile(response, "PageLinks");
-
+                            //Page Links
+                            if (device == "desktop")
+                                arRes = ImagesPatternDesktop(response, "PageLinks", arRes);
+                            else
+                                arRes = ImagesPatternMobile(response, "PageLinks", arRes);
+                        }
 
                         // News
                         //if (device == "desktop")
@@ -647,9 +646,9 @@ namespace Image_Page_Results_Receiving
             return googleList;
         }
 
-        private ArrayList ImagesPatternDesktop(string htmlsource, string urlType)
+        private ArrayList ImagesPatternDesktop(string htmlsource, string urlType, ArrayList googleList)
         {
-            ArrayList googleList = new ArrayList();
+            //ArrayList googleList = new ArrayList();
             try
             {
                 htmlsource = htmlsource.Replace(@"\", "");
@@ -694,11 +693,11 @@ namespace Image_Page_Results_Receiving
                 }
                 else
                 {
-                    if (urlType == "PageLinks")
+                    if (urlType == "ImageLinks")
                     {
-                        string pattern1 = "<table class=\\WIkMU6e\\W><tr><td><a href=(.*?)&";
+                        string pattern = "<div class=\"NZWO1b\"><img class=\"yWs4tf\" alt=\"\" src=(.*?)\"/>";
                         //string pattern = @"\]n,\[""http(.*?)\"",";
-                        Regex rx = new Regex(pattern1, RegexOptions.IgnoreCase);
+                        Regex rx = new Regex(pattern, RegexOptions.IgnoreCase);
                         MatchCollection mc = rx.Matches(htmlsource);
 
                         foreach (Match m in mc)
@@ -716,7 +715,8 @@ namespace Image_Page_Results_Receiving
 
                     else  // 74
                     {
-                        string pattern = "x22 targetx3dx22_blankx22 hrefx3dx22(.*?)x22 ";
+                        //string pattern = "x22 targetx3dx22_blankx22 hrefx3dx22(.*?)x22 ";
+                        string pattern = "<table class=\\WIkMU6e\\W><tr><td><a href=(.*?)&";
                         Regex rx = new Regex(pattern, RegexOptions.IgnoreCase);
                         MatchCollection mc = rx.Matches(htmlsource);
                         foreach (Match m in mc)
@@ -756,9 +756,9 @@ namespace Image_Page_Results_Receiving
             return googleList;
         }
 
-        private ArrayList ImagesPatternMobile(string htmlsource, string urlType)
+        private ArrayList ImagesPatternMobile(string htmlsource, string urlType, ArrayList googleList)
         {
-            ArrayList googleList = new ArrayList();
+            //ArrayList googleList = new ArrayList();
             try
             {
                 htmlsource = htmlsource.Replace(@"\", "");

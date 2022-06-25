@@ -219,7 +219,7 @@ namespace Image_Page_Keywords_Sending
                     progress_lbl.Refresh();
                     lblIP.Text = ts.TotalSeconds.ToString();
                 });
-                //Thread.Sleep(60000);
+                Thread.Sleep(60000);
             }
         }
         

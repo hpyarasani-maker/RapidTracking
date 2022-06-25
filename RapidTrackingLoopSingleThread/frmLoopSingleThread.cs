@@ -19,7 +19,7 @@ namespace RapidTrackingLoopSingleThread
 {
     public partial class frmLoopSingleThread : Form
     {
-        string xmlPath = "C:\\inetpub\\wwwroot\\rapidtracking_Loopsinglethread_102_GT20_WC.xml";
+        string xmlPath = "C:\\inetpub\\wwwroot\\rapidtracking_Loopsinglethread_102_Loop_3_GT20_WC.xml";
 
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
@@ -46,7 +46,7 @@ namespace RapidTrackingLoopSingleThread
         private void frmLoopSingleThread_Load(object sender, EventArgs e)
         {
 
-            this.Text = "RapidTracking_LoopSingleThread_102_GT20_WC";
+            this.Text = "RapidTracking_LoopSingleThread_102_Loop_3_GT20_WC";
             //this.Text = "RapidTracking_SingleThread_P_A_WOC_10-09-2019";
 
 
@@ -63,7 +63,7 @@ namespace RapidTrackingLoopSingleThread
                 //string myDate = "2019-11-20";
 
 
-                string kwQry = "[Tracking_DB_Keywords_SEID_102_last] '" + myDate + "'";
+                string kwQry = "[Tracking_DB_Keywords_SEID_102_Loop_3] '" + myDate + "'";
                 //string kwQry = "[Tracking_DB_Keywords_Seid_103p] '" + myDate + "'";               
                 //string kwQry = "[GetCommaKeywordsP] '" + myDate + "'";               
                 //string kwQry = "[Tracking_DB_Keywords_Seid_102_P] '" + myDate + "'"; //tracking previous date single keywords
@@ -105,7 +105,7 @@ namespace RapidTrackingLoopSingleThread
                                         string html = obj["results"][0]["content"].Value<string>();
                                         jobid = src[2];
                                         string device = src[3];
-                                        File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
+                                        //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
                                         //File.WriteAllText(@"C:\inetpub\wwwroot\"+jobid+"_withOut filter_"+".html", html, Encoding.UTF8);
                                         result = true;
                                         doc = new HtmlAgilityPack.HtmlDocument();
@@ -157,7 +157,7 @@ namespace RapidTrackingLoopSingleThread
                                 {
                                     lblCount.Text = "No. of Urls : " + count;
                                 }));
-                                if (count > 0)
+                                if (count > 20)
                                 {
                                     SendToAPI(seid, keyword, res, jobid);
                                     SendToDB(seid, keyword, res, jobid, count);
@@ -343,9 +343,9 @@ namespace RapidTrackingLoopSingleThread
                 //lstKWs.Items.Add("312:kia sportage");
                 //lstKWs.Items.Add("102:note 8 specs");
                 //lstKWs.Items.Add("102:iphone 11 camera specs");
-                lstKWs.Items.Add("66:papeis de parede bts");
+                //lstKWs.Items.Add("106:what time is it in uk");
             });
-            return;
+            //return;
 
             try
             {

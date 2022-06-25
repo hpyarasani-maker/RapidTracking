@@ -463,137 +463,6 @@ namespace Image_Page_Results_Receiving
             }
         }
 
-        //private ArrayList ImagesPattern(string htmlsource, string urlType)
-        //{       
-        //    ArrayList googleList = new ArrayList(); 
-        //    try
-        //    {
-        //        var doc = new HtmlDocument();     
-        //        htmlsource = htmlsource.Replace(@"\", "");                     
-        //        doc.LoadHtml(htmlsource);
-        //        ArrayList alDup = new ArrayList(); 
-
-        //        HtmlNodeCollection node = doc.DocumentNode.SelectNodes("//div[@class=\"rg_meta notranslate\"]");
-
-        //        foreach (HtmlNode links in node)
-        //        {
-        //            try
-        //            {
-        //                string url = "";
-
-        //                if (urlType == "ImageLinks")
-        //                    url = JObject.Parse(links.InnerText)["ou"].Value<string>();
-        //                else
-        //                    url = JObject.Parse(links.InnerText)["ru"].Value<string>();
-
-        //                if (url.StartsWith("http") || url.StartsWith("https"))
-        //                {
-        //                    int indx = url.LastIndexOf("http://");
-        //                    if (indx < 0)
-        //                    {
-        //                        indx = url.LastIndexOf("https://");
-        //                    }
-        //                    url = url.Remove(0, indx);
-        //                    alDup.Add(HttpUtility.HtmlDecode(url));
-        //                }
-        //            }
-        //            catch  
-        //            {
-        //                continue;
-        //            }
-        //        }
-
-        //        foreach (string s in alDup)
-        //        {
-        //            if (googleList.Contains(s) || string.IsNullOrEmpty(s)) continue;
-        //            googleList.Add(s);
-        //        }
-
-        //        if (googleList.Count > 100)
-        //        {
-        //            googleList.RemoveRange(100, googleList.Count - 100);
-        //        } 
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }             
-
-        //    return googleList;
-        //}
-
-        //private ArrayList ImagesPatternMobile(string htmlsource, string urlType)
-        //{ 
-        //    ArrayList googleList = new ArrayList(); 
-        //        try
-        //        {
-        //            var doc = new HtmlAgilityPack.HtmlDocument(); 
-        //            htmlsource = htmlsource.Replace(@"\", ""); 
-        //            doc.LoadHtml(htmlsource);
-        //            ArrayList alDup = new ArrayList();                    
-
-        //            HtmlNodeCollection node;
-        //            if (urlType == "ImageLinks")
-        //                node = doc.DocumentNode.SelectNodes("//a[@jsname=\"m8x3S\"]/img");
-        //            else
-        //                node = doc.DocumentNode.SelectNodes("//a[@class=\"VFACy\"]");
-
-        //            foreach (HtmlNode links in node)
-        //            {
-        //                try
-        //                {
-        //                    string url = "";
-
-        //                    if (urlType == "ImageLinks")
-        //                    {
-        //                        try
-        //                        {
-        //                            url = links.Attributes["data-iurl"].Value;
-        //                        }
-        //                        catch
-        //                        {
-        //                            url = links.Attributes["data-src"].Value;
-        //                        }
-        //                    }
-        //                    else
-        //                        url = links.Attributes["href"].Value;
-
-        //                    if (url.StartsWith("http") || url.StartsWith("https"))
-        //                    {
-        //                        int indx = url.LastIndexOf("http://");
-        //                        if (indx < 0)
-        //                        {
-        //                            indx = url.LastIndexOf("https://");
-        //                        }
-        //                        url = url.Remove(0, indx);
-        //                        alDup.Add(HttpUtility.HtmlDecode(url));
-        //                    }
-        //                }
-        //                catch
-        //                {
-        //                    continue;
-        //                }
-        //            }
-
-        //            foreach (string s in alDup)
-        //            {
-        //                if (googleList.Contains(s) || string.IsNullOrEmpty(s)) continue;
-        //                googleList.Add(s);
-        //            }
-
-        //            if (googleList.Count > 100)
-        //            {
-        //                googleList.RemoveRange(100, googleList.Count - 100);
-        //            } 
-        //        }
-        //        catch(Exception ex)
-        //        {
-        //            throw ex;
-        //        } 
-
-        //    return googleList;
-        //}
-
         private ArrayList NewsPattern(string htmlsource)
         {
             ArrayList googleList = new ArrayList();
@@ -693,7 +562,7 @@ namespace Image_Page_Results_Receiving
                 }
                 else
                 {
-                    if (urlType == "PageLinks")
+                    if (urlType == "PageLinks") //SEID=74 Desktop PageLinks //24-06-2022
                     {
                         string pattern1 = "<table class=\\WIkMU6e\\W><tr><td><a href=(.*?)&";
                         //string pattern = @"\]n,\[""http(.*?)\"",";
@@ -734,6 +603,23 @@ namespace Image_Page_Results_Receiving
                                 alDup.Add(HttpUtility.HtmlDecode(url));
                             }
                         }
+                    }
+                }
+                if (urlType == "ImageLinks") //401 Desktop Image links //25-06-2022
+                {
+                    string pattern1 = "<div class=\\WNZWO1b\\W><img class=\\WyWs4tf\\W alt=\"\" src=(.*?)&amp;s";
+                    Regex rx = new Regex(pattern1, RegexOptions.IgnoreCase);
+                    MatchCollection mc = rx.Matches(htmlsource);
+                    foreach (Match m in mc)
+                    {
+                        string url = "http" + m.Groups[1].Value;
+                        int indx = url.LastIndexOf("http://");
+                        if (indx < 0)
+                        {
+                            indx = url.LastIndexOf("https://");
+                        }
+                        url = url.Remove(0, indx);
+                        alDup.Add(HttpUtility.HtmlDecode(url));
                     }
                 }
 

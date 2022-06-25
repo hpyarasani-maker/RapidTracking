@@ -24,8 +24,8 @@ namespace Image_Page_Results_Receiving
         {
             Thread t1 = new Thread(new ThreadStart(StartProcess))
             {
-                //Name = "images"
-                Name = "pages"
+                Name = "images"
+                //Name = "pages"
             };
             t1.Start();
         }
@@ -39,9 +39,9 @@ namespace Image_Page_Results_Receiving
             //string url = "http://seresults.azurewebsites.net/api/callbackotherdesktop/";  // other desktop
             //string url = "http://seresults.azurewebsites.net/api/callbackothermobile/";   // other mobiles
 
-            //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingimagedesktop/"; // image urls
+            string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingimagedesktop/"; // image urls //402 mobile images links
             //string url = "http://seresults.azurewebsites.net/api/callback74images/"; // 74 desktop page urls 
-            string url = "http://seresults.azurewebsites.net/api/callbackimages/"; //401 desktop image links
+            //string url = "http://seresults.azurewebsites.net/api/callbackimages/"; //401 desktop image links
             //string url = "http://seresults.azurewebsites.net/api/callbacknews/";      // news         140
 
 
@@ -96,8 +96,8 @@ namespace Image_Page_Results_Receiving
 
                     try
                     {
-                        File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + kw + ".html", response, Encoding.UTF8);
-                        //// Image Links 401 Desktop
+                        //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + kw + ".html", response, Encoding.UTF8);
+                        //// Image Links 401 Desktop and 402 Mobile image links
                         SearchProperties sp = SearchParamsImageUrls.searches.Where(s => s.locale == hl && s.device == device && s.geo_location == gl && s.tbm == "isch").SingleOrDefault();
 
                         // Page Links 74 Desktop PageLinks
@@ -732,8 +732,9 @@ namespace Image_Page_Results_Receiving
                 {
                     if (urlType == "ImageLinks")
                     {
-                        string pattern = @"\]n,\[""http(.*?)\"",";
-                        Regex rx = new Regex(pattern, RegexOptions.IgnoreCase);
+                        //string pattern = @"\]n,\[""http(.*?)\"",";
+                        string pattern1 = "imgurl=(.*?)&amp;"; //25-06-2022
+                        Regex rx = new Regex(pattern1, RegexOptions.IgnoreCase);
                         MatchCollection mc = rx.Matches(htmlsource);
 
                         foreach (Match m in mc)

@@ -45,7 +45,9 @@ namespace Image_Page_Keywords_Sending
             //Text = "D_Oxylabs_CallbackKwdSending_140_1";
             //Text = "D_Oxylabs_CallbackKwdSending_Images";
             //Text = "D_Oxylabs_CallbackKwdSending_74_SingleKeyword";
-            Text = "D_Oxylabs_CallbackKwdSending_401_SingleKeyword";
+            //Text = "D_Oxylabs_CallbackKwdSending_401_SingleKeyword";
+            Text = "D_Oxylabs_CallbackKwdSending_402_Mobile_SingleKeyword";
+
 
 
             date_picker.Value = DateTime.Today;  
@@ -106,7 +108,7 @@ namespace Image_Page_Keywords_Sending
             this.Invoke((MethodInvoker)delegate()
             {
                 worklist.Items.Clear();
-                //worklist.Items.Add("401:iphone");
+                //worklist.Items.Add("402:iphone");
                
                 worklist.Refresh();
                 date_picker.Format = DateTimePickerFormat.Custom;
@@ -117,14 +119,15 @@ namespace Image_Page_Keywords_Sending
 
             Cursor.Current = Cursors.WaitCursor;
             string myDate = date_picker.Text;
-             
+
             //string strQry = "exec [dbo].[GetBulkDesktop_1_1] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkMobile_106_2] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkDesktop_2] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkMobile_2] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulk_74_1] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetKeywords_74] '" + myDate + "'"; //24-06-2022
-            string strQry = "exec [dbo].[GetKeywords_401] '" + myDate + "'"; //25-06-2022
+            //string strQry = "exec [dbo].[GetKeywords_401] '" + myDate + "'"; //25-06-2022
+            string strQry = "exec [dbo].[GetKeywords_402] '" + myDate + "'"; //25-06-2022
             //string strQry = "exec [dbo].[GetBulk_140] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulk_Images] '" + myDate + "'";
 
@@ -219,7 +222,7 @@ namespace Image_Page_Keywords_Sending
                     progress_lbl.Refresh();
                     lblIP.Text = ts.TotalSeconds.ToString();
                 });
-                Thread.Sleep(60000);
+                Thread.Sleep(30000);
             }
         }
         

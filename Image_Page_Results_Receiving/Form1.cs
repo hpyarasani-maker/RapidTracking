@@ -89,7 +89,9 @@ namespace Image_Page_Results_Receiving
             //Text = "D_Oxylabs_CallbackKwdRecieve_74_1";
             //Text = "D_Oxylabs_CallbackKwdRecieve_74_Desktop_PageLinks";
             //Text = "D_Oxylabs_CallbackKwdRecieve_401_Desktop_ImagesLinks";
-            Text = "D_Oxylabs_CallbackKwdRecieve_402_Mobile_ImagesLinks";
+            //Text = "D_Oxylabs_CallbackKwdRecieve_402_Mobile_ImagesLinks";
+            Text = "D_Oxylabs_CallbackKwdRecieve_382_Mobile_ImagesLinks";
+
 
 
         }

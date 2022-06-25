@@ -24,7 +24,7 @@ namespace Image_Page_Results_Receiving
         {
             Thread t1 = new Thread(new ThreadStart(StartProcess))
             {
-                Name = "images"
+                Name = "M_images_PL"
                 //Name = "pages"
             };
             t1.Start();
@@ -39,10 +39,10 @@ namespace Image_Page_Results_Receiving
             //string url = "http://seresults.azurewebsites.net/api/callbackotherdesktop/";  // other desktop
             //string url = "http://seresults.azurewebsites.net/api/callbackothermobile/";   // other mobiles
 
-            string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingimagedesktop/"; // image urls //402 mobile images links
+            //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingimagedesktop/"; // image urls //402 mobile images links
             //string url = "http://seresults.azurewebsites.net/api/callback74images/"; // 74 desktop page urls 
             //string url = "http://seresults.azurewebsites.net/api/callbackimages/"; //401 desktop image links
-            //string url = "http://seresults.azurewebsites.net/api/callbacknews/";      // news         140
+            string url = "http://seresults.azurewebsites.net/api/callbacknews/";      // news 140 and 382 Mobile Image Page Links
 
 
 
@@ -98,10 +98,10 @@ namespace Image_Page_Results_Receiving
                     {
                         //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + kw + ".html", response, Encoding.UTF8);
                         //// Image Links 401 Desktop and 402 Mobile image links
-                        SearchProperties sp = SearchParamsImageUrls.searches.Where(s => s.locale == hl && s.device == device && s.geo_location == gl && s.tbm == "isch").SingleOrDefault();
+                        //SearchProperties sp = SearchParamsImageUrls.searches.Where(s => s.locale == hl && s.device == device && s.geo_location == gl && s.tbm == "isch").SingleOrDefault();
 
-                        // Page Links 74 Desktop PageLinks
-                        //SearchProperties sp = SearchParamsPageUrls.searches.Where(s => s.locale == hl && s.device == device && s.geo_location == gl && s.tbm == "isch").SingleOrDefault();
+                        // Page Links 74 Desktop PageLinks and 382 Mobile Page Links
+                        SearchProperties sp = SearchParamsPageUrls.searches.Where(s => s.locale == hl && s.device == device && s.geo_location == gl && s.tbm == "isch").SingleOrDefault();
 
                         //// News
                         //SearchProperties sp = SearchParamsImageUrls.searches.Where(s => s.locale == hl && s.device == device && s.geo_location == gl && s.tbm == "nws").SingleOrDefault();
@@ -115,18 +115,18 @@ namespace Image_Page_Results_Receiving
                         {
                             response = contents[x]["content"].Value<string>();
 
-                            //// Image Links
-                            if (device == "desktop") //401 Desktop Image Links
-                                arRes = ImagesPatternDesktop(response, "ImageLinks", arRes);
-                            else
-                                arRes = ImagesPatternMobile(response, "ImageLinks", arRes);
+                            //// Image Links 401 and 402
+                            //if (device == "desktop") //401 Desktop Image Links
+                            //    arRes = ImagesPatternDesktop(response, "ImageLinks", arRes);
+                            //else //402 Mobile Image Links
+                            //    arRes = ImagesPatternMobile(response, "ImageLinks", arRes);
 
 
-                            //Page Links
-                            //if (device == "desktop") //74 Desktop Page Links
-                            //    arRes = ImagesPatternDesktop(response, "PageLinks", arRes);
-                            //else
-                            //    arRes = ImagesPatternMobile(response, "PageLinks", arRes);
+                            //Page Links 74 and 382
+                            if (device == "desktop") //74 Desktop Page Links
+                                arRes = ImagesPatternDesktop(response, "PageLinks", arRes);
+                            else //74 Mobile Page Links
+                                arRes = ImagesPatternMobile(response, "PageLinks", arRes);
                         }
 
                         // News
@@ -730,7 +730,24 @@ namespace Image_Page_Results_Receiving
                 }
                 else
                 {
-                    if (urlType == "ImageLinks")
+                    if (urlType == "PageLinks") //SEID=382 mobile image page links //25-06-2022
+                    {
+                        string pattern = "imgrefurl=(.*?)&amp;"; //25-06-2022
+                        Regex rx = new Regex(pattern, RegexOptions.IgnoreCase);
+                        MatchCollection mc = rx.Matches(htmlsource);
+                        foreach (Match m in mc)
+                        {
+                            string url = "http" + m.Groups[1].Value;
+                            int indx = url.LastIndexOf("http://");
+                            if (indx < 0)
+                            {
+                                indx = url.LastIndexOf("https://");
+                            }
+                            url = url.Remove(0, indx);
+                            alDup.Add(HttpUtility.HtmlDecode(url));
+                        }
+                    }
+                    if (urlType == "ImageLinks") //SEID=402 Mobile Image Links //25-06-2022
                     {
                         //string pattern = @"\]n,\[""http(.*?)\"",";
                         string pattern1 = "imgurl=(.*?)&amp;"; //25-06-2022

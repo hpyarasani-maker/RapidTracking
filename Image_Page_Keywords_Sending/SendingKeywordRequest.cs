@@ -89,10 +89,9 @@ namespace Image_Page_Keywords_Sending
             //string callbackURL = "http://seresults.azurewebsites.net/api/callbackothermobile/";  // other mobile
 
             //string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidtrackingimagedesktop/"; // images //74
-            string callbackURL = "http://seresults.azurewebsites.net/api/callback74images/"; // page urls
-            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackimages/"; // images
+            //string callbackURL = "http://seresults.azurewebsites.net/api/callback74images/"; // 74 desktop page urls 
+            string callbackURL = "http://seresults.azurewebsites.net/api/callbackimages/"; //401 desktop image links
             //string callbackURL = "http://seresults.azurewebsites.net/api/callbacknews/"; // news
-
             string[] keyword = { sp.query };
             OxyParams op = new OxyParams()
             {

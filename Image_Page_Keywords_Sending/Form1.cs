@@ -44,7 +44,9 @@ namespace Image_Page_Keywords_Sending
             //Text = "D_Oxylabs_CallbackKwdSending_74_1";
             //Text = "D_Oxylabs_CallbackKwdSending_140_1";
             //Text = "D_Oxylabs_CallbackKwdSending_Images";
-            Text = "D_Oxylabs_CallbackKwdSending_74_SingleKeyword";
+            //Text = "D_Oxylabs_CallbackKwdSending_74_SingleKeyword";
+            Text = "D_Oxylabs_CallbackKwdSending_401_SingleKeyword";
+
 
             date_picker.Value = DateTime.Today;  
 
@@ -104,7 +106,7 @@ namespace Image_Page_Keywords_Sending
             this.Invoke((MethodInvoker)delegate()
             {
                 worklist.Items.Clear();
-                //worklist.Items.Add("74:iphone, dvd");
+                //worklist.Items.Add("401:iphone");
                
                 worklist.Refresh();
                 date_picker.Format = DateTimePickerFormat.Custom;
@@ -121,7 +123,8 @@ namespace Image_Page_Keywords_Sending
             //string strQry = "exec [dbo].[GetBulkDesktop_2] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkMobile_2] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulk_74_1] '" + myDate + "'";
-            string strQry = "exec [dbo].[GetKeywords_74] '" + myDate + "'"; //24-06-2022
+            //string strQry = "exec [dbo].[GetKeywords_74] '" + myDate + "'"; //24-06-2022
+            string strQry = "exec [dbo].[GetKeywords_401] '" + myDate + "'"; //25-06-2022
             //string strQry = "exec [dbo].[GetBulk_140] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulk_Images] '" + myDate + "'";
 

@@ -208,7 +208,7 @@ namespace RapidTrackingLoopReceiving
                        
                         if (count > 20)
                         {
-                            ProcessResults(resx, kw, seid, jobid, orgUrls);
+                            ProcessResults(resx, kw, seid, jobid, count);
                         }
                     }
                     //if (!string.IsNullOrEmpty(seid))
@@ -217,7 +217,7 @@ namespace RapidTrackingLoopReceiving
                     //        ProcessResults(result[i].ToString(), kw, seid, jobid, orgUrls);
                     //    }
 
-                    OnKeywordDone.Invoke(seid + ":  " + kw + ",  " + orgUrls + "^" + statusCode + "^" + apitime + "^" + dbtime);    // 31-03-2020
+                    OnKeywordDone.Invoke(seid + ":  " + kw + ",  " + count + "^" + statusCode + "^" + apitime + "^" + dbtime);    // 31-03-2020
                 }
             }
             catch (Exception ex)

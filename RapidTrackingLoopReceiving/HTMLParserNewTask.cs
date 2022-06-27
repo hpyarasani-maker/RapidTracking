@@ -120,6 +120,9 @@ namespace RapidTrackingLoopReceiving
             string domain = job["domain"].Value<string>();
             string jobid = job["id"].Value<string>();
             string seid = "";
+            int count = 0;
+            string resx = string.Empty;
+            ArrayList result = new ArrayList();
             try
             {
                 string username = "gpidatametrics";
@@ -140,8 +143,9 @@ namespace RapidTrackingLoopReceiving
                     resStream.Close();
                     res.Close();
                     //string result = string.Empty;
-                    ArrayList result = new ArrayList();
+                  
                     int orgUrls = 0;
+                
                     try
                     {
                         //JObject obj = JObject.Parse(response);
@@ -154,12 +158,17 @@ namespace RapidTrackingLoopReceiving
 
                         for (int x = 0; x < contents.Count(); x++)
                         {
-                            response = contents[x]["content"].Value<string>();
-                            if (device == "desktop")
-                                result.Add(desktop.ProcessDocument(seid, kw, response, out orgUrls));
-                            else
-                                result.Add(ios.ProcessDocument(seid, kw, response, out orgUrls));
+                            try
+                            {
+                                response = contents[x]["content"].Value<string>();
+                                if (device == "desktop")
+                                    result.Add(desktop.ProcessDocument(seid, kw, response, out orgUrls));
+                                else
+                                    result.Add(ios.ProcessDocument(seid, kw, response, out orgUrls));
+                            }
+                            catch { }
                         }
+                        count += orgUrls;
                     }
                     catch (Exception ex)
                     {
@@ -169,12 +178,43 @@ namespace RapidTrackingLoopReceiving
                     // 31-03-2020
                     apitime = 0.0;
                     dbtime = 0.0;
-
-                    if (!string.IsNullOrEmpty(seid))
-                        for (int i = 0; i < result.Count; i++)
+                    int k = 0;
+                    XmlDocument xmlDoc = new XmlDocument();
+                    foreach (string xml in result)
+                    {
+                        if (string.IsNullOrEmpty(xml.Trim())) continue;//02-05-2022
+                        if (k == 0)
                         {
-                            ProcessResults(result[i].ToString(), kw, seid, jobid, orgUrls);
+                            k++;
+                            xmlDoc.LoadXml(xml);
+                            continue;
                         }
+                        XmlDocument xmlDoc1 = new XmlDocument();
+                        xmlDoc1.LoadXml(xml);
+
+                        XmlNode node = xmlDoc.SelectSingleNode(".//section[@col='main']");
+                        XmlNode node1 = xmlDoc1.SelectSingleNode(".//section[@col='main']");
+
+                        foreach (XmlNode nd in node1.ChildNodes)
+                        {
+                            XmlNode imported = xmlDoc.ImportNode(nd, true);
+                            node.AppendChild(imported);
+                        }
+                    }
+                    resx = xmlDoc.InnerXml;
+                    if (!string.IsNullOrEmpty(resx))
+                    {
+                       
+                        if (count > 20)
+                        {
+                            ProcessResults(resx, kw, seid, jobid, orgUrls);
+                        }
+                    }
+                    //if (!string.IsNullOrEmpty(seid))
+                    //    for (int i = 0; i < result.Count; i++)
+                    //    {
+                    //        ProcessResults(result[i].ToString(), kw, seid, jobid, orgUrls);
+                    //    }
 
                     OnKeywordDone.Invoke(seid + ":  " + kw + ",  " + orgUrls + "^" + statusCode + "^" + apitime + "^" + dbtime);    // 31-03-2020
                 }

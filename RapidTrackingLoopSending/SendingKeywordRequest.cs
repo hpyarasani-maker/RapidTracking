@@ -153,11 +153,12 @@ namespace RapidTrackingLoopSending
             //string callbackURL = "http://previous.azurewebsites.net/api/callbackrapidtrackingdesktop/";
             // string callbackURL = "http://previous.azurewebsites.net/api/callbackus1desktop/";     // 1 2019-10-10
             //string callbackURL = "http://previous.azurewebsites.net/api/callbackuk58desktop/";       // 58 sending for previous date
+            string[] keyword = { sp.query };
             OxyParams op = new OxyParams()
             {
                 source = "google_search",
                 domain = sp.domain,
-                query = sp.query.Split(','),
+                query = keyword,
                 limit = 10,
                 pages = 10,
                 start_page=1,

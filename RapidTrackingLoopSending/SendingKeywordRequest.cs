@@ -200,7 +200,7 @@ namespace RapidTrackingLoopSending
                 }
                 res.Close();
 
-                //SendToDb(sp.seid, response);
+                SendToDb(sp.seid, response);
                 
             }
             catch(Exception ex)

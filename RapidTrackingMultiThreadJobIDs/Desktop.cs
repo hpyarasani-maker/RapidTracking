@@ -815,7 +815,8 @@ namespace RapidTrackingMultiThreadJobIDs
                         }
                         catch { title = ""; }
                         string url = nd.Attributes["href"].Value.Trim();
-                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                        if (!url.Contains("#fpstate=ive&amp;")) //28-06-2022 wrong url
+                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                     }
                     catch { }
                 }

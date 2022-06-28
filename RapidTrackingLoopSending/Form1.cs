@@ -39,7 +39,7 @@ namespace RapidTrackingLoopSending
             //Text = "D_Oxylabs_TrackingTrending_KwdSending_102_1";
             //Text = "D_Oxylabs_TrackingTrending_KwdSending_OtherMobile_2";
             //Text = "D_Oxylabs_TrackingTrending_KwdSending_OtherDesktop_2";
-            Text = "D_Oxylabs_RapidTracking_KwdSending_Desktop_1_2";
+            //Text = "D_Oxylabs_RapidTracking_KwdSending_Desktop_1_2";
             //Text = "D_Oxylabs_TrackingTrending_KwdSending_58_2";
             //Text = "D_Oxylabs_TrackingTrending_KwdSending_All";
             //Text = "D_Oxylabs_Tracking New Keywords_Sending";
@@ -53,6 +53,7 @@ namespace RapidTrackingLoopSending
             //Text = "D_Oxylabs_RapidTracking_KwdSending_NonHotelKeywordsP";
             //Text = "Sending KeywordsP-11-14_CommaKeywords_P";
             //Text = "Sending Previous Date Keywords"; //sending previous date keywords
+            Text = "D_Oxylabs_TrackingTrending_KwdSendingLoop_All";
             date_picker.Value = DateTime.Today; 
 
             
@@ -126,7 +127,7 @@ namespace RapidTrackingLoopSending
                 date_picker.CustomFormat = "yyyy-MM-dd";
             });
 
-           return;
+           //return;
 
             Cursor.Current = Cursors.WaitCursor;
             string myDate = date_picker.Text;
@@ -139,13 +140,14 @@ namespace RapidTrackingLoopSending
             //string strQry = "exec [dbo].[GetBulkMobile_102_1] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkDesktop_2] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkMobile_2] '" + myDate + "'";
-            string strQry = "exec [dbo].[GetBulkDesktop_1_2] '" + myDate + "'";
+            //string strQry = "exec [dbo].[GetBulkDesktop_1_2] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkMobile_Hotel] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetCommaKeywords_Hotel] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkMobile_NotHotel] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetCommaKeywords] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulk_All] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulk_P] '" + myDate + "'";  //sending procedure previous date keywords
+            string strQry = "exec [Tracking_DB_Keywords_SEID_102_TGBN] '" + myDate + "'"; //28-06-2022
             SqlConnection objCon = null;
             SqlDataReader objData = null;
 

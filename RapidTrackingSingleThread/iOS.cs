@@ -720,7 +720,7 @@ namespace RapidTrackingSingleThread
                          //"|.//div[@class='mnr-c YibVsd']|.//div[@class='mnr-c xpd EtOod pkphOe']");//10-06-2022//16-12-2021 commented //29-06-2022
                          "|.//div[@class='mnr-c YibVsd']|.//div[contains(@class,'EtOod pkphOe')]"); //29-06-2022
                 if (nds == null)//22-02-2022
-                   // if (node.Attributes["class"]?.Value == "mnr-c" && node.SelectSingleNode(".//div/div[contains(@class,'P8ujBc')]") != null)//22-02-2022
+                   // if (node.Attributes["class"]?.Value == "mnr-c" && node.SelectSingleNode(".//div/div[contains(@class,'P8ujBc')]") != null)//29-09-2022//22-02-2022
                         nds = node.SelectNodes(".//div/div[contains(@class,'P8ujBc')]");//22-02-2022
                 if (nds == null)
                     if (node.Attributes["class"]?.Value == "mnr-c xpd O9g5cc uUPGi") //09-09-2021 applied ? condition

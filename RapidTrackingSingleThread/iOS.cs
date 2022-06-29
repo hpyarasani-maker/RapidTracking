@@ -884,7 +884,7 @@ namespace RapidTrackingSingleThread
                              || nd.Attributes["class"].Value == "g card-section svwwZ" || nd.Attributes["class"].Value == "card-section"  //15-12-2020//03-11-2020 //06-10-2020 classic type block type
                              || nd.Attributes["class"].Value == "d5oMvf KJDcUb" || nd.Attributes["class"].Value == "c6gxKe card-section" //20-05-2021) //09-02-2021
                              || nd.Attributes["class"].Value.Contains("KJDcUb") || nd.Attributes["class"].Value == "mnr-c OH1ZUd xpd O9g5cc uUPGi" //27-01-2022 classic links //09-09-2021 missing classic links
-                             || nd.Attributes["class"].Value.Contains("EtOod pkphOe") //29-09-2022
+                             || nd.Attributes["class"].Value.Contains("EtOod pkphOe") //29-06-2022
                              || nd.Attributes["class"].Value.Contains("mnr-c xpd EtOod pkphOe") //10-06-2022
                              || nd.Attributes["class"].Value == "wU9Tkd" || nd.Attributes["class"].Value.Contains("P8ujBc") //22-02-2022 //01-02-2022 //10-07-2021
                              || nd.Attributes["class"].Value == "g card-section") //30-08-2021 missing classic link

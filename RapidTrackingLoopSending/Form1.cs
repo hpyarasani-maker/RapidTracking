@@ -147,7 +147,8 @@ namespace RapidTrackingLoopSending
             //string strQry = "exec [dbo].[GetCommaKeywords] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulk_All] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulk_P] '" + myDate + "'";  //sending procedure previous date keywords
-            string strQry = "exec [Tracking_DB_Keywords_SEID_102_TGBN] '" + myDate + "'"; //28-06-2022
+            string strQry = "exec [Tracking_DB_Keywords_SEID_102_SeeMore] '" + myDate + "'"; //30-06-2022
+            //string strQry = "exec [Tracking_DB_Keywords_SEID_102_TGBN] '" + myDate + "'"; //28-06-2022
             SqlConnection objCon = null;
             SqlDataReader objData = null;
 

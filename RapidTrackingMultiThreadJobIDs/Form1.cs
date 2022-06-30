@@ -92,14 +92,16 @@ namespace RapidTrackingMultiThreadJobIDs
                     try
                     {
                         var doc = new HtmlAgilityPack.HtmlDocument();
-                        ArrayList alresult = getHTML(kw, Convert.ToInt32(seid),jobid);
-                        foreach (string[] src in alresult)
+                        Task<ArrayList> alresult = GetHTML(kw, Convert.ToInt32(seid), jobid);
+                        if (alresult.Status.ToString() == stats.Faulted.ToString() || alresult.Status.ToString() == stats.Pending.ToString() || alresult.Status.ToString() == stats.Empty.ToString() || alresult.Status.ToString() == stats.statuscode.ToString()) //07-02-2022//31-01-2022//04-01-2022
+                            throw alresult.Exception.InnerException;//04-01-2022
+                        foreach (string[] src in alresult.Result)
                         {
                             string keyword = src[0];
                             JObject obj = JObject.Parse(src[1]);
                             string html = obj["results"][0]["content"].Value<string>();                            
                             string device = src[3];
-                            //File.WriteAllText(@"D:\23-03-2020\" + seid + "_" + kw + jobid + ".html", html);
+                            //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8)
                             doc = new HtmlAgilityPack.HtmlDocument();
                             doc.LoadHtml(html);
                             string res = string.Empty;
@@ -130,12 +132,16 @@ namespace RapidTrackingMultiThreadJobIDs
                     }
                     catch (Exception ex)
                     {
-                        this.Invoke((MethodInvoker)delegate ()
+                        try
                         {
-                            txtError.Text = ex.Message.ToString();
-                            //string errorDesk = ex.Message.ToString() + seid + "=" + kw + Environment.NewLine;
-                            //System.IO.File.WriteAllText(@"C:\inetpub\wwwroot\errorDesk.txt", errorDesk);
-                        });
+                            this.Invoke((MethodInvoker)delegate ()
+                            {
+                                txtError.Text = txtError.Text + seid + ": " + kw + ": " + jobid + Environment.NewLine + ex.Message.ToString() +
+                                    Environment.NewLine + Environment.NewLine;
+                                txtError.Refresh();
+                            });
+                        }
+                        finally { }
                     }
                     finally { }
                     this.Invoke((MethodInvoker)delegate ()
@@ -177,14 +183,16 @@ namespace RapidTrackingMultiThreadJobIDs
                     try
                     {
                         var doc = new HtmlAgilityPack.HtmlDocument();
-                        ArrayList alresult = getHTML(kw, Convert.ToInt32(seid),jobid);
-                        foreach (string[] src in alresult)
+                        Task<ArrayList> alresult = GetHTML(kw, Convert.ToInt32(seid), jobid);
+                        if (alresult.Status.ToString() == stats.Faulted.ToString() || alresult.Status.ToString() == stats.Pending.ToString() || alresult.Status.ToString() == stats.Empty.ToString() || alresult.Status.ToString() == stats.statuscode.ToString()) //07-02-2022//31-01-2022//04-01-2022
+                            throw alresult.Exception.InnerException;//04-01-2022
+                        foreach (string[] src in alresult.Result)
                         {
                             string keyword = src[0];
                             JObject obj = JObject.Parse(src[1]);
                             string html = obj["results"][0]["content"].Value<string>();
                             string device = src[3];
-                            //File.WriteAllText(@"D:\23-03-2020\" + seid + "_" + kw + jobid + ".html", html);
+                            //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8)
                             doc = new HtmlAgilityPack.HtmlDocument();
                             doc.LoadHtml(html);
                             string res = string.Empty;
@@ -215,12 +223,16 @@ namespace RapidTrackingMultiThreadJobIDs
                     }
                     catch (Exception ex)
                     {
-                        this.Invoke((MethodInvoker)delegate ()
+                        try
                         {
-                            txtError.Text = ex.Message.ToString();
-                            //string errorDesk = ex.Message.ToString() + seid + "=" + kw + Environment.NewLine;
-                            //System.IO.File.WriteAllText(@"C:\inetpub\wwwroot\errorDesk.txt", errorDesk);
-                        });
+                            this.Invoke((MethodInvoker)delegate ()
+                            {
+                                txtError.Text = txtError.Text + seid + ": " + kw + ": " + jobid + Environment.NewLine + ex.Message.ToString() +
+                                    Environment.NewLine + Environment.NewLine;
+                                txtError.Refresh();
+                            });
+                        }
+                        finally { }
                     }
                     finally { }
                     this.Invoke((MethodInvoker)delegate ()
@@ -236,6 +248,14 @@ namespace RapidTrackingMultiThreadJobIDs
             process2 = true;
             if (process1 && process2 && process3)
                 Environment.Exit(Environment.ExitCode);
+        }
+        public enum stats
+        {
+            Faulted,
+            Pending,
+            Empty,
+            statuscode
+
         }
 
         private void StartProcess_3()
@@ -262,14 +282,16 @@ namespace RapidTrackingMultiThreadJobIDs
                     try
                     {
                         var doc = new HtmlAgilityPack.HtmlDocument();
-                        ArrayList alresult = getHTML(kw, Convert.ToInt32(seid),jobid);
-                        foreach (string[] src in alresult)
+                        Task<ArrayList> alresult = GetHTML(kw, Convert.ToInt32(seid),jobid);
+                        if (alresult.Status.ToString() == stats.Faulted.ToString() || alresult.Status.ToString() == stats.Pending.ToString() || alresult.Status.ToString() == stats.Empty.ToString() || alresult.Status.ToString() == stats.statuscode.ToString()) //07-02-2022//31-01-2022//04-01-2022
+                            throw alresult.Exception.InnerException;//04-01-2022
+                        foreach (string[] src in alresult.Result)
                         {
                             string keyword = src[0];
                             JObject obj = JObject.Parse(src[1]);
                             string html = obj["results"][0]["content"].Value<string>();
                             string device = src[3];
-                            //File.WriteAllText(@"D:\23-03-2020\" + seid + "_" + kw + jobid + ".html", html);
+                            //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8)
                             doc = new HtmlAgilityPack.HtmlDocument();
                             doc.LoadHtml(html);
                             string res = string.Empty;
@@ -300,12 +322,16 @@ namespace RapidTrackingMultiThreadJobIDs
                     }
                     catch (Exception ex)
                     {
-                        this.Invoke((MethodInvoker)delegate ()
+                        try
                         {
-                            txtError.Text = ex.Message.ToString();
-                            //string errorDesk = ex.Message.ToString() + seid + "=" + kw + Environment.NewLine;
-                            //System.IO.File.WriteAllText(@"C:\inetpub\wwwroot\errorDesk.txt", errorDesk);
-                        });
+                            this.Invoke((MethodInvoker)delegate ()
+                            {
+                                txtError.Text = txtError.Text + seid + ": " + kw + ": " + jobid + Environment.NewLine + ex.Message.ToString() +
+                                    Environment.NewLine + Environment.NewLine;
+                                txtError.Refresh();
+                            });
+                        }
+                        finally { }
                     }
                     finally { }
                     this.Invoke((MethodInvoker)delegate ()
@@ -767,7 +793,7 @@ namespace RapidTrackingMultiThreadJobIDs
             {
                 lstKWs2.Items.Clear();
 
-                //lstKWs2.Items.Add("58|protective mask|6680028893061066753");
+                //lstKWs2.Items.Add("58:protective mask:6680028893061066753");
             });
             //return;
 
@@ -808,8 +834,7 @@ namespace RapidTrackingMultiThreadJobIDs
             this.Invoke((MethodInvoker)delegate ()
             {
                 lstKWs3.Items.Clear();
-
-                //lstKWs3.Items.Add("58|protective mask|6680028893061066753");
+                //lstKWs3.Items.Add("58:protective mask:6680028893061066753");
             });
             //return;
 
@@ -845,7 +870,7 @@ namespace RapidTrackingMultiThreadJobIDs
             finally { }
         }
 
-        public ArrayList getHTML(string keyword, int seid, string jobid)
+        public async Task<ArrayList> GetHTML(string keyword, int seid, string jobid)
         {
             ArrayList alResult = new ArrayList();
             try
@@ -857,14 +882,15 @@ namespace RapidTrackingMultiThreadJobIDs
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw ex.InnerException;//03-01-2022
             }
 
-            return alResult;
+            return await Task.FromResult(alResult);
         }
 
         async Task<ArrayList> GetOxylabsWebDataSources(SearchProperties sp, string jobid)
         {
+            JObject obj = null;//07-02-2022
             string username = "gpidatametrics";
             string password = "sdV5X3fcX6";
             string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
@@ -905,6 +931,16 @@ namespace RapidTrackingMultiThreadJobIDs
 
                             cbUrl[3] = "yes";
                             cnt++;
+                            if (response == "")//31-01-2022
+                            {
+                                throw new Exception("empty");
+                            }//31-01-2022
+                            obj = JObject.Parse(response);//07-02-2022
+                            string statuscode = obj["results"][0]["status_code"].Value<string>();//07-02-2022
+                            if (statuscode != "200")
+                            {
+                                throw new Exception("Status code : " + statuscode);
+                            }//07-02-2022 end
 
                             if (!string.IsNullOrEmpty(response))
                             {
@@ -914,17 +950,45 @@ namespace RapidTrackingMultiThreadJobIDs
                                 reslt[3] = cbUrl[5];
                                 alResult.Add(reslt);
                             }
+                            else//04-01-2022
+                            {
+                                string resURL = "http://data.oxylabs.io/v1/queries/" + jobid;
+                                httpWebRequest = (HttpWebRequest)WebRequest.Create(resURL);
+                                httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
+                                HttpWebResponse res1 = (HttpWebResponse)httpWebRequest.GetResponse();
+                                Stream resStream = res1.GetResponseStream();
+                                reader = new StreamReader(resStream, Encoding.UTF8);
+                                response = reader.ReadToEnd();
+                                resStream.Close();
+                                res1.Close();
+                                obj = JObject.Parse(response);
+                                status = obj["status"].Value<string>();
+                                if (status == "faulted")
+                                {
+                                    throw new Exception("status is faulted");
+                                }
+                                if (status == "pending") //31-01-2022
+                                {
+                                    throw new Exception("status is pending");
+                                }
+
+                            }//04-01-2022
                         }
+
                         catch (Exception ex)
                         {
-                            Console.WriteLine("Result Request: " + ex.Message);
+                            // Console.WriteLine("Result Request: " + ex.Message);//03-01-2022
+
+                            throw new Exception(ex.Message);//31-01-2022//03-01-2022
                         }
                     }
+
 
                     else
                         cnt++;
                     Task.Delay(200).Wait();
                 }
+
 
                 if (lst.Count == cnt) break;
 

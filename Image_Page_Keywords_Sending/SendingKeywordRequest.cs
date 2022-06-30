@@ -88,18 +88,20 @@ namespace Image_Page_Keywords_Sending
             //string callbackURL = "http://seresults.azurewebsites.net/api/callbackotherdesktop/";  // other desktop
             //string callbackURL = "http://seresults.azurewebsites.net/api/callbackothermobile/";  // other mobile
 
-            string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidtrackingimagedesktop/"; // images
-            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackimages/"; // images
-            //string callbackURL = "http://seresults.azurewebsites.net/api/callbacknews/"; // news
-
-
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidtrackingimagedesktop/"; //402 Mobile Image links
+            //string callbackURL = "http://seresults.azurewebsites.net/api/callback74images/"; // 74 desktop page urls 
+            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackimages/"; //401 desktop image links
+            string callbackURL = "http://seresults.azurewebsites.net/api/callbacknews/"; // news 140 and 382 Mobile Image Page Links
+            string[] keyword = { sp.query };
             OxyParams op = new OxyParams()
             {
                 source = "google_search",
                 domain = sp.domain,
-                query = sp.query.Split(','),
-                limit = 100,
-                pages = 1,
+                //query = sp.query.Split(','),
+                query = keyword,
+                limit = 20,
+                pages = 5,
+                start_page = 1,
                 locale = sp.locale,
                 callback_url = callbackURL,  
                 geo_location = sp.geo_location,
@@ -107,7 +109,7 @@ namespace Image_Page_Keywords_Sending
                 user_agent_type = sp.device,   
                 context = new List<Context> {
                     new Context("tbm", sp.tbm),
-                    new Context("safe_search", 0)                   
+                    new Context("safe_search", 0)
                 }
             };
                   
@@ -158,11 +160,12 @@ namespace Image_Page_Keywords_Sending
 
             OxyParams op = new OxyParams()
             {
-                source = "google_search",
+                source = "google_images",
                 domain = domain,
                 query = kwds.Split(','),
                 limit = 100,
                 pages = 1,
+                start_page=1,
                 locale = lang,
                 callback_url = "",
                 geo_location = location,
@@ -222,12 +225,13 @@ namespace Image_Page_Keywords_Sending
 
             OxyParams op = new OxyParams()
             {
-                source = "google_search",
+                source = "google_source",
                 domain = domain,
                 query = kwds.Split(','),
                 limit = 100,
                 pages = 1,
                 locale = lang,
+                start_page = 1,
                 callback_url = "",
                 geo_location = location,
                 //uule = uule,

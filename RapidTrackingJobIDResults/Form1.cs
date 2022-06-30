@@ -46,9 +46,9 @@ namespace RapidTrackingJobIDResults
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            //this.Text = "RapidTracking_Errorkeywords_1"; //changes
+            this.Text = "RapidTracking_Errorkeywords_1"; //changes
             //this.Text = "RapidTracking_SingleThread_P_A_WOC_10-09-2019";
-             this.Text = "RapidTracking_Missingkeywords_1"; // 01-09-2020
+            // this.Text = "RapidTracking_Missingkeywords_1"; // 01-09-2020
             //this.Text = "RapidTracking_NewKeywords_MissingJobIDs_GT0"; //changes //15-04-2021
 
 
@@ -72,9 +72,9 @@ namespace RapidTrackingJobIDResults
                 //string myDate = "2019-11-20";
 
 
-                //string kwQry = "[GetErrorKeywords_1] '" + myDate + "'"; //changes
+                string kwQry = "[GetErrorKeywords_1] '" + myDate + "'"; //changes
 
-                string kwQry = "[GetMissingKeywords_1] '" + myDate + "'"; // 01-09-2020
+                //string kwQry = "[GetMissingKeywords_1] '" + myDate + "'"; // 01-09-2020
 
                 //string kwQry = "[Tracking_DB_Keywords_Seid_103p] '" + myDate + "'";               
                 //string kwQry = "[GetCommaKeywordsP] '" + myDate + "'";               
@@ -320,11 +320,11 @@ namespace RapidTrackingJobIDResults
                 //lstKWs.Items.Add("102:terry crews");
                 //lstKWs.Items.Add("102:the uninhabitable earth summary");
                 //lstKWs.Items.Add("1:rhubarbarone");
-                //lstKws.Items.Add("1:oscar de la renta womens shoes:6896288853636694017");
+                lstKws.Items.Add("58:best tennis rackets:6947353729158886401");
                 //coronavirus rd case	140	6672286477201717249
 
             });
-            //return;
+            return;
 
             try
             {

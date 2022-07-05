@@ -30,6 +30,8 @@ namespace RapidTrackingJobIDResults
             InitializeComponent();
             //count = 0;   // Common.GetOxylabsCount();          
             //timerExit();
+
+            //ExecuteMissingKeywordsJob(5000).Wait();
         }
         void TimerExit()
         {
@@ -41,6 +43,27 @@ namespace RapidTrackingJobIDResults
         {
             timer.Stop();
             Environment.Exit(Environment.ExitCode);
+        }
+
+        public async Task ExecuteMissingKeywordsJob(int number)
+        {
+            await Task.Delay(number);
+            SqlConnection DbConn = new SqlConnection(Common.ReadConnection());
+            SqlCommand ExecJob = new SqlCommand();
+            ExecJob.CommandType = CommandType.StoredProcedure;
+            ExecJob.CommandText = "msdb.dbo.sp_start_job";
+            ExecJob.Parameters.AddWithValue("@job_name", "MissingKeywords");
+            ExecJob.Connection = DbConn; //assign the connection to the command.
+
+            using (DbConn)
+            {
+                DbConn.Open();
+                using (ExecJob)
+                {
+                    ExecJob.ExecuteNonQuery();
+                }
+            }
+           
         }
 
         private void Form1_Load(object sender, EventArgs e)

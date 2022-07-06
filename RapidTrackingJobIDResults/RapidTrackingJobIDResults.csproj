@@ -62,6 +62,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="iOS.cs" />
+    <Compile Include="MissingKeywordsJob.cs" />
     <Compile Include="OxyParams.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

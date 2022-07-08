@@ -2657,7 +2657,7 @@ namespace RapidTrackingJobIDResults
                 return false;
 
             //22-11-2019
-            nd = node.SelectSingleNode(".//div[@class='g kno-result rQUFld mnr-c g-blk']|.//w-answer/div[@class='MUxGbd t51gnb lyLwlc lEBKkf']|.//div[@class='ifM9O']");//16-02-2022 //01-10-2020 Answered Card selector included
+            nd = node.SelectSingleNode(".//div[@class='g kno-result rQUFld mnr-c g-blk']|.//w-answer/div[@class='MUxGbd t51gnb lyLwlc lEBKkf']|.//div[@class='ifM9O']|.//div[@class='Q9mvUc']");//08-07-2022//16-02-2022 //01-10-2020 Answered Card selector included
             if (nd != null)
             {
                 return true;

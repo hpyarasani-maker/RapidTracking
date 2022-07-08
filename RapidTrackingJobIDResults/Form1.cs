@@ -30,6 +30,7 @@ namespace RapidTrackingJobIDResults
             InitializeComponent();
             //count = 0;   // Common.GetOxylabsCount();          
             //timerExit();
+            //MissingKeywordsJob.ExecuteMissingKeywordsJob(0).Wait();
         }
         void TimerExit()
         {
@@ -43,6 +44,7 @@ namespace RapidTrackingJobIDResults
             Environment.Exit(Environment.ExitCode);
         }
 
+       
         private void Form1_Load(object sender, EventArgs e)
         {
 

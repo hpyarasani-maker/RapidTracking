@@ -8,7 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 
-namespace Oxylabs_BulkKeywords
+namespace TrendingLoopReceiving
 { 
     class iOS
     {
@@ -29,7 +29,8 @@ namespace Oxylabs_BulkKeywords
             orgLinks = 0;
             StringBuilder sb = new StringBuilder();
             //sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" date=\"2019-11-29\" >"); //previous date
-            sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" date=\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\" >");
+            sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" dateTime=\"" + DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ") + "\" >");
+
             sb.Append("<section col=\"main\">");
             string topStuff = GetTopStuff(doc);
             sb.Append(topStuff);

@@ -19,31 +19,37 @@ namespace RapidTrackingMultiThreadJobIDs
         {
             count = 0;
 
-            if (doc == null)  return string.Empty;           
+            if (doc == null) throw new Exception("No source found.");
 
             orgLinks = 0;
+            string ndText = "";
+
             html = doc.DocumentNode.OuterHtml;
             StringBuilder sb = new StringBuilder();
             sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" date=\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\" >");
+
             sb.Append("<section col=\"main\">");
             string topStuff = GetTopStuff(doc);
+            ndText = topStuff;
             sb.Append(topStuff);
 
             HtmlNodeCollection nodeCol = doc.DocumentNode.SelectNodes("//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']/div[@class='MUxGbd v0nnCb lyLwlc']|//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']/div/div[@class='MUxGbd v0nnCb lyLwlc']");   //29-04-2020
             if (nodeCol != null)
                 nodeCol = nodeCol[nodeCol.Count - 1].SelectNodes("a/div");  //28-04-2020
             if (nodeCol == null)
-                nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-card|//div[@id='taw']/div[@class='med']/div[2]/div|//div[@id='rso']/nav|//div[@id='rso']/block-component/div");//07-01-2022 event results //16-12-2021   
-            nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@class='vC5Ym DhKAUb']/div");    //17-09-2019
+                nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-card|//div[@id='taw']/div[@class='med']/div[2]/div|//div[@id='rso']/nav|//div[@id='rso']/block-component/div");//07-01-2022 event results //28-04-2020
+            if (nodeCol != null && nodeCol.Count == 1)
+                nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@class='vC5Ym DhKAUb']/div");    //17-09-2019
             if (nodeCol == null)
                 nodeCol = doc.DocumentNode.SelectNodes("//*[@id='tscffb']");
             //if (nodeCol == null)
+            //    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='mnr-c IGtt6d imgac']");
             //if (nodeCol == null)
             //    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");
 
-            if (nodeCol == null) return string.Empty; 
-
-            string ndText = "";
+            if (nodeCol == null) throw new Exception("No block found.");
+            //if (nodeCol == null) return string.Empty; 
+            //if (nodeCol == null) goto BOTTOMSTUFF;             
 
             foreach (HtmlNode node in nodeCol)
             {
@@ -162,16 +168,19 @@ namespace RapidTrackingMultiThreadJobIDs
                             break;
                         }
                     }
-                    catch(WebException ex) { return ex.Message.ToString(); }
+                    catch { }
                 }
             }
 
+            //BOTTOMSTUFF:
             string bottomStuff = GetBottomStuff(doc);
+            ndText += bottomStuff;
             sb.Append(bottomStuff);
             sb.Append("</section>");
 
             sb.Append("<section col=\"right\">");
             string rightStuff = GetRightStuff(doc);
+            ndText += rightStuff;
             sb.Append(rightStuff);
             sb.Append("</section>");
             sb.Append("</searchResult>");
@@ -181,11 +190,10 @@ namespace RapidTrackingMultiThreadJobIDs
                 count = orgLinks;
                 return sb.ToString();
             }
-            
+
             return string.Empty;
 
         }
-
         private string GetRightStuff(HtmlDocument doc)
         {
             StringBuilder s = new StringBuilder();
@@ -2473,7 +2481,7 @@ namespace RapidTrackingMultiThreadJobIDs
                 && node.SelectSingleNode(".//div[@class='answered-question']") == null)
                 || (node.SelectSingleNode(".//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']") != null))
             {
-                if (!node.InnerText.StartsWith("People also search for") && node.SelectSingleNode(".//div[contains(@class,'Eee1Bd')]") == null)//11-07-2022 contains //21-12-2020//25-05-2020
+                if (!node.InnerText.StartsWith("People also search for") && node.SelectSingleNode(".//div[contains(@class,'Eee1Bd')]") == null)//11-07-2022 contains//21-12-2020//25-05-2020
                     return "PeopleAlsoAsk";
             }
             // changed on 05-07-2019

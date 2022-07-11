@@ -73,8 +73,9 @@ namespace RapidTrackingMultiThreadJobIDs
             while (true)
             {
                 //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
-                string kwQry = "GetErrorKeywords_1 '" + myDate + "'";//changes
+                //string kwQry = "GetErrorKeywords_1 '" + myDate + "'";//changes
                 //string kwQry = "GetAllKeywords_1 '" + myDate + "'";     
+                string kwQry = "GetMissingKeywords_1 '" + myDate + "'";     
 
                 GetKeywords1(kwQry);
 
@@ -101,9 +102,9 @@ namespace RapidTrackingMultiThreadJobIDs
                             JObject obj = JObject.Parse(src[1]);
                             string html = obj["results"][0]["content"].Value<string>();                            
                             string device = src[3];
-                            //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8)
                             doc = new HtmlAgilityPack.HtmlDocument();
                             doc.LoadHtml(html);
+                            //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
                             string res = string.Empty;
                             int count = 0;
 
@@ -164,8 +165,9 @@ namespace RapidTrackingMultiThreadJobIDs
             while (true)
             {
                 //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
-                string kwQry = "GetErrorKeywords_2 '" + myDate + "'";//changes
+                //string kwQry = "GetErrorKeywords_2 '" + myDate + "'";//changes
                 //string kwQry = "GetAllKeywords_2 '" + myDate + "'";     
+                string kwQry = "GetMissingKeywords_2 '" + myDate + "'";
 
                 GetKeywords2(kwQry);
 
@@ -192,9 +194,9 @@ namespace RapidTrackingMultiThreadJobIDs
                             JObject obj = JObject.Parse(src[1]);
                             string html = obj["results"][0]["content"].Value<string>();
                             string device = src[3];
-                            //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8)
                             doc = new HtmlAgilityPack.HtmlDocument();
                             doc.LoadHtml(html);
+                            //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
                             string res = string.Empty;
                             int count = 0;
 
@@ -263,8 +265,9 @@ namespace RapidTrackingMultiThreadJobIDs
             while (true)
             {
                 //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
-                string kwQry = "GetErrorKeywords_3 '" + myDate + "'";//changes
+                //string kwQry = "GetErrorKeywords_3 '" + myDate + "'";//changes
                 //string kwQry = "GetAllKeywords_3 '" + myDate + "'";     
+                string kwQry = "GetMissingKeywords_3 '" + myDate + "'";
 
                 GetKeywords3(kwQry);
 
@@ -291,9 +294,9 @@ namespace RapidTrackingMultiThreadJobIDs
                             JObject obj = JObject.Parse(src[1]);
                             string html = obj["results"][0]["content"].Value<string>();
                             string device = src[3];
-                            //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8)
                             doc = new HtmlAgilityPack.HtmlDocument();
                             doc.LoadHtml(html);
+                            //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
                             string res = string.Empty;
                             int count = 0;
 

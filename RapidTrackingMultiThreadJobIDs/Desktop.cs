@@ -13,22 +13,25 @@ namespace RapidTrackingMultiThreadJobIDs
     public class Desktop
     {
         int orgLinks;
-        string html; 
+        string html;
         public string ProcessDocument(string seid, string keyword, HtmlDocument doc, out int count)
         {
             count = 0;
-            if (doc == null) return string.Empty;
+            if (doc == null) throw new Exception("No source found.");
             HtmlNode htmlNode = doc.DocumentNode.SelectSingleNode("//table[@id='mn']");
             if (htmlNode != null)
             {
                 throw new Exception("Old page found.");
             }
             orgLinks = 0;
+            string ndText = "";
+
             html = doc.DocumentNode.OuterHtml;
             StringBuilder sb = new StringBuilder();
             sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" date=\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\" >");
             sb.Append("<section col=\"main\">");
             string topStuff = GetTopStuff(doc);
+            ndText = topStuff;
             sb.Append(topStuff);
 
             HtmlNodeCollection nodeCol = doc.DocumentNode.SelectNodes("//div[@class='_NId']");
@@ -37,13 +40,11 @@ namespace RapidTrackingMultiThreadJobIDs
             if (nodeCol == null)
                 nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");//09-12-2020
             if (nodeCol == null)
-                nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-section-with-header|//div[@class='Hpbsqe']|//div[@id='Odp5De']");//23-12-2021//08-10-2021 images //03-12-2020  //01-05-2020 
+                nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-section-with-header|//div[@class='Hpbsqe']|//div[@id='Odp5De']");//23-12-2021//08-10-2021 images //03-12-2020  //01-05-2020   
             if (nodeCol == null || nodeCol.Count <= 2)
-                nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div") ?? nodeCol; //31-07-2021//02-07-2021 classic links
+                nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div") ?? nodeCol; //31-07-2021 //02-07-2021 classic links
             if (nodeCol == null || nodeCol.Count <= 1)
                 nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div|//div[@class='hlcw0c']/div") ?? nodeCol; //04-12-2020 //09-12-2020 no result issue
-
-            string ndText = "";
             foreach (HtmlNode node in nodeCol)
             {
                 if (node.HasClass("kp-wholepage"))
@@ -66,6 +67,7 @@ namespace RapidTrackingMultiThreadJobIDs
             // 23-03-2020
             if (string.IsNullOrEmpty(ndText) || orgLinks == 0)//08-04-2020
             {
+
                 nodeCol = doc.DocumentNode.SelectNodes("//div[@class='xVtsMb i6u2Cc']|//div[@class='xVtsMb']/div/div");//swapped 08-04-2020
                 if (nodeCol == null)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@class='vC5Ym DhKAUb']/div");  // 03-04-2020
@@ -97,12 +99,15 @@ namespace RapidTrackingMultiThreadJobIDs
             //if (orgLinks < count)
             //    return string.Empty;
 
+            //BOTTOMSTUFF:
             string bottomStuff = GetBottomStuff(doc);
+            ndText += bottomStuff;
             sb.Append(bottomStuff);
             sb.Append("</section>");
 
             sb.Append("<section col=\"right\">");
             string rightStuff = GetRightStuff(doc);
+            ndText += rightStuff;
             sb.Append(rightStuff);
             sb.Append("</section>");
             sb.Append("</searchResult>");

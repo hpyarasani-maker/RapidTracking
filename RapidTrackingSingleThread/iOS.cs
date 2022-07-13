@@ -810,7 +810,12 @@ namespace RapidTrackingSingleThread
                                         if (vdo != null)
                                         {
                                             string url = vdo.Attributes["href"].Value;
-                                            string title = vdo.SelectSingleNode(".//div[contains(@class, 'MUxGbd v0nnCb')]").InnerText;  //22-03-2021
+                                            string title = ""; // vdo.SelectSingleNode(".//div[contains(@class, 'MUxGbd v0nnCb')]").InnerText; //13-07-2022 //22-03-2021
+                                            HtmlNode t = vdo.SelectSingleNode(".//div[contains(@class, 'MUxGbd v0nnCb')]");
+                                            if (t == null)
+                                                t = nd.SelectSingleNode(".//div[contains(@class, 'MUxGbd v0nnCb')]");
+                                            if (t != null)
+                                                title = t.InnerText; //end 13-07-2022
                                             if (url.StartsWith("http") || url.StartsWith("https") || url.StartsWith("ftp")) //30-04-2020
                                             {
                                                 s.Append("<block type=\"video\" url=\"\">");
@@ -828,6 +833,8 @@ namespace RapidTrackingSingleThread
                             HtmlNode n = nd.SelectSingleNode(".//div[@class='ZINbbc xpd']/div/a");
                             if (n == null)
                                 n = nd.SelectSingleNode(".//div[@class='ZINbbc xpd']/div[1]/a");
+                            if (n == null)
+                                n = nd.SelectSingleNode(".//div[@class='NJo7tc Z26q7c']/div/a|.//div[@class='Z26q7c VGXe8']/div/a");//13-07-2022
                             if (n == null)
                                 n = nd.SelectSingleNode(".//a[@class='C8nzq JTuIPc amp_r']");
                             if (n == null)
@@ -946,6 +953,8 @@ namespace RapidTrackingSingleThread
                                 HtmlNode nv = nd.SelectSingleNode(".//div[@class='ZINbbc xpd']/div/a");
                                 if (nv == null)
                                     nv = nd.SelectSingleNode(".//div[@class='ZINbbc xpd']/div[1]/a");
+                                if (nv == null)
+                                    nv = nd.SelectSingleNode(".//div[@class='NJo7tc Z26q7c']/div/a|.//div[@class='Z26q7c VGXe8']/div/a");//13-07-2022
                                 if (nv == null)
                                     nv = nd.SelectSingleNode(".//a[@class='C8nzq JTuIPc amp_r']");
                                 if (nv == null)
@@ -1419,6 +1428,11 @@ namespace RapidTrackingSingleThread
                     HtmlNode t = n.SelectSingleNode(".//div[@role='heading']");
                     if (t == null)
                         t = n.SelectSingleNode(".//span"); //15-12-2020
+                    if (string.IsNullOrEmpty(t?.InnerText.Trim()))//13-07-2022
+                    {
+                        n = node.SelectSingleNode(".//div[@class='BmP5tf']/a");
+                        t = n?.SelectSingleNode(".//div[@role='heading']");
+                    }//end 13-07-2022
                     s.Append("<item url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(t.InnerText) + "\" />");
                     orgLinks++;
                 }

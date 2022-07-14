@@ -519,10 +519,10 @@ namespace RapidTrackingLibrary
         {
             StringBuilder s = new StringBuilder();
             if (node.HasClass("_NId") || node.HasClass("bkWMgd") || node.HasClass("srg")
-                //|| node.HasClass("g") || node.SelectNodes(".//div[@class='g']") != null //18-01-2022 commented // 18-03-2020 
+                //|| node.HasClass("g") || node.SelectNodes(".//div[@class='g']") != null //c// 18-03-2020 
                 || node.SelectNodes(".//div[@class='g GjRtuc']") != null // 02-06-2020
                 || node.SelectNodes(".//div[contains(@class,'g card-section')]|.//div[@class='N3nEGc']") != null //03-03-2022 //06-10-2020 classic link
-                || node.SelectNodes(".//div[@class='g tF2Cxc']|.//div[contains(@class,'g dFd2Tb')]|.//div[@class='g ZYT4Gf']") != null//13-07-2022 //07-04-2022 //24-08-2021 video block //01-06-2021
+                || node.SelectNodes(".//div[@class='g tF2Cxc']|.//div[contains(@class,'g dFd2Tb')]|.//div[@class='g ZYT4Gf']|.//div[contains(@class,'g Ww4FFb')]") != null//14-07-2022//13-07-2022 07-04-2022 //24-08-2021 video block //01-06-2021
                 || node.SelectNodes(".//div[@class='d3zsgb']/div[@class='yuRUbf']") != null) //13-04-2022 missing CLinks
             {
                 HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'g tF2Cxc')]|.//div[@class='g']");//20-04-2022 //04-04-2022
@@ -1524,7 +1524,7 @@ namespace RapidTrackingLibrary
             {
                 try
                 {
-                    if (node.SelectSingleNode(".//div[@class='g jNVrwc Y4pkMc']|.//div[@class='g tF2Cxc']|.//div[@class='g eejeod up9jud']") != null) return false;//15-02-2022//02-02-2022//31-12-2021 missing CLinks
+                    if (node.SelectSingleNode(".//div[@class='g jNVrwc Y4pkMc']|.//div[@class='g tF2Cxc']|.//div[@class='g eejeod up9jud']|.//div[contains(@class,'g Ww4FFb')]") != null) return false;//14-07-2022;//15-02-2022//02-02-2022//31-12-2021 missing CLinks
                     if (node.SelectSingleNode(".//div[@class='twQ0Be']|.//div[@jsname='N760b']|.//div[@jsname='wRSfy']|.//div[contains(@class,'e2BEnf U7izfe')]|.//div[@jsname='A6RGif']|.//div[@class='P9Jfrb']") != null) return true;//07-03-2022//28-12-2021//09-12-2021 //08-12-2021 PAlsoB //30-08-2021 video card
                     if (node.SelectSingleNode(".//div[@class='osrp-blk']|.//div[@class='tpa-cc']") != null && node.SelectSingleNode(".//div[@class='l44Vof']") == null && node.SelectSingleNode(".//div[@class='H93uF']") == null) //17-05-2022 //31-12-2021
                         return false; //20-08-2021

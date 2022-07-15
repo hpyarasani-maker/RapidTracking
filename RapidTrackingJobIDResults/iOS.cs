@@ -950,7 +950,7 @@ namespace RapidTrackingJobIDResults
                                 if (nv == null)
                                     nv = nd.SelectSingleNode(".//div[@class='ZINbbc xpd']/div[1]/a");
                                 if (nv == null)
-                                    nv = nd.SelectSingleNode(".//div[@class='NJo7tc Z26q7c']/div/a|.//div[@class='Z26q7c VGXe8']/div/a");//13-07-2022
+                                    nv = nd.SelectSingleNode(".//div[contains(@class,'Z26q7c')]/div/a");////15-07-2022 13-07-2022
                                 if (nv == null)
                                     nv = nd.SelectSingleNode(".//a[@class='C8nzq JTuIPc amp_r']");
                                 if (nv == null)

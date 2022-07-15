@@ -811,7 +811,7 @@ namespace RapidTrackingJobIDResults
                                             if (t == null)
                                                 t = nd.SelectSingleNode(".//div[contains(@class, 'MUxGbd v0nnCb')]");
                                             if (t != null)
-                                                title = t.InnerText; //end 13-07-2022  //22-03-2021
+                                                title = t.InnerText; //end 13-07-2022
                                             if (url.StartsWith("http") || url.StartsWith("https") || url.StartsWith("ftp")) //30-04-2020
                                             {
                                                 s.Append("<block type=\"video\" url=\"\">");
@@ -2375,7 +2375,7 @@ namespace RapidTrackingJobIDResults
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@jsname='GDPwke']"); // 18-10-2019
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='g8xmv']"); //12-07-2022
+                nd = node.SelectSingleNode(".//div[@class='g8xmv']");//12-07-2022
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='Y2NmGf']"); //05-01-2022
             if (nd == null)
@@ -2496,7 +2496,7 @@ namespace RapidTrackingJobIDResults
                 && node.SelectSingleNode(".//div[@class='answered-question']") == null)
                 || (node.SelectSingleNode(".//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']") != null))
             {
-                if (!node.InnerText.StartsWith("People also search for") && node.SelectSingleNode(".//div[contains(@class,'Eee1Bd')]") == null)//11-07-2022 contains//21-12-2020//25-05-2020
+                if (!node.InnerText.StartsWith("People also search for") && node.SelectSingleNode(".//div[contains(@class,'Eee1Bd')]") == null)//11-07-2022 contains //21-12-2020//25-05-2020
                     return "PeopleAlsoAsk";
             }
             // changed on 05-07-2019

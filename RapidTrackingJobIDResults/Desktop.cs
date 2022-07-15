@@ -748,7 +748,7 @@ namespace RapidTrackingJobIDResults
 
             s.Append("<block type=\"jobs\" url=\"\">");
 
-            HtmlNodeCollection nodes = node.SelectNodes(".//ul/li/div[@class='PwjeAc']");
+            HtmlNodeCollection nodes = node.SelectNodes(".//li/div[@class='PwjeAc']"); //15-07-2022
             if (nodes != null)
             {
                 foreach (HtmlNode nd in nodes)

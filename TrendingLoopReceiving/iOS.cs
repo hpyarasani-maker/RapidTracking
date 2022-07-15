@@ -800,7 +800,12 @@ namespace TrendingLoopReceiving
                                         if (vdo != null)
                                         {
                                             string url = vdo.Attributes["href"].Value;
-                                            string title = vdo.SelectSingleNode(".//div[contains(@class, 'MUxGbd v0nnCb')]").InnerText;  //22-03-2021
+                                            string title = ""; // vdo.SelectSingleNode(".//div[contains(@class, 'MUxGbd v0nnCb')]").InnerText; //13-07-2022 //22-03-2021
+                                            HtmlNode t = vdo.SelectSingleNode(".//div[contains(@class, 'MUxGbd v0nnCb')]");
+                                            if (t == null)
+                                                t = nd.SelectSingleNode(".//div[contains(@class, 'MUxGbd v0nnCb')]");
+                                            if (t != null)
+                                                title = t.InnerText; //end 13-07-2022
                                             if (url.StartsWith("http") || url.StartsWith("https") || url.StartsWith("ftp")) //30-04-2020
                                             {
                                                 s.Append("<block type=\"video\" url=\"\">");
@@ -818,6 +823,8 @@ namespace TrendingLoopReceiving
                             HtmlNode n = nd.SelectSingleNode(".//div[@class='ZINbbc xpd']/div/a");
                             if (n == null)
                                 n = nd.SelectSingleNode(".//div[@class='ZINbbc xpd']/div[1]/a");
+                            if (n == null)
+                                n = nd.SelectSingleNode(".//div[@class='NJo7tc Z26q7c']/div/a|.//div[@class='Z26q7c VGXe8']/div/a");//13-07-2022
                             if (n == null)
                                 n = nd.SelectSingleNode(".//a[@class='C8nzq JTuIPc amp_r']");
                             if (n == null)
@@ -936,6 +943,8 @@ namespace TrendingLoopReceiving
                                 HtmlNode nv = nd.SelectSingleNode(".//div[@class='ZINbbc xpd']/div/a");
                                 if (nv == null)
                                     nv = nd.SelectSingleNode(".//div[@class='ZINbbc xpd']/div[1]/a");
+                                if (nv == null)
+                                    nv = nd.SelectSingleNode(".//div[contains(@class,'Z26q7c')]/div/a");////15-07-2022 13-07-2022
                                 if (nv == null)
                                     nv = nd.SelectSingleNode(".//a[@class='C8nzq JTuIPc amp_r']");
                                 if (nv == null)
@@ -1409,6 +1418,11 @@ namespace TrendingLoopReceiving
                     HtmlNode t = n.SelectSingleNode(".//div[@role='heading']");
                     if (t == null)
                         t = n.SelectSingleNode(".//span"); //15-12-2020
+                    if (string.IsNullOrEmpty(t?.InnerText.Trim()))//13-07-2022
+                    {
+                        n = node.SelectSingleNode(".//div[@class='BmP5tf']/a");
+                        t = n?.SelectSingleNode(".//div[@role='heading']");
+                    }//end 13-07-2022
                     s.Append("<item url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(t.InnerText) + "\" />");
                     orgLinks++;
                 }
@@ -2355,6 +2369,8 @@ namespace TrendingLoopReceiving
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@jsname='GDPwke']"); // 18-10-2019
             if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='g8xmv']");//12-07-2022
+            if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='Y2NmGf']"); //05-01-2022
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='MIyI4c']"); //19-08-2021 updated for carousel block 
@@ -2474,7 +2490,7 @@ namespace TrendingLoopReceiving
                 && node.SelectSingleNode(".//div[@class='answered-question']") == null)
                 || (node.SelectSingleNode(".//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']") != null))
             {
-                if (!node.InnerText.StartsWith("People also search for") && node.SelectSingleNode(".//div[@class='Eee1Bd vKF8c LL6Bte']") == null) //21-12-2020//25-05-2020
+                if (!node.InnerText.StartsWith("People also search for") && node.SelectSingleNode(".//div[contains(@class,'Eee1Bd')]") == null)//11-07-2022 contains //21-12-2020//25-05-2020
                     return "PeopleAlsoAsk";
             }
             // changed on 05-07-2019
@@ -2510,7 +2526,8 @@ namespace TrendingLoopReceiving
                 nd = node.SelectSingleNode(".//div[@class='OixsOd']"); //25-06-2020
             if (nd != null && node.SelectSingleNode(".//span[@class='FCUp0c rQMQod']|.//span[contains(@class,'mfMhoc')]|.//span[@class='r0bn4c rQMQod tP9Zud']|.//span[@class='q8U8x aTI8gc RES9jf']").InnerText != "Images")//15-11-2021//15-09-2021 updated contains for carousel block//02-09-2021 Carousel block//24-02-2021
             {
-                return "Carousel";
+                if (node.SelectSingleNode(".//div[@class='TOQyFc U48fD']") == null) //11-07-2022
+                    return "Carousel";
             }
 
             nd = node.SelectSingleNode(".//div[contains(@class,'rKFBM')]/div"); //28-07-2020 included contains functions

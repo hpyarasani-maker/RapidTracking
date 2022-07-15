@@ -2130,6 +2130,14 @@ namespace RapidTrackingLoopSending
            {
               seid =601, domain ="es", geo_location="Province of Valencia,Valencia,Spain", locale= "es-es", uule = "w+CAIQICIjUHJvdmluY2Ugb2YgVmFsZW5jaWEsVmFsZW5jaWEsU3BhaW4=",device="mobile_android"
            },//end 01-04-2022
+            new SearchProperties() //13-07-2022
+           {
+              seid =602, domain ="co.uk", geo_location="Bermuda", locale= "en-bm", uule = "w+CAIQICIHQmVybXVkYQ==",device="desktop"
+           },
+           new SearchProperties()
+           {
+              seid =603, domain ="co.uk", geo_location="Bermuda", locale= "en-bm", uule = "w+CAIQICIHQmVybXVkYQ==",device="mobile_android"
+           }, //end 13-07-2022
         };
         
 

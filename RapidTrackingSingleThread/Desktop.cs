@@ -1062,7 +1062,7 @@ namespace RapidTrackingSingleThread
                     {
                         //string url = nd1.Attributes["href"].Value; //10-01-2022
                         //if (!url.Contains("/search?num=100")) //10-01-2022
-                        s.Append("<item url=\"" + SetUrl(nd.Attributes["href"].Value) + "\" title=\"" + SetTitle(title) + "\" />");
+                        s.Append("<item url=\"" + SetUrl(nd1.Attributes["href"].Value) + "\" title=\"" + SetTitle(title) + "\" />");
                     }
                 //end 05-10-2020
             }

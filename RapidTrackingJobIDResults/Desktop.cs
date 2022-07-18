@@ -1697,7 +1697,7 @@ namespace RapidTrackingJobIDResults
 
                     if (node.SelectSingleNode(".//div[@class='g']") != null) //04-12-2020 select for class links
                         return false;
-                    if (node.SelectSingleNode(".//div[@class='d3zsgb']") != null) //13-10-2021
+                    if (node.SelectSingleNode(".//div[@class='d3zsgb']|.//div[@class='lMMUFc']") != null) //18-07-2022 wrong answer card //13-10-2021
                         return false;
                 }
                 catch { }

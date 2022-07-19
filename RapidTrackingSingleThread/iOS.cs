@@ -2385,8 +2385,8 @@ namespace RapidTrackingSingleThread
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='MIyI4c']"); //19-08-2021 updated for carousel block 
             if (nd != null)
-                if (node.SelectSingleNode(".//img[contains(@alt,'Map of ')]") == null) //15-05-2020
-                    return "Carousel";
+                    if (node.SelectSingleNode(".//img[contains(@alt,'Map of ')]|.//div[@jsname='sSUqrd']") == null) //19-07-2022
+                        return "Carousel";
 
             nd = node.SelectSingleNode(".//div[@class='TyzpY']");
             if (nd == null)

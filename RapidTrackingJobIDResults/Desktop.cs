@@ -42,9 +42,9 @@ namespace RapidTrackingJobIDResults
             if (nodeCol == null)
                 nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-section-with-header|//div[@class='Hpbsqe']|//div[@id='Odp5De']");//23-12-2021//08-10-2021 images //03-12-2020  //01-05-2020   
             if (nodeCol == null || nodeCol.Count <= 2)
-                nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div") ?? nodeCol;//15-07-2022
-            if (nodeCol == null || nodeCol.Count == 3)
-                nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div|.//div[@class='ULSxyf']") ?? nodeCol;////15-07-2022 14-07-2022
+                nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div|.//div[@class='ULSxyf']") ?? nodeCol;//19-07-2022//15-07-2022
+            //if (nodeCol == null || nodeCol.Count == 3)//19-07-2022 commented
+            //    nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div|.//div[@class='ULSxyf']") ?? nodeCol;////15-07-2022 14-07-2022
             if (nodeCol == null || nodeCol.Count <= 1)
                 nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div|//div[@class='hlcw0c']/div") ?? nodeCol; //04-12-2020 //09-12-2020 no result issue
             foreach (HtmlNode node in nodeCol)
@@ -613,7 +613,7 @@ namespace RapidTrackingJobIDResults
             {
                 if (node.SelectSingleNode(".//div[@id='rhs']") != null || node.Attributes["id"]?.Value == "rhs")
                 {
-                    node = node.SelectSingleNode(".//div[@class='g']|.//div[@class='g Ww4FFb tF2Cxc']");//14-07-2022
+                    node = node.SelectSingleNode(".//div[@class='g']|.//div[@class='g Ww4FFb tF2Cxc']|.//div[@class='g eejeod up9jud']"); //19-07-2022
                     if (node == null) return string.Empty;
                 }//06-04-2022 //01-04-2022
                 HtmlNodeCollection col = node.SelectNodes(".//h3[@class='r']/a");

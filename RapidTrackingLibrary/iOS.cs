@@ -778,7 +778,8 @@ namespace RapidTrackingLibrary
                         //14-11-2019
                         if (nd.SelectSingleNode(".//div[@jscontroller='i5z2Rc']") != null
                             || nd.SelectSingleNode(".//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']") != null //13-12-2019
-                             || nd.SelectSingleNode(".//div[@class='MUxGbd v0nnCb lyLwlc']") != null)   //16-12-2020
+                             || nd.SelectSingleNode(".//div[@class='MUxGbd v0nnCb lyLwlc']") != null    //16-12-2020
+                            || nd.SelectSingleNode(".//div[@class='E8hWLe SVMeif BmP5tf']") != null) //21-07-2022
                         {
                             s.Append(GetSiteLinks(nd));
                             continue;
@@ -1476,7 +1477,7 @@ namespace RapidTrackingLibrary
             if (nds == null)
                 nds = node.SelectNodes(".//div[@class='pIpgAc KKgUze XO51F']/a");
             if (nds == null)
-                nds = node.SelectNodes(".//div[@class='MUxGbd v0nnCb lyLwlc']/a");
+                nds = node.SelectNodes(".//div[contains(@class,'MUxGbd v0nnCb lyLwlc')]/a"); //21-07-2022
             if (nds != null)
             {
                 s.Append("<block type=\"siteLinks\" url=\"\">");

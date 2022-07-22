@@ -56,6 +56,8 @@ namespace RapidTrackingJobIDResults
 
             Thread t = new Thread(new ThreadStart(StartProcess));
             t.SetApartmentState(ApartmentState.STA);
+            t1.IsBackground = true;
+            t1.Priority = ThreadPriority.Lowest;
             t.Start();
         }
         public enum stats

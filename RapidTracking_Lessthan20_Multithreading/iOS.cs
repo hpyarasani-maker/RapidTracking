@@ -740,7 +740,8 @@ namespace TrackingTrending
                         }//12-11-2021
                         if (nd.SelectSingleNode(".//div[@jscontroller='i5z2Rc']") != null
                             || nd.SelectSingleNode(".//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']") != null //13-12-2019
-                             || nd.SelectSingleNode(".//div[@class='MUxGbd v0nnCb lyLwlc']") != null)   //16-12-2020
+                             || nd.SelectSingleNode(".//div[@class='MUxGbd v0nnCb lyLwlc']") != null   //16-12-2020
+                             || nd.SelectSingleNode(".//div[@class='E8hWLe SVMeif BmP5tf']") != null) //21-07-2022
                         {
                             s.Append(GetSiteLinks(nd));
                             continue;
@@ -1460,7 +1461,7 @@ namespace TrackingTrending
             if (nds == null)
                 nds = node.SelectNodes(".//div[@class='pIpgAc KKgUze XO51F']/a");
             if (nds == null)
-                nds = node.SelectNodes(".//div[@class='MUxGbd v0nnCb lyLwlc']/a");
+                nds = node.SelectNodes(".//div[contains(@class,'MUxGbd v0nnCb lyLwlc')]/a"); //21-07-2022
             if (nds != null)
             {
                 s.Append("<block type=\"siteLinks\" url=\"\">");
@@ -2383,7 +2384,7 @@ namespace TrackingTrending
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='MIyI4c']"); //19-08-2021 updated for carousel block 
             if (nd != null)
-                if (node.SelectSingleNode(".//img[contains(@alt,'Map of ')]") == null) //15-05-2020
+                if (node.SelectSingleNode(".//img[contains(@alt,'Map of ')]|.//div[@jsname='sSUqrd']|.//div[@class='EDblX DAVP1']") == null)//21-07-2022 //19-07-2022
                     return "Carousel";
 
             nd = node.SelectSingleNode(".//div[@class='TyzpY']");

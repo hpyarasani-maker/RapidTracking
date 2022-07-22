@@ -57,14 +57,20 @@ namespace RapidTrackingMultiThreadJobIDs
 
             Thread t1 = new Thread(new ThreadStart(StartProcess_1));
             t1.SetApartmentState(ApartmentState.STA);
+            t1.IsBackground = true;
+            t1.Priority = ThreadPriority.Lowest;
             t1.Start();
 
             Thread t2 = new Thread(new ThreadStart(StartProcess_2));
             t2.SetApartmentState(ApartmentState.STA);
+            t1.IsBackground = true;
+            t1.Priority = ThreadPriority.Lowest;
             t2.Start();
 
             Thread t3 = new Thread(new ThreadStart(StartProcess_3));
             t3.SetApartmentState(ApartmentState.STA);
+            t1.IsBackground = true;
+            t1.Priority = ThreadPriority.Lowest;
             t3.Start();
         }
 
@@ -130,6 +136,7 @@ namespace RapidTrackingMultiThreadJobIDs
                                 }
                             }
                         }
+
                     }
                     catch (Exception ex)
                     {
@@ -141,6 +148,7 @@ namespace RapidTrackingMultiThreadJobIDs
                                     Environment.NewLine + Environment.NewLine;
                                 txtError.Refresh();
                             });
+                            SendToDBFailure(seid, kw, jobid, false, ex.Message);
                         }
                         finally { }
                     }
@@ -152,6 +160,7 @@ namespace RapidTrackingMultiThreadJobIDs
                         label1.Text = ++cnt + " of " + lstKWs.Items.Count + " Completed";
                         label1.Refresh();
                     });
+
                 }
             }
 
@@ -233,6 +242,7 @@ namespace RapidTrackingMultiThreadJobIDs
                                     Environment.NewLine + Environment.NewLine;
                                 txtError.Refresh();
                             });
+                            SendToDBFailure(seid, kw, jobid, false, ex.Message);
                         }
                         finally { }
                     }
@@ -333,6 +343,7 @@ namespace RapidTrackingMultiThreadJobIDs
                                     Environment.NewLine + Environment.NewLine;
                                 txtError.Refresh();
                             });
+                            SendToDBFailure(seid, kw, jobid, false, ex.Message);
                         }
                         finally { }
                     }
@@ -417,7 +428,7 @@ namespace RapidTrackingMultiThreadJobIDs
             {
 
                 ////store into keywordfail table.
-                SendToDBFailure(seid, kw, jobid);
+                SendToDBFailure(seid, kw, jobid, false);
 
 
                 string errorMsg = string.Empty;
@@ -508,7 +519,7 @@ namespace RapidTrackingMultiThreadJobIDs
             {
 
                 ////store into keywordfail table.
-                SendToDBFailure(seid, kw, jobid);
+                SendToDBFailure(seid, kw, jobid, false);
 
 
                 string errorMsg = string.Empty;
@@ -599,7 +610,7 @@ namespace RapidTrackingMultiThreadJobIDs
             {
 
                 ////store into keywordfail table.
-                SendToDBFailure(seid, kw, jobid);
+                SendToDBFailure(seid, kw, jobid, false);
 
 
                 string errorMsg = string.Empty;
@@ -657,11 +668,16 @@ namespace RapidTrackingMultiThreadJobIDs
             }
         }
 
-        private void SendToDBFailure(string seid, string kw, string jobid)
+        private void SendToDBFailure(string seid, string kw, string jobid, bool isOldPage, string errMsg = "")
         {
-            //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
-            string qry = "insert into dashboard_dataerrors (date, name, seid, jobid) values(Convert(varchar(10),'" + myDate + "',103), N'" +
-                  kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "' )";
+            string myDate = DateTime.Today.ToString("yyyy-MM-dd");
+            //string myDate = "2019-10-10";
+
+            string qry = "insert into dashboard_dataerrors (date, name, seid, jobid,message) values(Convert(varchar(10),'" + myDate + "',103), N'" +
+                    kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "', N'" + errMsg + "')"; //03-01-2022
+
+            string qryOld = "insert into dashboard_oldgooglepage (date, keyword, seid, jobid) values('" + DateTime.Now + "', N'" +
+                  kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "')";
 
             using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
             {
@@ -672,6 +688,12 @@ namespace RapidTrackingMultiThreadJobIDs
                     {
                         comm.CommandTimeout = 0;
                         comm.ExecuteNonQuery();
+
+                        if (isOldPage)
+                        {
+                            comm.CommandText = qryOld;
+                            comm.ExecuteNonQuery();
+                        }
                     }
                 }
                 catch (SqlException ex)
@@ -689,11 +711,12 @@ namespace RapidTrackingMultiThreadJobIDs
 
                     //throw new Exception(errorMessage);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    throw ex;
+                    //throw ex;
                 }
             }
+
         }
 
         private void SendToDB(string seid, string keyword, string xml, string jobid, int urlcount)

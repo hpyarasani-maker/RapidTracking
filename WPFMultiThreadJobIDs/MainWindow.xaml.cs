@@ -67,19 +67,16 @@ namespace WPFMultiThreadJobIDs
 
             Thread t1 = new Thread(new ThreadStart(StartProcess_1));
             t1.SetApartmentState(ApartmentState.STA);
-            t1.IsBackground = true;
             t1.Priority = ThreadPriority.Lowest;
             t1.Start();
 
             Thread t2 = new Thread(new ThreadStart(StartProcess_2));
             t2.SetApartmentState(ApartmentState.STA);
-            t1.IsBackground = true;
             t1.Priority = ThreadPriority.Lowest;
             t2.Start();
 
             Thread t3 = new Thread(new ThreadStart(StartProcess_3));
             t3.SetApartmentState(ApartmentState.STA);
-            t1.IsBackground = true;
             t1.Priority = ThreadPriority.Lowest;
             t3.Start();
         }
@@ -142,6 +139,10 @@ namespace WPFMultiThreadJobIDs
                             if (count > 20)
                             {
                                 SendToAPI1(seid, keyword, res, jobid);
+                                SendToDB(seid, keyword, res, jobid, count);
+                            }
+                            if (count <= 20)
+                            {
                                 SendToDB(seid, keyword, res, jobid, count);
                             }
                         }
@@ -237,6 +238,10 @@ namespace WPFMultiThreadJobIDs
                             if (count > 20)
                             {
                                 SendToAPI2(seid, keyword, res, jobid);
+                                SendToDB(seid, keyword, res, jobid, count);
+                            }
+                            if (count <= 20)
+                            {
                                 SendToDB(seid, keyword, res, jobid, count);
                             }
                         }
@@ -343,6 +348,10 @@ namespace WPFMultiThreadJobIDs
                             if (count > 20)
                             {
                                 SendToAPI3(seid, keyword, res, jobid);
+                                SendToDB(seid, keyword, res, jobid, count);
+                            }
+                            if (count <= 20)
+                            {
                                 SendToDB(seid, keyword, res, jobid, count);
                             }
                         }

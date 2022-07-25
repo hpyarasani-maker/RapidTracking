@@ -759,11 +759,6 @@ namespace WPFMultiThreadJobIDs
                     comm.Parameters.Add("XmlData", SqlDbType.Xml).Value = xml.Replace("'", "''");
 
                     comm.ExecuteNonQuery();
-
-                    comm.CommandType = CommandType.Text;
-                    comm.CommandText = "Insert into dashboard_data2 (date, name, seid, jobid, count) values(Convert(varchar(10),'" + myDate + "',103), N'" +
-                                        keyword.Replace("'", "''") + "', " + seid + ", '" + jobid + "', " + urlcount + " )";
-                    comm.ExecuteNonQuery();
                 }
             }
 

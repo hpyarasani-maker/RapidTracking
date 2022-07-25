@@ -143,7 +143,7 @@ namespace RapidTrackingJobIDResults
                                         SendToAPI(seid, keyword, res, jobid);
                                         SendToDB(seid, keyword, res, jobid, count);
                                     }
-                                    if (count <= 20)
+                                    if (count < 21 && count == 0)
                                     {
                                         SendToDB(seid, keyword, res, jobid, count);
                                     }

@@ -2054,7 +2054,7 @@ namespace RapidTrackingLibrary
                     s.Append("<block type=\"apps\" url=\"\">");
                     string innertext = string.Empty;
                     HtmlNode TextNode = App.SelectSingleNode(".//div[contains(@class,'mdKzW')]");//12-11-2021 app block
-                    if (TextNode == null)
+                    if (TextNode != null)
                         innertext = TextNode.InnerText;
                     else //27-07-2022
                         innertext = App.InnerText; //27-07-2022

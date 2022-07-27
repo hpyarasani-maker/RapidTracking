@@ -2368,7 +2368,7 @@ namespace RapidTrackingJobIDResults
             // changes on 15-07-2019
             nd = node.SelectSingleNode(".//div[@class='qs-io aig-lst']");
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='ki5rnd']|.//div[@class='UyqAp']|.//div[@class='uAV0E']");//27-07-2022  //23-01-2020   //21-02-2020 included selector for App block
+                nd = node.SelectSingleNode(".//div[@class='ki5rnd']|.//div[@class='UyqAp']|.//div[@class='uAV0E']");//27-07-2022 //23-01-2020   //21-02-2020 included selector for App block
             if (nd != null)
             {
                 return "Apps";
@@ -2452,7 +2452,8 @@ namespace RapidTrackingJobIDResults
                 nd = node.SelectSingleNode(".//div[@class='IEBeid']|.//g-img[@class='o8ebK']");//10-05-2022 //04-03-2022
             if (nd != null)
             {
-                return "Maps";
+                if (nd.SelectSingleNode(".//div[@jsname='r4nke']") == null)
+                    return "Maps";
             }
             else
             {

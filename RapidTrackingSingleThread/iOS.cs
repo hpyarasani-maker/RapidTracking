@@ -2456,7 +2456,8 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[@class='IEBeid']|.//g-img[@class='o8ebK']");//10-05-2022 //04-03-2022
             if (nd != null)
             {
-                return "Maps";
+                if (nd.SelectSingleNode(".//div[@jsname='r4nke']") == null)
+                    return "Maps";
             }
             else
             {

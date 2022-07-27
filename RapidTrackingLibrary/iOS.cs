@@ -2054,8 +2054,8 @@ namespace RapidTrackingLibrary
                     s.Append("<block type=\"apps\" url=\"\">");
                     string innertext = string.Empty;
                     HtmlNode TextNode = App.SelectSingleNode(".//div[contains(@class,'mdKzW')]");//12-11-2021 app block
-                    if (TextNode != null)
-                        innertext = TextNode.InnerText;
+                    if (TextNode == null)
+                        TextNode = App.SelectSingleNode(".//div[contains(@class,'seZ3U')]");//27-07-2022 
 
                     s.Append("<item url=\"" + SetUrl(App.Attributes["href"].Value) + "\" title=\"" + SetTitle(innertext.TrimStart()) + "\" />");
 
@@ -2171,7 +2171,7 @@ namespace RapidTrackingLibrary
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='kno-fb-ctx']");
             if (nd == null)
-                nd = node.SelectSingleNode(".//span[@class='DOvy9b z1asCe KXvzXb']");  //23-01-2020  // 21-02-2020  included selector for video card
+                nd = node.SelectSingleNode(".//div[@class='ki5rnd']|.//div[@class='UyqAp']|.//div[@class='uAV0E']");//27-07-2022   //23-01-2020  // 21-02-2020  included selector for video card
             if (nd != null)
             {
                 return "VideoCard";

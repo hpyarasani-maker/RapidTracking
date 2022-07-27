@@ -2148,8 +2148,8 @@ namespace RapidTrackingSingleThread
                     s.Append("<block type=\"apps\" url=\"\">");
                     string innertext = string.Empty;
                     HtmlNode TextNode = App.SelectSingleNode(".//div[contains(@class,'mdKzW')]");//12-11-2021 app block
-                    if (TextNode != null)
-                        innertext = TextNode.InnerText;
+                    if (TextNode == null)
+                        TextNode = App.SelectSingleNode(".//div[contains(@class,'seZ3U')]");//27-07-2022 
 
                     s.Append("<item url=\"" + SetUrl(App.Attributes["href"].Value) + "\" title=\"" + SetTitle(innertext.TrimStart()) + "\" />");
 
@@ -2372,7 +2372,7 @@ namespace RapidTrackingSingleThread
             // changes on 15-07-2019
             nd = node.SelectSingleNode(".//div[@class='qs-io aig-lst']");
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='ki5rnd']"); //23-01-2020   //21-02-2020 included selector for App block
+                nd = node.SelectSingleNode(".//div[@class='ki5rnd']|.//div[@class='UyqAp']|.//div[@class='uAV0E']");//27-07-2022 //23-01-2020   //21-02-2020 included selector for App block
             if (nd != null)
             {
                 return "Apps";

@@ -2370,7 +2370,7 @@ namespace WPFMultiThreadJobIDs
             // changes on 15-07-2019
             nd = node.SelectSingleNode(".//div[@class='qs-io aig-lst']");
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='ki5rnd']|.//div[@class='UyqAp']|.//div[@class='uAV0E']");//27-07-2022 //23-01-2020   //21-02-2020 included selector for App block
+                nd = node.SelectSingleNode(".//div[@class='ki5rnd']|.//div[@class='UyqAp']");//27-07-2022 //23-01-2020   //21-02-2020 included selector for App block
             if (nd != null)
             {
                 if (node.SelectSingleNode(".//g-img[@class='o8ebK']") == null)//27-07-2022

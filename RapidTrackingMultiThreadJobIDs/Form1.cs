@@ -57,19 +57,16 @@ namespace RapidTrackingMultiThreadJobIDs
 
             Thread t1 = new Thread(new ThreadStart(StartProcess_1));
             t1.SetApartmentState(ApartmentState.STA);
-            t1.IsBackground = true;
             t1.Priority = ThreadPriority.Lowest;
             t1.Start();
 
             Thread t2 = new Thread(new ThreadStart(StartProcess_2));
             t2.SetApartmentState(ApartmentState.STA);
-            t1.IsBackground = true;
             t1.Priority = ThreadPriority.Lowest;
             t2.Start();
 
             Thread t3 = new Thread(new ThreadStart(StartProcess_3));
             t3.SetApartmentState(ApartmentState.STA);
-            t1.IsBackground = true;
             t1.Priority = ThreadPriority.Lowest;
             t3.Start();
         }
@@ -132,6 +129,10 @@ namespace RapidTrackingMultiThreadJobIDs
                                 if (count > 20)
                                 {
                                     SendToAPI1(seid, keyword, res, jobid);
+                                    SendToDB(seid, keyword, res, jobid, count);
+                                }
+                                if (count <= 20)
+                                {
                                     SendToDB(seid, keyword, res, jobid, count);
                                 }
                             }
@@ -227,6 +228,10 @@ namespace RapidTrackingMultiThreadJobIDs
                                 if (count > 20)
                                 {
                                     SendToAPI2(seid, keyword, res, jobid);
+                                    SendToDB(seid, keyword, res, jobid, count);
+                                }
+                                if (count <= 20)
+                                {
                                     SendToDB(seid, keyword, res, jobid, count);
                                 }
                             }
@@ -328,6 +333,10 @@ namespace RapidTrackingMultiThreadJobIDs
                                 if (count > 20)
                                 {
                                     SendToAPI3(seid, keyword, res, jobid);
+                                    SendToDB(seid, keyword, res, jobid, count);
+                                }
+                                if (count <= 20)
+                                {
                                     SendToDB(seid, keyword, res, jobid, count);
                                 }
                             }
@@ -740,11 +749,6 @@ namespace RapidTrackingMultiThreadJobIDs
                         comm.Parameters.Add("Count", SqlDbType.Int).Value = urlcount;
                         comm.Parameters.Add("XmlData", SqlDbType.Xml).Value = xml.Replace("'", "''");
 
-                        comm.ExecuteNonQuery();
-
-                        comm.CommandType = CommandType.Text;
-                        comm.CommandText = "Insert into dashboard_data2 (date, name, seid, jobid, count) values(Convert(varchar(10),'" + myDate + "',103), N'" +
-                                            keyword.Replace("'", "''") + "', " + seid + ", '" + jobid + "', " + urlcount + " )";
                         comm.ExecuteNonQuery();
                     }
                 }

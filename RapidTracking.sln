@@ -71,6 +71,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrendingLoopSending", "Tren
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrendingLoopReceiving", "TrendingLoopReceiving\TrendingLoopReceiving.csproj", "{5D80085B-2F06-4582-8FF0-F99D8A8132BB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFMultiThreadJobIDs", "WPFMultiThreadJobIDs\WPFMultiThreadJobIDs.csproj", "{43724BD6-F61D-4A3D-AA8B-218D22438414}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -197,6 +199,10 @@ Global
 		{5D80085B-2F06-4582-8FF0-F99D8A8132BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D80085B-2F06-4582-8FF0-F99D8A8132BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D80085B-2F06-4582-8FF0-F99D8A8132BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43724BD6-F61D-4A3D-AA8B-218D22438414}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43724BD6-F61D-4A3D-AA8B-218D22438414}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43724BD6-F61D-4A3D-AA8B-218D22438414}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43724BD6-F61D-4A3D-AA8B-218D22438414}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

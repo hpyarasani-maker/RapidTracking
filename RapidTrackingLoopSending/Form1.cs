@@ -17,6 +17,7 @@ namespace RapidTrackingLoopSending
             InitializeComponent();
             //timerExit();
             //cnt = GetOxyCount();
+            //MissingKeywordsJob.ExecuteMissingKeywordsJob(0).Wait();
         }
 
         void timerExit()

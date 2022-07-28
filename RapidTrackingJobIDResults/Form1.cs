@@ -56,7 +56,6 @@ namespace RapidTrackingJobIDResults
 
             Thread t = new Thread(new ThreadStart(StartProcess));
             t.SetApartmentState(ApartmentState.STA);
-            t.IsBackground = true;
             t.Priority = ThreadPriority.Lowest;
             t.Start();
         }
@@ -144,15 +143,11 @@ namespace RapidTrackingJobIDResults
                                         SendToAPI(seid, keyword, res, jobid);
                                         SendToDB(seid, keyword, res, jobid, count);
                                     }
+                                    if (count < 21 && count == 0)
+                                    {
+                                        SendToDB(seid, keyword, res, jobid, count);
+                                    }
                                 }
-                                //else
-                                //{
-                                //    SendToAPI(seid, keyword, res, jobid);
-                                //    SendToDB(seid, keyword, res, jobid, count);
-                                //}
-                               
-                                
-
                             }
                             catch (Exception ex)
                             {

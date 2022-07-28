@@ -826,7 +826,9 @@ namespace RapidTrackingSingleThread
                         }
                         catch { title = ""; }
                         string url = nd.Attributes["href"].Value.Trim();
-                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                        //if (!string.IsNullOrEmpty(SetUrl(url)))
+                            //s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                     }
                     catch { }
                 }
@@ -1781,6 +1783,7 @@ namespace RapidTrackingSingleThread
             {
                 //21-11-2019
                 url = url.Replace("HTTPS://", "https://").Replace("HTTP://", "http://");
+                //if (string.IsNullOrEmpty(url.Trim()) || url.StartsWith("#")) return string.Empty;
                 if (string.IsNullOrEmpty(url.Trim())) return string.Empty;
                 //29-09-2020            
                 if (url.IndexOf("https://") == 0 || url.IndexOf("https://") >= 0) //01-10-2020

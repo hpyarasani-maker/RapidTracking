@@ -2151,7 +2151,8 @@ namespace RapidTrackingLoopSingleThread
                     HtmlNode TextNode = App.SelectSingleNode(".//div[contains(@class,'mdKzW')]");//12-11-2021 app block
                     if (TextNode != null)
                         innertext = TextNode.InnerText;
-
+                    else //27-07-2022
+                        innertext = App.InnerText; //27-07-2022
                     s.Append("<item url=\"" + SetUrl(App.Attributes["href"].Value) + "\" title=\"" + SetTitle(innertext.TrimStart()) + "\" />");
 
                     s.Append("</block>");
@@ -2373,10 +2374,11 @@ namespace RapidTrackingLoopSingleThread
             // changes on 15-07-2019
             nd = node.SelectSingleNode(".//div[@class='qs-io aig-lst']");
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='ki5rnd']"); //23-01-2020   //21-02-2020 included selector for App block
+                nd = node.SelectSingleNode(".//div[@class='ki5rnd']|.//div[@class='UyqAp']");//27-07-2022 //23-01-2020   //21-02-2020 included selector for App block
             if (nd != null)
             {
-                return "Apps";
+                if (node.SelectSingleNode(".//g-img[@class='o8ebK']") == null)//27-07-2022
+                    return "Apps";
             }
             //16-08-2019
             nd = node.SelectSingleNode(".//div[@jsmodel='uIhXXc']");
@@ -2389,7 +2391,7 @@ namespace RapidTrackingLoopSingleThread
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='MIyI4c']"); //19-08-2021 updated for carousel block 
             if (nd != null)
-                if (node.SelectSingleNode(".//img[contains(@alt,'Map of ')]|.//div[@jsname='sSUqrd']|.//div[@class='EDblX DAVP1']") == null)//21-07-2022 //19-07-2022
+                if (node.SelectSingleNode(".//img[contains(@alt,'Map of ')]|.//div[@jsname='sSUqrd']|.//div[@class='EDblX DAVP1']") == null || (node.SelectSingleNode(".//div[@class='g8xmv']") != null))//25-07-2022//21-07-2022 //19-07-2022
                     return "Carousel";
 
             nd = node.SelectSingleNode(".//div[@class='TyzpY']");
@@ -2457,7 +2459,8 @@ namespace RapidTrackingLoopSingleThread
                 nd = node.SelectSingleNode(".//div[@class='IEBeid']|.//g-img[@class='o8ebK']");//10-05-2022 //04-03-2022
             if (nd != null)
             {
-                return "Maps";
+                if (nd.SelectSingleNode(".//div[@jsname='r4nke']") == null)//27-07-2022
+                    return "Maps";
             }
             else
             {

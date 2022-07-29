@@ -49,7 +49,6 @@ namespace WPFMultiThreadJobIDs
                 if (nodeCol == null || nodeCol.Count <= 3)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div") ?? nodeCol;
             }
-            020 //09-12-2020 no result issue
             foreach (HtmlNode node in nodeCol)
             {
                 if (node.HasClass("kp-wholepage"))

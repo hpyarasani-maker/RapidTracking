@@ -794,7 +794,6 @@ namespace RapidTrackingJobIDResults
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//g-inner-card/div/a|.//a[@class='X5OiLe']"); //08-12-2021 videos item urls sel
-            //HtmlNodeCollection nds = node.SelectNodes(".//g-inner-card/div/a|.//div[@jsname='tX7jT']/a"); //29-07-2022//08-12-2021 videos item urls sel
             if (nds == null)
                 nds = node.SelectNodes(".//div[@jsname='ibnC6b']/div/a");   //17-07-2020
             if (nds == null)

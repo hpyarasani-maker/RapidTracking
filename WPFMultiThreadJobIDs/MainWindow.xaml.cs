@@ -169,7 +169,7 @@ namespace WPFMultiThreadJobIDs
                 });
                 this.label1.Dispatcher.Invoke((MethodInvoker)delegate ()
                 {
-                    label1.Content = ++cnt + " of " + lstKWs2.Items.Count + " Completed";
+                    label1.Content = ++cnt + " of " + lstKWs.Items.Count + " Completed";
                     //label1.Refresh();
                 });
             }
@@ -379,7 +379,7 @@ namespace WPFMultiThreadJobIDs
                 });
                 this.label3.Dispatcher.Invoke((MethodInvoker)delegate ()
                 {
-                    label3.Content = ++cnt + " of " + lstKWs2.Items.Count + " Completed";
+                    label3.Content = ++cnt + " of " + lstKWs3.Items.Count + " Completed";
                     //label2.Refresh();
                 });
             }

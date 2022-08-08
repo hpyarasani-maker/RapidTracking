@@ -67,6 +67,8 @@ namespace RapidTrackingSingleThread
                 //string kwQry = "[Tracking_DB_Keywords_Seid_103p] '" + myDate + "'";               
                 //string kwQry = "[GetCommaKeywordsP] '" + myDate + "'";               
                 //string kwQry = "[Tracking_DB_Keywords_Seid_102_P] '" + myDate + "'"; //tracking previous date single keywords
+                //string kwQry = "Tracking_DB_Keywords_SEID_102_TGBN '" + myDate + "'";
+
                 GetKeywords(kwQry);
 
                 if (lstKWs.Items.Count <= 0)

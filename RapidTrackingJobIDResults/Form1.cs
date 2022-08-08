@@ -52,7 +52,7 @@ namespace RapidTrackingJobIDResults
             //this.Text = "RapidTracking_SingleThread_P_A_WOC_10-09-2019";
             // this.Text = "RapidTracking_Missingkeywords_1"; // 01-09-2020
             //this.Text = "RapidTracking_NewKeywords_MissingJobIDs_GT0"; //changes //15-04-2021
-
+            //string kwQry = "Tracking_DB_Keywords_SEID_102_TGBN '" + myDate + "'";
 
             Thread t = new Thread(new ThreadStart(StartProcess));
             t.SetApartmentState(ApartmentState.STA);
@@ -319,11 +319,11 @@ namespace RapidTrackingJobIDResults
                 //lstKWs.Items.Add("102:terry crews");
                 //lstKWs.Items.Add("102:the uninhabitable earth summary");
                 //lstKWs.Items.Add("1:rhubarbarone");
-                lstKws.Items.Add("58:best tennis rackets:6947353729158886401");
+                //lstKws.Items.Add("58:best tennis rackets:6947353729158886401");
                 //coronavirus rd case	140	6672286477201717249
 
             });
-            return;
+            //return;
 
             try
             {

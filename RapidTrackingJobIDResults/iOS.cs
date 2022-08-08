@@ -2868,8 +2868,8 @@ namespace RapidTrackingJobIDResults
             {
                 //21-11-2019
                 url = url.Replace("HTTPS://", "https://").Replace("HTTP://", "http://");
-                if (string.IsNullOrEmpty(url.Trim())) return string.Empty;
-
+                //if (string.IsNullOrEmpty(url.Trim())) return string.Empty;
+                if (string.IsNullOrEmpty(url.Trim()) || url.StartsWith("#")) return string.Empty; //08-08-2022
                 //24-09-2020 changed LastIndexOf to IndexOf
                 if (url.IndexOf("https://") == 0 || url.IndexOf("https://") >= 0)//01-10-2020
                     url = url.Remove(0, url.IndexOf("https://"));

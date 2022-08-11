@@ -88,7 +88,7 @@ namespace WPFMultiThreadJobIDs
             //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
             //string kwQry = "GetErrorKeywords_1 '" + myDate + "'";//changes
             //string kwQry = "GetAllKeywords_1 '" + myDate + "'";     
-            string kwQry = " [GetMissingKeywords] '" + myDate + "',120,3";
+            string kwQry = " [GetMissingKeywords] '" + myDate + "',1";
 
             GetKeywords1(kwQry);
 
@@ -187,7 +187,7 @@ namespace WPFMultiThreadJobIDs
                 //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
                 //string kwQry = "GetErrorKeywords_2 '" + myDate + "'";//changes
                 //string kwQry = "GetAllKeywords_2 '" + myDate + "'";     
-                string kwQry = " [GetMissingKeywords] '" + myDate + "',120,2";
+                string kwQry = " [GetMissingKeywords] '" + myDate + "',2";
 
                 GetKeywords2(kwQry);
 
@@ -297,7 +297,7 @@ namespace WPFMultiThreadJobIDs
                 //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
                 //string kwQry = "GetErrorKeywords_3 '" + myDate + "'";//changes
                 //string kwQry = "GetAllKeywords_3 '" + myDate + "'";     
-                string kwQry = " [GetMissingKeywords] '" + myDate + "',120,3";
+                string kwQry = " [GetMissingKeywords] '" + myDate + "',3";
 
                 GetKeywords3(kwQry);
 

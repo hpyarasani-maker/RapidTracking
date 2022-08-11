@@ -43,7 +43,7 @@ namespace WPFMultiThreadJobIDs
         public MainWindow()
         {
             InitializeComponent();
-            timerExit();
+            //timerExit();
         }
         void timerExit()
         {
@@ -88,7 +88,7 @@ namespace WPFMultiThreadJobIDs
             //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
             //string kwQry = "GetErrorKeywords_1 '" + myDate + "'";//changes
             //string kwQry = "GetAllKeywords_1 '" + myDate + "'";     
-            string kwQry = "GetMissingKeywords_1 '" + myDate + "'";
+            string kwQry = " [GetMissingKeywords] '" + myDate + "',120,3";
 
             GetKeywords1(kwQry);
 
@@ -184,12 +184,12 @@ namespace WPFMultiThreadJobIDs
     {
         while (true)
         {
-            //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
-            //string kwQry = "GetErrorKeywords_2 '" + myDate + "'";//changes
-            //string kwQry = "GetAllKeywords_2 '" + myDate + "'";     
-            string kwQry = "GetMissingKeywords_2 '" + myDate + "'";
+                //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
+                //string kwQry = "GetErrorKeywords_2 '" + myDate + "'";//changes
+                //string kwQry = "GetAllKeywords_2 '" + myDate + "'";     
+                string kwQry = " [GetMissingKeywords] '" + myDate + "',120,2";
 
-            GetKeywords2(kwQry);
+                GetKeywords2(kwQry);
 
             if (lstKWs2.Items.Count <= 0)
                 break;
@@ -294,12 +294,12 @@ namespace WPFMultiThreadJobIDs
     {
         while (true)
         {
-            //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
-            //string kwQry = "GetErrorKeywords_3 '" + myDate + "'";//changes
-            //string kwQry = "GetAllKeywords_3 '" + myDate + "'";     
-            string kwQry = "GetMissingKeywords_3 '" + myDate + "'";
+                //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
+                //string kwQry = "GetErrorKeywords_3 '" + myDate + "'";//changes
+                //string kwQry = "GetAllKeywords_3 '" + myDate + "'";     
+                string kwQry = " [GetMissingKeywords] '" + myDate + "',120,3";
 
-            GetKeywords3(kwQry);
+                GetKeywords3(kwQry);
 
             if (lstKWs3.Items.Count <= 0)
                 break;

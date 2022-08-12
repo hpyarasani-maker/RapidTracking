@@ -60,7 +60,7 @@ namespace WPFMultiThreadJobIDs
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             //this.Title = "WPF_RapidTracking_MissingKeywords_(1-2-3)";//changes
-            this.Title = "RapidTracking_Errorkeywords_1"; //changes
+            this.Title = "RapidTracking_Errorkeywords_(1-2-3)"; //changes
 
             dtPicker1.SelectedDate = DateTime.Today;
             //myDate = dtPicker1.SelectedDate.ToString("yyyy-MM-dd");

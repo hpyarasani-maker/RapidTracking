@@ -59,7 +59,8 @@ namespace WPFMultiThreadJobIDs
         }
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            this.Title = "WPF_RapidTracking_MissingKeywords_(1-2-3)";//changes
+            //this.Title = "WPF_RapidTracking_MissingKeywords_(1-2-3)";//changes
+            this.Title = "RapidTracking_Errorkeywords_1"; //changes
 
             dtPicker1.SelectedDate = DateTime.Today;
             //myDate = dtPicker1.SelectedDate.ToString("yyyy-MM-dd");
@@ -85,12 +86,12 @@ namespace WPFMultiThreadJobIDs
     {
         while (true)
         {
-            //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
-            //string kwQry = "GetErrorKeywords_1 '" + myDate + "'";//changes
-            //string kwQry = "GetAllKeywords_1 '" + myDate + "'";     
-            string kwQry = " [GetMissingKeywords] '" + myDate + "',1";
-
-            GetKeywords1(kwQry);
+                //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
+                //string kwQry = "GetErrorKeywords_1 '" + myDate + "'";//changes
+                //string kwQry = "GetAllKeywords_1 '" + myDate + "'";     
+                //string kwQry = " [GetMissingKeywords] '" + myDate + "',2"; //jobids procedure
+                string kwQry = "[GetErrorKeywords] '" + myDate + "',1"; //changes error jobids procedure
+                GetKeywords1(kwQry);
 
             if (lstKWs.Items.Count <= 0)
                 break;
@@ -187,8 +188,8 @@ namespace WPFMultiThreadJobIDs
                 //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
                 //string kwQry = "GetErrorKeywords_2 '" + myDate + "'";//changes
                 //string kwQry = "GetAllKeywords_2 '" + myDate + "'";     
-                string kwQry = " [GetMissingKeywords] '" + myDate + "',2";
-
+                //string kwQry = " [GetMissingKeywords] '" + myDate + "',2"; //jobids procedure
+                string kwQry = "[GetErrorKeywords] '" + myDate + "',2"; //changes error jobids procedure
                 GetKeywords2(kwQry);
 
             if (lstKWs2.Items.Count <= 0)
@@ -296,9 +297,9 @@ namespace WPFMultiThreadJobIDs
         {
                 //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
                 //string kwQry = "GetErrorKeywords_3 '" + myDate + "'";//changes
-                //string kwQry = "GetAllKeywords_3 '" + myDate + "'";     
-                string kwQry = " [GetMissingKeywords] '" + myDate + "',3";
-
+                //string kwQry = "GetAllKeywords_3 '" + myDate + "'"; 
+                //string kwQry = " [GetMissingKeywords] '" + myDate + "',3"; Jobids procedure
+                string kwQry = "[GetErrorKeywords] '" + myDate + "',3"; //changes error jobids procedure
                 GetKeywords3(kwQry);
 
             if (lstKWs3.Items.Count <= 0)

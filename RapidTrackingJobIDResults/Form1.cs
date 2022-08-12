@@ -75,7 +75,8 @@ namespace RapidTrackingJobIDResults
                 //string myDate = "2019-11-20";
 
 
-                string kwQry = "[GetErrorKeywords_1] '" + myDate + "'"; //changes
+                //string kwQry = "[GetErrorKeywords_1] '" + myDate + "'"; //changes
+                string kwQry = "[GetErrorKeywords] '" + myDate + "',1"; //changes
 
                 //string kwQry = "[GetMissingKeywords_1] '" + myDate + "'"; // 01-09-2020
 

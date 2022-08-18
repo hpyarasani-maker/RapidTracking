@@ -429,7 +429,7 @@ namespace RapidTrackingSingleThread
                         pla = doc.DocumentNode.SelectSingleNode(".//div[@id='tads']/div/div[contains(@class, 'mnr-c')]"); //07-02-2022
                     if (pla != null)
                     {
-                        HtmlNode h3 = pla.SelectSingleNode(".//div[@class='dxR8gf']/h3");
+                        HtmlNode h3 = pla.SelectSingleNode(".//div[contains(@class,'dxR8gf')]/h3");//18-08-2022 PL item urls
                         if (h3 == null)
                             h3 = pla.SelectSingleNode(".//div[@class='richlist-top-shopping-title']/h3");
                         if (h3 == null)

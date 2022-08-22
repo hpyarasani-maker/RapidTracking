@@ -42,13 +42,14 @@ namespace WPFMultiThreadJobIDs
             if (nodeCol == null)
                 nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-section-with-header|//div[@class='Hpbsqe']|//div[@id='Odp5De']");//23-12-2021//08-10-2021 images //03-12-2020  //01-05-2020   
             if (nodeCol == null || (nodeCol.Count > 1 && nodeCol.Count <= 3))//25-07-2022
-                nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div|.//div[@class='ULSxyf']") ?? nodeCol;//19-07-2022//15-07-2022
+                nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div|.//div[@class='ULSxyf']|//div[@class='hlcw0c']/div") ?? nodeCol;//17-08-2022
             if (nodeCol == null || nodeCol.Count <= 1) //01-08-2022 swapped lines
             {
                 nodeCol = doc.DocumentNode.SelectNodes("//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div") ?? nodeCol;
                 if (nodeCol == null || nodeCol.Count <= 3)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div|//div[@class='hlcw0c']/div") ?? nodeCol;
             }
+            if (nodeCol != null) //11-08-2022
             foreach (HtmlNode node in nodeCol)
             {
                 if (node.HasClass("kp-wholepage"))
@@ -77,6 +78,7 @@ namespace WPFMultiThreadJobIDs
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@class='vC5Ym DhKAUb']/div");  // 03-04-2020
                 if (nodeCol == null)
                     nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[contains(@class,'WvKfwe')]/g-section-with-header|.//div[@class='UDZeY OTFaAf']");//09-12-2020
+                if (nodeCol != null)  //11-08-2022
                 foreach (HtmlNode node in nodeCol)
                 {
                     try
@@ -827,8 +829,7 @@ namespace WPFMultiThreadJobIDs
                         }
                         catch { title = ""; }
                         string url = nd.Attributes["href"].Value.Trim();
-                        if (!string.IsNullOrEmpty(SetUrl(url)))//08-08-2022
-                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                     }
                     catch { }
                 }
@@ -1784,8 +1785,7 @@ namespace WPFMultiThreadJobIDs
             {
                 //21-11-2019
                 url = url.Replace("HTTPS://", "https://").Replace("HTTP://", "http://");
-                //if (string.IsNullOrEmpty(url.Trim())) return string.Empty;
-                if (string.IsNullOrEmpty(url.Trim()) || url.StartsWith("#")) return string.Empty; //08-08-2022
+                if (string.IsNullOrEmpty(url.Trim())) return string.Empty;
                 //29-09-2020            
                 if (url.IndexOf("https://") == 0 || url.IndexOf("https://") >= 0) //01-10-2020
                     url = url.Remove(0, url.IndexOf("https://"));

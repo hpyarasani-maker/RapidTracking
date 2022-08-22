@@ -73,12 +73,12 @@ namespace WPFMultiThreadJobIDs
 
             Thread t2 = new Thread(new ThreadStart(StartProcess_2));
             t2.SetApartmentState(ApartmentState.STA);
-            t1.Priority = ThreadPriority.Lowest;
+            t2.Priority = ThreadPriority.Lowest;
             t2.Start();
 
             Thread t3 = new Thread(new ThreadStart(StartProcess_3));
             t3.SetApartmentState(ApartmentState.STA);
-            t1.Priority = ThreadPriority.Lowest;
+            t3.Priority = ThreadPriority.Lowest;
             t3.Start();
         }
     

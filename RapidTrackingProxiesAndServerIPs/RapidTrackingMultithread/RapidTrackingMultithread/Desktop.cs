@@ -49,6 +49,7 @@ namespace RapidTrackingMultithread
                 if (nodeCol == null || nodeCol.Count <= 3)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div|//div[@class='hlcw0c']/div") ?? nodeCol;
             }
+            if (nodeCol != null) //11-08-2022
             foreach (HtmlNode node in nodeCol)
             {
                 if (node.HasClass("kp-wholepage"))
@@ -75,6 +76,7 @@ namespace RapidTrackingMultithread
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@class='vC5Ym DhKAUb']/div");  // 03-04-2020
                 if (nodeCol == null)
                     nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[contains(@class,'WvKfwe')]/g-section-with-header|.//div[@class='UDZeY OTFaAf']");//09-12-2020
+                if (nodeCol != null) //11-08-2022
                 foreach (HtmlNode node in nodeCol)
                 {
                     try

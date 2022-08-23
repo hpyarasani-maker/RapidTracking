@@ -223,7 +223,7 @@ namespace SERPResultsJSON
                 //lstKWs.Items.Add("160:malmö ff");
                 //lstKWs.Items.Add("102:terry crews");
                 //lstKWs.Items.Add("102:the uninhabitable earth summary");
-                lstKWs.Items.Add("1:affordable liability insurance for small business");
+                lstKWs.Items.Add("1:dyson");
             });
             return;
 
@@ -449,7 +449,7 @@ namespace SERPResultsJSON
                 locale = sp.locale,
                 geo_location = sp.geo_location,
                 //uule = uule,
-                parse = false, //23-09-2021 changed datatype into "int to bool"
+                parse = true, //23-09-2021 changed datatype into "int to bool"
                 user_agent_type = sp.device,
                 context = new List<Context> {
                     new Context("safe_search", 0)

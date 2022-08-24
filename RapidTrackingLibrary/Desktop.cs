@@ -1418,8 +1418,9 @@ namespace RapidTrackingLibrary
                 nd = node.SelectSingleNode(".//div[@jscontroller='hFvNdd']");//08-10-2021 images
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']"); //07-12-2021 for images block
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@id='iur']"); //24-08-2022 images
             if (nd != null && node.Attributes["id"]?.Value != "Odp5De" && node.SelectSingleNode(".//div[@class='q6PGbe']|.//div[@class='l44Vof']|.//div[@class='P9Jfrb']|.//div[@class='o8ebK']//13-08-2022 maps") == null)//13-08-2022 maps //02-06-2022
-            //if (nd != null)
             {
                 return "Images";
             }

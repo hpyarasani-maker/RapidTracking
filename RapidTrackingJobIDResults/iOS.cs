@@ -528,8 +528,7 @@ namespace RapidTrackingJobIDResults
                 HtmlNodeCollection col = crNode.SelectNodes(".//div[contains(@id,'tads')]/ol/li");
                 if (col == null)
                     col = doc.DocumentNode.SelectNodes("//div[@id='tads']/div/ol/li|//div[@jsname='hWE2jd']|//div[@id='tads']/div[@class='uEierd']|.//div[@id='tads']/div/div[@class='uEierd']" +
-                                                        "|//div[@id='tads']/div[@class='mnr-c O9g5cc uUPGi']|//div[contains(@class,'yDDB0e')]");//19-08-2022//28-03-2022 "/div" included//04-10-2021 updated selector for missing adwords
-
+                        "|//div[@id='tads']/div[@class='mnr-c O9g5cc uUPGi']|//div[contains(@class,'yDDB0e')]");//19-08-2022//28-03-2022 "/div" included//04-10-2021 updated selector for missing adwords
                 if (col != null)
                 {
                     s.Append("<block type=\"adwords\" url=\"\">");
@@ -2872,8 +2871,8 @@ namespace RapidTrackingJobIDResults
             {
                 //21-11-2019
                 url = url.Replace("HTTPS://", "https://").Replace("HTTP://", "http://");
-                //if (string.IsNullOrEmpty(url.Trim())) return string.Empty;
-                if (string.IsNullOrEmpty(url.Trim()) || url.StartsWith("#")) return string.Empty; //08-08-2022
+                if (string.IsNullOrEmpty(url.Trim())) return string.Empty;
+
                 //24-09-2020 changed LastIndexOf to IndexOf
                 if (url.IndexOf("https://") == 0 || url.IndexOf("https://") >= 0)//01-10-2020
                     url = url.Remove(0, url.IndexOf("https://"));

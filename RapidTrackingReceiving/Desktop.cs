@@ -833,7 +833,7 @@ namespace Oxylabs_BulkKeywords
                         }
                         catch { title = ""; }
                         string url = nd.Attributes["href"].Value.Trim();
-                        if (!string.IsNullOrEmpty(SetUrl(url)))//08-08-2022
+                        //if (!string.IsNullOrEmpty(SetUrl(url)))//08-08-2022
                             s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                     }
                     catch { }
@@ -1791,7 +1791,8 @@ namespace Oxylabs_BulkKeywords
             {
                 //21-11-2019
                 url = url.Replace("HTTPS://", "https://").Replace("HTTP://", "http://");
-                if (string.IsNullOrEmpty(url.Trim()) || url.StartsWith("#")) return string.Empty; //08-08-2022
+                if (string.IsNullOrEmpty(url.Trim())) return string.Empty;
+                //if (string.IsNullOrEmpty(url.Trim()) || url.StartsWith("#")) return string.Empty; //08-08-2022
                 //29-09-2020            
                 if (url.IndexOf("https://") == 0 || url.IndexOf("https://") >= 0) //01-10-2020
                     url = url.Remove(0, url.IndexOf("https://"));

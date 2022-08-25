@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 
-namespace RapidTrackingSingleThread
+namespace SERPResultsJSON
 {
     public partial class frmSingleThread : Form
     {
@@ -61,19 +61,14 @@ namespace RapidTrackingSingleThread
             {
                 string myDate = DateTime.Today.ToString("yyyy-MM-dd");
                 //string myDate = "2019-11-20";
-
-
                 string kwQry = "[Tracking_DB_Keywords_Seid_102] '" + myDate + "'";
                 //string kwQry = "[Tracking_DB_Keywords_Seid_103p] '" + myDate + "'";               
                 //string kwQry = "[GetCommaKeywordsP] '" + myDate + "'";               
                 //string kwQry = "[Tracking_DB_Keywords_Seid_102_P] '" + myDate + "'"; //tracking previous date single keywords
                 //string kwQry = "Tracking_DB_Keywords_SEID_102_TGBN '" + myDate + "'";
-
                 GetKeywords(kwQry);
-
                 if (lstKWs.Items.Count <= 0)
                     break;
-
                 int cnt = 0;
                 //this.Invoke((MethodInvoker)delegate ()
                 //{
@@ -87,54 +82,23 @@ namespace RapidTrackingSingleThread
                     bool result = false;
                     try
                     {
-                        var doc = new HtmlAgilityPack.HtmlDocument();
                         Task<ArrayList> alresult = GetHTML(kw, Convert.ToInt32(seid));
-
                         foreach (string[] src in alresult.Result)
                         {
                             string keyword = src[0];
-                            JObject obj = JObject.Parse(src[1]);
-                            string html = obj["results"][0]["content"].Value<string>();
+                            string res = src[1];
                             string jobid = src[2];
                             string device = src[3];
-                            File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
-                            //File.WriteAllText(@"C:\inetpub\wwwroot\"+jobid+"_withOut filter_"+".html", html, Encoding.UTF8);
+
                             result = true;
-                            doc = new HtmlAgilityPack.HtmlDocument();
-                            doc.LoadHtml(html);
-                            string res = string.Empty;
-                            int count = 0;
+
                             try
                             {
-                                if (device == "desktop")
-                                {
-                                    Desktop clsDesktop = new Desktop();
-                                    res = clsDesktop.ProcessDocument(seid, keyword, doc, out count);
-                                }
-                                else
-                                {
-                                    iOS clsiOS = new iOS();
-                                    res = clsiOS.ProcessDocument(seid, keyword, doc, out count);
-                                }
-
                                 if (!string.IsNullOrEmpty(res))
                                 {
-                                    lblCount.Invoke((MethodInvoker)(delegate ()
-                                    {
-                                        lblCount.Text = "No. of Urls : " + count;
-                                    }));
-                                    if (count > 20)
-                                    {
-                                        SendToAPI(seid, keyword, res, jobid);
-                                        SendToDB(seid, keyword, res, jobid, count);
-                                    }
+                                    SendToAPI(seid, keyword, res, jobid);
+                                    //SendToDB(seid, keyword, res, jobid, count);
                                 }
-                                //else
-                                //{
-                                //    SendToAPI(seid, keyword, res, jobid);
-                                //    SendToDB(seid, keyword, res, jobid, count);
-                                //}
-
                             }
                             catch (Exception ex)
                             {
@@ -147,7 +111,6 @@ namespace RapidTrackingSingleThread
                                 }
                                 finally { }
                             }
-
                         }
                     }
                     catch (Exception ex)
@@ -173,39 +136,15 @@ namespace RapidTrackingSingleThread
                             textBox1.Text = s + "  -- No result.";
                         textBox1.Refresh();
                     });
-
                 }
-
             }
-
             Environment.Exit(Environment.ExitCode);
         }
 
 
+
         private void SendToAPI(string seid, string kw, string res, string jobid)
         {
-            //string r = "[\x00-\x08\x0B\x0C\x0E-\x1F\x26]";
-            //res = Regex.Replace(res, r, "", RegexOptions.Compiled);
-            //if (res == string.Empty)
-            //{
-            //    XmlDocument xd = new XmlDocument();
-            //    res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
-            //    res += "<searchResult searchEngine =\"" + seid + "\" keyword=\"" + kw + "\" date =\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\">";
-            //    res += "<section col = \"main\" /> <section col=\"right\" /> </searchResult> ";
-            //    xd.LoadXml(res);
-            //    xd.Save(xmlPath);
-            //}
-            //else
-            //{
-            XmlDocument xd = new XmlDocument();
-            res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + res;
-            xd.LoadXml(res);
-            xd.Save(xmlPath);
-
-            //}
-            //SendToURL
-
-
             string submitURL = ReadAPI();
             //return; //03-04-2021
             string user = "pisoftware";
@@ -216,33 +155,24 @@ namespace RapidTrackingSingleThread
                 httpWReq.UseDefaultCredentials = true;
                 httpWReq.PreAuthenticate = true;
                 httpWReq.Credentials = CredentialCache.DefaultCredentials;
-
                 Encoding encoding = new UTF8Encoding();
-                string postData = GetTextFromXMLFile(xmlPath);
-                byte[] data = encoding.GetBytes(postData);
 
+                byte[] data = encoding.GetBytes(res);
                 httpWReq.ProtocolVersion = HttpVersion.Version11;
                 httpWReq.Method = "POST";
                 httpWReq.ContentType = "application/x-www-form-urlencoded";
-
-
                 string auth = string.Format("{0}:{1}", user, pwd);
                 string enc = Convert.ToBase64String(Encoding.ASCII.GetBytes(auth));
                 string cred = string.Format("{0} {1}", "Basic", enc);
-
-
                 httpWReq.Headers[HttpRequestHeader.Authorization] = cred;
                 httpWReq.ContentLength = data.Length;
                 //httpWReq.Timeout = 0;
-
                 Stream stream = httpWReq.GetRequestStream();
                 stream.Write(data, 0, data.Length);
                 stream.Close();
-
                 HttpWebResponse response = (HttpWebResponse)httpWReq.GetResponse();
                 //string s = response.ToString();
                 StreamReader reader = new StreamReader(response.GetResponseStream());
-
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
                     reader.Close();
@@ -260,17 +190,13 @@ namespace RapidTrackingSingleThread
             }
             catch (WebException ex)
             {
-
                 ////store into keywordfail table.
                 SendToDBFailure(seid, kw, jobid, false);
-
-
                 string errorMsg = string.Empty;
                 using (WebResponse response = ex.Response)
                 {
                     HttpWebResponse httpResponse = (HttpWebResponse)response;
                     errorMsg = string.Format("API Error: StatusCode {0}", httpResponse.StatusCode);
-
                     using (Stream data = response.GetResponseStream())
                     using (var reader = new StreamReader(data))
                     {
@@ -278,15 +204,12 @@ namespace RapidTrackingSingleThread
                         txtError.Text = errorMsg;
                     }
                 }
-
                 throw new Exception(errorMsg);
-
             }
             catch (Exception ex)
             {
                 throw new Exception("Error: " + ex.Message);
             }
-
         }
 
         private void GetKeywords(string qry)
@@ -300,7 +223,7 @@ namespace RapidTrackingSingleThread
                 //lstKWs.Items.Add("160:malmö ff");
                 //lstKWs.Items.Add("102:terry crews");
                 //lstKWs.Items.Add("102:the uninhabitable earth summary");
-                lstKWs.Items.Add("1:affordable liability insurance for small business");
+                lstKWs.Items.Add("1:dyson");
             });
             return;
 
@@ -526,7 +449,7 @@ namespace RapidTrackingSingleThread
                 locale = sp.locale,
                 geo_location = sp.geo_location,
                 //uule = uule,
-                parse = false, //23-09-2021 changed datatype into "int to bool"
+                parse = true, //23-09-2021 changed datatype into "int to bool"
                 user_agent_type = sp.device,
                 context = new List<Context> {
                     new Context("safe_search", 0)

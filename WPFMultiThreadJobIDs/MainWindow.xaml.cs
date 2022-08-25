@@ -43,7 +43,7 @@ namespace WPFMultiThreadJobIDs
         public MainWindow()
         {
             InitializeComponent();
-            timerExit();
+            //timerExit();
         }
         void timerExit()
         {
@@ -59,7 +59,8 @@ namespace WPFMultiThreadJobIDs
         }
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            this.Title = "WPF_RapidTracking_MissingKeywords_(1-2-3)";//changes
+            //this.Title = "WPF_RapidTracking_MissingKeywords_(1-2-3)";//changes
+            this.Title = "RapidTracking_Errorkeywords_(1-2-3)"; //changes
 
             dtPicker1.SelectedDate = DateTime.Today;
             //myDate = dtPicker1.SelectedDate.ToString("yyyy-MM-dd");
@@ -72,12 +73,12 @@ namespace WPFMultiThreadJobIDs
 
             Thread t2 = new Thread(new ThreadStart(StartProcess_2));
             t2.SetApartmentState(ApartmentState.STA);
-            t1.Priority = ThreadPriority.Lowest;
+            t2.Priority = ThreadPriority.Lowest;
             t2.Start();
 
             Thread t3 = new Thread(new ThreadStart(StartProcess_3));
             t3.SetApartmentState(ApartmentState.STA);
-            t1.Priority = ThreadPriority.Lowest;
+            t3.Priority = ThreadPriority.Lowest;
             t3.Start();
         }
     
@@ -85,12 +86,12 @@ namespace WPFMultiThreadJobIDs
     {
         while (true)
         {
-            //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
-            //string kwQry = "GetErrorKeywords_1 '" + myDate + "'";//changes
-            //string kwQry = "GetAllKeywords_1 '" + myDate + "'";     
-            string kwQry = "GetMissingKeywords_1 '" + myDate + "'";
-
-            GetKeywords1(kwQry);
+                //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
+                //string kwQry = "GetErrorKeywords_1 '" + myDate + "'";//changes
+                //string kwQry = "GetAllKeywords_1 '" + myDate + "'";     
+                string kwQry = " [GetMissingKeywords] '" + myDate + "',1"; //jobids procedure
+                //string kwQry = "[GetErrorKeywords] '" + myDate + "',1"; //changes error jobids procedure
+                GetKeywords1(kwQry);
 
             if (lstKWs.Items.Count <= 0)
                 break;
@@ -169,7 +170,7 @@ namespace WPFMultiThreadJobIDs
                 });
                 this.label1.Dispatcher.Invoke((MethodInvoker)delegate ()
                 {
-                    label1.Content = ++cnt + " of " + lstKWs2.Items.Count + " Completed";
+                    label1.Content = ++cnt + " of " + lstKWs.Items.Count + " Completed";
                     //label1.Refresh();
                 });
             }
@@ -184,12 +185,12 @@ namespace WPFMultiThreadJobIDs
     {
         while (true)
         {
-            //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
-            //string kwQry = "GetErrorKeywords_2 '" + myDate + "'";//changes
-            //string kwQry = "GetAllKeywords_2 '" + myDate + "'";     
-            string kwQry = "GetMissingKeywords_2 '" + myDate + "'";
-
-            GetKeywords2(kwQry);
+                //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
+                //string kwQry = "GetErrorKeywords_2 '" + myDate + "'";//changes
+                //string kwQry = "GetAllKeywords_2 '" + myDate + "'";     
+                string kwQry = " [GetMissingKeywords] '" + myDate + "',2"; //jobids procedure
+                //string kwQry = "[GetErrorKeywords] '" + myDate + "',2"; //changes error jobids procedure
+                GetKeywords2(kwQry);
 
             if (lstKWs2.Items.Count <= 0)
                 break;
@@ -294,12 +295,12 @@ namespace WPFMultiThreadJobIDs
     {
         while (true)
         {
-            //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
-            //string kwQry = "GetErrorKeywords_3 '" + myDate + "'";//changes
-            //string kwQry = "GetAllKeywords_3 '" + myDate + "'";     
-            string kwQry = "GetMissingKeywords_3 '" + myDate + "'";
-
-            GetKeywords3(kwQry);
+                //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
+                //string kwQry = "GetErrorKeywords_3 '" + myDate + "'";//changes
+                //string kwQry = "GetAllKeywords_3 '" + myDate + "'"; 
+                string kwQry = " [GetMissingKeywords] '" + myDate + "',3"; //Jobids procedure
+                //string kwQry = "[GetErrorKeywords] '" + myDate + "',3"; //changes error jobids procedure
+                GetKeywords3(kwQry);
 
             if (lstKWs3.Items.Count <= 0)
                 break;
@@ -379,7 +380,7 @@ namespace WPFMultiThreadJobIDs
                 });
                 this.label3.Dispatcher.Invoke((MethodInvoker)delegate ()
                 {
-                    label3.Content = ++cnt + " of " + lstKWs2.Items.Count + " Completed";
+                    label3.Content = ++cnt + " of " + lstKWs3.Items.Count + " Completed";
                     //label2.Refresh();
                 });
             }

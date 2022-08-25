@@ -1,99 +1,63 @@
 ﻿using HtmlAgilityPack;
 using System;
 using System.Collections;
-using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 
-namespace Oxylabs_BulkKeywords
+
+namespace SERPResultsJSON
 {
     public class Desktop
     {
         int orgLinks;
         string html;
-
-        public string ProcessDocument(string seid, string keyword, string htmlsource, out int organicurls)
+        public string ProcessDocument(string seid, string keyword, HtmlDocument doc, out int count)
         {
-            if (string.IsNullOrEmpty(htmlsource))
-            {
-                organicurls = 0;
-                return string.Empty;
-            }
-
-            var doc = new HtmlDocument();
-            doc.LoadHtml(htmlsource);
-
+            count = 0;
+            if (doc == null) throw new Exception("No source found.");
             HtmlNode htmlNode = doc.DocumentNode.SelectSingleNode("//table[@id='mn']");
             if (htmlNode != null)
             {
-                organicurls = 0;
                 throw new Exception("Old page found.");
             }
-
-            html = htmlsource;
             orgLinks = 0;
-            StringBuilder sb = new StringBuilder();
-            //sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" date=\"2019-11-29\" >"); //previous date
-            sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" date=\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\" >");
-            sb.Append("<section col=\"main\">");
-            string topStuff = GetTopStuff(doc);
-            sb.Append(topStuff);
-
-            HtmlNodeCollection nodeCol = doc.DocumentNode.SelectNodes("//div[@class='_NId']");
-            if (nodeCol == null)
-                nodeCol = doc.DocumentNode.SelectNodes("//div[@class='bkWMgd']");
-            if (nodeCol == null)
-                nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");//09-12-2020
-            if (nodeCol == null)
-                nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-section-with-header|//div[@class='Hpbsqe']|//div[@id='Odp5De']");//23-12-2021//08-10-2021 images //03-12-2020  //01-05-2020 
-            if (nodeCol == null || (nodeCol.Count > 1 && nodeCol.Count <= 3))//25-07-2022
-                nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div|.//div[@class='ULSxyf']|//div[@class='hlcw0c']/div") ?? nodeCol;//17-08-2022
-            if (nodeCol == null || nodeCol.Count <= 1) //01-08-2022 swapped lines
-            {
-                nodeCol = doc.DocumentNode.SelectNodes("//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div") ?? nodeCol;
-                if (nodeCol == null || nodeCol.Count <= 3)
-                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div|//div[@class='hlcw0c']/div") ?? nodeCol;
-            }
-            //if (nodeCol == null)
-            //{
-            //    organicurls = 0;
-            //    return string.Empty;
-            //}
-
             string ndText = "";
-            if (nodeCol != null) //11-08-2022
-            foreach (HtmlNode node in nodeCol)
+            try //28-09-2020  try catch.
             {
-                if (node.HasClass("kp-wholepage"))
-                {
-                    continue;
-                }
-                try
-                {
-                    if (node.InnerHtml != "")
-                    {
-                        string s = ProcessNode(node);
-                        ndText += s;
-                        if (s.Length > 0)
-                            sb.Append(s);
-                    }
-                }
-                catch { }
-            }
-            // 23-03-2020
-            if (string.IsNullOrEmpty(ndText) || orgLinks == 0)//08-04-2020
-            {
-                nodeCol = doc.DocumentNode.SelectNodes("//div[@class='xVtsMb i6u2Cc']|//div[@class='xVtsMb']/div/div");//swapped 08-04-2020
+                html = doc.DocumentNode.OuterHtml;
+                StringBuilder sb = new StringBuilder();
+                sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" date=\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\" >");
+                sb.Append("<section col=\"main\">");
+                string topStuff = GetTopStuff(doc);
+                ndText = topStuff;
+                sb.Append(topStuff);
+
+                HtmlNodeCollection nodeCol = doc.DocumentNode.SelectNodes("//div[@class='_NId']");
                 if (nodeCol == null)
-                    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='vC5Ym DhKAUb']/div");  // 03-04-2020
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='bkWMgd']");
                 if (nodeCol == null)
-                    nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[contains(@class,'WvKfwe')]/g-section-with-header|.//div[@class='UDZeY OTFaAf']");//09-12-2020
-                if (nodeCol != null) //11-08-2022
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");//09-12-2020
+                if (nodeCol == null)
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-section-with-header|//div[@class='Hpbsqe']|//div[@id='Odp5De']");//23-12-2021//08-10-2021 images //03-12-2020  //01-05-2020 
+                if (nodeCol == null || (nodeCol.Count > 1 && nodeCol.Count <= 3))//25-07-2022
+                    //nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div|.//div[@class='ULSxyf']") ?? nodeCol;//19-07-2022//15-07-2022
+                    nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div|.//div[@class='ULSxyf']|//div[@class='hlcw0c']/div") ?? nodeCol;//17-08-2022
+                if (nodeCol == null || nodeCol.Count <= 1) //01-08-2022 swapped lines
+                {
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div") ?? nodeCol;
+                    if (nodeCol == null || nodeCol.Count <= 3)
+                        nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div|//div[@class='hlcw0c']/div") ?? nodeCol;
+                }
+                if (nodeCol != null)  //11-08-2022
                 foreach (HtmlNode node in nodeCol)
                 {
+                    if (node.HasClass("kp-wholepage"))
+                    {
+                        continue;
+                    }
                     try
                     {
                         if (node.InnerHtml != "")
@@ -106,30 +70,67 @@ namespace Oxylabs_BulkKeywords
                     }
                     catch { }
                 }
+
+                // 23-03-2020
+                if (string.IsNullOrEmpty(ndText) || orgLinks == 0)//08-04-2020
+                {
+
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='xVtsMb i6u2Cc']|//div[@class='xVtsMb']/div/div");//swapped 08-04-2020
+                    if (nodeCol == null)
+                        nodeCol = doc.DocumentNode.SelectNodes("//div[@class='vC5Ym DhKAUb']/div");  // 03-04-2020
+                    if (nodeCol == null)
+                        nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[contains(@class,'WvKfwe')]/g-section-with-header|.//div[@class='UDZeY OTFaAf']");//09-12-2020
+                    if (nodeCol != null) //11-08-2022
+                    foreach (HtmlNode node in nodeCol)
+                    {
+                        try
+                        {
+                            if (node.InnerHtml != "")
+                            {
+                                string s = ProcessNode(node);
+                                ndText += s;
+                                if (s.Length > 0)
+                                    sb.Append(s);
+                            }
+                        }
+                        catch { }
+                    }
+                }
+                // 23-03-2020
+
+                //if (nodeCol == null) throw new Exception("No block found.");
+                if (nodeCol == null & string.IsNullOrEmpty(ndText)) throw new Exception("No block found."); // 03-06-2020
+                //if (nodeCol == null) return string.Empty;                      
+                //if (nodeCol == null) goto BOTTOMSTUFF; 
+
+
+                //if (orgLinks < count)
+                //    return string.Empty;
+
+                //BOTTOMSTUFF:
+                string bottomStuff = GetBottomStuff(doc);
+                ndText += bottomStuff;
+                sb.Append(bottomStuff);
+                sb.Append("</section>");
+
+                sb.Append("<section col=\"right\">");
+                string rightStuff = GetRightStuff(doc);
+                ndText += rightStuff;
+                sb.Append(rightStuff);
+                sb.Append("</section>");
+                sb.Append("</searchResult>");
+
+                if (ndText.Length > 0)
+                {
+                    count = orgLinks;
+                    return sb.ToString();
+                }
             }
-            // 23-03-2020
-
-            //if (orgLinks < count)
-            //    return string.Empty;
-
-            string bottomStuff = GetBottomStuff(doc);
-            sb.Append(bottomStuff);
-            sb.Append("</section>");
-
-            sb.Append("<section col=\"right\">");
-            string rightStuff = GetRightStuff(doc);
-            sb.Append(rightStuff);
-            sb.Append("</section>");
-            sb.Append("</searchResult>");
-
-            if (ndText.Length <= 0)
+            catch (Exception ex)
             {
-                organicurls = 0;
-                return string.Empty;
+                throw ex;
             }
-            organicurls = orgLinks;
-            return sb.ToString();
-
+            return string.Empty;
 
         }
 
@@ -266,7 +267,7 @@ namespace Oxylabs_BulkKeywords
                                 s.Append("<item url=\"" + url + "\" title=\"" + SetTitle(title) + "\" />");
                             // end 27-08-2020
                         }
-                        catch (Exception ex)
+                        catch(Exception ex)
                         {
                             throw ex;
                         }
@@ -380,7 +381,7 @@ namespace Oxylabs_BulkKeywords
                         HtmlNode n = nd.SelectSingleNode(".//div[@class='ad_cclk']/a[2]|.//div[contains(@class,'d5oMvf')]/a|.//div[contains(@class,'v5yQqb')]/a");//12-11-2021 //29-08-2020 included contains fucntions //23-07-2020 included missing item urls selectors
                         if (n != null)
                         {
-                            //25-08-2020
+                             //25-08-2020
                             try  //28-09-2020  try catch.
                             {
                                 string url = string.Empty;
@@ -413,7 +414,7 @@ namespace Oxylabs_BulkKeywords
                                     s.Append("<item url=\"" + url + "\" title=\"" + SetTitle(title) + "\" />");
                                 // end 27-08-2020
                             }
-                            catch (Exception ex)
+                            catch(Exception ex)
                             { throw ex; }
                         }
                     }
@@ -473,7 +474,7 @@ namespace Oxylabs_BulkKeywords
                 }
                 return sb;
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 throw ex;
             }
@@ -807,7 +808,7 @@ namespace Oxylabs_BulkKeywords
             if (nds == null)
                 //nds = node.SelectNodes(".//div[@class='LYyupc']/div/a|.//a[@class='X5OiLe']|.//div[@class='XpiUte']/a"); //30-08-2021 videos item url//07-07-2021 //23-07-2021
                 nds = node.SelectNodes(".//div[@class='LYyupc']/div/a|.//div[@class='XpiUte']/a"); //08-12-2021 videos item urls //30-08-2021 videos item url//07-07-2021 //23-07-2021
-            if (nds != null)
+                if (nds != null)
                 foreach (HtmlNode nd in nds)
                 {
                     try
@@ -828,12 +829,12 @@ namespace Oxylabs_BulkKeywords
                         if (n == null)
                             n = nd.SelectSingleNode(".//div[@class='fc9yUc tNxQIb ynAwRc OSrXXb']"); //08-12-2021 titles
                         try
-                        {
+                       {
                             title = n.InnerText;
                         }
                         catch { title = ""; }
                         string url = nd.Attributes["href"].Value.Trim();
-                        //if (!string.IsNullOrEmpty(SetUrl(url)))//08-08-2022
+                        if (!string.IsNullOrEmpty(SetUrl(url)))//08-08-2022
                             s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                     }
                     catch { }
@@ -891,7 +892,7 @@ namespace Oxylabs_BulkKeywords
                 nds = node.SelectNodes(".//div[@jsname='Cpkphb']"); //30-11-2021 people also ask titles
             if (nds == null)
                 return string.Empty;
-            string[] titles = new string[nds.Count];//31-01-2022
+           string[] titles = new string[nds.Count];//31-01-2022
             int x = 0;
             foreach (HtmlNode nd in nds)
             {
@@ -899,37 +900,37 @@ namespace Oxylabs_BulkKeywords
                 titles[x++] = nd.InnerText;
             }
             var res = GetPeopleAlsoAskUrls(titles);
-            if (string.IsNullOrEmpty(res))
-                foreach (var t in titles)
+            if(string.IsNullOrEmpty(res))
+                foreach(var t in titles)
                     s.Append("<item url=\"\" title=\"" + SetTitle(t) + "\" />");
             s.Append(res);//31-01-2022
             return s.ToString();
         }//end of item urls code 31-01-2022*/
-        private string GetPeopleAlsoAskUrls(string[] titles) //People also method 31-01-2022
-        {
-            StringBuilder s = new StringBuilder();
+         private string GetPeopleAlsoAskUrls(string[] titles) //People also method 31-01-2022
+         {
+             StringBuilder s = new StringBuilder();
             //string pattern = @"WEB_ANSWERS_STANDARD_RESULT_(.*?)div class\\x3d\\x22tF2Cxc\\x22\\x3e\\x3cdiv class\\x3d\\x22yuRUbf\\x22[ style\\x3d\\x22white-space\Wnowrap\\x22]*\\x3e\\x3ca href\\x3d\\x22(.*?)\\x22"; //29-03-2022
             //string pattern = @"WEB_ANSWERS_STANDARD_RESULT_(.*?)div class\\x3d\\x22tF2Cxc\\x22\\x3e\\x3cdiv class\\x3d\\x22yuRUbf\\x22[ style\\x3d\\x22(white-space\Wnowrap|position:relative)\\x22]*\\x3e\\x3ca href\\x3d\\x22(.*?)\\x22"; //06-05-2022
             string pattern = @"div class\\x3d\\x22tF2Cxc\\x22\\x3e\\x3cdiv class\\x3d\\x22yuRUbf\\x22[ style\\x3d\\x22(white-space\Wnowrap|position:relative)\\x22]*\\x3e\\x3ca href\\x3d\\x22(.*?)\\x22";//07-06-2022 //06-05-2022
             Regex re = new Regex(pattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
-            MatchCollection mc = re.Matches(html);
-            ArrayList myList = new ArrayList();
-            int x = 0;
-            char[] yt = { '\\', '2', '6' };
-            foreach (Match m in mc)
-            {
-                string url = HttpUtility.HtmlDecode(HttpUtility.HtmlEncode(m.Groups[1].Value)); //07-06-2022
-                if (url.StartsWith("http") || url.StartsWith("https"))
-                {
-                    url = SetYTUrl(url, yt); //12-03-2022
-                    if (x < titles.Length)//22-02-2022
-                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");//22-02-2022
-                }
-            }
-            for (; x < titles.Length; x++)//18-02-2022
-                s.Append("<item url=\"\" title=\"" + SetTitle(titles[x]) + "\" />");//18-02-2022
-            return s.ToString();
-        }
+             MatchCollection mc = re.Matches(html);
+             ArrayList myList = new ArrayList();
+             int x = 0;
+             char[] yt = { '\\', '2', '6' };
+             foreach (Match m in mc)
+             {
+                 string url = HttpUtility.HtmlDecode(HttpUtility.HtmlEncode(m.Groups[1].Value)); //07-06-2022
+                 if (url.StartsWith("http") || url.StartsWith("https"))
+                 {
+                     url= SetYTUrl(url,yt); //12-03-2022
+                     if (x < titles.Length)//22-02-2022
+                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");//22-02-2022
+                 }
+             }
+             for (; x < titles.Length; x++)//18-02-2022
+                 s.Append("<item url=\"\" title=\"" + SetTitle(titles[x]) + "\" />");//18-02-2022
+             return s.ToString();
+         }
         /*private string GetPeopleAlsoAskUrls(string[] titles) //People also method 02-03-2022
         {
             try
@@ -1048,12 +1049,12 @@ namespace Oxylabs_BulkKeywords
                 nds = node.SelectNodes(".//div[@class='WcS13d']"); //removed /a //05-10-2020 included selector for missing classic links
             if (nds == null)
                 return string.Empty;
-
+           
             foreach (HtmlNode nd in nds)
             {
                 //05-10-2020
                 string title = "";
-
+                
                 HtmlNodeCollection nds1 = nd.SelectNodes(".//h3|.//div[@class='wKZW5d']"); //23-12-2021
                 if (nds1 != null)
                 {
@@ -1109,38 +1110,38 @@ namespace Oxylabs_BulkKeywords
         //09-08-2021 update images item urls
         private string GetImages(HtmlNode node)
         {
-            StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'eA0Zlc PZPZlf JX86yc ivg-i')]|.//div[@jsname='dTDiAc']"); //11-08-2021 //09-08-2021
-            if (nds == null)
-                nds = node.SelectNodes(".//g-img/img");
-            bool existed = false;
-            if (nds != null)
-                foreach (HtmlNode nd in nds)
-                {
-                    //09-08-2021
-                    string url = string.Empty;
-                    if (nd.Attributes.Contains("data-lpage"))
+                StringBuilder s = new StringBuilder();
+                HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'eA0Zlc PZPZlf JX86yc ivg-i')]|.//div[@jsname='dTDiAc']"); //11-08-2021 //09-08-2021
+                if (nds == null)
+                    nds = node.SelectNodes(".//g-img/img");
+                bool existed = false;
+                if (nds != null)
+                    foreach (HtmlNode nd in nds)
                     {
-                        url = nd.Attributes["data-lpage"].Value.Trim();
-                        if (url.StartsWith("//www.")) url = "http:" + url;
-                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"\" />");
-                        existed = true;
-                    }//end 09-08-2021
-                    else if (nd.Attributes.Contains("title"))    // 24-10-2019
-                    {
-                        url = nd.Attributes["title"].Value.Trim();
-                        if (url.StartsWith("//www.")) url = "http:" + url;
-                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"\" />");
-                        existed = true;
+                        //09-08-2021
+                        string url = string.Empty;
+                        if (nd.Attributes.Contains("data-lpage"))
+                        {
+                            url = nd.Attributes["data-lpage"].Value.Trim();
+                            if (url.StartsWith("//www.")) url = "http:" + url;
+                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"\" />");
+                            existed = true;
+                        }//end 09-08-2021
+                        else if (nd.Attributes.Contains("title"))    // 24-10-2019
+                        {
+                            url = nd.Attributes["title"].Value.Trim();
+                            if (url.StartsWith("//www.")) url = "http:" + url;
+                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"\" />");
+                            existed = true;
+                        }
                     }
+                if (!existed)
+                {
+                    string imgItems = GetImageURLs();
+                    s.Append(imgItems);
                 }
-            if (!existed)
-            {
-                string imgItems = GetImageURLs();
-                s.Append(imgItems);
+                return s.ToString();
             }
-            return s.ToString();
-        }
 
         private string GetImageURLs()
         {
@@ -1232,7 +1233,7 @@ namespace Oxylabs_BulkKeywords
             {
                 s.Append("<item url=\"" + SetUrl(s1) + "\" title=\"\" />");
             }
-
+           
             return s.ToString();
         }
 
@@ -1280,8 +1281,8 @@ namespace Oxylabs_BulkKeywords
                     else
                         title = nd.InnerText;
                     string itemURL = nd.Attributes["href"].Value; //04-10-2021
-                                                                  // if (!itemURL.Contains("/search?num=100"))//04-10-2021
-                    s.Append("<item url=\"" + SetUrl(itemURL) + "\" title=\"" + SetTitle(title) + "\" />");//04-10-2021
+                   // if (!itemURL.Contains("/search?num=100"))//04-10-2021
+                        s.Append("<item url=\"" + SetUrl(itemURL) + "\" title=\"" + SetTitle(title) + "\" />");//04-10-2021
                 }
             else
             {
@@ -1538,12 +1539,12 @@ namespace Oxylabs_BulkKeywords
                 || node.SelectSingleNode(".//div[@class='YXEKBb']") != null //06-06-2022 Answered Card
                 || node.SelectSingleNode(".//div[@class='ellip vk_h lxZILe']|.//div[contains(@class, 'vk_c')]|.//div[contains(@class,'lr_container')]") != null)//17-06-2022 //16-06-2022
             {
-                if (node.SelectSingleNode(".//div[@class='BET1rd']|.//div[@class='EfDVh wDYxhc NFQFxe']") == null
+                if (node.SelectSingleNode(".//div[@class='BET1rd']|.//div[@class='EfDVh wDYxhc NFQFxe']") == null 
                     && node.SelectSingleNode(".//div[@class='tpa-cc']") == null && node.SelectSingleNode(".//g-scrolling-carousel[@class='VXdDm']") == null //22-06-2022//23-12-2021 //21-08-2021 //25-09-2020
                     && node.SelectSingleNode(".//*[@id='lu_map']|.//img[contains(@alt,'Map of')]|.//a[contains(@data-url,'/maps/')]") == null) //22-07-2022 //13-10-2021
                     return "AnswerCard";
                 else if (node.SelectSingleNode(".//div[@class='WcS13d']") != null && node.SelectSingleNode(".//div[@class='EfDVh wDYxhc NFQFxe']") != null //27-12-2021
-                    || node.SelectSingleNode(".//div[@class='nmVgI3FLyE0__answer']") != null
+                    || node.SelectSingleNode(".//div[@class='nmVgI3FLyE0__answer']") != null 
                     || node.SelectSingleNode(".//div[@class='N6Sb2c i29hTd']") != null)//16-06-2022 //23-03-2022
                     return "AnswerCard";//27-12-2021
             }
@@ -1564,8 +1565,7 @@ namespace Oxylabs_BulkKeywords
                 nd = node.SelectSingleNode(".//div[@jscontroller='hFvNdd']");//08-10-2021 images
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']"); //07-12-2021 for images block
-            if (nd == null)
-                nd = node.SelectSingleNode(".//div[@id='iur']"); //24-08-2022 images
+            //if (nd != null && node.Attributes["id"]?.Value != "Odp5De" && node.SelectSingleNode(".//div[@class='q6PGbe']") == null && node.SelectSingleNode(".//div[@class='l44Vof']") == null && node.SelectSingleNode(".//div[@class='P9Jfrb']") == null)//09-03-2022//31-12-2021
             if (nd != null && node.Attributes["id"]?.Value != "Odp5De" && node.SelectSingleNode(".//div[@class='q6PGbe']|.//div[@class='l44Vof']|.//div[@class='P9Jfrb']|.//div[@class='o8ebK']|.//div[@class='ntKMYc']") == null)//13-08-2022 maps //02-06-2022
             {
                 return "Images";
@@ -1675,7 +1675,7 @@ namespace Oxylabs_BulkKeywords
                 || node.SelectSingleNode(".//div[@jsname='wRSfy']") != null) //07-12-2021
                 || node.SelectSingleNode(".//div[@class='e2BEnf axf3qc q8U8x']") != null//29-12-2021 top stories
                 || node.SelectSingleNode(".//div[@class='WlTAzf mnr-c']") != null; //23-03-2022
-                                                                                   //&& node.SelectSingleNode(".//div[@class='yuRUbf']") == null; //11-10-2021 //08-10-2021 images
+              //&& node.SelectSingleNode(".//div[@class='yuRUbf']") == null; //11-10-2021 //08-10-2021 images
             if (bVal == true)//2019-09-11
             {
                 try
@@ -1689,11 +1689,11 @@ namespace Oxylabs_BulkKeywords
                     if (node.Attributes["id"]?.Value == "rhs") return false;//03-03-2022
                     //02-12-2020
                     HtmlNode nd = node.SelectSingleNode(".//div[@role='heading']|.//div[@class='UDZeY OTFaAf']"); //02-07-2021
-
+                    
                     if (nd != null && (nd.InnerText == "More results" || nd.InnerText == "Top results" || nd.InnerText.Contains("Web results"))) //02-07-2021 //03-12-2020
                         return false;
                     //end 02-12-2020
-
+                   
                     if (node.InnerText.Contains("Podcast") || node.InnerText.Contains("播客") || node.InnerText.Contains("Podcaster")
                         || node.InnerText.Contains("ملفات البودكاست") || node.InnerText.Contains("พอดแคสต์"))   // 19-09-2019
                     {
@@ -1791,8 +1791,7 @@ namespace Oxylabs_BulkKeywords
             {
                 //21-11-2019
                 url = url.Replace("HTTPS://", "https://").Replace("HTTP://", "http://");
-                if (string.IsNullOrEmpty(url.Trim())) return string.Empty;
-                //if (string.IsNullOrEmpty(url.Trim()) || url.StartsWith("#")) return string.Empty; //08-08-2022
+                if (string.IsNullOrEmpty(url.Trim()) || url.StartsWith("#")) return string.Empty; //08-08-2022
                 //29-09-2020            
                 if (url.IndexOf("https://") == 0 || url.IndexOf("https://") >= 0) //01-10-2020
                     url = url.Remove(0, url.IndexOf("https://"));
@@ -1802,8 +1801,8 @@ namespace Oxylabs_BulkKeywords
 
                 Regex rx = new Regex("http[\\w]?://(.*)", RegexOptions.Singleline);
                 if (!rx.Match(url).Success && !url.Contains("/aclk?"))
-                    // if (!url.StartsWith("/")) //11-09-2021 ignore url start with "/"
-                    if (!url.Contains("://")) // 30-04-2020
+                   // if (!url.StartsWith("/")) //11-09-2021 ignore url start with "/"
+                        if (!url.Contains("://")) // 30-04-2020
                         url = "http://" + url;
 
                 if (url.StartsWith("http:////") || url.StartsWith("https:////")) //18-09-2020 condition applied if appears http:////
@@ -1838,9 +1837,9 @@ namespace Oxylabs_BulkKeywords
         /// </summary>
         /// <param name="url"></param>
         /// <returns></returns>
-        public string SetYTUrl(string url, char[] yt)//12-03-202
+        public string SetYTUrl(string url,char[] yt)//12-03-202
         {
-
+            
             if (string.IsNullOrEmpty(url)) return string.Empty;
             if (url.Contains(@"\x3d"))
                 url = url.Replace(@"\x3d", "="); //10-03-2022
@@ -2050,3 +2049,6 @@ namespace Oxylabs_BulkKeywords
     }
 
 }
+
+
+

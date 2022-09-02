@@ -38,8 +38,6 @@ namespace RapidTrackingJobIDResults
                 nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-card|//div[@id='taw']/div[@class='med']/div[2]/div|//div[@id='rso']/nav|//div[@id='rso']/block-component/div");//07-01-2022 event results //28-04-2020
             if (nodeCol != null && nodeCol.Count == 1)
                 nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@class='vC5Ym DhKAUb']/div");    //17-09-2019
-            if (nodeCol != null && nodeCol.Count == 2)
-                nodeCol = doc.DocumentNode.SelectNodes("//div[contains(@class, 'TzHB6b mnr-c UBoxCb')]");//01-09-2022
             if (nodeCol == null)
                 nodeCol = doc.DocumentNode.SelectNodes("//*[@id='tscffb']");
 

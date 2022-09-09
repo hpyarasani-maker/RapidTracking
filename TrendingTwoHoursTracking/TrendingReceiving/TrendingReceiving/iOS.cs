@@ -107,6 +107,11 @@ namespace TrendingReceiving
                         string heading = n.InnerText;
                         sb.Append("<block type=\"knowledgeGraph\" url=\"\" title=\"" + SetTitle(heading) + "\" />");
                     }
+                    n = node.SelectSingleNode(".//g-img[@class='o8ebK']");//07-09-2022 missing KP block
+                    if (n != null)
+                    {
+                        sb.Append("<block type=\"maps\" url=\"\"></block>");
+                    } //07-09-2022
                     continue;
                 }
                 try
@@ -1994,7 +1999,8 @@ namespace TrendingReceiving
                     if (title == null)
                         title = nd.SelectSingleNode(".//div[@class='mkVq5']");//27-11-2020 top stories titles
                     string url = nd.Attributes["href"].Value;
-                    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title.InnerText) + "\" />");
+                    if (!url.Contains("/search?q=")) //09-09-2022 avoid google link
+                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title.InnerText) + "\" />");
                 }
             else
             {
@@ -2017,7 +2023,8 @@ namespace TrendingReceiving
                             if (title == null)
                                 title = nd.SelectSingleNode(".//div[@class='mCBkyc tNxQIb ynAwRc nDgy9d']");//30-05-2022
                             string url = nd.Attributes["href"].Value;
-                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title.InnerText) + "\" />");
+                            if (!url.Contains("/search?q=")) //09-09-2022 avoid google link
+                                s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title.InnerText) + "\" />");
                         }
                     }
                 }

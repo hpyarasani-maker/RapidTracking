@@ -101,7 +101,11 @@ namespace RapidTrackingMultithread
                         string heading = n.InnerText;
                         sb.Append("<block type=\"knowledgeGraph\" url=\"\" title=\"" + SetTitle(heading) + "\" />");
                     }
-
+                    n = node.SelectSingleNode(".//g-img[@class='o8ebK']");//07-09-2022 missing KP block
+                    if (n != null)
+                    {
+                        sb.Append("<block type=\"maps\" url=\"\"></block>");
+                    } //07-09-2022
                     continue;
                 }
                 try

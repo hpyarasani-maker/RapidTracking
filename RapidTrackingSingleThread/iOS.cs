@@ -2003,7 +2003,8 @@ namespace RapidTrackingSingleThread
                     if (title == null)
                         title = nd.SelectSingleNode(".//div[@class='mkVq5']");//27-11-2020 top stories titles
                     string url = nd.Attributes["href"].Value;
-                    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title.InnerText) + "\" />");
+                    if (!url.Contains("/search?q=")) //09-09-2022 avoid google link
+                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title.InnerText) + "\" />");
                 }
             else
             {
@@ -2026,7 +2027,8 @@ namespace RapidTrackingSingleThread
                             if (title == null)
                                 title = nd.SelectSingleNode(".//div[@class='mCBkyc tNxQIb ynAwRc nDgy9d']");//30-05-2022
                             string url = nd.Attributes["href"].Value;
-                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title.InnerText) + "\" />");
+                            if (!url.Contains("/search?q=")) //09-09-2022 avoid google link
+                                s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title.InnerText) + "\" />");
                         }
                     }
                 }

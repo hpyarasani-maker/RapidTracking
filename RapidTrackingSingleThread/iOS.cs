@@ -248,7 +248,7 @@ namespace RapidTrackingSingleThread
                     if (h3 == null)
                         h3 = pla.SelectSingleNode(".//div[@class='gsrt richlist-top-shopping-title']/h3");
                     if (h3 == null)
-                        h3 = pla.SelectSingleNode(".//div[@class='gsrt dxR8gf']");
+                        h3 = pla.SelectSingleNode(".//div[contains(@class,'gsrt dxR8gf')]");//12-09-2022
 
                     if (h3 != null)
                     {

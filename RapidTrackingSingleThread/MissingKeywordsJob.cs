@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Xml;
 
 namespace RapidTrackingSingleThread
@@ -42,14 +43,16 @@ namespace RapidTrackingSingleThread
                     SqlCommand ExecJob = new SqlCommand();
                     ExecJob.CommandType = CommandType.StoredProcedure;
                     ExecJob.CommandText = "msdb.dbo.sp_start_job";
-                    ExecJob.Parameters.AddWithValue("@job_name", "TestJob");
+                    ExecJob.Parameters.AddWithValue("Delete_DB_Data_Sending", "TestJob");
                     ExecJob.Connection = DbConn; 
            
                     DbConn.Open();
                     using (ExecJob)
                     {
                         ExecJob.ExecuteNonQuery();
+
                     }
+                    MessageBox.Show("Job is sucessful");
                 }
             }
             catch (SqlException ex)
@@ -87,7 +90,7 @@ namespace RapidTrackingSingleThread
             httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
             XmlDocument doc = new XmlDocument();
             XmlReaderSettings settings = new XmlReaderSettings { CheckCharacters = false };
-            Console.WriteLine("Downloading keywords...");
+            //MessageBox.Show("Downloading keywords...");
             using (HttpWebResponse response = (HttpWebResponse) await httpWebRequest.GetResponseAsync())
             using (XmlReader reader = XmlReader.Create(response.GetResponseStream(), settings))
             {
@@ -110,26 +113,29 @@ namespace RapidTrackingSingleThread
                         Console.WriteLine(i.ToString());
                     }
                     if (dt.Rows.Count > 0)
-                        using (var sqlBulk = new SqlBulkCopy(Common.StrConn())) //bufflao connection
+                        using (var sqlBulk = new SqlBulkCopy(Common.buffaloConn())) //bufflao connection
                         {
                             sqlBulk.BulkCopyTimeout = 0;
                             sqlBulk.DestinationTableName = "tracking_keywords5"; 
                             sqlBulk.WriteToServer(dt);
                         }
 
-                    Console.WriteLine("Keywords downloaded.");
+                    //Console.WriteLine("Keywords downloaded.");
+                    //MessageBox.Show("Keywords Downloaded");
                     //Environment.Exit(0);
 
                 }
                 catch (SqlException se)
                 {
                     string errMsg = "Database Connection is temporarily not working\n" + se.ToString();
-                    Console.WriteLine("SQL Error: " + errMsg);
+                    //Console.WriteLine("SQL Error: " + errMsg);
+                    MessageBox.Show("SQL Error: " + errMsg);
+
                     throw se;
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Error: " + ex.Message);
+                    MessageBox.Show("Error: " + ex.Message);
                     throw ex;
                 }
             }
@@ -137,7 +143,7 @@ namespace RapidTrackingSingleThread
 
         private static void ProcessDB(string qry)
         {
-            using (SqlConnection con = new SqlConnection(Common.StrConn()))
+            using (SqlConnection con = new SqlConnection(Common.buffaloConn()))
             {
                 con.Open();
                 using (SqlCommand comm = con.CreateCommand())

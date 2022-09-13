@@ -22,7 +22,7 @@ namespace RapidTrackingSingleThread
         string xmlPath = "C:\\inetpub\\wwwroot\\rapidtracking_singlethread_102_GT20_WC.xml";
 
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
-
+        
         //int count; 
 
         public frmSingleThread()
@@ -30,6 +30,8 @@ namespace RapidTrackingSingleThread
             InitializeComponent();
             //count = 0;   // Common.GetOxylabsCount();          
             //timerExit();
+
+            MissingKeywordsJob.ExecuteMissingKeywordsJob(0).Wait();
         }
         void TimerExit()
         {
@@ -45,7 +47,7 @@ namespace RapidTrackingSingleThread
 
         private void frmSingleThread_Load(object sender, EventArgs e)
         {
-
+            
             this.Text = "RapidTracking_SingleThread_102_GT20_WC";
             //this.Text = "RapidTracking_SingleThread_P_A_WOC_10-09-2019";
 

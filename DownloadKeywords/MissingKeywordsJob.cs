@@ -6,10 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Xml;
 
-namespace RapidTrackingSingleThread
+namespace DownloadKeywords
 {
     public class MissingKeywordsJob
     {
@@ -32,13 +31,38 @@ namespace RapidTrackingSingleThread
                 throw ex;
             }
         }
+        private static string buffaloConn()
+        {
+            try
+            {
+                XmlDocument xml = new XmlDocument();
+                string fileName = @"C:\Inetpub\wwwroot\buffaloCon.xml"; //download remaining keywords
+                //string fileName = @"C:\Inetpub\wwwroot\Callback_TrackingTrending.xml"; // downloading full keywords
+
+                // You'll need to put the correct path to your xml file here
+                xml.Load(fileName);
+
+                // Select a specific node
+                //XmlNode node = xml.SelectSingleNode("ConnectionString/con"); // downloading full keywords
+                XmlNode node = xml.SelectSingleNode("download/con");//download remaining keywords
+
+                // Get its value
+                string name = node.InnerText;
+
+                return name;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         private static async Task RunSqlJob(int number)
         {
             await Task.Delay(number);
             try
             {
-                using (SqlConnection DbConn = new SqlConnection(Common.ReadConnection()))
+                using (SqlConnection DbConn = new SqlConnection(buffaloConn()))
                 {                    
                     SqlCommand ExecJob = new SqlCommand();
                     ExecJob.CommandType = CommandType.StoredProcedure;
@@ -52,7 +76,8 @@ namespace RapidTrackingSingleThread
                         ExecJob.ExecuteNonQuery();
 
                     }
-                    MessageBox.Show("Job is sucessful");
+                    Console.WriteLine("Job is sucessful");
+                    System.Threading.Thread.Sleep(2000);
                 }
             }
             catch (SqlException ex)
@@ -113,29 +138,27 @@ namespace RapidTrackingSingleThread
                         Console.WriteLine(i.ToString());
                     }
                     if (dt.Rows.Count > 0)
-                        using (var sqlBulk = new SqlBulkCopy(Common.buffaloConn())) //bufflao connection
+                        using (var sqlBulk = new SqlBulkCopy(buffaloConn())) //bufflao connection
                         {
                             sqlBulk.BulkCopyTimeout = 0;
                             sqlBulk.DestinationTableName = "tracking_keywords5"; 
                             sqlBulk.WriteToServer(dt);
                         }
 
-                    //Console.WriteLine("Keywords downloaded.");
-                    //MessageBox.Show("Keywords Downloaded");
+                    Console.WriteLine("Keywords downloaded.");
                     //Environment.Exit(0);
 
                 }
                 catch (SqlException se)
                 {
                     string errMsg = "Database Connection is temporarily not working\n" + se.ToString();
-                    //Console.WriteLine("SQL Error: " + errMsg);
-                    MessageBox.Show("SQL Error: " + errMsg);
+                    Console.WriteLine("SQL Error: " + errMsg);
 
                     throw se;
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error: " + ex.Message);
+                    Console.WriteLine("Error: " + ex.Message);
                     throw ex;
                 }
             }
@@ -143,7 +166,7 @@ namespace RapidTrackingSingleThread
 
         private static void ProcessDB(string qry)
         {
-            using (SqlConnection con = new SqlConnection(Common.buffaloConn()))
+            using (SqlConnection con = new SqlConnection(buffaloConn()))
             {
                 con.Open();
                 using (SqlCommand comm = con.CreateCommand())

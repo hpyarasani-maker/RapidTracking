@@ -31,7 +31,7 @@ namespace RapidTrackingSingleThread
             //count = 0;   // Common.GetOxylabsCount();          
             //timerExit();
 
-            MissingKeywordsJob.ExecuteMissingKeywordsJob(0).Wait();
+            //MissingKeywordsJob.ExecuteMissingKeywordsJob(0).Wait();
         }
         void TimerExit()
         {

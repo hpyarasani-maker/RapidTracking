@@ -2473,9 +2473,9 @@ namespace RapidTrackingSingleThread
             }
             else
             {
-                nd = node.SelectSingleNode(".//div[@class='mnr-c']/g-link/a");
+                nd = node.SelectSingleNode(".//div[@class='mnr-c']/g-link/a|.//div[@class='KrvXD']/a");//14-09-2022 maps
                 if (nd != null)
-                    if (nd.Attributes["href"].Value.Contains("/maps/"))
+                    if (nd.Attributes["href"].Value.Contains("/maps/") || nd.Attributes["href"].Value.Contains("/maps.")) //14-09-2022 maps
                         return "Maps";
 
                 // changes on 08-07-2019

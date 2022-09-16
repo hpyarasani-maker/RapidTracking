@@ -1240,9 +1240,10 @@ namespace RapidTrackingSingleThread
         private string GetTopStories(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nds = node.SelectNodes(".//g-inner-card/a");
-
+            HtmlNodeCollection nds = node.SelectNodes(".//div/a[@class='WlydOe']");//16-09-2022
             if (nds == null)
+                nds = node.SelectNodes(".//g-inner-card/a");//16-09-2022
+             if (nds == null)
                 nds = node.SelectNodes(".//div[@class='dbsr']/a");
             if (nds == null)
                 nds = node.SelectNodes(".//g-inner-card/div/a");   //01-05-2020
@@ -1250,12 +1251,12 @@ namespace RapidTrackingSingleThread
                 nds = node.SelectNodes(".//g-inner-card/div/div/a");//03-11-2021 TS item urls
             if (nds == null)
                 nds = node.SelectNodes(".//div[@class='HCUNre dbsr']/a"); //21-09-2020 Top Stories block item urls selector updated
-            if (nds == null && node.SelectNodes(".//div/a/div[@class='TIh7vf']|.//div/a[@class='WlydOe']") != null) //15-09-2021 selector missing TS item urls
-            {    //07-12-2021                                                                                                    //nds = node.SelectNodes(".//div/a"); //10-12-2020 
-                nds = node.SelectNodes(".//div/a[@class='WlydOe']");
-                if (nds == null)
-                    nds = node.SelectNodes(".//div/a");
-            }//07-12-2021
+            //if (nds == null && node.SelectNodes(".//div/a/div[@class='TIh7vf']|.//div/a[@class='WlydOe']") != null) //15-09-2021 selector missing TS item urls
+            //{    //07-12-2021                                                                                                    //nds = node.SelectNodes(".//div/a"); //10-12-2020 
+            //    nds = node.SelectNodes(".//div/a[@class='WlydOe']");
+            //    if (nds == null)
+            //        nds = node.SelectNodes(".//div/a");
+            //}//07-12-2021 commented 16-09-2022
 
             if (nds != null)
                 foreach (HtmlNode nd in nds)

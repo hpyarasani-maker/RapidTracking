@@ -488,10 +488,10 @@ namespace RapidTrackingSingleThread
                 || node.SelectNodes(".//div[@class='g GjRtuc']") != null // 02-06-2020
                 || node.SelectNodes(".//div[contains(@class,'g card-section')]|.//div[@class='N3nEGc']") != null //03-03-2022 //06-10-2020 classic link
                 || node.SelectNodes(".//div[@class='g tF2Cxc']|.//div[contains(@class,'g dFd2Tb')]|.//div[@class='g ZYT4Gf']") != null//13-07-2022 07-04-2022 //24-08-2021 video block //01-06-2021
-                || node.SelectNodes(".//div[@class='d3zsgb']/div[@class='yuRUbf']|.//div[contains(@class,'g Ww4FFb')]") != null) //22-08-2022 //13-04-2022 missing CLinks
+                || node.SelectNodes(".//div[@class='d3zsgb']/div[@class='yuRUbf']|.//div[contains(@class,'g Ww4FFb')]") != null && node.SelectSingleNode(".//div[@id='rhs']") == null) //12-09-2022 //22-08-2022 //13-04-2022 missing CLinks
             {
                 //HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'tF2Cxc')]"); //25-01-2022
-                HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'g tF2Cxc')]|.//div[@class='g']");//20-04-2022 //04-04-2022
+                HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'g tF2Cxc')]|.//div[@class='g']|.//div[@class='g dFd2Tb']");//01-09-2022//20-04-2022 //04-04-2022
                 if (nds == null && node.Attributes["class"]?.Value == "g tF2Cxc")//20-04-2022
                     nds = node.SelectNodes(".");//20-04-2022 
                 if (nds == null)
@@ -1240,9 +1240,10 @@ namespace RapidTrackingSingleThread
         private string GetTopStories(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nds = node.SelectNodes(".//g-inner-card/a");
-
+            HtmlNodeCollection nds = node.SelectNodes(".//div/a[@class='WlydOe']");//16-09-2022
             if (nds == null)
+                nds = node.SelectNodes(".//g-inner-card/a");//16-09-2022
+             if (nds == null)
                 nds = node.SelectNodes(".//div[@class='dbsr']/a");
             if (nds == null)
                 nds = node.SelectNodes(".//g-inner-card/div/a");   //01-05-2020
@@ -1250,12 +1251,12 @@ namespace RapidTrackingSingleThread
                 nds = node.SelectNodes(".//g-inner-card/div/div/a");//03-11-2021 TS item urls
             if (nds == null)
                 nds = node.SelectNodes(".//div[@class='HCUNre dbsr']/a"); //21-09-2020 Top Stories block item urls selector updated
-            if (nds == null && node.SelectNodes(".//div/a/div[@class='TIh7vf']|.//div/a[@class='WlydOe']") != null) //15-09-2021 selector missing TS item urls
-            {    //07-12-2021                                                                                                    //nds = node.SelectNodes(".//div/a"); //10-12-2020 
-                nds = node.SelectNodes(".//div/a[@class='WlydOe']");
-                if (nds == null)
-                    nds = node.SelectNodes(".//div/a");
-            }//07-12-2021
+            //if (nds == null && node.SelectNodes(".//div/a/div[@class='TIh7vf']|.//div/a[@class='WlydOe']") != null) //15-09-2021 selector missing TS item urls
+            //{    //07-12-2021                                                                                                    //nds = node.SelectNodes(".//div/a"); //10-12-2020 
+            //    nds = node.SelectNodes(".//div/a[@class='WlydOe']");
+            //    if (nds == null)
+            //        nds = node.SelectNodes(".//div/a");
+            //}//07-12-2021 commented 16-09-2022
 
             if (nds != null)
                 foreach (HtmlNode nd in nds)
@@ -1601,7 +1602,7 @@ namespace RapidTrackingSingleThread
             }
             // end of map changes.
 
-            nd = node.SelectSingleNode(".//div[@id='kx']|.//div[@id='rrg']|.//div[@class='oHJrJb']|.//div[@class='q6PGbe']");//03-11-2021 CS Block//05-08-2020 included selector for carousel
+            nd = node.SelectSingleNode(".//div[@id='kx']|.//div[@id='rrg']|.//div[@class='oHJrJb']|.//div[@class='q6PGbe']|.//g-scrolling-carousel[@class='arDHIe']");//01-09-2022//03-11-2021 CS Block//05-08-2020 included selector for carousel
             if (nd != null)
             {
                 return "Carousel";
@@ -1683,7 +1684,7 @@ namespace RapidTrackingSingleThread
                 {
                     if (node.SelectSingleNode(".//div[@class='g jNVrwc Y4pkMc']|.//div[@class='g tF2Cxc']|.//div[@class='g eejeod up9jud']" +
                     //"|.//div[@class='g Ww4FFb tF2Cxc']") != null) return false; //21-07-2022//15-02-2022//02-02-2022//31-12-2021 missing CLinks
-                    "|.//div[contains(@class,'g Ww4FFb')]") != null) return false; //08-08-2022
+                    "|.//div[contains(@class,'g Ww4FFb')]|.//div[@class='rULfzc']") != null) return false;//01-09-2022 //08-08-2022
                     if (node.SelectSingleNode(".//div[@class='twQ0Be']|.//div[@jsname='N760b']|.//div[@jsname='wRSfy']|.//div[contains(@class,'e2BEnf U7izfe')]|.//div[@jsname='A6RGif']|.//div[@class='P9Jfrb']|.//div[@class='ntKMYc']") != null) return true;//13-08-2022 maps//08-03-2022//07-03-2022//28-12-2021//10-12-2021//09-12-2021 //08-12-2021 PAlsoB   //30-08-2021 video card
                     if (node.SelectSingleNode(".//div[@class='osrp-blk']|.//div[@class='tpa-cc']") != null && node.SelectSingleNode(".//div[@class='l44Vof']") == null && node.SelectSingleNode(".//div[@class='H93uF']") == null) //17-05-2022//31-12-2021
                         return false; //20-08-2021

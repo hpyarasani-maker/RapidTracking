@@ -479,7 +479,7 @@ namespace RapidTrackingMultithread
                 || node.SelectNodes(".//div[@class='g GjRtuc']") != null // 02-06-2020
                 || node.SelectNodes(".//div[contains(@class,'g card-section')]|.//div[@class='N3nEGc']") != null //03-03-2022 //06-10-2020 classic link
                 || node.SelectNodes(".//div[@class='g tF2Cxc']|.//div[contains(@class,'g dFd2Tb')]|.//div[@class='g ZYT4Gf']") != null//13-07-2022 07-04-2022 //24-08-2021 video block //01-06-2021
-                || node.SelectNodes(".//div[@class='d3zsgb']/div[@class='yuRUbf']|.//div[contains(@class,'g Ww4FFb')]") != null) //22-08-2022 //13-04-2022 missing CLinks
+                || node.SelectNodes(".//div[@class='d3zsgb']/div[@class='yuRUbf']|.//div[contains(@class,'g Ww4FFb')]") != null && node.SelectSingleNode(".//div[@id='rhs']") == null) //12-09-2022 //22-08-2022 //13-04-2022 missing CLinks
             {
                 //HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'tF2Cxc')]"); //25-01-2022
                 HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'g tF2Cxc')]|.//div[@class='g']|.//div[@class='g dFd2Tb']");//01-09-2022//20-04-2022 //04-04-2022
@@ -1231,8 +1231,9 @@ namespace RapidTrackingMultithread
         private string GetTopStories(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nds = node.SelectNodes(".//g-inner-card/a");
-
+            HtmlNodeCollection nds = node.SelectNodes(".//div/a[@class='WlydOe']");//16-09-2022
+            if (nds == null)
+                nds = node.SelectNodes(".//g-inner-card/a");//16-09-2022
             if (nds == null)
                 nds = node.SelectNodes(".//div[@class='dbsr']/a");
             if (nds == null)
@@ -1241,12 +1242,12 @@ namespace RapidTrackingMultithread
                 nds = node.SelectNodes(".//g-inner-card/div/div/a");//03-11-2021 TS item urls
             if (nds == null)
                 nds = node.SelectNodes(".//div[@class='HCUNre dbsr']/a"); //21-09-2020 Top Stories block item urls selector updated
-            if (nds == null && node.SelectNodes(".//div/a/div[@class='TIh7vf']|.//div/a[@class='WlydOe']") != null) //15-09-2021 selector missing TS item urls
-            {    //07-12-2021                                                                                                    //nds = node.SelectNodes(".//div/a"); //10-12-2020 
-                nds = node.SelectNodes(".//div/a[@class='WlydOe']");
-                if (nds == null)
-                    nds = node.SelectNodes(".//div/a");
-            }//07-12-2021
+            //if (nds == null && node.SelectNodes(".//div/a/div[@class='TIh7vf']|.//div/a[@class='WlydOe']") != null) //15-09-2021 selector missing TS item urls
+            //{    //07-12-2021                                                                                                    //nds = node.SelectNodes(".//div/a"); //10-12-2020 
+            //    nds = node.SelectNodes(".//div/a[@class='WlydOe']");
+            //    if (nds == null)
+            //        nds = node.SelectNodes(".//div/a");
+            //}//07-12-2021 commented 16-09-2022
 
             if (nds != null)
                 foreach (HtmlNode nd in nds)

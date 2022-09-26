@@ -712,7 +712,7 @@ namespace RapidTrackingSingleThread
                 if (nds == null)
                     //nds = node.SelectNodes(".//div[@class='BYM4Nd']|.//div[@class='mnr-c OH1ZUd xpd O9g5cc uUPGi']");//27-01-2022 classic links //14-01-2022
                     nds = (node.SelectNodes(".//div[@class='BYM4Nd']|.//div[@class='mnr-c OH1ZUd xpd O9g5cc uUPGi']") != null) ? nds = node.SelectNodes(".//div[@class='UDZeY']/div/div") : nds = null;
-                if (nds == null)//21-02-2022
+                if (nds == null && node.SelectNodes(".//div[@class='BYM4Nd']|.//div[@class='mnr-c OH1ZUd xpd O9g5cc uUPGi']") != null) //26-09-2022//21-02-2022
                     nds = node.SelectNodes(".//div[@class='BYM4Nd']|.//div[@class='mnr-c OH1ZUd xpd O9g5cc uUPGi']|.//div[@class='Ww4FFb vt6azd xpd EtOod pkphOe']");//26-09-2022//21-02-2022
                 if (nds == null)
                     if (node.SelectSingleNode(".//div[contains(@class,'YgXj7b')]|.//div[@class='Y37F6d Nn2Stf']/img") == null)//22-09-2021 missing video block//08-05-2021 applied contains //19-01-2021

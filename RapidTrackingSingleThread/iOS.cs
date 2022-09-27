@@ -461,7 +461,9 @@ namespace RapidTrackingSingleThread
                             {
                                 s.Append("<block type=\"productListedAds\" url=\"\">");
 
-                                HtmlNodeCollection cl = pla.SelectNodes(".//a[@class='pla-unit eUPzHb']|.//div[@class='mnr-c pla-unit']/a[2]|.//a[@class='plantl pla-unit-single-clickable-target clickable-card']|.//g-inner-card[contains(@class,'stOtnd VoEfsd')]/div/div/a");//25-09-2020 updated contains //15-07-2020 product list ads
+                                HtmlNodeCollection cl = pla.SelectNodes(".//a[@class='pla-unit eUPzHb']|.//div[@class='mnr-c pla-unit']/a[2]" +
+                                    "|.//a[@class='plantl pla-unit-single-clickable-target clickable-card']|.//g-inner-card[contains(@class,'stOtnd VoEfsd')]/div/div/a" +
+                                    "|.//g-inner-card[contains(@class,'B5kg8b bcWZB')]/a");//27-09-2022//25-09-2020 updated contains //15-07-2020 product list ads
                                 if (cl == null)
                                     cl = pla.SelectNodes(".//div[@class='ZPze1e']/a"); //07-02-2022
                                 if (cl == null)

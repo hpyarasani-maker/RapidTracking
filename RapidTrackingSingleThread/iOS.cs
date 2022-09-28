@@ -819,7 +819,7 @@ namespace RapidTrackingSingleThread
                                         // video block.
                                         if (vdo == null)
                                             vdo = nd.SelectSingleNode(".//div[@class='th N3nEGc']/a");
-                                        if (vdo != null)
+                                        if (vdo != null && nd.SelectNodes(".//g-scrolling-carousel[@class='kQ9KOd']") == null)//28-09-2022
                                         {
                                             string url = vdo.Attributes["href"].Value;
                                             string title = ""; // vdo.SelectSingleNode(".//div[contains(@class, 'MUxGbd v0nnCb')]").InnerText; //13-07-2022 //22-03-2021

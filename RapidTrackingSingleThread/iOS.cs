@@ -2378,7 +2378,7 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[@class='PZPZlf hb8SAc']");//21-12-2020 selector for answer card block
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='ifM9O']|.//div[contains(@class,'wob_ans')]");//31-03-2022 //28-02-2022
-            if (nd == null)
+            if (nd != null)
             { 
                 nd = node.SelectSingleNode(".//div[@class='MVpwye Dv3U4e']");//28-09-2022 answer card
                 if (node.SelectSingleNode(".//div[@class='FEoF4d']") == null && node.SelectSingleNode(".//div[@class='PZPZlf hb8SAc']") == null) //15-09-2022

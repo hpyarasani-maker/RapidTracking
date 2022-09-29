@@ -1010,6 +1010,7 @@ namespace WPFMultiThreadJobIDs
                                         u = SetUrl(u);
                                         if (u.StartsWith("http") || u.StartsWith("https") || u.StartsWith("ftp")) //30-04-2020
                                         {
+                                            if(!u.StartsWith("http://#"))
                                             if (!s.ToString().Contains("<item url=\"" + SetUrl(u) + "\"  title=\"" + SetTitle(t) + "\" />"))//30-09-2022
                                             {
                                                 s.Append("<item url=\"" + SetUrl(u) + "\"  title=\"" + SetTitle(t) + "\" />");   //30-09-2022
@@ -1032,8 +1033,9 @@ namespace WPFMultiThreadJobIDs
                                         var u = n.Attributes["href"].Value;
                                         if (u.StartsWith("http") || u.StartsWith("https") || u.StartsWith("ftp")) //30-04-2020
                                         {
-                                            // string links1 = HttpUtility.UrlDecode(u);
-                                            if (!s.ToString().Contains("<item url=\"" + SetUrl(u) + "\"  title=\"" + SetTitle(n.InnerText) + "\" />"))//30-09-2022
+                                            if (!u.StartsWith("http://#"))
+                                                // string links1 = HttpUtility.UrlDecode(u);
+                                                if (!s.ToString().Contains("<item url=\"" + SetUrl(u) + "\"  title=\"" + SetTitle(n.InnerText) + "\" />"))//30-09-2022
                                             {
                                                 s.Append("<item url=\"" + SetUrl(u) + "\"  title=\"" + SetTitle(n.InnerText) + "\" />");   //30-06-2022
                                                 orgLinks++;//30-09-2022

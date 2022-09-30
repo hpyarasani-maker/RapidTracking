@@ -421,7 +421,15 @@ namespace RapidTrackingSingleThread
                     s.Append("</block>");
                 }
             }
-
+            ///30-09-2022 start new code for answer carc
+            HtmlNode ac = doc.DocumentNode.SelectSingleNode(".//div[@class='ULSxyf a2qDab EyBRub']"); 
+            if (ac != null && ac.SelectSingleNode(".//div[@class='NhRr3b']") != null)
+            {
+                s.Append("<block type=\"answerCard\" url=\"\">");
+                s.Append(GetAnswerCard(ac));
+                s.Append("</block>");
+            }
+            //30-09-2022 end for new code answer card
             //18-03-2020
             colt = doc.DocumentNode.SelectSingleNode("//div[@id='taw']");
             if (colt != null)

@@ -2063,7 +2063,7 @@ namespace RapidTrackingSingleThread
                         try
                         {
                             // Changes in Videos block on 25-06-2019
-                            HtmlNode t = nd.SelectSingleNode(".//div[@role='heading']");
+                            HtmlNode t = nd.SelectSingleNode(".//div[@role='heading']|.//div[@class='WDJH5']");//30-09-2022
                             if (t != null)
                                 title = t.InnerText;
                             else

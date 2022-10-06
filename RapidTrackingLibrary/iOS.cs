@@ -1023,6 +1023,8 @@ namespace RapidTrackingLibrary
                                 if (nv == null)
                                     nv = nd.SelectSingleNode(".//a[contains(@class,'sXtWJb')]"); //16-12-2020
                                 if (nv == null)
+                                    nv = nd.SelectSingleNode(".//a[contains(@class,'cz3goc BmP5tf')]");//06-10-2022
+                                if (nv == null)
                                     nv = nd.SelectSingleNode(".//div/a");  //25-06-2020
                                 if (nv == null)
                                 {
@@ -1030,8 +1032,8 @@ namespace RapidTrackingLibrary
                                     if (nv != null)
                                         nv = nd.SelectSingleNode(".//h3[@class='r']/a|.//h3[@class='r']/div/a|.//h3[contains(@class,'yuRUbf JtG40d')]/a"); //03-11-2020  // 09-06-2020
                                 }
-                                if (nv == null) //01-02-2022
-                                    nv = nd.SelectSingleNode(".//a[contains(@class,'cz3goc BmP5tf')]");//10-06-2022 contains//01-02-2022
+                                //if (nv == null)//06-10-2022 commented //01-02-2022 
+                                //  nv = nd.SelectSingleNode(".//a[contains(@class,'cz3goc BmP5tf')]");//10-06-2022 contains//01-02-2022
                                 if (nv != null)
                                 {
                                     string u = nv.Attributes["href"].Value;

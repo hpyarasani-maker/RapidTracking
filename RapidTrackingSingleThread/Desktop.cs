@@ -1717,12 +1717,10 @@ namespace RapidTrackingSingleThread
                         && node.SelectSingleNode(".//div[@class='Brgz0 tw-res']|.//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']") == null)
                         bVal = false;
 
-                    if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]|.//div[contains(@class,'c2xzTb')]") != null || node.Attributes["class"]?.Value == "kp-blk c2xzTb")//16-02-2022//23-12-2021//07-12-2020 for answercard block 
-                        return true;//22-12-2021 commented
-                    //if (node.SelectSingleNode(".//div[@class='kp-blk Wnoohf OJXvsb']") != null)//22-12-2021
-                    //    return false;
-                    //else
-                    //    return true;//22-12-2021
+                    if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]" +
+                        "|.//div[contains(@class,'c2xzTb')]|.//div[@class='lu_map_section']") != null //07-10-2022 missing maps block
+                        || node.Attributes["class"]?.Value == "kp-blk c2xzTb")
+                            return true;
                     //28-05-2021
                     if (node.SelectSingleNode(".//div[@class='g']") != null)
                         if (node.SelectSingleNode(".//table[@class='nrgt']") != null || node.SelectSingleNode(".//table[@class='jmjoTe']") != null)  // 28-05-2021

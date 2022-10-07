@@ -125,7 +125,7 @@ namespace Oxylabs_BulkKeywords
             string password = "sdV5X3fcX6";
             string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
 
-            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking other desktop
+            string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking other desktop
             //string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking other mobile
             //string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
             //string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobilehotel/";
@@ -133,7 +133,7 @@ namespace Oxylabs_BulkKeywords
             //string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidTrackingnewmobile/"; //mobile new keywords
             // string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidtrackingnewcommakeywords/";  // new comma keywords
 
-            string callbackURL = "http://seresults.azurewebsites.net/api/callbackuk503desktoptemp"; //sending new SEIDs
+            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackuk503desktoptemp"; //sending new SEIDs
             //string callbackURL = "http://seresults.azurewebsites.net/api/trackingtrending/";
 
             //string callbackURL = "http://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58
@@ -167,7 +167,8 @@ namespace Oxylabs_BulkKeywords
                 user_agent_type = sp.device,   
                 context = new List<Context> {
                     new Context("tbm", sp.tbm),
-                    new Context("safe_search", 0)     
+                    new Context("safe_search", 0)
+                    //,new Context("aomd",1)
                 }
             };                  
             

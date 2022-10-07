@@ -146,6 +146,8 @@ namespace Oxylabs_BulkKeywords
             //string strQry = "exec [dbo].[GetCommaKeywords] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulk_All] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulk_P] '" + myDate + "'";  //sending procedure previous date keywords
+            //string strQry = "exec [dbo].[GetBulk_Desktop] '" + myDate + "'";
+            //string strQry = "exec [dbo].[GetBulk_Mobile] '" + myDate + "'";
             SqlConnection objCon = null;
             SqlDataReader objData = null;
 

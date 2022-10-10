@@ -491,12 +491,12 @@ namespace RapidTrackingSingleThread
         private string ProcessOrganic(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
-            if (node.HasClass("_NId") || node.HasClass("bkWMgd") || node.HasClass("srg")
-                //|| node.HasClass("g") || node.SelectNodes(".//div[@class='g']") != null //c// 18-03-2020 
-                || node.SelectNodes(".//div[@class='g GjRtuc']") != null // 02-06-2020
-                || node.SelectNodes(".//div[contains(@class,'g card-section')]|.//div[@class='N3nEGc']") != null //03-03-2022 //06-10-2020 classic link
-                || node.SelectNodes(".//div[@class='g tF2Cxc']|.//div[contains(@class,'g dFd2Tb')]|.//div[@class='g ZYT4Gf']|.//div[contains(@class,'g Ww4FFb')]") != null//10-10-2022//13-07-2022 07-04-2022 //24-08-2021 video block //01-06-2021
-                || node.SelectNodes(".//div[@class='d3zsgb']/div[@class='yuRUbf']") != null && node.SelectSingleNode(".//div[@id='rhs']") == null) //12-09-2022 //22-08-2022 //13-04-2022 missing CLinks
+            if ((node.HasClass("_NId") || node.HasClass("bkWMgd") || node.HasClass("srg") //10-10-2022
+                 || node.HasClass("g") || node.SelectNodes(".//div[@class='g']") != null
+                 || node.SelectNodes(".//div[@class='g GjRtuc']") != null
+                 || node.SelectNodes(".//div[contains(@class,'g card-section')]|.//div[@class='N3nEGc']") != null
+                 || node.SelectNodes(".//div[@class='g tF2Cxc']|.//div[contains(@class,'g dFd2Tb')]|.//div[contains(@class,'g Ww4FFb')]|.//div[@class='g ZYT4Gf']") != null
+                 || node.SelectNodes(".//div[@class='d3zsgb']/div[@class='yuRUbf']") != null) && node.SelectSingleNode(".//div[@id='rhs']") == null)//end of 10-10-2022
             {
                 //HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'g tF2Cxc')]|.//div[@class='g']|.//div[@class='g dFd2Tb']");//01-09-2022//20-04-2022 //04-04-2022
                 HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'g tF2Cxc')]|.//div[@class='g']|.//div[@class='g dFd2Tb']|.//div[contains(@class,'g Ww4FFb')]"); //07-10-2022

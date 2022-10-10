@@ -671,42 +671,42 @@ namespace RapidTrackingLibrary
             }
             else
             {
+                HtmlNodeCollection nc = null; //10-10-2022
                 if (node.SelectSingleNode(".//div[@id='rhs']") != null || node.Attributes["id"]?.Value == "rhs")
                 {
-                    //node = node.SelectSingleNode(".//div[@class='g']|.//div[@class='g Ww4FFb tF2Cxc']|.//div[@class='g eejeod up9jud']"); //19-07-2022
-                    node = node.SelectSingleNode(".//div[@class='g']|.//div[contains(@class,'g Ww4FFb')]|.//div[@class='g eejeod up9jud']"); //08-08-2022
-                    if (node == null) return string.Empty;
-                }//06-04-2022 //01-04-2022
-                HtmlNodeCollection col = node.SelectNodes(".//h3[@class='r']/a");
-                if (col == null)
-                    col = node.SelectNodes(".//div[@class='r']/a"); // 02-06-2020
-                if (col == null)
-                    col = node.SelectNodes(".//h3[@class='r dO0Ag']/a");  //29-05-2020
-                if (col == null)
-                    col = node.SelectNodes(".//div[@class='zTpPx']/g-link/a");  //28-05-2020
-                if (col == null)
-                    col = node.SelectNodes(".//div[@class='DOqJne']/g-link/a|.//div[@class='M42dy']/g-link/a");//02-02-2022 //07-12-2020 twitter classic link selector
-                if (col == null)
-                    col = node.SelectNodes(".//div[@class='yuRUbf']/a"); //08-10-2021 for missing classic links
-                foreach (HtmlNode nd in col)
+                    nc = node.SelectNodes(".//div[@class='g']|.//div[contains(@class,'g Ww4FFb')]|.//div[@class='g eejeod up9jud']");
+                    if (nc == null) return string.Empty;
+                }
+                foreach (HtmlNode n in nc)
                 {
-                    string u = nd.Attributes["href"].Value.Replace("/url?q=", "").Replace("&amp;", "&").Replace("&", "&#38;");
-
-                    //u = nd.Attributes["href"].Value.StartsWith("http").ToString();
-                    if (u.Contains("&sa="))
-                        u = u.Substring(0, u.IndexOf("&sa="));
-                    if (orgLinks < 100)
+                    HtmlNodeCollection col = n.SelectNodes(".//h3[@class='r']/a");
+                    if (col == null)
+                        col = n.SelectNodes(".//div[@class='r']/a");
+                    if (col == null)
+                        col = n.SelectNodes(".//h3[@class='r dO0Ag']/a");
+                    if (col == null)
+                        col = n.SelectNodes(".//div[@class='zTpPx']/g-link/a");
+                    if (col == null)
+                        col = n.SelectNodes(".//div[@class='DOqJne']/g-link/a|.//div[@class='M42dy']/g-link/a");
+                    if (col == null)
+                        col = n.SelectNodes(".//div[@class='yuRUbf']/a"); //08-10-2021 for missing classic links
+                    foreach (HtmlNode nd in col)
                     {
-                        if (u.StartsWith("http") || u.StartsWith("https") || u.StartsWith("ftp")) //30-04-2020
+                        string u = nd.Attributes["href"].Value.Replace("/url?q=", "").Replace("&amp;", "&").Replace("&", "&#38;");
+                        //u = nd.Attributes["href"].Value.StartsWith("http").ToString();
+                        if (u.Contains("&sa="))
+                            u = u.Substring(0, u.IndexOf("&sa="));
+                        if (orgLinks < 100)
                         {
-                            // string links1 = HttpUtility.UrlDecode(u);
-                            //s.Append("<item url=\"" + SetUrl(u) + "\"  title=\"" + SetTitle(nd.InnerText) + "\"  />");//18-01-2022 commented
-                            var title = nd.SelectSingleNode(".//h3")?.InnerText ?? nd.InnerText; //18-01-2022
-                            s.Append("<item url=\"" + SetUrl(u) + "\"  title=\"" + SetTitle(title) + "\"  />"); //18-01-2022
-                            orgLinks++;
+                            if (u.StartsWith("http") || u.StartsWith("https") || u.StartsWith("ftp"))
+                            {
+                                var title = nd.SelectSingleNode(".//h3")?.InnerText ?? nd.InnerText;
+                                s.Append("<item url=\"" + SetUrl(u) + "\"  title=\"" + SetTitle(title) + "\"  />");
+                                orgLinks++;
+                            }
                         }
                     }
-                }
+                }//end of 10-10-2022
             }
             return s.ToString();
         }

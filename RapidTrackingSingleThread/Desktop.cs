@@ -504,10 +504,10 @@ namespace RapidTrackingSingleThread
                     nds = node.SelectNodes(".");//20-04-2022 
                 if (nds == null)
                     nds = node.SelectNodes(".//div[contains(@class,'tF2Cxc')]");
-                if (nds == null) //25-01-2022
-                    nds = node.SelectNodes(".//div[@class='g']|.//div[@class='HD8Pae luh4tb cUezCb xpd O9g5cc uUPGi']|.//div[contains(@class,'g card-section')]");//25-01-2022
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='yuRUbf']");//11-10-2022 //31-05-2021
+                if (nds == null) //25-01-2022
+                    nds = node.SelectNodes(".//div[@class='g']|.//div[@class='HD8Pae luh4tb cUezCb xpd O9g5cc uUPGi']|.//div[contains(@class,'g card-section')]");//25-01-2022
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='rc']");
                 if (nds == null)

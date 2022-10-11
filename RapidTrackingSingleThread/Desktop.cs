@@ -499,7 +499,7 @@ namespace RapidTrackingSingleThread
                  || node.SelectNodes(".//div[@class='d3zsgb']/div[@class='yuRUbf']") != null) && node.SelectSingleNode(".//div[@id='rhs']") == null)//end of 10-10-2022
             {
                 //HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'g tF2Cxc')]|.//div[@class='g']|.//div[@class='g dFd2Tb']");//01-09-2022//20-04-2022 //04-04-2022
-                HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'g tF2Cxc')]|.//div[@class='g']|.//div[@class='g dFd2Tb']|.//div[contains(@class,'g Ww4FFb')]"); //07-10-2022
+                HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'g tF2Cxc')]|.//div[@class='g dFd2Tb']|.//div[contains(@class,'g Ww4FFb')]");//11-10-2022 //07-10-2022
                 if (nds == null && node.Attributes["class"]?.Value == "g tF2Cxc")//20-04-2022
                     nds = node.SelectNodes(".");//20-04-2022 
                 if (nds == null)
@@ -507,13 +507,13 @@ namespace RapidTrackingSingleThread
                 if (nds == null) //25-01-2022
                     nds = node.SelectNodes(".//div[@class='g']|.//div[@class='HD8Pae luh4tb cUezCb xpd O9g5cc uUPGi']|.//div[contains(@class,'g card-section')]");//25-01-2022
                 if (nds == null)
+                    nds = node.SelectNodes(".//div[@class='yuRUbf']");//11-10-2022 //31-05-2021
+                if (nds == null)
                     nds = node.SelectNodes(".//div[@class='rc']");
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='gG0TJc']");  //29-05-2020
                 //if (nds == null)
                 //    nds = node.SelectNodes(".//div[contains(@class,'tF2Cxc')]");//25-01-2022 commented//07-01-2021 //18-02-2021 included contains function
-                if (nds == null)
-                    nds = node.SelectNodes(".//div[@class='yuRUbf']"); //31-05-2021
                 if (nds == null)
                     nds = node.SelectNodes(".//div[contains(@class,'dFd2Tb')]|.//div[@class='g ZYT4Gf']");//07-04-2022 //24-08-2021 video block
                 if (node.SelectNodes(".//div/div[@class='g jNVrwc Y4pkMc']") != null) //24-08-2021 collecting sub classic links

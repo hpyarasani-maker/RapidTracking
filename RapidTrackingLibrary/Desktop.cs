@@ -538,7 +538,7 @@ namespace RapidTrackingLibrary
                  || node.SelectNodes(".//div[@class='g GjRtuc']") != null
                  || node.SelectNodes(".//div[contains(@class,'g card-section')]|.//div[@class='N3nEGc']") != null
                  || node.SelectNodes(".//div[@class='g tF2Cxc']|.//div[contains(@class,'g dFd2Tb')]|.//div[contains(@class,'g Ww4FFb')]|.//div[@class='g ZYT4Gf']") != null
-                 || node.SelectNodes(".//div[@class='d3zsgb']/div[@class='yuRUbf']") != null) && node.SelectSingleNode(".//div[@id='rhs']") == null)//end of 10-10-2022
+                 || node.SelectNodes(".//div[@class='d3zsgb']/div[@class='yuRUbf']|.//div[contains(@class,'g Ww4FFb')]|.//div[@class='g eejeod up9jud']") != null) && node.SelectSingleNode(".//div[@id='rhs']") == null)//12-10-2022//end of 10-10-2022
             {
                 //HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'g tF2Cxc')]|.//div[@class='g']|.//div[@class='g dFd2Tb']");//01-09-2022//20-04-2022 //04-04-2022
                 HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'g tF2Cxc')]|.//div[@class='g dFd2Tb']|.//div[contains(@class,'g Ww4FFb')]");//11-10-2022 //07-10-2022
@@ -552,12 +552,12 @@ namespace RapidTrackingLibrary
                     nds = node.SelectNodes(".//div[@class='rc']");
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='gG0TJc']");  //29-05-2020
-                //if (nds == null)
-                //    nds = node.SelectNodes(".//div[contains(@class,'tF2Cxc')]");//07-01-2021 //18-02-2021 included contains function
                 if (nds == null)
                     nds = node.SelectNodes(".//div[contains(@class,'dFd2Tb')]|.//div[@class='g ZYT4Gf']");//07-04-2022  //24-08-2021 video block
                 if (node.SelectNodes(".//div/div[@class='g jNVrwc Y4pkMc']") != null) //24-08-2021 collecting sub classic links
                     nds = node.SelectNodes(".//div/div[@class='g jNVrwc Y4pkMc']"); //24-08-2021 collecting sub classic links
+                if (nds == null)
+                    nds = node.SelectNodes(".//div[@class='g eejeod up9jud']");//12-10-2022
                 if (nds != null)
                     foreach (HtmlNode nd in nds)
                     {

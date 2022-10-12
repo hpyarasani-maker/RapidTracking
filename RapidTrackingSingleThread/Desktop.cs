@@ -640,6 +640,20 @@ namespace RapidTrackingSingleThread
                 foreach (HtmlNode n in nc)
                 {
                     HtmlNodeCollection col = n.SelectNodes(".//h3[@class='r']/a");
+                    //12-10-2022
+                    if ((Regex.IsMatch(n.OuterHtml, "id=\"vidthumb\\d*\"") && (n.SelectSingleNode(".//div[@class='ij69rd UHe5G']") != null || n.SelectSingleNode(".//div[@class='ij69rd TUOsUe UHe5G']") != null)) || n.SelectSingleNode(".//div[contains(@class,'U1TUId')]|.//div[@class='J1mWY']") != null)
+                    {
+                        var a = n.SelectSingleNode(".//div[@class='ct3b9e']/a|.//div[@class='IAZbGe']/a");
+                        var url = a.Attributes["href"].Value;
+                        var title = a.SelectSingleNode(".//h3");
+                        if (url.StartsWith("http") || url.StartsWith("https") || url.StartsWith("ftp"))
+                        {
+                            s.Append("<block type=\"video\" url=\"\">");
+                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title.InnerText) + "\" />");
+                            s.Append("</block>");
+                            continue;
+                        }
+                    }//end 12-10-2022
                     if (col == null)
                         col = n.SelectNodes(".//div[@class='r']/a");
                     if (col == null)

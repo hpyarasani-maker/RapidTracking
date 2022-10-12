@@ -639,7 +639,6 @@ namespace RapidTrackingSingleThread
                 }
                 foreach (HtmlNode n in nc)
                 {
-                    HtmlNodeCollection col = n.SelectNodes(".//h3[@class='r']/a");
                     //12-10-2022
                     if ((Regex.IsMatch(n.OuterHtml, "id=\"vidthumb\\d*\"") && (n.SelectSingleNode(".//div[@class='ij69rd UHe5G']") != null || n.SelectSingleNode(".//div[@class='ij69rd TUOsUe UHe5G']") != null)) || n.SelectSingleNode(".//div[contains(@class,'U1TUId')]|.//div[@class='J1mWY']") != null)
                     {
@@ -654,6 +653,7 @@ namespace RapidTrackingSingleThread
                             continue;
                         }
                     }//end 12-10-2022
+                    HtmlNodeCollection col = n.SelectNodes(".//h3[@class='r']/a");
                     if (col == null)
                         col = n.SelectNodes(".//div[@class='r']/a");
                     if (col == null)

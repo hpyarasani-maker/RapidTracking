@@ -981,6 +981,8 @@ namespace TrendingLoopReceiving
                                 if (nv == null)
                                     nv = nd.SelectSingleNode(".//a[contains(@class,'sXtWJb')]"); //16-12-2020
                                 if (nv == null)
+                                    nv = nd.SelectSingleNode(".//a[contains(@class,'cz3goc BmP5tf')]");//06-10-2022
+                                if (nv == null)
                                     nv = nd.SelectSingleNode(".//div/a");  //25-06-2020
                                 if (nv == null)
                                 {
@@ -988,8 +990,8 @@ namespace TrendingLoopReceiving
                                     if (nv != null)
                                         nv = nd.SelectSingleNode(".//h3[@class='r']/a|.//h3[@class='r']/div/a|.//h3[contains(@class,'yuRUbf JtG40d')]/a"); //03-11-2020  // 09-06-2020
                                 }
-                                if (nv == null) //01-02-2022
-                                    nv = nd.SelectSingleNode(".//a[contains(@class,'cz3goc BmP5tf')]");//10-06-2022 contains//01-02-2022
+                                //if (nv == null)//06-10-2022 commented //01-02-2022 
+                                //  nv = nd.SelectSingleNode(".//a[contains(@class,'cz3goc BmP5tf')]");//10-06-2022 contains//01-02-2022
                                 if (nv != null)
                                 {
                                     string u = nv.Attributes["href"].Value;
@@ -1010,8 +1012,7 @@ namespace TrendingLoopReceiving
                                         u = SetUrl(u);
                                         if (u.StartsWith("http") || u.StartsWith("https") || u.StartsWith("ftp")) //30-04-2020
                                         {
-                                            if (!u.StartsWith("http://#"))
-                                                if (!s.ToString().Contains("<item url=\"" + SetUrl(u) + "\"  title=\"" + SetTitle(t) + "\" />"))//30-09-2022
+                                            if (!s.ToString().Contains("<item url=\"" + SetUrl(u) + "\"  title=\"" + SetTitle(t) + "\" />"))//30-09-2022
                                             {
                                                 s.Append("<item url=\"" + SetUrl(u) + "\"  title=\"" + SetTitle(t) + "\" />");   //30-09-2022
                                                 orgLinks++;//30-09-2022
@@ -1034,8 +1035,7 @@ namespace TrendingLoopReceiving
                                         if (u.StartsWith("http") || u.StartsWith("https") || u.StartsWith("ftp")) //30-04-2020
                                         {
                                             // string links1 = HttpUtility.UrlDecode(u);
-                                            if (!u.StartsWith("http://#"))
-                                                if (!s.ToString().Contains("<item url=\"" + SetUrl(u) + "\"  title=\"" + SetTitle(n.InnerText) + "\" />"))//30-09-2022
+                                            if (!s.ToString().Contains("<item url=\"" + SetUrl(u) + "\"  title=\"" + SetTitle(n.InnerText) + "\" />"))//30-09-2022
                                             {
                                                 s.Append("<item url=\"" + SetUrl(u) + "\"  title=\"" + SetTitle(n.InnerText) + "\" />");   //30-06-2022
                                                 orgLinks++;//30-09-2022
@@ -1271,7 +1271,7 @@ namespace TrendingLoopReceiving
                             hn = nd1.SelectSingleNode(".//div[@class='pBi0X']");
                         if (hn != null)
                             title = hn.InnerText;
-                        if(!url.StartsWith("/search?safe=off"))
+
                         al.Add("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
 
                         //string title1 = hn.InnerText; 
@@ -2270,7 +2270,7 @@ namespace TrendingLoopReceiving
                     n = node.SelectSingleNode(".//div[@role='heading']|.//g-tray-header[@role='heading']|.//g-inner-card[contains(@class,'kno-fb-ctx')]");//06-01-2021//21-12-2020 top stories only
                     if (n != null)
                     {
-                        if (n.InnerText.ToLower().Trim() == "videos" || n.InnerText.ToLower().Trim().StartsWith("video") || n.InnerText.Trim() == "فيديوهات" || n.InnerText.Trim() == "วิดีโอ" || n.InnerText.Trim() == "影片" || n.InnerText.Trim() == "Vidéos") //01-11-2021 //14-07-2021 //25-02-2021
+                        if (node.SelectNodes(".//div[@class='OSrXXb ZE0LJd']") == null && (n.InnerText.ToLower().Trim() == "videos" || n.InnerText.ToLower().Trim().StartsWith("video") || n.InnerText.Trim() == "فيديوهات" || n.InnerText.Trim() == "วิดีโอ" || n.InnerText.Trim() == "影片" || n.InnerText.Trim() == "Vidéos"))//06-10-2022
                             return "Videos";
                         if (n.InnerText.ToLower().Trim() == "recipes" || n.InnerText.ToLower().Trim() == "ricette")  // 20-03-2020 // 18-12-2019
                             return "Carousel";

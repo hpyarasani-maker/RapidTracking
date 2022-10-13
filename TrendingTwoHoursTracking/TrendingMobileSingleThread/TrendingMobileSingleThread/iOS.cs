@@ -110,7 +110,7 @@ namespace TrendingMobileSingleThread
                         string heading = n.InnerText;
                         sb.Append("<block type=\"knowledgeGraph\" url=\"\" title=\"" + SetTitle(heading) + "\" />");
                     }
-                    n = node.SelectSingleNode(".//g-img[@class='o8ebK']");//07-09-2022 missing KP block
+                    n = node.SelectSingleNode(".//g-img[@class='o8ebK']|.//g-img[@class='gRTVof']");//10-10-2022//07-09-2022 missing KP block
                     if (n != null)
                     {
                         sb.Append("<block type=\"maps\" url=\"\"></block>");

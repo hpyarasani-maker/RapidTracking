@@ -499,7 +499,7 @@ namespace RapidTrackingSingleThread
                  || node.SelectNodes(".//div[@class='d3zsgb']/div[@class='yuRUbf']|.//div[contains(@class,'g Ww4FFb')]|.//div[@class='g eejeod up9jud']") != null) && node.SelectSingleNode(".//div[@id='rhs']") == null)//12-10-2022//end of 10-10-2022
             {
                 //HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'g tF2Cxc')]|.//div[@class='g']|.//div[@class='g dFd2Tb']");//01-09-2022//20-04-2022 //04-04-2022
-                HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'g tF2Cxc')]|.//div[@class='g dFd2Tb']|.//div[contains(@class,'g Ww4FFb')]");//11-10-2022 //07-10-2022
+                HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'g tF2Cxc')]|.//div[@class='g dFd2Tb']|.//div[contains(@class,'g Ww4FFb')]|.//div[@class='BYM4Nd'] ");//28-10-2022//11-10-2022 //07-10-2022
                 if (nds == null && node.Attributes["class"]?.Value == "g tF2Cxc")//20-04-2022
                     nds = node.SelectNodes(".");//20-04-2022 
                 if (nds == null)

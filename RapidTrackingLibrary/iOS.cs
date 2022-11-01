@@ -1493,6 +1493,8 @@ namespace RapidTrackingLibrary
                 nds = node.SelectNodes(".//div[@class='pIpgAc KKgUze XO51F']/a");
             if (nds == null)
                 nds = node.SelectNodes(".//div[contains(@class,'MUxGbd v0nnCb lyLwlc')]/a"); //21-07-2022
+            if (nds == null)
+                nds = node.SelectNodes(".//div[contains(@class,'MUxGbd lyLwlc')]/a"); //01-11-2022
             if (nds != null)
             {
                 s.Append("<block type=\"siteLinks\" url=\"\">");

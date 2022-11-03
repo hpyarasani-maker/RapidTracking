@@ -1478,6 +1478,8 @@ namespace RapidTrackingLoopSingleThread
                 nds = node.SelectNodes(".//div[@class='pIpgAc KKgUze XO51F']/a");
             if (nds == null)
                 nds = node.SelectNodes(".//div[contains(@class,'MUxGbd v0nnCb lyLwlc')]/a"); //21-07-2022
+            if (nds == null)
+                nds = node.SelectNodes(".//div[contains(@class,'MUxGbd lyLwlc')]/a"); //01-11-2022
             if (nds != null)
             {
                 s.Append("<block type=\"siteLinks\" url=\"\">");
@@ -2570,6 +2572,8 @@ namespace RapidTrackingLoopSingleThread
                 nd = node.SelectSingleNode(".//div[contains(@class,'JNkvid')]/div"); //28-07-2020 included selectors with contains functions
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='sPeCJd']"); //21-12-2020 selector for carousel
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='R37eoe ibYmtf']");//28-10-2022
             if (nd != null)
             {
                 if (node.SelectSingleNode(".//g-scrolling-carousel") != null)

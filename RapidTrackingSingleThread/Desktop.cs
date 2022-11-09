@@ -1683,7 +1683,11 @@ namespace RapidTrackingSingleThread
             {
                 return "SiteLinks";
             }
-
+            /*nd = node.SelectSingleNode(".//ul/product-viewer-group"); //09-11-2022 shopping
+            if (nd != null)//09-11-2022 shopping
+            {
+                return "Shopping";//09-11-2022 shopping
+            }*/
             return "";
         }
 

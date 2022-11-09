@@ -794,6 +794,11 @@ namespace RapidTrackingSingleThread
                     s.Append(GetFlights(node));
                     s.Append("</block>");
                     break; //23-02-2022*/
+                /*case "shopping": //09-11-2022
+                    s.Append("<block type=\"shopping\" url=\"\">");
+                    s.Append(GetShoppingProducts(node));
+                    s.Append("</block>");
+                    break;//09-11-2022*/
                 default:
                     break;
             }

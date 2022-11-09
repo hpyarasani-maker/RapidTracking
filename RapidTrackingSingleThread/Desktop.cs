@@ -278,7 +278,32 @@ namespace RapidTrackingSingleThread
 
             return s.ToString();
         }
-
+        private string GetShoppingProducts(HtmlNode node)//09-11-2022 shopping block method and enable other lines by searching "shopping"
+        {
+            StringBuilder s = new StringBuilder();
+            HtmlNodeCollection nodes = node.SelectNodes(".//ul/product-viewer-group/li");
+            if (nodes != null)
+            {
+                foreach (HtmlNode nd in nodes)
+                {
+                    string url = string.Empty;
+                    string title = string.Empty;
+                    string price = string.Empty;
+                    string name = string.Empty;
+                    HtmlNode link = nd.SelectSingleNode(".//a");
+                    if (link != null)
+                    {
+                        url = link.Attributes["href"]?.Value;
+                        title = link.SelectSingleNode(".//div[@class='vuR1ld']")?.InnerText;
+                        price = link.SelectSingleNode(".//div[@class='ldGAMe']")?.InnerText;
+                        name = link.SelectSingleNode(".//div[@class='DNnNed nbhTP']")?.InnerText;
+                    }
+                    if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(title))
+                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" price=\"" + SetTitle(price) + "\" name=\"" + SetTitle(name) + "\" />");
+                }
+            }
+            return s.ToString();
+        }
         private string GetProductListedAds(HtmlDocument doc)
         {
             StringBuilder s = new StringBuilder();
@@ -748,7 +773,7 @@ namespace RapidTrackingSingleThread
                     break;
                 case "videos":
                     s.Append("<block type=\"videos\" url=\"\">");
-                    //get video urls;
+                    //get video urls;2022
                     s.Append(GetVideos(node));
                     s.Append("</block>");
                     break;
@@ -768,6 +793,11 @@ namespace RapidTrackingSingleThread
                     s.Append(GetFlights(node));
                     s.Append("</block>");
                     break; //23-02-2022*/
+                /*case "shopping": //09-11-2022
+                    s.Append("<block type=\"shopping\" url=\"\">");
+                    s.Append(GetShoppingProducts(node));
+                    s.Append("</block>");
+                    break;//09-11-2022*/
                 default:
                     break;
             }
@@ -1652,7 +1682,11 @@ namespace RapidTrackingSingleThread
             {
                 return "SiteLinks";
             }
-
+            nd = node.SelectSingleNode(".//ul/product-viewer-group"); //09-11-2022 shopping
+            if (nd != null)//09-11-2022 shopping
+            {
+                return "Shopping";//09-11-2022 shopping
+            }
             return "";
         }
 
@@ -1755,8 +1789,9 @@ namespace RapidTrackingSingleThread
                 if (nd != null)
                     if (nd.InnerText == "Top stories" || nd.InnerText == "Huvudnyheter" || nd.InnerText == "Videos" || nd.InnerText == "Video" || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws" || nd.InnerText == "Vertaalresultaat" || nd.InnerText == "Recipes" || nd.InnerText == "Vidéos")//02-12-2020 videos//05-08-2020 //29-06-2020//03-06-2020 // 02-06-2020  // 08-04-2020
                         return true;
-
+                //enable below line without new block "ShoppingPRoducts"
                 if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null || node.SelectSingleNode(".//div[@class='dzpFPb']") != null)//28-05-2022//06-04-2022 //13-10-2021
+                //if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null || node.SelectSingleNode(".//div[@class='dzpFPb']") != null || node.SelectSingleNode(".//div[@jscontroller='Yma7vd']") != null || node.SelectSingleNode(".//ul/product-viewer-group") != null)//09-11-2022 shopping
                     return true;
 
                 // changes in map block on 19-06-2019.

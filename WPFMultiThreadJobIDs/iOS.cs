@@ -1014,7 +1014,6 @@ namespace WPFMultiThreadJobIDs
                                         u = SetUrl(u);
                                         if (u.StartsWith("http") || u.StartsWith("https") || u.StartsWith("ftp")) //30-04-2020
                                         {
-                                            if (!u.StartsWith("http://#"))
                                             if (!s.ToString().Contains("<item url=\"" + SetUrl(u) + "\"  title=\"" + SetTitle(t) + "\" />"))//30-09-2022
                                             {
                                                 s.Append("<item url=\"" + SetUrl(u) + "\"  title=\"" + SetTitle(t) + "\" />");   //30-09-2022
@@ -1038,7 +1037,6 @@ namespace WPFMultiThreadJobIDs
                                         if (u.StartsWith("http") || u.StartsWith("https") || u.StartsWith("ftp")) //30-04-2020
                                         {
                                             // string links1 = HttpUtility.UrlDecode(u);
-                                            if (!u.StartsWith("http://#"))
                                             if (!s.ToString().Contains("<item url=\"" + SetUrl(u) + "\"  title=\"" + SetTitle(n.InnerText) + "\" />"))//30-09-2022
                                             {
                                                 s.Append("<item url=\"" + SetUrl(u) + "\"  title=\"" + SetTitle(n.InnerText) + "\" />");   //30-06-2022
@@ -1275,8 +1273,8 @@ namespace WPFMultiThreadJobIDs
                             hn = nd1.SelectSingleNode(".//div[@class='pBi0X']");
                         if (hn != null)
                             title = hn.InnerText;
-                        if (!url.Contains("/search?safe=off"))
-                            al.Add("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+
+                        al.Add("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
 
                         //string title1 = hn.InnerText; 
                         //s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title1) + "\" />");
@@ -2698,7 +2696,7 @@ namespace WPFMultiThreadJobIDs
             }
 
             // if (node.SelectSingleNode(".//div[@class='g card-section svwwZ']|.//div[@class='c6gxKe card-section']|.//div[@class='g card-section']") != null) //30-08-2021 //20-05-2021//03-11-2020
-            if (node.SelectSingleNode(".//div[@class='g card-section svwwZ']|.//div[@class='c6gxKe card-section']|.//div[@class='g card-section']") != null
+            if (node.SelectSingleNode(".//div[@class='g card-section svwwZ']|.//div[@class='c6gxKe card-section']|.//div[@class='g card-section']|.//div[@class='card-section svwwZ']") != null //10-11-2022
                  && node.SelectSingleNode(".//div[@data-tts='answers']|.//div[@class='ifM9O']") == null)//27-01-2022 answered card //07-09-2021
                 return false;
 

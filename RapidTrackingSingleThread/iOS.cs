@@ -363,7 +363,27 @@ namespace RapidTrackingSingleThread
                 s.Append("</block>");
 
             }
-
+            /*HtmlNode colb = doc.DocumentNode.SelectSingleNode("//div[@id='botstuff']");//related searches //21-11-2022
+            if (colb != null)
+            {
+                HtmlNode node = colb.SelectSingleNode(".//div[@class='AuVD wHYlTd Ww4FFb vt6azd']");
+                if (node != null)
+                {
+                    if (node.SelectSingleNode(".//div[@class='T6zPgb']/div[@role='heading']") != null)
+                    {
+                        s.Append("<block type=\"relatedSearches\" url=\"\">");
+                        HtmlNodeCollection nc = node.SelectNodes(".//a[@class='iOJVmb']");
+                        if (nc != null)
+                            foreach (HtmlNode n in nc)
+                            {
+                                string url = n.Attributes["href"]?.Value;
+                                string title = n.InnerText;
+                                s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                            }
+                        s.Append("</block>");
+                    }
+                }
+            }*///related searches //21-11-2022
 
             return s.ToString();
         }
@@ -2907,9 +2927,9 @@ namespace RapidTrackingSingleThread
 
                 //end 24-09-2020
                 Regex rx = new Regex("http[\\w]?://(.*)", RegexOptions.Singleline);
-                if (!rx.Match(url).Success && !url.Contains("/aclk?"))
-                    //if (!url.StartsWith("/")) //11-09-2021 ignore url start with "/"
-                        if (!url.Contains("://")) // 30-04-2020
+                if (!rx.Match(url).Success && !url.Contains("/aclk?") && !url.Contains("/search?"))//related searches //21-1-2022 "/search" remove from &&
+                                                                                                   //if (!url.StartsWith("/")) //11-09-2021 ignore url start with "/"
+                    if (!url.Contains("://")) // 30-04-2020
                            url = "http://" + url;
 
                 if (url.StartsWith("http:////") || url.StartsWith("https:////")) //18-09-2020 condition applied if appears http:////

@@ -227,55 +227,77 @@ namespace RapidTrackingSingleThread
                 HtmlNodeCollection col = colb.SelectNodes(".//div[@id='tadsb']/ol/li|.//div[@id='tads']/div[@class='uEierd']|.//div[@id='tadsb']/div[@class='uEierd']|.//div[@id='tadsb']/div[@class='uEierd']|.//div[@id='tadsb']/div/div[@class='uEierd']");//28-03-2022 "/div" included //24-09-2020 bottom adwords//21-09-2020 updated bottom adwords   //20-01-2020
                 if (col == null)
                     col = colb.SelectNodes(".//div[@id='tadsb']/div/ol/li");   //16-04-2020
-                if (col == null) return s.ToString();   //20-01-2020
-
-                s.Append("<block type=\"adwords\" url=\"\">");
-                foreach (HtmlNode nd in col)
-                {
-                    HtmlNode n = nd.SelectSingleNode(".//h3/a[2]|.//div[@class='ad_cclk']/a[2]|.//div[@class='d5oMvf']/a|.//div[contains(@class,'v5yQqb')]/a");//12-11-2021 //27-06-2020
-                    if (n != null)
+                if (col == null) return s.ToString();   //20-01-2020 enable without related searches
+                //if (col != null) //enable for related searches
+                //{
+                    s.Append("<block type=\"adwords\" url=\"\">");
+                    foreach (HtmlNode nd in col)
                     {
-                        HtmlNode tittlenode = n.SelectSingleNode(".//h3|.//div[@role='heading']");//27-06-2020
-                        try  //28-09-2020  try catch.
+                        HtmlNode n = nd.SelectSingleNode(".//h3/a[2]|.//div[@class='ad_cclk']/a[2]|.//div[@class='d5oMvf']/a|.//div[contains(@class,'v5yQqb')]/a");//12-11-2021 //27-06-2020
+                        if (n != null)
                         {
-                            string url = string.Empty;
-                            string title = tittlenode.InnerText;
+                            HtmlNode tittlenode = n.SelectSingleNode(".//h3|.//div[@role='heading']");//27-06-2020
+                            try  //28-09-2020  try catch.
+                            {
+                                string url = string.Empty;
+                                string title = tittlenode.InnerText;
 
-                            //27-08-2020
-                            if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["href"]?.Value)))
-                            {
-                                url = GetRedirectedUrl_TextAds(n.Attributes["href"].Value);
-                            }
-                            else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["data-rw"]?.Value)))
-                            {
-                                url = GetRedirectedUrl_TextAds(n.Attributes["data-rw"].Value);
-                            }
-                            else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["data-pcu"]?.Value)))
-                            {
-                                url = GetRedirectedUrl_TextAds(n.Attributes["data-pcu"].Value);
-                            }
-                            else
-                            {
-                                HtmlNode n1 = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite");
-                                if (n1 != null)
-                                    url = GetRedirectedUrl_TextAds(n1.InnerText);
+                                //27-08-2020
+                                if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["href"]?.Value)))
+                                {
+                                    url = GetRedirectedUrl_TextAds(n.Attributes["href"].Value);
+                                }
+                                else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["data-rw"]?.Value)))
+                                {
+                                    url = GetRedirectedUrl_TextAds(n.Attributes["data-rw"].Value);
+                                }
+                                else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(n.Attributes["data-pcu"]?.Value)))
+                                {
+                                    url = GetRedirectedUrl_TextAds(n.Attributes["data-pcu"].Value);
+                                }
+                                else
+                                {
+                                    HtmlNode n1 = nd.SelectSingleNode(".//div[@class='ads-visurl']/cite");
+                                    if (n1 != null)
+                                        url = GetRedirectedUrl_TextAds(n1.InnerText);
 
-                                if (string.IsNullOrEmpty(url))
-                                    url = GetRedirectedUrl_TextAds(n.Attributes["href"]?.Value);
+                                    if (string.IsNullOrEmpty(url))
+                                        url = GetRedirectedUrl_TextAds(n.Attributes["href"]?.Value);
+                                }
+                                if (!string.IsNullOrEmpty(url))
+                                    s.Append("<item url=\"" + url + "\" title=\"" + SetTitle(title) + "\" />");
+                                // end 27-08-2020
                             }
-                            if (!string.IsNullOrEmpty(url))
-                                s.Append("<item url=\"" + url + "\" title=\"" + SetTitle(title) + "\" />");
-                            // end 27-08-2020
-                        }
-                        catch(Exception ex)
-                        {
-                            throw ex;
+                            catch (Exception ex)
+                            {
+                                throw ex;
+                            }
                         }
                     }
-                }
+                //}//related searches //21-11-2022 disable it without 
                 s.Append("</block>");
             }
-
+            /*colb = doc.DocumentNode.SelectSingleNode("//div[@id='botstuff']");//related searches //21-11-2022
+            if (colb != null)
+            {
+                HtmlNode node = colb.SelectSingleNode(".//div[@class='oIk2Cb']");
+                if (node != null)
+                {
+                    if (node.SelectSingleNode(".//div[@class='T6zPgb']/div[@role='heading']") != null)
+                    {
+                        s.Append("<block type=\"relatedSearches\" url=\"\">");
+                        HtmlNodeCollection nc = node.SelectNodes(".//a[@class='k8XOCe R0xfCb VCOFK s8bAkb']");
+                        if (nc != null)
+                            foreach (HtmlNode n in nc)
+                            {
+                                string url = n.Attributes["href"]?.Value;
+                                string title = n.InnerText;
+                                s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                            }
+                        s.Append("</block>");
+                    }
+                }
+            }*///related searches //21-11-2022
             return s.ToString();
         }
 
@@ -1863,9 +1885,9 @@ namespace RapidTrackingSingleThread
                 //end 29-09-2020
 
                 Regex rx = new Regex("http[\\w]?://(.*)", RegexOptions.Singleline);
-                if (!rx.Match(url).Success && !url.Contains("/aclk?"))
-                   // if (!url.StartsWith("/")) //11-09-2021 ignore url start with "/"
-                        if (!url.Contains("://")) // 30-04-2020
+                if (!rx.Match(url).Success && !url.Contains("/aclk?") && !url.Contains("/search?"))//related searches //21-1-2022 "/search" remove from &&
+                    // if (!url.StartsWith("/")) //11-09-2021 ignore url start with "/"
+                    if (!url.Contains("://")) // 30-04-2020
                         url = "http://" + url;
 
                 if (url.StartsWith("http:////") || url.StartsWith("https:////")) //18-09-2020 condition applied if appears http:////

@@ -1085,7 +1085,21 @@ namespace RapidTrackingSingleThread
 
             return s.ToString();
         }
-
+        private string GetRefineBySearches(HtmlNode node)//22-11-2022 refine the searches
+        {
+            StringBuilder s = new StringBuilder();
+            HtmlNodeCollection nodes = node.SelectNodes(".//a[@jsname='vlj0of']");
+            if (nodes != null)
+            {
+                foreach (HtmlNode nd in nodes)
+                {
+                    string url = nd.Attributes["href"]?.Value;
+                    string title = nd.InnerText;
+                    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                }
+            }
+            return s.ToString();
+        }//22-11-2022 refine the searches
         //17-10-2019
         private string SetVideos(HtmlNode nd)
         {
@@ -2678,6 +2692,9 @@ namespace RapidTrackingSingleThread
                 {
                     return "ProductListedAds";
                 }
+            /*nd = node.SelectSingleNode(".//div[contains(@class, 'vZFyxc')]");//22-11-2022 refine the searches
+            if (nd != null)
+                return "Refine";*///22-11-2022
             return "";
         }
 

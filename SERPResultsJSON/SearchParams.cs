@@ -2154,6 +2154,14 @@ namespace SERPResultsJSON
            {
               seid =603, domain ="co.uk", geo_location="Bermuda", locale= "en-bm", uule = "w+CAIQICIHQmVybXVkYQ==",device="mobile_android"
            }, //end 13-07-2022
+           new SearchProperties() // 23-11-2022
+           {
+                seid = 604, domain ="be", geo_location="Belgium", locale= "en-be", uule = "w+CAIQICIHQmVsZ2l1bQ==",device="desktop"
+           },
+           new SearchProperties()
+           {
+                seid = 605, domain ="be", geo_location="Belgium", locale= "en-be", uule = "w+CAIQICIHQmVsZ2l1bQ==",device="mobile_android"
+           }, // end 23-11-2022
         };
 
 

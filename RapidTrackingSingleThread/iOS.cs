@@ -1215,6 +1215,11 @@ namespace RapidTrackingSingleThread
                     s.Append(GetFlights(node));
                     s.Append("</block>");//23-03-2022
                     break;*/
+                /*case "refine": //refine the search 23-11-2022
+                    s.Append("<block type=\"refineBySearches\" url=\"\">");
+                    s.Append(GetRefineBySearches(node));
+                    s.Append("</block>");
+                    break;*/
                 default:
                     break;
             }

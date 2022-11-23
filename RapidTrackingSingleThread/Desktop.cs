@@ -274,8 +274,9 @@ namespace RapidTrackingSingleThread
                             }
                         }
                     }
+                    s.Append("</block>");
                 //}//related searches //21-11-2022 disable it without 
-                s.Append("</block>");
+               
             }
             /*colb = doc.DocumentNode.SelectSingleNode("//div[@id='botstuff']");//related searches //21-11-2022
             if (colb != null)

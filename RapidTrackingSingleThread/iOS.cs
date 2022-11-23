@@ -1100,6 +1100,32 @@ namespace RapidTrackingSingleThread
             }
             return s.ToString();
         }//22-11-2022 refine the searches
+        private string GetShoppingProducts(HtmlNode node)//22-11-2022 shopping block method and enable other lines by searching "shopping"
+        {
+            StringBuilder s = new StringBuilder();
+            HtmlNodeCollection nodes = node.SelectNodes(".//ul/product-viewer-group/li");
+            if (nodes != null)
+            {
+                foreach (HtmlNode nd in nodes)
+                {
+                    string url = string.Empty;
+                    string title = string.Empty;
+                    string price = string.Empty;
+                    string name = string.Empty;
+                    HtmlNode link = nd.SelectSingleNode(".//a");
+                    if (link != null)
+                    {
+                        url = link.Attributes["href"]?.Value;
+                        title = link.SelectSingleNode(".//div[contains(@class,'ZsI9Vc')]")?.InnerText;
+                        price = link.SelectSingleNode(".//div[@class='Ijn7Rc']")?.InnerText;
+                        name = link.SelectSingleNode(".//div[@class='DAB5ue']")?.InnerText;
+                    }
+                    if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(title))
+                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" price=\"" + SetTitle(price) + "\" name=\"" + SetTitle(name) + "\" />");
+                }
+            }
+            return s.ToString();
+        }//22-11-2022 shopping block
         //17-10-2019
         private string SetVideos(HtmlNode nd)
         {
@@ -1220,6 +1246,11 @@ namespace RapidTrackingSingleThread
                     s.Append(GetRefineBySearches(node));
                     s.Append("</block>");
                     break;*/
+                /*case "shopping": //22-11-2022 shopping block
+                    s.Append("<block type=\"shopping\" url=\"\">");
+                    s.Append(GetShoppingProducts(node));
+                    s.Append("</block>");
+                    break;*///22-11-2022
                 default:
                     break;
             }
@@ -2697,6 +2728,11 @@ namespace RapidTrackingSingleThread
                 {
                     return "ProductListedAds";
                 }
+            /*nd = node.SelectSingleNode(".//ul/product-viewer-group"); //22-11-2022 shopping block
+            if (nd != null)//22-11-2022 shopping
+            {
+                return "Shopping";//22-11-2022 shopping
+            }*/
             /*nd = node.SelectSingleNode(".//div[contains(@class, 'vZFyxc')]");//22-11-2022 refine the searches
             if (nd != null)
                 return "Refine";*///22-11-2022

@@ -228,8 +228,8 @@ namespace RapidTrackingSingleThread
                 if (col == null)
                     col = colb.SelectNodes(".//div[@id='tadsb']/div/ol/li");   //16-04-2020
                 if (col == null) return s.ToString();   //20-01-2020 enable without related searches or comment it if related search required
-                //if (col != null) //enable for related searches
-                //{
+                if (col != null) //enable for related searches
+                {
                     s.Append("<block type=\"adwords\" url=\"\">");
                     foreach (HtmlNode nd in col)
                     {
@@ -275,7 +275,7 @@ namespace RapidTrackingSingleThread
                         }
                     }
                     s.Append("</block>");
-                //}//related searches //21-11-2022 disable it without 
+                }//related searches //21-11-2022 disable it without 
                
             }
             /*colb = doc.DocumentNode.SelectSingleNode("//div[@id='botstuff']");//related searches //21-11-2022

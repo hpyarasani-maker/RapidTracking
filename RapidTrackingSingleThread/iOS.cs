@@ -137,7 +137,7 @@ namespace RapidTrackingSingleThread
                             {
                                 //Current 15-12-2020 swapped from bottom HtmlNodeCollection
                                 HtmlNodeCollection nc = node.SelectNodes(".//div[@class='WvKfwe']/div|.//div[@class='WvKfwe a3spGf']/div" +
-                                    "|.//div[@class='ChlgHf']|.//div[contains(@class,'UDZeY')]|.//div[@class='a3spGf WvKfwe']/div" +
+                                  "|.//div[@class='ChlgHf']|.//div[@class='a3spGf WvKfwe']/div|.//div[contains(@class,'TzHB6b mnr-c UBoxCb')]" + //17-11-2022
                                     "|.//div[@class='WvKfwe a3spGf']/g-card|.//div[@class='WvKfwe a3spGf']/block-component");//20-05-2022  
                                 //if (nc == null || node.SelectNodes(".//div[@id='kp-wp-tab-overview']/div") != null)//07-10-2021 answer card and PAA blocks
                                 if (nc == null)//02-09-2022
@@ -363,7 +363,27 @@ namespace RapidTrackingSingleThread
                 s.Append("</block>");
 
             }
-
+            /*HtmlNode colb = doc.DocumentNode.SelectSingleNode("//div[@id='botstuff']");//related searches //21-11-2022
+            if (colb != null)
+            {
+                HtmlNode node = colb.SelectSingleNode(".//div[@class='AuVD wHYlTd Ww4FFb vt6azd']");
+                if (node != null)
+                {
+                    if (node.SelectSingleNode(".//div[@class='T6zPgb']/div[@role='heading']") != null)
+                    {
+                        s.Append("<block type=\"relatedSearches\" url=\"\">");
+                        HtmlNodeCollection nc = node.SelectNodes(".//a[@class='iOJVmb']");
+                        if (nc != null)
+                            foreach (HtmlNode n in nc)
+                            {
+                                string url = n.Attributes["href"]?.Value;
+                                string title = n.InnerText;
+                                s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                            }
+                        s.Append("</block>");
+                    }
+                }
+            }*///related searches //21-11-2022
 
             return s.ToString();
         }
@@ -720,8 +740,9 @@ namespace RapidTrackingSingleThread
                     if (node.SelectSingleNode(".//div[contains(@class,'YgXj7b')]|.//div[@class='Y37F6d Nn2Stf']/img") == null)//22-09-2021 missing video block//08-05-2021 applied contains //19-01-2021
                         nds = node.SelectNodes(".//div[contains(@class,'KJDcUb')]|.//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']|.//g-card[@id='tscffb']|.//div[@class='mnr-c PHap3c']|.//div[@class='Ww4FFb vt6azd PHap3c']" + //01-08-2022
                                         "|.//div[@jsname='wRSfy']|.//g-card[@class='g F6CFcc']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='urrG9 v5yQqb jqWpsc']" + //31-05-2022
-                                        "|.//div[@class='mnr-c']/div/div[@class='P8ujBc v5yQqb jqWpsc']|.//div[contains(@class,'EtOod pkphOe')]|.//div[@class='mnr-c']/div/div[@class='P8ujBc jqWpsc']" + //06-07-2022//05-07-2022 //24-05-2022 //19-11-2021 //28-10-2021//12-10-2021//09-02-2021//27-01-2021 included missing selector//05-01-2021 //04-01-2021 missing classic link//18-12-2020 sitelinks missing selector //15-12-2020
-                                        "|.//div[@class='P8ujBc v5yQqb jqWpsc']"); //14-09-2022
+                                        "|.//div[@class='mnr-c']/div/div[@class='P8ujBc v5yQqb jqWpsc']|.//div[contains(@class,'EtOod pkphOe')]|.//div[@class='mnr-c']/div/div[@class='P8ujBc jqWpsc']"); //24-11-2022 //06-07-2022//05-07-2022 //24-05-2022 //19-11-2021 //28-10-2021//12-10-2021//09-02-2021//27-01-2021 included missing selector//05-01-2021 //04-01-2021 missing classic link//18-12-2020 sitelinks missing selector //15-12-2020
+                if (nds == null) //24-11-2022
+                    nds = node.SelectNodes(".//div[@class='P8ujBc v5yQqb jqWpsc']"); //24-11-2022//14-09-2022
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='mnr-c O9g5cc uUPGi']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='HD8Pae mnr-c xpd O9g5cc uUPGi']|.//div[@class='mnr-c']/div/div[contains(@class,'P8ujBc')]|.//div[@class='mnr-c P5XtRe']" + //25-03-2022 //22-02-2022
                         "|.//div/g-card[@class='XqIXXe']|.//g-card[@id='tscffb']|.//g-card[@class='g F6CFcc']|.//div[@class='khgTR lWEpfd']" +
@@ -1009,6 +1030,8 @@ namespace RapidTrackingSingleThread
                                         d = nv.SelectSingleNode(".//div[@class='BNeawe vvjwJb AP7Wnd UwRFLe']"); //22-06-2020
                                     if (d == null)
                                         d = nd.SelectSingleNode(".//div[@class='bvTQqb']");//10-07-2021
+                                    if (d == null)
+                                        d = nd.SelectSingleNode(".//div[@role='heading']");//24-11-2022
                                     string t = "";
                                     if (d != null)
                                         t = d.InnerText;
@@ -1065,7 +1088,47 @@ namespace RapidTrackingSingleThread
 
             return s.ToString();
         }
-
+        private string GetRefineBySearches(HtmlNode node)//22-11-2022 refine the searches
+        {
+            StringBuilder s = new StringBuilder();
+            HtmlNodeCollection nodes = node.SelectNodes(".//a[@jsname='vlj0of']");
+            if (nodes != null)
+            {
+                foreach (HtmlNode nd in nodes)
+                {
+                    string url = nd.Attributes["href"]?.Value;
+                    string title = nd.InnerText;
+                    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                }
+            }
+            return s.ToString();
+        }//22-11-2022 refine the searches
+        private string GetShoppingProducts(HtmlNode node)//22-11-2022 shopping block method and enable other lines by searching "shopping"
+        {
+            StringBuilder s = new StringBuilder();
+            HtmlNodeCollection nodes = node.SelectNodes(".//ul/product-viewer-group/li");
+            if (nodes != null)
+            {
+                foreach (HtmlNode nd in nodes)
+                {
+                    string url = string.Empty;
+                    string title = string.Empty;
+                    string price = string.Empty;
+                    string name = string.Empty;
+                    HtmlNode link = nd.SelectSingleNode(".//a");
+                    if (link != null)
+                    {
+                        url = link.Attributes["href"]?.Value;
+                        title = link.SelectSingleNode(".//div[contains(@class,'ZsI9Vc')]")?.InnerText;
+                        price = link.SelectSingleNode(".//div[@class='Ijn7Rc']")?.InnerText;
+                        name = link.SelectSingleNode(".//div[@class='DAB5ue']")?.InnerText;
+                    }
+                    if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(title))
+                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" price=\"" + SetTitle(price) + "\" name=\"" + SetTitle(name) + "\" />");
+                }
+            }
+            return s.ToString();
+        }//22-11-2022 shopping block
         //17-10-2019
         private string SetVideos(HtmlNode nd)
         {
@@ -1181,6 +1244,16 @@ namespace RapidTrackingSingleThread
                     s.Append(GetFlights(node));
                     s.Append("</block>");//23-03-2022
                     break;*/
+                /*case "refine": //refine the search 23-11-2022
+                    s.Append("<block type=\"refineBySearches\" url=\"\">");
+                    s.Append(GetRefineBySearches(node));
+                    s.Append("</block>");
+                    break;*/
+                /*case "shopping": //22-11-2022 shopping block
+                    s.Append("<block type=\"shopping\" url=\"\">");
+                    s.Append(GetShoppingProducts(node));
+                    s.Append("</block>");
+                    break;*///22-11-2022
                 default:
                     break;
             }
@@ -2387,8 +2460,9 @@ namespace RapidTrackingSingleThread
             if (nd != null)
             { 
                 nd = node.SelectSingleNode(".//div[@class='MVpwye Dv3U4e']");//28-09-2022 answer card
-                if (node.SelectSingleNode(".//div[@class='FEoF4d']") == null && node.SelectSingleNode(".//div[@class='PZPZlf hb8SAc']") == null) //15-09-2022
-                    return "AnswerCard";
+                // if (node.SelectSingleNode(".//div[@class='FEoF4d']") == null && node.SelectSingleNode(".//div[@class='PZPZlf hb8SAc']") == null) //15-09-2022 //24-11-2022 commented
+                if (node.SelectSingleNode(".//div[@class='FEoF4d']") == null) //24-11-2022
+                return "AnswerCard";
             }
 
 
@@ -2658,6 +2732,14 @@ namespace RapidTrackingSingleThread
                 {
                     return "ProductListedAds";
                 }
+            /*nd = node.SelectSingleNode(".//ul/product-viewer-group"); //22-11-2022 shopping block
+            if (nd != null)//22-11-2022 shopping
+            {
+                return "Shopping";//22-11-2022 shopping
+            }*/
+            /*nd = node.SelectSingleNode(".//div[contains(@class, 'vZFyxc')]");//22-11-2022 refine the searches
+            if (nd != null)
+                return "Refine";*///22-11-2022
             return "";
         }
 
@@ -2907,9 +2989,9 @@ namespace RapidTrackingSingleThread
 
                 //end 24-09-2020
                 Regex rx = new Regex("http[\\w]?://(.*)", RegexOptions.Singleline);
-                if (!rx.Match(url).Success && !url.Contains("/aclk?"))
-                    //if (!url.StartsWith("/")) //11-09-2021 ignore url start with "/"
-                        if (!url.Contains("://")) // 30-04-2020
+                if (!rx.Match(url).Success && !url.Contains("/aclk?") && !url.Contains("/search?"))//related searches //21-1-2022 "/search" remove from &&
+                                                                                                   //if (!url.StartsWith("/")) //11-09-2021 ignore url start with "/"
+                    if (!url.Contains("://")) // 30-04-2020
                            url = "http://" + url;
 
                 if (url.StartsWith("http:////") || url.StartsWith("https:////")) //18-09-2020 condition applied if appears http:////

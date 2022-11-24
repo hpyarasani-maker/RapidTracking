@@ -2460,8 +2460,9 @@ namespace RapidTrackingSingleThread
             if (nd != null)
             { 
                 nd = node.SelectSingleNode(".//div[@class='MVpwye Dv3U4e']");//28-09-2022 answer card
-                if (node.SelectSingleNode(".//div[@class='FEoF4d']") == null && node.SelectSingleNode(".//div[@class='PZPZlf hb8SAc']") == null) //15-09-2022
-                    return "AnswerCard";
+                // if (node.SelectSingleNode(".//div[@class='FEoF4d']") == null && node.SelectSingleNode(".//div[@class='PZPZlf hb8SAc']") == null) //15-09-2022 //24-11-2022 commented
+                if (node.SelectSingleNode(".//div[@class='FEoF4d']") == null) //24-11-2022
+                return "AnswerCard";
             }
 
 

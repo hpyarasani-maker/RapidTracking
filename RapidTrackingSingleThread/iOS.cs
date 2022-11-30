@@ -136,7 +136,9 @@ namespace RapidTrackingSingleThread
                             if (node.HasClass("kp-wholepage") || node.SelectNodes(".//div[contains(@class, 'kp-wholepage')]") != null)
                             {
                                 //Current 15-12-2020 swapped from bottom HtmlNodeCollection
-                                HtmlNodeCollection nc = node.SelectNodes(".//div[@class='TjcfIc eE3xqf B03h3d V14nKc ptcLIOszQJu__wholepage-card wp-ms']|.//div[@class='WvKfwe a3spGf']/div"); //28-11-2022
+                                HtmlNodeCollection nc = node.SelectNodes(".//div[contains(@class,'TzHB6b mnr-c UBoxCb')]");//30-11-2022
+                                if (nc == null)//30-11-2022
+                                    nc = node.SelectNodes(".//div[@class='TjcfIc eE3xqf B03h3d V14nKc ptcLIOszQJu__wholepage-card wp-ms']|.//div[@class='WvKfwe a3spGf']/div"); //28-11-2022
                                 if (nc == null)//28-11-2022
                                     nc = node.SelectNodes(".//div[@class='WvKfwe']/div|.//div[@class='WvKfwe a3spGf']/div" +
                                   "|.//div[@class='ChlgHf']|.//div[@class='a3spGf WvKfwe']/div|.//div[contains(@class,'TzHB6b mnr-c UBoxCb')]" + //17-11-2022

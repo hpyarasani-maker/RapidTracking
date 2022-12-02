@@ -969,6 +969,8 @@ namespace RapidTrackingSingleThread
             if (nds == null)
                 nds = node.SelectNodes(".//div[@jsname='Cpkphb']"); //30-11-2021 people also ask titles
             if (nds == null)
+                nds = node.SelectNodes(".//div[@class='JlqpRe']"); //02-12-2022
+            if (nds == null)
                 return string.Empty;
            string[] titles = new string[nds.Count];//31-01-2022
             int x = 0;

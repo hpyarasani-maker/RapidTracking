@@ -47,7 +47,7 @@ namespace RapidTrackingSingleThread
                     nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div|.//div[@class='ULSxyf']|//div[@class='hlcw0c']/div") ?? nodeCol;//17-08-2022
                 if (nodeCol == null || nodeCol.Count <= 1) //01-08-2022 swapped lines
                 {
-                    nodeCol = doc.DocumentNode.SelectNodes("//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div|.//div[@class='UDZeY OTFaAf']/block-component") ?? nodeCol; //answer card 26-09-2022
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[contains(@class,'WvKfwe')]/div|//div[@class='UDZeY OTFaAf']/block-component") ?? nodeCol;//06-12-2022 //answer card 26-09-2022
                     if (nodeCol == null || nodeCol.Count <= 3)
                         nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div|//div[@class='hlcw0c']/div") ?? nodeCol;
                 }
@@ -1656,7 +1656,9 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']"); //07-12-2021 for images block
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@id='iur']"); //24-08-2022 images
-            if (nd != null && node.Attributes["id"]?.Value != "Odp5De" && node.SelectSingleNode(".//div[@class='q6PGbe']|.//div[@class='l44Vof']|.//div[@class='P9Jfrb']|.//div[@class='o8ebK']|.//div[@class='ntKMYc']") == null)//13-08-2022 maps //02-06-2022
+            if (nd == null)//06-12-2022
+                nd = node.SelectSingleNode(".//div[@class='Kq2KUc']");//06-12-2022
+            if (nd != null && node.Attributes["id"]?.Value != "Odp5De" && node.SelectSingleNode(".//div[@class='q6PGbe']|.//div[@class='l44Vof']|.//div[@class='P9Jfrb']|.//div[@class='o8ebK']|.//div[@class='ntKMYc']|.//img[contains(@alt,'Map of')]") == null)//06-12-2022//13-08-2022 maps //02-06-2022
             {
                 return "Images";
             }
@@ -1833,7 +1835,7 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//g-img/img");
                 if (nd != null)
                 {
-                    if (nd.Attributes["alt"].Value.StartsWith("Map of ") || node.SelectSingleNode(".//div[@class='H93uF']") != null) //21-04-2022
+                    if (nd.Attributes["alt"].Value.StartsWith("Map of ") || node.SelectSingleNode(".//div[@class='H93uF']") != null || node.SelectSingleNode(".//img[contains(@alt,'Map of ')]") != null)//06-12-2022//21-04-2022
                         return true;
                     if (node.SelectSingleNode(".//div[@class='U1TUId LYh3vc']") != null) //16-12-2021
                         return false; //16-12-2021

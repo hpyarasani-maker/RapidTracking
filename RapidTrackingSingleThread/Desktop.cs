@@ -305,7 +305,7 @@ namespace RapidTrackingSingleThread
         private string GetPopularProducts(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nodes = node.SelectNodes(".//ul/product-viewer-group/li|.//div[@class='MhZJBd']/div[@jsname='U5epZb']|.//g-inner-card[@jscontroller='wRnMub']");//09-12-2022
+            HtmlNodeCollection nodes = node.SelectNodes(".//ul/product-viewer-group/li|.//ul/div[@class='Ez5pwe']/li|.//div[@class='MhZJBd']/div[@jsname='U5epZb']");//09-12-2022
             if (nodes != null)
             {
                 foreach (HtmlNode nd in nodes)
@@ -326,7 +326,7 @@ namespace RapidTrackingSingleThread
                             url = link.Attributes["href"]?.Value;
                             title = link.SelectSingleNode(".//div[@class='vuR1ld']|.//div[@class='wEN0R']")?.InnerText;
                             price = link.SelectSingleNode(".//div[@class='ldGAMe']|.//div[@class='z235y jAPStb']")?.InnerText;
-                            name = link.SelectSingleNode(".//div[@class='DNnNed nbhTP']|.//div[@class='ix5OZc']")?.InnerText;
+                            name = link.SelectSingleNode(".//div[@class='DNnNed nbhTP']/span[@class='Dt4hCc']|.//div[@class='ix5OZc']")?.InnerText;
                         }
                         if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(title))
                             s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" price=\"" + SetTitle(price) + "\" site=\"" + SetTitle(name) + "\" />");
@@ -1836,7 +1836,7 @@ namespace RapidTrackingSingleThread
 
                 //enable below line without new block "popularProducts"
                 //if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null || node.SelectSingleNode(".//div[@class='dzpFPb']") != null)//28-05-2022//06-04-2022 //13-10-2021
-                if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null || node.SelectSingleNode(".//div[@class='dzpFPb']") != null || node.SelectSingleNode(".//div[@jscontroller='Yma7vd']") != null || node.SelectSingleNode(".//ul/product-viewer-group") != null)//09-11-2022 shopping
+                if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null || node.SelectSingleNode(".//div[@class='dzpFPb']") != null || node.SelectSingleNode(".//div[@jscontroller='Yma7vd']") != null || node.SelectSingleNode(".//div[@class='aJegcc']") != null)//09-12-2022//09-11-2022 shopping
                     return true;
 
                 // changes in map block on 19-06-2019.

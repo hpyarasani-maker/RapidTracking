@@ -323,7 +323,7 @@ namespace RapidTrackingSingleThread
                         name = link.SelectSingleNode(".//div[@class='DNnNed nbhTP']")?.InnerText;
                     }
                     if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(title))
-                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" price=\"" + SetTitle(price) + "\" site=\"" + SetTitle(name) + "\" />");
+                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" price=\"" + SetTitle(price) + "\" site=\"" + SetUrl(name) + "\" />");
                 }
             }
             return s.ToString();

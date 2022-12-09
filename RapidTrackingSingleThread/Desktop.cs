@@ -305,7 +305,7 @@ namespace RapidTrackingSingleThread
         private string GetPopularProducts(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nodes = node.SelectNodes(".//ul/product-viewer-group/li|.//div[@class='MhZJBd']/div[@jsname='U5epZb']");
+            HtmlNodeCollection nodes = node.SelectNodes(".//ul/product-viewer-group/li|.//div[@class='MhZJBd']/div[@jsname='U5epZb']|.//g-inner-card[@jscontroller='wRnMub']");//09-12-2022
             if (nodes != null)
             {
                 foreach (HtmlNode nd in nodes)
@@ -319,6 +319,8 @@ namespace RapidTrackingSingleThread
                         HtmlNode link = nd.SelectSingleNode(".//a[contains(@class,'vzhcTd wTrwWd')]");
                         if (link == null)
                             link = nd.SelectSingleNode(".//div[@class='qhPRsb jAPStb']");
+                        if (link == null)
+                            link = nd.SelectSingleNode(".//div[@class='cWgBoc']");//09-12-2022
                         if (link != null)
                         {
                             url = link.Attributes["href"]?.Value;

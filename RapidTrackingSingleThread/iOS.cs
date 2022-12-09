@@ -1105,7 +1105,7 @@ namespace RapidTrackingSingleThread
             }
             return s.ToString();
         }//22-11-2022 refine the searches
-        private string GetShoppingProducts(HtmlNode node)//22-11-2022 shopping block method and enable other lines by searching "shopping"
+        private string GetPopularProducts(HtmlNode node)//22-11-2022 shopping block method and enable other lines by searching "popular"
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nodes = node.SelectNodes(".//ul/product-viewer-group/li");
@@ -1126,11 +1126,11 @@ namespace RapidTrackingSingleThread
                         name = link.SelectSingleNode(".//div[@class='DAB5ue']")?.InnerText;
                     }
                     if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(title))
-                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" price=\"" + SetTitle(price) + "\" name=\"" + SetTitle(name) + "\" />");
+                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" price=\"" + SetTitle(price) + "\" site=\"" + SetTitle(name) + "\" />");
                 }
             }
             return s.ToString();
-        }//22-11-2022 shopping block
+        }//22-11-2022 popular block
         //17-10-2019
         private string SetVideos(HtmlNode nd)
         {
@@ -1251,11 +1251,11 @@ namespace RapidTrackingSingleThread
                     s.Append(GetRefineBySearches(node));
                     s.Append("</block>");
                     break;*/
-                /*case "shopping": //22-11-2022 shopping block
-                    s.Append("<block type=\"shopping\" url=\"\">");
-                    s.Append(GetShoppingProducts(node));
+                case "popular": //22-11-2022 popular block
+                    s.Append("<block type=\"popularProducts\" url=\"\">");
+                    s.Append(GetPopularProducts(node));
                     s.Append("</block>");
-                    break;*///22-11-2022
+                    break;//22-11-2022
                 default:
                     break;
             }
@@ -2734,11 +2734,11 @@ namespace RapidTrackingSingleThread
                 {
                     return "ProductListedAds";
                 }
-            /*nd = node.SelectSingleNode(".//ul/product-viewer-group"); //22-11-2022 shopping block
-            if (nd != null)//22-11-2022 shopping
+            nd = node.SelectSingleNode(".//ul/product-viewer-group"); //22-11-2022 shopping block
+            if (nd != null)//22-11-2022 popular
             {
-                return "Shopping";//22-11-2022 shopping
-            }*/
+                return "Popular";//22-11-2022 popular
+            }
             /*nd = node.SelectSingleNode(".//div[contains(@class, 'vZFyxc')]");//22-11-2022 refine the searches
             if (nd != null)
                 return "Refine";*///22-11-2022

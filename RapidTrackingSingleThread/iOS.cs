@@ -1105,10 +1105,10 @@ namespace RapidTrackingSingleThread
             }
             return s.ToString();
         }//22-11-2022 refine the searches
-        private string GetPopularProducts(HtmlNode node)//22-11-2022 shopping block method and enable other lines by searching "popular"
+        private string GetPopularProducts(HtmlNode node)//popular products
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nodes = node.SelectNodes(".//ul/product-viewer-group/li");
+            HtmlNodeCollection nodes = node.SelectNodes(".//ul/product-viewer-group/li|.//ul/div[@class='Ez5pwe']/li|.//div[@class='MhZJBd']/div[@jsname='U5epZb']");
             if (nodes != null)
             {
                 foreach (HtmlNode nd in nodes)
@@ -1117,13 +1117,14 @@ namespace RapidTrackingSingleThread
                     string title = string.Empty;
                     string price = string.Empty;
                     string name = string.Empty;
-                    HtmlNode link = nd.SelectSingleNode(".//a");
+                    //HtmlNode link = nd.SelectSingleNode(".//a");
+                    HtmlNode link = nd.SelectSingleNode(".//div[@class='NcgzWb Nplhsf']");
                     if (link != null)
                     {
                         url = link.Attributes["href"]?.Value;
-                        title = link.SelectSingleNode(".//div[contains(@class,'ZsI9Vc')]")?.InnerText;
-                        price = link.SelectSingleNode(".//div[@class='Ijn7Rc']")?.InnerText;
-                        name = link.SelectSingleNode(".//div[@class='DAB5ue']")?.InnerText;
+                        title = link.SelectSingleNode(".//div[contains(@class,'ZsI9Vc')]|.//div[@jsname='r4nke']")?.InnerText;
+                        price = link.SelectSingleNode(".//div[@class='Ijn7Rc']|.//div[@class='vy5bA dpJO9']")?.InnerText;
+                        name = link.SelectSingleNode(".//div[@class='DAB5ue']|.//div[@class='NemW5e']/span|.//div[@class='ChC0jd']/span")?.InnerText;
                     }
                     if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(title))
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" price=\"" + SetTitle(price) + "\" site=\"" + SetTitle(name) + "\" />");
@@ -2734,7 +2735,7 @@ namespace RapidTrackingSingleThread
                 {
                     return "ProductListedAds";
                 }
-            nd = node.SelectSingleNode(".//ul/product-viewer-group"); //22-11-2022 shopping block
+            nd = node.SelectSingleNode(".//ul/product-viewer-group|.//div[@class='aJegcc']");//09-12-2022 //22-11-2022 shopping block
             if (nd != null)//22-11-2022 popular
             {
                 return "Popular";//22-11-2022 popular

@@ -299,10 +299,10 @@ namespace TrendingReceiving
             return s.ToString();
         }
 
-        private string GetShoppingProducts(HtmlNode node)//09-11-2022 shopping block method and enable other lines by searching "shopping"
+        private string GetPopularProducts(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nodes = node.SelectNodes(".//ul/product-viewer-group/li");
+            HtmlNodeCollection nodes = node.SelectNodes(".//ul/product-viewer-group/li|.//ul/div[@class='Ez5pwe']/li|.//div[@class='MhZJBd']/div[@jsname='U5epZb']");//09-12-2022
             if (nodes != null)
             {
                 foreach (HtmlNode nd in nodes)
@@ -311,16 +311,24 @@ namespace TrendingReceiving
                     string title = string.Empty;
                     string price = string.Empty;
                     string name = string.Empty;
-                    HtmlNode link = nd.SelectSingleNode(".//a");
-                    if (link != null)
+                    try
                     {
-                        url = link.Attributes["href"]?.Value;
-                        title = link.SelectSingleNode(".//div[@class='vuR1ld']")?.InnerText;
-                        price = link.SelectSingleNode(".//div[@class='ldGAMe']")?.InnerText;
-                        name = link.SelectSingleNode(".//div[@class='DNnNed nbhTP']")?.InnerText;
+                        HtmlNode link = nd.SelectSingleNode(".//a[contains(@class,'vzhcTd wTrwWd')]");
+                        if (link == null)
+                            link = nd.SelectSingleNode(".//div[@class='qhPRsb jAPStb']");
+                        if (link == null)
+                            link = nd.SelectSingleNode(".//div[@class='cWgBoc']");//09-12-2022
+                        if (link != null)
+                        {
+                            url = link.Attributes["href"]?.Value;
+                            title = link.SelectSingleNode(".//div[@class='vuR1ld']|.//div[@class='wEN0R']")?.InnerText;
+                            price = link.SelectSingleNode(".//div[@class='ldGAMe']|.//div[@class='z235y jAPStb']")?.InnerText;
+                            name = link.SelectSingleNode(".//div[@class='DNnNed nbhTP']/span[@class='Dt4hCc']|.//div[@class='ix5OZc']")?.InnerText;
+                        }
+                        if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(title))
+                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" price=\"" + SetTitle(price) + "\" site=\"" + SetTitle(name) + "\" />");
                     }
-                    if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(title))
-                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" price=\"" + SetTitle(price) + "\" name=\"" + SetTitle(name) + "\" />");
+                    catch { }
                 }
             }
             return s.ToString();
@@ -822,11 +830,11 @@ namespace TrendingReceiving
                     s.Append(GetFlights(node));
                     s.Append("</block>");
                     break; //23-02-2022*/
-                /*case "shopping": //09-11-2022
-                    s.Append("<block type=\"shopping\" url=\"\">");
-                    s.Append(GetShoppingProducts(node));
+                case "popular": //09-11-2022
+                    s.Append("<block type=\"popularProducts\" url=\"\">");
+                    s.Append(GetPopularProducts(node));
                     s.Append("</block>");
-                    break;//09-11-2022*/
+                    break;//09-11-2022
                 default:
                     break;
             }
@@ -1715,11 +1723,11 @@ namespace TrendingReceiving
             {
                 return "SiteLinks";
             }
-            /*nd = node.SelectSingleNode(".//ul/product-viewer-group"); //09-11-2022 shopping
-            if (nd != null)//09-11-2022 shopping
+            nd = node.SelectSingleNode(".//ul/product-viewer-group|.//div[@class='aJegcc']");//09-12-2022 //09-11-2022 PopularProducts
+            if (nd != null)//09-11-2022 PopularProducts
             {
-                return "Shopping";//09-11-2022 shopping
-            }*/
+                return "Popular";//09-11-2022 PopularProducts
+            }
             return "";
         }
 
@@ -1823,9 +1831,9 @@ namespace TrendingReceiving
                     if (nd.InnerText == "Top stories" || nd.InnerText == "Huvudnyheter" || nd.InnerText == "Videos" || nd.InnerText == "Video" || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws" || nd.InnerText == "Vertaalresultaat" || nd.InnerText == "Recipes" || nd.InnerText == "Vidéos")//02-12-2020 videos//05-08-2020 //29-06-2020//03-06-2020 // 02-06-2020  // 08-04-2020
                         return true;
 
-                //enable below line without new block "ShoppingPRoducts"
-                if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null || node.SelectSingleNode(".//div[@class='dzpFPb']") != null)//28-05-2022//06-04-2022 //13-10-2021
-                                                                                                                                                   //if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null || node.SelectSingleNode(".//div[@class='dzpFPb']") != null || node.SelectSingleNode(".//div[@jscontroller='Yma7vd']") != null || node.SelectSingleNode(".//ul/product-viewer-group") != null)//09-11-2022 shopping
+                //enable below line without new block "popularProducts"
+                //if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null || node.SelectSingleNode(".//div[@class='dzpFPb']") != null)//28-05-2022//06-04-2022 //13-10-2021
+                if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null || node.SelectSingleNode(".//div[@class='dzpFPb']") != null || node.SelectSingleNode(".//div[@jscontroller='Yma7vd']") != null || node.SelectSingleNode(".//div[@class='aJegcc']") != null)//09-12-2022//09-11-2022 shopping
                     return true;
 
                 // changes in map block on 19-06-2019.

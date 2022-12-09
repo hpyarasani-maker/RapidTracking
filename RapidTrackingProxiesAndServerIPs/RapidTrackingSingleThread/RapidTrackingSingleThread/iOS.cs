@@ -1106,10 +1106,10 @@ namespace RapidTrackingSingleThread
             }
             return s.ToString();
         }//22-11-2022 refine the searches
-        private string GetShoppingProducts(HtmlNode node)//22-11-2022 shopping block method and enable other lines by searching "shopping"
+        private string GetPopularProducts(HtmlNode node)//popular products
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nodes = node.SelectNodes(".//ul/product-viewer-group/li");
+            HtmlNodeCollection nodes = node.SelectNodes(".//ul/product-viewer-group/li|.//ul/div[@class='Ez5pwe']/li|.//div[@class='MhZJBd']/div[@jsname='U5epZb']");
             if (nodes != null)
             {
                 foreach (HtmlNode nd in nodes)
@@ -1118,20 +1118,21 @@ namespace RapidTrackingSingleThread
                     string title = string.Empty;
                     string price = string.Empty;
                     string name = string.Empty;
-                    HtmlNode link = nd.SelectSingleNode(".//a");
+                    //HtmlNode link = nd.SelectSingleNode(".//a");
+                    HtmlNode link = nd.SelectSingleNode(".//div[@class='NcgzWb Nplhsf']");
                     if (link != null)
                     {
                         url = link.Attributes["href"]?.Value;
-                        title = link.SelectSingleNode(".//div[contains(@class,'ZsI9Vc')]")?.InnerText;
-                        price = link.SelectSingleNode(".//div[@class='Ijn7Rc']")?.InnerText;
-                        name = link.SelectSingleNode(".//div[@class='DAB5ue']")?.InnerText;
+                        title = link.SelectSingleNode(".//div[contains(@class,'ZsI9Vc')]|.//div[@jsname='r4nke']")?.InnerText;
+                        price = link.SelectSingleNode(".//div[@class='Ijn7Rc']|.//div[@class='vy5bA dpJO9']")?.InnerText;
+                        name = link.SelectSingleNode(".//div[@class='DAB5ue']|.//div[@class='NemW5e']/span|.//div[@class='ChC0jd']/span")?.InnerText;
                     }
                     if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(title))
-                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" price=\"" + SetTitle(price) + "\" name=\"" + SetTitle(name) + "\" />");
+                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" price=\"" + SetTitle(price) + "\" site=\"" + SetTitle(name) + "\" />");
                 }
             }
             return s.ToString();
-        }//22-11-2022 shopping block
+        }//22-11-2022 popular block
         //17-10-2019
         private string SetVideos(HtmlNode nd)
         {
@@ -1252,11 +1253,11 @@ namespace RapidTrackingSingleThread
                     s.Append(GetRefineBySearches(node));
                     s.Append("</block>");
                     break;*/
-                /*case "shopping": //22-11-2022 shopping block
-                    s.Append("<block type=\"shopping\" url=\"\">");
-                    s.Append(GetShoppingProducts(node));
+                case "popular": //22-11-2022 popular block
+                    s.Append("<block type=\"popularProducts\" url=\"\">");
+                    s.Append(GetPopularProducts(node));
                     s.Append("</block>");
-                    break;*///22-11-2022
+                    break;//22-11-2022
                 default:
                     break;
             }
@@ -2735,11 +2736,11 @@ namespace RapidTrackingSingleThread
                 {
                     return "ProductListedAds";
                 }
-            /*nd = node.SelectSingleNode(".//ul/product-viewer-group"); //22-11-2022 shopping block
-            if (nd != null)//22-11-2022 shopping
+            nd = node.SelectSingleNode(".//ul/product-viewer-group|.//div[@class='aJegcc']");//09-12-2022 //22-11-2022 shopping block
+            if (nd != null)//22-11-2022 popular
             {
-                return "Shopping";//22-11-2022 shopping
-            }*/
+                return "Popular";//22-11-2022 popular
+            }
             /*nd = node.SelectSingleNode(".//div[contains(@class, 'vZFyxc')]");//22-11-2022 refine the searches
             if (nd != null)
                 return "Refine";*///22-11-2022
@@ -2761,7 +2762,7 @@ namespace RapidTrackingSingleThread
                              && node.SelectSingleNode(".//g-card[@id='tscffb']") == null) //19-05-2022//12-11-2021 //25-05-2021 //04-01-2021 video block
                         return true;
                 if (node.SelectSingleNode(".//div[@class='ttfMne']|.//div[@class='N60dNb mfMhoc']|.//h2[@class='OEsCyf mfMhoc']|.//div[@class='kp-blk c2xzTb OJXvsb']|.//div[@class='WpKAof']|.//g-card/div[@class='mnr-c']|.//div[@class='FQrfLd']") != null)//04-11-2022 //23-11-2021 CB //27-10-2021 //01-09-2021 missing AC block//12-07-2021 job block //12-07-2021 carousel block //19-01-2021 missing top stories
-                    if (node.SelectSingleNode(".//div[@class='WvKfwe a3spGf']|.//div[@class='V1nn0e wgFKp']|.//div[@jscontroller='rMVp5e']|.//div[@jscontroller='rQR4vd']|.//div[contains(@class,'P8ujBc')]|.//div[@class='v5yQqb jqWpsc']|.//div[contains(@class,'jqWpsc')]") != null)//16-09-2022//09-09-2022//06-05-2022//21-01-2022//13-01-2022//17-12-2021 //12-10-2021
+                    if (node.SelectSingleNode(".//div[@class='WvKfwe a3spGf']|.//div[@class='V1nn0e wgFKp']|.//div[@jscontroller='rMVp5e']|.//div[@jscontroller='rQR4vd']|.//div[contains(@class,'P8ujBc')]|.//div[@class='v5yQqb jqWpsc']|.//div[contains(@class,'jqWpsc')]") != null && node.SelectSingleNode(".//div[@class='aJegcc']") == null)//09-12-2022//16-09-2022//09-09-2022//06-05-2022//21-01-2022//13-01-2022//17-12-2021 //12-10-2021
                         return false;
                     else
                         return true;//12-11-2021

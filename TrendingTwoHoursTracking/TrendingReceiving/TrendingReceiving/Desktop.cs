@@ -51,7 +51,7 @@ namespace TrendingReceiving
                 nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div|.//div[@class='ULSxyf']|//div[@class='hlcw0c']/div") ?? nodeCol;//17-08-2022
             if (nodeCol == null || nodeCol.Count <= 1) //01-08-2022 swapped lines
             {
-                nodeCol = doc.DocumentNode.SelectNodes("//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div|.//div[@class='UDZeY OTFaAf']/block-component") ?? nodeCol; //answer card 26-09-2022
+                nodeCol = doc.DocumentNode.SelectNodes("//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div|.//div[@class='UDZeY OTFaAf']/block-component") ?? nodeCol;//09-12-2022//06-12-2022 //answer card 26-09-2022
                 if (nodeCol == null || nodeCol.Count <= 3)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div|//div[@class='hlcw0c']/div") ?? nodeCol;
             }
@@ -299,10 +299,10 @@ namespace TrendingReceiving
             return s.ToString();
         }
 
-        private string GetShoppingProducts(HtmlNode node)//09-11-2022 shopping block method and enable other lines by searching "shopping"
+        private string GetPopularProducts(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nodes = node.SelectNodes(".//ul/product-viewer-group/li");
+            HtmlNodeCollection nodes = node.SelectNodes(".//ul/product-viewer-group/li|.//ul/div[@class='Ez5pwe']/li|.//div[@class='MhZJBd']/div[@jsname='U5epZb']");//09-12-2022
             if (nodes != null)
             {
                 foreach (HtmlNode nd in nodes)
@@ -311,16 +311,24 @@ namespace TrendingReceiving
                     string title = string.Empty;
                     string price = string.Empty;
                     string name = string.Empty;
-                    HtmlNode link = nd.SelectSingleNode(".//a");
-                    if (link != null)
+                    try
                     {
-                        url = link.Attributes["href"]?.Value;
-                        title = link.SelectSingleNode(".//div[@class='vuR1ld']")?.InnerText;
-                        price = link.SelectSingleNode(".//div[@class='ldGAMe']")?.InnerText;
-                        name = link.SelectSingleNode(".//div[@class='DNnNed nbhTP']")?.InnerText;
+                        HtmlNode link = nd.SelectSingleNode(".//a[contains(@class,'vzhcTd wTrwWd')]");
+                        if (link == null)
+                            link = nd.SelectSingleNode(".//div[@class='qhPRsb jAPStb']");
+                        if (link == null)
+                            link = nd.SelectSingleNode(".//div[@class='cWgBoc']");//09-12-2022
+                        if (link != null)
+                        {
+                            url = link.Attributes["href"]?.Value;
+                            title = link.SelectSingleNode(".//div[@class='vuR1ld']|.//div[@class='wEN0R']")?.InnerText;
+                            price = link.SelectSingleNode(".//div[@class='ldGAMe']|.//div[@class='z235y jAPStb']")?.InnerText;
+                            name = link.SelectSingleNode(".//div[@class='DNnNed nbhTP']/span[@class='Dt4hCc']|.//div[@class='ix5OZc']")?.InnerText;
+                        }
+                        if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(title))
+                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" price=\"" + SetTitle(price) + "\" site=\"" + SetTitle(name) + "\" />");
                     }
-                    if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(title))
-                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" price=\"" + SetTitle(price) + "\" name=\"" + SetTitle(name) + "\" />");
+                    catch { }
                 }
             }
             return s.ToString();
@@ -545,7 +553,7 @@ namespace TrendingReceiving
                  || node.SelectNodes(".//div[@class='d3zsgb']/div[@class='yuRUbf']|.//div[contains(@class,'g Ww4FFb')]|.//div[@class='g eejeod up9jud']") != null) && node.SelectSingleNode(".//div[@id='rhs']") == null)//12-10-2022//end of 10-10-2022
             {
                 //HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'g tF2Cxc')]|.//div[@class='g']|.//div[@class='g dFd2Tb']");//01-09-2022//20-04-2022 //04-04-2022
-                HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'g tF2Cxc')]|.//div[@class='g dFd2Tb']|.//div[contains(@class,'g Ww4FFb')]|.//div[@class='BYM4Nd'] ");//28-10-2022//11-10-2022 //07-10-2022
+                HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'g tF2Cxc')]|.//div[@class='g dFd2Tb']|.//div[contains(@class,'g Ww4FFb')]|.//div[@class='BYM4Nd']|.//div[@class='AuVD cUnQKe']");//05-12-2022//28-10-2022//11-10-2022 //07-10-2022
                 if (nds == null && (node.Attributes["class"]?.Value == "g tF2Cxc" || node.Attributes["class"]?.Value == "g Ww4FFb vt6azd tF2Cxc asEBEc"))//17-11-2022//20-04-2022
                     nds = node.SelectNodes(".");//20-04-2022 
                 if (nds == null)
@@ -585,7 +593,13 @@ namespace TrendingReceiving
                                 continue;
                             }
                         } // End 02-06-2020
-
+                        if (nd.HasClass("AuVD"))//05-12-2022
+                        {
+                            s.Append("<block type=\"peopleAlsoAsk\" url=\"\">");
+                            s.Append(PeopleAlsoAsk(nd));
+                            s.Append("</block>");
+                            continue;
+                        }//05-12-2022
                         HtmlNode title = null;  // 18-11-2019
                         HtmlNode n = nd.SelectSingleNode(".//h3[@class='r']/a");
                         if (n == null)
@@ -816,11 +830,11 @@ namespace TrendingReceiving
                     s.Append(GetFlights(node));
                     s.Append("</block>");
                     break; //23-02-2022*/
-                /*case "shopping": //09-11-2022
-                    s.Append("<block type=\"shopping\" url=\"\">");
-                    s.Append(GetShoppingProducts(node));
+                case "popular": //09-11-2022
+                    s.Append("<block type=\"popularProducts\" url=\"\">");
+                    s.Append(GetPopularProducts(node));
                     s.Append("</block>");
-                    break;//09-11-2022*/
+                    break;//09-11-2022
                 default:
                     break;
             }
@@ -965,6 +979,8 @@ namespace TrendingReceiving
                 nds = node.SelectNodes(".//div[@jsname='jIA8B']"); //08-07-2021
             if (nds == null)
                 nds = node.SelectNodes(".//div[@jsname='Cpkphb']"); //30-11-2021 people also ask titles
+            if (nds == null)
+                nds = node.SelectNodes(".//div[@class='JlqpRe']"); //02-12-2022
             if (nds == null)
                 return string.Empty;
             string[] titles = new string[nds.Count];//31-01-2022
@@ -1645,7 +1661,9 @@ namespace TrendingReceiving
                 nd = node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']"); //07-12-2021 for images block
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@id='iur']"); //24-08-2022 images
-            if (nd != null && node.Attributes["id"]?.Value != "Odp5De" && node.SelectSingleNode(".//div[@class='q6PGbe']|.//div[@class='l44Vof']|.//div[@class='P9Jfrb']|.//div[@class='o8ebK']|.//div[@class='ntKMYc']") == null)//13-08-2022 maps //02-06-2022
+            if (nd == null)//06-12-2022
+                nd = node.SelectSingleNode(".//div[@class='Kq2KUc']");//06-12-2022
+            if (nd != null && node.Attributes["id"]?.Value != "Odp5De" && node.SelectSingleNode(".//div[@class='q6PGbe']|.//div[@class='l44Vof']|.//div[@class='P9Jfrb']|.//div[@class='o8ebK']|.//div[@class='ntKMYc']|.//img[contains(@alt,'Map of')]") == null)//06-12-2022//13-08-2022 maps //02-06-2022
             {
                 return "Images";
             }
@@ -1705,11 +1723,11 @@ namespace TrendingReceiving
             {
                 return "SiteLinks";
             }
-            /*nd = node.SelectSingleNode(".//ul/product-viewer-group"); //09-11-2022 shopping
-            if (nd != null)//09-11-2022 shopping
+            nd = node.SelectSingleNode(".//ul/product-viewer-group|.//div[@class='aJegcc']");//09-12-2022 //09-11-2022 PopularProducts
+            if (nd != null)//09-11-2022 PopularProducts
             {
-                return "Shopping";//09-11-2022 shopping
-            }*/
+                return "Popular";//09-11-2022 PopularProducts
+            }
             return "";
         }
 
@@ -1766,7 +1784,7 @@ namespace TrendingReceiving
                     if (node.SelectSingleNode(".//div[@class='g jNVrwc Y4pkMc']|.//div[@class='g tF2Cxc']|.//div[@class='g eejeod up9jud']" +
                     //"|.//div[@class='g Ww4FFb tF2Cxc']") != null) return false; //21-07-2022//15-02-2022//02-02-2022//31-12-2021 missing CLinks
                     "|.//div[contains(@class,'g Ww4FFb')]|.//div[@class='BYM4Nd']|.//div[@class='rULfzc']") != null || (node.Attributes["class"]?.Value?.Contains("g Ww4FFb") ?? false)) return false;//31-10-2022//11-10-2022
-                    if (node.SelectSingleNode(".//div[@class='twQ0Be']|.//div[@jsname='N760b']|.//div[@jsname='wRSfy']|.//div[contains(@class,'e2BEnf U7izfe')]|.//div[@jsname='A6RGif']|.//div[@class='P9Jfrb']|.//div[@class='ntKMYc']|.//div[@class='T6zPgb gduDCb']") != null) return true;//26-09-2022//13-08-2022 maps//08-03-2022//07-03-2022//28-12-2021//10-12-2021//09-12-2021 //08-12-2021 PAlsoB   //30-08-2021 video card
+                    if (node.SelectSingleNode(".//div[@class='twQ0Be']|.//div[@jsname='N760b']|.//div[@jsname='wRSfy']|.//div[contains(@class,'e2BEnf U7izfe')]|.//div[@jsname='A6RGif']|.//div[@class='P9Jfrb']|.//div[@class='ntKMYc']|.//div[@class='T6zPgb gduDCb']|.//div[@class='M0XuFe mnr-c vk_c']") != null) return true;//05-12-2022//26-09-2022//13-08-2022 maps//08-03-2022//07-03-2022//28-12-2021//10-12-2021//09-12-2021 //08-12-2021 PAlsoB   //30-08-2021 video card
                     if (node.SelectSingleNode(".//div[@class='osrp-blk']|.//div[@class='tpa-cc']") != null && node.SelectSingleNode(".//div[@class='l44Vof']") == null && node.SelectSingleNode(".//div[@class='H93uF']") == null) //17-05-2022//31-12-2021
                         return false; //20-08-2021
                     if (node.Attributes["id"]?.Value == "rhs") return false;//03-03-2022
@@ -1813,16 +1831,16 @@ namespace TrendingReceiving
                     if (nd.InnerText == "Top stories" || nd.InnerText == "Huvudnyheter" || nd.InnerText == "Videos" || nd.InnerText == "Video" || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws" || nd.InnerText == "Vertaalresultaat" || nd.InnerText == "Recipes" || nd.InnerText == "Vidéos")//02-12-2020 videos//05-08-2020 //29-06-2020//03-06-2020 // 02-06-2020  // 08-04-2020
                         return true;
 
-                //enable below line without new block "ShoppingPRoducts"
-                if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null || node.SelectSingleNode(".//div[@class='dzpFPb']") != null)//28-05-2022//06-04-2022 //13-10-2021
-                                                                                                                                                   //if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null || node.SelectSingleNode(".//div[@class='dzpFPb']") != null || node.SelectSingleNode(".//div[@jscontroller='Yma7vd']") != null || node.SelectSingleNode(".//ul/product-viewer-group") != null)//09-11-2022 shopping
+                //enable below line without new block "popularProducts"
+                //if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null || node.SelectSingleNode(".//div[@class='dzpFPb']") != null)//28-05-2022//06-04-2022 //13-10-2021
+                if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null || node.SelectSingleNode(".//div[@class='dzpFPb']") != null || node.SelectSingleNode(".//div[@jscontroller='Yma7vd']") != null || node.SelectSingleNode(".//div[@class='aJegcc']") != null)//09-12-2022//09-11-2022 shopping
                     return true;
 
                 // changes in map block on 19-06-2019.
                 nd = node.SelectSingleNode(".//g-img/img");
                 if (nd != null)
                 {
-                    if (nd.Attributes["alt"].Value.StartsWith("Map of ") || node.SelectSingleNode(".//div[@class='H93uF']") != null) //21-04-2022
+                    if (nd.Attributes["alt"].Value.StartsWith("Map of ") || node.SelectSingleNode(".//div[@class='H93uF']") != null || node.SelectSingleNode(".//img[contains(@alt,'Map of ')]") != null)//06-12-2022//21-04-2022
                         return true;
                     if (node.SelectSingleNode(".//div[@class='U1TUId LYh3vc']") != null) //16-12-2021
                         return false; //16-12-2021

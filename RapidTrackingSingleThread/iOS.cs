@@ -1118,7 +1118,7 @@ namespace RapidTrackingSingleThread
                     string price = string.Empty;
                     string name = string.Empty;
                     //HtmlNode link = nd.SelectSingleNode(".//a");
-                    HtmlNode link = nd.SelectSingleNode(".//div[@class='NcgzWb Nplhsf']");
+                    HtmlNode link = nd.SelectSingleNode(".//div[@class='NcgzWb Nplhsf']|.//div[@class='yDecDe w4sdvb']");//12-12-2022
                     if (link != null)
                     {
                         url = link.Attributes["href"]?.Value;

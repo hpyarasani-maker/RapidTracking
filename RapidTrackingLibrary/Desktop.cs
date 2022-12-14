@@ -687,6 +687,12 @@ namespace RapidTrackingLibrary
                 }
                 foreach (HtmlNode n in nc)
                 {
+                    if (n.SelectSingleNode(".//table[@class='nrgt']") != null || node.SelectSingleNode(".//table[@class='jmjoTe']") != null)//14-12-2022
+                    {
+                        if (n.SelectSingleNode(".//h2") == null) continue;
+                        s.Append(GetSiteLinks(n));
+                        continue;
+                    }//14-12-2022
                     //12-10-2022
                     if ((Regex.IsMatch(n.OuterHtml, "id=\"vidthumb\\d*\"") && (n.SelectSingleNode(".//div[@class='ij69rd UHe5G']") != null || n.SelectSingleNode(".//div[@class='ij69rd TUOsUe UHe5G']") != null)) || n.SelectSingleNode(".//div[contains(@class,'U1TUId')]|.//div[@class='J1mWY']") != null)
                     {

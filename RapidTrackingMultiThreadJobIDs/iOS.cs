@@ -109,7 +109,7 @@ namespace RapidTrackingMultiThreadJobIDs
                         sb.Append("<block type=\"knowledgeGraph\" url=\"\" title=\"" + SetTitle(heading) + "\" />");
                     }
                     n = node.SelectSingleNode(".//g-img[@class='o8ebK']|.//g-img[@class='gRTVof']");//10-10-2022//07-09-2022 missing KP block
-                    if (n != null)
+                    if (n != null && node.SelectSingleNode(".//div[@class='KrvXD']") == null)//13-12-2022
                     {
                         sb.Append("<block type=\"maps\" url=\"\"></block>");
                     } //07-09-2022
@@ -138,7 +138,9 @@ namespace RapidTrackingMultiThreadJobIDs
                         if (node.HasClass("kp-wholepage") || node.SelectNodes(".//div[contains(@class, 'kp-wholepage')]") != null)
                         {
                             //Current 15-12-2020 swapped from bottom HtmlNodeCollection
-                            HtmlNodeCollection nc = node.SelectNodes(".//div[@class='TjcfIc eE3xqf B03h3d V14nKc ptcLIOszQJu__wholepage-card wp-ms']|.//div[@class='WvKfwe a3spGf']/div"); //28-11-2022
+                            HtmlNodeCollection nc = node.SelectNodes(".//div[contains(@class,'TzHB6b')]");//14-12-2022
+                            if (nc == null || nc.Count <= 3) //14-12-2022
+                                nc = node.SelectNodes(".//div[@class='TjcfIc eE3xqf B03h3d V14nKc ptcLIOszQJu__wholepage-card wp-ms']|.//div[@class='WvKfwe a3spGf']/div");//13-12-2022 //28-11-2022
                             if (nc == null)//28-11-2022
                                 nc = node.SelectNodes(".//div[@class='WvKfwe']/div|.//div[@class='WvKfwe a3spGf']/div" +
                                 "|.//div[@class='ChlgHf']|.//div[@class='a3spGf WvKfwe']/div|.//div[contains(@class,'TzHB6b mnr-c UBoxCb')]" + //17-11-2022

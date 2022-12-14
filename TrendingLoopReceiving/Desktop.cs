@@ -54,7 +54,7 @@ namespace TrendingLoopReceiving
             if (nodeCol == null || nodeCol.Count <= 1) //01-08-2022 swapped lines
             {
                 nodeCol = doc.DocumentNode.SelectNodes("//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div|.//div[@class='UDZeY OTFaAf']/block-component") ?? nodeCol;//09-12-2022//06-12-2022 //answer card 26-09-2022
-                if (nodeCol == null || nodeCol.Count <= 3)
+                if (nodeCol == null || nodeCol.Count <= 5)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div|//div[@class='hlcw0c']/div|//div[contains(@class, 'TzHB6b cLjAic')]") ?? nodeCol;//12-12-2022
             }
             //if (nodeCol == null)

@@ -136,7 +136,6 @@ namespace RapidTrackingLibrary
                                 //Current 15-12-2020 swapped from bottom HtmlNodeCollection
                                 HtmlNodeCollection nc = node.SelectNodes(".//div[contains(@class,'TzHB6b')]");//14-12-2022
                                 if (nc == null || nc.Count <= 2) //14-12-2022
-                                    if (nc == null)//13-12-2022
                                     nc = node.SelectNodes(".//div[@class='TjcfIc eE3xqf B03h3d V14nKc ptcLIOszQJu__wholepage-card wp-ms']|.//div[@class='WvKfwe a3spGf']/div");//13-12-2022 //28-11-2022
                                 if (nc == null)
                                     nc = node.SelectNodes(".//div[@class='WvKfwe']/div|.//div[@class='WvKfwe a3spGf']/div" +

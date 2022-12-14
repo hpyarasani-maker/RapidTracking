@@ -55,7 +55,7 @@ namespace Oxylabs_BulkKeywords
             {
                 nodeCol = doc.DocumentNode.SelectNodes("//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div|.//div[@class='UDZeY OTFaAf']/block-component") ?? nodeCol;//09-12-2022//06-12-2022 //answer card 26-09-2022
                 if (nodeCol == null || nodeCol.Count <= 3)
-                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div|//div[@class='hlcw0c']/div") ?? nodeCol;
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div|//div[@class='hlcw0c']/div|//div[contains(@class, 'TzHB6b cLjAic')]") ?? nodeCol;//12-12-2022
             }
             //if (nodeCol == null)
             //{
@@ -320,12 +320,14 @@ namespace Oxylabs_BulkKeywords
                             link = nd.SelectSingleNode(".//div[@class='qhPRsb jAPStb']");
                         if (link == null)
                             link = nd.SelectSingleNode(".//div[@class='cWgBoc']");//09-12-2022
+                        if (link == null)//13-12-2022
+                            link = nd.SelectSingleNode(".//div[@class='AQ2gqe']");//13-12-2022
                         if (link != null)
                         {
                             url = link.Attributes["href"]?.Value;
-                            title = link.SelectSingleNode(".//div[@class='vuR1ld']|.//div[@class='wEN0R']")?.InnerText;
-                            price = link.SelectSingleNode(".//div[@class='ldGAMe']|.//div[@class='z235y jAPStb']")?.InnerText;
-                            name = link.SelectSingleNode(".//div[@class='DNnNed nbhTP']/span[@class='Dt4hCc']|.//div[@class='ix5OZc']")?.InnerText;
+                            title = link.SelectSingleNode(".//div[@class='vuR1ld']|.//div[@class='wEN0R']|.//div[@class='vYe7gd Havxif']")?.InnerText;//13-12-2022
+                            price = link.SelectSingleNode(".//div[@class='ldGAMe']|.//div[@class='z235y jAPStb']|.//div[@class='s1bFpb']")?.InnerText;//13-12-2022
+                            name = link.SelectSingleNode(".//div[@class='DNnNed nbhTP']/span[@class='Dt4hCc']|.//div[@class='ix5OZc']|.//div[@class='pMiHCf']")?.InnerText;//13-12-2022
                         }
                         if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(title))
                             s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" price=\"" + SetTitle(price) + "\" site=\"" + SetTitle(name) + "\" />");
@@ -703,6 +705,12 @@ namespace Oxylabs_BulkKeywords
                 }
                 foreach (HtmlNode n in nc)
                 {
+                    if (n.SelectSingleNode(".//table[@class='nrgt']") != null || node.SelectSingleNode(".//table[@class='jmjoTe']") != null)//14-12-2022
+                    {
+                        if (n.SelectSingleNode(".//h2") == null) continue;
+                        s.Append(GetSiteLinks(n));
+                        continue;
+                    }//14-12-2022
                     //12-10-2022
                     if ((Regex.IsMatch(n.OuterHtml, "id=\"vidthumb\\d*\"") && (n.SelectSingleNode(".//div[@class='ij69rd UHe5G']") != null || n.SelectSingleNode(".//div[@class='ij69rd TUOsUe UHe5G']") != null)) || n.SelectSingleNode(".//div[contains(@class,'U1TUId')]|.//div[@class='J1mWY']") != null)
                     {

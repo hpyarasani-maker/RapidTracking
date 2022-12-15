@@ -48,8 +48,8 @@ namespace RapidTrackingLibrary
                 if (nodeCol == null || nodeCol.Count <= 1) //01-07-2022 swapped lines
                 {
                     nodeCol = doc.DocumentNode.SelectNodes("//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div|.//div[@class='UDZeY OTFaAf']/block-component") ?? nodeCol;//09-12-2022//06-12-2022 //answer card 26-09-2022
-                    if (nodeCol == null || nodeCol.Count <= 6)//12-12-2022
-                        nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div|//div[@class='hlcw0c']/div") ?? nodeCol;//12-12-2022
+                    if (nodeCol == null || nodeCol.Count <= 5)//12-12-2022
+                        nodeCol = doc.DocumentNode.SelectNodes("//div[@id='kp-wp-tab-overview']/div|//div[@class='hlcw0c']/div|//div[contains(@class, 'TzHB6b cLjAic')]") ?? nodeCol;//12-12-2022
                 }
                 if (nodeCol != null) //11-08-2022
                 foreach (HtmlNode node in nodeCol)
@@ -75,7 +75,7 @@ namespace RapidTrackingLibrary
                 if (string.IsNullOrEmpty(ndText) || orgLinks == 0)//08-04-2020
                 {
 
-                    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='xVtsMb i6u2Cc']|//div[@class='xVtsMb']/div/div|//div[contains(@class, 'TzHB6b cLjAic')]");//15-12-2022//swapped 08-04-2020
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='xVtsMb i6u2Cc']|//div[@class='xVtsMb']/div/div");//swapped 08-04-2020
                     if (nodeCol == null)
                         nodeCol = doc.DocumentNode.SelectNodes("//div[@class='vC5Ym DhKAUb']/div");  // 03-04-2020
                     if (nodeCol == null)

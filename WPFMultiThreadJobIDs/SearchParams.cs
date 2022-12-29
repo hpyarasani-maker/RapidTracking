@@ -2360,14 +2360,14 @@ namespace WPFMultiThreadJobIDs
            {
                 seid = 655, domain ="com", geo_location="Denver, Colorado,United States", locale= "en-us", uule = "w+CAIQICIeRGVudmVyLCBDb2xvcmFkbyxVbml0ZWQgU3RhdGVz",device="mobile_android"
            },
-           new SearchProperties()
+           /*new SearchProperties()
            {
                 seid = 656, domain ="com", geo_location="Los Angeles, California,United States", locale= "en-us", uule = "w+CAIQICImTG9zIEFuZ2VsZXMsIENhbGlmb3JuaWEsVW5pdGVkIFN0YXRlcwo=",device="desktop"
            },
            new SearchProperties()
            {
                 seid = 657, domain ="com", geo_location="Los Angeles, California,United States", locale= "en-us", uule = "w+CAIQICImTG9zIEFuZ2VsZXMsIENhbGlmb3JuaWEsVW5pdGVkIFN0YXRlcwo=",device="mobile_android"
-           },
+           },*/
            new SearchProperties()
            {
                 seid = 658, domain ="com", geo_location="Blue Bell, Pennsylvania,United States", locale= "en-us", uule = "w+CAIQICIlQmx1ZSBCZWxsLCBQZW5uc3lsdmFuaWEsVW5pdGVkIFN0YXRlcw==",device="desktop"

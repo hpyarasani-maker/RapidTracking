@@ -2514,6 +2514,94 @@ namespace RapidTrackingSingleThread
            {
                 seid = 691, domain ="com", geo_location="Mililani, Hawaii,United States", locale= "en-us", uule = "w+CAIQICIeTWlsaWxhbmksIEhhd2FpaSxVbml0ZWQgU3RhdGVz",device="mobile_android"
            },// 23-12-2022 new seid's from 606 - 691
+           new SearchProperties()// 30-12-2022 new seid's from 692- 713
+           {
+                seid = 692, domain ="bj", geo_location="Benin", locale= "fr-bj", uule = "w+CAIQICIFQmVuaW4=",device="desktop"
+           },
+           new SearchProperties()
+           {
+                seid = 693, domain ="bj", geo_location="Benin", locale= "fr-bj", uule = "w+CAIQICIFQmVuaW4=",device="mobile_android"
+           },
+           new SearchProperties()
+           {
+                seid = 694, domain ="bf", geo_location="Burkina Faso", locale= "fr-bf", uule = "w+CAIQICIMQnVya2luYSBGYXNv",device="desktop"
+           },
+           new SearchProperties()
+           {
+                seid = 695, domain ="bf", geo_location="Burkina Faso", locale= "fr-bf", uule = "w+CAIQICIMQnVya2luYSBGYXNv",device="mobile_android"
+           },
+           new SearchProperties()
+           {
+                seid = 696, domain ="cv", geo_location="Cape Verde", locale= "pt-cv", uule = "w+CAIQICIKQ2FwZSBWZXJkZQ==",device="desktop"
+           },
+           new SearchProperties()
+           {
+                seid = 697, domain ="cv", geo_location="Cape Verde", locale= "pt-cv", uule = "w+CAIQICIKQ2FwZSBWZXJkZQ==",device="mobile_android"
+           },
+           new SearchProperties()
+           {
+                seid = 698, domain ="gm", geo_location="The Gambia", locale= "en-gm", uule = "w+CAIQICIKVGhlIEdhbWJpYQ==",device="desktop"
+           },
+           new SearchProperties()
+           {
+                seid = 699, domain ="gm", geo_location="The Gambia", locale= "en-gm", uule = "w+CAIQICIKVGhlIEdhbWJpYQ==",device="mobile_android"
+           },
+           new SearchProperties()
+           {
+                seid = 700, domain ="ci", geo_location="Ivory Coast", locale= "fr-ci", uule = "w+CAIQICILSXZvcnkgQ29hc3Q=",device="desktop"
+           },
+           new SearchProperties()
+           {
+                seid = 701, domain ="ci", geo_location="Ivory Coast", locale= "fr-ci", uule = "w+CAIQICILSXZvcnkgQ29hc3Q=",device="mobile_android"
+           },
+            new SearchProperties()
+           {
+                seid = 702, domain ="ml", geo_location="Mali", locale= "fr-ml", uule = "w+CAIQICIETWFsaQ==",device="desktop"
+           },
+           new SearchProperties()
+           {
+                seid = 703, domain ="ml", geo_location="Mali", locale= "fr-ml", uule = "w+CAIQICIETWFsaQ==",device="mobile_android"
+           },
+            new SearchProperties()
+           {
+                seid = 704, domain ="ne", geo_location="Niger", locale= "fr-ne", uule = "w+CAIQICIFTmlnZXI=",device="desktop"
+           },
+           new SearchProperties()
+           {
+                seid = 705, domain ="ne", geo_location="Niger", locale= "fr-ne", uule = "w+CAIQICIFTmlnZXI=",device="mobile_android"
+           },
+           new SearchProperties()
+           {
+                seid = 706, domain ="sn", geo_location="Senegal", locale= "fr-sn", uule = "w+CAIQICIHU2VuZWdhbA==",device="desktop"
+           },
+           new SearchProperties()
+           {
+                seid = 707, domain ="sn", geo_location="Senegal", locale= "fr-sn", uule = "w+CAIQICIHU2VuZWdhbA==",device="mobile_android"
+           },
+           new SearchProperties()
+           {
+                seid = 708, domain ="com.sl", geo_location="Sierra Leone", locale= "en-sl", uule = "w+CAIQICIMU2llcnJhIExlb25l",device="desktop"
+           },
+           new SearchProperties()
+           {
+                seid = 709, domain ="com.sl", geo_location="Sierra Leone", locale= "en-sl", uule = "w+CAIQICIMU2llcnJhIExlb25l",device="mobile_android"
+           },
+           new SearchProperties()
+           {
+                seid = 710, domain ="tg", geo_location="Togo", locale= "fr-tg", uule = "w+CAIQICIMU2llcnJhIExlb25l",device="desktop"
+           },
+           new SearchProperties()
+           {
+                seid = 711, domain ="tg", geo_location="Togo", locale= "fr-tg", uule = "w+CAIQICIMU2llcnJhIExlb25l",device="mobile_android"
+           },
+           new SearchProperties()
+           {
+                seid = 712, domain ="st", geo_location="São Tomé and Príncipe", locale= "pt-st", uule = "w+CAIQICIVU2FvIFRvbWUgYW5kIFByaW5jaXBl",device="desktop"
+           },
+           new SearchProperties()
+           {
+                seid = 713, domain ="st", geo_location="São Tomé and Príncipe", locale= "pt-st", uule = "w+CAIQICIVU2FvIFRvbWUgYW5kIFByaW5jaXBl",device="mobile_android"
+           },    // 30-12-2022 new seid's from 692- 713
 
         };
     }

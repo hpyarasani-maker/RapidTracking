@@ -2586,11 +2586,11 @@ namespace WPFMultiThreadJobIDs
            },
            new SearchProperties()
            {
-                seid = 712, domain ="st", geo_location="São Tomé and Príncipe", locale= "pt-st", uule = "w+CAIQICIVU2FvIFRvbWUgYW5kIFByaW5jaXBl",device="desktop"
+                seid = 712, domain ="st", geo_location="Sao Tome and Principe", locale= "pt-st", uule = "w+CAIQICIVU2FvIFRvbWUgYW5kIFByaW5jaXBl",device="desktop"
            },
            new SearchProperties()
            {
-                seid = 713, domain ="st", geo_location="São Tomé and Príncipe", locale= "pt-st", uule = "w+CAIQICIVU2FvIFRvbWUgYW5kIFByaW5jaXBl",device="mobile_android"
+                seid = 713, domain ="st", geo_location="Sao Tome and Principe", locale= "pt-st", uule = "w+CAIQICIVU2FvIFRvbWUgYW5kIFByaW5jaXBl",device="mobile_android"
            },    // 30-12-2022 new seid's from 692- 713
         };
     }

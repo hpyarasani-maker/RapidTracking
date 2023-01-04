@@ -1111,8 +1111,6 @@ namespace Oxylabs_BulkKeywords
                     string name = string.Empty;
                     //HtmlNode link = nd.SelectSingleNode(".//a");
                     HtmlNode link = nd.SelectSingleNode(".//div[@class='NcgzWb Nplhsf']|.//div[@class='yDecDe w4sdvb']");//12-12-2022
-                    if (nodes == null)//04-01-2023
-                        nodes = node.SelectNodes(".//ul[contains(@class, 'sho-apgc__product-grid')]/li");//04-01-2023
                     if (link != null)
                     {
                         url = link.Attributes["href"]?.Value;

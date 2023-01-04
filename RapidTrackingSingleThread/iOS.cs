@@ -1111,6 +1111,8 @@ namespace RapidTrackingSingleThread
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nodes = node.SelectNodes(".//ul/product-viewer-group/li|.//ul/div[@class='Ez5pwe']/li|.//div[@class='MhZJBd']/div[@jsname='U5epZb']");
+            if (nodes == null)//04-01-2023
+                nodes = node.SelectNodes(".//ul[contains(@class, 'sho-apgc__product-grid')]/li");//04-01-2023
             if (nodes != null)
             {
                 foreach (HtmlNode nd in nodes)

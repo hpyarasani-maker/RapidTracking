@@ -2576,7 +2576,9 @@ namespace RapidTrackingLibrary
                 return false;
             }
 
-
+            nd = node.SelectSingleNode(".//div[@class='aJegcc']");//05-01-2023
+            if (nd != null)
+                return true;//05-01-2023
             //start 13-08-2019
             nd = node.SelectSingleNode(".//div[@id='sports-app']");
             if (nd != null)

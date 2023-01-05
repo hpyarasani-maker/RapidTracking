@@ -265,7 +265,7 @@ namespace Oxylabs_BulkKeywords
                                     var url = nd.Attributes["href"].Value;
                                     url = GetRedirectedUrl(url);
                                     if (!string.IsNullOrEmpty(nd.SelectSingleNode(".//h4|.//div[contains(@class,'bXPcId pymv4e')]").InnerText) && !string.IsNullOrEmpty(url.Trim())) //04-11-2022   //13-11-2019
-                                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(nd.SelectSingleNode(".//h4").InnerText) + "\" />");
+                                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(nd.SelectSingleNode(".//h4|.//div[contains(@class,'bXPcId pymv4e')]").InnerText) + "\" />");//05-01-2023
                                 }
                             }
                             //09-09-2019
@@ -1031,9 +1031,16 @@ namespace Oxylabs_BulkKeywords
                                         t = d.InnerText;
                                     else
                                         t = nv.InnerText;
-
-
-                                    if (orgLinks < 100)
+                                    //05-01-2023 adwords in middle page
+                                    if (node.SelectSingleNode(".//div[@class='eMXfhf']") != null)
+                                    {
+                                        s.Append("<block type=\"adwords\" url=\"\">");
+                                        u = SetUrl(u);
+                                        if (!string.IsNullOrEmpty(u))
+                                            s.Append("<item url=\"" + SetUrl(u) + "\"  title=\"" + SetTitle(t) + "\" />");
+                                        s.Append("</block>");
+                                    }//05-01-2023
+                                    else if (orgLinks < 100)
                                     {
                                         u = SetUrl(u);
                                         if (u.StartsWith("http") || u.StartsWith("https") || u.StartsWith("ftp")) //30-04-2020
@@ -1097,10 +1104,12 @@ namespace Oxylabs_BulkKeywords
             }
             return s.ToString();
         }//22-11-2022 refine the searches
-        private string GetPopularProducts(HtmlNode node)//popular products
+        private string GetPopularProducts(HtmlNode node)//popular products//05-01-2023
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nodes = node.SelectNodes(".//ul/product-viewer-group/li|.//ul/div[@class='Ez5pwe']/li|.//div[@class='MhZJBd']/div[@jsname='U5epZb']");
+            if (nodes == null)
+                nodes = node.SelectNodes(".//ul[contains(@class, 'sho-apgc__product-grid')]/li|.//ul/li[@class='J4ZKO wTrwWd']");
             if (nodes != null)
             {
                 foreach (HtmlNode nd in nodes)
@@ -1110,20 +1119,20 @@ namespace Oxylabs_BulkKeywords
                     string price = string.Empty;
                     string name = string.Empty;
                     //HtmlNode link = nd.SelectSingleNode(".//a");
-                    HtmlNode link = nd.SelectSingleNode(".//div[@class='NcgzWb Nplhsf']|.//div[@class='yDecDe w4sdvb']");//12-12-2022
+                    HtmlNode link = nd.SelectSingleNode(".//div[@class='NcgzWb Nplhsf']|.//div[@class='yDecDe w4sdvb']|.//g-inner-card[@class='ivG6i']/div");
                     if (link != null)
                     {
                         url = link.Attributes["href"]?.Value;
-                        title = link.SelectSingleNode(".//div[contains(@class,'ZsI9Vc')]|.//div[@jsname='r4nke']")?.InnerText;
-                        price = link.SelectSingleNode(".//div[@class='Ijn7Rc']|.//div[@class='vy5bA dpJO9']")?.InnerText;
-                        name = link.SelectSingleNode(".//div[@class='DAB5ue']|.//div[@class='NemW5e']/span|.//div[@class='ChC0jd']/span")?.InnerText;
+                        title = link.SelectSingleNode(".//div[contains(@class,'ZsI9Vc')]|.//div[@jsname='r4nke']|.//div[@class='aTc6pf']")?.InnerText;//05-01-2023
+                        price = link.SelectSingleNode(".//div[@class='Ijn7Rc']|.//div[@class='vy5bA dpJO9']|.//div[@class='uSZhvf Dxiee']/span[1]")?.InnerText; //05-01-2023
+                        name = link.SelectSingleNode(".//div[@class='DAB5ue']|.//div[@class='NemW5e']/span|.//div[@class='ChC0jd']/span|.//div[@class='kV5zMb Z454de']/span[1]")?.InnerText; //05-01-2023
                     }
                     if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(title))
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" price=\"" + SetTitle(price) + "\" site=\"" + SetTitle(name) + "\" />");
                 }
             }
             return s.ToString();
-        }//22-11-2022 popular block
+        }//05-01-2023//22-11-2022 popular block
         //17-10-2019
         private string SetVideos(HtmlNode nd)
         {
@@ -2799,7 +2808,9 @@ namespace Oxylabs_BulkKeywords
                 return false;
             }
 
-
+            nd = node.SelectSingleNode(".//div[@class='aJegcc']");//05-01-2023
+            if (nd != null)
+                return true;//05-01-2023
             //start 13-08-2019
             nd = node.SelectSingleNode(".//div[@id='sports-app']");
             if (nd != null)

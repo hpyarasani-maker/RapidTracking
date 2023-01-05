@@ -1633,7 +1633,7 @@ namespace RapidTrackingSingleThread
 
             if (node.SelectSingleNode(".//div[@id='imso-root']") != null || node.SelectSingleNode(".//div[@class='k9uN1c kfn9hb']") != null
                 || node.SelectSingleNode(".//div[@class='HaXvv kfn9hb']") != null || node.SelectSingleNode(".//div[@class='tsp-view']") != null //24-11-2020 selector for eventresults block//07-02-2020
-                || node.SelectSingleNode(".//div[@class='tsp-fvcfc']") != null) //02-08-2021 event block selector
+                || node.SelectSingleNode(".//div[@class='AxJnmb Wdsnue']") != null || node.SelectSingleNode(".//div[@class='tsp-fvcfc']") != null) //05-01-2023 //02-08-2021 event block selector
                 return "Event";
 
             if (node.SelectSingleNode(".//div[@id='cwmcwd']") != null || node.SelectSingleNode(".//div[@class='ifM9O']") != null
@@ -1791,7 +1791,8 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@class='e2BEnf q8U8x']") != null //07-12-2021
                 || node.SelectSingleNode(".//div[@jsname='wRSfy']") != null) //07-12-2021
                 || node.SelectSingleNode(".//div[@class='e2BEnf axf3qc q8U8x']") != null//29-12-2021 top stories
-                || node.SelectSingleNode(".//div[@class='WlTAzf mnr-c']") != null; //23-03-2022
+                || node.SelectSingleNode(".//div[@class='WlTAzf mnr-c']") != null //23-03-2022
+                || node.SelectSingleNode(".//div[@class='AxJnmb Wdsnue']") != null; //05-01-2023
               //&& node.SelectSingleNode(".//div[@class='yuRUbf']") == null; //11-10-2021 //08-10-2021 images
             if (bVal == true)//2019-09-11
             {

@@ -317,7 +317,7 @@ namespace RapidTrackingLibrary
                                     var url = nd.Attributes["href"].Value;
                                     url = GetRedirectedUrl(url);
                                     if (!string.IsNullOrEmpty(nd.SelectSingleNode(".//h4|.//div[contains(@class,'bXPcId pymv4e')]").InnerText) && !string.IsNullOrEmpty(url.Trim())) //04-11-2022   //13-11-2019
-                                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(nd.SelectSingleNode(".//h4").InnerText) + "\" />");
+                                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(nd.SelectSingleNode(".//h4|.//div[contains(@class,'bXPcId pymv4e')]").InnerText) + "\" />"); //05-01-2023
                                 }
                             }
                             //09-09-2019
@@ -1062,8 +1062,16 @@ namespace RapidTrackingLibrary
                                     else
                                         t = nv.InnerText;
 
-
-                                    if (orgLinks < 100)
+                                    //05-01-2023 adwords in middle page
+                                    if (node.SelectSingleNode(".//div[@class='eMXfhf']") != null)
+                                    {
+                                        s.Append("<block type=\"adwords\" url=\"\">");
+                                        u = SetUrl(u);
+                                        if (!string.IsNullOrEmpty(u))
+                                            s.Append("<item url=\"" + SetUrl(u) + "\"  title=\"" + SetTitle(t) + "\" />");
+                                        s.Append("</block>");
+                                    }//05-01-2023
+                                    else if (orgLinks < 100)
                                     {
                                         u = SetUrl(u);
                                         if (u.StartsWith("http") || u.StartsWith("https") || u.StartsWith("ftp")) //30-04-2020
@@ -2568,7 +2576,9 @@ namespace RapidTrackingLibrary
                 return false;
             }
 
-
+            nd = node.SelectSingleNode(".//div[@class='aJegcc']");//05-01-2023
+            if (nd != null)
+                return true;//05-01-2023
             //start 13-08-2019
             nd = node.SelectSingleNode(".//div[@id='sports-app']");
             if (nd != null)

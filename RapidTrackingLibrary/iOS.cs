@@ -1062,8 +1062,16 @@ namespace RapidTrackingLibrary
                                     else
                                         t = nv.InnerText;
 
-
-                                    if (orgLinks < 100)
+                                    //05-01-2023 adwords in middle page
+                                    if (node.SelectSingleNode(".//div[@class='eMXfhf']") != null)
+                                    {
+                                        s.Append("<block type=\"adwords\" url=\"\">");
+                                        u = SetUrl(u);
+                                        if (!string.IsNullOrEmpty(u))
+                                            s.Append("<item url=\"" + SetUrl(u) + "\"  title=\"" + SetTitle(t) + "\" />");
+                                        s.Append("</block>");
+                                    }//05-01-2023
+                                    else if (orgLinks < 100)
                                     {
                                         u = SetUrl(u);
                                         if (u.StartsWith("http") || u.StartsWith("https") || u.StartsWith("ftp")) //30-04-2020

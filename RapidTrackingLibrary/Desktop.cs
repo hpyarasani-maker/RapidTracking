@@ -542,7 +542,7 @@ namespace RapidTrackingLibrary
                  || node.SelectNodes(".//div[@class='g GjRtuc']") != null
                  || node.SelectNodes(".//div[contains(@class,'g card-section')]|.//div[@class='N3nEGc']") != null
                  || node.SelectNodes(".//div[@class='g tF2Cxc']|.//div[contains(@class,'g dFd2Tb')]|.//div[contains(@class,'g Ww4FFb')]|.//div[@class='g ZYT4Gf']") != null
-                 || node.SelectNodes(".//div[@class='d3zsgb']/div[@class='yuRUbf']|.//div[contains(@class,'g Ww4FFb')]|.//div[@class='g eejeod up9jud']") != null) && node.SelectSingleNode(".//div[@id='rhs']") == null)//12-10-2022//end of 10-10-2022
+                 || node.SelectNodes(".//div[@class='d3zsgb']/div[@class='yuRUbf']|.//div[contains(@class,'g Ww4FFb')]|.//div[@class='g eejeod up9jud']|.//div[contains(@class,'Ww4FFb vt6azd')]") != null) && node.SelectSingleNode(".//div[@id='rhs']") == null)//10-01-2023//12-10-2022//end of 10-10-2022
             {
                 //HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'g tF2Cxc')]|.//div[@class='g']|.//div[@class='g dFd2Tb']");//01-09-2022//20-04-2022 //04-04-2022
                 HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'g tF2Cxc')]|.//div[@class='g dFd2Tb']|.//div[contains(@class,'g Ww4FFb')]|.//div[@class='BYM4Nd']|.//div[@class='AuVD cUnQKe']");//05-12-2022//28-10-2022//11-10-2022 //07-10-2022

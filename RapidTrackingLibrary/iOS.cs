@@ -1935,6 +1935,8 @@ namespace RapidTrackingLibrary
                         title = nd.SelectSingleNode(".//div[contains(@class,'poMUXd')]"); //27-07-2020
                     if (title == null)
                         title = nd.SelectSingleNode(".//div[@class='mkVq5']");//27-11-2020 top stories titles
+                    if (title == null)
+                        title = nd.SelectSingleNode(".//div[@class='mCBkyc tNxQIb ynAwRc nDgy9d']");//11-01-2023
                     string url = nd.Attributes["href"].Value;
                     s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title.InnerText) + "\" />");
                 }

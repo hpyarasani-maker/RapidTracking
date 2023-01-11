@@ -2387,7 +2387,7 @@ namespace RapidTrackingSingleThread
             if (node.SelectSingleNode(".//div[@class='WlTAzf mnr-c vk_c']") != null || node.Attributes["class"]?.Value == "WlTAzf mnr-c vk_c") //23-03-2022
                 return "Flights";//23-03-2022*/
 
-            if (node.SelectSingleNode(".//g-card[@class='cvoI5e']") != null || node.SelectSingleNode(".//g-card[@class='U8KfXc']") != null) //23-11-2020 //20-11-2020
+            if (node.SelectSingleNode(".//g-card[@class='cvoI5e']|.//g-tray-header[@class='iI6nue ieGFJe']") != null || node.SelectSingleNode(".//g-card[@class='U8KfXc']") != null)//11-01-2023 //23-11-2020 //20-11-2020
             {
                 return "Jobs";
             }

@@ -1543,7 +1543,7 @@ namespace RapidTrackingSingleThread
                     string rating = nd.SelectSingleNode(".//span[contains(@class,'YrbPuc')]")?.InnerText.Trim() ?? "";
                     string reviews = nd.SelectSingleNode(".//span[@class='RDApEe YrbPuc']")?.InnerText.Trim() ?? "";
                     string price = nd.SelectSingleNode(".//span[@class='dv1Q3e']")?.InnerText.Trim() ?? "";
-                    var desc = nd.SelectNodes(".//div[@class='I9B2He']");
+                    var desc = nd.SelectNodes(".//div[@class='I9B2He']|.//div[@class='mMeJe OHKesb']/span");
                     if (desc != null)
                         foreach (var d in desc)
                         {
@@ -1692,7 +1692,11 @@ namespace RapidTrackingSingleThread
             {
                 return "Images";
             }
-
+            nd = node.SelectSingleNode(".//div[@class='kuRgBc']");
+            if (nd != null)
+            {
+                return "Hotels";
+            }
             nd = node.SelectSingleNode(".//*[@id='lu_map']");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='xERobd']|.//div[@class='H93uF']|.//div[@class='CH6Bmd']|.//div[@class='vs2hJf']|.//div[@class='o8ebK']");//02-06-2022//27-05-2022//05-03-2022//22-01-2022  //changed on 26-06-2019
@@ -1700,11 +1704,6 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//a[contains(@data-url,'/maps/')]");//23-08-2021 map selector
             if (nd == null)
                 nd = node.SelectSingleNode(".//img[contains(@alt,'Map of')]|.//div[@jscontroller='TVzfQb']");//21-02-2022//27-12-2021 maps
-            if (nd != null)
-            {
-                if (nd.SelectSingleNode(".//div[@jsname='r4nke']") == null)//27-07-2022
-                    return "hotels";
-            }
             if (nd != null)
             {
                 return "Maps";

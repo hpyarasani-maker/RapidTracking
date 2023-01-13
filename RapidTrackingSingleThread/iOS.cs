@@ -2566,7 +2566,11 @@ namespace RapidTrackingSingleThread
             {
                 return "Videos";
             }
-
+            nd = node.SelectSingleNode(".//div[@class='QgoQVc']");
+            if (nd != null)
+            {
+                return "Hotels";
+            }
             nd = node.SelectSingleNode(".//*[@id='rXuTZe']");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='I2lQic']");//05-11-2019
@@ -2579,7 +2583,7 @@ namespace RapidTrackingSingleThread
             if (nd != null)
             {
                 if (nd.SelectSingleNode(".//div[@jsname='r4nke']") == null)//27-07-2022
-                    return "hotels";
+                    return "Maps";
             }
             else
             {

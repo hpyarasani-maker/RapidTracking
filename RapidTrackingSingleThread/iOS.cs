@@ -2322,13 +2322,19 @@ namespace RapidTrackingSingleThread
             {
                 try
                 {
+                    string description = string.Empty;
                     string title = nd.SelectSingleNode(".//div[@class='BTPx6e yMArdc']")?.InnerText.Trim() ?? "";
                     string rating = nd.SelectSingleNode(".//span[contains(@class,'YrbPuc')]")?.InnerText.Trim() ?? "";
                     string reviews = nd.SelectSingleNode(".//span[@class='RDApEe YrbPuc']")?.InnerText.Trim() ?? "";
                     string price = nd.SelectSingleNode(".//div[@class='VSZCrf']/span")?.InnerText.Trim() ?? "";
-                    string description = nd.SelectSingleNode(".//div[@class='kOTJue jj25pf']")?.InnerText.Trim() ?? "";
+                    var desc = nd.SelectNodes(".//div[@class='I9B2He']");
+                    if (desc != null)
+                        foreach (var d in desc)
+                        {
+                            description += d.InnerText + ",";
+                        }
+                    if (!string.IsNullOrEmpty(description)) description = description.Remove(description.Length - 1);
                     s.Append("<item price=\"" + SetTitle(price) + "\" rating=\"" + SetTitle(rating) + "\" reviews=\"" + SetTitle(reviews) + "\" description=\"" + SetTitle(description) + "\" title=\"" + SetTitle(title) + "\" />");
-                    //s.Append($"<item price={SetTitle(price)}\trating={SetTitle(rating)}\ttitle={SetTitle(title)}\t />");
                 }
                 catch { }
             }

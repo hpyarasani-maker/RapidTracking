@@ -1538,11 +1538,18 @@ namespace RapidTrackingSingleThread
             {
                 try
                 {
-                    string title = nd.SelectSingleNode(".//div[@class='BTPx6e bOYhNc']")?.InnerText.Trim() ?? "";
+                    string description = string.Empty;
+                    string title = nd.SelectSingleNode(".//div[@class='BTPx6e bOYhNc']|.//div[@class='dbg0pd']")?.InnerText.Trim() ?? "";
                     string rating = nd.SelectSingleNode(".//span[contains(@class,'YrbPuc')]")?.InnerText.Trim() ?? "";
                     string reviews = nd.SelectSingleNode(".//span[@class='RDApEe YrbPuc']")?.InnerText.Trim() ?? "";
                     string price = nd.SelectSingleNode(".//span[@class='dv1Q3e']")?.InnerText.Trim() ?? "";
-                    string description = nd.SelectSingleNode(".//div[@class='kOTJue jj25pf']")?.InnerText.Trim() ?? "";
+                    var desc = nd.SelectNodes(".//div[@class='I9B2He']");
+                    if (desc != null)
+                        foreach (var d in desc)
+                        {
+                            description += d.InnerText + ",";
+                        }
+                    if (!string.IsNullOrEmpty(description)) description = description.Remove(description.Length - 1);
                     s.Append("<item price=\"" + SetTitle(price) + "\" rating=\"" + SetTitle(rating) + "\" reviews=\"" + SetTitle(reviews) + "\" description=\"" + SetTitle(description) + "\" title=\"" + SetTitle(title) + "\" />");
                 }
                 catch { }

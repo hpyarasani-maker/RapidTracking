@@ -14,6 +14,9 @@ namespace DownloadKeywords
         {
             Console.Title = "Running Delete, Download and Job";
             MissingKeywordsJob.ExecuteMissingKeywordsJob(100).Wait();
+            //SeeMore.RunSqlJob(10).Wait();
+            //SeeMoreLoop.RunSqlJob(10).Wait();
+
         }
     }
 }

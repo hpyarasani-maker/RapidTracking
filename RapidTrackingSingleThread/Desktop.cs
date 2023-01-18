@@ -215,7 +215,7 @@ namespace RapidTrackingSingleThread
             {
                 s.Append("<block type=\"knowledgeGraph\" url=\"\" />");
             }
-
+            s.Append(GetGoogleHotels(rcNode));//18-01-2023 Google Hotels from KP block
             return s.ToString();
         }
 
@@ -304,7 +304,48 @@ namespace RapidTrackingSingleThread
             }*///related searches //21-11-2022
             return s.ToString();
         }
-
+        private string GetGoogleHotels(HtmlNode rcNode)//18-01-2023 Google Hotels from KP block
+        {
+            StringBuilder s = new StringBuilder();
+            HtmlNode node = rcNode.SelectSingleNode(".//div[@class='I6TXqe']");
+            if (node == null)
+                node = rcNode.SelectSingleNode(".//div[@class='osrp-blk']");
+            if (node != null)
+            {
+                s.Append("<block type=\"googleHotels\" url=\"\" >");
+                string title = node.SelectSingleNode(".//div[@class='SPZz6b']/h2")?.InnerText;
+                string rating = node.SelectSingleNode(".//div[@class='Ob2kfd']/div/span[@class='Aq14fc']")?.InnerText;
+                string reviews = node.SelectSingleNode(".//a[@class='hqzQac']")?.InnerText;
+                string prices = "<price>";
+                HtmlNode pNode = node.SelectSingleNode(".//div[@class='lhbm-partner-rates']");
+                if (pNode != null)
+                {
+                    HtmlNodeCollection ads = pNode.SelectNodes(".//div[@data-section-type='ads']/div");
+                    if (ads != null)
+                        foreach (var p in ads)
+                        {
+                            string seller = p.SelectSingleNode(".//div[@class='BWpDXc']/span")?.InnerText;
+                            string price = p.SelectSingleNode(".//div[@class='jfaEaf']/span")?.InnerText;
+                            if (!string.IsNullOrEmpty(seller) || !string.IsNullOrEmpty(price))
+                                prices += "<item url=\"\" seller=\"" + SetTitle(seller) + "\" type=\"ad\" value=\"" + price + "\" />";
+                        }
+                    HtmlNodeCollection organics = pNode.SelectNodes(".//div[@data-section-type='organic']/div");
+                    if (organics != null)
+                        foreach (var o in organics)
+                        {
+                            string seller = o.SelectSingleNode(".//div[@class='BWpDXc']/span")?.InnerText;
+                            string price = o.SelectSingleNode(".//div[@class='jfaEaf']/span")?.InnerText;
+                            if (!string.IsNullOrEmpty(seller) || !string.IsNullOrEmpty(price))
+                                prices += "<item url=\"\" seller=\"" + SetTitle(seller) + "\" type=\"organic\" value=\"" + price + "\" />";
+                        }
+                }
+                prices += "</price>";
+                s.Append("<item url=\"\" rating=\"" + SetTitle(rating) + "\" reviews=\"" + SetTitle(reviews) + "\" title=\"" + SetTitle(title) + "\" />");
+                s.Append(prices);
+                s.Append("</block>");
+            }
+            return s.ToString();
+        }//18-01-2023 Google Hotels from KP block
         private string GetPopularProducts(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();

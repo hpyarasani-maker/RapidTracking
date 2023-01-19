@@ -324,7 +324,7 @@ namespace RapidTrackingSingleThread
                     string description = nd.SelectSingleNode(".//span[@class='ZIF80']")?.InnerText.Trim() ?? "";
                     string reviewNumber = Regex.Replace(reviews, "[^K0-9]", "").Replace("K", "00").Replace("()","");
                     if (!string.IsNullOrEmpty(title) || !string.IsNullOrEmpty(rating))
-                        s.Append("<item url=\"\" description=\"" + SetTitle(description) + "\"  price=\"\" rating=\"" + SetTitle(rating) + "\" reviews=\"" + SetTitle(reviews) + "\"  title=\"" + SetTitle(title) + "\" />");
+                        s.Append("<item url=\"\" description=\"" + SetTitle(description) + "\"  price=\"\" rating=\"" + SetTitle(rating) + "\" reviews=\"" + SetTitle(reviewNumber) + "\"  title=\"" + SetTitle(title) + "\" />");
                 }
                 catch { }
             }

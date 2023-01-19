@@ -1,7 +1,9 @@
 ﻿using HtmlAgilityPack;
 using System;
 using System.Collections;
+using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -340,8 +342,9 @@ namespace RapidTrackingSingleThread
                         }
                 }
                 prices += "</price>";
-                s.Append("<item url=\"\" rating=\"" + SetTitle(rating) + "\" reviews=\"" + SetTitle(reviews) + "\" title=\"" + SetTitle(title) + "\" />");
-                s.Append(prices);
+                string reviewNumbers = Regex.Replace(reviews, "[^K0-9]", "").Replace("K", "00");
+                s.Append("<item url=\"\" rating=\"" + SetTitle(rating) + "\" reviews=\"" + SetTitle(reviewNumbers) + "\" title=\"" + SetTitle(title) + "\" />");
+                s.Append(prices); 
                 s.Append("</block>");
             }
             return s.ToString();

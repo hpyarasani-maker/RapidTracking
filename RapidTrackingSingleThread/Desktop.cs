@@ -217,7 +217,10 @@ namespace RapidTrackingSingleThread
             {
                 s.Append("<block type=\"knowledgeGraph\" url=\"\" />");
             }
-            s.Append(GetGoogleHotels(rcNode));//18-01-2023 Google Hotels from KP block
+            if (node.SelectSingleNode(".//div/a[@class='ln-osrp-et']") != null)//18-01-2023 Google Hotels from KP block
+            {
+                s.Append(GetGoogleHotels(rcNode));//18-01-2023 Google Hotels from KP block
+            }//18-01-2023 Google Hotels from KP block
             return s.ToString();
         }
 

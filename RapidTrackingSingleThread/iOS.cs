@@ -2471,7 +2471,7 @@ namespace RapidTrackingSingleThread
                 if (ts)
                     return "Topstories";
             }
-            nd = node.SelectSingleNode(".//g-tray-header[@class='kno-fb-ctx gsrt AX8YBc']"); //23-03-2022//19-01-2023 //Top Sights and Flights
+            nd = node.SelectSingleNode(".//g-tray-header[contains(@class,'kno-fb-ctx gsrt')]"); //23-03-2022//19-01-2023 //Top Sights and Flights
             if (nd != null)
                 return "TopSights"; //23-03-2022//19-01-2023
             /*if (node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]") != null || node.Attributes["class"]?.Value == "WlTAzf mnr-c vk_c") //23-03-2022

@@ -319,11 +319,12 @@ namespace RapidTrackingSingleThread
                 try
                 {
                     string title = nd.SelectSingleNode(".//span[@class='aVSTQd tNxQIb OSrXXb']")?.InnerText.Trim() ?? "";
-                    string reviews = nd.SelectSingleNode(".//span[@class='WYGzTd']")?.InnerText.Trim() ?? "";
-                    string rating = nd.SelectSingleNode(".//span[@class='l6bSAe']")?.InnerText.Replace("(", "").Replace(")", "").Trim() ?? "";
+                    string rating = nd.SelectSingleNode(".//span[@class='WYGzTd']")?.InnerText.Trim() ?? "";
+                    string reviews = nd.SelectSingleNode(".//span[@class='l6bSAe']")?.InnerText.Trim() ?? "";
                     string description = nd.SelectSingleNode(".//span[@class='ZIF80']")?.InnerText.Trim() ?? "";
+                    string reviewNumber = Regex.Replace(reviews, "[^K0-9]", "").Replace("K", "00").Replace("()","");
                     if (!string.IsNullOrEmpty(title) || !string.IsNullOrEmpty(rating))
-                        s.Append("<item url=\"\" description=\"" + SetTitle(description) + "\"  price=\"\"  reviews=\"" + SetTitle(reviews) + "\" rating=\"" + SetTitle(rating) + "\" title=\"" + SetTitle(title) + "\" />");
+                        s.Append("<item url=\"\" description=\"" + SetTitle(description) + "\"  price=\"\" rating=\"" + SetTitle(rating) + "\" reviews=\"" + SetTitle(reviews) + "\"  title=\"" + SetTitle(title) + "\" />");
                 }
                 catch { }
             }

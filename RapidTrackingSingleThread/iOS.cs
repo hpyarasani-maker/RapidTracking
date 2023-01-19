@@ -1107,6 +1107,39 @@ namespace RapidTrackingSingleThread
 
             return s.ToString();
         }
+        private string GetTopSights(HtmlNode node)//19-01-2023 new element top sights
+        {
+            StringBuilder s = new StringBuilder();
+            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='l10H9c']");
+            foreach (HtmlNode nd in nds)
+            {
+                try
+                {
+                    string reviews = string.Empty;
+                    string title = nd.SelectSingleNode(".//div[@class='MiF81b']/div")?.InnerText.Trim() ?? "";
+                    string description = nd.SelectSingleNode(".//div[@class='UEiegc Y4Ql3c MUxGbd wuQ4Ob WZ8Tjf lEBKkf']")?.InnerText.Trim() ?? "";
+                    string price = nd.SelectSingleNode(".//div[@class='UEiegc iiNTId MUxGbd lyLwlc aLF0Z OSrXXb']")?.InnerText.Trim() ?? "";
+                    string rating = nd.SelectSingleNode(".//span[@class='LORxxe']/span")?.InnerText.Trim() ?? "";
+                    var revs = nd.SelectNodes(".//span[@aria-hidden='true']");
+                    if (revs != null)
+                        foreach (var r in revs)
+                        {
+                            reviews = r.InnerText;
+                            if (rating != r.InnerText)
+                            {
+                                reviews = r.InnerText;
+                            }
+                        }
+                    string reviewNumbers = Regex.Replace(reviews, "[^K0-9]", "").Replace("K", "00");
+                    if (!string.IsNullOrEmpty(title) || !string.IsNullOrEmpty(rating))
+                        s.Append("<item url=\"\" description=\"" + SetTitle(description) + "\" price=\"" + SetTitle(price) + "\"  reviews=\"" + SetTitle(reviewNumbers) + "\" rating=\"" + SetTitle(rating) + "\"  title=\"" + SetTitle(title) + "\" />");
+
+                }
+                catch { }
+            }
+                return s.ToString();
+        }//19-01-2023 new element top sights
+
         private string GetGoogleHotels(HtmlNode node) //19-01-2023 Google Hotels from KP block
         {
             StringBuilder s = new StringBuilder();
@@ -1295,11 +1328,11 @@ namespace RapidTrackingSingleThread
                 case "jobs":  //20-11-2020
                     s.Append(GetJobs(node));
                     break;
-                /*case "topsights": //23-03-2022
+                case "topsights": //23-03-2022
                     s.Append("<block type=\"topSights\" url=\"\">");
                     s.Append(GetTopSights(node));
                     s.Append("</block>");
-                    break;*/
+                    break;
                /* case "flights":
                     s.Append("<block type=\"google_flights\" url=\"\">");
                     s.Append(GetFlights(node));
@@ -2311,7 +2344,7 @@ namespace RapidTrackingSingleThread
             } // end of 23-01-2020  // 21-02-2020
             return s.ToString();
         }
-        private string GetTopSights(HtmlNode node)//23-03-2022 new element top sights
+        /*private string GetTopSights(HtmlNode node)//23-03-2022 new element top sights
         {
             StringBuilder s = new StringBuilder();
             //top
@@ -2341,7 +2374,7 @@ namespace RapidTrackingSingleThread
             }
             s.Append("</bottom>");
             return s.ToString();
-        } //23-03-2022
+        } *///23-03-2022
 
         private string GetFlights(HtmlNode node) //23-03-2022 new element flights
         {
@@ -2438,10 +2471,10 @@ namespace RapidTrackingSingleThread
                 if (ts)
                     return "Topstories";
             }
-           /* nd = node.SelectSingleNode(".//g-tray-header[@class='kno-fb-ctx gsrt AX8YBc']"); //23-03-2022 //Top Sights and Flights
+            nd = node.SelectSingleNode(".//g-tray-header[@class='kno-fb-ctx gsrt AX8YBc']"); //23-03-2022//19-01-2023 //Top Sights and Flights
             if (nd != null)
-                return "TopSights"; //23-03-2022
-            if (node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]") != null || node.Attributes["class"]?.Value == "WlTAzf mnr-c vk_c") //23-03-2022
+                return "TopSights"; //23-03-2022//19-01-2023
+            /*if (node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]") != null || node.Attributes["class"]?.Value == "WlTAzf mnr-c vk_c") //23-03-2022
                 return "Flights";//23-03-2022*/
 
             if (node.SelectSingleNode(".//g-card[@class='cvoI5e']|.//g-tray-header[@class='iI6nue ieGFJe']") != null || node.SelectSingleNode(".//g-card[@class='U8KfXc']") != null)//11-01-2023 //23-11-2020 //20-11-2020
@@ -2878,7 +2911,9 @@ namespace RapidTrackingSingleThread
             {
                 return false;
             }
-
+            nd = node.SelectSingleNode(".//g-tray-header[contains(@class,'kno-fb-ctx gsrt')]"); //23-12-2023//19-01-2023 new element top sights
+            if (nd != null)
+                return true;//23-12-2023//19-01-2023
             nd = node.SelectSingleNode(".//div[@class='aJegcc']");//05-01-2023
             if (nd != null)
                 return true;//05-01-2023

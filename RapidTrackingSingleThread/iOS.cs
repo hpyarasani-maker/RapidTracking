@@ -111,6 +111,14 @@ namespace RapidTrackingSingleThread
                         {
                             sb.Append("<block type=\"maps\" url=\"\"></block>");
                         } //07-09-2022
+                        HtmlNode Gh = node.SelectSingleNode(".//div[@class='fKw1wf']"); //19-01-2023 Google Hotels from KP block
+                        if (Gh != null)
+                        {
+                            sb.Append("<block type=\"googleHotels\" url=\"\">");
+                            sb.Append(GetGoogleHotels(Gh));
+                            sb.Append("</block>");
+                        }
+                        //19 - 01 - 2023 Google Hotels from KP block
                         continue;
                     }
                     try
@@ -1099,6 +1107,45 @@ namespace RapidTrackingSingleThread
 
             return s.ToString();
         }
+        private string GetGoogleHotels(HtmlNode node) //19-01-2023 Google Hotels from KP block
+        {
+            StringBuilder s = new StringBuilder();
+            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='c94Vsf Y1mqLe kp-rgc']");
+            if (nds != null)
+                foreach (HtmlNode nd in nds)
+                {
+                    string title = nd.SelectSingleNode(".//h2[contains(@class, 'qrShPb')]/span")?.InnerText.Trim() ?? "";
+                    string rating = nd.SelectSingleNode(".//span[contains(@class,'YrbPuc')]")?.InnerText.Trim() ?? "";
+                    string reviews = nd.SelectSingleNode(".//span[@class='RDApEe YrbPuc']")?.InnerText.Replace("(", "").Replace(")", "").Trim() ?? "";
+                    string reviewNumbers = Regex.Replace(reviews, "[^K0-9]", "").Replace("K", "00");
+                    s.Append("<item url=\"\" rating=\"" + SetTitle(rating) + "\" reviews=\"" + SetTitle(reviewNumbers) + "\" title=\"" + SetTitle(title) + "\" />");
+                }
+            nds = node.SelectNodes(".//div[@data-section-type='ads']/div");
+            s.Append("<price>");
+            if (nds != null)
+            {
+                foreach (HtmlNode nd in nds)
+                {
+                    string value = nd.SelectSingleNode(".//span[contains(@class,'r9dLMc')]")?.InnerText.Trim() ?? "";
+                    string seller = nd.SelectSingleNode(".//div[@class='BWpDXc']/span")?.InnerText.Trim() ?? "";
+                    if (!string.IsNullOrEmpty(value) || !string.IsNullOrEmpty(seller))
+                        s.Append("<item url=\"\" seller=\"" + SetTitle(seller) + "\"  type=\"ads\" value=\"" + SetTitle(value) + "\" />");
+                }
+            }
+            nds = node.SelectNodes(".//div[@data-section-type='organic']/div");
+            if (nds != null)
+            {
+                foreach (HtmlNode nd in nds)
+                {
+                    string value = nd.SelectSingleNode(".//span[@class='r9dLMc']")?.InnerText.Trim() ?? "";
+                    string seller = nd.SelectSingleNode(".//div[@class='BWpDXc']")?.InnerText.Trim() ?? "";
+                    if (!string.IsNullOrEmpty(value) || !string.IsNullOrEmpty(seller))
+                        s.Append("<item url=\"\" seller=\"" + SetTitle(seller) + "\" type=\"organic\"  value=\"" + SetTitle(value) + "\"/>");
+                }
+            }
+            s.Append("</price>");
+            return s.ToString();
+        } //19-01-2023 Google Hotels from KP block
         private string GetRefineBySearches(HtmlNode node)//22-11-2022 refine the searches
         {
             StringBuilder s = new StringBuilder();

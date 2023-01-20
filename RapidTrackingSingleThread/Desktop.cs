@@ -322,9 +322,9 @@ namespace RapidTrackingSingleThread
                     string rating = nd.SelectSingleNode(".//span[@class='WYGzTd']")?.InnerText.Trim() ?? "";
                     string reviews = nd.SelectSingleNode(".//span[@class='l6bSAe']")?.InnerText.Trim() ?? "";
                     string description = nd.SelectSingleNode(".//span[@class='ZIF80']")?.InnerText.Trim() ?? "";
-                    string reviewNumber = Regex.Replace(reviews, "[^K0-9]", "").Replace("K", "00").Replace("()","");
+                    string reviewNumbers = ConvertReviews(reviews);
                     if (!string.IsNullOrEmpty(title) || !string.IsNullOrEmpty(rating))
-                        s.Append("<item url=\"\" description=\"" + SetTitle(description) + "\"  price=\"\" rating=\"" + SetTitle(rating) + "\" reviews=\"" + SetTitle(reviewNumber) + "\"  title=\"" + SetTitle(title) + "\" />");
+                        s.Append("<item url=\"\" description=\"" + SetTitle(description) + "\"  price=\"\" rating=\"" + SetTitle(rating) + "\" reviews=\"" + SetTitle(reviewNumbers) + "\"  title=\"" + SetTitle(title) + "\" />");
                 }
                 catch { }
             }
@@ -366,7 +366,7 @@ namespace RapidTrackingSingleThread
                         }
                 }
                 prices += "</price>";
-                string reviewNumbers = Regex.Replace(reviews, "[^K0-9]", "").Replace("K", "00");
+                string reviewNumbers = ConvertReviews(reviews);
                 s.Append("<item url=\"\" rating=\"" + SetTitle(rating) + "\" reviews=\"" + SetTitle(reviewNumbers) + "\" title=\"" + SetTitle(title) + "\" />");
                 s.Append(prices); 
                 s.Append("</block>");
@@ -1984,7 +1984,15 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div/div[@class='g tF2Cxc']|.//div[contains(@class,'g Ww4FFb')]|.//div[contains(@class,'g dFd2Tb')]|.//div[@class='g ZYT4Gf']") != null//10-10-2022//13-07-2022 //07-04-2022//24-08-2021 video block //01-06-2021
                 || node.SelectSingleNode(".//div[@class='M42dy']/g-link/a") != null); //02-02-2022 twitter link
         }
-
+        private string ConvertReviews(string reviews)//20-01-2023 display only numbers
+        {
+            Regex rx = new Regex("\\.\\d*K");
+            if (rx.IsMatch(reviews))
+                reviews = Regex.Replace(reviews, "[^0-9K]", "").Replace("K", "00");
+            else
+                reviews = Regex.Replace(reviews, "[^0-9K]", "").Replace("K", "000");
+            return reviews;
+        }//20-01-2023 display only numbers
         //07-11-2019
         private string GetRedirectedUrl(string url)
         {

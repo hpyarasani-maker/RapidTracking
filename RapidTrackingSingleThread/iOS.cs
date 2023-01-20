@@ -1130,7 +1130,7 @@ namespace RapidTrackingSingleThread
                                 reviews = r.InnerText;
                             }
                         }
-                    string reviewNumbers = Regex.Replace(reviews, "[^K0-9]", "").Replace("K", "00");
+                    string reviewNumbers = ConvertReviews(reviews);
                     if (!string.IsNullOrEmpty(title) || !string.IsNullOrEmpty(rating))
                         s.Append("<item url=\"\" description=\"" + SetTitle(description) + "\" price=\"" + SetTitle(price) + "\"  reviews=\"" + SetTitle(reviewNumbers) + "\" rating=\"" + SetTitle(rating) + "\"  title=\"" + SetTitle(title) + "\" />");
 
@@ -1150,7 +1150,7 @@ namespace RapidTrackingSingleThread
                     string title = nd.SelectSingleNode(".//h2[contains(@class, 'qrShPb')]/span")?.InnerText.Trim() ?? "";
                     string rating = nd.SelectSingleNode(".//span[contains(@class,'YrbPuc')]")?.InnerText.Trim() ?? "";
                     string reviews = nd.SelectSingleNode(".//span[@class='RDApEe YrbPuc']")?.InnerText.Replace("(", "").Replace(")", "").Trim() ?? "";
-                    string reviewNumbers = Regex.Replace(reviews, "[^K0-9]", "").Replace("K", "00");
+                    string reviewNumbers = ConvertReviews(reviews);
                     s.Append("<item url=\"\" rating=\"" + SetTitle(rating) + "\" reviews=\"" + SetTitle(reviewNumbers) + "\" title=\"" + SetTitle(title) + "\" />");
                 }
             nds = node.SelectNodes(".//div[@data-section-type='ads']/div");
@@ -3082,7 +3082,15 @@ namespace RapidTrackingSingleThread
         {
             throw new NotImplementedException();
         }
-
+        private string ConvertReviews(string reviews)//20-01-2023 display only numbers
+        {
+            Regex rx = new Regex("\\.\\d*K");
+            if (rx.IsMatch(reviews))
+                reviews = Regex.Replace(reviews, "[^0-9K]", "").Replace("K", "00");
+            else
+                reviews = Regex.Replace(reviews, "[^0-9K]", "").Replace("K", "000");
+            return reviews;
+        }//20-01-2023 display only numbers
         //07-11-2019
         private string GetRedirectedUrl(string url)
         {

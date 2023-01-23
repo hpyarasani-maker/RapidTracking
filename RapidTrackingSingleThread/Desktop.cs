@@ -350,7 +350,7 @@ namespace RapidTrackingSingleThread
                 string title = node.SelectSingleNode(".//div[@class='SPZz6b']/h2")?.InnerText ?? "";
                 string rating = node.SelectSingleNode(".//div[@class='Ob2kfd']/div/span[@class='Aq14fc']")?.InnerText ?? "";
                 string reviews = node.SelectSingleNode(".//a[@class='hqzQac']")?.InnerText ?? "";
-                string prices = "<price>";
+                string prices = string.Empty;
                 HtmlNode pNode = node.SelectSingleNode(".//div[@class='lhbm-partner-rates']");
                 if (pNode != null)
                 {
@@ -373,7 +373,8 @@ namespace RapidTrackingSingleThread
                                 prices += "<item url=\"\" seller=\"" + SetTitle(seller) + "\" type=\"organic\" value=\"" + price + "\" />";
                         }
                 }
-                prices += "</price>";
+                if (string.IsNullOrEmpty(prices)) return string.Empty;
+                prices = "<price>" + prices + "</price>";
                 string reviewNumbers = ConvertReviews(reviews);
                 s.Append("<item url=\"\" rating=\"" + SetTitle(rating) + "\" reviews=\"" + SetTitle(reviewNumbers) + "\" title=\"" + SetTitle(title) + "\" />");
                 s.Append(prices); 

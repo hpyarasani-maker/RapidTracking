@@ -213,13 +213,21 @@ namespace RapidTrackingSingleThread
                 node = rcNode.SelectSingleNode(".//div[@class='NFQFxe mod']");  // 01-06-2020
             if (node == null)
                 node = rcNode.SelectSingleNode(".//div[contains(@class, 'knowledge-panel')]");//03-03-2022
-            if (node != null)     //'kp-blk knowledge-panel _Rqb _RJe']") != null) //|.//div[@role='heading']/div[1]/span
+            /*if (node != null)     //'kp-blk knowledge-panel _Rqb _RJe']") != null) //|.//div[@role='heading']/div[1]/span
             {
                 s.Append("<block type=\"knowledgeGraph\" url=\"\" />");
-            }
-            if (node.SelectSingleNode(".//div/a[@class='ln-osrp-et']") != null)//18-01-2023 Google Hotels from KP block
+            }*/
+            if (node != null)//18-01-2023 Google Hotels from KP block
             {
-                s.Append(GetGoogleHotels(rcNode));//18-01-2023 Google Hotels from KP block
+                string googleHotels = string.Empty;
+                if (node.SelectSingleNode(".//div/a[@class='ln-osrp-et']") != null)
+                {
+                    googleHotels = GetGoogleHotels(rcNode);
+                    if (!string.IsNullOrEmpty(googleHotels))
+                        s.Append(googleHotels);
+                }
+                else if (string.IsNullOrEmpty(googleHotels))
+                    s.Append("<block type=\"knowledgeGraph\" url=\"\" />");
             }//18-01-2023 Google Hotels from KP block
             return s.ToString();
         }

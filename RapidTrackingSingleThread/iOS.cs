@@ -101,24 +101,36 @@ namespace RapidTrackingSingleThread
                         if (n == null)
                             n = node.SelectSingleNode(".//div[contains(@class,'ssJ7i PZPZlf')]"); //15-11-2021 KP
 
-                        if (n != null)
+                        /*if (n != null) //uncomment for only KP Block
                         {
                             string heading = n.InnerText;
                             sb.Append("<block type=\"knowledgeGraph\" url=\"\" title=\"" + SetTitle(heading) + "\" />");
-                        }
+                        }*/
+                        if (n != null)//19-01-2023 //23-01-2023 Googlehotels else KP Block
+                        {
+                            string googleHotels = string.Empty;
+                            HtmlNode Gh = node.SelectSingleNode(".//div[@class='fKw1wf']");
+                            if (Gh != null)
+                            {
+                                googleHotels = GetGoogleHotels(Gh);
+                                if (!string.IsNullOrEmpty(googleHotels))
+                                {
+                                    sb.Append("<block type=\"googleHotels\" url=\"\">");
+                                    sb.Append(googleHotels);
+                                    sb.Append("</block>");
+                                }
+                            }
+                            else if (string.IsNullOrEmpty(googleHotels))
+                            {
+                                string heading = n.InnerText;
+                                sb.Append("<block type=\"knowledgeGraph\" url=\"\" title=\"" + SetTitle(heading) + "\" />");
+                            }
+                        }//19-01-2023 //23-01-2023 Googlehotels else KP Block
                         n = node.SelectSingleNode(".//g-img[@class='o8ebK']|.//g-img[@class='gRTVof']");//10-10-2022//07-09-2022 missing KP block
                         if (n != null && node.SelectSingleNode(".//div[@class='KrvXD']") == null)//13-12-2022
                         {
                             sb.Append("<block type=\"maps\" url=\"\"></block>");
                         } //07-09-2022
-                        HtmlNode Gh = node.SelectSingleNode(".//div[@class='fKw1wf']"); //19-01-2023 Google Hotels from KP block
-                        if (Gh != null)
-                        {
-                            sb.Append("<block type=\"googleHotels\" url=\"\">");
-                            sb.Append(GetGoogleHotels(Gh));
-                            sb.Append("</block>");
-                        }
-                        //19 - 01 - 2023 Google Hotels from KP block
                         continue;
                     }
                     try

@@ -101,12 +101,12 @@ namespace RapidTrackingSingleThread
                         if (n == null)
                             n = node.SelectSingleNode(".//div[contains(@class,'ssJ7i PZPZlf')]"); //15-11-2021 KP
 
-                        /*if (n != null) //uncomment for only KP Block
+                        if (n != null) //comment or uncomment for only KP Block
                         {
                             string heading = n.InnerText;
                             sb.Append("<block type=\"knowledgeGraph\" url=\"\" title=\"" + SetTitle(heading) + "\" />");
-                        }*/
-                        if (n != null)//19-01-2023 //23-01-2023 Googlehotels else KP Block
+                        }
+                        /*if (n != null)//19-01-2023 //23-01-2023 Googlehotels else KP Block
                         {
                             string googleHotels = string.Empty;
                             HtmlNode Gh = node.SelectSingleNode(".//div[@class='fKw1wf']");
@@ -125,7 +125,7 @@ namespace RapidTrackingSingleThread
                                 string heading = n.InnerText;
                                 sb.Append("<block type=\"knowledgeGraph\" url=\"\" title=\"" + SetTitle(heading) + "\" />");
                             }
-                        }//19-01-2023 //23-01-2023 Googlehotels else KP Block
+                        }*///19-01-2023 //23-01-2023 Googlehotels else KP Block
                         n = node.SelectSingleNode(".//g-img[@class='o8ebK']|.//g-img[@class='gRTVof']");//10-10-2022//07-09-2022 missing KP block
                         if (n != null && node.SelectSingleNode(".//div[@class='KrvXD']") == null)//13-12-2022
                         {
@@ -1341,11 +1341,11 @@ namespace RapidTrackingSingleThread
                 case "jobs":  //20-11-2020
                     s.Append(GetJobs(node));
                     break;
-                case "topsights": //23-03-2022
+                /*case "topsights": //23-03-2022
                     s.Append("<block type=\"topSights\" url=\"\">");
                     s.Append(GetTopSights(node));
                     s.Append("</block>");
-                    break;
+                    break;*/
                /* case "flights":
                     s.Append("<block type=\"google_flights\" url=\"\">");
                     s.Append(GetFlights(node));
@@ -2357,38 +2357,6 @@ namespace RapidTrackingSingleThread
             } // end of 23-01-2020  // 21-02-2020
             return s.ToString();
         }
-        /*private string GetTopSights(HtmlNode node)//23-03-2022 new element top sights
-        {
-            StringBuilder s = new StringBuilder();
-            //top
-            HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'EDblX DAVP1')]/a");
-            s.Append("<top>");
-            foreach (HtmlNode nd in nds)
-            {
-                string url = nd.Attributes["href"].Value;
-                string title = nd.InnerText;
-                if (url.StartsWith("/"))
-                    url = "https://www.googole.com" + url;
-                if (!string.IsNullOrEmpty(url) || !string.IsNullOrEmpty(title))
-                    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
-            }
-            s.Append("</top>");
-            //bottom
-            nds = node.SelectNodes(".//div[@class='rqTuzc']/a");
-            s.Append("<bottom>");
-            foreach (HtmlNode nd in nds)
-            {
-                string url = nd.Attributes["href"].Value;
-                string title = nd.SelectSingleNode(".//span[@class='aVSTQd tNxQIb OSrXXb']").InnerText;
-                if (url.StartsWith("/"))
-                    url = "https://www.googole.com" + url;
-                if (!string.IsNullOrEmpty(url) || !string.IsNullOrEmpty(title))
-                    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
-            }
-            s.Append("</bottom>");
-            return s.ToString();
-        } *///23-03-2022
-
         private string GetFlights(HtmlNode node) //23-03-2022 new element flights
         {
             StringBuilder s = new StringBuilder();

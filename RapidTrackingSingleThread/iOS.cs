@@ -1166,7 +1166,7 @@ namespace RapidTrackingSingleThread
                     s.Append("<item url=\"\" rating=\"" + SetTitle(rating) + "\" reviews=\"" + SetTitle(reviewNumbers) + "\" title=\"" + SetTitle(title) + "\" />");
                 }
             nds = node.SelectNodes(".//div[@data-section-type='ads']/div");
-            s.Append("<price>");
+            string prices = string.Empty;//24-01-2023
             if (nds != null)
             {
                 foreach (HtmlNode nd in nds)
@@ -1174,7 +1174,7 @@ namespace RapidTrackingSingleThread
                     string value = nd.SelectSingleNode(".//span[contains(@class,'r9dLMc')]")?.InnerText.Trim() ?? "";
                     string seller = nd.SelectSingleNode(".//div[@class='BWpDXc']/span")?.InnerText.Trim() ?? "";
                     if (!string.IsNullOrEmpty(value) || !string.IsNullOrEmpty(seller))
-                        s.Append("<item url=\"\" seller=\"" + SetTitle(seller) + "\"  type=\"ads\" value=\"" + SetTitle(value) + "\" />");
+                        prices += "<item url=\"\" seller=\"" + SetTitle(seller) + "\"  type=\"ads\" value=\"" + SetTitle(value) + "\" />";//24-01-2023
                 }
             }
             nds = node.SelectNodes(".//div[@data-section-type='organic']/div");
@@ -1185,10 +1185,11 @@ namespace RapidTrackingSingleThread
                     string value = nd.SelectSingleNode(".//span[@class='r9dLMc']")?.InnerText.Trim() ?? "";
                     string seller = nd.SelectSingleNode(".//div[@class='BWpDXc']")?.InnerText.Trim() ?? "";
                     if (!string.IsNullOrEmpty(value) || !string.IsNullOrEmpty(seller))
-                        s.Append("<item url=\"\" seller=\"" + SetTitle(seller) + "\" type=\"organic\"  value=\"" + SetTitle(value) + "\"/>");
+                        prices += "<item url=\"\" seller=\"" + SetTitle(seller) + "\" type=\"organic\"  value=\"" + SetTitle(value) + "\"/>";//24-01-2023
                 }
             }
-            s.Append("</price>");
+            if (string.IsNullOrEmpty(prices)) return string.Empty;
+            s.Append("<price>" + prices + "</price>");
             return s.ToString();
         } //19-01-2023 Google Hotels from KP block
         private string GetRefineBySearches(HtmlNode node)//22-11-2022 refine the searches

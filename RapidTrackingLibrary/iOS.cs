@@ -2062,13 +2062,15 @@ namespace RapidTrackingLibrary
                     App2 = App.SelectNodes(".//div[@class='qiL93c']");//18-07-2020
                 if (App2 == null)
                     App2 = App.SelectNodes(".//div[@class='EzLsDb']"); //24-03-2021 missing apps url
+                if (App2 == null) //25-01-2023
+                    App2 = App.SelectNodes(".//ul[@class='ZEz0bc']/li[@class='pOWtie']");//25-01-2023
                 if (App2 != null)
                 {
                     foreach (HtmlNode nd in App2)
                     {
                         HtmlNode App3 = nd.ChildNodes[0];
                         //31-08-2020
-                        HtmlNode titleNode = nd.SelectSingleNode(".//div[@class='dlErff']");
+                        HtmlNode titleNode = nd.SelectSingleNode(".//div[@class='dlErff']|.//div[@class='SZCqL tNxQIb OSrXXb']");//25-01-2023
                         string title;
                         if (titleNode != null)
                             title = titleNode.InnerText.Trim();

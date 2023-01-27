@@ -766,7 +766,7 @@ namespace RapidTrackingLibrary
                                         "|.//div[@class='mnr-c']/div/div[@class='P8ujBc v5yQqb jqWpsc']|.//div[contains(@class,'EtOod pkphOe')|.//div[@class='mnr-c']/div/div[@class='P8ujBc jqWpsc']"+//06-07-2022//05-07-2022 //24-05-2022 //19-11-2021 //28-10-2021//12-10-2021//09-02-2021//27-01-2021 included missing selector//05-01-2021 //04-01-2021 missing classic link//18-12-2020 sitelinks missing selector //15-12-2020
                                         "|.//div[@class='mnr-c']/div/div[@class='P8ujBc v5yQqb jqWpsc']|.//div[contains(@class,'EtOod pkphOe')]|.//div[@class='mnr-c']/div/div[@class='P8ujBc jqWpsc']"); //24-11-2022 //06-07-2022//05-07-2022 //24-05-2022 //19-11-2021 //28-10-2021//12-10-2021//09-02-2021//27-01-2021 included missing selector//05-01-2021 //04-01-2021 missing classic link//18-12-2020 sitelinks missing selector //15-12-2020
                 if (nds == null) //24-11-2022
-                    nds = node.SelectNodes(".//div[@class='P8ujBc v5yQqb jqWpsc']"); //24-11-2022//14-09-2022
+                    nds = node.SelectNodes(".//div[@class='P8ujBc v5yQqb jqWpsc']|.//div[contains(@class,'Ww4FFb vt6azd')]");//16-01-2023 //24-11-2022//14-09-2022
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='mnr-c O9g5cc uUPGi']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='HD8Pae mnr-c xpd O9g5cc uUPGi']|.//div[@class='urrG9 v5yQqb jqWpsc']" + //31-05-2022
                         "|.//div/g-card[@class='XqIXXe']|.//g-card[@id='tscffb']|.//g-card[@class='g F6CFcc']|.//div[@class='khgTR lWEpfd']" +
@@ -1935,6 +1935,8 @@ namespace RapidTrackingLibrary
                         title = nd.SelectSingleNode(".//div[contains(@class,'poMUXd')]"); //27-07-2020
                     if (title == null)
                         title = nd.SelectSingleNode(".//div[@class='mkVq5']");//27-11-2020 top stories titles
+                    if (title == null)
+                        title = nd.SelectSingleNode(".//div[@class='mCBkyc tNxQIb ynAwRc nDgy9d']");//11-01-2023
                     string url = nd.Attributes["href"].Value;
                     s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title.InnerText) + "\" />");
                 }
@@ -2060,13 +2062,15 @@ namespace RapidTrackingLibrary
                     App2 = App.SelectNodes(".//div[@class='qiL93c']");//18-07-2020
                 if (App2 == null)
                     App2 = App.SelectNodes(".//div[@class='EzLsDb']"); //24-03-2021 missing apps url
+                if (App2 == null) //25-01-2023
+                    App2 = App.SelectNodes(".//ul[@class='ZEz0bc']/li[@class='pOWtie']");//25-01-2023
                 if (App2 != null)
                 {
                     foreach (HtmlNode nd in App2)
                     {
                         HtmlNode App3 = nd.ChildNodes[0];
                         //31-08-2020
-                        HtmlNode titleNode = nd.SelectSingleNode(".//div[@class='dlErff']");
+                        HtmlNode titleNode = nd.SelectSingleNode(".//div[@class='dlErff']|.//div[@class='SZCqL tNxQIb OSrXXb']");//25-01-2023
                         string title;
                         if (titleNode != null)
                             title = titleNode.InnerText.Trim();
@@ -2154,7 +2158,7 @@ namespace RapidTrackingLibrary
                     return "Topstories";
             }
 
-            if (node.SelectSingleNode(".//g-card[@class='cvoI5e']") != null || node.SelectSingleNode(".//g-card[@class='U8KfXc']") != null) //23-11-2020 //20-11-2020
+            if (node.SelectSingleNode(".//g-card[@class='cvoI5e']|.//g-tray-header[@class='iI6nue ieGFJe']") != null || node.SelectSingleNode(".//g-card[@class='U8KfXc']") != null)//11-01-2023 //23-11-2020 //20-11-2020
             {
                 return "Jobs";
             }
@@ -2382,7 +2386,7 @@ namespace RapidTrackingLibrary
                 && node.SelectSingleNode(".//div[@class='answered-question']") == null)
                 || (node.SelectSingleNode(".//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']") != null))
             {
-                if (!node.InnerText.StartsWith("People also search for") && node.SelectSingleNode(".//div[contains(@class,'Eee1Bd')]") == null)//11-07-2022 contains //21-12-2020//25-05-2020
+                if (!node.InnerText.StartsWith("People also search for") && node.SelectSingleNode(".//div[contains(@class,'Eee1Bd')]|.//div[contains(@class,'AuVD')]") == null)//27-01-2023//11-07-2022 contains //21-12-2020//25-05-2020
                     return "PeopleAlsoAsk";
             }
             // changed on 05-07-2019

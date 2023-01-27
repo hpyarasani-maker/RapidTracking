@@ -302,7 +302,7 @@ namespace RapidTrackingSingleThread
                 //lstKWs.Items.Add("160:malmö ff");
                 //lstKWs.Items.Add("102:terry crews");
                 //lstKWs.Items.Add("102:the uninhabitable earth summary");
-                lstKWs.Items.Add("1:ind vs hk");
+                lstKWs.Items.Add("58:hyderabad hotels");
             });
             return;
 
@@ -592,8 +592,8 @@ namespace RapidTrackingSingleThread
                     string[] reslt = { "", "", "", "" };
                     response = "";
 
-                    //Uri uri = new Uri(cbUrl[1]);
-                    Uri uri = new Uri("http://data.oxylabs.io/v1/queries/7015528167095940097/results");
+                    Uri uri = new Uri(cbUrl[1]);
+                    //Uri uri = new Uri("http://data.oxylabs.io/v1/queries/7015528167095940097/results");
                     if (cbUrl[2] == "done" && cbUrl[3] == "no")
                     {
                         try

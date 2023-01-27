@@ -110,6 +110,26 @@ namespace TrendingMobileSingleThread
                         string heading = n.InnerText;
                         sb.Append("<block type=\"knowledgeGraph\" url=\"\" title=\"" + SetTitle(heading) + "\" />");
                     }
+                    /*if (n != null)//19-01-2023 //23-01-2023 Googlehotels else KP Block
+                        {
+                            string googleHotels = string.Empty;
+                            HtmlNode Gh = node.SelectSingleNode(".//div[@class='fKw1wf']");
+                            if (Gh != null)
+                            {
+                                googleHotels = GetGoogleHotels(Gh);
+                                if (!string.IsNullOrEmpty(googleHotels))
+                                {
+                                    sb.Append("<block type=\"googleHotels\" url=\"\">");
+                                    sb.Append(googleHotels);
+                                    sb.Append("</block>");
+                                }
+                            }
+                            else if (string.IsNullOrEmpty(googleHotels))
+                            {
+                                string heading = n.InnerText;
+                                sb.Append("<block type=\"knowledgeGraph\" url=\"\" title=\"" + SetTitle(heading) + "\" />");
+                            }
+                        }*///19-01-2023 //23-01-2023 Googlehotels else KP Block
                     n = node.SelectSingleNode(".//g-img[@class='o8ebK']|.//g-img[@class='gRTVof']");//10-10-2022//07-09-2022 missing KP block
                     if (n != null && node.SelectSingleNode(".//div[@class='KrvXD']") == null)//13-12-2022
                     {
@@ -746,7 +766,7 @@ namespace TrendingMobileSingleThread
                                         "|.//div[@jsname='wRSfy']|.//g-card[@class='g F6CFcc']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='urrG9 v5yQqb jqWpsc']" + //31-05-2022
                                         "|.//div[@class='mnr-c']/div/div[@class='P8ujBc v5yQqb jqWpsc']|.//div[contains(@class,'EtOod pkphOe')]|.//div[@class='mnr-c']/div/div[@class='P8ujBc jqWpsc']"); //24-11-2022 //06-07-2022//05-07-2022 //24-05-2022 //19-11-2021 //28-10-2021//12-10-2021//09-02-2021//27-01-2021 included missing selector//05-01-2021 //04-01-2021 missing classic link//18-12-2020 sitelinks missing selector //15-12-2020
                 if (nds == null) //24-11-2022
-                    nds = node.SelectNodes(".//div[@class='P8ujBc v5yQqb jqWpsc']"); //24-11-2022//14-09-2022
+                    nds = node.SelectNodes(".//div[@class='P8ujBc v5yQqb jqWpsc']|.//div[contains(@class,'Ww4FFb vt6azd')]");//16-01-2023 //24-11-2022//14-09-2022
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='mnr-c O9g5cc uUPGi']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='HD8Pae mnr-c xpd O9g5cc uUPGi']|.//div[@class='mnr-c']/div/div[contains(@class,'P8ujBc')]|.//div[@class='mnr-c P5XtRe']" + //25-03-2022 //22-02-2022
                         "|.//div/g-card[@class='XqIXXe']|.//g-card[@id='tscffb']|.//g-card[@class='g F6CFcc']|.//div[@class='khgTR lWEpfd']" +
@@ -1099,6 +1119,79 @@ namespace TrendingMobileSingleThread
 
             return s.ToString();
         }
+        private string GetTopSights(HtmlNode node)//19-01-2023 new element top sights
+        {
+            StringBuilder s = new StringBuilder();
+            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='l10H9c']");
+            foreach (HtmlNode nd in nds)
+            {
+                try
+                {
+                    string reviews = string.Empty;
+                    string title = nd.SelectSingleNode(".//div[@class='MiF81b']/div")?.InnerText.Trim() ?? "";
+                    string description = nd.SelectSingleNode(".//div[@class='UEiegc Y4Ql3c MUxGbd wuQ4Ob WZ8Tjf lEBKkf']")?.InnerText.Trim() ?? "";
+                    string price = nd.SelectSingleNode(".//div[@class='UEiegc iiNTId MUxGbd lyLwlc aLF0Z OSrXXb']")?.InnerText.Trim() ?? "";
+                    string rating = nd.SelectSingleNode(".//span[@class='LORxxe']/span")?.InnerText.Trim() ?? "";
+                    var revs = nd.SelectNodes(".//span[@aria-hidden='true']");
+                    if (revs != null)
+                        foreach (var r in revs)
+                        {
+                            reviews = r.InnerText;
+                            if (rating != r.InnerText)
+                            {
+                                reviews = r.InnerText;
+                            }
+                        }
+                    string reviewNumbers = ConvertReviews(reviews);
+                    if (!string.IsNullOrEmpty(title) || !string.IsNullOrEmpty(rating))
+                        s.Append("<item url=\"\" description=\"" + SetTitle(description) + "\" price=\"" + SetTitle(price) + "\"  reviews=\"" + SetTitle(reviewNumbers) + "\" rating=\"" + SetTitle(rating) + "\"  title=\"" + SetTitle(title) + "\" />");
+
+                }
+                catch { }
+            }
+            return s.ToString();
+        }//19-01-2023 new element top sights
+
+        private string GetGoogleHotels(HtmlNode node) //19-01-2023 Google Hotels from KP block
+        {
+            StringBuilder s = new StringBuilder();
+            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='c94Vsf Y1mqLe kp-rgc']");
+            if (nds != null)
+                foreach (HtmlNode nd in nds)
+                {
+                    string title = nd.SelectSingleNode(".//h2[contains(@class, 'qrShPb')]/span")?.InnerText.Trim() ?? "";
+                    string rating = nd.SelectSingleNode(".//span[contains(@class,'YrbPuc')]")?.InnerText.Trim() ?? "";
+                    string reviews = nd.SelectSingleNode(".//span[@class='RDApEe YrbPuc']")?.InnerText.Replace("(", "").Replace(")", "").Trim() ?? "";
+                    string reviewNumbers = ConvertReviews(reviews);
+                    s.Append("<item url=\"\" rating=\"" + SetTitle(rating) + "\" reviews=\"" + SetTitle(reviewNumbers) + "\" title=\"" + SetTitle(title) + "\" />");
+                }
+            nds = node.SelectNodes(".//div[@data-section-type='ads']/div");
+            string prices = string.Empty;//24-01-2023
+            if (nds != null)
+            {
+                foreach (HtmlNode nd in nds)
+                {
+                    string value = nd.SelectSingleNode(".//span[contains(@class,'r9dLMc')]")?.InnerText.Trim() ?? "";
+                    string seller = nd.SelectSingleNode(".//div[@class='BWpDXc']/span")?.InnerText.Trim() ?? "";
+                    if (!string.IsNullOrEmpty(value) || !string.IsNullOrEmpty(seller))
+                        prices += "<item url=\"\" seller=\"" + SetTitle(seller) + "\"  type=\"ads\" value=\"" + SetTitle(value) + "\" />";//24-01-2023
+                }
+            }
+            nds = node.SelectNodes(".//div[@data-section-type='organic']/div");
+            if (nds != null)
+            {
+                foreach (HtmlNode nd in nds)
+                {
+                    string value = nd.SelectSingleNode(".//span[@class='r9dLMc']")?.InnerText.Trim() ?? "";
+                    string seller = nd.SelectSingleNode(".//div[@class='BWpDXc']")?.InnerText.Trim() ?? "";
+                    if (!string.IsNullOrEmpty(value) || !string.IsNullOrEmpty(seller))
+                        prices += "<item url=\"\" seller=\"" + SetTitle(seller) + "\" type=\"organic\"  value=\"" + SetTitle(value) + "\"/>";//24-01-2023
+                }
+            }
+            if (string.IsNullOrEmpty(prices)) return string.Empty;
+            s.Append("<price>" + prices + "</price>");
+            return s.ToString();
+        } //19-01-2023 Google Hotels from KP block
         private string GetRefineBySearches(HtmlNode node)//22-11-2022 refine the searches
         {
             StringBuilder s = new StringBuilder();
@@ -1199,9 +1292,9 @@ namespace TrendingMobileSingleThread
                 case "maps":
                     s.Append("<block type=\"maps\" url=\"\"></block>");
                     break;
-                /*case "maps":
-                    s.Append("<block type=\"maps\" url=\"\">");//24-03-2022
-                    s.Append(GetMaps(node));
+                /*case "hotels":
+                    s.Append("<block type=\"hotels_pack\" url=\"\">");//24-03-2022
+                    s.Append(GetHotels(node));
                     s.Append("</block>");//24-03-2022
                     break;*/
                 case "twitters":
@@ -1252,12 +1345,12 @@ namespace TrendingMobileSingleThread
                     s.Append("<block type=\"topSights\" url=\"\">");
                     s.Append(GetTopSights(node));
                     s.Append("</block>");
-                    break;
-                case "flights":
-                    s.Append("<block type=\"flights\" url=\"\">");
-                    s.Append(GetFlights(node));
-                    s.Append("</block>");//23-03-2022
                     break;*/
+                /* case "flights":
+                     s.Append("<block type=\"google_flights\" url=\"\">");
+                     s.Append(GetFlights(node));
+                     s.Append("</block>");//23-03-2022
+                     break;*/
                 /*case "refine": //refine the search 23-11-2022
                     s.Append("<block type=\"refineBySearches\" url=\"\">");
                     s.Append(GetRefineBySearches(node));
@@ -2095,6 +2188,8 @@ namespace TrendingMobileSingleThread
                         title = nd.SelectSingleNode(".//div[contains(@class,'poMUXd')]"); //27-07-2020
                     if (title == null)
                         title = nd.SelectSingleNode(".//div[@class='mkVq5']");//27-11-2020 top stories titles
+                    if (title == null)
+                        title = nd.SelectSingleNode(".//div[@class='mCBkyc tNxQIb ynAwRc nDgy9d']");//11-01-2023
                     string url = nd.Attributes["href"].Value;
                     if (!url.Contains("/search?q=")) //09-09-2022 avoid google link
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title.InnerText) + "\" />");
@@ -2222,13 +2317,15 @@ namespace TrendingMobileSingleThread
                     App2 = App.SelectNodes(".//div[@class='qiL93c']");//18-07-2020
                 if (App2 == null)
                     App2 = App.SelectNodes(".//div[@class='EzLsDb']"); //24-03-2021 missing apps url
+                if (App2 == null) //25-01-2023
+                    App2 = App.SelectNodes(".//ul[@class='ZEz0bc']/li[@class='pOWtie']");//25-01-2023
                 if (App2 != null)
                 {
                     foreach (HtmlNode nd in App2)
                     {
                         HtmlNode App3 = nd.ChildNodes[0];
                         //31-08-2020
-                        HtmlNode titleNode = nd.SelectSingleNode(".//div[@class='dlErff']");
+                        HtmlNode titleNode = nd.SelectSingleNode(".//div[@class='dlErff']|.//div[@class='SZCqL tNxQIb OSrXXb']");//25-01-2023
                         string title;
                         if (titleNode != null)
                             title = titleNode.InnerText.Trim();
@@ -2262,38 +2359,6 @@ namespace TrendingMobileSingleThread
             } // end of 23-01-2020  // 21-02-2020
             return s.ToString();
         }
-        private string GetTopSights(HtmlNode node)//23-03-2022 new element top sights
-        {
-            StringBuilder s = new StringBuilder();
-            //top
-            HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'EDblX DAVP1')]/a");
-            s.Append("<top>");
-            foreach (HtmlNode nd in nds)
-            {
-                string url = nd.Attributes["href"].Value;
-                string title = nd.InnerText;
-                if (url.StartsWith("/"))
-                    url = "https://www.googole.com" + url;
-                if (!string.IsNullOrEmpty(url) || !string.IsNullOrEmpty(title))
-                    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
-            }
-            s.Append("</top>");
-            //bottom
-            nds = node.SelectNodes(".//div[@class='rqTuzc']/a");
-            s.Append("<bottom>");
-            foreach (HtmlNode nd in nds)
-            {
-                string url = nd.Attributes["href"].Value;
-                string title = nd.SelectSingleNode(".//span[@class='aVSTQd tNxQIb OSrXXb']").InnerText;
-                if (url.StartsWith("/"))
-                    url = "https://www.googole.com" + url;
-                if (!string.IsNullOrEmpty(url) || !string.IsNullOrEmpty(title))
-                    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
-            }
-            s.Append("</bottom>");
-            return s.ToString();
-        } //23-03-2022
-
         private string GetFlights(HtmlNode node) //23-03-2022 new element flights
         {
             StringBuilder s = new StringBuilder();
@@ -2312,7 +2377,7 @@ namespace TrendingMobileSingleThread
             }
             return s.ToString();
         }//23-03-2022
-        private string GetMaps(HtmlNode node)//24-03-2022 new element Maps
+        private string GetHotels(HtmlNode node)//24-03-2022 new element Maps
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='M0T4Vc EXwDJb']");
@@ -2320,11 +2385,19 @@ namespace TrendingMobileSingleThread
             {
                 try
                 {
+                    string description = string.Empty;
                     string title = nd.SelectSingleNode(".//div[@class='BTPx6e yMArdc']")?.InnerText.Trim() ?? "";
-                    string rating = nd.SelectSingleNode(".//span[@class='YDIN4c YrbPuc']")?.InnerText.Trim() ?? "";
+                    string rating = nd.SelectSingleNode(".//span[contains(@class,'YrbPuc')]")?.InnerText.Trim() ?? "";
+                    string reviews = nd.SelectSingleNode(".//span[@class='RDApEe YrbPuc']")?.InnerText.Trim() ?? "";
                     string price = nd.SelectSingleNode(".//div[@class='VSZCrf']/span")?.InnerText.Trim() ?? "";
-                    s.Append("<item price=\"" + SetTitle(price) + "\" rating=\"" + SetTitle(rating) + "\" title=\"" + SetTitle(title) + "\" />");
-                    //s.Append($"<item price={SetTitle(price)}\trating={SetTitle(rating)}\ttitle={SetTitle(title)}\t />");
+                    var desc = nd.SelectNodes(".//div[@class='I9B2He']|.//div[@class='dLtZ8b']/span");
+                    if (desc != null)
+                        foreach (var d in desc)
+                        {
+                            description += d.InnerText + ",";
+                        }
+                    if (!string.IsNullOrEmpty(description)) description = description.Remove(description.Length - 1);
+                    s.Append("<item price=\"" + SetTitle(price) + "\" rating=\"" + SetTitle(rating) + "\" reviews=\"" + SetTitle(reviews) + "\" description=\"" + SetTitle(description) + "\" title=\"" + SetTitle(title) + "\" />");
                 }
                 catch { }
             }
@@ -2381,13 +2454,13 @@ namespace TrendingMobileSingleThread
                 if (ts)
                     return "Topstories";
             }
-            /*nd = node.SelectSingleNode(".//g-tray-header[@class='kno-fb-ctx gsrt AX8YBc']"); //23-03-2022 //Top Sights and Flights
+            /*nd = node.SelectSingleNode(".//g-tray-header[contains(@class,'kno-fb-ctx gsrt')]"); //23-03-2022//19-01-2023 //Top Sights and Flights
             if (nd != null)
-                return "TopSights"; //23-03-2022
-            if (node.SelectSingleNode(".//div[@class='WlTAzf mnr-c vk_c']") != null || node.Attributes["class"]?.Value == "WlTAzf mnr-c vk_c") //23-03-2022
+                return "TopSights";*/ //23-03-2022//19-01-2023
+            /*if (node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]") != null || node.Attributes["class"]?.Value == "WlTAzf mnr-c vk_c") //23-03-2022
                 return "Flights";//23-03-2022*/
 
-            if (node.SelectSingleNode(".//g-card[@class='cvoI5e']") != null || node.SelectSingleNode(".//g-card[@class='U8KfXc']") != null) //23-11-2020 //20-11-2020
+            if (node.SelectSingleNode(".//g-card[@class='cvoI5e']|.//g-tray-header[@class='iI6nue ieGFJe']") != null || node.SelectSingleNode(".//g-card[@class='U8KfXc']") != null)//11-01-2023 //23-11-2020 //20-11-2020
             {
                 return "Jobs";
             }
@@ -2556,7 +2629,11 @@ namespace TrendingMobileSingleThread
             {
                 return "Videos";
             }
-
+            /*nd = node.SelectSingleNode(".//div[@class='QgoQVc']");
+            if (nd != null)
+            {
+                return "Hotels";
+            }*/
             nd = node.SelectSingleNode(".//*[@id='rXuTZe']");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='I2lQic']");//05-11-2019
@@ -2616,7 +2693,7 @@ namespace TrendingMobileSingleThread
                 && node.SelectSingleNode(".//div[@class='answered-question']") == null)
                 || (node.SelectSingleNode(".//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']") != null))
             {
-                if (!node.InnerText.StartsWith("People also search for") && node.SelectSingleNode(".//div[contains(@class,'Eee1Bd')]") == null)//11-07-2022 contains //21-12-2020//25-05-2020
+                if (!node.InnerText.StartsWith("People also search for") && node.SelectSingleNode(".//div[contains(@class,'Eee1Bd')]|.//div[contains(@class,'AuVD')]") == null)//27-01-2023//11-07-2022 contains //21-12-2020//25-05-2020
                     return "PeopleAlsoAsk";
             }
             // changed on 05-07-2019
@@ -2817,7 +2894,9 @@ namespace TrendingMobileSingleThread
             {
                 return false;
             }
-
+            nd = node.SelectSingleNode(".//g-tray-header[contains(@class,'kno-fb-ctx gsrt')]"); //23-12-2023//19-01-2023 new element top sights
+            if (nd != null)
+                return true;//23-12-2023//19-01-2023
             nd = node.SelectSingleNode(".//div[@class='aJegcc']");//05-01-2023
             if (nd != null)
                 return true;//05-01-2023
@@ -2986,7 +3065,15 @@ namespace TrendingMobileSingleThread
         {
             throw new NotImplementedException();
         }
-
+        private string ConvertReviews(string reviews)//20-01-2023 display only numbers
+        {
+            Regex rx = new Regex("\\.\\d*K");
+            if (rx.IsMatch(reviews))
+                reviews = Regex.Replace(reviews, "[^0-9K]", "").Replace("K", "00");
+            else
+                reviews = Regex.Replace(reviews, "[^0-9K]", "").Replace("K", "000");
+            return reviews;
+        }//20-01-2023 display only numbers
         //07-11-2019
         private string GetRedirectedUrl(string url)
         {

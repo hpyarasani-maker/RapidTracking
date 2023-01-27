@@ -2454,9 +2454,9 @@ namespace RapidTrackingSingleThread
                 if (ts)
                     return "Topstories";
             }
-            nd = node.SelectSingleNode(".//g-tray-header[contains(@class,'kno-fb-ctx gsrt')]"); //23-03-2022//19-01-2023 //Top Sights and Flights
+            /*nd = node.SelectSingleNode(".//g-tray-header[contains(@class,'kno-fb-ctx gsrt')]"); //23-03-2022//19-01-2023 //Top Sights and Flights
             if (nd != null)
-                return "TopSights"; //23-03-2022//19-01-2023
+                return "TopSights";*/ //23-03-2022//19-01-2023
             /*if (node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]") != null || node.Attributes["class"]?.Value == "WlTAzf mnr-c vk_c") //23-03-2022
                 return "Flights";//23-03-2022*/
 
@@ -2693,7 +2693,7 @@ namespace RapidTrackingSingleThread
                 && node.SelectSingleNode(".//div[@class='answered-question']") == null)
                 || (node.SelectSingleNode(".//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']") != null))
             {
-                if (!node.InnerText.StartsWith("People also search for") && node.SelectSingleNode(".//div[contains(@class,'Eee1Bd')]") == null)//11-07-2022 contains //21-12-2020//25-05-2020
+                if (!node.InnerText.StartsWith("People also search for") && node.SelectSingleNode(".//div[contains(@class,'Eee1Bd')]|.//div[contains(@class,'AuVD')]") == null)//27-01-2023//11-07-2022 contains //21-12-2020//25-05-2020
                     return "PeopleAlsoAsk";
             }
             // changed on 05-07-2019

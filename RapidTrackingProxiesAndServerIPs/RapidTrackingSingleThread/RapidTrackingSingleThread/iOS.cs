@@ -2890,9 +2890,9 @@ namespace RapidTrackingSingleThread
             {
                 return false;
             }
-            nd = node.SelectSingleNode(".//g-tray-header[contains(@class,'kno-fb-ctx gsrt')]"); //23-12-2023//19-01-2023 new element top sights
+            /*nd = node.SelectSingleNode(".//g-tray-header[contains(@class,'kno-fb-ctx gsrt')]"); //23-12-2023//19-01-2023 new element top sights
             if (nd != null)
-                return true;//23-12-2023//19-01-2023
+                return true;*///23-12-2023//19-01-2023
             nd = node.SelectSingleNode(".//div[@class='aJegcc']");//05-01-2023
             if (nd != null)
                 return true;//05-01-2023

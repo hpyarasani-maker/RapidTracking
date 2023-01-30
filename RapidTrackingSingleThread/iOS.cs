@@ -101,12 +101,12 @@ namespace RapidTrackingSingleThread
                         if (n == null)
                             n = node.SelectSingleNode(".//div[contains(@class,'ssJ7i PZPZlf')]"); //15-11-2021 KP
 
-                        if (n != null) //comment or uncomment for only KP Block
+                        /*if (n != null) //comment or uncomment for only KP Block
                         {
                             string heading = n.InnerText;
                             sb.Append("<block type=\"knowledgeGraph\" url=\"\" title=\"" + SetTitle(heading) + "\" />");
-                        }
-                        /*if (n != null)//19-01-2023 //23-01-2023 Googlehotels else KP Block
+                        }*/
+                        if (n != null)//19-01-2023 //23-01-2023 Googlehotels else KP Block
                         {
                             string googleHotels = string.Empty;
                             HtmlNode Gh = node.SelectSingleNode(".//div[@class='fKw1wf']");
@@ -125,7 +125,7 @@ namespace RapidTrackingSingleThread
                                 string heading = n.InnerText;
                                 sb.Append("<block type=\"knowledgeGraph\" url=\"\" title=\"" + SetTitle(heading) + "\" />");
                             }
-                        }*///19-01-2023 //23-01-2023 Googlehotels else KP Block
+                        }//19-01-2023 //23-01-2023 Googlehotels else KP Block
                         n = node.SelectSingleNode(".//g-img[@class='o8ebK']|.//g-img[@class='gRTVof']");//10-10-2022//07-09-2022 missing KP block
                         if (n != null && node.SelectSingleNode(".//div[@class='KrvXD']") == null)//13-12-2022
                         {
@@ -1163,7 +1163,13 @@ namespace RapidTrackingSingleThread
                     string rating = nd.SelectSingleNode(".//span[contains(@class,'YrbPuc')]")?.InnerText.Trim() ?? "";
                     string reviews = nd.SelectSingleNode(".//span[@class='RDApEe YrbPuc']")?.InnerText.Replace("(", "").Replace(")", "").Trim() ?? "";
                     string reviewNumbers = ConvertReviews(reviews);
-                    s.Append("<item url=\"\" rating=\"" + SetTitle(rating) + "\" reviews=\"" + SetTitle(reviewNumbers) + "\" title=\"" + SetTitle(title) + "\" />");
+                    HtmlNode web = node.SelectSingleNode(".//div[@jsname='UXbvIb']/a[@class='FFdnyb']");//30-01-2023 for website in url attribute
+                    string website = string.Empty;
+                    if (website != null)
+                    {
+                        website = web.Attributes["href"]?.Value ?? "";
+                    }//30-01-2023 for website in url attribute
+                    s.Append("<item url=\"" + SetUrl(website) + "\" rating=\"" + SetTitle(rating) + "\" reviews=\"" + SetTitle(reviewNumbers) + "\" title=\"" + SetTitle(title) + "\" />");
                 }
             nds = node.SelectNodes(".//div[@data-section-type='ads']/div");
             string prices = string.Empty;//24-01-2023

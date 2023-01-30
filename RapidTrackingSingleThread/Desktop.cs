@@ -213,11 +213,11 @@ namespace RapidTrackingSingleThread
                 node = rcNode.SelectSingleNode(".//div[@class='NFQFxe mod']");  // 01-06-2020
             if (node == null)
                 node = rcNode.SelectSingleNode(".//div[contains(@class, 'knowledge-panel')]");//03-03-2022
-            if (node != null)     //'kp-blk knowledge-panel _Rqb _RJe']") != null) //|.//div[@role='heading']/div[1]/span //comment or uncomment only KP block
+            /*if (node != null)     //'kp-blk knowledge-panel _Rqb _RJe']") != null) //|.//div[@role='heading']/div[1]/span //comment or uncomment only KP block
             {
                 s.Append("<block type=\"knowledgeGraph\" url=\"\" />");
-            }
-            /*if (node != null)//18-01-2023 Google Hotels from KP block
+            }*/
+            if (node != null)//18-01-2023 Google Hotels from KP block
             {
                 string googleHotels = string.Empty;
                 if (node.SelectSingleNode(".//div/a[@class='ln-osrp-et']") != null)
@@ -228,7 +228,7 @@ namespace RapidTrackingSingleThread
                 }
                 else if (string.IsNullOrEmpty(googleHotels))
                     s.Append("<block type=\"knowledgeGraph\" url=\"\" />");
-            }*///18-01-2023 Google Hotels from KP block
+            }//18-01-2023 Google Hotels from KP block
             return s.ToString();
         }
 
@@ -376,7 +376,13 @@ namespace RapidTrackingSingleThread
                 if (string.IsNullOrEmpty(prices)) return string.Empty;
                 prices = "<price>" + prices + "</price>";
                 string reviewNumbers = ConvertReviews(reviews);
-                s.Append("<item url=\"\" rating=\"" + SetTitle(rating) + "\" reviews=\"" + SetTitle(reviewNumbers) + "\" title=\"" + SetTitle(title) + "\" />");
+                HtmlNode web = node.SelectSingleNode(".//div[@class='QqG1Sd']/a");//30-01-2023 for website in url attribute
+                string website = string.Empty;
+                if (web != null)
+                {
+                    website = web.Attributes["href"]?.Value ?? "";
+                }//30-01-2023 for website in url attribute
+                s.Append("<item url=\"" + SetUrl(website) + "\"  rating=\"" + SetTitle(rating) + "\" reviews=\"" + SetTitle(reviewNumbers) + "\" title=\"" + SetTitle(title) + "\" />");
                 s.Append(prices); 
                 s.Append("</block>");
             }

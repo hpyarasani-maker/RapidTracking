@@ -1942,7 +1942,7 @@ namespace RapidTrackingLibrary
                     if (title == null)
                         title = nd.SelectSingleNode(".//div[@class='mkVq5']");//27-11-2020 top stories titles
                     if (title == null)
-                        title = nd.SelectSingleNode(".//div[@class='mCBkyc tNxQIb ynAwRc nDgy9d']");//11-01-2023
+                        title = nd.SelectSingleNode(".//div[contains(@class,'tNxQIb ynAwRc nDgy9d')]");//01-02-2023//11-01-2023//11-01-2023
                     string url = nd.Attributes["href"].Value;
                     s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title.InnerText) + "\" />");
                 }
@@ -1965,7 +1965,7 @@ namespace RapidTrackingLibrary
                             if (title == null)
                                 title = nd.SelectSingleNode(".//div[@class='mCBkyc oz3cqf vH5Lmd nDgy9d']");//10-06-2020
                             if (title == null)
-                                title = nd.SelectSingleNode(".//div[@class='mCBkyc tNxQIb ynAwRc nDgy9d']");//30-05-2022
+                                title = nd.SelectSingleNode(".//div[contains(@class,'tNxQIb ynAwRc nDgy9d')]");//01-02-2023//11-01-2023//30-05-2022
                             string url = nd.Attributes["href"].Value;
                             s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title.InnerText) + "\" />");
                         }

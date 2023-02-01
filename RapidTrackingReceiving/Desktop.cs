@@ -374,7 +374,13 @@ namespace Oxylabs_BulkKeywords
                 if (string.IsNullOrEmpty(prices)) return string.Empty;
                 prices = "<price>" + prices + "</price>";
                 string reviewNumbers = ConvertReviews(reviews);
-                s.Append("<item url=\"\" rating=\"" + SetTitle(rating) + "\" reviews=\"" + SetTitle(reviewNumbers) + "\" title=\"" + SetTitle(title) + "\" />");
+                HtmlNode web = node.SelectSingleNode(".//div[@class='QqG1Sd']/a");//30-01-2023 for website in url attribute
+                string website = string.Empty;
+                if (web != null)
+                {
+                    website = web.Attributes["href"]?.Value ?? "";
+                }//30-01-2023 for website in url attribute
+                s.Append("<item url=\"" + SetUrl(website) + "\"  rating=\"" + SetTitle(rating) + "\" reviews=\"" + SetTitle(reviewNumbers) + "\" title=\"" + SetTitle(title) + "\" />");
                 s.Append(prices);
                 s.Append("</block>");
             }

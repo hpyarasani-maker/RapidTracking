@@ -101,12 +101,12 @@ namespace RapidTrackingSingleThread
                         if (n == null)
                             n = node.SelectSingleNode(".//div[contains(@class,'ssJ7i PZPZlf')]"); //15-11-2021 KP
 
-                        /*if (n != null) //comment or uncomment for only KP Block
+                        if (n != null) //comment or uncomment for only KP Block
                         {
                             string heading = n.InnerText;
                             sb.Append("<block type=\"knowledgeGraph\" url=\"\" title=\"" + SetTitle(heading) + "\" />");
-                        }*/
-                        if (n != null)//19-01-2023 //23-01-2023 Googlehotels else KP Block
+                        }
+                        /*if (n != null)//19-01-2023 //23-01-2023 Googlehotels else KP Block
                         {
                             string googleHotels = string.Empty;
                             HtmlNode Gh = node.SelectSingleNode(".//div[@class='fKw1wf']");
@@ -125,7 +125,7 @@ namespace RapidTrackingSingleThread
                                 string heading = n.InnerText;
                                 sb.Append("<block type=\"knowledgeGraph\" url=\"\" title=\"" + SetTitle(heading) + "\" />");
                             }
-                        }//19-01-2023 //23-01-2023 Googlehotels else KP Block
+                        }*///19-01-2023 //23-01-2023 Googlehotels else KP Block
                         n = node.SelectSingleNode(".//block-component/div[contains(@class, 'kno-result')]");//30-01-2023 Answer Card
                         if (n != null)
                         {

@@ -925,7 +925,7 @@ namespace RapidTrackingLibrary
                             if (n == null)
                                 n = nd.SelectSingleNode(".//a[@class='C8nzq Tj0U2 BmP5tf amp_r']"); // 29-11-2019
                             if (n == null)
-                                n = nd.SelectSingleNode(".//a[@class='cz3goc BmP5tf']"); //31-05-2022
+                                n = nd.SelectSingleNode(".//a[contains(@class,'cz3goc BmP5tf')]");//03-02-2023 //31-05-2022
                             if (n == null)
                                 n = nd.SelectSingleNode(".//a[contains(@class,'sXtWJb')]"); //16-12-2020
                             if (n == null)

@@ -412,7 +412,7 @@ namespace Oxylabs_BulkKeywords
                         if (link != null)
                         {
                             url = link.Attributes["href"]?.Value ?? ""; //24-01-2023
-                            title = link.SelectSingleNode(".//div[@class='vuR1ld']|.//div[@class='wEN0R']|.//div[@class='vYe7gd Havxif']")?.InnerText ?? "";//24-01-2023
+                            title = link.SelectSingleNode(".//div[@class='vuR1ld']|.//div[@class='wEN0R']|.//div[contains(@class,'vYe7gd')]")?.InnerText ?? "";//03-02-2023//24-01-2023
                             price = link.SelectSingleNode(".//div[@class='ldGAMe']|.//div[@class='z235y jAPStb']|.//div[@class='s1bFpb']")?.InnerText ?? "";//24-01-2023
                             name = link.SelectSingleNode(".//div[@class='DNnNed nbhTP']/span[@class='Dt4hCc']|.//div[@class='ix5OZc']|.//div[@class='pMiHCf']")?.InnerText ?? "";//24-01-2023
                         }
@@ -1600,8 +1600,9 @@ namespace Oxylabs_BulkKeywords
                         {
                             description += d.InnerText + ",";
                         }
+                    string reviewNumbers = ConvertReviews(reviews);
                     if (!string.IsNullOrEmpty(description)) description = description.Remove(description.Length - 1);
-                    s.Append("<item price=\"" + SetTitle(price) + "\" rating=\"" + SetTitle(rating) + "\" reviews=\"" + SetTitle(reviews) + "\" description=\"" + SetTitle(description) + "\" title=\"" + SetTitle(title) + "\" />");
+                    s.Append("<item price=\"" + SetTitle(price) + "\" rating=\"" + SetTitle(rating) + "\" total_reviews=\"" + SetTitle(reviewNumbers) + "\" description=\"" + SetTitle(description) + "\" title=\"" + SetTitle(title) + "\" />");
                 }
                 catch { }
             }

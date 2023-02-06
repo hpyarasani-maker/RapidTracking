@@ -368,7 +368,13 @@ namespace RapidTrackingJobIDResults
                 if (string.IsNullOrEmpty(prices)) return string.Empty;
                 prices = "<price>" + prices + "</price>";
                 string reviewNumbers = ConvertReviews(reviews);
-                s.Append("<item url=\"\" rating=\"" + SetTitle(rating) + "\" reviews=\"" + SetTitle(reviewNumbers) + "\" title=\"" + SetTitle(title) + "\" />");
+                HtmlNode web = node.SelectSingleNode(".//div[@class='QqG1Sd']/a");//30-01-2023 for website in url attribute
+                string website = string.Empty;
+                if (web != null)
+                {
+                    website = web.Attributes["href"]?.Value ?? "";
+                }//30-01-2023 for website in url attribute
+                s.Append("<item url=\"" + SetUrl(website) + "\"  rating=\"" + SetTitle(rating) + "\" reviews=\"" + SetTitle(reviewNumbers) + "\" title=\"" + SetTitle(title) + "\" />");
                 s.Append(prices);
                 s.Append("</block>");
             }
@@ -400,7 +406,7 @@ namespace RapidTrackingJobIDResults
                         if (link != null)
                         {
                             url = link.Attributes["href"]?.Value ?? ""; //24-01-2023
-                            title = link.SelectSingleNode(".//div[@class='vuR1ld']|.//div[@class='wEN0R']|.//div[@class='vYe7gd Havxif']")?.InnerText ?? "";//24-01-2023
+                            title = link.SelectSingleNode(".//div[@class='vuR1ld']|.//div[@class='wEN0R']|.//div[contains(@class,'vYe7gd')]")?.InnerText ?? "";//03-02-2023//24-01-2023
                             price = link.SelectSingleNode(".//div[@class='ldGAMe']|.//div[@class='z235y jAPStb']|.//div[@class='s1bFpb']")?.InnerText ?? "";//24-01-2023
                             name = link.SelectSingleNode(".//div[@class='DNnNed nbhTP']/span[@class='Dt4hCc']|.//div[@class='ix5OZc']|.//div[@class='pMiHCf']")?.InnerText ?? "";//24-01-2023
                         }
@@ -1588,8 +1594,9 @@ namespace RapidTrackingJobIDResults
                         {
                             description += d.InnerText + ",";
                         }
+                    string reviewNumbers = ConvertReviews(reviews);
                     if (!string.IsNullOrEmpty(description)) description = description.Remove(description.Length - 1);
-                    s.Append("<item price=\"" + SetTitle(price) + "\" rating=\"" + SetTitle(rating) + "\" reviews=\"" + SetTitle(reviews) + "\" description=\"" + SetTitle(description) + "\" title=\"" + SetTitle(title) + "\" />");
+                    s.Append("<item price=\"" + SetTitle(price) + "\" rating=\"" + SetTitle(rating) + "\" total_reviews=\"" + SetTitle(reviewNumbers) + "\" description=\"" + SetTitle(description) + "\" title=\"" + SetTitle(title) + "\" />");
                 }
                 catch { }
             }

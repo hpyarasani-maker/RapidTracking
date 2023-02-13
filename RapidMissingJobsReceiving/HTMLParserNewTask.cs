@@ -75,20 +75,7 @@ namespace RapidMissingJobsReceiving
                 //WebClient client = new WebClient();
                 while (true)
                 {
-                    /*try
-                    {
-                        statusCode = string.Empty;
-                        string response = string.Empty;
-                        client.Encoding = Encoding.UTF8;
-
-                        response = client.DownloadString(url);
-                        if (response != "null")
-                            DoProcess(response);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("# EXCEPTION #  " + ex.Message);
-                    }*/
+                   
                     try
                     {
                         string response = "";
@@ -102,8 +89,6 @@ namespace RapidMissingJobsReceiving
                     catch (Exception ex)
                     {
                         Console.WriteLine("# EXCEPTION #  " + ex.Message);
-                        //throw new ArgumentException(message: ex.Message.ToString(), paramName: "response");
-                        //OnKeywordDone.Invoke("Error:" + ex.Message.ToString());
                     }
                 }
             }

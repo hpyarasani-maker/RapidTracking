@@ -10,6 +10,10 @@ using System.Data;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Net.Http;
+using System.Xml.Linq;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
+using System.Collections;
 //using Oxylabs_TrackingComponent;
 
 namespace RapidMissingJobsReceiving
@@ -44,37 +48,53 @@ namespace RapidMissingJobsReceiving
 
         private void StartProcess()
         {
-         
 
-            string url = "http://seresults.azurewebsites.net/api/callbackuk503desktoptemp/"; //receiving New SEIDs
-         
 
+            string url = "http://10.2.0.4/WebApi2/webapi2/api/missing?date=" + myDate; //receiving New SEIDs
             Uri ul = new Uri(url);
             using (var client = new HttpClient())
             {
                 //WebClient client = new WebClient();
                 while (true)
                 {
-                   
+
                     try
                     {
                         string response = "";
                         client.DefaultRequestHeaders.Clear();
                         client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
                         response = client.GetStringAsync(ul).Result;
-                        if (response != "null")
-                            DoProcess(response);
+                        string seid = string.Empty;
+                        string keyword = string.Empty;
+                        string jobid = string.Empty;
+                        if (response != null)
+                            try
+                            {
+                                JArray jo = JArray.Parse(response);
+                                seid = jo[0].Value<JObject>().Value<string>("seid");
+                                keyword = jo[0].Value<JObject>().Value<string>("name");
+                                jobid = jo[0].Value<JObject>().Value<string>("jobid");
+                            }
+                            catch { }
+                       
+                        try
+                        {
+                            
+                        }
+                        catch { }
+
+                   }
+                    catch { }
                     }
 
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("# EXCEPTION #  " + ex.Message);
-                    }
-                }
             }
         }
+        
+       
 
-        private void DoProcess(string resp)
+    
+
+    private void DoProcess(string resp)
         {
             JObject job = JObject.Parse(resp);
             string status = job["status"].Value<string>();

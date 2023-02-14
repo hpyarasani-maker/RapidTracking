@@ -134,7 +134,7 @@ namespace RapidTrackingSingleThread
                             sb.Append("</block>");
                         }//30-01-2023 Answer Card
                         n = node.SelectSingleNode(".//g-img[@class='o8ebK']|.//g-img[@class='gRTVof']");//10-10-2022//07-09-2022 missing KP block
-                        if (n != null && node.SelectSingleNode(".//div[@class='KrvXD']") == null || (node.SelectSingleNode(".//div[@class='gRTVof']") != null)) //14-02-2023///13-12-2022
+                        if (n != null && node.SelectSingleNode(".//div[@class='KrvXD']") == null || (node.SelectSingleNode(".//g-img[@class='gRTVof']") != null)) //14-02-2023///13-12-2022
                         {
                             sb.Append("<block type=\"maps\" url=\"\"></block>");
                         } //07-09-2022

@@ -74,18 +74,13 @@ namespace RapidMissingJobsReceiving
                                 seid = jo[0].Value<JObject>().Value<string>("seid");
                                 keyword = jo[0].Value<JObject>().Value<string>("name");
                                 jobid = jo[0].Value<JObject>().Value<string>("jobid");
+                                DoProcess(jobid);
                             }
-                            catch { }
-                       
-                        try
-                        {
-                            
-                        }
-                        catch { }
+                            catch(Exception ex) { throw ex; }
 
                    }
-                    catch { }
-                    }
+                    catch (Exception ex) { throw ex; }
+                }
 
             }
         }
@@ -94,50 +89,72 @@ namespace RapidMissingJobsReceiving
 
     
 
-    private void DoProcess(string resp)
-        {
-            JObject job = JObject.Parse(resp);
-            string status = job["status"].Value<string>();
-            string kw = job["query"].Value<string>();
-            string device = job["user_agent_type"].Value<string>();
-            string hl = job["locale"].Value<string>();
-            string gl = job["geo_location"].Value<string>();
-            string domain = job["domain"].Value<string>();
-            string jobid = job["id"].Value<string>();
-            string seid = "";
-            try
-            {
+    private void DoProcess(string jobid)
+     {
+         
                 string username = "gpidatametrics";
                 string password = "sdV5X3fcX6";
+                string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
+
+                string infoURL = "http://data.oxylabs.io/v1/queries/" + jobid;
+                HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(infoURL);
+                httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
+                HttpWebResponse res1 = (HttpWebResponse)httpWebRequest.GetResponse();
+                Stream resStream = res1.GetResponseStream();
+                StreamReader reader = new StreamReader(resStream, Encoding.UTF8);
+                string response = reader.ReadToEnd();
+                resStream.Close();
+                res1.Close();
+                JObject obj = JObject.Parse(response);
+                string status = obj["status"].Value<string>();
+                string kw = obj["query"].Value<string>();
+                string device = obj["user_agent_type"].Value<string>();
+                string hl = obj["locale"].Value<string>();
+                string gl = obj["geo_location"].Value<string>();
+                string domain = obj["domain"].Value<string>();
+                string resURL = obj["_links"][1]["href"].Value<string>();
+                //jobid = obj["id"].Value<string>();
+                string seid = "";
+                status = obj["status"].Value<string>();
+                if (status == "faulted")
+                {
+                    throw new Exception("status is faulted");
+                }
+                if (status == "pending") //31-01-2022
+                {
+                    throw new Exception("status is pending");
+                }
+
+            try
+            {
 
                 if (status == "done")
                 {
-                    //ServicePointManager.Expect100Continue = true;
-                    //ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-                    string resURL = job["results_url"].Value<string>();
-                    HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(resURL);
-                    string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
+                   /// resURL = obj["results_url"].Value<string>()
+                    httpWebRequest = (HttpWebRequest)WebRequest.Create(resURL);
+                    authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
                     httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
-                    HttpWebResponse res = (HttpWebResponse)httpWebRequest.GetResponse();
-                    Stream resStream = res.GetResponseStream();
-                    StreamReader reader = new StreamReader(resStream, Encoding.UTF8);
-                    string response = reader.ReadToEnd();
-                    resStream.Close();
-                    res.Close();
+                    HttpWebResponse resR = (HttpWebResponse)httpWebRequest.GetResponse();
+                    Stream resStreamR = resR.GetResponseStream();
+                    StreamReader readerR = new StreamReader(resStreamR, Encoding.UTF8);
+                    string resResults = readerR.ReadToEnd();
+                    resStreamR.Close();
+                    resR.Close();
                     string result = string.Empty;
                     int orgUrls = 0;
                     try
                     {
-                        JObject obj = JObject.Parse(response);
-                        response = obj["results"][0]["content"].Value<string>();
+                        JObject rObj = JObject.Parse(resResults);
+                        resResults = rObj["results"][0]["content"].Value<string>();
 
                         SearchProperties sp = SearchParams.searches.Where(s => s.locale == hl && s.device == device && s.geo_location == gl).SingleOrDefault();
                         seid = sp.seid.ToString();
 
                         if (device == "desktop")
-                            result = desktop.ProcessDocument(seid, kw, response, out orgUrls);
+                            result = desktop.ProcessDocument(seid, kw, resResults, out orgUrls);
                         else
-                            result = ios.ProcessDocument(seid, kw, response, out orgUrls);
+                            result = ios.ProcessDocument(seid, kw, resResults, out orgUrls);
+                        //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + kw + ".html", html, Encoding.UTF8);
                     }
                     catch (Exception ex)
                     {

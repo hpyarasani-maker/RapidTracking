@@ -872,7 +872,7 @@ namespace RapidTrackingSingleThread
                                 continue;
 
 
-                            HtmlNode img = nd.SelectSingleNode(".//div[@class='G5NbBd']/div|.//g-img/img[@class='rISBZc zr758c']|.//span[@class='z1asCe UIgqBe']|.//div[contains(@class, 'i5w0Le')]");//26-05-2022//16-12-2021
+                            HtmlNode img = nd.SelectSingleNode(".//div[@class='G5NbBd']/div|.//g-img/img[@class='rISBZc zr758c']|.//span[@class='z1asCe UIgqBe']|.//div[contains(@class, 'i5w0Le')]|.//div[@class='Ylm8Fc']");//15-02-2023//26-05-2022//16-12-2021
 
                             if (img != null)
                             {

@@ -437,13 +437,7 @@ namespace RapidMissingJobsReceiving
 
                         comm.ExecuteNonQuery();
 
-                        if (urlcount < 20)
-                        {
-                            string qry = "exec [InsertLessthan20] '" + myDate + "',N'" + keyword.Replace("'", "''") + "'," + seid + ",N''," + urlcount + ",'" + jobid + "'";
-                            comm.CommandText = qry;
-                            comm.CommandType = CommandType.Text;
-                            comm.ExecuteNonQuery();
-                        }
+                        
                     }
                 }
 

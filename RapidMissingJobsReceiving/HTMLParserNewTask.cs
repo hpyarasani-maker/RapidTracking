@@ -112,8 +112,9 @@ namespace RapidMissingJobsReceiving
                 string hl = obj["locale"].Value<string>();
                 string gl = obj["geo_location"].Value<string>();
                 string domain = obj["domain"].Value<string>();
+                string jb = obj["id"].Value<string>();
                 string resURL = obj["_links"][1]["href"].Value<string>();
-                //jobid = obj["id"].Value<string>();
+                
                 string seid = "";
                 status = obj["status"].Value<string>();
                 if (status == "faulted")

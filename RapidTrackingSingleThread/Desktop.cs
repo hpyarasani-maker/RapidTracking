@@ -1597,7 +1597,7 @@ namespace RapidTrackingSingleThread
                     string reviews = nd.SelectSingleNode(".//span[@class='RDApEe YrbPuc']")?.InnerText.Trim() ?? "";
                     string price = nd.SelectSingleNode(".//span[@class='dv1Q3e']")?.InnerText.Trim() ?? "";
                     string price_value = price.Substring(1).ToString();
-                    var desc = nd.SelectNodes(".//div[@class='I9B2He']|.//div[@class='mMeJe OHKesb']/span']");
+                    var desc = nd.SelectNodes(".//div[@class='I9B2He']|.//div[@class='mMeJe OHKesb']/span");
                     if (desc != null)
                         foreach (var d in desc)
                         {

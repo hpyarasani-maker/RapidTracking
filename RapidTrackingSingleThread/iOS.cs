@@ -872,7 +872,7 @@ namespace RapidTrackingSingleThread
                                 continue;
 
 
-                            HtmlNode img = nd.SelectSingleNode(".//div[@class='G5NbBd']/div|.//g-img/img[@class='rISBZc zr758c']|.//span[@class='z1asCe UIgqBe']|.//div[contains(@class, 'i5w0Le')]");//26-05-2022//16-12-2021
+                            HtmlNode img = nd.SelectSingleNode(".//div[@class='G5NbBd']/div|.//g-img/img[@class='rISBZc zr758c']|.//span[@class='z1asCe UIgqBe']|.//div[contains(@class, 'i5w0Le')]|.//div[@class='Ylm8Fc']");//15-02-2023//26-05-2022//16-12-2021
 
                             if (img != null)
                             {
@@ -1318,8 +1318,8 @@ namespace RapidTrackingSingleThread
                 case "maps":
                     s.Append("<block type=\"maps\" url=\"\"></block>");
                     break;
-                /*case "hotels":
-                    s.Append("<block type=\"hotels_pack\" url=\"\">");//24-03-2022
+                /*case "hotel":
+                    s.Append("<block type=\"hotel_pack\" url=\"\">");//24-03-2022
                     s.Append(GetHotels(node));
                     s.Append("</block>");//24-03-2022
                     break;*/
@@ -2411,7 +2411,7 @@ namespace RapidTrackingSingleThread
             {
                 try
                 {
-                    string description = string.Empty;
+                    string additional_info = string.Empty;
                     string title = nd.SelectSingleNode(".//div[@class='BTPx6e yMArdc']")?.InnerText.Trim() ?? "";
                     string rating = nd.SelectSingleNode(".//span[contains(@class,'YrbPuc')]")?.InnerText.Trim() ?? "";
                     string reviews = nd.SelectSingleNode(".//span[@class='RDApEe YrbPuc']")?.InnerText.Trim() ?? "";
@@ -2421,11 +2421,11 @@ namespace RapidTrackingSingleThread
                     if (desc != null)
                         foreach (var d in desc)
                         {
-                            description += d.InnerText + ",";
+                            additional_info += d.InnerText + ",";
                         }
                     string reviewNumbers = ConvertReviews(reviews);
-                    if (!string.IsNullOrEmpty(description)) description = description.Remove(description.Length - 1);
-                    s.Append("<item price=\"" + SetTitle(price) + "\" price_value=\"" + SetTitle(price_value) + "\" rating=\"" + SetTitle(rating) + "\" total_reviews=\"" + SetTitle(reviewNumbers) + "\" description=\"" + SetTitle(description) + "\" title=\"" + SetTitle(title) + "\" />");
+                    if (!string.IsNullOrEmpty(additional_info)) additional_info = additional_info.Remove(additional_info.Length - 1);
+                    s.Append("<item price=\"" + SetTitle(price) + "\" price_value=\"" + SetTitle(price_value) + "\" rating=\"" + SetTitle(rating) + "\" total_reviews=\"" + SetTitle(reviewNumbers) + "\" additional_info=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
                 }
                 catch { }
             }
@@ -2660,7 +2660,7 @@ namespace RapidTrackingSingleThread
             /*nd = node.SelectSingleNode(".//div[@class='QgoQVc']");
             if (nd != null)
             {
-                return "Hotels";
+                return "Hotel";
             }*/
             nd = node.SelectSingleNode(".//*[@id='rXuTZe']");
             if (nd == null)

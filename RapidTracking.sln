@@ -75,6 +75,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFMultiThreadJobIDs", "WPF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SERPResultsJSON", "SERPResultsJSON\SERPResultsJSON.csproj", "{78A8D69A-1B6A-4155-B7C1-9DB172B104C9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RapidMissingJobsReceiving", "RapidMissingJobsReceiving\RapidMissingJobsReceiving.csproj", "{C0243F90-8637-4D0F-A5FD-DC5524C1B082}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -209,6 +211,10 @@ Global
 		{78A8D69A-1B6A-4155-B7C1-9DB172B104C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78A8D69A-1B6A-4155-B7C1-9DB172B104C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78A8D69A-1B6A-4155-B7C1-9DB172B104C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0243F90-8637-4D0F-A5FD-DC5524C1B082}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0243F90-8637-4D0F-A5FD-DC5524C1B082}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0243F90-8637-4D0F-A5FD-DC5524C1B082}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0243F90-8637-4D0F-A5FD-DC5524C1B082}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -111,7 +111,7 @@ namespace RapidTrackingLibrary
                             sb.Append("</block>");
                         }//30-01-2023 Answer Card
                         n = node.SelectSingleNode(".//g-img[@class='o8ebK']|.//g-img[@class='gRTVof']");//10-10-2022//07-09-2022 missing KP block
-                        if (n != null && node.SelectSingleNode(".//div[@class='KrvXD']") == null || (node.SelectSingleNode(".//img[contains(@alt,'Map of ')]") != null))//03-02-2023//13-12-2022
+                        if (n != null && node.SelectSingleNode(".//div[@class='KrvXD']") == null)//03-02-2023//13-12-2022
                         {
                             sb.Append("<block type=\"maps\" url=\"\"></block>");
                         } //07-09-2022
@@ -872,7 +872,7 @@ namespace RapidTrackingLibrary
                                 continue;
 
 
-                            HtmlNode img = nd.SelectSingleNode(".//div[@class='G5NbBd']/div|.//g-img/img[@class='rISBZc zr758c']|.//span[@class='z1asCe UIgqBe']|.//div[contains(@class, 'i5w0Le')]");//26-05-2022//16-12-2021
+                            HtmlNode img = nd.SelectSingleNode(".//div[@class='G5NbBd']/div|.//g-img/img[@class='rISBZc zr758c']|.//span[@class='z1asCe UIgqBe']|.//div[contains(@class, 'i5w0Le')]|.//div[@class='Ylm8Fc']");//15-02-2023//26-05-2022//16-12-2021
 
                             if (img != null)
                             {

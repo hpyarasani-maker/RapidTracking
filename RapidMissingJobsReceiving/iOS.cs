@@ -1,53 +1,53 @@
 ﻿using HtmlAgilityPack;
 using System;
 using System.Collections;
+using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 
-namespace RapidTrackingMultithread
-{
+namespace RapidMissingJobsReceiving
+{ 
     class iOS
     {
-        public int orgLinks;
+        int orgLinks;
         string html;
-        public string ProcessDocument(string seid, string keyword, HtmlDocument doc)
+
+        public string ProcessDocument(string seid, string keyword, string htmlsource, out int organicurls)
         {
-            //count = 0;
+            if (string.IsNullOrEmpty(htmlsource))
+            {
+                organicurls = 0;
+                return string.Empty;
+            }
 
-            //if (doc == null) throw new Exception("No source found.");
-            if (string.IsNullOrEmpty(doc.ToString())) return string.Empty;
-
-
-
+            var doc = new HtmlDocument();
+            doc.LoadHtml(htmlsource);
+            html = htmlsource;
             orgLinks = 0;
-            string ndText = "";
-
-            html = doc.DocumentNode.OuterHtml;
             StringBuilder sb = new StringBuilder();
+            //sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" date=\"2019-11-29\" >"); //previous date
             sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" date=\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\" >");
             sb.Append("<section col=\"main\">");
             string topStuff = GetTopStuff(doc);
-            ndText = topStuff;
             sb.Append(topStuff);
 
             HtmlNodeCollection nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-card|//div[@id='taw']/div[@class='med']/div[2]/div|//div[@id='rso']/nav|//div[@id='rso']/block-component/div");//07-01-2022 event results
-            if (nodeCol != null && nodeCol.Count == 1)
+            if (nodeCol.Count == 1)
                 nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@class='vC5Ym DhKAUb']/div");    //17-09-2019
             if (nodeCol == null)
-                nodeCol = doc.DocumentNode.SelectNodes("//*[@id='tscffb']");
-            //if (nodeCol == null)
-            //    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='mnr-c IGtt6d imgac']");
+                nodeCol = doc.DocumentNode.SelectNodes("//div[@id='tscffb']");
             //if (nodeCol == null)
             //    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");
+            if (nodeCol == null)
+            {
+                organicurls = 0;
+                return string.Empty;
+            }
 
-            //if (nodeCol == null) throw new Exception("No block found.");  
-             if (string.IsNullOrEmpty(nodeCol.ToString())) return string.Empty;
-
-
-            //if (nodeCol == null) goto BOTTOMSTUFF;             
+            string ndText = "";
 
             foreach (HtmlNode node in nodeCol)
             {
@@ -73,14 +73,15 @@ namespace RapidTrackingMultithread
                             break;
                         }
                     }
-                    catch { }
+                    catch  { }
 
                 }
+
                 //changes on 06-08-2019
-                if ((node.SelectSingleNode(".//div[@id='knowledge-finance-wholepage__entity-summary']") != null
-                    || node.InnerText.Contains("Finance results")) && node.SelectSingleNode(".//div[@class='srg']") != null)
+                if ((node.SelectSingleNode(".//div[@id='knowledge-finance-wholepage__entity-summary']") != null || node.InnerText.Contains("Finance results")) && node.SelectSingleNode(".//div[@class='srg']") != null)
                 {
                     sb.Append("<block type=\"finance\" url=\"\"></block>");
+
                 }
 
                 if (node.HasClass("kp-wholepage") || node.SelectNodes(".//div[contains(@class, 'kp-wholepage')]") != null)
@@ -98,7 +99,7 @@ namespace RapidTrackingMultithread
                     if (n == null)
                         n = node.SelectSingleNode(".//div[@class='DoxwDb PZPZlf e8BxGf']");//23-09-2021 for missing KP block
                     if (n == null)
-                        n = node.SelectSingleNode(".//div[@class='Ftghae iirjIb']");//16-09-2019 //
+                        n = node.SelectSingleNode(".//div[@class='Ftghae iirjIb']");//16-09-2019
                     if (n == null)
                         n = node.SelectSingleNode(".//div[contains(@class,'ssJ7i PZPZlf')]"); //15-11-2021 KP
                     if (n != null)
@@ -150,8 +151,7 @@ namespace RapidTrackingMultithread
                             sb.Append(s);
                     }
                 }
-                catch
-                { }
+                catch { }
             }
 
             if (string.IsNullOrEmpty(ndText.Trim()) || orgLinks == 0)
@@ -171,7 +171,7 @@ namespace RapidTrackingMultithread
                             "|.//div[@class='ChlgHf']|.//div[@class='a3spGf WvKfwe']/div|.//div[contains(@class,'TzHB6b mnr-c UBoxCb')]" + //17-11-2022
                                 "|.//div[@class='WvKfwe a3spGf']/g-card|.//div[@class='WvKfwe a3spGf']/block-component");//20-05-2022  
                             //if (nc == null || node.SelectNodes(".//div[@id='kp-wp-tab-overview']/div") != null)//07-10-2021 answer card and PAA blocks
-                            if (nc == null) //02-09-2022
+                            if (nc == null)//02-09-2022
                                 nc = node.SelectNodes(".//div[@id='kp-wp-tab-overview']/div"); //15-12-2020
                             //end of swapped
                             if (nc == null) //|.//div[@class='a3spGf WvKfwe']/div //23-05-2020
@@ -197,35 +197,31 @@ namespace RapidTrackingMultithread
                             break;
                         }
                     }
-                    catch (WebException ex)
-                    {
-                        return ex.Message.ToString();
-                    }
+                    catch { }
                 }
             }
+           
 
-            //BOTTOMSTUFF:
             string bottomStuff = GetBottomStuff(doc);
-            ndText += bottomStuff;
             sb.Append(bottomStuff);
             sb.Append("</section>");
 
             sb.Append("<section col=\"right\">");
             string rightStuff = GetRightStuff(doc);
-            ndText += rightStuff;
             sb.Append(rightStuff);
             sb.Append("</section>");
             sb.Append("</searchResult>");
 
-            if (ndText.Length > 0)
+            if (ndText.Length <= 0)
             {
-                //count = orgLinks;
-                return sb.ToString();
+                organicurls = 0;
+                return string.Empty;
             }
-
-            return string.Empty;
+            organicurls = orgLinks;
+            return sb.ToString();
 
         }
+
 
         private string GetRightStuff(HtmlDocument doc)
         {

@@ -1319,7 +1319,7 @@ namespace RapidTrackingSingleThread
                     s.Append("<block type=\"maps\" url=\"\"></block>");
                     break;
                 /*case "hotel":
-                    s.Append("<block type=\"hotel_pack\" url=\"\">");//24-03-2022
+                    s.Append("<block type=\"hotelPack\" url=\"\">");//24-03-2022
                     s.Append(GetHotels(node));
                     s.Append("</block>");//24-03-2022
                     break;*/
@@ -2425,7 +2425,7 @@ namespace RapidTrackingSingleThread
                         }
                     string reviewNumbers = ConvertReviews(reviews);
                     if (!string.IsNullOrEmpty(additional_info)) additional_info = additional_info.Remove(additional_info.Length - 1);
-                    s.Append("<item price=\"" + SetTitle(price) + "\" price_value=\"" + SetTitle(price_value) + "\" rating=\"" + SetTitle(rating) + "\" total_reviews=\"" + SetTitle(reviewNumbers) + "\" additional_info=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
+                    s.Append("<item price=\"" + SetTitle(price) + "\" priceValue=\"" + SetTitle(price_value) + "\" rating=\"" + SetTitle(rating) + "\" totalReviews=\"" + SetTitle(reviewNumbers) + "\" additionalInfo=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
                 }
                 catch { }
             }

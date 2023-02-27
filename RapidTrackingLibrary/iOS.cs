@@ -96,7 +96,7 @@ namespace RapidTrackingLibrary
                         if (n == null)
                             n = node.SelectSingleNode(".//div[@class='Ftghae iirjIb']");//16-09-2019 //
                         if (n == null)
-                            n = node.SelectSingleNode(".//div[contains(@class,'ssJ7i PZPZlf')]"); //15-11-2021 KP
+                            n = node.SelectSingleNode(".//div[contains(@class,'PZPZlf')]");//27-02-2023 //15-11-2021 KP
 
                         if (n != null)
                         {
@@ -2171,6 +2171,8 @@ namespace RapidTrackingLibrary
                             ts = false;
                         if (node.SelectSingleNode(".//div[@class='YoZiHf']") != null) //08-01-2021 for not top sights
                             ts = false;
+                        if (node.SelectSingleNode(".//div[@class='CEzIMc h7uAbe']") != null) //27-02-2023
+                            ts = false;
                     }
                 }
                 if (ts)
@@ -2220,7 +2222,7 @@ namespace RapidTrackingLibrary
 
                 nd = node.SelectSingleNode(".//div[@class='kp-blk nGydZ Wnoohf OJXvsb']|.//div[@class='NFQFxe XbtRGb qxsd xsZWvb EfDVh WDjuKe mod']|.//div[@class='NFQFxe viOShc LKPcQc mod']|.//div[@class='B3nbW mfMhoc']|.//div[@class='Ph8vHd']");//08-04-2022 KP
                 if (nd == null || node.SelectSingleNode(".//div[@class='kp-header']") != null || node.SelectSingleNode(".//div[@class='K2Sb0e kp-header']") != null)   //23-06-2020 //19-06-2020
-                    if (node.SelectSingleNode(".//div[@class='RzdJxc']|.//div[@class='EDblX DAVP1 qIfKhf yUxSId']") == null) //06-12-2021 wrong block  //30-08-2021 video block missing
+                    if (node.SelectSingleNode(".//div[@class='RzdJxc']|.//div[@class='EDblX DAVP1 qIfKhf yUxSId']|.//div[@class='CEzIMc h7uAbe']|.//div[@class='jhtnKe']") == null) //27-02-2023 //06-12-2021 wrong block  //30-08-2021 video block missing
                         return "KnowledgePanel";
             }
             //swapped 19-03-2020

@@ -1596,7 +1596,7 @@ namespace RapidTrackingSingleThread
                     string title = nd.SelectSingleNode(".//div[contains(@class,'BTPx6e')]|.//div[@class='dbg0pd']")?.InnerText.Trim() ?? "";
                     string rating = nd.SelectSingleNode(".//span[contains(@class,'YrbPuc')]")?.InnerText.Trim() ?? "";
                     string reviews = nd.SelectSingleNode(".//span[@class='RDApEe YrbPuc']")?.InnerText.Trim() ?? "";
-                    string price = nd.SelectSingleNode(".//span[contains(@class,'dv1Q3e')]|.//div[@class='YwF3uc']")?.InnerText.Trim() ?? "";//27-02-2023//22-02-2023
+                    string price = nd.SelectSingleNode(".//span[contains(@class,'dv1Q3e')]|.//div[contains(@class,'YwF3uc')]")?.InnerText.Trim() ?? "";//27-02-2023//22-02-2023
                     //string price_value = price.Substring(1).ToString();
                     if (price != "")
                     {

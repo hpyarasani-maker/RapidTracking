@@ -1252,9 +1252,9 @@ namespace RapidTrackingSingleThread
                     if (link != null)
                     {
                         url = link.Attributes["href"]?.Value;
-                        title = link.SelectSingleNode(".//div[contains(@class,'ZsI9Vc')]|.//div[@jsname='r4nke']|.//div[@class='aTc6pf']")?.InnerText;//05-01-2023
-                        price = link.SelectSingleNode(".//div[@class='Ijn7Rc']|.//div[@class='vy5bA dpJO9']|.//div[@class='uSZhvf Dxiee']/span[1]")?.InnerText; //05-01-2023
-                        name = link.SelectSingleNode(".//div[@class='DAB5ue']|.//div[@class='NemW5e']/span|.//div[@class='ChC0jd']/span|.//div[@class='kV5zMb Z454de']/span[1]")?.InnerText; //05-01-2023
+                        title = link.SelectSingleNode(".//div[contains(@class,'ZsI9Vc')]|.//div[@jsname='r4nke']|.//div[@class='aTc6pf']|.//div[@class='aqszKe']")?.InnerText ?? "";//27-02-2023//05-01-2023
+                        price = link.SelectSingleNode(".//div[@class='Ijn7Rc']|.//div[@class='vy5bA dpJO9']|.//div[@class='uSZhvf Dxiee']/span[1]|.//div[@class='xQbyBc']/span")?.InnerText ?? "";//27-02-2023 //05-01-2023
+                        name = link.SelectSingleNode(".//div[@class='DAB5ue']|.//div[@class='NemW5e']/span|.//div[@class='ChC0jd']/span|.//div[@class='kV5zMb Z454de']/span[1]|.//span[@class='rw5ecc RmEs5b rOlovd']")?.InnerText ?? ""; //27-02-2023//05-01-2023
                     }
                     if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(title))
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" price=\"" + SetTitle(price) + "\" site=\"" + SetTitle(name) + "\" />");

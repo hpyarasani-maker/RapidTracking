@@ -1586,7 +1586,7 @@ namespace RapidTrackingSingleThread
         private string GetHotels(HtmlNode node)//24-03-2022 new element Maps
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='hmHBZd jvOlt']");
+            HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'hmHBZd')]");//27-02-2023
             foreach (HtmlNode nd in nds)
             {
                 try

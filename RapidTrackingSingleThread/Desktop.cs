@@ -1620,7 +1620,7 @@ namespace RapidTrackingSingleThread
         {
             string patternprice = "[\\d]+";
             Regex re = new Regex(patternprice, RegexOptions.IgnoreCase);
-            Match mc = re.Match(price);
+            Match mc = re.Match(price.Replace(",",""));
             if (mc.Success)
                 price = mc.Value;
             return price;

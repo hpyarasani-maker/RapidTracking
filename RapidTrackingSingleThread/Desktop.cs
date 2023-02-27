@@ -1761,7 +1761,7 @@ namespace RapidTrackingSingleThread
             {
                 return "Images";
             }
-            nd = node.SelectSingleNode(".//div[@class='kuRgBc']");
+            nd = node.SelectSingleNode(".//div[@class='kuRgBc']|.//div[@class='ZVAQpe']");//27-02-2023 hotel pack
             if (nd != null)
             {
                 return "Hotel";

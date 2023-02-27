@@ -872,11 +872,11 @@ namespace RapidTrackingSingleThread
                 case "maps":
                     s.Append("<block type=\"maps\" url=\"\"></block>");
                     break;
-                /*case "hotel":
+                case "hotel":
                     s.Append("<block type=\"hotelPack\" url=\"\">");//24-03-2022
                     s.Append(GetHotels(node));
                     s.Append("</block>");//24-03-2022
-                    break;*/
+                    break;
                 case "twitters":
                     //get twitter urls;
                     s.Append(GetTwitterCards(node));
@@ -1747,11 +1747,11 @@ namespace RapidTrackingSingleThread
             {
                 return "Images";
             }
-            /*nd = node.SelectSingleNode(".//div[@class='kuRgBc']");
+            nd = node.SelectSingleNode(".//div[@class='kuRgBc']");
             if (nd != null)
             {
                 return "Hotel";
-            }*/
+            }
             nd = node.SelectSingleNode(".//*[@id='lu_map']");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='xERobd']|.//div[@class='H93uF']|.//div[@class='CH6Bmd']|.//div[@class='vs2hJf']|.//div[@class='o8ebK']");//02-06-2022//27-05-2022//05-03-2022//22-01-2022  //changed on 26-06-2019
@@ -1861,8 +1861,9 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@jsname='wRSfy']") != null) //07-12-2021
                 || node.SelectSingleNode(".//div[@class='e2BEnf axf3qc q8U8x']") != null//29-12-2021 top stories
                 || node.SelectSingleNode(".//div[@class='WlTAzf mnr-c']") != null //23-03-2022
-                || node.SelectSingleNode(".//div[@class='AxJnmb Wdsnue']") != null; //05-01-2023
-              //&& node.SelectSingleNode(".//div[@class='yuRUbf']") == null; //11-10-2021 //08-10-2021 images
+                || node.SelectSingleNode(".//div[@class='AxJnmb Wdsnue']") != null //05-01-2023
+                || node.SelectSingleNode(".//div[@class='CH6Bmd']") != null;//27-02-2023
+                //&& node.SelectSingleNode(".//div[@class='yuRUbf']") == null; //11-10-2021 //08-10-2021 images
             if (bVal == true)//2019-09-11
             {
                 try

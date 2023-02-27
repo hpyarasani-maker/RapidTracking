@@ -1318,11 +1318,11 @@ namespace RapidTrackingSingleThread
                 case "maps":
                     s.Append("<block type=\"maps\" url=\"\"></block>");
                     break;
-                /*case "hotel":
+                case "hotel":
                     s.Append("<block type=\"hotelPack\" url=\"\">");//24-03-2022
                     s.Append(GetHotels(node));
                     s.Append("</block>");//24-03-2022
-                    break;*/
+                    break;
                 case "twitters":
                     //get twitter urls;
                     s.Append(GetTwitterCards(node));
@@ -2657,11 +2657,11 @@ namespace RapidTrackingSingleThread
             {
                 return "Videos";
             }
-            /*nd = node.SelectSingleNode(".//div[@class='QgoQVc']");
+            nd = node.SelectSingleNode(".//div[@class='QgoQVc']");
             if (nd != null)
             {
                 return "Hotel";
-            }*/
+            }
             nd = node.SelectSingleNode(".//*[@id='rXuTZe']");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='I2lQic']");//05-11-2019

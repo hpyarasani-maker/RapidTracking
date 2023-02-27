@@ -1581,6 +1581,7 @@ namespace RapidTrackingLibrary
             || node.SelectSingleNode(".//div[@class='e2BEnf axf3qc q8U8x']") != null//29-12-2021 top stories
               || node.SelectSingleNode(".//div[@class='WlTAzf mnr-c']") != null //23-03-2022
                 || node.SelectSingleNode(".//div[@class='AxJnmb Wdsnue']") != null; //05-01-2023
+            || node.SelectSingleNode(".//div[@class='CH6Bmd']") != null; //27-02-2023
             if (bVal == true)//2019-09-11
             {
                 try

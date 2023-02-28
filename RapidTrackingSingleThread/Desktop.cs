@@ -1611,7 +1611,11 @@ namespace RapidTrackingSingleThread
                             additional_info += d.InnerText + ",";
                         }
                     string reviewNumbers = ConvertReviews(reviews);
-                    if (string.IsNullOrEmpty(price))
+                    if (string.IsNullOrEmpty(reviewNumbers) && string.IsNullOrEmpty(rating) && string.IsNullOrEmpty(price))
+                    {
+                        s.Append("<item url=\"\" additionalInfo=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
+                    }
+                    else if (string.IsNullOrEmpty(price))
                     {
                         if (!string.IsNullOrEmpty(additional_info)) additional_info = additional_info.Remove(additional_info.Length - 1);
                         s.Append("<item url=\"\" rating=\"" + SetTitle(rating.Replace(",", ".")) + "\" totalReviews=\"" + SetTitle(reviewNumbers) + "\" additionalInfo=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");

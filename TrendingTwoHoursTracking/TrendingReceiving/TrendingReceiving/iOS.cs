@@ -2403,32 +2403,51 @@ namespace TrendingReceiving
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='M0T4Vc EXwDJb']");
-            foreach (HtmlNode nd in nds)
+            if (nds != null)
             {
-                try
+                foreach (HtmlNode nd in nds)
                 {
-                    string price_value = string.Empty;
-                    string additional_info = string.Empty;
-                    string title = nd.SelectSingleNode(".//div[@class='BTPx6e yMArdc']")?.InnerText.Trim() ?? "";
-                    string rating = nd.SelectSingleNode(".//span[contains(@class,'YrbPuc')]")?.InnerText.Trim() ?? "";
-                    string reviews = nd.SelectSingleNode(".//span[@class='RDApEe YrbPuc']")?.InnerText.Trim() ?? "";
-                    string price = nd.SelectSingleNode(".//div[contains(@class,'VSZCrf')]/span")?.InnerText.Trim() ?? "";//22-02-2023
-                    //string price_value = price.Substring(1).ToString();
-                    if (price != "")
+                    try
                     {
-                        price_value = Convertprice(price);
-                    }
-                    var desc = nd.SelectNodes(".//div[@class='I9B2He']|.//div[contains(@class,'dLtZ8b')]|.//div[@class='ZIFkhf ApHyTb']");//27-02-2023//22-02-2023
-                    if (desc != null)
-                        foreach (var d in desc)
+                        string price_value = string.Empty;
+                        string additional_info = string.Empty;
+                        string title = nd.SelectSingleNode(".//div[@class='BTPx6e yMArdc']")?.InnerText.Trim() ?? "";
+                        string rating = nd.SelectSingleNode(".//span[contains(@class,'YrbPuc')]")?.InnerText.Trim() ?? "";
+                        string reviews = nd.SelectSingleNode(".//span[@class='RDApEe YrbPuc']")?.InnerText.Trim() ?? "";
+                        string price = nd.SelectSingleNode(".//div[contains(@class,'VSZCrf')]/span")?.InnerText.Trim() ?? "";//22-02-2023
+                                                                                                                             //string price_value = price.Substring(1).ToString();
+                        if (price != "")
                         {
-                            additional_info += d.InnerText + ",";
+                            price_value = Convertprice(price);
                         }
-                    string reviewNumbers = reviewNumbers = ConvertReviews(reviews);
-                    if (!string.IsNullOrEmpty(additional_info)) additional_info = additional_info.Remove(additional_info.Length - 1);
-                    s.Append("<item price=\"" + SetTitle(price) + "\" priceValue=\"" + SetTitle(price_value) + "\" rating=\"" + SetTitle(rating) + "\" totalReviews=\"" + SetTitle(reviewNumbers) + "\" additionalInfo=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
+                        var desc = nd.SelectNodes(".//div[@class='I9B2He']|.//div[contains(@class,'dLtZ8b')]|.//div[@class='ZIFkhf ApHyTb']");//27-02-2023//22-02-2023
+                        if (desc != null)
+                            foreach (var d in desc)
+                            {
+                                additional_info += d.InnerText + ",";
+                            }
+                        string reviewNumbers = ConvertReviews(reviews);
+                        if (string.IsNullOrEmpty(reviewNumbers) && string.IsNullOrEmpty(rating) && string.IsNullOrEmpty(price))
+                        {
+                            s.Append("<item url=\"\" additionalInfo=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
+                        }
+                        else if (string.IsNullOrEmpty(price))
+                        {
+                            if (!string.IsNullOrEmpty(additional_info)) additional_info = additional_info.Remove(additional_info.Length - 1);
+                            s.Append("<item url=\"\" rating=\"" + SetTitle(rating.Replace(",", ".")) + "\" totalReviews=\"" + SetTitle(reviewNumbers) + "\" additionalInfo=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
+                        }
+                        else if (string.IsNullOrEmpty(reviewNumbers) || string.IsNullOrEmpty(rating))
+                        {
+                            s.Append("<item url=\"\" price=\"" + SetTitle(price) + "\" priceValue=\"" + SetTitle(price_value) + "\" additionalInfo=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
+                        }
+                        else
+                        {
+                            if (!string.IsNullOrEmpty(additional_info)) additional_info = additional_info.Remove(additional_info.Length - 1);
+                            s.Append("<item url=\"\" price=\"" + SetTitle(price) + "\" priceValue=\"" + SetTitle(price_value) + "\" rating=\"" + SetTitle(rating.Replace(",", ".")) + "\" totalReviews=\"" + SetTitle(reviewNumbers) + "\" additionalInfo=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
+                        }
+                    }
+                    catch { }
                 }
-                catch { }
             }
             return s.ToString();
         }//24-03-2022

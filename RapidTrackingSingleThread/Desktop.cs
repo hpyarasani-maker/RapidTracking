@@ -1610,15 +1610,27 @@ namespace RapidTrackingSingleThread
                         {
                             additional_info += d.InnerText + ",";
                         }
-                    string reviewNumbers = reviewNumbers = ConvertReviews(reviews);
-                    if (!string.IsNullOrEmpty(additional_info)) additional_info = additional_info.Remove(additional_info.Length - 1);
-
-                    s.Append("<item url=\"\" price=\"" + SetTitle(price) + "\" priceValue=\"" + SetTitle(price_value) + "\" rating=\"" + SetTitle(rating.Replace(",",".")) + "\" totalReviews=\"" + SetTitle(reviewNumbers) + "\" additionalInfo=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
+                    string reviewNumbers = ConvertReviews(reviews);
+                    if (string.IsNullOrEmpty(price))
+                    {
+                        if (!string.IsNullOrEmpty(additional_info)) additional_info = additional_info.Remove(additional_info.Length - 1);
+                        s.Append("<item url=\"\" rating=\"" + SetTitle(rating.Replace(",", ".")) + "\" totalReviews=\"" + SetTitle(reviewNumbers) + "\" additionalInfo=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
+                    }
+                    else if (string.IsNullOrEmpty(reviewNumbers) || string.IsNullOrEmpty(rating))
+                    {
+                        s.Append("<item url=\"\" price=\"" + SetTitle(price) + "\" priceValue=\"" + SetTitle(price_value) + "\" additionalInfo=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
+                    }
+                    else
+                    {
+                        if (!string.IsNullOrEmpty(additional_info)) additional_info = additional_info.Remove(additional_info.Length - 1);
+                        s.Append("<item url=\"\" price=\"" + SetTitle(price) + "\" priceValue=\"" + SetTitle(price_value) + "\" rating=\"" + SetTitle(rating.Replace(",", ".")) + "\" totalReviews=\"" + SetTitle(reviewNumbers) + "\" additionalInfo=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
+                    }
                 }
                 catch { }
             }
             return s.ToString();
         }//24-03-2022
+       
         private string Convertprice(string price)
         {
             string patternprice = "[\\d]+";

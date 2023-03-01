@@ -2424,7 +2424,7 @@ namespace RapidTrackingSingleThread
                         {
                             price_value = Convertprice(price);
                         }
-                        var desc = nd.SelectNodes(".//div[@class='I9B2He']|.//div[contains(@class,'dLtZ8b')]|.//div[@class='ZIFkhf ApHyTb']");//27-02-2023//22-02-2023
+                        var desc = nd.SelectNodes(".//div[@class='I9B2He']|.//div[contains(@class,'dLtZ8b')]|.//div[@class='ZIFkhf ApHyTb']|.//div[@class='COW5R']");//01-03-2023//27-02-2023//22-02-2023
                         if (desc != null)
                             foreach (var d in desc)
                             {

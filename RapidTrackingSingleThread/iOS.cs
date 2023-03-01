@@ -2415,7 +2415,7 @@ namespace RapidTrackingSingleThread
                     {
                         string price_value = string.Empty;
                         string additional_info = string.Empty;
-                        string title = nd.SelectSingleNode(".//div[@class='BTPx6e yMArdc']")?.InnerText.Trim() ?? "";
+                        string title = nd.SelectSingleNode(".//div[contains(@class,'BTPx6e')]")?.InnerText.Trim() ?? ""; //01-03-2023
                         string rating = nd.SelectSingleNode(".//span[contains(@class,'YrbPuc')]")?.InnerText.Trim() ?? "";
                         string reviews = nd.SelectSingleNode(".//span[@class='RDApEe YrbPuc']")?.InnerText.Trim() ?? "";
                         string price = nd.SelectSingleNode(".//div[contains(@class,'VSZCrf')]/span")?.InnerText.Trim() ?? "";//22-02-2023

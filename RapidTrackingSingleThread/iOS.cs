@@ -2419,7 +2419,6 @@ namespace RapidTrackingSingleThread
                         string rating = nd.SelectSingleNode(".//span[contains(@class,'YrbPuc')]")?.InnerText.Trim() ?? "";
                         string reviews = nd.SelectSingleNode(".//span[@class='RDApEe YrbPuc']")?.InnerText.Trim() ?? "";
                         string price = nd.SelectSingleNode(".//div[contains(@class,'VSZCrf')]/span|.//div[@class='QIeQge']")?.InnerText.Trim() ?? "";//02-03-2023//22-02-2023
-                                                                                                                             //string price_value = price.Substring(1).ToString();
                         if (price != "")
                         {
                             price_value = Convertprice(price);

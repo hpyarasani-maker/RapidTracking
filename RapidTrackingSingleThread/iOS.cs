@@ -2406,7 +2406,7 @@ namespace RapidTrackingSingleThread
         private string GetHotels(HtmlNode node)//24-03-2022 new element Maps
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'M0T4Vc')]");//01-03-2023
+            HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'M0T4Vc')]|.//div[@class='Vzzxlb']");//02-03-2023//01-03-2023
             if (nds != null)
             {
                 foreach (HtmlNode nd in nds)
@@ -2418,7 +2418,7 @@ namespace RapidTrackingSingleThread
                         string title = nd.SelectSingleNode(".//div[contains(@class,'BTPx6e')]")?.InnerText.Trim() ?? ""; //01-03-2023
                         string rating = nd.SelectSingleNode(".//span[contains(@class,'YrbPuc')]")?.InnerText.Trim() ?? "";
                         string reviews = nd.SelectSingleNode(".//span[@class='RDApEe YrbPuc']")?.InnerText.Trim() ?? "";
-                        string price = nd.SelectSingleNode(".//div[contains(@class,'VSZCrf')]/span")?.InnerText.Trim() ?? "";//22-02-2023
+                        string price = nd.SelectSingleNode(".//div[contains(@class,'VSZCrf')]/span|.//div[@class='QIeQge']")?.InnerText.Trim() ?? "";//02-03-2023//22-02-2023
                                                                                                                              //string price_value = price.Substring(1).ToString();
                         if (price != "")
                         {

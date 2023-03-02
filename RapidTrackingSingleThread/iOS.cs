@@ -2693,7 +2693,7 @@ namespace RapidTrackingSingleThread
             {
                 return "Videos";
             }
-            nd = node.SelectSingleNode(".//div[@class='QgoQVc']");
+            nd = node.SelectSingleNode(".//div[@class='HOslld dutT5c']"); //02-03-2023
             if (nd != null)
             {
                 return "Hotel";

@@ -1238,7 +1238,7 @@ namespace RapidTrackingSingleThread
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nodes = node.SelectNodes(".//ul/product-viewer-group/li|.//ul/div[@class='Ez5pwe']/li|.//div[@class='MhZJBd']/div[@jsname='U5epZb']");
             if (nodes == null)
-                nodes = node.SelectNodes(".//ul[contains(@class, 'sho-apgc__product-grid')]/li|.//ul/li[@class='J4ZKO wTrwWd']");
+                nodes = node.SelectNodes(".//ul[contains(@class, 'sho-apgc__product-grid')]/li|.//ul/li[@class='J4ZKO wTrwWd']|.//ul[contains(@class,'sho-apgc__product-grid')]/div/li");//06-03-2023
             if (nodes != null)
             {
                 foreach (HtmlNode nd in nodes)

@@ -210,6 +210,10 @@ namespace RapidTrackingLoopReceiving
                         {
                             ProcessResults(resx, kw, seid, jobid, count);
                         }
+                        if(count <= 20)
+                        {
+                            SendToDB(seid, kw, resx, jobid, count);
+                        }
                     }
                     //if (!string.IsNullOrEmpty(seid))
                     //    for (int i = 0; i < result.Count; i++)
@@ -484,14 +488,6 @@ namespace RapidTrackingLoopReceiving
                         comm.Parameters.Add("XmlData", SqlDbType.Xml).Value = xml.Replace("'", "''");
 
                         comm.ExecuteNonQuery();
-
-                        if (urlcount < 20)
-                        {
-                            string qry = "exec [InsertLessthan20] '" + myDate + "',N'" + keyword.Replace("'", "''") + "'," + seid + ",N''," + urlcount + ",'" + jobid + "'";
-                            comm.CommandText = qry;
-                            comm.CommandType = CommandType.Text;
-                            comm.ExecuteNonQuery();
-                        }
                     }
                 }
 

@@ -223,6 +223,35 @@ namespace RapidTrackingLoopReceiving
         }
 
 
+        private string GetRightStuff(HtmlDocument doc)
+        {
+            StringBuilder s = new StringBuilder();
+            // product listed ads
+            HtmlNode rcNode = doc.DocumentNode.SelectSingleNode("//div[@id='rhs_block']");
+            if (rcNode == null)
+                return string.Empty;
+
+            HtmlNode sNode = rcNode.SelectSingleNode(".//div[@class='cu-container']");
+            if (sNode != null)
+            {
+                s.Append("<block type=\"productListedAds\" url=\"\">");
+                //HtmlNodeCollection col = sNode.SelectNodes(".//a[@class='plantl pla-unit-title-link']|.//div[@class='mnr-c pla-unit']/a[2]|.//a[@class='plantl pla-unit-single-clickable-target clickable-card']");
+                //if (col == null)
+                HtmlNodeCollection col = sNode.SelectNodes(".//div[@class='_Ead']/a[2]");
+                if (col != null)
+                {
+                    foreach (HtmlNode nd in col)
+                    {
+                        var url = nd.Attributes["href"].Value.Trim();
+                        url = GetRedirectedUrl(url);
+                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(nd.InnerText) + "\" />");
+                    }
+                }
+                s.Append("</block>");
+            }
+            return s.ToString();
+        }
+
         private string GetBottomStuff(HtmlDocument doc)
         {
             StringBuilder s = new StringBuilder();

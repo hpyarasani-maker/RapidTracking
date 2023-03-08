@@ -389,7 +389,7 @@ namespace TrendingDesktopSingleThread
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nodes = node.SelectNodes(".//ul/product-viewer-group/li|.//ul/div[@class='Ez5pwe']/li|.//div[@class='MhZJBd']/div[@jsname='U5epZb']");//09-12-2022
             if (nodes == null)//04-01-2023
-                nodes = node.SelectNodes(".//ul[contains(@class, 'sho-apgc__product-grid')]/li");//04-01-2023
+                nodes = node.SelectNodes(".//ul[contains(@class, 'sho-apgc__product-grid')]/li|.//ul[contains(@class, 'sho-apgc__product-grid')]/div/li");//06-//04-01-2023
             if (nodes != null)
             {
                 foreach (HtmlNode nd in nodes)
@@ -1602,7 +1602,7 @@ namespace TrendingDesktopSingleThread
                         {
                             price_value = Convertprice(price);
                         }
-                        var desc = nd.SelectNodes(".//div[@class='I9B2He']|.//div[contains(@class,'mMeJe OHKesb')]/span|.//div[@class='kOTJue jj25pf']|.//div[@class='ZIFkhf ApHyTb']|.//div[contains(@class,'dLtZ8b')]");//28-02-2023//22-02-2023
+                        var desc = nd.SelectNodes(".//div[@class='I9B2He']|.//div[contains(@class,'mMeJe')]|.//div[@class='kOTJue jj25pf']|.//div[@class='ZIFkhf ApHyTb']|.//div[contains(@class,'dLtZ8b')]");//01-03-2023//28-02-2023//22-02-2023
                         if (desc != null)
                             foreach (var d in desc)
                             {
@@ -1633,6 +1633,7 @@ namespace TrendingDesktopSingleThread
             }
             return s.ToString();
         }//24-03-2022
+
         private string Convertprice(string price)
         {
             string patternprice = "[\\d]+";

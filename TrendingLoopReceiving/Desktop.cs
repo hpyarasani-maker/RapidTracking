@@ -391,7 +391,7 @@ namespace TrendingLoopReceiving
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nodes = node.SelectNodes(".//ul/product-viewer-group/li|.//ul/div[@class='Ez5pwe']/li|.//div[@class='MhZJBd']/div[@jsname='U5epZb']");//09-12-2022
             if (nodes == null)//04-01-2023
-                nodes = node.SelectNodes(".//ul[contains(@class, 'sho-apgc__product-grid')]/li");//04-01-2023
+                nodes = node.SelectNodes(".//ul[contains(@class, 'sho-apgc__product-grid')]/li|.//ul[contains(@class, 'sho-apgc__product-grid')]/div/li");//06-//04-01-2023
             if (nodes != null)
             {
                 foreach (HtmlNode nd in nodes)
@@ -1585,35 +1585,57 @@ namespace TrendingLoopReceiving
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'hmHBZd')]|.//div[@class='KmZaZb']");//27-02-2023
-            foreach (HtmlNode nd in nds)
+            if (nds != null)
             {
-                try
+                foreach (HtmlNode nd in nds)
                 {
-                    string price_value = string.Empty;
-                    string additional_info = string.Empty;
-                    string title = nd.SelectSingleNode(".//div[contains(@class,'BTPx6e')]|.//div[@class='dbg0pd']")?.InnerText.Trim() ?? "";
-                    string rating = nd.SelectSingleNode(".//span[contains(@class,'YrbPuc')]")?.InnerText.Trim() ?? "";
-                    string reviews = nd.SelectSingleNode(".//span[@class='RDApEe YrbPuc']")?.InnerText.Trim() ?? "";
-                    string price = nd.SelectSingleNode(".//span[contains(@class,'dv1Q3e')]|.//div[contains(@class,'YwF3uc')]")?.InnerText.Trim() ?? "";//27-02-2023//22-02-2023
-                    //string price_value = price.Substring(1).ToString();
-                    if (price != "")
+                    try
                     {
-                        price_value = Convertprice(price);
-                    }
-                    var desc = nd.SelectNodes(".//div[@class='I9B2He']|.//div[contains(@class,'mMeJe OHKesb')]/span|.//div[@class='kOTJue jj25pf']|.//div[@class='ZIFkhf ApHyTb']");//22-02-2023
-                    if (desc != null)
-                        foreach (var d in desc)
+
+                        string price_value = string.Empty;
+                        string additional_info = string.Empty;
+                        string title = nd.SelectSingleNode(".//div[contains(@class,'BTPx6e')]|.//div[@class='dbg0pd']")?.InnerText.Trim() ?? "";
+                        string rating = nd.SelectSingleNode(".//span[contains(@class,'YrbPuc')]")?.InnerText.Trim() ?? "";
+                        string reviews = nd.SelectSingleNode(".//span[@class='RDApEe YrbPuc']")?.InnerText.Trim() ?? "";
+                        string price = nd.SelectSingleNode(".//span[contains(@class,'dv1Q3e')]|.//div[contains(@class,'YwF3uc')]")?.InnerText.Trim() ?? "";//27-02-2023//22-02-2023
+
+                        //string price_value = price.Substring(1).ToString();
+                        if (price != "")
                         {
-                            additional_info += d.InnerText + ",";
+                            price_value = Convertprice(price);
                         }
-                    string reviewNumbers = reviewNumbers = ConvertReviews(reviews);
-                    if (!string.IsNullOrEmpty(additional_info)) additional_info = additional_info.Remove(additional_info.Length - 1);
-                    s.Append("<item price=\"" + SetTitle(price) + "\" priceValue=\"" + SetTitle(price_value) + "\" rating=\"" + SetTitle(rating) + "\" totalReviews=\"" + SetTitle(reviewNumbers) + "\" additionalInfo=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
+                        var desc = nd.SelectNodes(".//div[@class='I9B2He']|.//div[contains(@class,'mMeJe')]|.//div[@class='kOTJue jj25pf']|.//div[@class='ZIFkhf ApHyTb']|.//div[contains(@class,'dLtZ8b')]");//01-03-2023//28-02-2023//22-02-2023
+                        if (desc != null)
+                            foreach (var d in desc)
+                            {
+                                additional_info += d.InnerText + ",";
+                            }
+                        string reviewNumbers = ConvertReviews(reviews);
+                        if (string.IsNullOrEmpty(reviewNumbers) && string.IsNullOrEmpty(rating) && string.IsNullOrEmpty(price))
+                        {
+                            s.Append("<item url=\"\" additionalInfo=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
+                        }
+                        else if (string.IsNullOrEmpty(price))
+                        {
+                            if (!string.IsNullOrEmpty(additional_info)) additional_info = additional_info.Remove(additional_info.Length - 1);
+                            s.Append("<item url=\"\" rating=\"" + SetTitle(rating.Replace(",", ".")) + "\" totalReviews=\"" + SetTitle(reviewNumbers) + "\" additionalInfo=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
+                        }
+                        else if (string.IsNullOrEmpty(reviewNumbers) || string.IsNullOrEmpty(rating))
+                        {
+                            s.Append("<item url=\"\" price=\"" + SetTitle(price) + "\" priceValue=\"" + SetTitle(price_value) + "\" additionalInfo=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
+                        }
+                        else
+                        {
+                            if (!string.IsNullOrEmpty(additional_info)) additional_info = additional_info.Remove(additional_info.Length - 1);
+                            s.Append("<item url=\"\" price=\"" + SetTitle(price) + "\" priceValue=\"" + SetTitle(price_value) + "\" rating=\"" + SetTitle(rating.Replace(",", ".")) + "\" totalReviews=\"" + SetTitle(reviewNumbers) + "\" additionalInfo=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
+                        }
+                    }
+                    catch { }
                 }
-                catch { }
             }
             return s.ToString();
         }//24-03-2022
+
         private string Convertprice(string price)
         {
             string patternprice = "[\\d]+";

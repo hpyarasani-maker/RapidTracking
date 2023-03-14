@@ -2610,6 +2610,14 @@ namespace RapidTrackingCloudSingleThread
             {
              seid = 715, domain ="com", geo_location="California,United States", locale= "en-us", uule = "w+CAIQICIYY2FsaWZvcm5pYSx1bml0ZWQgc3RhdGVz",device="mobile_android"
             },//06-03-2023
+              new SearchProperties() //14-03-2023
+            {
+            seid = 716, domain ="com", geo_location="Texas,United States", locale= "en-us", uule = "w+CAIQICITVGV4YXMsVW5pdGVkIFN0YXRlcw==",device="desktop"
+            },
+            new SearchProperties()
+            {
+            seid = 717, domain ="com", geo_location="Texas,United States", locale= "en-us", uule = "w+CAIQICITVGV4YXMsVW5pdGVkIFN0YXRlcw==",device="mobile_android"
+            },//14-03-2023 end
         };
     }
 

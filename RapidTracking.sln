@@ -85,6 +85,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReceivingProject", "Receivi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingleJobidProject", "SingleJobidProject\SingleJobidProject.csproj", "{D894E768-0376-4AEB-9C86-B9F85EE253C7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiThreadProject", "MultiThreadProject\MultiThreadProject.csproj", "{6100DF28-FBC6-45F9-8BEC-A2813717B4A4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -235,6 +237,10 @@ Global
 		{D894E768-0376-4AEB-9C86-B9F85EE253C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D894E768-0376-4AEB-9C86-B9F85EE253C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D894E768-0376-4AEB-9C86-B9F85EE253C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6100DF28-FBC6-45F9-8BEC-A2813717B4A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6100DF28-FBC6-45F9-8BEC-A2813717B4A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6100DF28-FBC6-45F9-8BEC-A2813717B4A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6100DF28-FBC6-45F9-8BEC-A2813717B4A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -257,6 +263,7 @@ Global
 		{924225A7-F4F1-445B-9FA8-6D0919FB74CD} = {A9D7CFF3-4A81-4449-B858-4FF7F83D7ECA}
 		{85B20B1D-10A7-4FBE-B9DC-8803E11D3CA4} = {A9D7CFF3-4A81-4449-B858-4FF7F83D7ECA}
 		{D894E768-0376-4AEB-9C86-B9F85EE253C7} = {A9D7CFF3-4A81-4449-B858-4FF7F83D7ECA}
+		{6100DF28-FBC6-45F9-8BEC-A2813717B4A4} = {A9D7CFF3-4A81-4449-B858-4FF7F83D7ECA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3CC0E919-BB8B-43E6-8485-F143616171A0}

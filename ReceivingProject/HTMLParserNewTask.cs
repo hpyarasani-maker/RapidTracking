@@ -39,8 +39,8 @@ namespace ReceivingProject
 
         private void StartProcess()
         {
-            string url = "http://previous.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // TrackingData Desktop
-            //string url = "http://previous.azurewebsites.net/api/callbackuk58desktop/";       // TrackingData Mobile
+            string url = "https://seresults.azurewebsites.net/api/trackingDataDesktop/";  // TrackingData Desktop
+            //string url = "https://seresults.azurewebsites.net/api/trackingDataMobile/";       // TrackingData Mobile
 
             Uri ul = new Uri(url);
             using (var client = new HttpClient())

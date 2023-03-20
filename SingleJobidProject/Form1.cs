@@ -72,7 +72,7 @@ namespace SingleJobidProject
                 string myDate = DateTime.Today.ToString("yyyy-MM-dd");
                 //string myDate = "2019-11-20";
 
-                string kwQry = "[GetMissingKeywords] '" + myDate + "'"; // 01-09-2020
+                string kwQry = "[GetMissingJobidKeywords] '" + myDate + "'"; // 01-09-2020
 
                 GetKeywords(kwQry);
 

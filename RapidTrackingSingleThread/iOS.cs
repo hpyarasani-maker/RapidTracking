@@ -40,7 +40,7 @@ namespace RapidTrackingSingleThread
                 if (nodeCol == null)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-card|//div[@id='taw']/div[@class='med']/div[2]/div|//div[@id='rso']/nav|//div[@id='rso']/block-component/div");//07-01-2022 event results//28-04-2020
                 if (nodeCol != null && nodeCol.Count == 1)
-                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@class='vC5Ym DhKAUb']/div");    //17-09-2019
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@class='vC5Ym DhKAUb']/div|.//div[@id='center_col']");  //23-03-2023  //17-09-2019
                 if (nodeCol == null)
                     nodeCol = doc.DocumentNode.SelectNodes("//*[@id='tscffb']");
 
@@ -163,7 +163,7 @@ namespace RapidTrackingSingleThread
                             if (node.HasClass("kp-wholepage") || node.SelectNodes(".//div[contains(@class, 'kp-wholepage')]") != null)
                             {
                                 //Current 15-12-2020 swapped from bottom HtmlNodeCollection
-                                HtmlNodeCollection nc = node.SelectNodes(".//div[contains(@class,'TzHB6b')]");//14-12-2022
+                                HtmlNodeCollection nc = node.SelectNodes(".//div[contains(@class,'TzHB6b')]|.//div[@class='MjjYud']/div/div/div[@class='Ww4FFb vt6azd xpd EtOod pkphOe']");//23-03-2023//14-12-2022
                                 if (nc == null || nc.Count <= 3) //14-12-2022
                                     nc = node.SelectNodes(".//div[@class='TjcfIc eE3xqf B03h3d V14nKc ptcLIOszQJu__wholepage-card wp-ms']|.//div[@class='WvKfwe a3spGf']/div");//13-12-2022 //28-11-2022
                                 if (nc == null)//28-11-2022

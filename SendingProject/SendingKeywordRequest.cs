@@ -126,8 +126,10 @@ namespace SendingProject
             string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
 
 
-            string callbackURL = "https://seresults.azurewebsites.net/api/trackingDataDesktop/";  // TrackingData Desktop
+            //string callbackURL = "https://seresults.azurewebsites.net/api/trackingDataDesktop/";  // TrackingData Desktop
             //string callbackURL = "https://seresults.azurewebsites.net/api/trackingDataMobile/";       // TrackingData Mobile
+            //string callbackURL = "http://previous.azurewebsites.net/api/callbackus1desktop/";     // Desktop
+            string callbackURL = "http://previous.azurewebsites.net/api/callbackrapidtrackingdesktop/"; // Mobile.....................................................Controlllers
             OxyParams op = new OxyParams()
             {
                 source = "google_search",

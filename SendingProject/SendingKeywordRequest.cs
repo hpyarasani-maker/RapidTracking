@@ -19,7 +19,8 @@ namespace SendingProject
             try
             {
                 XmlDocument xml = new XmlDocument();
-                string fileName = @"C:\Inetpub\wwwroot\TrackingData.xml";
+                //string fileName = @"C:\Inetpub\wwwroot\TrackingData.xml"; //Azure Database
+                string fileName = @"C:\Inetpub\wwwroot\TrackingDataFirstServer.xml"; //First Server
                 //string fileName = @"C:\Inetpub\wwwroot\downloadKeywords.xml";
 
 

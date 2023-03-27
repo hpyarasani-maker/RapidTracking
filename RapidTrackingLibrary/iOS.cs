@@ -506,6 +506,7 @@ namespace RapidTrackingLibrary
                                 || h3.InnerText.StartsWith("Anúncios&middot;Ver ") || WebUtility.HtmlDecode(h3.InnerText).StartsWith("Ads·") //09-08-2021 //10-07-2021 //16-07-2020
                                 || (pla.SelectSingleNode(".//h3[contains(@class,'xZu9ed mfMhoc')]") != null && pla.SelectSingleNode(".//h3[@role='heading']") != null) //10-07-2021
                                 || (pla.SelectSingleNode(".//div[@class='Mckyte']") != null) //12-08-2021
+                                || (pla.SelectSingleNode(".//div[@class='ZPze1e']") != null) //27-03-2023
                                 )
                             {
                                 s.Append("<block type=\"productListedAds\" url=\"\">");

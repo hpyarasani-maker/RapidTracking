@@ -254,30 +254,7 @@ namespace SingleJobidProject
             return ret;
         }
 
-        public string ReadAPI()
-        {
-            try
-            {
-                XmlDocument xml = new XmlDocument();
-                //string fileName = @"C:\Inetpub\wwwroot\TrackingData.xml"; //Azure Database
-                string fileName = @"C:\Inetpub\wwwroot\TrackingDataFirstServer.xml"; //First Server
-
-                // You'll need to put the correct path to your xml file here
-                xml.Load(fileName);
-
-                // Select a specific node
-                XmlNode node = xml.SelectSingleNode("ConnectionString/apiSubmit");
-
-                // Get its value
-                string name = node.InnerText;
-
-                return name;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        
         private void SendToDBFailure(string seid, string kw, string jobid, bool isOldPage, string errMsg = "")
         {
             string myDate = DateTime.Today.ToString("yyyy-MM-dd");
@@ -335,8 +312,8 @@ namespace SingleJobidProject
             try
             {
                 XmlDocument xml = new XmlDocument();
-                string fileName = @"C:\Inetpub\wwwroot\TrackingData.xml";
-
+                //string fileName = @"C:\Inetpub\wwwroot\TrackingData.xml";
+                string fileName = @"C:\Inetpub\wwwroot\TrackingDataFirstServer.xml"; //First Server
                 // You'll need to put the correct path to your xml file here
                 xml.Load(fileName);
 

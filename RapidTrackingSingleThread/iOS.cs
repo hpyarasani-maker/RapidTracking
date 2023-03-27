@@ -878,8 +878,8 @@ namespace RapidTrackingSingleThread
                             {
                                 try
                                 {
-                                        if (Regex.IsMatch(img.OuterHtml, "id=\"vidthumb\\d*\"") || Regex.IsMatch(img.OuterHtml, "id=\"dimg_\\d*\"") || img.Attributes["class"].Value.Contains("__video-result") || nd.SelectSingleNode(".//video-voyager") != null) //08-04-2022 videos
-                                        {
+                                    if (Regex.IsMatch(img.OuterHtml, "id=\"vidthumb\\d*\"") || Regex.IsMatch(img.OuterHtml, "id=\"dimg_\\d*\"") || img.Attributes["class"].Value.Contains("__video-result") || nd.SelectSingleNode(".//video-voyager") != null || nd.SelectSingleNode(".//div[@class='c8rnLc flgn0c']") != null)//27-03-2023 //08-04-2022 videos
+                                    {
                                         HtmlNode vdo = nd.SelectSingleNode(".//a[contains(@class,'BmP5tf')]"); //11-11-2021
                                         // video block.
                                         if (vdo == null)

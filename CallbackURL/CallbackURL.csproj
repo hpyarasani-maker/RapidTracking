@@ -112,6 +112,8 @@
     <Compile Include="Controller\CallbackTrendingDesktopController.cs" />
     <Compile Include="Controller\CallbackYandexController.cs" />
     <Compile Include="Controller\CallbackUK503DesktopTempController.cs" />
+    <Compile Include="Controller\TrackingDataMobileController.cs" />
+    <Compile Include="Controller\TrackingDataDesktopController.cs" />
     <Compile Include="Controller\TrackingTrendingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

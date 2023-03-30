@@ -39,9 +39,10 @@ namespace ReceivingProject
 
         private void StartProcess()
         {
-            string url = "http://previous.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // TrackingData Desktop
-            //string url = "http://previous.azurewebsites.net/api/callbackuk58desktop/";       // TrackingData Mobile
-
+            //string url = "https://seresults.azurewebsites.net/api/trackingDataDesktop/";  // TrackingData Desktop
+            //string url = "https://seresults.azurewebsites.net/api/trackingDataMobile/";       // TrackingData Mobile
+            //string url = "http://previous.azurewebsites.net/api/callbackus1desktop/";     // Desktop
+            string url = "http://previous.azurewebsites.net/api/callbackrapidtrackingdesktop/"; // Mobile.....................................................Controlllers
             Uri ul = new Uri(url);
             using (var client = new HttpClient())
             {
@@ -199,7 +200,8 @@ namespace ReceivingProject
             try
             {
                 XmlDocument xml = new XmlDocument();
-                string fileName = @"C:\Inetpub\wwwroot\TrackingData.xml";
+                //string fileName = @"C:\Inetpub\wwwroot\TrackingData.xml"; //Azure Database
+                string fileName = @"C:\Inetpub\wwwroot\TrackingDataFirstServer.xml"; //First Server
                 //string fileName = @"C:\Inetpub\wwwroot\downloadKeywords.xml";
 
                 // You'll need to put the correct path to your xml file here

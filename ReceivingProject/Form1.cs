@@ -106,7 +106,8 @@ namespace ReceivingProject
             try
             {
                 XmlDocument xml = new XmlDocument();
-                string fileName = @"C:\Inetpub\wwwroot\TrackingData.xml";
+                //string fileName = @"C:\Inetpub\wwwroot\TrackingData.xml"; //Azure Database
+                string fileName = @"C:\Inetpub\wwwroot\TrackingDataFirstServer.xml"; //First Server
                 // You'll need to put the correct path to your xml file here
                 xml.Load(fileName);
 

@@ -19,7 +19,8 @@ namespace SendingProject
             try
             {
                 XmlDocument xml = new XmlDocument();
-                string fileName = @"C:\Inetpub\wwwroot\TrackingData.xml";
+                //string fileName = @"C:\Inetpub\wwwroot\TrackingData.xml"; //Azure Database
+                string fileName = @"C:\Inetpub\wwwroot\TrackingDataFirstServer.xml"; //First Server
                 //string fileName = @"C:\Inetpub\wwwroot\downloadKeywords.xml";
 
 
@@ -126,8 +127,10 @@ namespace SendingProject
             string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
 
 
-             string callbackURL = "http://previous.azurewebsites.net/api/callbackus1desktop/";  //TrackingData Desktop   // 1 2019-10-10
-            //string callbackURL = "http://previous.azurewebsites.net/api/callbackuk58desktop/"; //TrackingData Mobile      // 58 sending for previous date
+            //string callbackURL = "https://seresults.azurewebsites.net/api/trackingDataDesktop/";  // TrackingData Desktop
+            //string callbackURL = "https://seresults.azurewebsites.net/api/trackingDataMobile/";       // TrackingData Mobile
+            //string callbackURL = "http://previous.azurewebsites.net/api/callbackus1desktop/";     // Desktop
+            string callbackURL = "http://previous.azurewebsites.net/api/callbackrapidtrackingdesktop/"; // Mobile.....................................................Controlllers
             OxyParams op = new OxyParams()
             {
                 source = "google_search",

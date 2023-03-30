@@ -502,6 +502,7 @@ namespace RapidMissingJobsReceiving
                                 || h3.InnerText.StartsWith("Anúncios&middot;Ver ") || WebUtility.HtmlDecode(h3.InnerText).StartsWith("Ads·") //09-08-2021 //10-07-2021 //16-07-2020
                                 || ((pla.SelectSingleNode(".//h3[contains(@class,'xZu9ed mfMhoc')]") != null || h3.HasClass("xc15De")) && pla.SelectSingleNode(".//h3[@role='heading']") != null)//26-09-2022 //10-07-2021
                                 || (pla.SelectSingleNode(".//div[@class='Mckyte']") != null) //12-08-2021
+                                || (pla.SelectSingleNode(".//div[@class='ZPze1e']") != null) //27-03-2023
                                 )
                             {
                                 s.Append("<block type=\"productListedAds\" url=\"\">");
@@ -872,7 +873,7 @@ namespace RapidMissingJobsReceiving
                             {
                                 try
                                 {
-                                    if (Regex.IsMatch(img.OuterHtml, "id=\"vidthumb\\d*\"") || Regex.IsMatch(img.OuterHtml, "id=\"dimg_\\d*\"") || img.Attributes["class"].Value.Contains("__video-result") || nd.SelectSingleNode(".//video-voyager") != null) //08-04-2022 videos
+                                    if (Regex.IsMatch(img.OuterHtml, "id=\"vidthumb\\d*\"") || Regex.IsMatch(img.OuterHtml, "id=\"dimg_\\d*\"") || img.Attributes["class"].Value.Contains("__video-result") || nd.SelectSingleNode(".//video-voyager") != null || nd.SelectSingleNode(".//div[@class='c8rnLc flgn0c']|.//div[@class='J1mWY']") != null)//29-03-2023//27-03-2023 //08-04-2022 videos
                                     {
                                         HtmlNode vdo = nd.SelectSingleNode(".//a[contains(@class,'BmP5tf')]"); //11-11-2021
                                         // video block.
@@ -2836,7 +2837,7 @@ namespace RapidMissingJobsReceiving
             if (nd != null)
             {
                 //if (node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']") == null) //30-08-2021 image wrong block issue
-                if (node.SelectSingleNode(".//div[@class='VPyzge']") == null && (node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']") != null || node.SelectSingleNode(".//div[@class='N60dNb mfMhoc']") != null || node.SelectSingleNode(".//div[@jsmodel='vqHyhf']|.//div[@jsmodel='Wn3aEc']") != null))//08-04-2022 images
+                if (node.SelectSingleNode(".//div[@class='VPyzge']") == null && (node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']") != null || node.SelectSingleNode(".//div[@class='N60dNb mfMhoc']") != null || node.SelectSingleNode(".//div[@jsmodel='vqHyhf']|.//div[@jsmodel='Wn3aEc']|.//div[@class='HdBr8']") != null))//23-03-2023//08-04-2022 images
                     return "Images";
             }
             else

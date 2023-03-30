@@ -102,7 +102,7 @@ namespace RapidTrackingMultiThreadJobIDs
                     if (n == null)
                         n = node.SelectSingleNode(".//div[@class='Ftghae iirjIb']");//16-09-2019 //
                     if (n == null)
-                        n = node.SelectSingleNode(".//div[contains(@class,'PZPZlf')]"); //15-11-2021 KP
+                        n = node.SelectSingleNode(".//div[contains(@class,'DoxwDb PZPZlf')]"); //30-03-2023//27-02-2023 //15-11-2021 KP
                     if (n != null)
                     {
                         string heading = n.InnerText;

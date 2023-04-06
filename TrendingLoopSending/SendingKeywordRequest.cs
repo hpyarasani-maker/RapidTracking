@@ -121,8 +121,10 @@ namespace TrendingLoopSending
             //ServicePointManager.Expect100Continue = true;
             //ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             Uri queryUri = new Uri("https://data.oxylabs.io/v1/queries/batch"); //29-07-2021 changed https:// using http://
-            string username = "gpidatametrics";
-            string password = "sdV5X3fcX6";
+            //string username = "gpidatametrics";
+            //string password = "sdV5X3fcX6";
+            string username = "piapp";
+            string password = "b5FCvgkjxx";
             string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
 
             string callbackURL = "http://seresults.azurewebsites.net/api/callbacktrendingdesktop/";       // Desktop

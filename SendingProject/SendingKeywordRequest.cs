@@ -124,8 +124,8 @@ namespace SendingProject
             Uri queryUri = new Uri("https://data.oxylabs.io/v1/queries/batch"); //29-07-2021 changed https:// using http://
             //string username = "gpidatametrics";
             //string password = "sdV5X3fcX6";
-            string username = "piapp";
-            string password = "b5FCvgkjxx";
+            string username = "piintelligenceunit";
+            string password = "sdV5X3fcX6";
             string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
 
 

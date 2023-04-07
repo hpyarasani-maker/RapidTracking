@@ -416,7 +416,7 @@ namespace RapidTrackingSingleThread
                         if (link != null)
                         {
                             url = link.Attributes["href"]?.Value ?? ""; //24-01-2023
-                            title = link.SelectSingleNode(".//div[@class='vuR1ld']|.//div[@class='wEN0R']|.//div[contains(@class,'vYe7gd')]|.//div[@class='SsM98d RmEs5b']")?.InnerText ?? ""; //06-04-2023
+                            title = link.SelectSingleNode(".//div[@class='vuR1ld']|.//div[@class='wEN0R']|.//div[contains(@class,'vYe7gd')]|.//div[contains(@class,'SsM98d RmEs5b')]")?.InnerText ?? ""; //06-04-2023
                             price = link.SelectSingleNode(".//div[@class='ldGAMe']|.//div[@class='z235y jAPStb']|.//div[@class='s1bFpb']|.//div[contains(@class, 'VQgkpe')]/span[1]")?.InnerText ?? "";//06-04-2023
                             name = link.SelectSingleNode(".//div[@class='DNnNed nbhTP']/span[@class='Dt4hCc']|.//div[@class='ix5OZc']|.//div[@class='pMiHCf']|.//div[@class='n7emVc']")?.InnerText ?? "";//06-04-2023
                         }

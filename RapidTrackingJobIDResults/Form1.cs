@@ -514,8 +514,10 @@ namespace RapidTrackingJobIDResults
         async Task<ArrayList> GetOxylabsWebDataSources(SearchProperties sp,string jobid)
         {
             JObject obj = null;//07-02-2022
-            string username = "gpidatametrics";
-            string password = "sdV5X3fcX6";
+            //string username = "gpidatametrics";
+            //string password = "sdV5X3fcX6";
+            string username = "piapp";
+            string password = "b5FCvgkjxx";
             string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
             string[] keyword = { sp.query };                 
             string response;        

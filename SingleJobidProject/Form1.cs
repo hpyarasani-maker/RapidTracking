@@ -398,7 +398,9 @@ namespace SingleJobidProject
         async Task<ArrayList> GetOxylabsWebDataSources(SearchProperties sp,string jobid)
         {
             JObject obj = null;//07-02-2022
-            string username = "gpidatametrics";
+            //string username = "gpidatametrics";
+            //string password = "sdV5X3fcX6";
+            string username = "piintelligenceunit";
             string password = "sdV5X3fcX6";
             string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
             string[] keyword = { sp.query };                 

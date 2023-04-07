@@ -91,10 +91,12 @@ namespace RapidMissingJobsReceiving
 
     private void DoProcess(string jobid)
      {
-         
-                string username = "gpidatametrics";
-                string password = "sdV5X3fcX6";
-                string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
+
+            //string username = "gpidatametrics";
+            //string password = "sdV5X3fcX6";
+            string username = "piapp";
+            string password = "b5FCvgkjxx";
+            string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
 
                 string infoURL = "http://data.oxylabs.io/v1/queries/" + jobid;
                 HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(infoURL);

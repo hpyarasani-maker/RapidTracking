@@ -302,7 +302,7 @@ namespace RapidTrackingSingleThread
                 //lstKWs.Items.Add("160:malmö ff");
                 //lstKWs.Items.Add("102:terry crews");
                 //lstKWs.Items.Add("102:the uninhabitable earth summary");
-                lstKWs.Items.Add("106:renault clio");
+                lstKWs.Items.Add("102:netflix shows to watch");
             });
             return;
 
@@ -511,8 +511,10 @@ namespace RapidTrackingSingleThread
         async Task<ArrayList> GetOxylabsWebDataSources(SearchProperties sp)
         {
             Uri queryUri = new Uri("http://data.oxylabs.io/v1/queries/batch");
-            string username = "gpidatametrics";
-            string password = "sdV5X3fcX6";
+            //string username = "gpidatametrics";
+            //string password = "sdV5X3fcX6";
+            string username = "piapp";
+            string password = "b5FCvgkjxx";
             string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
             string[] keyword = { sp.query };
 

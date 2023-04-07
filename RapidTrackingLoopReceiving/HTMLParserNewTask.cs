@@ -125,8 +125,10 @@ namespace RapidTrackingLoopReceiving
             ArrayList result = new ArrayList();
             try
             {
-                string username = "gpidatametrics";
-                string password = "sdV5X3fcX6";
+                //string username = "gpidatametrics";
+                //string password = "sdV5X3fcX6";
+                string username = "piapp";
+                string password = "b5FCvgkjxx";
 
                 if (status == "done")
                 {

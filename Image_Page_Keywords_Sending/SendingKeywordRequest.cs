@@ -77,8 +77,10 @@ namespace Image_Page_Keywords_Sending
         private void GetOxylabsWebDataSources(SearchProperties sp)
         {            
             Uri queryUri = new Uri("https://data.oxylabs.io/v1/queries/batch");
-            string username = "gpidatametrics";
-            string password = "sdV5X3fcX6";
+            //string username = "gpidatametrics";
+            //string password = "sdV5X3fcX6";
+            string username = "piapp";
+            string password = "b5FCvgkjxx";
             string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
 
             //string callbackURL = "http://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58

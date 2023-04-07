@@ -77,8 +77,10 @@ namespace Image_Page_Results_Receiving
             int seid = 0;
             try
             {
-                string username = "gpidatametrics";
-                string password = "sdV5X3fcX6";
+                //string username = "gpidatametrics";
+                //string password = "sdV5X3fcX6";
+                string username = "piapp";
+                string password = "b5FCvgkjxx";
 
                 if (status == "done")
                 {

@@ -83,7 +83,9 @@ namespace ReceivingProject
             string seid = "";
             try
             {
-                string username = "gpidatametrics";
+                //string username = "gpidatametrics";
+                //string password = "sdV5X3fcX6";
+                string username = "piintelligenceunit";
                 string password = "sdV5X3fcX6";
 
                 if (status == "done")

@@ -1264,7 +1264,7 @@ namespace RapidTrackingSingleThread
                         url = link.Attributes["href"]?.Value;
                         title = link.SelectSingleNode(".//div[contains(@class,'ZsI9Vc')]|.//div[@jsname='r4nke']|.//div[@class='aTc6pf']|.//div[@class='aqszKe']")?.InnerText ?? "";//27-02-2023//05-01-2023
                         price = link.SelectSingleNode(".//div[@class='Ijn7Rc']|.//div[@class='vy5bA dpJO9']|.//div[@class='uSZhvf Dxiee']/span[1]|.//div[@class='xQbyBc']/span|.//span[contains(@class,'lmQWe')]")?.InnerText ?? "";//06-03-2023//27-02-2023 //05-01-2023
-                        name = link.SelectSingleNode(".//div[@class='DAB5ue']|.//div[@class='NemW5e']/span|.//div[contains(@class, 'ChC0jd')]/span|.//div[@class='kV5zMb Z454de']/span[1]|.//span[@class='rw5ecc RmEs5b rOlovd']")?.InnerText ?? "";//16-03-2023 //27-02-2023//05-01-2023
+                        name = link.SelectSingleNode(".//div[@class='DAB5ue']|.//div[@class='NemW5e']/span|.//div[contains(@class, 'ChC0jd')]/span|.//div[@class='kV5zMb Z454de']/span[1]|.//span[@class='rw5ecc RmEs5b rOlovd']|.//div[@class='n7emVc'] ")?.InnerText ?? "";//10-04-2023//16-03-2023 //27-02-2023//05-01-2023
                     }
                     if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(title))
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" price=\"" + SetTitle(price) + "\" site=\"" + SetTitle(name) + "\" />");
@@ -2893,7 +2893,7 @@ namespace RapidTrackingSingleThread
             //13-08-2019
             nd = node.SelectSingleNode(".//div[@class='aJegcc']");
             if (nd != null)
-                if (node.SelectNodes(".//div[contains(@class,'xCCdqb')]") == null)//06-12-2021 wrong PL block//16-09-2019
+                if (node.SelectNodes(".//div[contains(@class,'xCCdqb')]|.//div[contains(@class, 'tyUpi')] ") == null)//10-04-2023//06-12-2021 wrong PL block//16-09-2019
                 {
                     return "ProductListedAds";
                 }

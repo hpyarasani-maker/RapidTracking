@@ -666,6 +666,8 @@ namespace RapidTrackingLibrary
                                 if (n == null)
                                     n = nd.SelectSingleNode(".//div[@class='yuRUbf']/a"); //03-09-2020  included selector for classic links                         
                                 if (n == null)
+                                    n = nd.SelectSingleNode(".//div[@class='E74pWd']/a");//18-04-2023
+                                if (n == null)
                                     n = nd.SelectSingleNode(".//a");//31-05-2021
                                 if (n != null)
                                     title = n.SelectSingleNode(".//h3"); //03-09-2020 included selector for classic links

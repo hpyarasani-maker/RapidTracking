@@ -715,7 +715,7 @@ namespace WPFMultiThreadJobIDs
                                     urls = n.Attributes["href"].Value;
                                 else
                                 {
-                                    var a = nd.SelectSingleNode(".//div[@class='ct3b9e']/a|.//div[@class='IAZbGe']/a|.//div[@class='DhN8Cf']/a");//11-02-2023 //07-04-2022
+                                    var a = nd.SelectSingleNode(".//div[@class='ct3b9e']/a|.//div[@class='IAZbGe']/a|.//div[@class='DhN8Cf']/a|.//div[@class='E74pWd']/a");//18-04-2023//11-02-2023 //07-04-2022
                                     urls = a.Attributes["href"].Value;
                                     title = a.SelectSingleNode(".//h3");
                                 } //24-08-2021 video block item urls
@@ -732,7 +732,9 @@ namespace WPFMultiThreadJobIDs
                             else if (orgLinks < 100)
                             {
                                 if (n == null)
-                                    n = nd.SelectSingleNode(".//div[@class='yuRUbf']/a|.//div[@class='IAZbGe']/a");//18-10-2022 //04-09-2020 included selector for classic links
+                                    n = nd.SelectSingleNode(".//div[@class='yuRUbf']/a|.//div[@class='yuRUbf']/div/div[@class='E74pWd']/a|.//div[@class='IAZbGe']/a");//18-04-2023
+                                if (n == null)//18-04-2023
+                                    n = nd.SelectSingleNode(".//div[@class='E74pWd']/a");//18-04-2023//18-10-2022 //04-09-2020 included selector for classic links
                                 if (n == null && nd.Attributes["class"]?.Value == "yuRUbf")//17-11-2022
                                     n = nd.SelectSingleNode(".//a");//17-11-2022
                                 if (n != null)
@@ -761,6 +763,8 @@ namespace WPFMultiThreadJobIDs
                                     n = nd.SelectSingleNode(".//h3[@class='r dO0Ag']/a");  //29-05-2020
                                 if (n == null)
                                     n = nd.SelectSingleNode(".//div[@class='yuRUbf']/a"); //03-09-2020  included selector for classic links                         
+                                if (n == null)
+                                    n = nd.SelectSingleNode(".//div[@class='E74pWd']/a");//18-04-2023
                                 if (n == null)
                                     n = nd.SelectSingleNode(".//a");//31-05-2021
                                 if (n != null)
@@ -802,7 +806,7 @@ namespace WPFMultiThreadJobIDs
                     //12-10-2022
                     if ((Regex.IsMatch(n.OuterHtml, "id=\"vidthumb\\d*\"") && (n.SelectSingleNode(".//div[@class='ij69rd UHe5G']") != null || n.SelectSingleNode(".//div[@class='ij69rd TUOsUe UHe5G']") != null)) || n.SelectSingleNode(".//div[contains(@class,'U1TUId')]|.//div[@class='J1mWY']") != null)
                     {
-                        var a = n.SelectSingleNode(".//div[@class='ct3b9e']/a|.//div[@class='IAZbGe']/a|.//div[@class='DhN8Cf']/a"); //13-02-2023
+                        var a = n.SelectSingleNode(".//div[@class='ct3b9e']/a|.//div[@class='IAZbGe']/a|.//div[@class='DhN8Cf']/a|.//div[@class='E74pWd']/a");//18-04-2023//13-02-2023
                         var url = a.Attributes["href"].Value;
                         var title = a.SelectSingleNode(".//h3");
                         if (url.StartsWith("http") || url.StartsWith("https") || url.StartsWith("ftp"))
@@ -823,7 +827,7 @@ namespace WPFMultiThreadJobIDs
                     if (col == null)
                         col = n.SelectNodes(".//div[@class='DOqJne']/g-link/a|.//div[@class='M42dy']/g-link/a");
                     if (col == null)
-                        col = n.SelectNodes(".//div[@class='yuRUbf']/a"); //08-10-2021 for missing classic links
+                        col = n.SelectNodes(".//div[@class='yuRUbf']/a|.//div[@class='yuRUbf']/div/div[@class='E74pWd']/a");//18-04-2023 //08-10-2021 for missing classic links
                     foreach (HtmlNode nd in col)
                     {
                         string u = nd.Attributes["href"].Value.Replace("/url?q=", "").Replace("&amp;", "&").Replace("&", "&#38;");
@@ -1584,7 +1588,7 @@ namespace WPFMultiThreadJobIDs
         private string GetHotels(HtmlNode node)//24-03-2022 new element Maps
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'hmHBZd')]|.//div[@class='KmZaZb']");//27-02-2023
+            HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'hmHBZd')]|.//div[@class='KmZaZb']|.//div[@class='Fcmcxd']");//19-04-2023
             if (nds != null)
             {
                 foreach (HtmlNode nd in nds)

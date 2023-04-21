@@ -43,6 +43,8 @@ namespace RapidTrackingLibrary
                 if (nodeCol == null)
                     //nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-section-with-header|//div[@class='Hpbsqe']|//div[@id='Odp5De']|//div[contains(@id, 'arc-srp')]/div/div[@class='MjjYud']|//div[contains(@id, 'arc-srp')]/div/div/div[@class='MjjYud']");//23-03-2023//23-12-2021//08-10-2021 images //03-12-2020  //01-05-2020 
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-section-with-header|//div[@class='Hpbsqe']|//div[@id='Odp5De']");//12-04-2023
+                if (nodeCol == null || nodeCol.Count == 1)//21-04-2023
+                    nodeCol = doc.DocumentNode.SelectNodes(".//div[@class='WvKfwe a3spGf']/div");//21-04-2023
                 if (nodeCol == null || (nodeCol.Count <= 1))//12-04-2023
                     nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'TzHB6b cLjAic')]|//div[contains(@id, 'arc-srp')]/div/div[@class='MjjYud']|//div[contains(@id, 'arc-srp')]/div/div/div[@class='MjjYud']");//12-04-2023      
                 if (nodeCol == null || (nodeCol.Count > 1 && nodeCol.Count <= 3))//25-07-2022
@@ -480,6 +482,13 @@ namespace RapidTrackingLibrary
             }
             //30-09-2022 end for new code answer card
             //18-03-2020
+            HtmlNode imgs = colt.SelectSingleNode("//div[@class='M8OgIe']");//21-04-2023
+            if (imgs != null)
+            {
+                s.Append("<block type=\"images\" url=\"\">");
+                s.Append(GetImages(imgs));
+                s.Append("</block>");
+            }//21-04-2023
             colt = doc.DocumentNode.SelectSingleNode("//div[@id='taw']");
             if (colt != null)
             {
@@ -1433,8 +1442,8 @@ namespace RapidTrackingLibrary
                 || node.SelectSingleNode(".//div[@class='AxJnmb Wdsnue']") != null || node.SelectSingleNode(".//div[@class='tsp-fvcfc']") != null) //05-01-2023 //02-08-2021 event block selector
                 return "Event";
 
-            if (node.SelectSingleNode(".//div[@id='cwmcwd']") != null || node.SelectSingleNode(".//div[@class='ifM9O']") != null
-                || node.SelectSingleNode(".//div[@class='vk_ard']") != null || node.SelectSingleNode(".//div[@class='d7sCQ kp-header']") != null   //03-06-2020
+            if (node.SelectSingleNode(".//div[@id='cwmcwd']|.//div[@class='wDYxhc']") != null || node.SelectSingleNode(".//div[@class='ifM9O']") != null
+               || node.SelectSingleNode(".//div[@class='vk_ard']") != null || node.SelectSingleNode(".//div[@class='d7sCQ kp-header']") != null   //03-06-2020
                 || node.SelectSingleNode(".//div[@class='pcCUmf vCOSGb']") != null
                 || node.SelectSingleNode(".//div[@class='vkc_np kkww4d']") != null //21-09-2020 updated answered card selectors  //03-06-2020
                 || node.SelectSingleNode(".//div[@class='setTDc']") != null //07-12-2020 answered card selector
@@ -1559,8 +1568,8 @@ namespace RapidTrackingLibrary
                 || node.SelectSingleNode(".//div[@class='k9uN1c kfn9hb']") != null//24-10-2019
                 || node.SelectSingleNode(".//div[@class='HaXvv kfn9hb']") != null//07-02-2020
                 || (node.SelectSingleNode(".//div[@class='ifM9O']") != null && node.SelectSingleNode(".//div[@class='Wnoohf OJXvsb']") == null)   // answer card  
-                || node.SelectSingleNode(".//div[@id='cwmcwd']") != null  // answer card 
-              //|| node.SelectSingleNode(".//div[@class='vk_c card-section']") != null // answer card    
+                || node.SelectSingleNode(".//div[@id='cwmcwd']|.//div[@class='wDYxhc']") != null //21-04-2023  // answer card  
+                 //|| node.SelectSingleNode(".//div[@class='vk_c card-section']") != null // answer card    
                 || node.SelectSingleNode(".//div[@class='d7sCQ kp-header']") != null  //03-06-2020                                                      
                //|| node.SelectSingleNode(".//div[@class='vk_c card-section']") != null // answer card                
                 || node.SelectSingleNode(".//div[@class='pcCUmf vCOSGb']") != null  //03-06-2020

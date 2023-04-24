@@ -40,7 +40,8 @@ namespace RapidTrackingLibrary
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@class='vC5Ym DhKAUb']/div|.//div[@id='center_col']");  //23-03-2023  //17-09-2019    //17-09-2019
                 if (nodeCol == null)
                     nodeCol = doc.DocumentNode.SelectNodes("//*[@id='tscffb']");
-
+                if (nodeCol == null)
+                    nodeCol = doc.DocumentNode.SelectNodes("//*[@id='main']/div");//25-04-2023
                 if (nodeCol == null) throw new Exception("No block found.");
                 //if (nodeCol == null) return string.Empty; 
                 //if (nodeCol == null) goto BOTTOMSTUFF;             
@@ -2422,9 +2423,9 @@ namespace RapidTrackingLibrary
                     return "PeopleAlsoAsk";
             }
             // changed on 05-07-2019
-            else if (node.SelectSingleNode(".//div[@class='HnYYW']") != null)
+            else if (node.SelectSingleNode(".//div[@class='HnYYW']|.//span[@class='FCUp0c rQMQod']") != null)//25-04-2023 //24-04-2023
             {
-                HtmlNode n = node.SelectSingleNode(".//div[@class='HnYYW']");
+                HtmlNode n = node.SelectSingleNode(".//div[@class='HnYYW']|.//span[@class='FCUp0c rQMQod']");//25-04-2023
                 if (n.InnerText == "People also ask" || n.InnerText == "Nutzer fragen auch" || n.InnerText == "Le persone hanno chiesto anche" || n.InnerText == "Orang juga bertanya")  //26-11-2019
                     return "PeopleAlsoAsk";
             }
@@ -2598,7 +2599,7 @@ namespace RapidTrackingLibrary
                 return false;
 
             //22-11-2019
-            nd = node.SelectSingleNode(".//div[@class='g kno-result rQUFld mnr-c g-blk']|.//w-answer/div[@class='MUxGbd t51gnb lyLwlc lEBKkf']|.//div[@class='ifM9O']|.//div[@class='Q9mvUc']");//08-07-2022//16-02-2022 //01-10-2020 Answered Card selector included
+            nd = node.SelectSingleNode(".//div[@class='g kno-result rQUFld mnr-c g-blk']|.//w-answer/div[@class='MUxGbd t51gnb lyLwlc lEBKkf']|.//div[@class='ifM9O']|.//div[@class='Q9mvUc']|.//span[@class='FCUp0c rQMQod']");//25-04-2023//08-07-2022//16-02-2022 //01-10-2020 Answered Card selector included
             if (nd != null)
             {
                 return true;

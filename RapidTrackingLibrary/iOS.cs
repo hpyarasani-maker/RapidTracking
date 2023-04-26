@@ -2406,7 +2406,7 @@ namespace RapidTrackingLibrary
                             ts = false;
                         if (node.SelectSingleNode(".//div[@class='YoZiHf']") != null) //08-01-2021 for not top sights
                             ts = false;
-                        if (node.SelectSingleNode(".//div[@class='CEzIMc h7uAbe']") != null) //27-02-2023
+                        if (node.SelectSingleNode(".//div[contains(@class,'h7uAbe')]") != null)//26-04-2023 //27-02-2023
                             ts = false;
                     }
                 }

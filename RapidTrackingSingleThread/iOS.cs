@@ -2218,6 +2218,8 @@ namespace RapidTrackingSingleThread
                     HtmlNode title = nd.SelectSingleNode(".//div[@class='d4FON']"); // 03-06-2020 swapped from below line.
                     if (title == null)
                         title = nd.SelectSingleNode(".//div[@role='heading']");
+                    if (title == null)//27-04-2023
+                        title = nd.SelectSingleNode(".//div[contains(@class,'nDgy9d')]");//27-04-2023
                     if (title == null)
                         title = nd.SelectSingleNode(".//div[@class='nDgy9d']");   //changes on 05-07-2019
                     if (title == null)

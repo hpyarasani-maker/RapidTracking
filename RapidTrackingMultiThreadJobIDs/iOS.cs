@@ -1254,7 +1254,7 @@ namespace RapidTrackingMultiThreadJobIDs
                     string price = string.Empty;
                     string name = string.Empty;
                     //HtmlNode link = nd.SelectSingleNode(".//a");
-                    HtmlNode link = nd.SelectSingleNode(".//div[@class='NcgzWb Nplhsf']|.//div[@class='yDecDe w4sdvb']|.//g-inner-card[@class='ivG6i']/div|.//div[@class='NcgzWb']/div[@class='Nplhsf']");//16-03-2023
+                    HtmlNode link = nd.SelectSingleNode(".//div[@class='NcgzWb Nplhsf']|.//div[@class='yDecDe w4sdvb']|.//g-inner-card[@class='ivG6i']/div|.//div[@class='NcgzWb']/div[@class='Nplhsf']|.//div[@class='UC8ZCe QS8Cxb']");//25-04-2023//16-03-2023
                     if (link != null)
                     {
                         url = link.Attributes["href"]?.Value;
@@ -2214,6 +2214,8 @@ namespace RapidTrackingMultiThreadJobIDs
                     HtmlNode title = nd.SelectSingleNode(".//div[@class='d4FON']"); // 03-06-2020 swapped from below line.
                     if (title == null)
                         title = nd.SelectSingleNode(".//div[@role='heading']");
+                    if (title == null)//27-04-2023
+                        title = nd.SelectSingleNode(".//div[contains(@class,'nDgy9d')]");//27-04-2023
                     if (title == null)
                         title = nd.SelectSingleNode(".//div[@class='nDgy9d']");   //changes on 05-07-2019
                     if (title == null)
@@ -2234,7 +2236,7 @@ namespace RapidTrackingMultiThreadJobIDs
                     foreach (HtmlNode nd in nds)
                     {
                         if (nd.SelectSingleNode(".//div[@class='poMUXd']") != null || nd.SelectSingleNode(".//div[@class='mCBkyc nDgy9d']") != null
-                            || nd.SelectSingleNode(".//div[@class='poMUXd oz3cqf vH5Lmd']") != null || nd.SelectSingleNode(".//div[@class='mCBkyc oz3cqf vH5Lmd nDgy9d']") != null
+                            || nd.SelectSingleNode(".//div[@class='poMUXd oz3cqf vH5Lmd']") != null || nd.SelectSingleNode(".//div[contains(@class,'mCBkyc')]") != null//19-04-2023
                             || nd.SelectSingleNode(".//div[@class='mCBkyc tNxQIb ynAwRc nDgy9d']") != null)//30-05-2022 //10-06-2020 //04-06-2020  //14-05-2020
                         {
                             HtmlNode title = nd.SelectSingleNode(".//div[@class='poMUXd']");
@@ -2243,7 +2245,7 @@ namespace RapidTrackingMultiThreadJobIDs
                             if (title == null)
                                 title = nd.SelectSingleNode(".//div[@class='poMUXd oz3cqf vH5Lmd']");//04-06-2020
                             if (title == null)
-                                title = nd.SelectSingleNode(".//div[@class='mCBkyc oz3cqf vH5Lmd nDgy9d']");//10-06-2020
+                                title = nd.SelectSingleNode(".//div[contains(@class,'mCBkyc')]"); //19-04-2023//10-06-2020
                             if (title == null)
                                 title = nd.SelectSingleNode(".//div[contains(@class,'tNxQIb ynAwRc nDgy9d')]");//01-02-2023//11-01-2023//30-05-2022
                             string url = nd.Attributes["href"].Value;
@@ -2516,7 +2518,7 @@ namespace RapidTrackingMultiThreadJobIDs
                             ts = false;
                         if (node.SelectSingleNode(".//div[@class='YoZiHf']") != null) //08-01-2021 for not top sights
                             ts = false;
-                        if (node.SelectSingleNode(".//div[@class='CEzIMc h7uAbe']") != null) //27-02-2023
+                        if (node.SelectSingleNode(".//div[contains(@class,'h7uAbe')]") != null)//26-04-2023 //27-02-2023
                             ts = false;
                     }
                 }
@@ -2676,7 +2678,7 @@ namespace RapidTrackingMultiThreadJobIDs
                 if (nd != null)
                 {
                     if (nd.InnerHtml.ToLower().StartsWith("video") || nd.InnerHtml.ToLower().StartsWith("vídeo")) //07-02-2020 included title for video block for different language
-                        if (node.SelectSingleNode(".//div[@class='vbbrJ']") == null)//07-03-2023
+                        if (node.SelectSingleNode(".//div[@class='vbbrJ']|.//div[contains(@class, 'CGCvRb')]") == null)//19-04-2023//07-03-2023
                             return "Videos";
                         else if (nd.InnerHtml.ToLower().StartsWith("top stories") || nd.InnerHtml.Contains("Interesting finds")) // 18-12-2019)
                             return "Topstories";

@@ -40,7 +40,7 @@ namespace RapidTrackingSingleThread
                 if (nodeCol == null)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-card|//div[@id='taw']/div[@class='med']/div[2]/div|//div[@id='rso']/nav|//div[@id='rso']/block-component/div|//div[contains(@id, 'arc-srp')]/div/div[@class='MjjYud']|//div[contains(@id, 'arc-srp')]/div/div/div[@class='MjjYud']|.//div[contains(@class,'TzHB6b')]");//29-03-2023//07-01-2022 event results//28-04-2020
                 if (nodeCol != null && nodeCol.Count == 1)
-                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@class='vC5Ym DhKAUb']/div|.//div[@id='center_col']");  //23-03-2023  //17-09-2019
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@class='vC5Ym DhKAUb']/div");  //23-03-2023  //17-09-2019
                 if (nodeCol == null)
                     nodeCol = doc.DocumentNode.SelectNodes("//*[@id='tscffb']");
 
@@ -1258,7 +1258,7 @@ namespace RapidTrackingSingleThread
                     string price = string.Empty;
                     string name = string.Empty;
                     //HtmlNode link = nd.SelectSingleNode(".//a");
-                    HtmlNode link = nd.SelectSingleNode(".//div[@class='NcgzWb Nplhsf']|.//div[@class='yDecDe w4sdvb']|.//g-inner-card[@class='ivG6i']/div|.//div[@class='NcgzWb']/div[@class='Nplhsf']");//16-03-2023
+                    HtmlNode link = nd.SelectSingleNode(".//div[@class='NcgzWb Nplhsf']|.//div[@class='yDecDe w4sdvb']|.//g-inner-card[@class='ivG6i']/div|.//div[@class='NcgzWb']/div[@class='Nplhsf']|.//div[@class='UC8ZCe QS8Cxb']");//25-04-2023//16-03-2023
                     if (link != null)
                     {
                         url = link.Attributes["href"]?.Value;
@@ -2218,6 +2218,8 @@ namespace RapidTrackingSingleThread
                     HtmlNode title = nd.SelectSingleNode(".//div[@class='d4FON']"); // 03-06-2020 swapped from below line.
                     if (title == null)
                         title = nd.SelectSingleNode(".//div[@role='heading']");
+                    if (title == null)//27-04-2023
+                        title = nd.SelectSingleNode(".//div[contains(@class,'nDgy9d')]");//27-04-2023
                     if (title == null)
                         title = nd.SelectSingleNode(".//div[@class='nDgy9d']");   //changes on 05-07-2019
                     if (title == null)
@@ -2520,7 +2522,7 @@ namespace RapidTrackingSingleThread
                             ts = false;
                         if (node.SelectSingleNode(".//div[@class='YoZiHf']") != null) //08-01-2021 for not top sights
                             ts = false;
-                        if (node.SelectSingleNode(".//div[@class='CEzIMc h7uAbe']") != null) //27-02-2023
+                        if (node.SelectSingleNode(".//div[contains(@class,'h7uAbe')]") != null)//26-04-2023 //27-02-2023
                             ts = false;
                     }
                 }

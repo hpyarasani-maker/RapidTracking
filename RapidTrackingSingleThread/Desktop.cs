@@ -1767,7 +1767,7 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@class='YXEKBb']") != null //06-06-2022 Answered Card
                 || node.SelectSingleNode(".//div[@class='ellip vk_h lxZILe']|.//div[contains(@class, 'vk_c')]|.//div[contains(@class,'lr_container')]") != null)//17-06-2022 //16-06-2022
             {
-                if (node.SelectSingleNode(".//div[@class='BET1rd']|.//div[@class='EfDVh wDYxhc NFQFxe']") == null 
+                if (node.SelectSingleNode(".//div[@class='BET1rd']|.//div[@class='EfDVh wDYxhc NFQFxe']|.//div[contains(@class,'AxJnmb Wdsnue')]|.//div[@class='jYcvae kY5Gde']") == null //27-04-2023
                     && node.SelectSingleNode(".//div[@class='tpa-cc']") == null && node.SelectSingleNode(".//g-scrolling-carousel[@class='VXdDm']") == null //22-06-2022//23-12-2021 //21-08-2021 //25-09-2020
                     && node.SelectSingleNode(".//*[@id='lu_map']|.//img[contains(@alt,'Map of')]|.//a[contains(@data-url,'/maps/')]") == null) //22-07-2022 //13-10-2021
                     return "AnswerCard";

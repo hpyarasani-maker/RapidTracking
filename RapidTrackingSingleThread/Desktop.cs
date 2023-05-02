@@ -1676,7 +1676,7 @@ namespace RapidTrackingSingleThread
             {
                 return "VideoCard";
             }
-            nd = node.SelectSingleNode(".//div[@class='KNcnob']/g-img|.//div[contains(@class,'YEMaTe')]/g-img");//10-12-2020 applied contains   //01-05-2020
+            nd = node.SelectSingleNode(".//div[@class='KNcnob']/g-img|.//div[contains(@class,'YEMaTe')]/g-img|.//div[contains(@class,'YEMaTe')]/div/img");//02-05-2023//10-12-2020 applied contains   //01-05-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='fn6bCb']");
             if (nd == null)
@@ -1771,7 +1771,7 @@ namespace RapidTrackingSingleThread
             {
                 if (node.SelectSingleNode(".//div[@class='BET1rd']|.//div[@class='EfDVh wDYxhc NFQFxe']|.//div[contains(@class,'AxJnmb Wdsnue')]|.//div[@class='jYcvae kY5Gde']") == null //27-04-2023
                     && node.SelectSingleNode(".//div[@class='tpa-cc']") == null && node.SelectSingleNode(".//g-scrolling-carousel[@class='VXdDm']") == null //22-06-2022//23-12-2021 //21-08-2021 //25-09-2020
-                    && node.SelectSingleNode(".//div[@id='knowledge-finance-wholepage__entity-summary']") == null //01-05-2023
+                    && node.SelectSingleNode(".//div[contains(@class,'knowledge-finance')]|.//div[contains(@id,'knowledge-finance')]|.//div[contains(@id,'knowledge-currency')]") == null//02-05-2023 //01-05-2023
                     && node.SelectSingleNode(".//*[@id='lu_map']|.//img[contains(@alt,'Map of')]|.//a[contains(@data-url,'/maps/')]") == null) //22-07-2022 //13-10-2021
                     return "AnswerCard";
                 else if (node.SelectSingleNode(".//div[@class='WcS13d']") != null && node.SelectSingleNode(".//div[@class='EfDVh wDYxhc NFQFxe']") != null //27-12-2021

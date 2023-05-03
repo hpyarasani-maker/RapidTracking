@@ -46,7 +46,7 @@ namespace RapidTrackingSingleThread
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-section-with-header|//div[@class='Hpbsqe']|//div[@id='Odp5De']");//02-05-2023//12-04-2023
                 if (nodeCol == null || (nodeCol.Count <= 1))//12-04-2023
                     nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'TzHB6b cLjAic')]|//div[contains(@id, 'arc-srp')]/div/div[@class='MjjYud']|//div[contains(@id, 'arc-srp')]/div/div/div[@class='MjjYud']")??nodeCol;//12-04-2023
-                if (nodeCol == null || nodeCol.Count <= 5)//02-05-2023//21-04-2023
+                if (nodeCol == null || nodeCol.Count <= 4)//02-05-2023//21-04-2023
                     nodeCol = doc.DocumentNode.SelectNodes(".//div[@class='WvKfwe a3spGf']/div")??nodeCol;//26-04-2023//21-04-2023
                 //if (nodeCol == null || (nodeCol.Count <= 1))//12-04-2023 //02-05-2023 commented
                 //    nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'TzHB6b cLjAic')]|//div[contains(@id, 'arc-srp')]/div/div[@class='MjjYud']|//div[contains(@id, 'arc-srp')]/div/div/div[@class='MjjYud']");//12-04-2023//02-05-2023 commented
@@ -1729,7 +1729,7 @@ namespace RapidTrackingSingleThread
             nd = node.SelectSingleNode(".//div[contains(@class,'cUnQKe')]|.//div[@jsname='N760b']");//02-08-2021//08-07-2021
             if (nd != null)
             {
-                if (node.SelectSingleNode(".//div[@class='AuVD KJ7Tg cUnQKe']") == null) //20-07-2022
+                if (node.SelectSingleNode(".//div[@class='AuVD KJ7Tg cUnQKe']|.//div[@class='cUnQKe RTaUke']") == null)//03-05-2023 //20-07-2022
                     return "PeopleAlsoAsk"; //11-02-2020
             }
             if (node.SelectSingleNode(".//g-card[@class='cvoI5e']|.//g-tray-header[@class='iI6nue ieGFJe']") != null || node.SelectSingleNode(".//g-card[@class='U8KfXc']") != null)//11-01-2023 //23-11-2020 //20-11-2020

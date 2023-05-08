@@ -2227,7 +2227,7 @@ namespace RapidTrackingSingleThread
                     if (title == null)
                         title = nd.SelectSingleNode(".//div[@class='mkVq5']");//27-11-2020 top stories titles
                     if (title == null)
-                        title = nd.SelectSingleNode(".//div[contains(@class,'tNxQIb ynAwRc nDgy9d')]");//01-02-2023//11-01-2023
+                        title = nd.SelectSingleNode(".//div[contains(@class,'tNxQIb ynAwRc nDgy9d')]|.//div[contains(@class,'ynAwRc tNxQIb nDgy9d')]");//08-05-2023//01-02-2023//11-01-2023
                     string url = nd.Attributes["href"].Value;
                     if (!url.Contains("/search?q=")) //09-09-2022 avoid google link
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title.InnerText) + "\" />");
@@ -2241,7 +2241,7 @@ namespace RapidTrackingSingleThread
                     {
                         if (nd.SelectSingleNode(".//div[@class='poMUXd']") != null || nd.SelectSingleNode(".//div[@class='mCBkyc nDgy9d']") != null
                             || nd.SelectSingleNode(".//div[@class='poMUXd oz3cqf vH5Lmd']") != null || nd.SelectSingleNode(".//div[contains(@class,'mCBkyc')]") != null//19-04-2023
-                            || nd.SelectSingleNode(".//div[@class='mCBkyc tNxQIb ynAwRc nDgy9d']") != null)//30-05-2022 //10-06-2020 //04-06-2020  //14-05-2020
+                            || nd.SelectSingleNode(".//div[@class='mCBkyc tNxQIb ynAwRc nDgy9d']|.//div[contains(@class,'ynAwRc tNxQIb nDgy9d')]") != null)//08-05-2023//30-05-2022 //10-06-2020 //04-06-2020  //14-05-2020
                         {
                             HtmlNode title = nd.SelectSingleNode(".//div[@class='poMUXd']");
                             if (title == null)
@@ -2251,7 +2251,7 @@ namespace RapidTrackingSingleThread
                             if (title == null)
                                 title = nd.SelectSingleNode(".//div[contains(@class,'mCBkyc')]"); //19-04-2023//10-06-2020
                             if (title == null)
-                                title = nd.SelectSingleNode(".//div[contains(@class,'tNxQIb ynAwRc nDgy9d')]");//01-02-2023//11-01-2023//30-05-2022
+                                title = nd.SelectSingleNode(".//div[contains(@class,'tNxQIb ynAwRc nDgy9d')]|.//div[contains(@class,'ynAwRc tNxQIb nDgy9d')]");//08-05-2023//01-02-2023//11-01-2023//30-05-2022
                             string url = nd.Attributes["href"].Value;
                             if (!url.Contains("/search?q=")) //09-09-2022 avoid google link
                                 s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title.InnerText) + "\" />");

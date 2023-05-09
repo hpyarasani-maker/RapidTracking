@@ -2305,7 +2305,7 @@ namespace RapidTrackingLibrary
         public string GetHotels(HtmlNode node)//24-03-2022 new element Maps
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'M0T4Vc')]|.//div[@class='Vzzxlb']");//02-03-2023//01-03-2023
+            HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'M0T4Vc')]|.//div[@class='Vzzxlb']|.//div[@class='eIE7ad']");//09-05-2023//02-03-2023//01-03-2023
             if (nds != null)
             {
                 foreach (HtmlNode nd in nds)

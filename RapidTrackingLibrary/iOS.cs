@@ -2331,6 +2331,7 @@ namespace RapidTrackingLibrary
                         string reviewNumbers = ConvertReviews(reviews);
                         if (string.IsNullOrEmpty(reviewNumbers) && string.IsNullOrEmpty(rating) && string.IsNullOrEmpty(price))
                         {
+                            if (!string.IsNullOrEmpty(additional_info)) additional_info = additional_info.Remove(additional_info.Length - 1);//15-05-2023
                             s.Append("<item url=\"\" additionalInfo=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
                         }
                         else if (string.IsNullOrEmpty(price))
@@ -2340,6 +2341,7 @@ namespace RapidTrackingLibrary
                         }
                         else if (string.IsNullOrEmpty(reviewNumbers) || string.IsNullOrEmpty(rating))
                         {
+                            if (!string.IsNullOrEmpty(additional_info)) additional_info = additional_info.Remove(additional_info.Length - 1);//15-05-2023
                             s.Append("<item url=\"\" price=\"" + SetTitle(price) + "\" priceValue=\"" + SetTitle(price_value) + "\" additionalInfo=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
                         }
                         else

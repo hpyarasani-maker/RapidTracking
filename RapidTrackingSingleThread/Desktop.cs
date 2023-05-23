@@ -1605,9 +1605,15 @@ namespace RapidTrackingSingleThread
         {
             StringBuilder s = new StringBuilder();
             //HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'hmHBZd')]|.//div/a[contains(@class,'hmHBZd')]|.//div[@class='fQtNvd']|.//div[@class='KmZaZb']|.//div[@class='Fcmcxd']");//11-05-2023//26-04-2023//19-04-2023
-            HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'hmHBZd')]|.//div[@class='fQtNvd']|.//div[@class='KmZaZb']");//15-05-2023
+            HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'hmHBZd')]");//15-05-2023
             if (nds == null)//15-05-2023
-                nds = node.SelectNodes(".//div/a[contains(@class,'hmHBZd')]|.//div[@class='Fcmcxd']");//15-05-2023
+                nds = node.SelectNodes(".//div/a[contains(@class,'hmHBZd')]");//15-05-2023
+            if (nds == null)
+                nds = node.SelectNodes(".//div[@class='fQtNvd']");//23-05-2023
+            if (nds == null)
+                nds = node.SelectNodes(".//div[@class='KmZaZb']");//23-05-2023
+            if (nds == null)
+                nds = node.SelectNodes(".//div[@class='Fcmcxd']");//23-05-2023
             if (nds != null)
             {
                 foreach (HtmlNode nd in nds)

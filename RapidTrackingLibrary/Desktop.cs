@@ -593,7 +593,7 @@ namespace RapidTrackingLibrary
             //30-09-2022 end for new code answer card
             //18-03-2020
             HtmlNode imgs = colt.SelectSingleNode("//div[@class='M8OgIe']");//21-04-2023
-            if (imgs != null && imgs.SelectSingleNode(".//div[@id='Odp5De']") == null)//27-04-2023
+            if (imgs != null && imgs.SelectSingleNode(".//div[@id='Odp5De']|.//div[@jscontroller='qTdDb']") == null)//15-05-2023//27-04-2023
             {
                 s.Append("<block type=\"images\" url=\"\">");
                 s.Append(GetImages(imgs));
@@ -1509,7 +1509,16 @@ namespace RapidTrackingLibrary
         public string GetHotels(HtmlNode node)//24-03-2022 new element Maps
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'hmHBZd')]|.//div[@class='fQtNvd']|.//div[@class='KmZaZb']|.//div[@class='Fcmcxd']");//26-04-2023//19-04-2023
+            //HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'hmHBZd')]|.//div/a[contains(@class,'hmHBZd')]|.//div[@class='fQtNvd']|.//div[@class='KmZaZb']|.//div[@class='Fcmcxd']");//11-05-2023//26-04-2023//19-04-2023
+            HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'hmHBZd')]");//15-05-2023
+            if (nds == null)//15-05-2023
+                nds = node.SelectNodes(".//div/a[contains(@class,'hmHBZd')]");//15-05-2023
+            if (nds == null)
+                nds = node.SelectNodes(".//div[@class='fQtNvd']");//23-05-2023
+            if (nds == null)
+                nds = node.SelectNodes(".//div[@class='KmZaZb']");//23-05-2023
+            if (nds == null)
+                nds = node.SelectNodes(".//div[@class='Fcmcxd']");//23-05-2023
             if (nds != null)
             {
                 foreach (HtmlNode nd in nds)
@@ -1538,6 +1547,7 @@ namespace RapidTrackingLibrary
                         string reviewNumbers = ConvertReviews(reviews);
                         if (string.IsNullOrEmpty(reviewNumbers) && string.IsNullOrEmpty(rating) && string.IsNullOrEmpty(price))
                         {
+                            if (!string.IsNullOrEmpty(additional_info)) additional_info = additional_info.Remove(additional_info.Length - 1);//15-05-2023
                             s.Append("<item url=\"\" additionalInfo=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
                         }
                         else if (string.IsNullOrEmpty(price))
@@ -1547,6 +1557,7 @@ namespace RapidTrackingLibrary
                         }
                         else if (string.IsNullOrEmpty(reviewNumbers) || string.IsNullOrEmpty(rating))
                         {
+                            if (!string.IsNullOrEmpty(additional_info)) additional_info = additional_info.Remove(additional_info.Length - 1);//15-05-2023
                             s.Append("<item url=\"\" price=\"" + SetTitle(price) + "\" priceValue=\"" + SetTitle(price_value) + "\" additionalInfo=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
                         }
                         else

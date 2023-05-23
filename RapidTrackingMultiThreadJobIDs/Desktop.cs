@@ -1598,9 +1598,15 @@ namespace RapidTrackingMultiThreadJobIDs
         {
             StringBuilder s = new StringBuilder();
             //HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'hmHBZd')]|.//div/a[contains(@class,'hmHBZd')]|.//div[@class='fQtNvd']|.//div[@class='KmZaZb']|.//div[@class='Fcmcxd']");//11-05-2023//26-04-2023//19-04-2023
-            HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'hmHBZd')]|.//div[@class='fQtNvd']|.//div[@class='KmZaZb']");//15-05-2023
+            HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'hmHBZd')]");//15-05-2023
             if (nds == null)//15-05-2023
-                nds = node.SelectNodes(".//div/a[contains(@class,'hmHBZd')]|.//div[@class='Fcmcxd']");//15-05-2023
+                nds = node.SelectNodes(".//div/a[contains(@class,'hmHBZd')]");//15-05-2023
+            if (nds == null)
+                nds = node.SelectNodes(".//div[@class='fQtNvd']");//23-05-2023
+            if (nds == null)
+                nds = node.SelectNodes(".//div[@class='KmZaZb']");//23-05-2023
+            if (nds == null)
+                nds = node.SelectNodes(".//div[@class='Fcmcxd']");//23-05-2023
             if (nds != null)
             {
                 foreach (HtmlNode nd in nds)
@@ -1726,7 +1732,7 @@ namespace RapidTrackingMultiThreadJobIDs
             nd = node.SelectSingleNode(".//div[contains(@class,'cUnQKe')]|.//div[@jsname='N760b']");//02-08-2021//08-07-2021
             if (nd != null)
             {
-                if (node.SelectSingleNode(".//div[@class='AuVD KJ7Tg cUnQKe']|.//div[@class='cUnQKe RTaUke']") == null)//03-05-2023 //20-07-2022
+                if (node.SelectSingleNode(".//div[@class='AuVD KJ7Tg cUnQKe']|.//div[contains(@class,'RTaUke')]") == null)//23-05-2023//03-05-2023 //20-07-2022
                     return "PeopleAlsoAsk"; //11-02-2020
             }
             if (node.SelectSingleNode(".//g-card[@class='cvoI5e']|.//g-tray-header[@class='iI6nue ieGFJe']") != null || node.SelectSingleNode(".//g-card[@class='U8KfXc']") != null)//11-01-2023 //23-11-2020 //20-11-2020

@@ -1739,7 +1739,7 @@ namespace RapidTrackingSingleThread
             nd = node.SelectSingleNode(".//div[contains(@class,'cUnQKe')]|.//div[@jsname='N760b']");//02-08-2021//08-07-2021
             if (nd != null)
             {
-                if (node.SelectSingleNode(".//div[@class='AuVD KJ7Tg cUnQKe']|.//div[@class='cUnQKe RTaUke']") == null)//03-05-2023 //20-07-2022
+                if (node.SelectSingleNode(".//div[@class='AuVD KJ7Tg cUnQKe']|.//div[contains(@class,'RTaUke')]") == null)//23-05-2023//03-05-2023 //20-07-2022
                     return "PeopleAlsoAsk"; //11-02-2020
             }
             if (node.SelectSingleNode(".//g-card[@class='cvoI5e']|.//g-tray-header[@class='iI6nue ieGFJe']") != null || node.SelectSingleNode(".//g-card[@class='U8KfXc']") != null)//11-01-2023 //23-11-2020 //20-11-2020

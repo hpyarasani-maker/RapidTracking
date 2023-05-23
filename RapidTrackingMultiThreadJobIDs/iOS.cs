@@ -1242,7 +1242,7 @@ namespace RapidTrackingMultiThreadJobIDs
         private string GetPopularProducts(HtmlNode node)//popular products//05-01-2023
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nodes = node.SelectNodes(".//ul/product-viewer-group/li|.//ul/div[@class='Ez5pwe']/li|.//div[@class='MhZJBd']/div[@jsname='U5epZb']|.//ul[contains(@class,'gYe3nc LAEtub')]/li");//08-05-2023
+            HtmlNodeCollection nodes = node.SelectNodes(".//ul/product-viewer-group/li|.//ul/div[@class='Ez5pwe']/li|.//div[@class='MhZJBd']/div[@jsname='U5epZb']|.//ul[contains(@class,'gYe3nc LAEtub')]/li|.//ul[contains(@class,'lvS33d nodrpc')]/li");//23-05-2023//08-05-2023
             if (nodes == null)
                 nodes = node.SelectNodes(".//ul[contains(@class, 'sho-apgc__product-grid')]/li|.//ul/li[@class='J4ZKO wTrwWd']|.//ul[contains(@class,'sho-apgc__product-grid')]/div/li");//06-03-2023
             if (nodes != null)
@@ -2414,9 +2414,11 @@ namespace RapidTrackingMultiThreadJobIDs
         private string GetHotels(HtmlNode node)//24-03-2022 new element Maps
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'M0T4Vc')]|.//div[@class='Vzzxlb']");//09-05-2023//02-03-2023//01-03-2023
-            if (nds == null)
-                nds = node.SelectNodes(".//div[@class='eIE7ad']");//15-05-2023
+            HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'M0T4Vc')]");//17-05-2023
+            if (nds == null)//17-05-2023
+                nds = node.SelectNodes(".//div[@class='eIE7ad']");//17-05-2023
+            if (nds == null)//17-05-2023
+                nds = node.SelectNodes(".//div[@class='Vzzxlb']");//17-05-2023
             if (nds != null)
             {
                 foreach (HtmlNode nd in nds)
@@ -2964,7 +2966,7 @@ namespace RapidTrackingMultiThreadJobIDs
             }
             //29-11-2019
             nd = node.SelectSingleNode(".//div[@class='KJDcUb WzRKRb']|.//div[contains(@class,'P8ujBc')]" +
-             "|.//div[@class='mnr-c P5XtRe']|.//div[@class='urrG9 v5yQqb jqWpsc']|.//div[contains(@class,'EtOod pkphOe')]|.//div[@class='mnr-c Eiw3V']");//26-09-2022 //29-06-2022
+             "|.//div[@class='mnr-c P5XtRe']|.//div[@class='urrG9 v5yQqb jqWpsc']|.//div[@class='lNvPub cP7qLd v5yQqb']|.//div[contains(@class,'EtOod pkphOe')]|.//div[@class='mnr-c Eiw3V']");//17-05-2023//26-09-2022 //29-06-2022
             //"|.//div[@class='mnr-c P5XtRe']|.//div[@class='urrG9 v5yQqb jqWpsc']|.//div[@class='mnr-c xpd EtOod pkphOe']");//29-06-2022 commented//10-06-2022//31-05-2022//25-03-2022//22-02-2022//01-02-2022
             if (nd != null)
             {
@@ -3129,7 +3131,7 @@ namespace RapidTrackingMultiThreadJobIDs
                 || node.SelectSingleNode(".//div[@class='mnr-c xpd EtOod pkphOe']") != null //10-06-2022
                 || node.SelectSingleNode(".//div[contains(@class,'P8ujBc')]") != null //22-02-2022 //01-02-2022
                 || node.SelectSingleNode(".//div[@class='mnr-c P5XtRe']") != null //25-03-2022
-                || node.SelectSingleNode(".//div[@class='urrG9 v5yQqb jqWpsc']") != null; //31-05-2022
+                || node.SelectSingleNode(".//div[@class='urrG9 v5yQqb jqWpsc']|.//div[@class='lNvPub cP7qLd v5yQqb']") != null;//17-05-2023 //31-05-2022
         }
 
         internal object GetTop100GoogleUKMobileImages_PageURLs(string kw, string v1, string v2, string v3, string v4, string v5)

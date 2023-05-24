@@ -943,11 +943,11 @@ namespace RapidTrackingSingleThread
                     s.Append(GetTopSights(node));
                     s.Append("</block>");
                     break;*/
-                /*case "flights":
+                case "flights":
                     s.Append("<block type=\"google_flights\" url=\"\">");
                     s.Append(GetFlights(node));
                     s.Append("</block>");
-                    break;*/ //23-02-2022
+                    break; //23-02-2022
                 case "popular": //09-11-2022
                     s.Append("<block type=\"popularProducts\" url=\"\">");
                     s.Append(GetPopularProducts(node));
@@ -1583,24 +1583,24 @@ namespace RapidTrackingSingleThread
 
             return s.ToString();
         }
-        private string GetFlights(HtmlNode node)//23-03-2022 new element flights
+        private string GetFlights(HtmlNode node)//24-05-2023
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='aieQre']/div/a");
+            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='aieQre']/div/a|.//div[@class='LQQ1Bd']/div/a");
             foreach (HtmlNode nd in nds)
             {
                 try
                 {
-                    string airline = nd.SelectSingleNode(".//span[@class='ps0VMc']")?.InnerText.Trim() ?? "";
-                    string hours = nd.SelectSingleNode(".//span[@class='sRcB8']")?.InnerText.Trim() ?? "";
-                    string connecting = nd.SelectSingleNode(".//span[@class='u85UCd']")?.InnerText.Trim() ?? "";
-                    string price = nd.SelectSingleNode(".//span[@class='xqqLDd']")?.InnerText.Trim() ?? "";
-                    s.Append("<item airline=\"" + SetTitle(airline) + "\" hours=\"" + SetTitle(hours) + "\" connecting=\"" + SetTitle(connecting) + "\" price=\"" + price + "\" />");
+                    string airline = nd.SelectSingleNode(".//span[@class='ps0VMc']|.//div[@class='A4fsl']")?.InnerText.Trim() ?? "";
+                    string hours = nd.SelectSingleNode(".//span[@class='sRcB8']|.//div[@class='QTPlac']/span[3]")?.InnerText.Trim() ?? "";
+                    string connecting = nd.SelectSingleNode(".//span[@class='u85UCd']|.//div[@class='QTPlac']/span[1]")?.InnerText.Trim() ?? "";
+                    string price = nd.SelectSingleNode(".//span[@class='xqqLDd']|.//span[@class='cirEce']")?.InnerText.Trim() ?? "";
+                    s.Append("<item airline =\"" +SetTitle(airline) + "\" hours =\"" +SetTitle(hours) + "\" connecting =\"" +SetTitle(connecting) + "\" price =\"" +price + "\" />");
                 }
                 catch { }
             }
             return s.ToString();
-        }//23-03-2022 
+        }//24-05-2023//23-03-2022 
         private string GetHotels(HtmlNode node)//24-03-2022 new element Maps
         {
             StringBuilder s = new StringBuilder();
@@ -1881,6 +1881,11 @@ namespace RapidTrackingSingleThread
             {
                 return "Popular";//09-11-2022 PopularProducts
             }
+            nd = node.SelectSingleNode(".//div[@class=‘IbDT9d’]");//24-05-2023
+            if (nd != null)//24-05-2023
+            {
+                return "Flights";//24-05-2023
+            }//24-05-2023
             return "";
         }
 
@@ -1989,7 +1994,7 @@ namespace RapidTrackingSingleThread
 
                 //enable below line without new block "popularProducts"
                 //if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null || node.SelectSingleNode(".//div[@class='dzpFPb']") != null)//28-05-2022//06-04-2022 //13-10-2021
-                if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null || node.SelectSingleNode(".//div[@class='dzpFPb']") != null || node.SelectSingleNode(".//div[@jscontroller='Yma7vd']") != null || node.SelectSingleNode(".//div[@class='aJegcc']") != null)//09-12-2022//09-11-2022 shopping
+                if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null || node.SelectSingleNode(".//div[@class='dzpFPb']") != null || node.SelectSingleNode(".//div[@jscontroller='Yma7vd']") != null || node.SelectSingleNode(".//div[@class='aJegcc']") != null || node.SelectSingleNode(".//div[@class='IbDT9d']") != null)//24-05-2023//09-12-2022//09-11-2022 shopping
                     return true;
 
                 // changes in map block on 19-06-2019.

@@ -1488,24 +1488,24 @@ namespace RapidTrackingLibrary
 
             return s.ToString();
         }
-        public string GetFlights(HtmlNode node)//23-03-2022 new element flights
+        private string GetFlights(HtmlNode node)//24-05-2023
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='aieQre']/div/a");
+            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='aieQre']/div/a|.//div[@class='LQQ1Bd']/div/a");
             foreach (HtmlNode nd in nds)
             {
                 try
                 {
-                    string airline = nd.SelectSingleNode(".//span[@class='ps0VMc']")?.InnerText.Trim() ?? "";
-                    string hours = nd.SelectSingleNode(".//span[@class='sRcB8']")?.InnerText.Trim() ?? "";
-                    string connecting = nd.SelectSingleNode(".//span[@class='u85UCd']")?.InnerText.Trim() ?? "";
-                    string price = nd.SelectSingleNode(".//span[@class='xqqLDd']")?.InnerText.Trim() ?? "";
-                    s.Append("<item airline=\"" + SetTitle(airline) + "\" hours=\"" + SetTitle(hours) + "\" connecting=\"" + SetTitle(connecting) + "\" price=\"" + price + "\" />");
+                    string airline = nd.SelectSingleNode(".//span[@class='ps0VMc']|.//div[@class='A4fsl']")?.InnerText.Trim() ?? "";
+                    string hours = nd.SelectSingleNode(".//span[@class='sRcB8']|.//div[@class='QTPlac']/span[3]")?.InnerText.Trim() ?? "";
+                    string connecting = nd.SelectSingleNode(".//span[@class='u85UCd']|.//div[@class='QTPlac']/span[1]")?.InnerText.Trim() ?? "";
+                    string price = nd.SelectSingleNode(".//span[@class='xqqLDd']|.//span[@class='cirEce']")?.InnerText.Trim() ?? "";
+                    s.Append("<item airline =\"" + SetTitle(airline) + "\" hours =\"" + SetTitle(hours) + "\" connecting =\"" + SetTitle(connecting) + "\" price =\"" + price + "\" />");
                 }
                 catch { }
             }
             return s.ToString();
-        }//23-03-2022 
+        }//24-05-2023//23-03-2022 
         public string GetHotels(HtmlNode node)//24-03-2022 new element Maps
         {
             StringBuilder s = new StringBuilder();
@@ -1769,6 +1769,16 @@ namespace RapidTrackingLibrary
             {
                 return "SiteLinks";
             }
+            nd = node.SelectSingleNode(".//ul/product-viewer-group|.//div[@class='aJegcc']");//09-12-2022 //09-11-2022 PopularProducts
+            if (nd != null)//09-11-2022 PopularProducts
+            {
+                return "Popular";//09-11-2022 PopularProducts
+            }
+            nd = node.SelectSingleNode(".//div[@class=‘IbDT9d’]");//24-05-2023
+            if (nd != null)//24-05-2023
+            {
+                return "Flights";//24-05-2023
+            }//24-05-2023
 
             return "";
         }
@@ -1875,7 +1885,7 @@ namespace RapidTrackingLibrary
                 if (nd != null)
                     if (nd.InnerText == "Top stories" || nd.InnerText == "Huvudnyheter" || nd.InnerText == "Videos" || nd.InnerText == "Video" || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws" || nd.InnerText == "Vertaalresultaat" || nd.InnerText == "Recipes" || nd.InnerText == "Vidéos")//02-12-2020 videos//05-08-2020 //29-06-2020//03-06-2020 // 02-06-2020  // 08-04-2020
                         return true;
-                if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null || node.SelectSingleNode(".//div[@class='dzpFPb']") != null)//28-05-2022//06-04-2022 //13-10-2021
+                if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null || node.SelectSingleNode(".//div[@class='dzpFPb']") != null || node.SelectSingleNode(".//div[@jscontroller='Yma7vd']") != null || node.SelectSingleNode(".//div[@class='aJegcc']") != null || node.SelectSingleNode(".//div[@class='IbDT9d']") != null)//24-05-2023//09-12-2022//09-11-2022 shopping
                     return true;
                 // changes in map block on 19-06-2019.
                 nd = node.SelectSingleNode(".//g-img/img");

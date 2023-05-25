@@ -1774,7 +1774,7 @@ namespace RapidTrackingLibrary
             {
                 return "Popular";//09-11-2022 PopularProducts
             }
-            nd = node.SelectSingleNode(".//div[@class=‘IbDT9d’]");//24-05-2023
+            nd = node.SelectSingleNode(".//div[@class='IbDT9d']");//24-05-2023
             if (nd != null)//24-05-2023
             {
                 return "Flights";//24-05-2023

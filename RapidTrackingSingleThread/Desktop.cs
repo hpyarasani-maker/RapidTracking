@@ -1601,7 +1601,7 @@ namespace RapidTrackingSingleThread
                         destination = airline;
                         airline = string.Empty;
                     }
-                    s.Append("<item airline =\"" +SetTitle(airline) + "\" hours =\"" +SetTitle(hours) + "\" connecting =\"" +SetTitle(connecting) + "\" price =\"" +price + "\" destincation =\"" + destination + "\" />");
+                    s.Append("<item airline =\"" + SetTitle(airline) + "\" hours =\"" + SetTitle(hours) + "\" connecting =\"" + SetTitle(connecting) + "\" price =\"" + price + "\" destination =\"" + SetTitle(destination) + "\" />");
                 }
                 catch { }
             }

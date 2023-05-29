@@ -1586,7 +1586,7 @@ namespace RapidTrackingSingleThread
         private string GetFlights(HtmlNode node)//24-05-2023
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='aieQre']/div/a|.//div[@class='LQQ1Bd']/div/a");
+            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='aieQre']/div/a|.//div[contains(@class,'LQQ1Bd')]/div/a");
             foreach (HtmlNode nd in nds)
             {
                 try
@@ -1596,6 +1596,11 @@ namespace RapidTrackingSingleThread
                     string connecting = nd.SelectSingleNode(".//span[@class='u85UCd']|.//div[@class='QTPlac']/span[1]")?.InnerText.Trim() ?? "";
                     string price = nd.SelectSingleNode(".//span[@class='xqqLDd']|.//span[@class='cirEce']")?.InnerText.Trim() ?? "";
                     string destination = string.Empty;
+                    if (node.SelectSingleNode(".//div[@class='UgpQWe']") == null)
+                    {
+                        destination = airline;
+                        airline = string.Empty;
+                    }
                     s.Append("<item airline =\"" +SetTitle(airline) + "\" hours =\"" +SetTitle(hours) + "\" connecting =\"" +SetTitle(connecting) + "\" price =\"" +price + "\" destincation =\"" + destination + "\" />");
                 }
                 catch { }
@@ -1882,11 +1887,6 @@ namespace RapidTrackingSingleThread
             {
                 return "Popular";//09-11-2022 PopularProducts
             }
-            nd = node.SelectSingleNode(".//div[@class='IbDT9d']");//24-05-2023
-            if (nd != null)//24-05-2023
-            {
-                return "Flights";//24-05-2023
-            }//24-05-2023
             return "";
         }
 

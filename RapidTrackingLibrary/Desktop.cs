@@ -824,8 +824,8 @@ namespace RapidTrackingLibrary
                         s.Append(GetSiteLinks(n));
                         continue;
                     }//14-12-2022
-                    //12-10-2022
-                    if ((Regex.IsMatch(n.OuterHtml, "id=\"vidthumb\\d*\"") && (n.SelectSingleNode(".//div[@class='ij69rd UHe5G']") != null || n.SelectSingleNode(".//div[@class='ij69rd TUOsUe UHe5G']") != null)) || n.SelectSingleNode(".//div[contains(@class,'U1TUId')]|.//div[@class='J1mWY']") != null)
+                     //12-10-2022
+                    if ((Regex.IsMatch(n.OuterHtml, "id=\"vidthumb\\d*\"") && (n.SelectSingleNode(".//div[@class='ij69rd UHe5G']") != null || n.SelectSingleNode(".//div[@class='ij69rd TUOsUe UHe5G']") != null)) || n.SelectSingleNode(".//div[contains(@class,'U1TUId')]|.//div[@class='J1mWY']|.//div[@class='c8rnLc flgn0c']") != null)//30-05-2023
                     {
                         var a = n.SelectSingleNode(".//div[@class='ct3b9e']/a|.//div[@class='IAZbGe']/a|.//div[@class='DhN8Cf']/a|.//div[@class='E74pWd']/a");//18-04-2023
                         var url = a.Attributes["href"].Value;

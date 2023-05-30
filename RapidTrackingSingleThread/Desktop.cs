@@ -1596,6 +1596,9 @@ namespace RapidTrackingSingleThread
                     string connecting = nd.SelectSingleNode(".//span[@class='u85UCd']|.//div[@class='QTPlac']/span[1]")?.InnerText.Trim() ?? "";
                     string price = nd.SelectSingleNode(".//span[@class='xqqLDd']|.//span[@class='cirEce']")?.InnerText.Trim() ?? "";
                     string destination = string.Empty;
+                    HtmlNode dest = node.SelectSingleNode(".//input[contains(@placeholder,'destination')]");//30-05-2023
+                    if (dest != null)//30-05-2023
+                        destination = dest.Attributes["value"].Value;//30-05-2023
                     if (node.SelectSingleNode(".//div[@class='UgpQWe']") == null)
                     {
                         destination = airline;

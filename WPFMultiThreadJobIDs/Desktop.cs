@@ -936,11 +936,11 @@ namespace WPFMultiThreadJobIDs
                     s.Append(GetTopSights(node));
                     s.Append("</block>");
                     break;*/
-                case "flights":
+                /*case "flights":
                     s.Append("<block type=\"flightPack\" url=\"\">");//31-05-2023
                     s.Append(GetFlights(node));
                     s.Append("</block>");
-                    break; //23-02-2022
+                    break;*/ //23-02-2022
                 case "popular": //09-11-2022
                     s.Append("<block type=\"popularProducts\" url=\"\">");
                     s.Append(GetPopularProducts(node));

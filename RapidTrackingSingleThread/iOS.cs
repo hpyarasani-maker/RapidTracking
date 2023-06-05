@@ -1382,11 +1382,11 @@ namespace RapidTrackingSingleThread
                     s.Append(GetTopSights(node));
                     s.Append("</block>");
                     break;*/
-                /*case "flights":
-                    s.Append("<block type=\"flightPack\" url=\"\">");
+                case "flights":
+                    //s.Append("<block type=\"flightPack\" url=\"\">");
                     s.Append(GetFlights(node));
-                    s.Append("</block>");//23-03-2022
-                    break;*/
+                    //s.Append("</block>");//23-03-2022
+                    break;
                 /*case "refine": //refine the search 23-11-2022
                     s.Append("<block type=\"refineBySearches\" url=\"\">");
                     s.Append(GetRefineBySearches(node));
@@ -2400,6 +2400,25 @@ namespace RapidTrackingSingleThread
         private string GetFlights(HtmlNode node)//05-06-2023
         {
             StringBuilder s = new StringBuilder();
+            string destination = string.Empty;
+            string origin = string.Empty;
+            HtmlNode dest = node.SelectSingleNode(".//div[@jsname='GseVJb']");
+            if (dest != null && dest.InnerText.Contains("destination"))
+            {
+                var spn = node.SelectSingleNode(".//div[@jsname='S9WWYc']").SelectNodes(".//span[not(contains(@aria-hidden, 'false'))]");
+                foreach (var sp in spn)
+                {
+                    origin += sp.InnerText + " ";
+                }
+                origin = origin.Trim();
+                spn = dest.SelectNodes(".//span[not(contains(@aria-hidden, 'false'))]");
+                foreach (var sp in spn)
+                {
+                    destination += sp.InnerText + " ";
+                }
+                destination = destination.Trim();
+            }
+            s.Append("<block type=\"flightPack\" url=\"\" origin=\"" + SetTitle(origin) + "\" destination=\"" + SetTitle(destination) + "\" >");
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='aieQre']/div/a|.//div[contains(@class,'LQQ1Bd')]/div/a");
             foreach (HtmlNode nd in nds)
             {
@@ -2409,40 +2428,28 @@ namespace RapidTrackingSingleThread
                     string hours = nd.SelectSingleNode(".//span[@class='sRcB8']|.//div[@class='QTPlac']/span[3]")?.InnerText.Trim() ?? "";
                     string connecting = nd.SelectSingleNode(".//span[@class='u85UCd']|.//div[@class='QTPlac']/span[1]")?.InnerText.Trim() ?? "";
                     string price = nd.SelectSingleNode(".//span[@class='xqqLDd']|.//span[@class='cirEce']")?.InnerText.Trim() ?? "";
-                    string destination = string.Empty;
                     string priceValue = string.Empty;
-                    string origin = string.Empty;
-                    HtmlNode dest = node.SelectSingleNode(".//div[@jsname='GseVJb']");
-                    if (dest != null && dest.InnerText.Contains("destination"))
-                    {
-                        var spn = node.SelectSingleNode(".//div[@jsname='S9WWYc']").SelectNodes(".//span[not(contains(@aria-hidden, 'false'))]");
-                        foreach (var sp in spn)
-                        {
-                            origin += sp.InnerText + " ";
-                        }
-                        origin = origin.Trim();
-                        spn = dest.SelectNodes(".//span[not(contains(@aria-hidden, 'false'))]");
-                        foreach (var sp in spn)
-                        {
-                            destination += sp.InnerText + " ";
-                        }
-                        destination = destination.Trim();
-                    }
+                    string hoursValue = string.Empty;
                     if (node.SelectSingleNode(".//div[@class='UgpQWe']") == null)
                     {
                         destination = airline;
                         airline = string.Empty;
                     }
+                    if (!string.IsNullOrEmpty(hours))
+                    {
+                        hoursValue = ConvertHours(hours);
+                    }
                     if (!string.IsNullOrEmpty(price))
                     {
                         priceValue = Convertprice(price);
                     }
-                    s.Append("<item airline=\"" + SetTitle(airline) + "\" hours=\"" + SetTitle(hours) + "\" flightType=\"" + SetTitle(connecting) + "\" price=\"" + price + "\" priceValue=\"" + priceValue + "\" origin=\"" + SetTitle(origin) + "\" destination =\"" + SetTitle(destination) + "\" />");
+                    s.Append("<item airline=\"" + SetTitle(airline) + "\" duration=\"" + SetTitle(hours) + "\" durationValue=\"" + hoursValue + "\" connections=\"" + SetTitle(connecting) + "\" price=\"" + price + "\" priceValue=\"" + priceValue + "\" />");
                 }
                 catch { }
             }
+            s.Append("</block>");
             return s.ToString();
-        }//05-06-2023
+        }//5-06-2023
         private string GetHotels(HtmlNode node)//24-03-2022 new element Maps
         {
             StringBuilder s = new StringBuilder();
@@ -2508,6 +2515,17 @@ namespace RapidTrackingSingleThread
             if (mc.Success)
                 price = mc.Value;
             return price;
+        }
+        private string ConvertHours(string hours)
+        {
+            Match match = Regex.Match(hours, @"(\d+)h (\d+)m");
+            if (match.Success)
+            {
+                string hrs = match.Groups[1].Value;
+                string min = match.Groups[2].Value;
+                return hrs + "." + min;
+            }
+            return "";
         }
         private string GetBlockType(HtmlNode node)
         {

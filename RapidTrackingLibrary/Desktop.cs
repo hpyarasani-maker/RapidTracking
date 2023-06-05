@@ -697,7 +697,8 @@ namespace RapidTrackingLibrary
 
                         if (nd.SelectSingleNode(".//h3[@role='heading']|.//div[@role='heading']") != null)//20-04-2023
                         {
-                            if (nd.SelectSingleNode(".//h3[@role='heading']|.//div[@role='heading']").InnerText == "Videos")//20-04-2023
+                            //if (nd.SelectSingleNode(".//h3[@role='heading']|.//div[@role='heading']").InnerText == "Videos")//20-04-2023
+                            if (node.SelectSingleNode(".//div[@jsname='wRSfy']") != null && node.SelectSingleNode(".//div[@class='g']") == null)//05-06-2023
                             {
                                 s.Append("<block type=\"videos\" url=\"\">");
                                 //get video urls;

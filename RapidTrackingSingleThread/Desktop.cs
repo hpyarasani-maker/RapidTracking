@@ -43,14 +43,11 @@ namespace RapidTrackingSingleThread
                 if (nodeCol == null)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='ires']/ol/div");//09-12-2020
                 if (nodeCol == null)
-                    //nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-section-with-header|//div[@class='Hpbsqe']|//div[@id='Odp5De']");//12-04-2023
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-section-with-header|//div[@class='Hpbsqe']|//div[@id='Odp5De']|//div[contains(@id, 'arc-srp')]/div/div[@class='MjjYud']|//div[contains(@id, 'arc-srp')]/div/div/div[@class='MjjYud']");//06-06-2023
                 if (nodeCol == null || (nodeCol.Count <= 1))//12-04-2023
                     nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'TzHB6b cLjAic')]|//div[contains(@id, 'arc-srp')]/div/div[@class='MjjYud']|//div[contains(@id, 'arc-srp')]/div/div/div[@class='MjjYud']") ?? nodeCol;//12-04-2023
                 if (nodeCol == null || nodeCol.Count <= 4)//02-05-2023//21-04-2023
                     nodeCol = doc.DocumentNode.SelectNodes(".//div[@class='WvKfwe a3spGf']/div") ?? nodeCol;//26-04-2023//21-04-2023
-                //if (nodeCol == null || (nodeCol.Count <= 1))//12-04-2023 //02-05-2023 commented
-                //    nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'TzHB6b cLjAic')]|//div[contains(@id, 'arc-srp')]/div/div[@class='MjjYud']|//div[contains(@id, 'arc-srp')]/div/div/div[@class='MjjYud']");//12-04-2023//02-05-2023 commented
                 if (nodeCol == null || (nodeCol.Count > 1 && nodeCol.Count <= 3))//25-07-2022
                     nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div|.//div[contains(@class,'ULSxyf')]|//div[@class='hlcw0c']/div") ?? nodeCol;//16-12-2022//17-08-2022
                 if (nodeCol == null || nodeCol.Count <= 1) //01-08-2022 swapped lines

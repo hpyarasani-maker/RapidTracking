@@ -2284,24 +2284,59 @@ namespace RapidTrackingLibrary
             } // end of 23-01-2020  // 21-02-2020
             return s.ToString();
         }
-        public string GetFlights(HtmlNode node) //23-03-2022 new element flights
+        private string GetFlights(HtmlNode node)//05-06-2023
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='aieQre']/div/a|.//div[@class='LQQ1Bd']/div/a");
+            string destination = string.Empty;
+            string origin = string.Empty;
+            HtmlNode dest = node.SelectSingleNode(".//div[@jsname='GseVJb']");
+            if (dest != null && dest.InnerText.Contains("destination"))
+            {
+                var spn = node.SelectSingleNode(".//div[@jsname='S9WWYc']").SelectNodes(".//span[not(contains(@aria-hidden, 'false'))]");
+                foreach (var sp in spn)
+                {
+                    origin += sp.InnerText + " ";
+                }
+                origin = origin.Trim();
+                spn = dest.SelectNodes(".//span[not(contains(@aria-hidden, 'false'))]");
+                foreach (var sp in spn)
+                {
+                    destination += sp.InnerText + " ";
+                }
+                destination = destination.Trim();
+            }
+            s.Append("<block type=\"flightPack\" url=\"\" origin=\"" + SetTitle(origin) + "\" destination=\"" + SetTitle(destination) + "\" >");
+            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='aieQre']/div/a|.//div[contains(@class,'LQQ1Bd')]/div/a");
             foreach (HtmlNode nd in nds)
             {
                 try
                 {
                     string airline = nd.SelectSingleNode(".//span[@class='ps0VMc']|.//div[@class='A4fsl']")?.InnerText.Trim() ?? "";
-                    string hours = nd.SelectSingleNode(".//span[@class='sRcB8']|.//div[@class='QTPlac']")?.InnerText.Trim() ?? "";
-                    string connecting = nd.SelectSingleNode(".//span[@class='u85UCd']")?.InnerText.Trim() ?? "";
-                    string price = nd.SelectSingleNode(".//span[@class='xqqLDd']|.//div[@class='yuVWKd']")?.InnerText.Trim() ?? "";
-                    s.Append("<item airline=\"" + SetTitle(airline) + "\" hours=\"" + SetTitle(hours) + "\" connecting=\"" + SetTitle(connecting) + "\" price=\"" + price + "\" />");
+                    string hours = nd.SelectSingleNode(".//span[@class='sRcB8']|.//div[@class='QTPlac']/span[3]")?.InnerText.Trim() ?? "";
+                    string connecting = nd.SelectSingleNode(".//span[@class='u85UCd']|.//div[@class='QTPlac']/span[1]")?.InnerText.Trim() ?? "";
+                    string price = nd.SelectSingleNode(".//span[@class='xqqLDd']|.//span[@class='cirEce']")?.InnerText.Trim() ?? "";
+                    string priceValue = string.Empty;
+                    string hoursValue = string.Empty;
+                    if (node.SelectSingleNode(".//div[@class='UgpQWe']") == null)
+                    {
+                        destination = airline;
+                        airline = string.Empty;
+                    }
+                    if (!string.IsNullOrEmpty(hours))
+                    {
+                        hoursValue = ConvertHours(hours);
+                    }
+                    if (!string.IsNullOrEmpty(price))
+                    {
+                        priceValue = Convertprice(price);
+                    }
+                    s.Append("<item airline=\"" + SetTitle(airline) + "\" duration=\"" + SetTitle(hours) + "\" durationValue=\"" + hoursValue + "\" connections=\"" + SetTitle(connecting) + "\" price=\"" + price + "\" priceValue=\"" + priceValue + "\" />");
                 }
                 catch { }
             }
+            s.Append("</block>");
             return s.ToString();
-        }//23-03-2022
+        }//5-06-2023
         public string GetHotels(HtmlNode node)//24-03-2022 new element Maps
         {
             StringBuilder s = new StringBuilder();
@@ -3020,6 +3055,17 @@ namespace RapidTrackingLibrary
                 reviews = Regex.Replace(reviews, "[^0-9K]", "").Replace("K", "000");
             return reviews;
         }//20-01-2023 display only numbers
+        private string ConvertHours(string hours)//06-06-2023
+        {
+            Match match = Regex.Match(hours, @"(\d+)h (\d+)m");
+            if (match.Success)
+            {
+                int hrs = Convert.ToInt32(match.Groups[1].Value);
+                int min = Convert.ToInt32(match.Groups[2].Value);
+                return (hrs + (min / 60.0)).ToString("##.##");
+            }
+            return "";
+        }//06-06-2023
         //07-11-2019
         public string GetRedirectedUrl(string url)
         {

@@ -2516,17 +2516,17 @@ namespace RapidTrackingSingleThread
                 price = mc.Value;
             return price;
         }
-        private string ConvertHours(string hours)
+        private string ConvertHours(string hours)//06-06-2023
         {
             Match match = Regex.Match(hours, @"(\d+)h (\d+)m");
             if (match.Success)
             {
-                string hrs = match.Groups[1].Value;
-                string min = match.Groups[2].Value;
-                return hrs + "." + min;
+                int hrs = Convert.ToInt32(match.Groups[1].Value);
+                int min = Convert.ToInt32(match.Groups[2].Value);
+                return (hrs + (min / 60.0)).ToString("##.##");
             }
             return "";
-        }
+        }//06-06-2023
         private string GetBlockType(HtmlNode node)
         {
             HtmlNode nd = node.SelectSingleNode(".//div[@class='KNcnob']/g-img");

@@ -717,7 +717,7 @@ namespace WPFMultiThreadJobIDs
                         HtmlNode img = nd.SelectSingleNode(".//img");
                         if (img != null)
                         {
-                            if ((Regex.IsMatch(nd.OuterHtml, "id=\"vidthumb\\d*\"") && (nd.SelectSingleNode(".//div[@class='ij69rd UHe5G']") != null || nd.SelectSingleNode(".//div[@class='ij69rd TUOsUe UHe5G']") != null)) || nd.SelectSingleNode(".//div[contains(@class,'U1TUId')]|.//div[@class='J1mWY']|.//div[@class='c8rnLc flgn0c']") != null)//02-05-2023//07-04-2022 //18-10-2021 video block selector
+                            if ((Regex.IsMatch(nd.OuterHtml, "id=\"vidthumb\\d*\"") && (nd.SelectSingleNode(".//div[@class='ij69rd UHe5G']") != null || nd.SelectSingleNode(".//div[@class='ij69rd TUOsUe UHe5G']") != null)) || nd.SelectSingleNode(".//div[contains(@class,'U1TUId')]|.//div[@class='J1mWY']|.//div[@class='c8rnLc flgn0c']|.//div[@class='Ylm8Fc']") != null)//07-06-2023//02-05-2023//07-04-2022 //18-10-2021 video block selector
                             {
                                 //24-08-2021 video item urls
                                 var urls = string.Empty;
@@ -938,9 +938,9 @@ namespace WPFMultiThreadJobIDs
                     s.Append("</block>");
                     break;*/
                 /*case "flights":
-                    s.Append("<block type=\"flightPack\" url=\"\">");//31-05-2023
+                    //s.Append("<block type=\"flightPack\" url=\"\">");//31-05-2023
                     s.Append(GetFlights(node));
-                    s.Append("</block>");
+                    //s.Append("</block>");
                     break;*/ //23-02-2022
                 case "popular": //09-11-2022
                     s.Append("<block type=\"popularProducts\" url=\"\">");
@@ -1577,9 +1577,18 @@ namespace WPFMultiThreadJobIDs
 
             return s.ToString();
         }
-        private string GetFlights(HtmlNode node)//24-05-2023
+        private string GetFlights(HtmlNode node)//05-06-2023
         {
             StringBuilder s = new StringBuilder();
+            string destination = string.Empty;
+            string origin = string.Empty;
+            HtmlNode dest = node.SelectSingleNode(".//input[contains(@placeholder,'destination')]");
+            if (dest != null)
+            {
+                origin = node.SelectSingleNode(".//input[contains(@placeholder,'origin')]").Attributes["value"].Value;
+                destination = dest.Attributes["value"].Value;
+            }
+            s.Append("<block type=\"flightPack\" url=\"\" origin=\"" + SetTitle(origin) + "\" destination=\"" + SetTitle(destination) + "\" >");
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='aieQre']/div/a|.//div[contains(@class,'LQQ1Bd')]/div/a");
             foreach (HtmlNode nd in nds)
             {
@@ -1589,30 +1598,28 @@ namespace WPFMultiThreadJobIDs
                     string hours = nd.SelectSingleNode(".//span[@class='sRcB8']|.//div[@class='QTPlac']/span[3]")?.InnerText.Trim() ?? "";
                     string connecting = nd.SelectSingleNode(".//span[@class='u85UCd']|.//div[@class='QTPlac']/span[1]")?.InnerText.Trim() ?? "";
                     string price = nd.SelectSingleNode(".//span[@class='xqqLDd']|.//span[@class='cirEce']")?.InnerText.Trim() ?? "";
-                    string destination = string.Empty;
-                    string priceValue = string.Empty;//31-05-2023
-                    string origin = string.Empty;//31-05-2023
-                    HtmlNode dest = node.SelectSingleNode(".//input[contains(@placeholder,'destination')]");//30-05-2023
-                    if (dest != null)//30-05-2023
-                    {
-                        origin = node.SelectSingleNode(".//input[contains(@placeholder,'origin')]").Attributes["value"].Value;
-                        destination = dest.Attributes["value"].Value;//30-05-2023
-                    }
+                    string priceValue = string.Empty;
+                    string hoursValue = string.Empty;
                     if (node.SelectSingleNode(".//div[@class='UgpQWe']") == null)
                     {
                         destination = airline;
                         airline = string.Empty;
                     }
-                    if (!string.IsNullOrEmpty(price)) //31-05-2023
+                    if (!string.IsNullOrEmpty(hours))
                     {
-                        priceValue = Convertprice(price); //31-05-2023
-                    } //31-05-2023
-                    s.Append("<item airline=\"" + SetTitle(airline) + "\" hours=\"" + SetTitle(hours) + "\" flightType=\"" + SetTitle(connecting) + "\" price=\"" + price + "\" priceValue=\"" + priceValue + "\" origin=\"" + SetTitle(origin) + "\" destination =\"" + SetTitle(destination) + "\" />");
+                        hoursValue = ConvertHours(hours);
+                    }
+                    if (!string.IsNullOrEmpty(price))
+                    {
+                        priceValue = Convertprice(price);
+                    }
+                    s.Append("<item airline=\"" + SetTitle(airline) + "\" duration=\"" + SetTitle(hours) + "\" durationValue=\"" + hoursValue + "\" connections=\"" + SetTitle(connecting) + "\" price=\"" + price + "\" priceValue=\"" + priceValue + "\" />");
                 }
                 catch { }
             }
+            s.Append("</block>");
             return s.ToString();
-        }//24-05-2023//23-03-2022 
+        }//05-06-2023
         private string GetHotels(HtmlNode node)//24-03-2022 new element Maps
         {
             StringBuilder s = new StringBuilder();
@@ -1688,6 +1695,17 @@ namespace WPFMultiThreadJobIDs
                 price = mc.Value;
             return price;
         }
+        private string ConvertHours(string hours)//06-06-2023
+        {
+            Match match = Regex.Match(hours, @"(\d+)h (\d+)m");
+            if (match.Success)
+            {
+                int hrs = Convert.ToInt32(match.Groups[1].Value);
+                int min = Convert.ToInt32(match.Groups[2].Value);
+                return (hrs + (min / 60.0)).ToString("##.##");
+            }
+            return "";
+        }//06-06-2023
         private string GetBlockType(HtmlNode node)
         {
             HtmlNode nd = node.SelectSingleNode(".//div[@class='_ELb']/a");
@@ -1743,9 +1761,9 @@ namespace WPFMultiThreadJobIDs
             if (nd != null)
                 return "TopSights";*///23-03-2022//19-01-2023
 
-            nd = node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]");//23-03-2022
+            /*nd = node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]");//23-03-2022
             if (nd != null)
-                return "Flights";//23-03-2022
+                return "Flights";//23-03-2022*/
 
             //nd = node.SelectSingleNode(".//div[@class='kp-blk cUnQKe']|.//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']|.//div[@jsname='N760b']");//08-07-2021//04-12-2020 //11-02-2020
             nd = node.SelectSingleNode(".//div[contains(@class,'cUnQKe')]|.//div[@jsname='N760b']");//02-08-2021//08-07-2021

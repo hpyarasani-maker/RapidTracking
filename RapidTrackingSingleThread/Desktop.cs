@@ -16,8 +16,10 @@ namespace RapidTrackingSingleThread
     {
         int orgLinks;
         string html;
+        string seid = string.Empty;//23-06-2023
         public string ProcessDocument(string seid, string keyword, HtmlDocument doc, out int count)
         {
+            this.seid = seid;//23-06-2023
             count = 0;
             if (doc == null) throw new Exception("No source found.");
             HtmlNode htmlNode = doc.DocumentNode.SelectSingleNode("//table[@id='mn']");
@@ -1657,6 +1659,7 @@ namespace RapidTrackingSingleThread
                         //string price_value = price.Substring(1).ToString();
                         if (price != "")
                         {
+                            price = ConvertCurrency(price, int.Parse(seid));//23-06-2023
                             price_value = Convertprice(price);
                         }
                         var desc = nd.SelectNodes(".//div[@class='I9B2He']|.//div[contains(@class,'mMeJe')]|.//div[@class='kOTJue jj25pf']|.//div[@class='ZIFkhf ApHyTb']|.//div[contains(@class,'dLtZ8b')]");//01-03-2023//28-02-2023//22-02-2023
@@ -1665,6 +1668,7 @@ namespace RapidTrackingSingleThread
                             {
                                 additional_info += d.InnerText + ",";
                             }
+                        reviews = ConvertNumber(reviews);//23-06-2023
                         string reviewNumbers = ConvertReviews(reviews);
                         if (string.IsNullOrEmpty(reviewNumbers) && string.IsNullOrEmpty(rating) && string.IsNullOrEmpty(price))
                         {
@@ -1692,7 +1696,30 @@ namespace RapidTrackingSingleThread
             }
             return s.ToString();
         }//24-03-2022
-       
+        private string ConvertNumber(string value)//23-06-2023
+        {
+            if (string.IsNullOrEmpty(value))
+                return null;
+            StringBuilder sb = new StringBuilder(value.Length);
+            foreach (char c in value)
+            {
+                double d = char.GetNumericValue(c);
+                if (d < 0 || d % 1 != 0)
+                    sb.Append(c);
+                else
+                    sb.Append((int)d);
+            }
+            return sb.ToString();
+        }//23-06-2023
+        private string ConvertCurrency(string value, int seid)//23-06-2023
+        {
+            var val = ConvertNumber(value);
+            if (val == null) return null;
+            var res = Convertprice(val);
+            var locale = SearchParams.searches.FirstOrDefault(l => l.seid == seid).locale;
+            var cs = new RegionInfo(locale).ISOCurrencySymbol;
+            return string.Join(" ", cs, res);
+        }//23-06-2023
         private string Convertprice(string price)
         {
             string patternprice = "[\\d]+";

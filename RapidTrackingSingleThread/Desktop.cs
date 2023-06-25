@@ -1723,8 +1723,8 @@ namespace RapidTrackingSingleThread
         private string Convertprice(string price)
         {
             string patternprice = "[\\d]+";
-            Regex re = new Regex(patternprice, RegexOptions.IgnoreCase);
-            Match mc = re.Match(price.Replace(",",""));
+            string p = price.Replace(",", "").Replace("٬", "");
+            Match mc = Regex.Match(p, patternprice, RegexOptions.IgnoreCase);
             if (mc.Success)
                 price = mc.Value;
             return price;

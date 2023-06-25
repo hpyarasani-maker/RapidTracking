@@ -1,7 +1,9 @@
 ﻿using HtmlAgilityPack;
 using System;
 using System.Collections;
+using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -1593,11 +1595,35 @@ namespace RapidTrackingLibrary
             return s.ToString();
         }//24-03-2022
 
-        public string Convertprice(string price)
+        private string ConvertNumber(string value)//23-06-2023
+        {
+            if (string.IsNullOrEmpty(value))
+                return null;
+            StringBuilder sb = new StringBuilder(value.Length);
+            foreach (char c in value)
+            {
+                double d = char.GetNumericValue(c);
+                if (d < 0 || d % 1 != 0)
+                    sb.Append(c);
+                else
+                    sb.Append((int)d);
+            }
+            return sb.ToString();
+        }//23-06-2023
+        private string ConvertCurrency(string value, int seid)//23-06-2023
+        {
+            var val = ConvertNumber(value);
+            if (val == null) return null;
+            var res = Convertprice(val);
+            var locale = SearchParams.searches.FirstOrDefault(l => l.seid == seid).locale;
+            var cs = new RegionInfo(locale).ISOCurrencySymbol;
+            return string.Join(" ", cs, res);
+        }//23-06-2023
+        private string Convertprice(string price)
         {
             string patternprice = "[\\d]+";
-            Regex re = new Regex(patternprice, RegexOptions.IgnoreCase);
-            Match mc = re.Match(price.Replace(",", ""));
+            string p = price.Replace(",", "").Replace("٬", "");
+            Match mc = Regex.Match(p, patternprice, RegexOptions.IgnoreCase);
             if (mc.Success)
                 price = mc.Value;
             return price;

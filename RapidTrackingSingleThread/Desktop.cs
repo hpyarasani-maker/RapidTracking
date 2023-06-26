@@ -2106,6 +2106,7 @@ namespace RapidTrackingSingleThread
         }
         private string ConvertReviews(string reviews)//20-01-2023 display only numbers
         {
+            if (string.IsNullOrEmpty(reviews)) return null;//26-06-2023
             Regex rx = new Regex("\\.\\d*K");
             if (rx.IsMatch(reviews))
                 reviews = Regex.Replace(reviews, "[^0-9K]", "").Replace("K", "00");

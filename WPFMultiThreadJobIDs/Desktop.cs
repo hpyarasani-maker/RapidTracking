@@ -14,11 +14,9 @@ namespace WPFMultiThreadJobIDs
     {
         int orgLinks;
         string html;
-        string seid = string.Empty;//23-06-2023
         public string ProcessDocument(string seid, string keyword, HtmlDocument doc, out int count)
         {
             count = 0;
-            this.seid = seid;//23-06-2023
             if (doc == null) throw new Exception("No source found.");
             HtmlNode htmlNode = doc.DocumentNode.SelectSingleNode("//table[@id='mn']");
             if (htmlNode != null)
@@ -413,14 +411,12 @@ namespace WPFMultiThreadJobIDs
                             link = nd.SelectSingleNode(".//div[@class='AQ2gqe']");//13-12-2022
                         if (link == null)//06-04-2023
                             link = nd.SelectSingleNode(".//div[contains(@class,'wTrwWd')]");//06-04-2023
-                        if (link == null)//17-06-2023
-                            link = nd.SelectSingleNode(".//div[contains(@class,'vzhcTd')]");//17-06-2023
                         if (link != null)
                         {
                             url = link.Attributes["href"]?.Value ?? ""; //24-01-2023
                             title = link.SelectSingleNode(".//div[@class='vuR1ld']|.//div[@class='wEN0R']|.//div[contains(@class,'vYe7gd')]|.//div[contains(@class,'SsM98d')]")?.InnerText ?? "";//21-04-2023
                             price = link.SelectSingleNode(".//div[@class='ldGAMe']|.//div[@class='z235y jAPStb']|.//div[@class='s1bFpb']|.//div[contains(@class, 'VQgkpe')]/span[1]|.//div[@class='FG68Ac']")?.InnerText ?? "";//21-04-2023
-                            name = link.SelectSingleNode(".//div[@class='DNnNed nbhTP']/span[@class='Dt4hCc']|.//div[@class='ix5OZc']|.//div[@class='pMiHCf']|.//div[contains(@class,'n7emVc')]")?.InnerText ?? "";//23-06-2023//06-04-2023
+                            name = link.SelectSingleNode(".//div[@class='DNnNed nbhTP']/span[@class='Dt4hCc']|.//div[@class='ix5OZc']|.//div[@class='pMiHCf']|.//div[@class='n7emVc']")?.InnerText ?? "";//06-04-2023
                         }
                         if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(title))
                             s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" price=\"" + SetTitle(price) + "\" site=\"" + SetTitle(name) + "\" />");
@@ -1654,7 +1650,6 @@ namespace WPFMultiThreadJobIDs
                         //string price_value = price.Substring(1).ToString();
                         if (price != "")
                         {
-                            price = ConvertCurrency(price, int.Parse(seid));//23-06-2023
                             price_value = Convertprice(price);
                         }
                         var desc = nd.SelectNodes(".//div[@class='I9B2He']|.//div[contains(@class,'mMeJe')]|.//div[@class='kOTJue jj25pf']|.//div[@class='ZIFkhf ApHyTb']|.//div[contains(@class,'dLtZ8b')]");//01-03-2023//28-02-2023//22-02-2023
@@ -1663,7 +1658,6 @@ namespace WPFMultiThreadJobIDs
                             {
                                 additional_info += d.InnerText + ",";
                             }
-                        reviews = ConvertNumber(reviews);//23-06-2023
                         string reviewNumbers = ConvertReviews(reviews);
                         if (string.IsNullOrEmpty(reviewNumbers) && string.IsNullOrEmpty(rating) && string.IsNullOrEmpty(price))
                         {
@@ -1691,35 +1685,12 @@ namespace WPFMultiThreadJobIDs
             }
             return s.ToString();
         }//24-03-2022
-        private string ConvertNumber(string value)//23-06-2023
-        {
-            if (string.IsNullOrEmpty(value))
-                return null;
-            StringBuilder sb = new StringBuilder(value.Length);
-            foreach (char c in value)
-            {
-                double d = char.GetNumericValue(c);
-                if (d < 0 || d % 1 != 0)
-                    sb.Append(c);
-                else
-                    sb.Append((int)d);
-            }
-            return sb.ToString();
-        }//23-06-2023
-        private string ConvertCurrency(string value, int seid)//23-06-2023
-        {
-            var val = ConvertNumber(value);
-            if (val == null) return null;
-            var res = Convertprice(val);
-            var locale = SearchParams.searches.FirstOrDefault(l => l.seid == seid).locale;
-            var cs = new RegionInfo(locale).ISOCurrencySymbol;
-            return string.Join(" ", cs, res);
-        }//23-06-2023
+
         private string Convertprice(string price)
         {
             string patternprice = "[\\d]+";
-            string p = price.Replace(",", "").Replace("٬", "");
-            Match mc = Regex.Match(p, patternprice, RegexOptions.IgnoreCase);
+            Regex re = new Regex(patternprice, RegexOptions.IgnoreCase);
+            Match mc = re.Match(price.Replace(",", ""));
             if (mc.Success)
                 price = mc.Value;
             return price;
@@ -2101,7 +2072,6 @@ namespace WPFMultiThreadJobIDs
         }
         private string ConvertReviews(string reviews)//20-01-2023 display only numbers
         {
-            if (string.IsNullOrEmpty(reviews)) return null;//26-06-2023
             Regex rx = new Regex("\\.\\d*K");
             if (rx.IsMatch(reviews))
                 reviews = Regex.Replace(reviews, "[^0-9K]", "").Replace("K", "00");

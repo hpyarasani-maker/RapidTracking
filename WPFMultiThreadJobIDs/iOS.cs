@@ -14,11 +14,11 @@ namespace WPFMultiThreadJobIDs
     {
         int orgLinks;
         string html;
-
+        string seid = string.Empty;//23-06-2023
         public string ProcessDocument(string seid, string keyword, HtmlDocument doc, out int count)
         {
             count = 0;
-
+            this.seid = seid;//23-06-2023
             if (doc == null) throw new Exception("No source found.");
 
             orgLinks = 0;
@@ -1255,9 +1255,9 @@ namespace WPFMultiThreadJobIDs
                     if (link != null)
                     {
                         url = link.Attributes["href"]?.Value;
-                        title = link.SelectSingleNode(".//div[contains(@class,'ZsI9Vc')]|.//div[@jsname='r4nke']|.//div[@class='aTc6pf']|.//div[@class='aqszKe']")?.InnerText ?? "";//27-02-2023//05-01-2023
+                        title = link.SelectSingleNode(".//div[contains(@class,'ZsI9Vc')]|.//div[@jsname='r4nke']|.//div[@class='aTc6pf']|.//div[@class='aqszKe']|.//div[contains(@class,'SsM98d')]")?.InnerText ?? "";//16-06-2023//27-02-2023//05-01-2023
                         price = link.SelectSingleNode(".//div[@class='Ijn7Rc']|.//div[@class='vy5bA dpJO9']|.//div[@class='uSZhvf Dxiee']/span[1]|.//div[@class='xQbyBc']/span|.//span[contains(@class,'lmQWe')]")?.InnerText ?? "";//06-03-2023//27-02-2023 //05-01-2023
-                        name = link.SelectSingleNode(".//div[@class='DAB5ue']|.//div[@class='NemW5e']/span|.//div[contains(@class, 'ChC0jd')]/span|.//div[contains(@class,'kV5zMb')]/span[1]|.//span[@class='rw5ecc RmEs5b rOlovd']|.//div[@class='n7emVc']")?.InnerText ?? "";//09-05-2023//10-04-2023//16-03-2023 //27-02-2023//05-01-2023
+                        name = link.SelectSingleNode(".//div[@class='DAB5ue']|.//div[@class='NemW5e']/span|.//div[contains(@class, 'ChC0jd')]/span|.//div[contains(@class,'kV5zMb')]/span[1]|.//span[@class='rw5ecc RmEs5b rOlovd']|.//div[contains(@class,'n7emVc')]")?.InnerText ?? "";//23-06-2023//09-05-2023//10-04-2023//16-03-2023 //27-02-2023//05-01-2023
                     }
                     if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(title))
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" price=\"" + SetTitle(price) + "\" site=\"" + SetTitle(name) + "\" />");
@@ -2465,6 +2465,7 @@ namespace WPFMultiThreadJobIDs
                         string price = nd.SelectSingleNode(".//div[contains(@class,'VSZCrf')]/span|.//div[@class='QIeQge']")?.InnerText.Trim() ?? "";//02-03-2023//22-02-2023
                         if (price != "")
                         {
+                            price = ConvertCurrency(price, int.Parse(seid));//23-06-2023
                             price_value = Convertprice(price);
                         }
                         var desc = nd.SelectNodes(".//div[@class='I9B2He']|.//div[contains(@class,'dLtZ8b')]|.//div[@class='ZIFkhf ApHyTb']|.//div[@class='COW5R']|.//div[contains(@class,'mMeJe')]");//15-03-2023//01-03-2023//27-02-2023//22-02-2023
@@ -2473,6 +2474,7 @@ namespace WPFMultiThreadJobIDs
                             {
                                 additional_info += d.InnerText + ",";
                             }
+                        reviews = ConvertNumber(reviews);//23-06-2023
                         string reviewNumbers = ConvertReviews(reviews);
                         if (string.IsNullOrEmpty(reviewNumbers) && string.IsNullOrEmpty(rating) && string.IsNullOrEmpty(price))
                         {
@@ -2500,11 +2502,35 @@ namespace WPFMultiThreadJobIDs
             }
             return s.ToString();
         }//24-03-2022
+        private string ConvertNumber(string value)//23-06-2023
+        {
+            if (string.IsNullOrEmpty(value))
+                return null;
+            StringBuilder sb = new StringBuilder(value.Length);
+            foreach (char c in value)
+            {
+                double d = char.GetNumericValue(c);
+                if (d < 0 || d % 1 != 0)
+                    sb.Append(c);
+                else
+                    sb.Append((int)d);
+            }
+            return sb.ToString();
+        }//23-06-2023
+        private string ConvertCurrency(string value, int seid)//23-06-2023
+        {
+            var val = ConvertNumber(value);
+            if (val == null) return null;
+            var res = Convertprice(val);
+            var locale = SearchParams.searches.FirstOrDefault(l => l.seid == seid).locale;
+            var cs = new RegionInfo(locale).ISOCurrencySymbol;
+            return string.Join(" ", cs, res);
+        }//23-06-2023
         private string Convertprice(string price)
         {
             string patternprice = "[\\d]+";
-            Regex re = new Regex(patternprice, RegexOptions.IgnoreCase);
-            Match mc = re.Match(price.Replace(",", ""));
+            string p = price.Replace(",", "").Replace("٬", "");
+            Match mc = Regex.Match(p, patternprice, RegexOptions.IgnoreCase);
             if (mc.Success)
                 price = mc.Value;
             return price;
@@ -2786,7 +2812,7 @@ namespace WPFMultiThreadJobIDs
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='bUNBRd mnr-c']|.//div[@class='HnYYW i8lZMc']|.//div[@class='HnYYW mfMhoc']|.//div[@class='HnYYW']/div");//20-11-2020 twiter classic links//26-06-2020 //13-03-2020 //include on 2019-06-24
             if (nd == null)
-                nd = node.SelectSingleNode(".//g-card[@class='g F6CFcc']");//03-06-2021 twitter block
+                nd = node.SelectSingleNode(".//g-card[@class='g F6CFcc']|.//g-inner-card[@class='Bf5NPb']");//26-06-2023//03-06-2021 twitter block
             if (nd != null)
             {
                 if (nd.InnerText.Contains("Twitter") || nd.SelectSingleNode(".//g-link") != null) //07-01-2021 twitter link
@@ -3188,6 +3214,7 @@ namespace WPFMultiThreadJobIDs
         }
         private string ConvertReviews(string reviews)//20-01-2023 display only numbers
         {
+            if (string.IsNullOrEmpty(reviews)) return null;//26-06-2023
             Regex rx = new Regex("\\.\\d*K");
             if (rx.IsMatch(reviews))
                 reviews = Regex.Replace(reviews, "[^0-9K]", "").Replace("K", "00");

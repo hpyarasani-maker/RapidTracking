@@ -2474,7 +2474,7 @@ namespace RapidTrackingSingleThread
                         string price = nd.SelectSingleNode(".//div[contains(@class,'VSZCrf')]/span|.//div[@class='QIeQge']")?.InnerText.Trim() ?? "";//02-03-2023//22-02-2023
                         if (price != "")
                         {
-                            price = ConvertCurrency(price, int.Parse(seid));//23-06-2023
+                            price = ConvertNumber(price);//23-06-2023
                             price_value = Convertprice(price);
                         }
                         var desc = nd.SelectNodes(".//div[@class='I9B2He']|.//div[contains(@class,'dLtZ8b')]|.//div[@class='ZIFkhf ApHyTb']|.//div[@class='COW5R']|.//div[contains(@class,'mMeJe')]");//15-03-2023//01-03-2023//27-02-2023//22-02-2023

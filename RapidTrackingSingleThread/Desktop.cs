@@ -1729,9 +1729,24 @@ namespace RapidTrackingSingleThread
                 price = mc.Value;
             return price;
         }
-        private string ConvertHours(string hours)//06-06-2023
+        private string ConvertHours(string hours)//28-06-2023
         {
-            Match match = Regex.Match(hours, @"(\d+)h (\d+)m");
+            Match match = Regex.Match(hours, @"(\d+)d (\d+)h");
+            if (match.Success)
+            {
+                string days = match.Groups[1].Value;
+                string hrs = match.Groups[2].Value;
+                return days + "." + hrs + ".0";
+            }
+            match = Regex.Match(hours, @"(\d+)d (\d+)h (\d+)m");
+            if (match.Success)
+            {
+                string days = match.Groups[1].Value;
+                int hrs = Convert.ToInt32(match.Groups[2].Value);
+                int min = Convert.ToInt32(match.Groups[3].Value);
+                return days + "." + (hrs + (min / 60.0)).ToString("##.##");
+            }
+            match = Regex.Match(hours, @"(\d+)h (\d+)m");
             if (match.Success)
             {
                 int hrs = Convert.ToInt32(match.Groups[1].Value);
@@ -1739,7 +1754,7 @@ namespace RapidTrackingSingleThread
                 return (hrs + (min / 60.0)).ToString("##.##");
             }
             return "";
-        }//06-06-2023
+        }//28-06-2023
         private string GetBlockType(HtmlNode node)
         {
             HtmlNode nd = node.SelectSingleNode(".//div[@class='_ELb']/a");

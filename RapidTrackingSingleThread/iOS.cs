@@ -2547,19 +2547,24 @@ namespace RapidTrackingSingleThread
         private string ConvertHours(string hours)//28-06-2023
         {
             Match match = Regex.Match(hours, @"(\d+)d (\d+)h");
+
             if (match.Success)
             {
                 string days = match.Groups[1].Value;
-                string hrs = match.Groups[2].Value;
-                return days + "." + hrs + ".0";
+                int d = Convert.ToInt32(days);
+                int hours1 = d * 24;
+                int hrs = Convert.ToInt32(match.Groups[2].Value);
+                return (hours1 + hrs) + "." + "0";
             }
             match = Regex.Match(hours, @"(\d+)d (\d+)h (\d+)m");
             if (match.Success)
             {
                 string days = match.Groups[1].Value;
+                int d = Convert.ToInt32(days);
+                int hours1 = d * 24;
                 int hrs = Convert.ToInt32(match.Groups[2].Value);
                 int min = Convert.ToInt32(match.Groups[3].Value);
-                return days + "." + (hrs + (min / 60.0)).ToString("##.##");
+                return (hours1 + hrs + (min / 60.0)).ToString("##.##");
             }
             match = Regex.Match(hours, @"(\d+)h (\d+)m");
             if (match.Success)

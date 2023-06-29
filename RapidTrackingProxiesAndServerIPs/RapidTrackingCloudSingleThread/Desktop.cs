@@ -14,9 +14,10 @@ namespace RapidTrackingCloudSingleThread
     {
         public int orgLinks;
         string html;
-        public int count;
+        public int count; string seid = string.Empty;//23-06-2023
         public string ProcessDocument(string seid, string keyword, HtmlDocument doc)
         {
+            this.seid = seid;//23-06-2023
             count = 0;
             if (doc == null) throw new Exception("No source found.");
 

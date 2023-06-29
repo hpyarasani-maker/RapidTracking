@@ -13,9 +13,10 @@ namespace TrendingReceiving
     public class Desktop
     {
         int orgLinks;
-        string html;
+        string html; string seid = string.Empty;//23-06-2023
         public string ProcessDocument(string seid, string keyword, string htmlsource, out int organicurls)
         {
+            this.seid = seid;//23-06-2023
             if (string.IsNullOrEmpty(htmlsource))
             {
                 organicurls = 0;

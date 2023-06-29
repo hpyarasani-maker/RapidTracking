@@ -1586,7 +1586,7 @@ namespace RapidTrackingSingleThread
 
             return s.ToString();
         }
-        private string GetFlights(HtmlNode node)//05-06-2023
+        private string GetFlights(HtmlNode node)//29-06-2023
         {
             StringBuilder s = new StringBuilder();
             string destination = string.Empty;
@@ -1595,40 +1595,78 @@ namespace RapidTrackingSingleThread
             if (dest != null)
             {
                 origin = node.SelectSingleNode(".//input[contains(@placeholder,'origin')]").Attributes["value"]?.Value ?? "";
-                destination = dest.Attributes["value"]?.Value ??"";
+                destination = dest.Attributes["value"]?.Value ?? "";
             }
-            s.Append("<block type=\"flightPack\" url=\"\" title=\"\" origin=\"" + SetTitle(origin) + "\" destination=\"" + SetTitle(destination) + "\" >");
-            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='aieQre']/div/a|.//div[contains(@class,'LQQ1Bd')]/div/a");
-            foreach (HtmlNode nd in nds)
+            else
             {
-                try
+                dest = node.SelectSingleNode(".//span[@class='kqEaA']");
+                origin = dest?.InnerText.Substring(0, dest.InnerText.IndexOf(" to "));
+                destination = dest?.InnerText.Substring(dest.InnerText.IndexOf(" to ") + 4);
+            }
+            s.Append("<block type=\"flightPack\" url=\"\" origin=\"" + SetTitle(origin) + "\" destination=\"" + SetTitle(destination) + "\" >");
+            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='aieQre']/div/a|.//div[contains(@class,'LQQ1Bd')]/div/a");
+            if (nds != null)
+            {
+                foreach (HtmlNode nd in nds)
                 {
-                    string airline = nd.SelectSingleNode(".//span[@class='ps0VMc']|.//div[@class='A4fsl']")?.InnerText.Trim() ?? "";
-                    string hours = nd.SelectSingleNode(".//span[@class='sRcB8']|.//div[@class='QTPlac']/span[3]")?.InnerText.Trim() ?? "";
-                    string connecting = nd.SelectSingleNode(".//span[@class='u85UCd']|.//div[@class='QTPlac']/span[1]")?.InnerText.Trim() ?? "";
-                    string price = nd.SelectSingleNode(".//span[@class='xqqLDd']|.//span[@class='cirEce']|.//div[@class='n22NNe']")?.InnerText.Trim() ?? "";//29-06-2023
-                    string priceValue = string.Empty;
-                    string hoursValue = "0"; //29-06-2023
-                    if (node.SelectSingleNode(".//div[@class='UgpQWe']") == null)
+                    try
                     {
-                        destination = airline;
-                        airline = string.Empty;
+                        string airline = nd.SelectSingleNode(".//span[@class='ps0VMc']|.//div[@class='A4fsl']")?.InnerText.Trim() ?? "";
+                        string hours = nd.SelectSingleNode(".//span[@class='sRcB8']|.//div[@class='QTPlac']/span[3]")?.InnerText.Trim() ?? "0h 0m";
+                        string connecting = nd.SelectSingleNode(".//span[@class='u85UCd']|.//div[@class='QTPlac']/span[1]")?.InnerText.Trim() ?? "";
+                        string price = nd.SelectSingleNode(".//span[@class='xqqLDd']|.//span[@class='cirEce']|.//div[@class='n22NNe']")?.InnerText.Trim() ?? "0";
+                        string priceValue = string.Empty;
+                        string hoursValue = string.Empty;
+                        if (node.SelectSingleNode(".//div[@class='UgpQWe']") == null)
+                        {
+                            destination = airline;
+                            airline = string.Empty;
+                        }
+                        if (!string.IsNullOrEmpty(hours))
+                        {
+                            hoursValue = ConvertHours(hours);
+                        }
+                        if (!string.IsNullOrEmpty(price))
+                        {
+                            priceValue = Convertprice(price);
+                        }
+                        s.Append("<item airline=\"" + SetTitle(airline) + "\" duration=\"" + SetTitle(hours) + "\" durationValue=\"" + hoursValue + "\" connections=\"" + SetTitle(connecting) + "\" price=\"" + price + "\" priceValue=\"" + priceValue + "\" />");
                     }
-                    if (!string.IsNullOrEmpty(hours))
-                    {
-                        hoursValue = ConvertHours(hours);
-                    }
-                    if (!string.IsNullOrEmpty(price))
-                    {
-                        priceValue = Convertprice(price);
-                    }
-                    s.Append("<item airline=\"" + SetTitle(airline) + "\" url=\"" + "\" title=\"" + "\" duration=\"" + SetTitle(hours) + "\" durationValue=\"" + hoursValue + "\" connections=\"" + SetTitle(connecting) + "\" price=\"" + price + "\" priceValue=\"" + priceValue + "\" />");
+                    catch { }
                 }
-                catch { }
+            }
+            else
+            {
+                nds = node.SelectNodes(".//table[@class='QGsTM']/tbody/tr");
+                if (nds != null)
+                {
+                    foreach (var nd in nds)
+                    {
+                        try
+                        {
+                            string airline = "";
+                            string hours = nd.SelectSingleNode(".//div[@class='BNeawe DwrKqd']/span")?.InnerText.Trim() ?? "0h 0m";
+                            string connecting = nd.SelectSingleNode(".//div[@class='BNeawe']")?.InnerText.Trim() ?? "";
+                            string price = nd.SelectSingleNode(".//div[@class='BNeawe DwrKqd']")?.GetDirectInnerText() ?? "0";
+                            string priceValue = string.Empty;
+                            string hoursValue = string.Empty;
+                            if (!string.IsNullOrEmpty(hours))
+                            {
+                                hoursValue = ConvertHours(hours);
+                            }
+                            if (!string.IsNullOrEmpty(price))
+                            {
+                                priceValue = Convertprice(price);
+                            }
+                            s.Append("<item airline=\"" + SetTitle(airline) + "\" duration=\"" + SetTitle(hours) + "\" durationValue=\"" + hoursValue + "\" connections=\"" + SetTitle(connecting) + "\" price=\"" + price + "\" priceValue=\"" + priceValue + "\" />");
+                        }
+                        catch { }
+                    }
+                }
             }
             s.Append("</block>");
             return s.ToString();
-        }//05-06-2023
+        }//29-06-2023
         private string GetHotels(HtmlNode node)//24-03-2022 new element Maps
         {
             StringBuilder s = new StringBuilder();

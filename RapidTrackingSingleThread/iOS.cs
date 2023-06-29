@@ -2544,37 +2544,32 @@ namespace RapidTrackingSingleThread
                 price = mc.Value;
             return price;
         }
-        private string ConvertHours(string hours)//28-06-2023
+        private string ConvertHours(string hours) //29-06-2023
         {
             Match match = Regex.Match(hours, @"(\d+)d (\d+)h");
-
             if (match.Success)
             {
-                string days = match.Groups[1].Value;
-                int d = Convert.ToInt32(days);
-                int hours1 = d * 24;
+                int days = Convert.ToInt32(match.Groups[1].Value);
                 int hrs = Convert.ToInt32(match.Groups[2].Value);
-                return (hours1 + hrs) + "." + "0";
+                return (days > 0 || hrs > 0) ? ((days * 24) + hrs) + "." + "0" : "0.0";
             }
             match = Regex.Match(hours, @"(\d+)d (\d+)h (\d+)m");
             if (match.Success)
             {
-                string days = match.Groups[1].Value;
-                int d = Convert.ToInt32(days);
-                int hours1 = d * 24;
+                int days = Convert.ToInt32(match.Groups[1].Value);
                 int hrs = Convert.ToInt32(match.Groups[2].Value);
                 int min = Convert.ToInt32(match.Groups[3].Value);
-                return (hours1 + hrs + (min / 60.0)).ToString("##.##");
+                return (days > 0 || hrs > 0 || min > 0) ? ((days * 24) + hrs + (min / 60.0)).ToString("##.##") : "0.0";
             }
             match = Regex.Match(hours, @"(\d+)h (\d+)m");
             if (match.Success)
             {
                 int hrs = Convert.ToInt32(match.Groups[1].Value);
                 int min = Convert.ToInt32(match.Groups[2].Value);
-                return (hrs + (min / 60.0)).ToString("##.##");
+                return (hrs > 0 || min > 0) ? (hrs + (min / 60.0)).ToString("##.##") : "0.0";
             }
             return "";
-        }//28-06-2023
+        }//29-03-2023
         private string GetBlockType(HtmlNode node)
         {
             HtmlNode nd = node.SelectSingleNode(".//div[@class='KNcnob']/g-img");
@@ -2874,8 +2869,7 @@ namespace RapidTrackingSingleThread
             }
             // changed on 05-07-2019
             else if (node.SelectSingleNode(".//div[@class='HnYYW']") != null)
-            {
-                HtmlNode n = node.SelectSingleNode(".//div[@class='HnYYW']");
+            {                HtmlNode n = node.SelectSingleNode(".//div[@class='HnYYW']");
                 if (n.InnerText == "People also ask" || n.InnerText == "Nutzer fragen auch" || n.InnerText == "Le persone hanno chiesto anche" || n.InnerText == "Orang juga bertanya")  //26-11-2019
                     return "PeopleAlsoAsk";
             }

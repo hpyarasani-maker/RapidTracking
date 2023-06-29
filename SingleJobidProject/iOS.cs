@@ -12,9 +12,10 @@ namespace SingleJobidProject
     class iOS
     {
         int orgLinks;
-        string html;
+        string html; string seid = string.Empty;//23-06-2023
         public string ProcessDocument(string seid, string keyword, HtmlDocument doc, out int count)
         {
+            this.seid = seid;//23-06-2023
             count = 0;
 
             if (doc == null) throw new Exception("No source found.");

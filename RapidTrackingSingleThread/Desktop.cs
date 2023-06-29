@@ -1599,9 +1599,10 @@ namespace RapidTrackingSingleThread
             }
             else
             {
-                dest = node.SelectSingleNode(".//span[@class='kqEaA']");
-                origin = dest?.InnerText.Substring(0, dest.InnerText.IndexOf(" to "));
-                destination = dest?.InnerText.Substring(dest.InnerText.IndexOf(" to ") + 4);
+                dest = node.SelectSingleNode(".//span[@class='kqEaA']|.//h3[@class='OOTLje']");
+                origin = dest?.InnerText.Substring(0, dest.InnerText.IndexOf(" to ")).Trim();
+                if (origin.ToLower().Equals("flights")) origin = string.Empty;//29-06-2023
+                destination = dest?.InnerText.Substring(dest.InnerText.IndexOf(" to ") + 4).Trim();
             }
             s.Append("<block type=\"flightPack\" url=\"\" origin=\"" + SetTitle(origin) + "\" destination=\"" + SetTitle(destination) + "\" >");
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='aieQre']/div/a|.//div[contains(@class,'LQQ1Bd')]/div/a");

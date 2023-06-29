@@ -1815,7 +1815,7 @@ namespace RapidTrackingSingleThread
             if (nd != null)
                 return "TopSights";*///23-03-2022//19-01-2023
 
-            nd = node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]");//23-03-2022
+            nd = node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]|.//div[contains(@class, 'vdQmEd')]");//29-06-2023//23-03-2022
             if (nd != null)
                 return "Flights";//23-03-2022
 
@@ -2075,7 +2075,8 @@ namespace RapidTrackingSingleThread
                 //if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null || node.SelectSingleNode(".//div[@class='dzpFPb']") != null)//28-05-2022//06-04-2022 //13-10-2021
                 if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null || node.SelectSingleNode(".//div[@class='dzpFPb']") != null || node.SelectSingleNode(".//div[@jscontroller='Yma7vd']") != null || node.SelectSingleNode(".//div[@class='aJegcc']") != null || node.SelectSingleNode(".//div[@class='IbDT9d']") != null)//24-05-2023//09-12-2022//09-11-2022 shopping
                     return true;
-
+                if (node.SelectSingleNode(".//div[contains(@class, 'vdQmEd')]") != null)//29-06-2023
+                    return true;//29-06-2023
                 // changes in map block on 19-06-2019.
                 nd = node.SelectSingleNode(".//g-img/img");
                 if (nd != null)

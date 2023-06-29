@@ -2427,9 +2427,9 @@ namespace RapidTrackingSingleThread
                 try
                 {
                     string airline = nd.SelectSingleNode(".//span[@class='ps0VMc']|.//div[@class='A4fsl']")?.InnerText.Trim() ?? "";
-                    string hours = nd.SelectSingleNode(".//span[@class='sRcB8']|.//div[@class='QTPlac']/span[3]")?.InnerText.Trim() ?? "0h 0m";//29-06-2023
-                    string connecting = nd.SelectSingleNode(".//span[@class='u85UCd']|.//div[@class='QTPlac']/span[1]")?.InnerText.Trim().Replace("·", "") ?? "0";//29-06-2023
-                    string price = nd.SelectSingleNode(".//span[@class='xqqLDd']|.//span[@class='cirEce']|.//div[@class='n22NNe']")?.InnerText.Trim() ?? "";//29-06-2023
+                    string hours = nd.SelectSingleNode(".//span[@class='sRcB8']|.//div[@class='QTPlac']/span[3]|.//div[@class='QTPlac']/span[2]")?.InnerText.Trim() ?? "0h 0m";//29-06-2023
+                    string connecting = nd.SelectSingleNode(".//span[@class='u85UCd']|.//div[@class='QTPlac']/span[1]")?.InnerText.Trim().Replace("·", "") ?? "";//29-06-2023
+                    string price = nd.SelectSingleNode(".//span[@class='xqqLDd']|.//span[@class='cirEce']|.//div[@class='n22NNe']")?.InnerText.Trim() ?? "0";//29-06-2023
                     string priceValue = string.Empty;
                     string hoursValue = "";
                     if (node.SelectSingleNode(".//div[@class='UgpQWe']") == null)

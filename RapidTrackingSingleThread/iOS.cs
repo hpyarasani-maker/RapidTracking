@@ -2429,9 +2429,9 @@ namespace RapidTrackingSingleThread
                     string airline = nd.SelectSingleNode(".//span[@class='ps0VMc']|.//div[@class='A4fsl']")?.InnerText.Trim() ?? "";
                     string hours = nd.SelectSingleNode(".//span[@class='sRcB8']|.//div[@class='QTPlac']/span[3]")?.InnerText.Trim() ?? "";
                     string connecting = nd.SelectSingleNode(".//span[@class='u85UCd']|.//div[@class='QTPlac']/span[1]")?.InnerText.Trim() ?? "";
-                    string price = nd.SelectSingleNode(".//span[@class='xqqLDd']|.//span[@class='cirEce']")?.InnerText.Trim() ?? "";
+                    string price = nd.SelectSingleNode(".//span[@class='xqqLDd']|.//span[@class='cirEce']|.//div[@class='n22NNe']")?.InnerText.Trim() ?? "";//29-06-2023
                     string priceValue = string.Empty;
-                    string hoursValue = string.Empty;
+                    string hoursValue = "0";//29-06-2023
                     if (node.SelectSingleNode(".//div[@class='UgpQWe']") == null)
                     {
                         destination = airline;

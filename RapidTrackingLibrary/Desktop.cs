@@ -536,6 +536,23 @@ namespace RapidTrackingLibrary
             HtmlNode colt = doc.DocumentNode.SelectSingleNode("//div[@id='tvcap']");  //20-01-2020
             if (colt != null)
             {
+                HtmlNode pNode = colt.SelectSingleNode(".//div[@jscontroller='vWOOIe']");//30-06-2023
+                if (pNode != null)
+                {
+                    s.Append("<block type=\"productListedAds\" url=\"\">");
+                    HtmlNodeCollection pNodes = pNode.SelectNodes(".//div[@class='ZPze1e']/a");
+                    if (pNodes != null)
+                    {
+                        foreach (var nd in pNodes)
+                        {
+                            var url = nd.Attributes["href"].Value;
+                            url = GetRedirectedUrl(url);
+                            var title = nd.SelectSingleNode(".//div[@class='e7SMre']")?.InnerText;
+                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                        }
+                    }
+                    s.Append("</block>");
+                }//30-06-2023
                 HtmlNodeCollection col = colt.SelectNodes(".//div[@id='tads']/ol/li|.//div[@id='tads']/div/ol/li|.//div[@id='tadsb']/ol/li|.//div[@id='tads']/div[@class='uEierd']"); //21-09-2020 adwords selector//20-01-2020 //08-04-2020
 
                 if (col != null) //return s.ToString();  //20-01-2020

@@ -1766,6 +1766,8 @@ namespace RapidTrackingSingleThread
             Match mc = Regex.Match(p, patternprice, RegexOptions.IgnoreCase);
             if (mc.Success)
                 price = mc.Value;
+            if (price.Equals("unknown"))
+                price = "0";
             return price;
         }
         private string ConvertHours(string hours) //29-06-2023

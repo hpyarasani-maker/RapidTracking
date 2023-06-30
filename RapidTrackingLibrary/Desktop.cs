@@ -1,7 +1,9 @@
 ﻿using HtmlAgilityPack;
 using System;
 using System.Collections;
+using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -13,9 +15,10 @@ namespace RapidTrackingLibrary
     public class Desktop
     {
         int orgLinks;
-        public string html;
+        public string html; string seid = string.Empty;//23-06-2023
         public string ProcessDocument(string seid, string keyword, HtmlDocument doc, out int count)
         {
+            this.seid = seid;//23-06-2023
             count = 0;
             if (doc == null) throw new Exception("No source found.");
             HtmlNode htmlNode = doc.DocumentNode.SelectSingleNode("//table[@id='mn']");
@@ -425,6 +428,8 @@ namespace RapidTrackingLibrary
                             link = nd.SelectSingleNode(".//div[@class='AQ2gqe']");//13-12-2022
                         if (link == null)//06-04-2023
                             link = nd.SelectSingleNode(".//div[contains(@class,'wTrwWd')]");//06-04-2023
+                        if (link == null)//17-06-2023
+                            link = nd.SelectSingleNode(".//div[contains(@class,'vzhcTd')]");//17-06-2023
                         if (link != null)
                         {
                             url = link.Attributes["href"]?.Value ?? ""; //24-01-2023
@@ -531,6 +536,23 @@ namespace RapidTrackingLibrary
             HtmlNode colt = doc.DocumentNode.SelectSingleNode("//div[@id='tvcap']");  //20-01-2020
             if (colt != null)
             {
+                HtmlNode pNode = colt.SelectSingleNode(".//div[@jscontroller='vWOOIe']");//30-06-2023
+                if (pNode != null)
+                {
+                    s.Append("<block type=\"productListedAds\" url=\"\">");
+                    HtmlNodeCollection pNodes = pNode.SelectNodes(".//div[@class='ZPze1e']/a");
+                    if (pNodes != null)
+                    {
+                        foreach (var nd in pNodes)
+                        {
+                            var url = nd.Attributes["href"].Value;
+                            url = GetRedirectedUrl(url);
+                            var title = nd.SelectSingleNode(".//div[@class='e7SMre']")?.InnerText;
+                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                        }
+                    }
+                    s.Append("</block>");
+                }//30-06-2023
                 HtmlNodeCollection col = colt.SelectNodes(".//div[@id='tads']/ol/li|.//div[@id='tads']/div/ol/li|.//div[@id='tadsb']/ol/li|.//div[@id='tads']/div[@class='uEierd']"); //21-09-2020 adwords selector//20-01-2020 //08-04-2020
 
                 if (col != null) //return s.ToString();  //20-01-2020
@@ -1591,11 +1613,35 @@ namespace RapidTrackingLibrary
             return s.ToString();
         }//24-03-2022
 
-        public string Convertprice(string price)
+        private string ConvertNumber(string value)//23-06-2023
+        {
+            if (string.IsNullOrEmpty(value))
+                return null;
+            StringBuilder sb = new StringBuilder(value.Length);
+            foreach (char c in value)
+            {
+                double d = char.GetNumericValue(c);
+                if (d < 0 || d % 1 != 0)
+                    sb.Append(c);
+                else
+                    sb.Append((int)d);
+            }
+            return sb.ToString();
+        }//23-06-2023
+        private string ConvertCurrency(string value, int seid)//23-06-2023
+        {
+            var val = ConvertNumber(value);
+            if (val == null) return null;
+            var res = Convertprice(val);
+            var locale = SearchParams.searches.FirstOrDefault(l => l.seid == seid).locale;
+            var cs = new RegionInfo(locale).ISOCurrencySymbol;
+            return string.Join(" ", cs, res);
+        }//23-06-2023
+        private string Convertprice(string price)
         {
             string patternprice = "[\\d]+";
-            Regex re = new Regex(patternprice, RegexOptions.IgnoreCase);
-            Match mc = re.Match(price.Replace(",", ""));
+            string p = price.Replace(",", "").Replace("٬", "");
+            Match mc = Regex.Match(p, patternprice, RegexOptions.IgnoreCase);
             if (mc.Success)
                 price = mc.Value;
             return price;
@@ -1651,7 +1697,9 @@ namespace RapidTrackingLibrary
             {
                 return "Twitters";
             }
-
+            nd = node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]|.//div[contains(@class, 'vdQmEd')]");//29-06-2023//23-03-2022
+            if (nd != null)
+                return "Flights";//23-03-2022
 
             //nd = node.SelectSingleNode(".//div[@class='kp-blk cUnQKe']|.//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']|.//div[@jsname='N760b']");//08-07-2021//04-12-2020 //11-02-2020
             nd = node.SelectSingleNode(".//div[contains(@class,'cUnQKe')]|.//div[@jsname='N760b']");//08-07-2021
@@ -1901,6 +1949,8 @@ namespace RapidTrackingLibrary
                         return true;
                 if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null || node.SelectSingleNode(".//div[@class='dzpFPb']") != null || node.SelectSingleNode(".//div[@jscontroller='Yma7vd']") != null || node.SelectSingleNode(".//div[@class='aJegcc']") != null || node.SelectSingleNode(".//div[@class='IbDT9d']") != null)//24-05-2023//09-12-2022//09-11-2022 shopping
                     return true;
+                if (node.SelectSingleNode(".//div[contains(@class, 'vdQmEd')]") != null)//29-06-2023
+                    return true;//29-06-2023
                 // changes in map block on 19-06-2019.
                 nd = node.SelectSingleNode(".//g-img/img");
                 if (nd != null)
@@ -1950,6 +2000,7 @@ namespace RapidTrackingLibrary
         }
         public string ConvertReviews(string reviews)//20-01-2023 display only numbers
         {
+            if (string.IsNullOrEmpty(reviews)) return null;//26-06-2023
             Regex rx = new Regex("\\.\\d*K");
             if (rx.IsMatch(reviews))
                 reviews = Regex.Replace(reviews, "[^0-9K]", "").Replace("K", "00");

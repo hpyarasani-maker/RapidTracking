@@ -1792,6 +1792,18 @@ namespace RapidTrackingSingleThread
                 int min = Convert.ToInt32(match.Groups[2].Value);
                 return (hrs > 0 || min > 0) ? (hrs + (min / 60.0)).ToString("##.##") : "0.0";
             }
+            match = Regex.Match(hours, @"(\d+)h");
+            if (match.Success)
+            {
+                int hrs = Convert.ToInt32(match.Groups[1].Value);
+                return (hrs > 0) ? (hrs).ToString("##.##") : "0.0";
+            }
+            match = Regex.Match(hours, @"(\d+)m");
+            if (match.Success)
+            {
+                int min = Convert.ToInt32(match.Groups[1].Value);
+                return (min > 0) ? (min / 60.0).ToString("##.##") : "0.0";
+            }
             return "";
         }//29-03-2023
         private string GetBlockType(HtmlNode node)

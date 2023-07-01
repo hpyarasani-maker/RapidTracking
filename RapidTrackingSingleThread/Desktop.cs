@@ -1785,6 +1785,8 @@ namespace RapidTrackingSingleThread
                 price = mc.Value;
             if (price.Equals("unknown"))
                 price = "0";
+            if (price.Equals("check price"))//01-06-2023
+                price = "0";//01-06-2023
             return price;
         }
         private string ConvertHours(string hours) //29-06-2023

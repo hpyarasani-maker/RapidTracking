@@ -1612,7 +1612,16 @@ namespace RapidTrackingLibrary
             }
             return s.ToString();
         }//24-03-2022
-
+        public string ConvertReviews(string reviews)//20-01-2023 display only numbers
+        {
+            if (string.IsNullOrEmpty(reviews)) return null;//26-06-2023
+            Regex rx = new Regex("\\.\\d*K");
+            if (rx.IsMatch(reviews))
+                reviews = Regex.Replace(reviews, "[^0-9K]", "").Replace("K", "00");
+            else
+                reviews = Regex.Replace(reviews, "[^0-9K]", "").Replace("K", "000");
+            return reviews;
+        }//20-01-2023 display only numbers
         public string ConvertNumber(string value)//23-06-2023
         {
             if (string.IsNullOrEmpty(value))
@@ -2048,16 +2057,7 @@ namespace RapidTrackingLibrary
                 || node.SelectSingleNode(".//div/div[@class='g tF2Cxc']|.//div[contains(@class,'g Ww4FFb')]|.//div[contains(@class,'g dFd2Tb')]|.//div[@class='g ZYT4Gf']") != null//10-10-2022//13-07-2022 //07-04-2022//24-08-2021 video block //01-06-2021
                 || node.SelectSingleNode(".//div[@class='M42dy']/g-link/a") != null); //02-02-2022 twitter link
         }
-        public string ConvertReviews(string reviews)//20-01-2023 display only numbers
-        {
-            if (string.IsNullOrEmpty(reviews)) return null;//26-06-2023
-            Regex rx = new Regex("\\.\\d*K");
-            if (rx.IsMatch(reviews))
-                reviews = Regex.Replace(reviews, "[^0-9K]", "").Replace("K", "00");
-            else
-                reviews = Regex.Replace(reviews, "[^0-9K]", "").Replace("K", "000");
-            return reviews;
-        }//20-01-2023 display only numbers
+       
 
         //07-11-2019
         public string GetRedirectedUrl(string url)

@@ -2397,6 +2397,16 @@ namespace RapidTrackingLibrary
             }
             return s.ToString();
         }//24-03-2022
+        public string ConvertReviews(string reviews)//20-01-2023 display only numbers
+        {
+            if (string.IsNullOrEmpty(reviews)) return null;//26-06-2023
+            Regex rx = new Regex("\\.\\d*K");
+            if (rx.IsMatch(reviews))
+                reviews = Regex.Replace(reviews, "[^0-9K]", "").Replace("K", "00");
+            else
+                reviews = Regex.Replace(reviews, "[^0-9K]", "").Replace("K", "000");
+            return reviews;
+        }//20-01-2023 display only numbers
         public string ConvertNumber(string value)//23-06-2023
         {
             if (string.IsNullOrEmpty(value))
@@ -3133,27 +3143,8 @@ namespace RapidTrackingLibrary
         {
             throw new NotImplementedException();
         }
-        public string ConvertReviews(string reviews)//20-01-2023 display only numbers
-        {
-            if (string.IsNullOrEmpty(reviews)) return null;//26-06-2023
-            Regex rx = new Regex("\\.\\d*K");
-            if (rx.IsMatch(reviews))
-                reviews = Regex.Replace(reviews, "[^0-9K]", "").Replace("K", "00");
-            else
-                reviews = Regex.Replace(reviews, "[^0-9K]", "").Replace("K", "000");
-            return reviews;
-        }//20-01-2023 display only numbers
-        private string ConvertHours(string hours)//06-06-2023
-        {
-            Match match = Regex.Match(hours, @"(\d+)h (\d+)m");
-            if (match.Success)
-            {
-                int hrs = Convert.ToInt32(match.Groups[1].Value);
-                int min = Convert.ToInt32(match.Groups[2].Value);
-                return (hrs + (min / 60.0)).ToString("##.##");
-            }
-            return "";
-        }//06-06-2023
+      
+       
         //07-11-2019
         public string GetRedirectedUrl(string url)
         {

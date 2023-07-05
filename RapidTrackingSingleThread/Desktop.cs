@@ -1791,50 +1791,50 @@ namespace RapidTrackingSingleThread
                 price = "0";//01-06-2023
             return price;
         }
-        private string ConvertHours(string hours) //29-06-2023
+        private string ConvertHours(string hours) //05-07-2023
         {
-            Match match = Regex.Match(hours, @"(\d+)d (\d+)h");
+            Match match = Regex.Match(hours, @"(\d+)[\s]?[d|T][\W]* (\d+)[\s]?(h|Std)[\W]* (\d+)[\s]?(m|[M|m]in)");
+            if (match.Success)
+            {
+                int days = Convert.ToInt32(match.Groups[1].Value);
+                int hrs = Convert.ToInt32(match.Groups[2].Value);
+                int min = Convert.ToInt32(match.Groups[4].Value);
+                return (days > 0 || hrs > 0 || min > 0) ? ((days * 24) + hrs + (min / 60.0)).ToString("##.##") : "0.0";
+            }
+            match = Regex.Match(hours, @"(\d+)[\s]?[d|T][\W]* (\d+)[\s]?(h|Std\.)");
             if (match.Success)
             {
                 int days = Convert.ToInt32(match.Groups[1].Value);
                 int hrs = Convert.ToInt32(match.Groups[2].Value);
                 return (days > 0 || hrs > 0) ? ((days * 24) + hrs) + "." + "0" : "0.0";
             }
-            match = Regex.Match(hours, @"(\d+)d (\d+)h (\d+)m");
+            match = Regex.Match(hours, @"(\d+)[\s]?(h|Std)[\W]* (\d+)[\s]?(m|[M|m]in)");
+            if (match.Success)
+            {
+                int hrs = Convert.ToInt32(match.Groups[1].Value);
+                int min = Convert.ToInt32(match.Groups[3].Value);
+                return (hrs > 0 || min > 0) ? (hrs + (min / 60.0)).ToString("##.##") : "0.0";
+            }
+            match = Regex.Match(hours, @"(\d+)[\s]?[d|T]");
             if (match.Success)
             {
                 int days = Convert.ToInt32(match.Groups[1].Value);
-                int hrs = Convert.ToInt32(match.Groups[2].Value);
-                int min = Convert.ToInt32(match.Groups[3].Value);
-                return (days > 0 || hrs > 0 || min > 0) ? ((days * 24) + hrs + (min / 60.0)).ToString("##.##") : "0.0";
+                return (days > 0) ? (days * 24).ToString("##.##") : "0.0";
             }
-            match = Regex.Match(hours, @"(\d+)h (\d+)m");
+            match = Regex.Match(hours, @"(\d+)[\s]?(h|Std)");
             if (match.Success)
             {
                 int hrs = Convert.ToInt32(match.Groups[1].Value);
-                int min = Convert.ToInt32(match.Groups[2].Value);
-                return (hrs > 0 || min > 0) ? (hrs + (min / 60.0)).ToString("##.##") : "0.0";
+                return (hrs > 0) ? hrs.ToString("##.##") : "0.0";
             }
-            match = Regex.Match(hours, @"(\d+)h");
-            if (match.Success)
-            {
-                int hrs = Convert.ToInt32(match.Groups[1].Value);
-                return (hrs > 0) ? (hrs).ToString("##.##") : "0.0";
-            }
-            match = Regex.Match(hours, @"(\d+)m");
+            match = Regex.Match(hours, @"(\d+)[\s]?(m|[M|m]in)");
             if (match.Success)
             {
                 int min = Convert.ToInt32(match.Groups[1].Value);
                 return (min > 0) ? (min / 60.0).ToString("##.##") : "0.0";
             }
-            match = Regex.Match(hours, @"(\d+) Min");//01-06-2023
-            if (match.Success)
-            {
-                int min = Convert.ToInt32(match.Groups[1].Value);
-                return (min > 0) ? (min / 60.0).ToString("##.##") : "0.0";
-            }//01-06-2023
             return "";
-        }//29-03-2023
+        }//05-07-2023
         private string GetBlockType(HtmlNode node)
         {
             HtmlNode nd = node.SelectSingleNode(".//div[@class='_ELb']/a");

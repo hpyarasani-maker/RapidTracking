@@ -1613,7 +1613,7 @@ namespace RapidTrackingLibrary
             return s.ToString();
         }//24-03-2022
 
-        private string ConvertNumber(string value)//23-06-2023
+        public string ConvertNumber(string value)//23-06-2023
         {
             if (string.IsNullOrEmpty(value))
                 return null;
@@ -1628,7 +1628,7 @@ namespace RapidTrackingLibrary
             }
             return sb.ToString();
         }//23-06-2023
-        private string ConvertCurrency(string value, int seid)//23-06-2023
+        public string ConvertCurrency(string value, int seid)//23-06-2023
         {
             var val = ConvertNumber(value);
             if (val == null) return null;
@@ -1637,15 +1637,65 @@ namespace RapidTrackingLibrary
             var cs = new RegionInfo(locale).ISOCurrencySymbol;
             return string.Join(" ", cs, res);
         }//23-06-2023
-        private string Convertprice(string price)
+        public string Convertprice(string price)
         {
             string patternprice = "[\\d]+";
             string p = price.Replace(",", "").Replace("٬", "");
             Match mc = Regex.Match(p, patternprice, RegexOptions.IgnoreCase);
             if (mc.Success)
                 price = mc.Value;
+            if (price.Equals("unknown"))
+                price = "0";
+            if (price.Equals("check price"))//01-06-2023
+                price = "0";//01-06-2023
+            if (price.Equals("vérifier le prix"))//01-06-2023
+                price = "0";//01-06-2023
             return price;
         }
+        public string ConvertHours(string hours) //05-07-2023
+        {
+            Match match = Regex.Match(hours, @"(\d+)[\s]?[d|T][\W]* (\d+)[\s]?(h|Std)[\W]* (\d+)[\s]?(m|[M|m]in)");
+            if (match.Success)
+            {
+                int days = Convert.ToInt32(match.Groups[1].Value);
+                int hrs = Convert.ToInt32(match.Groups[2].Value);
+                int min = Convert.ToInt32(match.Groups[4].Value);
+                return (days > 0 || hrs > 0 || min > 0) ? ((days * 24) + hrs + (min / 60.0)).ToString("##.##") : "0.0";
+            }
+            match = Regex.Match(hours, @"(\d+)[\s]?[d|T][\W]* (\d+)[\s]?(h|Std\.)");
+            if (match.Success)
+            {
+                int days = Convert.ToInt32(match.Groups[1].Value);
+                int hrs = Convert.ToInt32(match.Groups[2].Value);
+                return (days > 0 || hrs > 0) ? ((days * 24) + hrs) + "." + "0" : "0.0";
+            }
+            match = Regex.Match(hours, @"(\d+)[\s]?(h|Std)[\W]* (\d+)[\s]?(m|[M|m]in)");
+            if (match.Success)
+            {
+                int hrs = Convert.ToInt32(match.Groups[1].Value);
+                int min = Convert.ToInt32(match.Groups[3].Value);
+                return (hrs > 0 || min > 0) ? (hrs + (min / 60.0)).ToString("##.##") : "0.0";
+            }
+            match = Regex.Match(hours, @"(\d+)[\s]?[d|T]");
+            if (match.Success)
+            {
+                int days = Convert.ToInt32(match.Groups[1].Value);
+                return (days > 0) ? (days * 24).ToString("##.##") : "0.0";
+            }
+            match = Regex.Match(hours, @"(\d+)[\s]?(h|Std)");
+            if (match.Success)
+            {
+                int hrs = Convert.ToInt32(match.Groups[1].Value);
+                return (hrs > 0) ? hrs.ToString("##.##") : "0.0";
+            }
+            match = Regex.Match(hours, @"(\d+)[\s]?(m|[M|m]in)");
+            if (match.Success)
+            {
+                int min = Convert.ToInt32(match.Groups[1].Value);
+                return (min > 0) ? (min / 60.0).ToString("##.##") : "0.0";
+            }
+            return "";
+        }//05-07-2023
         public string GetBlockType(HtmlNode node)
         {
             HtmlNode nd = node.SelectSingleNode(".//div[@class='_ELb']/a");

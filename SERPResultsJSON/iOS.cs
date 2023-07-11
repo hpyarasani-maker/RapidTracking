@@ -774,8 +774,8 @@ namespace SERPResultsJSON
                 if (nds == null)
                     if (node.SelectSingleNode(".//div[contains(@class,'YgXj7b')]|.//div[@class='Y37F6d Nn2Stf']/img") == null)//22-09-2021 missing video block//08-05-2021 applied contains //19-01-2021
                         nds = node.SelectNodes(".//div[contains(@class,'KJDcUb')]|.//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']|.//g-card[@id='tscffb']|.//div[@class='mnr-c PHap3c']|.//div[contains(@class, 'Ww4FFb vt6azd PHap3c')]" + //14-12-2022
-                                        "|.//div[@jsname='wRSfy']|.//g-card[@class='g F6CFcc']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='urrG9 v5yQqb jqWpsc']" + //31-05-2022
-                                        "|.//div[@class='mnr-c']/div/div[@class='P8ujBc v5yQqb jqWpsc']|.//div[contains(@class,'EtOod pkphOe')]|.//div[@class='mnr-c']/div/div[@class='P8ujBc jqWpsc']|.//div[@class='fhQnRd']|.//div[@id='iur']|.//div[contains(@class,'cUnQKe wHYlTd Ww4FFb vt6azd')]");//02-04-2023//01-02-2023 //24-11-2022 //06-07-2022//05-07-2022 //24-05-2022 //19-11-2021 //28-10-2021//12-10-2021//09-02-2021//27-01-2021 included missing selector//05-01-2021 //04-01-2021 missing classic link//18-12-2020 sitelinks missing selector //15-12-2020
+                         "|.//div[@jsname='wRSfy']|.//g-card[@class='g F6CFcc']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='urrG9 v5yQqb jqWpsc']|.//g-card[@class='T98FId']" + //11-07-2023 //31-05-2022
+                        "|.//div[@class='mnr-c']/div/div[@class='P8ujBc v5yQqb jqWpsc']|.//div[contains(@class,'EtOod pkphOe')]|.//div[@class='mnr-c']/div/div[@class='P8ujBc jqWpsc']|.//div[@class='fhQnRd']|.//div[@id='iur']|.//div[contains(@class,'cUnQKe wHYlTd Ww4FFb vt6azd')]");//02-04-2023//01-02-2023 //24-11-2022 //06-07-2022//05-07-2022 //24-05-2022 //19-11-2021 //28-10-2021//12-10-2021//09-02-2021//27-01-2021 included missing selector//05-01-2021 //04-01-2021 missing classic link//18-12-2020 sitelinks missing selector //15-12-2020
                 if (nds == null) //24-11-2022
                     nds = node.SelectNodes(".//div[@class='P8ujBc v5yQqb jqWpsc']|.//div[contains(@class,'Ww4FFb vt6azd')]|.//div[contains(@class,'EtOod pkphOe')]");//06-02-2023//16-01-2023 //24-11-2022//14-09-2022
                 if (nds == null)
@@ -831,7 +831,7 @@ namespace SERPResultsJSON
                                 continue;
                             }
                         }
-                        if (nd.HasClass("fhQnRd") || nd.SelectSingleNode(".//div[contains(@class,'kno-fb-ctx')]") != null)//02-04-2023//01-02-2023 top stories
+                        if (!nd.HasClass("T98FId") && (nd.HasClass("fhQnRd") || nd.SelectSingleNode(".//div[contains(@class,'kno-fb-ctx')]") != null))//11-07-2023//02-04-2023//01-02-2023 top stories
                         {
                             s.Append("<block type=\"topStories\" url=\"\">");
                             s.Append(GetTopStories(nd)); //02-04-2023 changed param node to nd
@@ -852,6 +852,13 @@ namespace SERPResultsJSON
                             s.Append("</block>");
                             continue;
                         }//People also ask
+                        if (nd.HasClass("T98FId"))//PopularProducts //11-07-2023
+                        {
+                            s.Append("<block type=\"popularProducts\" url=\"\">");
+                            s.Append(GetPopularProducts(node));
+                            s.Append("</block>");
+                            continue;
+                        }//PopularProducts //11-07-2023
                         if (nd.SelectSingleNode(".//g-inner-card[@class='zf84ud THG0oc VoEfsd']") != null)
                             continue;
                         //end 27-09-2019
@@ -1398,6 +1405,11 @@ namespace SERPResultsJSON
                     s.Append(GetPopularProducts(node));
                     s.Append("</block>");
                     break;//22-11-2022
+                /*case "findresultson"://07-07-2023
+                    s.Append("<block type=\"findResultsOn\" url=\"\">");
+                    s.Append(GetFindResultsOn(node));
+                    s.Append("</block>");
+                    break;//07-07-2023*/
                 default:
                     break;
             }
@@ -2398,13 +2410,13 @@ namespace SERPResultsJSON
             } // end of 23-01-2020  // 21-02-2020
             return s.ToString();
         }
-        private string GetFlights(HtmlNode node)//05-06-2023
+        private string GetFlights(HtmlNode node) //06-07-2023
         {
             StringBuilder s = new StringBuilder();
             string destination = string.Empty;
             string origin = string.Empty;
             HtmlNode dest = node.SelectSingleNode(".//div[@jsname='GseVJb']");
-            if (dest != null && dest.InnerText.Contains("destination"))
+            if (dest != null && (dest.InnerText.Contains("destination") || dest.InnerText.Contains("Ziel")))
             {
                 var spn = node.SelectSingleNode(".//div[@jsname='S9WWYc']").SelectNodes(".//span[not(contains(@aria-hidden, 'false'))]");
                 foreach (var sp in spn)
@@ -2419,38 +2431,82 @@ namespace SERPResultsJSON
                 }
                 destination = destination.Trim();
             }
+            else
+            {
+                dest = node.SelectSingleNode(".//span[@class='XaP5ee IFnjPb RES9jf']|.//h3[@class='IFnjPb RES9jf']");
+                int lenIndex = dest.InnerText.IndexOf(" to ") >= 0 ? dest.InnerText.IndexOf(" to ") :
+                    dest.InnerText.IndexOf(" nach ") >= 0 ? dest.InnerText.IndexOf(" nach ") : -1;
+                origin = dest?.InnerText?.Substring(0, lenIndex).Trim(); // dest.InnerText.IndexOf(" to "));
+                if (origin.ToLower().Equals("flights") || origin.Equals("Flüge")) origin = string.Empty;
+                int len = dest.InnerText.IndexOf(" to ") >= 0 ? dest.InnerText.IndexOf(" to ") + 4 :
+                    dest.InnerText.IndexOf(" nach ") >= 0 ? dest.InnerText.IndexOf(" nach ") + 6 : -1;
+                destination = dest?.InnerText.Substring(len).Trim(); // dest.InnerText.IndexOf(" to ") + 4).Trim();
+            }
             s.Append("<block type=\"flightPack\" url=\"\" title=\"\" origin=\"" + SetTitle(origin) + "\" destination=\"" + SetTitle(destination) + "\" >");
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='aieQre']/div/a|.//div[contains(@class,'LQQ1Bd')]/div/a");
-            foreach (HtmlNode nd in nds)
+            if (nds != null)
             {
-                try
+                foreach (HtmlNode nd in nds)
                 {
-                    string airline = nd.SelectSingleNode(".//span[@class='ps0VMc']|.//div[@class='A4fsl']")?.InnerText.Trim() ?? "";
-                    string hours = nd.SelectSingleNode(".//span[@class='sRcB8']|.//div[@class='QTPlac']/span[3]|.//div[@class='QTPlac']/span[2]")?.InnerText.Trim() ?? "0h 0m";//29-06-2023
-                    string connecting = nd.SelectSingleNode(".//span[@class='u85UCd']|.//div[@class='QTPlac']/span[1]")?.InnerText.Trim().Replace("·", "") ?? "";//29-06-2023
-                    string price = nd.SelectSingleNode(".//span[@class='xqqLDd']|.//span[@class='cirEce']|.//div[@class='n22NNe']")?.InnerText.Trim() ?? "0";//29-06-2023
-                    string priceValue = string.Empty;
-                    string hoursValue = "";
-                    if (node.SelectSingleNode(".//div[@class='UgpQWe']") == null)
+                    try
                     {
-                        destination = airline;
-                        airline = string.Empty;
+                        string airline = nd.SelectSingleNode(".//span[@class='ps0VMc']|.//div[@class='A4fsl']")?.InnerText.Trim() ?? "";
+                        string hours = nd.SelectSingleNode(".//span[@class='sRcB8']|.//div[@class='QTPlac']/span[2]")?.InnerText.Trim() ?? "0h 0m";
+                        string connecting = nd.SelectSingleNode(".//span[@class='u85UCd']|.//div[@class='QTPlac']/span[1]")?.InnerText.Trim() ?? "";
+                        string price = nd.SelectSingleNode(".//span[@class='xqqLDd']|.//span[@class='cirEce']")?.InnerText.Trim() ?? "0";
+                        string priceValue = string.Empty;
+                        string hoursValue = string.Empty;
+                        string title = string.Empty;
+                        if (node.SelectSingleNode(".//div[@class='UgpQWe']") == null)
+                        {
+                            title = airline;
+                            airline = string.Empty;
+                        }
+                        if (!string.IsNullOrEmpty(hours))
+                        {
+                            hoursValue = ConvertHours(hours);
+                        }
+                        if (!string.IsNullOrEmpty(price))
+                        {
+                            priceValue = Convertprice(price);
+                        }
+                        s.Append("<item url=\"\" airline=\"" + SetTitle(airline) + "\" title=\"" + SetTitle(title) + "\" duration=\"" + SetTitle(hours) + "\" durationValue=\"" + hoursValue + "\" connections=\"" + SetTitle(connecting) + "\" price=\"" + price + "\" priceValue=\"" + priceValue + "\" />");
                     }
-                    if (!string.IsNullOrEmpty(hours))
-                    {
-                        hoursValue = ConvertHours(hours);
-                    }
-                    if (!string.IsNullOrEmpty(price))
-                    {
-                        priceValue = Convertprice(price);
-                    }
-                    s.Append("<item airline=\"" + SetTitle(airline) + "\" url=\"" + "\" title=\"" + "\" duration=\"" + SetTitle(hours) + "\" durationValue=\"" + hoursValue + "\" connections=\"" + SetTitle(connecting) + "\" price=\"" + price + "\" priceValue=\"" + priceValue + "\" />");
+                    catch { }
                 }
-                catch { }
+            }
+            else
+            {
+                nds = node.SelectNodes(".//table[@class='YFsOAd dhESle']/tbody/tr");
+                if (nds != null)
+                {
+                    foreach (var nd in nds)
+                    {
+                        try
+                        {
+                            string airline = "";
+                            string hours = nd.SelectSingleNode(".//div[@class='BNeawe DwrKqd']/span")?.InnerText.Trim() ?? "0h 0m";
+                            string connecting = nd.SelectSingleNode(".//div[@class='BNeawe']")?.InnerText.Trim() ?? "";
+                            string price = nd.SelectSingleNode(".//div[@class='BNeawe DwrKqd']")?.GetDirectInnerText() ?? "0";
+                            string priceValue = string.Empty;
+                            string hoursValue = string.Empty;
+                            if (!string.IsNullOrEmpty(hours))
+                            {
+                                hoursValue = ConvertHours(hours);
+                            }
+                            if (!string.IsNullOrEmpty(price))
+                            {
+                                priceValue = Convertprice(price);
+                            }
+                            s.Append("<item url=\"\" title=\"\" airline=\"" + SetTitle(airline) + "\" duration=\"" + SetTitle(hours) + "\" durationValue=\"" + hoursValue + "\" connections=\"" + SetTitle(connecting) + "\" price=\"" + price + "\" priceValue=\"" + priceValue + "\" />");
+                        }
+                        catch { }
+                    }
+                }
             }
             s.Append("</block>");
             return s.ToString();
-        }//5-06-2023
+        }//06-07-2023//03-07-2023//05-06-2023
         private string GetHotels(HtmlNode node)//24-03-2022 new element Maps
         {
             StringBuilder s = new StringBuilder();
@@ -2512,6 +2568,22 @@ namespace SERPResultsJSON
             }
             return s.ToString();
         }//24-03-2022
+        private string GetFindResultsOn(HtmlNode node) //07-07-2023 FindResultsOn Block
+        {
+            StringBuilder s = new StringBuilder();
+            HtmlNodeCollection nds = node.SelectNodes(".//div/a[@class='dVjlWe']|.//div/a[@class='t2Yvdb']");
+            if (nds != null)
+            {
+                foreach (var nd in nds)
+                {
+                    string url = nd.Attributes["href"].Value;
+                    string source = nd.SelectSingleNode(".//span[@class='dsJOWd']|.//span[@class='izosSe']")?.InnerText ?? "";
+                    string title = nd.SelectSingleNode(".//div[@class='NNFu9b nDgy9d']")?.InnerText ?? "";
+                    s.Append("<item source=\"" + SetTitle(source) + "\" url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                }
+            }
+            return s.ToString();
+        } //07-07-2023 FindResultsOn Block
         private string ConvertNumber(string value)//23-06-2023
         {
             if (string.IsNullOrEmpty(value))
@@ -2545,46 +2617,56 @@ namespace SERPResultsJSON
                 price = mc.Value;
             if (price.Equals("unknown"))
                 price = "0";
+            if (price.Equals("check price"))//01-06-2023
+                price = "0";//01-06-2023
+            if (price.Equals("vérifier le prix"))//01-06-2023
+                price = "0";//01-06-2023
             return price;
         }
-        private string ConvertHours(string hours) //29-06-2023
+        private string ConvertHours(string hours) //05-07-2023
         {
-            Match match = Regex.Match(hours, @"(\d+)d (\d+)h");
+            Match match = Regex.Match(hours, @"(\d+)[\s]?[d|T][\W]* (\d+)[\s]?(h|Std)[\W]* (\d+)[\s]?(m|[M|m]in)");
+            if (match.Success)
+            {
+                int days = Convert.ToInt32(match.Groups[1].Value);
+                int hrs = Convert.ToInt32(match.Groups[2].Value);
+                int min = Convert.ToInt32(match.Groups[4].Value);
+                return (days > 0 || hrs > 0 || min > 0) ? ((days * 24) + hrs + (min / 60.0)).ToString("##.##") : "0.0";
+            }
+            match = Regex.Match(hours, @"(\d+)[\s]?[d|T][\W]* (\d+)[\s]?(h|Std\.)");
             if (match.Success)
             {
                 int days = Convert.ToInt32(match.Groups[1].Value);
                 int hrs = Convert.ToInt32(match.Groups[2].Value);
                 return (days > 0 || hrs > 0) ? ((days * 24) + hrs) + "." + "0" : "0.0";
             }
-            match = Regex.Match(hours, @"(\d+)d (\d+)h (\d+)m");
+            match = Regex.Match(hours, @"(\d+)[\s]?(h|Std)[\W]* (\d+)[\s]?(m|[M|m]in)");
+            if (match.Success)
+            {
+                int hrs = Convert.ToInt32(match.Groups[1].Value);
+                int min = Convert.ToInt32(match.Groups[3].Value);
+                return (hrs > 0 || min > 0) ? (hrs + (min / 60.0)).ToString("##.##") : "0.0";
+            }
+            match = Regex.Match(hours, @"(\d+)[\s]?[d|T]");
             if (match.Success)
             {
                 int days = Convert.ToInt32(match.Groups[1].Value);
-                int hrs = Convert.ToInt32(match.Groups[2].Value);
-                int min = Convert.ToInt32(match.Groups[3].Value);
-                return (days > 0 || hrs > 0 || min > 0) ? ((days * 24) + hrs + (min / 60.0)).ToString("##.##") : "0.0";
+                return (days > 0) ? (days * 24).ToString("##.##") : "0.0";
             }
-            match = Regex.Match(hours, @"(\d+)h (\d+)m");
+            match = Regex.Match(hours, @"(\d+)[\s]?(h|Std)");
             if (match.Success)
             {
                 int hrs = Convert.ToInt32(match.Groups[1].Value);
-                int min = Convert.ToInt32(match.Groups[2].Value);
-                return (hrs > 0 || min > 0) ? (hrs + (min / 60.0)).ToString("##.##") : "0.0";
+                return (hrs > 0) ? hrs.ToString("##.##") : "0.0";
             }
-            match = Regex.Match(hours, @"(\d+)h");
-            if (match.Success)
-            {
-                int hrs = Convert.ToInt32(match.Groups[1].Value);
-                return (hrs > 0) ? (hrs).ToString("##.##") : "0.0";
-            }
-            match = Regex.Match(hours, @"(\d+)m");
+            match = Regex.Match(hours, @"(\d+)[\s]?(m|[M|m]in)");
             if (match.Success)
             {
                 int min = Convert.ToInt32(match.Groups[1].Value);
                 return (min > 0) ? (min / 60.0).ToString("##.##") : "0.0";
             }
             return "";
-        }//29-03-2023
+        }//05-07-2023
         private string GetBlockType(HtmlNode node)
         {
             HtmlNode nd = node.SelectSingleNode(".//div[@class='KNcnob']/g-img");
@@ -2639,10 +2721,12 @@ namespace SERPResultsJSON
                 if (ts)
                     return "Topstories";
             }
+            /* if (node.SelectSingleNode(".//div[contains(@class, 'RPdfze')]|.//div[contains(@class, 'Qkn3ie')]") != null)//07-07-2023
+                  return "FindResultsOn";*/
             /*nd = node.SelectSingleNode(".//g-tray-header[contains(@class,'kno-fb-ctx gsrt')]"); //23-03-2022//19-01-2023 //Top Sights and Flights
             if (nd != null)
                 return "TopSights";*/ //23-03-2022//19-01-2023
-            if (node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]") != null || node.Attributes["class"]?.Value == "WlTAzf mnr-c vk_c") //23-03-2022
+            if (node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]|.//div[@class='tkQJMd']") != null || node.Attributes["class"]?.Value == "WlTAzf mnr-c vk_c")//03-07-2023 //23-03-2022
                 return "Flights";//23-03-2022
 
             if (node.SelectSingleNode(".//g-card[@class='cvoI5e']|.//g-tray-header[@class='iI6nue ieGFJe']") != null || node.SelectSingleNode(".//g-card[@class='U8KfXc']") != null)//11-01-2023 //23-11-2020 //20-11-2020
@@ -2816,7 +2900,7 @@ namespace SERPResultsJSON
                 return "Videos";
             }
             nd = node.SelectSingleNode(".//div[contains(@class, 'HOslld dutT5c')]|.//div[@class='XNfAUb']");//29-06-2023//15-03-2023 //02-03-2023
-            if (nd != null)
+            if (nd != null && node.SelectSingleNode(".//div[contains(@class, 'MRtunc')]") == null)//04-07-2023
             {
                 return "Hotel";
             }
@@ -2849,7 +2933,7 @@ namespace SERPResultsJSON
 
             nd = node.SelectSingleNode(".//div[@class='JVrfPc']");
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='bUNBRd mnr-c']|.//div[@class='HnYYW i8lZMc']|.//div[@class='HnYYW mfMhoc']|.//div[@class='HnYYW']/div");//20-11-2020 twiter classic links//26-06-2020 //13-03-2020 //include on 2019-06-24
+                nd = node.SelectSingleNode(".//div[@class='bUNBRd mnr-c']|.//div[@class='HnYYW i8lZMc']|.//div[@class='HnYYW mfMhoc']|.//div[@class='HnYYW']/div|.//div[@class='HnYYW DFkChc']");//04-07-2023//20-11-2020 twiter classic links//26-06-2020 //13-03-2020 //include on 2019-06-24
             if (nd == null)
                 nd = node.SelectSingleNode(".//g-card[@class='g F6CFcc']|.//g-inner-card[@class='Bf5NPb']");//26-06-2023//03-06-2021 twitter block
             if (nd != null)
@@ -3037,7 +3121,7 @@ namespace SERPResultsJSON
                 if (node.SelectSingleNode(".//div[@class='ttfMne']|.//div[@class='N60dNb mfMhoc']|.//h2[@class='OEsCyf mfMhoc']|.//div[@class='kp-blk c2xzTb OJXvsb']|.//div[@class='WpKAof']|.//g-card/div[@class='mnr-c']|.//div[@class='FQrfLd']") != null)//04-11-2022 //23-11-2021 CB //27-10-2021 //01-09-2021 missing AC block//12-07-2021 job block //12-07-2021 carousel block //19-01-2021 missing top stories
                     if (node.SelectSingleNode(".//div[@class='WvKfwe a3spGf']|.//div[@class='V1nn0e wgFKp']|.//div[@jscontroller='rMVp5e']|.//div[@jscontroller='rQR4vd']|.//div[contains(@class,'P8ujBc')]|.//div[@class='v5yQqb jqWpsc']|.//div[contains(@class,'jqWpsc')]") != null && node.SelectSingleNode(".//div[@class='aJegcc']") == null)//09-12-2022//16-09-2022//09-09-2022//06-05-2022//21-01-2022//13-01-2022//17-12-2021 //12-10-2021
                         return false;
-                    else
+                    else if (node.SelectSingleNode(".//div[contains(@class,'BToiNc')]") == null)//11-07-2023
                         return true;//12-11-2021
                 if (nd.InnerText == "More results" || nd.InnerText == "Top results" || nd.InnerText == "Toppresultater" || nd.InnerText == "También se buscó" //27-10-2021
                      || nd.InnerText == "Fler resultat" || nd.InnerText == "Flere resultater" || nd.InnerText == "Plus de résultats")    // 13-12-2019
@@ -3067,7 +3151,7 @@ namespace SERPResultsJSON
                 return false;
 
             //22-11-2019
-            nd = node.SelectSingleNode(".//div[@class='g kno-result rQUFld mnr-c g-blk']|.//w-answer/div[@class='MUxGbd t51gnb lyLwlc lEBKkf']|.//div[@class='ifM9O']|.//div[@class='Q9mvUc']");//08-07-2022//16-02-2022 //01-10-2020 Answered Card selector included
+            nd = node.SelectSingleNode(".//div[@class='g kno-result rQUFld mnr-c g-blk']|.//w-answer/div[@class='MUxGbd t51gnb lyLwlc lEBKkf']|.//div[@class='ifM9O']|.//div[@class='Q9mvUc']|.//div[@class='tkQJMd']|.//div[contains(@class, 'RPdfze')]|.//div[contains(@class, 'Qkn3ie')]");//07-07-2023 FindResultsOn block //03-07-2023//08-07-2022//16-02-2022 //01-10-2020 Answered Card selector included
             if (nd != null)
             {
                 return true;

@@ -1613,10 +1613,10 @@ namespace RapidTrackingSingleThread
             StringBuilder s = new StringBuilder();
             string destination = string.Empty;
             string origin = string.Empty;
-            HtmlNode dest = node.SelectSingleNode(".//input[contains(@placeholder,'destination')]");
+            HtmlNode dest = node.SelectSingleNode(".//input[contains(@placeholder,'destination')]|.//input[contains(@placeholder,'destinazione')]");//13-07-2023
             if (dest != null)
             {
-                origin = node.SelectSingleNode(".//input[contains(@placeholder,'origin')]").Attributes["value"]?.Value ?? "";
+                origin = node.SelectSingleNode(".//input[contains(@placeholder,'origin')]|.//input[contains(@placeholder,'il luogo di partenza')]").Attributes["value"]?.Value ?? "";//13-07-2023
                 destination = dest.Attributes["value"]?.Value ?? "";
             }
             else

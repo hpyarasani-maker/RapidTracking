@@ -2417,7 +2417,7 @@ namespace RapidTrackingSingleThread
             string destination = string.Empty;
             string origin = string.Empty;
             HtmlNode dest = node.SelectSingleNode(".//div[@jsname='GseVJb']");
-            if (dest != null && (dest.InnerText.Contains("destination") || dest.InnerText.Contains("Ziel")))
+            if (dest != null && (dest.InnerText.Contains("destination") || dest.InnerText.Contains("Ziel") || dest.InnerText.Contains("destinazione")))//13-07-2023
             {
                 var spn = node.SelectSingleNode(".//div[@jsname='S9WWYc']").SelectNodes(".//span[not(contains(@aria-hidden, 'false'))]");
                 foreach (var sp in spn)

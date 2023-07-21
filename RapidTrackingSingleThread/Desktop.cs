@@ -980,11 +980,11 @@ namespace RapidTrackingSingleThread
                     s.Append(GetPopularProducts(node));
                     s.Append("</block>");
                     break;//09-11-2022
-                /*case "findresultson"://07-07-2023
+                case "findresultson"://07-07-2023
                     s.Append("<block type=\"findResultsOn\" url=\"\">");
                     s.Append(GetFindResultsOn(node));
                     s.Append("</block>");
-                    break;//07-07-2023*/
+                    break;//07-07-2023
                 default:
                     break;
             }
@@ -1914,8 +1914,8 @@ namespace RapidTrackingSingleThread
             {
                 return "Twitters";
             }
-           /* if (node.SelectSingleNode(".//div[contains(@class, 'RPdfze')]|.//div[contains(@class, 'nJMOzb')]|.//div[contains(@class, 'Qkn3ie')]") != null)//07-07-2023
-                return "FindResultsOn";//07-07-2023*/
+            if (node.SelectSingleNode(".//div[contains(@class, 'RPdfze')]|.//div[contains(@class, 'nJMOzb')]|.//div[contains(@class, 'Qkn3ie')]") != null)//07-07-2023
+                return "FindResultsOn";//07-07-2023
             /*nd = node.SelectSingleNode(".//g-tray-header[@class='kno-fb-ctx gsrt AX8YBc']");//23-03-2022//19-01-2023 TopSights and Flights
             if (nd != null)
                 return "TopSights";*///23-03-2022//19-01-2023

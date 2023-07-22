@@ -676,7 +676,7 @@ namespace WPFMultiThreadJobIDs
                    && (node.SelectSingleNode(".//div[@class='MjjYud']") != null || node.SelectSingleNode(".//div[@id='rhs']") == null))//25-01-2023//10-01-2023//12-10-2022//end of 10-10-2022
             {
                 //HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'g tF2Cxc')]|.//div[@class='g dFd2Tb']|.//div[contains(@class,'g Ww4FFb')]|.//div[@class='BYM4Nd']|.//div[@class='AuVD cUnQKe']|.//div[@class='cUnQKe']|.//div[@class='uVMCKf']");//20-04-2023
-                HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'g tF2Cxc')]|.//div[contains(@class,'g dFd2Tb')]|.//div[contains(@class,'g Ww4FFb')]|.//div[@class='BYM4Nd']|.//div[@class='AuVD cUnQKe']|.//div[@class='cUnQKe']|.//div[@class='uVMCKf']");//01-05-2023
+                HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'g tF2Cxc')]|.//div[contains(@class,'g dFd2Tb')]|.//div[contains(@class,'g Ww4FFb')]|.//div[@class='BYM4Nd']|.//div[@class='AuVD cUnQKe']|.//div[@class='cUnQKe']|.//div[@class='cUnQKe vt6azd']|.//div[@class='uVMCKf']|.//g-card[@class='tkfIqc g']");//21-07-2023//20-07-2023//01-05-2023
                 if (nds == null && (node.Attributes["class"]?.Value == "g tF2Cxc" || node.Attributes["class"]?.Value == "g Ww4FFb vt6azd tF2Cxc asEBEc"))//17-11-2022//20-04-2022
                     nds = node.SelectNodes(".");//20-04-2022 
                 if (nds == null)
@@ -724,6 +724,13 @@ namespace WPFMultiThreadJobIDs
                             s.Append("</block>");
                             continue;
                         }//05-12-2022
+                        if (nd.HasClass("tkfIqc"))//21-07-2023
+                        {
+                            s.Append("<block type=\"popularProducts\" url=\"\">");
+                            s.Append(GetPopularProducts(node));
+                            s.Append("</block>");
+                            continue;
+                        }//21-07-2023
                         HtmlNode title = null;  // 18-11-2019
                         HtmlNode n = nd.SelectSingleNode(".//h3[@class='r']/a");
                         if (n == null)
@@ -969,11 +976,11 @@ namespace WPFMultiThreadJobIDs
                     s.Append(GetPopularProducts(node));
                     s.Append("</block>");
                     break;//09-11-2022
-                /*case "findresultson"://07-07-2023
+                case "findresultson"://07-07-2023
                     s.Append("<block type=\"findResultsOn\" url=\"\">");
                     s.Append(GetFindResultsOn(node));
                     s.Append("</block>");
-                    break;//07-07-2023*/
+                    break;//07-07-2023
                 default:
                     break;
             }
@@ -1609,10 +1616,10 @@ namespace WPFMultiThreadJobIDs
             StringBuilder s = new StringBuilder();
             string destination = string.Empty;
             string origin = string.Empty;
-            HtmlNode dest = node.SelectSingleNode(".//input[contains(@placeholder,'destination')]");
+            HtmlNode dest = node.SelectSingleNode(".//input[contains(@placeholder,'destination')]|.//input[contains(@placeholder,'destinazione')]");//13-07-2023
             if (dest != null)
             {
-                origin = node.SelectSingleNode(".//input[contains(@placeholder,'origin')]").Attributes["value"]?.Value ?? "";
+                origin = node.SelectSingleNode(".//input[contains(@placeholder,'origin')]|.//input[contains(@placeholder,'il luogo di partenza')]").Attributes["value"]?.Value ?? "";//13-07-2023
                 destination = dest.Attributes["value"]?.Value ?? "";
             }
             else
@@ -1756,13 +1763,13 @@ namespace WPFMultiThreadJobIDs
         private string GetFindResultsOn(HtmlNode node) //07-07-2023 FindResultsOn Block
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nds = node.SelectNodes(".//div/a[@class='dVjlWe']|.//div/a[@class='t2Yvdb']");
+            HtmlNodeCollection nds = node.SelectNodes(".//div/a[@class='dVjlWe']|.//div/a[@class='t2Yvdb']|.//div/a[@class='SsH3c']");//21-07-2023
             if (nds != null)
             {
                 foreach (var nd in nds)
                 {
                     string url = nd.Attributes["href"].Value;
-                    string source = nd.SelectSingleNode(".//span[@class='dsJOWd']|.//span[@class='izosSe']")?.InnerText ?? "";
+                    string source = nd.SelectSingleNode(".//span[@class='dsJOWd']|.//span[@class='izosSe']|.//span[@class='UhM1oe']")?.InnerText ?? "";//21-07-2023
                     string title = nd.SelectSingleNode(".//div[@class='NNFu9b nDgy9d']")?.InnerText ?? "";
                     s.Append("<item source=\"" + SetTitle(source) + "\" url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                 }
@@ -1903,8 +1910,8 @@ namespace WPFMultiThreadJobIDs
             {
                 return "Twitters";
             }
-            /* if (node.SelectSingleNode(".//div[contains(@class, 'RPdfze')]|.//div[contains(@class, 'nJMOzb')]|.//div[contains(@class, 'Qkn3ie')]") != null)//07-07-2023
-                 return "FindResultsOn";//07-07-2023*/
+            if (node.SelectSingleNode(".//div[contains(@class, 'RPdfze')]|.//div[contains(@class, 'nJMOzb')]|.//div[contains(@class, 'Qkn3ie')]|.//div[@class='lMMUFc']") != null)//21-07-2023//07-07-2023
+                return "FindResultsOn";//07-07-2023
             /*nd = node.SelectSingleNode(".//g-tray-header[@class='kno-fb-ctx gsrt AX8YBc']");//23-03-2022//19-01-2023 TopSights and Flights
             if (nd != null)
                 return "TopSights";*///23-03-2022//19-01-2023
@@ -2168,8 +2175,9 @@ namespace WPFMultiThreadJobIDs
                 //enable below line without new block "popularProducts"
                 //if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null || node.SelectSingleNode(".//div[@class='dzpFPb']") != null)//28-05-2022//06-04-2022 //13-10-2021
                 if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null || node.SelectSingleNode(".//div[@class='dzpFPb']") != null || node.SelectSingleNode(".//div[@jscontroller='Yma7vd']") != null || node.SelectSingleNode(".//div[@class='aJegcc']") != null || node.SelectSingleNode(".//div[@class='IbDT9d']") != null)//24-05-2023//09-12-2022//09-11-2022 shopping
-                    return true;
-                if (node.SelectSingleNode(".//div[contains(@class, 'RPdfze')]|.//div[contains(@class, 'nJMOzb')]|.//div[contains(@class, 'Qkn3ie')]|.//div[contains(@class, 'vdQmEd')]") != null)//07-07-2023//29-06-2023
+                    if (node.SelectSingleNode(".//div[contains(@class,'g Ww4FFb')]") == null)//21-07-2023
+                        return true;
+                if (node.SelectSingleNode(".//div[contains(@class, 'RPdfze')]|.//div[contains(@class, 'nJMOzb')]|.//div[contains(@class, 'Qkn3ie')]|.//div[contains(@class, 'vdQmEd')]|.//div[@class='lMMUFc']") != null)//21-07-2023//07-07-2023//29-06-2023
                     return true;//29-06-2023
                 // changes in map block on 19-06-2019.
                 nd = node.SelectSingleNode(".//g-img/img");

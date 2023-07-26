@@ -1535,7 +1535,7 @@ namespace RapidTrackingLibrary
             }
             else
             {
-                dest = node.SelectSingleNode(".//span[@class='kqEaA']|.//h3[@class='OOTLje']");
+                dest = node.SelectSingleNode(".//span[@class='N7NX1d JgzqYd RES9jf']|.//span[@class='kqEaA']|.//h3[@class='OOTLje']");//26-07-2023
                 origin = dest?.InnerText.Substring(0, dest.InnerText.IndexOf(" to ")).Trim();
                 if (origin.ToLower().Equals("flights")) origin = string.Empty;//29-06-2023
                 destination = dest?.InnerText.Substring(dest.InnerText.IndexOf(" to ") + 4).Trim();

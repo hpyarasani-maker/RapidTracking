@@ -742,6 +742,8 @@ namespace RapidMissingJobsReceiving
                             n = nd.SelectSingleNode(".//div[@class='r']/div/a"); //28-05-2020
                         if (n == null)
                             n = nd.SelectSingleNode(".//div[@class='yuRUbf']/a"); //02-10-2020
+                        if (n == null)
+                            n = nd.SelectSingleNode(".//div[@class='yuRUbf']/div/a");//28-07-2023
                         if (n != null)
                             title = n.SelectSingleNode(".//h3");
 
@@ -757,7 +759,7 @@ namespace RapidMissingJobsReceiving
                                     urls = n.Attributes["href"].Value;
                                 else
                                 {
-                                    var a = nd.SelectSingleNode(".//div[@class='ct3b9e']/a|.//div[@class='IAZbGe']/a|.//div[@class='DhN8Cf']/a|.//div[@class='E74pWd']/a");//18-04-2023//11-02-2023 //07-04-2022
+                                    var a = nd.SelectSingleNode(".//div[@class='ct3b9e']/a|.//div[@class='IAZbGe']/a|.//div[@class='DhN8Cf']/a|.//div[@class='E74pWd']/a|.//div[@class='IAZbGe']/div/a|.//div[@class='DhN8Cf']/div/a");//28-07-2023//18-04-2023//11-02-2023 //07-04-2022
                                     urls = a.Attributes["href"].Value;
                                     title = a.SelectSingleNode(".//h3");
                                 } //24-08-2021 video block item urls
@@ -774,7 +776,7 @@ namespace RapidMissingJobsReceiving
                             else if (orgLinks < 100)
                             {
                                 if (n == null)
-                                    n = nd.SelectSingleNode(".//div[@class='yuRUbf']/a|.//div[@class='yuRUbf']/div/div[@class='E74pWd']/a|.//div[@class='IAZbGe']/a");//18-04-2023
+                                    n = nd.SelectSingleNode(".//div[@class='yuRUbf']/a|.//div[@class='yuRUbf']/div/div[@class='E74pWd']/a|.//div[@class='IAZbGe']/a|.//div[@class='IAZbGe']/div/a");//28-07-2023//18-04-2023
                                 if (n == null)//18-04-2023
                                     n = nd.SelectSingleNode(".//div[@class='E74pWd']/a");//18-04-2023//18-10-2022 //04-09-2020 included selector for classic links
                                 if (n == null && nd.Attributes["class"]?.Value == "yuRUbf")//17-11-2022
@@ -805,6 +807,8 @@ namespace RapidMissingJobsReceiving
                                     n = nd.SelectSingleNode(".//h3[@class='r dO0Ag']/a");  //29-05-2020
                                 if (n == null)
                                     n = nd.SelectSingleNode(".//div[@class='yuRUbf']/a"); //03-09-2020  included selector for classic links                         
+                                if (n == null)
+                                    n = nd.SelectSingleNode(".//div[@class='yuRUbf']/div/a");//28-07-2023
                                 if (n == null)
                                     n = nd.SelectSingleNode(".//div[@class='E74pWd']/a");//18-04-2023
                                 if (n == null)
@@ -848,7 +852,7 @@ namespace RapidMissingJobsReceiving
                     //12-10-2022
                     if ((Regex.IsMatch(n.OuterHtml, "id=\"vidthumb\\d*\"") && (n.SelectSingleNode(".//div[@class='ij69rd UHe5G']") != null || n.SelectSingleNode(".//div[@class='ij69rd TUOsUe UHe5G']") != null)) || n.SelectSingleNode(".//div[contains(@class,'U1TUId')]|.//div[@class='J1mWY']|.//div[@class='c8rnLc flgn0c']") != null)//30-05-2023
                     {
-                        var a = n.SelectSingleNode(".//div[@class='ct3b9e']/a|.//div[@class='IAZbGe']/a|.//div[@class='DhN8Cf']/a|.//div[@class='E74pWd']/a");//18-04-2023//13-02-2023
+                        var a = n.SelectSingleNode(".//div[@class='ct3b9e']/a|.//div[@class='IAZbGe']/a|.//div[@class='DhN8Cf']/a|.//div[@class='E74pWd']/a|.//div[@class='IAZbGe']/div/a|.//div[@class='DhN8Cf']/div/a");//28-07-2023//18-04-2023//13-02-2023
                         var url = a.Attributes["href"].Value;
                         var title = a.SelectSingleNode(".//h3");
                         if (url.StartsWith("http") || url.StartsWith("https") || url.StartsWith("ftp"))
@@ -869,7 +873,7 @@ namespace RapidMissingJobsReceiving
                     if (col == null)
                         col = n.SelectNodes(".//div[@class='DOqJne']/g-link/a|.//div[@class='M42dy']/g-link/a");
                     if (col == null)
-                        col = n.SelectNodes(".//div[@class='yuRUbf']/a|.//div[@class='yuRUbf']/div/div[@class='E74pWd']/a");//18-04-2023 //08-10-2021 for missing classic links
+                        col = n.SelectNodes(".//div[@class='yuRUbf']/a|.//div[@class='yuRUbf']/div/div[@class='E74pWd']/a|.//div[@class='yuRUbf']/div/a");//28-07-2023//18-04-2023 //08-10-2021 for missing classic links
                     foreach (HtmlNode nd in col)
                     {
                         string u = nd.Attributes["href"].Value.Replace("/url?q=", "").Replace("&amp;", "&").Replace("&", "&#38;");
@@ -1574,7 +1578,7 @@ namespace RapidMissingJobsReceiving
                         {
                             url = nd1.Attributes["href"].Value;
                         }
-                        HtmlNode hn = nd1.SelectSingleNode(".//div[@class='oyj2db']");
+                        HtmlNode hn = nd1.SelectSingleNode(".//div[contains(@class,'oyj2db')]");//01-08-2023
 
                         string title1 = hn.InnerText;
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title1) + "\" />");
@@ -1627,7 +1631,7 @@ namespace RapidMissingJobsReceiving
             }
             else
             {
-                dest = node.SelectSingleNode(".//span[@class='kqEaA']|.//h3[@class='OOTLje']");
+                dest = node.SelectSingleNode(".//span[@class='N7NX1d JgzqYd RES9jf']|.//span[@class='kqEaA']|.//h3[@class='OOTLje']");//26-07-2023
                 origin = dest?.InnerText.Substring(0, dest.InnerText.IndexOf(" to ")).Trim();
                 if (origin.ToLower().Equals("flights")) origin = string.Empty;//29-06-2023
                 destination = dest?.InnerText.Substring(dest.InnerText.IndexOf(" to ") + 4).Trim();

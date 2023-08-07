@@ -835,7 +835,7 @@ namespace TrendingDesktopSingleThread
                 HtmlNodeCollection nc = null; //10-10-2022
                 if (node.SelectSingleNode(".//div[@id='rhs']") != null || node.Attributes["id"]?.Value == "rhs")
                 {
-                    nc = node.SelectNodes(".//div[@class='g']|.//div[contains(@class,'g Ww4FFb')]|.//div[@class='g eejeod up9jud']|.//div[contains(@class,'g dFd2Tb')]");//26-04-2023//12-10-2022
+                    nc = node.SelectNodes(".//div[@class='g']|.//div[contains(@class,'g Ww4FFb')]|.//div[@class='g eejeod up9jud']|.//div[contains(@class,'g dFd2Tb')]|.//div[contains(@class,'g ZYT4Gf')]");//07-08-2023//26-04-2023//12-10-2022
                     if (nc == null) return string.Empty;
                 }
                 foreach (HtmlNode n in nc)
@@ -1087,7 +1087,7 @@ namespace TrendingDesktopSingleThread
             StringBuilder s = new StringBuilder();
             HtmlNode n = node.SelectSingleNode(".//div[@class='r']/a");
             if (n == null)
-                n = node.SelectSingleNode(".//div[@class='yuRUbf']/a"); //03-09-2020 included classic link selector
+                n = node.SelectSingleNode(".//div[@class='yuRUbf']/a|.//div[@class='yuRUbf']/div/a"); //07-08-2023 //03-09-2020 included classic link selector
             if (n != null)
             {
                 if (orgLinks < 100)
@@ -1172,112 +1172,7 @@ namespace TrendingDesktopSingleThread
                 s.Append("<item url=\"\" title=\"" + SetTitle(titles[x]) + "\" />");//18-02-2022
             return s.ToString();
         }
-        /*private string GetPeopleAlsoAskUrls(string[] titles) //People also method 02-03-2022
-        {
-            try
-            {
-                StringBuilder s = new StringBuilder();
-                string pattern = @"WEB_ANSWERS_STANDARD_RESULT_(.*?)div class\\x3d\\x22tF2Cxc\\x22\\x3e\\x3cdiv class\\x3d\\x22yuRUbf\\x22\\x3e\\x3ca href\\x3d\\x22(.*?)\\x22";
-                Regex re = new Regex(pattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
-                MatchCollection mc = re.Matches(html);
-                ArrayList myList = new ArrayList();
-                int x = 0;
-                char[] yt = { '\\', '2', '6' };
-                foreach (Match m in mc)
-                {
-                    string url = HttpUtility.HtmlDecode(m.Groups[2].Value);
-                    if (url.StartsWith("http") || url.StartsWith("https"))
-                    {
-                        url = SetYTUrl(url, yt); //12-03-2022
-                    }
-                    //text
-                    string textPattern = @"\\x3cspan class\\x3d\\x22hgKElc\\x22\\x3e(.*?)\\x3c/span\\x3e";
-                    string imagePattern = @"\\x3cimg data-src\\x3d\\x22(.*?)\\x22";
-                    Regex _rx = new Regex(textPattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
-                    Match _m = _rx.Match(m.Groups[0].Value);
-                    string txt, text = string.Empty;
-                    string imag, img = string.Empty;
-                    if (_m.Success)
-                    {
-                        txt = HttpUtility.HtmlDecode(_m.Groups[1].Value);
-                        text = SetYTUrl(txt, yt); //15-03-2022
-                    }
-                    //image
-                    Regex rimage = new Regex(imagePattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
-                    Match mi = rimage.Match(m.Groups[0].Value);
-                    if (mi.Success)
-                    {
-                        imag = HttpUtility.HtmlDecode(mi.Groups[1].Value);
-                        img = SetYTUrl(imag, yt); //15-03-2022
-                    }
-                    //18-03-2022
-                    //table
-                    string tblPattern = @"\\x3ctable\\x3e\\x3ctbody\\x3e(.*?)\\x3c/tbody\\x3e\\x3c/table\\x3e";
-                    _rx = new Regex(tblPattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
-                    _m = _rx.Match(m.Groups[0].Value);
-                    string tbl = string.Empty;
-                    string tblValues = string.Empty;
-                    if (_m.Success)
-                    {
-                        tbl = HttpUtility.HtmlDecode(_m.Groups[1].Value);
-                        //rows
-                        string rowPattern = @"\\x3ctr(.*?)\\x3c/tr\\x3e";
-                        _rx = new Regex(rowPattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
-                        MatchCollection _mcrows = _rx.Matches(tbl);
-                        tblValues = "<table>";
-                        foreach (Match mrow in _mcrows)
-                        {
-                            string row = HttpUtility.HtmlDecode(mrow.Groups[1].Value);
-                            //th
-                            string thPattern = @"\\x3cth(.*?)\\x3e(.*?)\\x3c/th\\x3e";
-                            _rx = new Regex(thPattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
-                            MatchCollection _mcth = _rx.Matches(row);
-                            tblValues += "<tr>";
-                            foreach (Match mth in _mcth)
-                            {
-                                string th = HttpUtility.HtmlDecode(mth.Groups[2].Value);
-                                tblValues += "<th>";
-                                //tblValues += th.Replace(@"\x3cb\x3e", "").Replace(@"\x3c/b\x3e", "");
-                                tblValues += SetYTUrl(th, yt);//22-03-2022
-                                tblValues += "</th>";
-                            }
-                            //td
-                            string tdPattern = @"\\x3ctd(.*?)\\x3e(.*?)\\x3c/td\\x3e";
-                            _rx = new Regex(tdPattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
-                            MatchCollection _mctd = _rx.Matches(row);
-                            foreach (Match mtd in _mctd)
-                            {
-                                string td = HttpUtility.HtmlDecode(mtd.Groups[2].Value);
-                                tblValues += "<td>";
-                                //tblValues += td.Replace(@"\x3cb\x3e", "").Replace(@"\x3c/b\x3e", "");
-                                tblValues += SetYTUrl(td, yt); //22-03-2022
-                                tblValues += "</td>";
-                            }
-                            tblValues += "</tr>";
-                        }
-                        tblValues += "</table>";
-                    }
 
-                    if (x < titles.Length)
-                    {
-                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" text=\"" + SetTitle(text) + "\" image=\"" + SetUrl(img) + "\" >");
-                        if (!string.IsNullOrEmpty(tblValues))
-                        {
-                            s.Append(tblValues);
-                        }
-                        s.Append("</item>");
-                    }
-                    //end 18-03-2022
-                }
-                for (; x < titles.Length; x++)
-                    s.Append("<item url=\"\" title=\"" + SetTitle(titles[x]) + "\" text=\"\" image=\"\" />"); //17-03-2022
-                return s.ToString();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }*/
         private string GetAnswerCard(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
@@ -2128,7 +2023,7 @@ namespace TrendingDesktopSingleThread
                     if (node.SelectSingleNode(".//div[@class='Brgz0 tw-res']|.//div[@class='k9uN1c kfn9hb']") != null) return true;//04-01-2023//16-12-2022
                     if (node.SelectSingleNode(".//div[@class='g jNVrwc Y4pkMc']|.//div[@class='g tF2Cxc']|.//div[@class='g eejeod up9jud']" +
                     //"|.//div[@class='g Ww4FFb tF2Cxc']") != null) return false; //21-07-2022//15-02-2022//02-02-2022//31-12-2021 missing CLinks
-                    "|.//div[contains(@class,'g Ww4FFb')]|.//div[@class='BYM4Nd']|.//div[@class='rULfzc']") != null || (node.Attributes["class"]?.Value?.Contains("g Ww4FFb") ?? false)) return false;//31-10-2022//11-10-2022
+                    "|.//div[contains(@class,'g Ww4FFb')]|.//div[@class='BYM4Nd']|.//div[@class='rULfzc']|.//div[@class='g ZYT4Gf']") != null || (node.Attributes["class"]?.Value?.Contains("g Ww4FFb") ?? false)) return false;//07-08-2023//31-10-2022//11-10-2022
                     if (node.SelectSingleNode(".//div[@class='twQ0Be']|.//div[@jsname='N760b']|.//div[@jsname='wRSfy']|.//div[contains(@class,'e2BEnf U7izfe')]|.//div[@jsname='A6RGif']|.//div[@class='P9Jfrb']|.//div[@class='ntKMYc']|.//div[@class='T6zPgb gduDCb']|.//div[@class='M0XuFe mnr-c vk_c']") != null) return true;//05-12-2022//26-09-2022//13-08-2022 maps//08-03-2022//07-03-2022//28-12-2021//10-12-2021//09-12-2021 //08-12-2021 PAlsoB   //30-08-2021 video card
                     if (node.SelectSingleNode(".//div[@class='osrp-blk']|.//div[@class='tpa-cc']") != null && node.SelectSingleNode(".//div[@class='l44Vof']") == null && node.SelectSingleNode(".//div[@class='H93uF']") == null) //17-05-2022//31-12-2021
                         return false; //20-08-2021

@@ -1406,11 +1406,11 @@ namespace RapidTrackingSingleThread
                     s.Append(GetPopularProducts(node));
                     s.Append("</block>");
                     break;//22-11-2022
-                case "findresultson"://07-07-2023
-                    s.Append("<block type=\"findResultsOn\" url=\"\">");
+                case "findresultson":
+                    //s.Append("<block type=\"findResultsOn\" url=\"\">");
                     s.Append(GetFindResultsOn(node));
-                    s.Append("</block>");
-                    break;//07-07-2023
+                    //s.Append("</block>");
+                    break;//09-08-2023//07-07-2023
                 default:
                     break;
             }
@@ -2452,22 +2452,28 @@ namespace RapidTrackingSingleThread
             }
             return s.ToString();
         }//24-03-2022
-        private string GetFindResultsOn(HtmlNode node) //07-07-2023 FindResultsOn Block
+        private string GetFindResultsOn(HtmlNode node)//09-08-2023//07-07-2023 FindResultsOn Block
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nds = node.SelectNodes(".//div/a[@class='dVjlWe']|.//div/a[@class='t2Yvdb']|.//div/a[@class='SsH3c']");//21-07-2023
+            s.Append("<block type=\"findResultsOn\" url=\"\">");
+            HtmlNodeCollection nds = node.SelectNodes(".//div/a[@class='dVjlWe']|.//div/a[@class='t2Yvdb']|.//div/a[@class='SsH3c']");
             if (nds != null)
             {
                 foreach (var nd in nds)
                 {
                     string url = nd.Attributes["href"].Value;
-                    string source = nd.SelectSingleNode(".//span[@class='dsJOWd']|.//span[@class='izosSe']|.//span[@class='UhM1oe']")?.InnerText ?? "";//21-07-2023
+                    string source = nd.SelectSingleNode(".//span[@class='dsJOWd']|.//span[@class='izosSe']|.//span[@class='UhM1oe']")?.InnerText ?? "";
                     string title = nd.SelectSingleNode(".//div[@class='NNFu9b nDgy9d']")?.InnerText ?? "";
                     s.Append("<item source=\"" + SetTitle(source) + "\" url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                 }
             }
+            s.Append("</block>");
+            if (node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]|.//div[@class='tkQJMd']") != null || node.Attributes["class"]?.Value == "WlTAzf mnr-c vk_c")
+            {
+                s.Append(GetFlights(node));
+            }
             return s.ToString();
-        } //07-07-2023 FindResultsOn Block
+        }//09-08-2023//07-07-2023 FindResultsOn Block
         private string ConvertNumber(string value)//23-06-2023
         {
             if (string.IsNullOrEmpty(value))

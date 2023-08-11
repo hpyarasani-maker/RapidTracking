@@ -106,6 +106,33 @@ namespace RapidTrackingLibrary
                             string heading = n.InnerText;
                             sb.Append("<block type=\"knowledgeGraph\" url=\"\" title=\"" + SetTitle(heading) + "\" />");
                         }
+                        /*if (n != null)//19-01-2023 //23-01-2023 Googlehotels else KP Block
+                        {
+                            string googleHotels = string.Empty;
+                            HtmlNode Gh = node.SelectSingleNode(".//div[@class='fKw1wf']");
+                            if (Gh != null)
+                            {
+                                googleHotels = GetGoogleHotels(Gh);
+                                if (!string.IsNullOrEmpty(googleHotels))
+                                {
+                                    sb.Append("<block type=\"googleHotels\" url=\"\">");
+                                    sb.Append(googleHotels);
+                                    sb.Append("</block>");
+                                }
+                            }
+                            else if (string.IsNullOrEmpty(googleHotels))
+                            {
+                                string heading = n.InnerText;
+                                sb.Append("<block type=\"knowledgeGraph\" url=\"\" title=\"" + SetTitle(heading) + "\" />");
+                            }
+                        }*///19-01-2023 //23-01-2023 Googlehotels else KP Block
+                        n = node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']");//11-08-2023 Images block
+                        if (n != null)
+                        {
+                            sb.Append("<block type=\"images\" url=\"\">");
+                            sb.Append(GetImages(node));
+                            sb.Append("</block>");
+                        }//11-08-2023
                         n = node.SelectSingleNode(".//block-component/div[contains(@class, 'kno-result')]");//30-01-2023 Answer Card
                         if (n != null)
                         {
@@ -2964,7 +2991,7 @@ namespace RapidTrackingLibrary
             }
             else
             {
-                nd = node.SelectSingleNode(".//div[@class='rKFBM gsrt wp-ms']|.//span[@class='FCUp0c rQMQod']"); //13-07-2020 images selector    // changes on 11-07-2019
+                nd = node.SelectSingleNode(".//div[@class='rKFBM gsrt wp-ms']|.//div[@class='JNkvid gsrt VJIO7b BUnLGf wp-ms']|.//span[@class='FCUp0c rQMQod']");//11-08-2023 //13-07-2020 images selector    // changes on 11-07-2019
                 if (nd != null)
                 {
                     if (nd.InnerText == "About" || nd.InnerText == "Images" || nd.InnerText == "Imágenes")  // 07-02-2020 and 10-02-2020 21-02-2020 included title for images block

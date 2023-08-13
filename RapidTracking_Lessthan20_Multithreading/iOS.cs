@@ -130,6 +130,13 @@ namespace TrackingTrending
                                 sb.Append("<block type=\"knowledgeGraph\" url=\"\" title=\"" + SetTitle(heading) + "\" />");
                             }
                         }*///19-01-2023 //23-01-2023 Googlehotels else KP Block
+                    n = node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']");//11-08-2023 Images block
+                    if (n != null)
+                    {
+                        sb.Append("<block type=\"images\" url=\"\">");
+                        sb.Append(GetImages(node));
+                        sb.Append("</block>");
+                    }//11-08-2023
                     n = node.SelectSingleNode(".//block-component/div[contains(@class, 'kno-result')]");//30-01-2023 Answer Card
                     if (n != null)
                     {

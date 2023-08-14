@@ -2178,8 +2178,8 @@ namespace Oxylabs_BulkKeywords
                             n = nd.SelectSingleNode(".//div[@class='KiGY3d mB12kf JRhSae ZyAH8d']");
                         if (n == null)
                             n = nd.SelectSingleNode(".//div[@class='oyj2db']|.//span[@class='rQMQod Xb5VRe']");//30-07-2020
-                        //if (n == null)
-                        //    n = nd.SelectSingleNode(".//div[@class='VibNM WGnkfe']|.//div[@jsname='ibnC6b']");
+                        if (n == null)
+                            n = nd.SelectSingleNode(".//div[@class='k8M7xd OSrXXb tNxQIb ynAwRc']");//14-08-2023 videos item title
                         try
                         {
                             // Changes in Videos block on 25-06-2019
@@ -2824,7 +2824,7 @@ namespace Oxylabs_BulkKeywords
 
                 // changes on 08-07-2019
                 nd = node.SelectSingleNode(".//img[@alt='map image']|.//img[@alt='Affected area map']|.//img[contains(@alt,'Map of ')]|.//img[@alt='Affected area']|.//img[@alt='Immagine mappa']|.//img[contains(@alt,'Map from')]|.//img[contains(@alt,'Mappa di')]");//02-05-2022//22-11-2021//30-11-2020 //19-06-2020 // 13-03-2020 //01-05-2020
-                if (nd != null)
+                if (nd != null & node.SelectSingleNode(".//div[@class='Vvrpbd']") == null)//14-08-2023
                     return "Maps";
             }
 
@@ -2832,7 +2832,7 @@ namespace Oxylabs_BulkKeywords
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='bUNBRd mnr-c']|.//div[@class='HnYYW i8lZMc']|.//div[@class='HnYYW mfMhoc']|.//div[@class='HnYYW']/div|.//div[@class='HnYYW DFkChc']");//04-07-2023//20-11-2020 twiter classic links//26-06-2020 //13-03-2020 //include on 2019-06-24
             if (nd == null)
-                nd = node.SelectSingleNode(".//g-card[@class='g F6CFcc']|.//g-inner-card[@class='Bf5NPb']");//26-06-2023//03-06-2021 twitter block
+                nd = node.SelectSingleNode(".//g-card[@class='g F6CFcc']|.//g-inner-card[@class='Bf5NPb']|.//div[@class='Bv2VAe']");//14-08-2023//26-06-2023//03-06-2021 twitter block
             if (nd != null)
             {
                 if (nd.InnerText.Contains("Twitter") || nd.SelectSingleNode(".//g-link") != null) //07-01-2021 twitter link
@@ -2953,7 +2953,7 @@ namespace Oxylabs_BulkKeywords
                 nd = node.SelectSingleNode(".//div[@class='rKFBM gsrt wp-ms']|.//div[@class='JNkvid gsrt VJIO7b BUnLGf wp-ms']|.//span[@class='FCUp0c rQMQod']");//11-08-2023 //13-07-2020 images selector    // changes on 11-07-2019
                 if (nd != null)
                 {
-                    if (nd.InnerText == "About" || nd.InnerText == "Images" || nd.InnerText == "Imágenes")  // 07-02-2020 and 10-02-2020 21-02-2020 included title for images block
+                    if (nd.InnerText == "About" || nd.InnerText.StartsWith("Images") || nd.InnerText == "Imágenes")//14-08-2023  // 07-02-2020 and 10-02-2020 21-02-2020 included title for images block
                         return "Images";
                     if (nd.InnerText.Trim() == "Eventos")  // 07-02-2020 included title for Event block
                         return "Event";

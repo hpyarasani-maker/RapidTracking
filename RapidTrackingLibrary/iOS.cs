@@ -2865,7 +2865,7 @@ namespace RapidTrackingLibrary
 
                 // changes on 08-07-2019
                 nd = node.SelectSingleNode(".//img[@alt='map image']|.//img[@alt='Affected area map']|.//img[contains(@alt,'Map of ')]|.//img[@alt='Affected area']|.//img[@alt='Immagine mappa']|.//img[contains(@alt,'Map from')]|.//img[contains(@alt,'Mappa di')]");//02-05-2022//22-11-2021//30-11-2020 //19-06-2020 // 13-03-2020 //01-05-2020
-                if (nd != null)
+                if (nd != null & node.SelectSingleNode(".//div[@class='Vvrpbd']") == null)//14-08-2023
                     return "Maps";
             }
 
@@ -2994,7 +2994,7 @@ namespace RapidTrackingLibrary
                 nd = node.SelectSingleNode(".//div[@class='rKFBM gsrt wp-ms']|.//div[@class='JNkvid gsrt VJIO7b BUnLGf wp-ms']|.//span[@class='FCUp0c rQMQod']");//11-08-2023 //13-07-2020 images selector    // changes on 11-07-2019
                 if (nd != null)
                 {
-                    if (nd.InnerText == "About" || nd.InnerText == "Images" || nd.InnerText == "Imágenes")  // 07-02-2020 and 10-02-2020 21-02-2020 included title for images block
+                    if (nd.InnerText == "About" || nd.InnerText.StartsWith("Images") || nd.InnerText == "Imágenes")//14-08-2023  // 07-02-2020 and 10-02-2020 21-02-2020 included title for images block
                         return "Images";
                     if (nd.InnerText.Trim() == "Eventos")  // 07-02-2020 included title for Event block
                         return "Event";

@@ -1617,6 +1617,8 @@ namespace RapidTrackingLibrary
                 nds = node.SelectNodes(".//div[@class='KmZaZb']");//23-05-2023
             if (nds == null)
                 nds = node.SelectNodes(".//div[@class='Fcmcxd']");//23-05-2023
+            if (nds == null)//16-08-2023
+                nds = node.SelectNodes(".//div[@class='yMNEqb']");//16-08-2023
             if (nds != null)
             {
                 foreach (HtmlNode nd in nds)

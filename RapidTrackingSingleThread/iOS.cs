@@ -3065,8 +3065,8 @@ namespace RapidTrackingSingleThread
             }
             //29-11-2019
             nd = node.SelectSingleNode(".//div[@class='KJDcUb WzRKRb']|.//div[contains(@class,'P8ujBc')]" +
-             "|.//div[@class='mnr-c P5XtRe']|.//div[@class='urrG9 v5yQqb jqWpsc']|.//div[@class='lNvPub cP7qLd v5yQqb']|.//div[contains(@class,'EtOod pkphOe')]|.//div[@class='mnr-c Eiw3V']");//17-05-2023//26-09-2022 //29-06-2022
-            //"|.//div[@class='mnr-c P5XtRe']|.//div[@class='urrG9 v5yQqb jqWpsc']|.//div[@class='mnr-c xpd EtOod pkphOe']");//29-06-2022 commented//10-06-2022//31-05-2022//25-03-2022//22-02-2022//01-02-2022
+             "|.//div[@class='mnr-c P5XtRe']|.//div[@class='urrG9 v5yQqb jqWpsc']|.//div[@class='lNvPub cP7qLd v5yQqb']" +
+             "|.//div[contains(@class,'EtOod pkphOe')]|.//div[@class='mnr-c Eiw3V']|.//div[contains(@class,'Ww4FFb vt6azd')]");//23-08-2023//17-05-2023//26-09-2022 //29-06-2022
             if (nd != null)
             {
                 return false;
@@ -3230,7 +3230,8 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@class='mnr-c xpd EtOod pkphOe']") != null //10-06-2022
                 || node.SelectSingleNode(".//div[contains(@class,'P8ujBc')]") != null //22-02-2022 //01-02-2022
                 || node.SelectSingleNode(".//div[@class='mnr-c P5XtRe']") != null //25-03-2022
-                || node.SelectSingleNode(".//div[@class='urrG9 v5yQqb jqWpsc']|.//div[@class='lNvPub cP7qLd v5yQqb']") != null;//17-05-2023 //31-05-2022
+                || node.SelectSingleNode(".//div[@class='urrG9 v5yQqb jqWpsc']|.//div[@class='lNvPub cP7qLd v5yQqb']") != null//17-05-2023 //31-05-2022
+                || node.SelectSingleNode(".//div[contains(@class,'Ww4FFb vt6azd')]") != null;//23-08-2023
         }
 
         internal object GetTop100GoogleUKMobileImages_PageURLs(string kw, string v1, string v2, string v3, string v4, string v5)

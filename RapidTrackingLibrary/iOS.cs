@@ -874,7 +874,7 @@ namespace RapidTrackingLibrary
                             s.Append("</block>");
                             continue;
                         }//01-02-2023 images
-                        if (nd.SelectSingleNode(".//div[@class='ouy7Mc']") != null)//02-04-2023 People also Ask
+                        if (nd.SelectSingleNode(".//div[@class='ouy7Mc']") != null && node.SelectNodes(".//div[@class='AuVD wHYlTd Ww4FFb vt6azd']") == null)//24-08-2023//02-04-2023 People also Ask
                         {
                             s.Append("<block type=\"peopleAlsoAsk\" url=\"\">");
                             s.Append(PeopleAlsoAsk(nd));

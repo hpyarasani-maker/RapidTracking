@@ -1318,6 +1318,8 @@ namespace RapidTrackingLibrary
                 videos = nd.SelectSingleNode(".//jsname[@class='ibnC6b']/a|.//div[@jsname='ibnC6b']/a");
             if (videos == null)
                 videos = nd.SelectSingleNode(".//div[@class='BycXVc']/a");//12-10-2021 //11-10-2021
+            if (videos == null)//24-08-2023
+                videos = nd.SelectSingleNode(".//div[@class='QvOPBf']");//24-08-2023
             if (videos != null)
             {
                 s.Append("<block type=\"videos\" url=\"\">");

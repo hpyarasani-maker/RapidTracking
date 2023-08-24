@@ -2190,6 +2190,8 @@ namespace RapidTrackingSingleThread
                             n = nd.SelectSingleNode(".//div[@class='KiGY3d mB12kf JRhSae ZyAH8d']");
                         if (n == null)
                             n = nd.SelectSingleNode(".//div[@class='oyj2db']|.//span[@class='rQMQod Xb5VRe']");//30-07-2020
+                        if (n == null)//24-08-2023
+                            n = nd.SelectSingleNode(".//div[@class='nOmCmb']");//24-08-2023
                         if (n == null)
                             n = nd.SelectSingleNode(".//div[@class='k8M7xd OSrXXb tNxQIb ynAwRc']");//14-08-2023 videos item title
                         try

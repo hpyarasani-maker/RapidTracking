@@ -777,7 +777,7 @@ namespace MultiThreadProject
                         nds = node.SelectNodes(".//div[contains(@class,'KJDcUb')]|.//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']|.//g-card[@id='tscffb']|.//div[@class='mnr-c PHap3c']|.//div[contains(@class, 'Ww4FFb vt6azd PHap3c')]" + //14-12-2022
                          "|.//div[@jsname='wRSfy']|.//g-card[@class='g F6CFcc']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='urrG9 v5yQqb jqWpsc']|.//g-card[@class='T98FId']" + //11-07-2023 //31-05-2022
                         "|.//div[@class='mnr-c']/div/div[@class='P8ujBc v5yQqb jqWpsc']|.//div[contains(@class,'EtOod pkphOe')]|.//div[@class='mnr-c']/div/div[@class='P8ujBc jqWpsc']" +
-                        "|.//div[@class='fhQnRd']|.//div[@id='iur']|.//div[contains(@class,'cUnQKe wHYlTd Ww4FFb vt6azd')]|.//div[@class='xLjnU']");//18-08-2023//02-04-2023//01-02-2023 //24-11-2022 //06-07-2022//05-07-2022 //24-05-2022 //19-11-2021 //28-10-2021//12-10-2021//09-02-2021//27-01-2021 included missing selector//05-01-2021 //04-01-2021 missing classic link//18-12-2020 sitelinks missing selector //15-12-2020
+                        "|.//div[@class='fhQnRd']|.//div[@id='iur']|.//div[contains(@class,'cUnQKe wHYlTd Ww4FFb vt6azd')]|.//div[@class='uVMCKf Ww4FFb vt6azd']|.//div[@class='Ww4FFb vt6azd tRkSqb']|.//div[@class='xLjnU']");//28-08-2023 //18-08-2023
                 if (nds == null) //24-11-2022
                     nds = node.SelectNodes(".//div[@class='P8ujBc v5yQqb jqWpsc']|.//div[contains(@class,'Ww4FFb vt6azd')]|.//div[contains(@class,'EtOod pkphOe')]");//06-02-2023//16-01-2023 //24-11-2022//14-09-2022
                 if (nds == null)
@@ -1286,7 +1286,7 @@ namespace MultiThreadProject
         private string SetVideos(HtmlNode nd)
         {
             StringBuilder s = new StringBuilder();
-            HtmlNode videos = nd.SelectSingleNode(".//div[@class='TyzpY']");
+            HtmlNode videos = nd.SelectSingleNode(".//div[@class='TyzpY']|.//div[@jsname='TFTr6']");//28-08-2023
             if (videos == null)
                 videos = nd.SelectSingleNode(".//div[@class='SRYuRe']");
             if (videos == null)
@@ -2804,7 +2804,7 @@ namespace MultiThreadProject
                 return "Videos";
             }
             nd = node.SelectSingleNode(".//div[contains(@class, 'HOslld dutT5c')]|.//div[@class='XNfAUb']");//29-06-2023//15-03-2023 //02-03-2023
-            if (nd != null && node.SelectSingleNode(".//div[contains(@class, 'MRtunc')]") == null)//04-07-2023
+            if (nd != null && node.SelectSingleNode(".//div[contains(@class, 'MRtunc')]|.//div[@class='Wt5Tfe']|.//div[@class='RyIFgf']") == null)//29-08-2023//04-07-2023
             {
                 return "Hotel";
             }
@@ -3044,7 +3044,7 @@ namespace MultiThreadProject
                 //30-03-2020
                 if (node.SelectSingleNode(".//div[@class='g card-section jiwmWe']") != null)
                     return false;
-                if (node.SelectSingleNode(".//div[@class='MUxGbd v0nnCb lyLwlc']") != null)//25-04-2020
+                if (node.SelectSingleNode(".//div[@class='MUxGbd v0nnCb lyLwlc']|.//div[@class='uVMCKf Ww4FFb vt6azd']") != null && node.SelectSingleNode(".//div[@class='LEHmvf adDDi']") == null)//29-09-2023//28-08-2023//25-04-2020
                     return false;
                 return true;
             }

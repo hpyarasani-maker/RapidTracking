@@ -2580,13 +2580,29 @@ namespace TrendingSending
                 seid = 713, domain ="st", geo_location="Sao Tome and Principe", locale= "pt-st", uule = "w+CAIQICIVU2FvIFRvbWUgYW5kIFByaW5jaXBl",device="mobile_android"
            },    // 30-12-2022 new seid's from 692- 713
            new SearchProperties() //06-03-2023
-            {
+           {
              seid = 714, domain ="com", geo_location="California,United States", locale= "en-us", uule = "w+CAIQICIYY2FsaWZvcm5pYSx1bml0ZWQgc3RhdGVz",device="desktop"
-            },
-            new SearchProperties()
-            {
+           },
+           new SearchProperties()
+           {
              seid = 715, domain ="com", geo_location="California,United States", locale= "en-us", uule = "w+CAIQICIYY2FsaWZvcm5pYSx1bml0ZWQgc3RhdGVz",device="mobile_android"
-            },//06-03-2023
+           },//06-03-2023
+           new SearchProperties() //14-03-2023
+           {
+            seid = 716, domain ="com", geo_location="Texas,United States", locale= "en-us", uule = "w+CAIQICITVGV4YXMsVW5pdGVkIFN0YXRlcw==",device="desktop"
+           },
+           new SearchProperties()
+           {
+            seid = 717, domain ="com", geo_location="Texas,United States", locale= "en-us", uule = "w+CAIQICITVGV4YXMsVW5pdGVkIFN0YXRlcw==",device="mobile_android"
+           },//14-03-2023 end
+           new SearchProperties()//29-08-2023
+           {
+                seid =718, domain ="com.br", geo_location="Brazil", locale= "en-br", uule = "w+CAIQICIGQnJhemls",device="desktop"
+           },
+           new SearchProperties()
+           {
+            seid =719, domain ="com.br", geo_location="Brazil", locale= "en-br", uule = "w+CAIQICIGQnJhemls",device="mobile_android"
+           },//29-08-2023
         };
     }
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 namespace TrendingLoopSending
 {
     class SearchParams
-    {         
+    {
         public static IList<SearchProperties> searches = new List<SearchProperties>()
         {
             new SearchProperties()
@@ -39,12 +39,12 @@ namespace TrendingLoopSending
             {
                 seid =40, domain ="fr", geo_location="France", locale="fr-fr", uule = "w+CAIQICIGRnJhbmNl",device="desktop"
             },
-            
+
             new SearchProperties()
             {
                 seid =44, domain ="be", geo_location="Belgium", locale= "nl-be", uule = "w+CAIQICIHQmVsZ2l1bQ==",device="desktop"
             },
-            
+
             new SearchProperties()
             {
                 seid =57, domain ="nl", geo_location="Netherlands", locale= "nl-nl", uule = "w+CAIQICILTmV0aGVybGFuZHM=",device="desktop"
@@ -53,7 +53,7 @@ namespace TrendingLoopSending
             {
                 seid =58, domain ="co.uk",geo_location="United Kingdom",locale= "en-gb",uule = "w+CAIQICIOVW5pdGVkIEtpbmdkb20=",device="desktop"
             },
-           
+
                new SearchProperties()
             {
                 seid =59, domain ="es", geo_location="Spain", locale= "es-es", uule = "w+CAIQICIFc3BhaW4=",device="desktop"
@@ -66,7 +66,7 @@ namespace TrendingLoopSending
             {
                 seid =61, domain ="se", geo_location="Sweden", locale= "sv-se", uule = "w+CAIQICIGU3dlZGVu",device="desktop"
             },
-            
+
             new SearchProperties()
             {
                 seid =63, domain ="com.hk", geo_location="Hong Kong", locale= "zh-TW-HK", uule = "w+CAIQICIJSG9uZyBLb25n",device="desktop"
@@ -185,7 +185,7 @@ namespace TrendingLoopSending
                 seid =98, domain ="co.il", geo_location="Israel", locale= "iw-il", uule = "w+CAIQICIGSXNyYWVs",device="desktop"
 
             },
-             
+
             new SearchProperties()
             {
             seid =102, domain ="com", geo_location="United States", locale = "en-us", uule = "w+CAIQICINVW5pdGVkIFN0YXRlcw==",device="mobile_android"
@@ -222,7 +222,7 @@ namespace TrendingLoopSending
             {
             seid =115, domain ="ch", geo_location="Switzerland", locale= "fr-ch", uule = "w+CAIQICIMU3dpdHplcmxhbmQK",device="desktop"
             },
-            
+
             new SearchProperties()
             {
             seid =117, domain ="pt", geo_location="Portugal", locale= "pt-pt", uule = "w+CAIQICIIUG9ydHVnYWw=",device="mobile_android"
@@ -355,7 +355,7 @@ namespace TrendingLoopSending
             {
             seid =150, domain ="com.br", geo_location="Brazil", locale= "pt-br", uule = "w+CAIQICIGQnJhemls",device="mobile_android"
             },
-           
+
             new SearchProperties()
             {
             seid =152, domain ="dk", geo_location="Denmark", locale= "da-dk", uule ="w+CAIQICIHRGVubWFyaw==",device="mobile_android"
@@ -2594,10 +2594,15 @@ namespace TrendingLoopSending
             {
             seid = 717, domain ="com", geo_location="Texas,United States", locale= "en-us", uule = "w+CAIQICITVGV4YXMsVW5pdGVkIFN0YXRlcw==",device="mobile_android"
             },//14-03-2023 end
+           new SearchProperties()//29-08-2023
+           {
+            seid =718, domain ="com.br", geo_location="Brazil", locale= "en-br", uule = "w+CAIQICIGQnJhemls",device="desktop"
+           },
+           new SearchProperties()
+           {
+            seid =719, domain ="com.br", geo_location="Brazil", locale= "en-br", uule = "w+CAIQICIGQnJhemls",device="mobile_android"
+           },//29-08-2023
         };
-        
-
-
     }
 
     class SearchProperties
@@ -2611,6 +2616,6 @@ namespace TrendingLoopSending
         public string tbm { get; set; }
         public string device { get; set; }
     }
-   
-    
+
+
 }

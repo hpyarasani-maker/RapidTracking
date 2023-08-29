@@ -3075,7 +3075,7 @@ namespace RapidTrackingLibrary
                 //30-03-2020
                 if (node.SelectSingleNode(".//div[@class='g card-section jiwmWe']") != null)
                     return false;
-                if (node.SelectSingleNode(".//div[@class='MUxGbd v0nnCb lyLwlc']|.//div[@class='uVMCKf Ww4FFb vt6azd']") != null)//28-08-2023//25-04-2020
+                if (node.SelectSingleNode(".//div[@class='MUxGbd v0nnCb lyLwlc']|.//div[@class='uVMCKf Ww4FFb vt6azd']") != null && node.SelectSingleNode(".//div[@class='LEHmvf adDDi']") == null)//29-09-2023//28-08-2023//25-04-2020
                     return false;
                 return true;
             }

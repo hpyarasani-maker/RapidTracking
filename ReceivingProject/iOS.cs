@@ -776,7 +776,8 @@ namespace ReceivingProject
                         nds = node.SelectNodes(".//div[contains(@class,'KJDcUb')]|.//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']|.//g-card[@id='tscffb']|.//div[@class='mnr-c PHap3c']|.//div[contains(@class, 'Ww4FFb vt6azd PHap3c')]" + //14-12-2022
                          "|.//div[@jsname='wRSfy']|.//g-card[@class='g F6CFcc']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='urrG9 v5yQqb jqWpsc']|.//g-card[@class='T98FId']" + //11-07-2023 //31-05-2022
                         "|.//div[@class='mnr-c']/div/div[@class='P8ujBc v5yQqb jqWpsc']|.//div[contains(@class,'EtOod pkphOe')]|.//div[@class='mnr-c']/div/div[@class='P8ujBc jqWpsc']" +
-                        "|.//div[@class='fhQnRd']|.//div[@id='iur']|.//div[contains(@class,'cUnQKe wHYlTd Ww4FFb vt6azd')]|.//div[@class='uVMCKf Ww4FFb vt6azd']|.//div[@class='Ww4FFb vt6azd tRkSqb']|.//div[@class='xLjnU']");//28-08-2023 //18-08-2023
+                        //"|.//div[@class='fhQnRd']|.//div[@id='iur']|.//div[contains(@class,'cUnQKe wHYlTd Ww4FFb vt6azd')]|.//div[@class='uVMCKf Ww4FFb vt6azd']|.//div[@class='Ww4FFb vt6azd tRkSqb']|.//div[@class='xLjnU']");//28-08-2023 //18-08-2023
+                        "|.//div[@class='fhQnRd']|.//div[@id='iur']|.//div[contains(@class,'Ww4FFb vt6azd')]");//01-09-2023//30-08-2023
                 if (nds == null) //24-11-2022
                     nds = node.SelectNodes(".//div[@class='P8ujBc v5yQqb jqWpsc']|.//div[contains(@class,'Ww4FFb vt6azd')]|.//div[contains(@class,'EtOod pkphOe')]");//06-02-2023//16-01-2023 //24-11-2022//14-09-2022
                 if (nds == null)
@@ -817,16 +818,16 @@ namespace ReceivingProject
                             continue;
                         }
                         //21-02-2020  included selector for the Apps Block
-                        if (nd.SelectSingleNode(".//div[@class='ki5rnd']|.//div[@class='yR4jwc']|.//div[@class='qs-io aig-lst']") != null) //31-08-2020  //20-05-2020 included selector for app block
+                        if (nd.SelectSingleNode(".//div[@class='ki5rnd']|.//div[@class='yR4jwc']|.//div[@class='UyqAp']|.//div[@class='qs-io aig-lst']") != null)//30-08-2023 //31-08-2020  //20-05-2020 included selector for app block
                         {
                             s.Append(GetApps(nd));
                             continue;
                         }
 
                         //27-09-2019
-                        if (nd.HasClass("F6CFcc") || nd.SelectSingleNode(".//g-inner-card[@class='Bf5NPb']") != null)//twitter block //18-08-2023  
+                        if (nd.HasClass("F6CFcc") || nd.SelectSingleNode(".//g-inner-card[@class='Bf5NPb']|.//g-tray-header[contains(@class, 'Bf5NPb')]") != null)//30-08-2023//twitter block //18-08-2023  
                         {
-                            if (nd.SelectSingleNode(".//div[contains(@class,'qdrjAc Dwsemf')]") != null) //28-10-2021  //11-11-2019
+                            if (nd.SelectSingleNode(".//div[contains(@class,'qdrjAc Dwsemf')]|.//div[@class='Bv2VAe']") != null)//30-08-2023 //28-10-2021  //11-11-2019
                             {
                                 s.Append(GetTwitterCards(nd));
                                 continue;
@@ -846,7 +847,7 @@ namespace ReceivingProject
                             s.Append("</block>");
                             continue;
                         }//01-02-2023 images
-                        if (nd.SelectSingleNode(".//div[@class='ouy7Mc']") != null && node.SelectNodes(".//div[@class='AuVD wHYlTd Ww4FFb vt6azd']") == null)//24-08-2023//02-04-2023 People also Ask
+                        if (nd.SelectSingleNode(".//div[@class='ouy7Mc']") != null && (node.SelectNodes(".//div[@class='AuVD wHYlTd Ww4FFb vt6azd']") == null || !nd.HasClass("AuVD wHYlTd Ww4FFb vt6azd")))//30-08-2023//24-08-2023//02-04-2023 People also Ask
                         {
                             s.Append("<block type=\"peopleAlsoAsk\" url=\"\">");
                             s.Append(PeopleAlsoAsk(nd));
@@ -3041,7 +3042,7 @@ namespace ReceivingProject
             if (nd != null)
             {
                 //30-03-2020
-                if (node.SelectSingleNode(".//div[@class='g card-section jiwmWe']") != null)
+                if (node.SelectSingleNode(".//div[@class='g card-section jiwmWe']|.//div[contains(@class,'xpd EtOod pkphOe')]") != null)//30-08-2023
                     return false;
                 if (node.SelectSingleNode(".//div[@class='MUxGbd v0nnCb lyLwlc']|.//div[@class='uVMCKf Ww4FFb vt6azd']") != null && node.SelectSingleNode(".//div[@class='LEHmvf adDDi']") == null)//29-09-2023//28-08-2023//25-04-2020
                     return false;

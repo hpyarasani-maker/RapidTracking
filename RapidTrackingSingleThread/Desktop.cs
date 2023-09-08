@@ -1092,7 +1092,7 @@ namespace RapidTrackingSingleThread
             StringBuilder s = new StringBuilder();
             HtmlNode n = node.SelectSingleNode(".//div[@class='r']/a");
             if (n == null)
-                n = node.SelectSingleNode(".//div[@class='yuRUbf']/a|.//div[@class='yuRUbf']/div/a"); //07-08-2023 //03-09-2020 included classic link selector
+                n = node.SelectSingleNode(".//div[@class='yuRUbf']/a|.//div[@class='yuRUbf']/div/a|.//div[@class='yuRUbf']/div/span/a"); //08-09-2023//07-08-2023 //03-09-2020 included classic link selector
             if (n != null)
             {
                 if (orgLinks < 100)

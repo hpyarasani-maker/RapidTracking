@@ -745,6 +745,10 @@ namespace SERPResultsJSON
                             n = nd.SelectSingleNode(".//div[@class='yuRUbf']/a"); //02-10-2020
                         if (n == null)
                             n = nd.SelectSingleNode(".//div[@class='yuRUbf']/div/a");//28-07-2023
+                        if (n == null)
+                            n = nd.SelectSingleNode(".//div[@class='ARVUmc']/div/span/a");//07-09-2023
+                        if (n == null)
+                            n = nd.SelectSingleNode(".//div[@class='nhaZ2c']/div/span/a");//08-09-2023
                         if (n != null)
                             title = n.SelectSingleNode(".//h3");
 
@@ -760,8 +764,7 @@ namespace SERPResultsJSON
                                     urls = n.Attributes["href"].Value;
                                 else
                                 {
-                                    var a = nd.SelectSingleNode(".//div[@class='ct3b9e']/a|.//div[@class='IAZbGe']/a|.//div[@class='DhN8Cf']/a|.//div[@class='E74pWd']/a|.//div[@class='DhN8Cf']/div/a|.//div[@class='IAZbGe']/div/a|.//div[@class='nhaZ2c']/div/a|.//div[@class='ARVUmc']/div/a");//23-08-2023//28-07-2023//18-04-2023//11-02-2023 //07-04-2022
-                                    urls = a.Attributes["href"].Value;
+                                    var a = nd.SelectSingleNode(".//div[@class='ct3b9e']/a|.//div[@class='IAZbGe']/a|.//div[@class='DhN8Cf']/a|.//div[@class='E74pWd']/a|.//div[@class='DhN8Cf']/div/a|.//div[@class='IAZbGe']/div/a|.//div[@class='nhaZ2c']/div/a|.//div[@class='ARVUmc']/div/a|.//div[@class='nhaZ2c']/div/span/a");//07-09-2023//23-08-2023//28-07-2023//18-04-2023//11-02-2023 //07-04-2022                                    urls = a.Attributes["href"].Value;
                                     title = a.SelectSingleNode(".//h3");
                                 } //24-08-2021 video block item urls
                                 if (urls.StartsWith("http") || urls.StartsWith("https") || urls.StartsWith("ftp")) //30-04-2020
@@ -777,7 +780,7 @@ namespace SERPResultsJSON
                             else if (orgLinks < 100)
                             {
                                 if (n == null)
-                                    n = nd.SelectSingleNode(".//div[@class='yuRUbf']/a|.//div[@class='yuRUbf']/div/div[@class='E74pWd']/a|.//div[@class='IAZbGe']/a|.//div[@class='IAZbGe']/div/a");//28-07-2023//18-04-2023
+                                    n = nd.SelectSingleNode(".//div[@class='yuRUbf']/a|.//div[@class='yuRUbf']/div/div[@class='E74pWd']/a|.//div[@class='yuRUbf']/div/span/a|.//div[@class='IAZbGe']/a|.//div[@class='IAZbGe']/div/a");//07-09-2023//28-07-2023//18-04-2023
                                 if (n == null)//18-04-2023
                                     n = nd.SelectSingleNode(".//div[@class='E74pWd']/a");//18-04-2023//18-10-2022 //04-09-2020 included selector for classic links
                                 if (n == null && nd.Attributes["class"]?.Value == "yuRUbf")//17-11-2022
@@ -874,7 +877,7 @@ namespace SERPResultsJSON
                     if (col == null)
                         col = n.SelectNodes(".//div[@class='DOqJne']/g-link/a|.//div[@class='M42dy']/g-link/a");
                     if (col == null)
-                        col = n.SelectNodes(".//div[@class='yuRUbf']/a|.//div[@class='yuRUbf']/div/div[@class='E74pWd']/a|.//div[@class='yuRUbf']/div/a");//28-07-2023//18-04-2023 //08-10-2021 for missing classic links
+                        col = n.SelectNodes(".//div[@class='yuRUbf']/a|.//div[@class='yuRUbf']/div/div[@class='E74pWd']/a|.//div[@class='yuRUbf']/div/a|.//div[@class='yuRUbf']/div/span/a");//07-09-2023//28-07-2023//18-04-2023 //08-10-2021 for missing classic links
                     foreach (HtmlNode nd in col)
                     {
                         string u = nd.Attributes["href"].Value.Replace("/url?q=", "").Replace("&amp;", "&").Replace("&", "&#38;");
@@ -1091,7 +1094,7 @@ namespace SERPResultsJSON
             StringBuilder s = new StringBuilder();
             HtmlNode n = node.SelectSingleNode(".//div[@class='r']/a");
             if (n == null)
-                n = node.SelectSingleNode(".//div[@class='yuRUbf']/a|.//div[@class='yuRUbf']/div/a"); //07-08-2023 //03-09-2020 included classic link selector
+                n = node.SelectSingleNode(".//div[@class='yuRUbf']/a|.//div[@class='yuRUbf']/div/a|.//div[@class='yuRUbf']/div/span/a"); //08-09-2023//07-08-2023 //03-09-2020 included classic link selector
             if (n != null)
             {
                 if (orgLinks < 100)

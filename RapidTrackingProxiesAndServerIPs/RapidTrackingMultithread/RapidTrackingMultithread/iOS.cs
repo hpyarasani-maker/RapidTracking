@@ -1866,6 +1866,23 @@ namespace RapidTrackingMultithread
                 }
             }
             catch { }
+            string pattern1 = @"\\x22\\x3e\\x3ca jsname\\x3d\\x22UWckNb\\x22 class\\x3d\\x22sXtWJb\\x22 href\\x3d\\x22(.*?)\\x22 data-ved\\x3d\\x22"; //11-09-2023
+            re = new Regex(pattern1, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+            mc = re.Matches(html);
+            try
+            {
+                foreach (Match m in mc)
+                {
+                    string url = HttpUtility.HtmlDecode(HttpUtility.HtmlEncode(m.Groups[1].Value));
+                    if (url.StartsWith("http") || url.StartsWith("https"))
+                    {
+                        url = SetYTUrl(url, yt);
+                        if (x < titles.Length)
+                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");
+                    }
+                }
+            }
+            catch { }//11-09-2023
             for (; x < titles.Length; x++)//18-02-2022
                 s.Append("<item url=\"\" title=\"" + SetTitle(titles[x]) + "\" />");//18-02-2022
             return s.ToString();
@@ -1880,6 +1897,8 @@ namespace RapidTrackingMultithread
                 nds = node.SelectNodes(".//h3/a[contains(@class,'sXtWJb')]"); //17-01-2022 //05-10-2020 for answer card     //26-11-2019
             if (nds == null) //03-08-2023
                 nds = node.SelectNodes(".//h3/div/a[contains(@class,'sXtWJb')]"); //03-08-2023
+            if (nds == null) //11-09-2023
+                nds = node.SelectNodes(".//h3/div/span/a[contains(@class,'sXtWJb')]"); //11-09-2023
             if (nds == null)//23-12-2021
                 nds = node.SelectNodes(".//a[@class='GBgvb']");//23-12-2021
             if (nds == null)

@@ -1167,6 +1167,19 @@ namespace SingleJobidProject
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");//22-02-2022
                 }
             }
+            string pattern1 = @"\\x22\\x3e\\x3ca jsname\\x3d\\x22UWckNb\\x22 href\\x3d\\x22(.*?)\\x22*[ data-jsarwt\\x3d\\x221\\x22]";//08-09-2023
+            re = new Regex(pattern1, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+            mc = re.Matches(html);
+            foreach (Match m in mc)
+            {
+                string url = HttpUtility.HtmlDecode(HttpUtility.HtmlEncode(m.Groups[1].Value));
+                if (url.StartsWith("http") || url.StartsWith("https"))
+                {
+                    url = SetYTUrl(url, yt);
+                    if (x < titles.Length)
+                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");
+                }
+            }//08-09-2023
             for (; x < titles.Length; x++)//18-02-2022
                 s.Append("<item url=\"\" title=\"" + SetTitle(titles[x]) + "\" />");//18-02-2022
             return s.ToString();
@@ -1177,7 +1190,7 @@ namespace SingleJobidProject
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='r']/a");
             if (nds == null)
-                nds = node.SelectNodes(".//div[@class='yuRUbf']/a|.//div[@class='yuRUbf']/div/a");//03-08-2023  //03-09-2020 included selector for missing classic links
+                nds = node.SelectNodes(".//div[@class='yuRUbf']/a|.//div[@class='yuRUbf']/div/a|.//div[@class='yuRUbf']/div/span/a");//11-09-2023//03-08-2023  //03-09-2020 included selector for missing classic links
             if (nds == null)//23-12-2021
                 nds = node.SelectNodes(".//a[@class='GBgvb']");//23-12-2021
             if (nds == null)

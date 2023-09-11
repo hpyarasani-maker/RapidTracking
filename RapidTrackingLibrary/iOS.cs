@@ -1928,6 +1928,8 @@ namespace RapidTrackingLibrary
                 nds = node.SelectNodes(".//h3/a[contains(@class,'sXtWJb')]"); //17-01-2022 //05-10-2020 for answer card     //26-11-2019
             if (nds == null) //03-08-2023
                 nds = node.SelectNodes(".//h3/div/a[contains(@class,'sXtWJb')]"); //03-08-2023
+            if (nds == null) //11-09-2023
+                nds = node.SelectNodes(".//h3/div/span/a[contains(@class,'sXtWJb')]"); //11-09-2023
             if (nds == null)//23-12-2021
                 nds = node.SelectNodes(".//a[@class='GBgvb']");//23-12-2021
             if (nds == null)

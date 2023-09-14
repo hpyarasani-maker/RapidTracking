@@ -1562,7 +1562,7 @@ namespace RapidTrackingSingleThread
                         string price = nd.SelectSingleNode(".//span[@class='xqqLDd']|.//span[@class='cirEce']|.//div[@class='n22NNe']")?.InnerText.Trim() ?? "0";
                         string priceValue = string.Empty;
                         string hoursValue = string.Empty;
-                        if (node.SelectSingleNode(".//div[@class='UgpQWe']") == null)
+                        if (node.SelectSingleNode(".//div[@class='UgpQWe']") == null && node.SelectSingleNode(".//div/a[contains(@class,'a-no-hover-decoration')]") == null) //14-09-2023
                         {
                             destination = airline;
                             airline = string.Empty;

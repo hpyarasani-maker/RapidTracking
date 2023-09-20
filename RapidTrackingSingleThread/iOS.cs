@@ -39,6 +39,8 @@ namespace RapidTrackingSingleThread
                 HtmlNodeCollection nodeCol = doc.DocumentNode.SelectNodes("//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']/div[@class='MUxGbd v0nnCb lyLwlc']|//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']/div/div[@class='MUxGbd v0nnCb lyLwlc']");   //29-04-2020
                 if (nodeCol != null)
                     nodeCol = nodeCol[nodeCol.Count - 1].SelectNodes("a/div");  //28-04-2020
+                if (nodeCol == null)//20-09-2023
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div[@class='MjjYud']/div");//20-09-2023
                 if (nodeCol == null)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-card|//div[@id='taw']/div[@class='med']/div[2]/div|//div[@id='rso']/nav|//div[@id='rso']/block-component/div|//div[contains(@id, 'arc-srp')]/div/div[@class='MjjYud']|//div[contains(@id, 'arc-srp')]/div/div/div[@class='MjjYud']|.//div[contains(@class,'TzHB6b')]");//29-03-2023//07-01-2022 event results//28-04-2020
                 if (nodeCol != null && nodeCol.Count == 1)
@@ -135,14 +137,14 @@ namespace RapidTrackingSingleThread
                             sb.Append(GetImages(node));
                             sb.Append("</block>");
                         }//11-08-2023
-                        n = node.SelectSingleNode(".//block-component/div[contains(@class, 'kno-result')]");//30-01-2023 Answer Card
+                        n = node.SelectSingleNode(".//block-component/div[contains(@class, 'kno-result')]|.//div[@class='UDZeY fAgajc']");//20-09-2023//30-01-2023 Answer Card
                         if (n != null)
                         {
                             sb.Append("<block type=\"answerCard\" url=\"\">");
                             sb.Append(GetAnswerCard(n));
                             sb.Append("</block>");
                         }//30-01-2023 Answer Card
-                        n = node.SelectSingleNode(".//g-img[@class='o8ebK']|.//g-img[@class='gRTVof']");//10-10-2022//07-09-2022 missing KP block
+                        n = node.SelectSingleNode(".//g-img[@class='o8ebK']|.//g-img[@class='gRTVof']|.//div[@class='Xlcxdd']");//20-09-2023//10-10-2022//07-09-2022 missing KP block
                         if (n != null && node.SelectSingleNode(".//div[@class='KrvXD']") == null)///13-12-2022
                         {
                             sb.Append("<block type=\"maps\" url=\"\"></block>");
@@ -1910,7 +1912,7 @@ namespace RapidTrackingSingleThread
             if (nds == null) //11-09-2023
                 nds = node.SelectNodes(".//h3/div/span/a[contains(@class,'sXtWJb')]"); //11-09-2023
             if (nds == null)//23-12-2021
-                nds = node.SelectNodes(".//a[@class='GBgvb']");//23-12-2021
+                nds = node.SelectNodes(".//a[@class='GBgvb']|.//a[@class='B1uW2d ellip PZPZlf']");//20-09-2023//23-12-2021
             if (nds == null)
                 nds = node.SelectNodes(".//div[@class='WcS13d']/a");  //05-10-2020 included selector for missing classic links
             if (nds == null)

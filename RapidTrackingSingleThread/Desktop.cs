@@ -49,14 +49,14 @@ namespace RapidTrackingSingleThread
                 if (nodeCol == null || (nodeCol.Count <= 1))//12-04-2023
                     nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'TzHB6b cLjAic')]|//div[contains(@id, 'arc-srp')]/div/div[@class='MjjYud']|//div[contains(@id, 'arc-srp')]/div/div/div[@class='MjjYud']") ?? nodeCol;//12-04-2023
                 if (nodeCol == null || nodeCol.Count <= 4)//02-05-2023//21-04-2023
-                    nodeCol = doc.DocumentNode.SelectNodes(".//div[@class='WvKfwe a3spGf']/div|.//div[@class='TzHB6b cLjAic LMRCfc']|.//div[@class='uVMCKf']") ?? nodeCol; //19-09-2023
+                    nodeCol = doc.DocumentNode.SelectNodes(".//div[@class='WvKfwe a3spGf']/div|.//div[@class='TzHB6b cLjAic LMRCfc']") ?? nodeCol;//21-09-2023 //19-09-2023
                 if (nodeCol == null || (nodeCol.Count > 1 && nodeCol.Count <= 3))//25-07-2022
                     nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div|.//div[contains(@class,'ULSxyf')]|//div[@class='hlcw0c']/div") ?? nodeCol;//16-12-2022//17-08-2022
                 if (nodeCol == null || nodeCol.Count <= 1) //01-08-2022 swapped lines
                 {
                     nodeCol = doc.DocumentNode.SelectNodes("//div[contains(@class, 'TzHB6b cLjAic')]|.//div[@class='VT5Tde']");//14-02-2023//15-12-2022
                     if (nodeCol == null || nodeCol.Count <= 5) //29-12-2022
-                        nodeCol = doc.DocumentNode.SelectNodes("//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div") ?? nodeCol;//29-12-2022
+                        nodeCol = doc.DocumentNode.SelectNodes("//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div|.//div[contains(@class,'ULSxyf')]|//div[@class='hlcw0c']/div") ?? nodeCol;//21-09-2023//29-12-2022
                     if (nodeCol == null)//15-12-2022
                         nodeCol = doc.DocumentNode.SelectNodes("//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div|.//div[@class='UDZeY OTFaAf']/block-component") ?? nodeCol;//09-12-2022//06-12-2022 //answer card 26-09-2022
                     if (nodeCol == null || nodeCol.Count <= 5)

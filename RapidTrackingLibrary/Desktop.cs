@@ -1486,6 +1486,8 @@ namespace RapidTrackingLibrary
                 nd = node.SelectNodes(".//div[@jsname='WUSFrc']/g-link/a");
             if (nd == null)
                 nd = node.SelectNodes(".//div[@class='v1uiFd']/g-link/a");  // 11-05-2020
+            if (nd == null) //21-09-2023
+                nd = node.SelectNodes(".//div[@class='yM0Ysd']/a[@class='OE6E7b']"); //21-09-2023
             string url = "";
             if (nd != null)
             {
@@ -1982,7 +1984,7 @@ namespace RapidTrackingLibrary
             }
             // end of map changes.
 
-            nd = node.SelectSingleNode(".//div[@id='kx']|.//div[@id='rrg']|.//div[@class='oHJrJb']|.//div[@class='q6PGbe']|.//g-scrolling-carousel[@class='arDHIe']|.//div[@class='jhtnKe oJxN6']");//19-09-2023//01-09-2022//03-11-2021 CS Block//05-08-2020 included selector for carousel
+            nd = node.SelectSingleNode(".//div[@id='kx']|.//div[@id='rrg']|.//div[@class='oHJrJb']|.//div[@class='q6PGbe']|.//g-scrolling-carousel[@class='arDHIe']|.//div[@class='jhtnKe oJxN6']|.//div[@jsname='GDPwke']");//21-09-2023//19-09-2023//01-09-2022//03-11-2021 CS Block//05-08-2020 included selector for carousel
             if (nd != null)
             {
                 return "Carousel";
@@ -2066,7 +2068,8 @@ namespace RapidTrackingLibrary
                 || node.SelectSingleNode(".//div[@class='AxJnmb Wdsnue']") != null //05-01-2023
             || node.SelectSingleNode(".//div[@class='CH6Bmd']") != null //27-02-2023
             || node.SelectSingleNode(".//div[@class='oCLR8']") != null//02-06-2023
-            || node.SelectSingleNode(".//div[@class='fPmcEc']") != null;//19-09-2023
+            || node.SelectSingleNode(".//div[@class='fPmcEc']") != null//19-09-2023
+            || node.SelectSingleNode(".//div[@class='qkC4td']") != null;//21-09-2023
             if (bVal == true)//2019-09-11
             {
                 try

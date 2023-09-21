@@ -53,7 +53,7 @@ namespace RapidTrackingMultiThreadJobIDs
             {
                 nodeCol = doc.DocumentNode.SelectNodes("//div[contains(@class, 'TzHB6b cLjAic')]|.//div[@class='VT5Tde']");//14-02-2023//15-12-2022
                 if (nodeCol == null || nodeCol.Count <= 5) //29-12-2022
-                    nodeCol = doc.DocumentNode.SelectNodes("//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div") ?? nodeCol;//29-12-2022
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div|.//div[contains(@class,'ULSxyf')]|//div[@class='hlcw0c']/div") ?? nodeCol;//21-09-2023//29-12-2022
                 if (nodeCol == null)//15-12-2022
                     nodeCol = doc.DocumentNode.SelectNodes("//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div|.//div[@class='UDZeY OTFaAf']/block-component") ?? nodeCol;//09-12-2022//06-12-2022 //answer card 26-09-2022
                 if (nodeCol == null || nodeCol.Count <= 3)

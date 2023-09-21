@@ -805,7 +805,7 @@ namespace RapidTrackingSingleThread
                     if (node.Attributes["class"]?.Value == "mnr-c xpd O9g5cc uUPGi") //09-09-2021 applied ? condition
                         nds = node.SelectNodes(".//div[contains(@class,'KJDcUb')]"); //28-07-2020 //29-07-2020 included contains function
                 if (nds == null)
-                    nds = node.SelectNodes(".//div[@class='setTDc']|.//div[@class='P8ujBc v5yQqb jqWpsc']"); //02-02-2022 moved from 687 line   // 25-10-2019
+                    nds = node.SelectNodes(".//div[@class='setTDc']|.//div[contains(@class, 'P8ujBc v5yQqb')]");//21-09-2023 //02-02-2022 moved from 687 line   // 25-10-2019
             }
             if (nds != null)
             {
@@ -1001,7 +1001,7 @@ namespace RapidTrackingSingleThread
                             // || nd.Attributes["class"].Value.Contains("mnr-c xpd EtOod pkphOe")//30-09-2022 commented //10-06-2022
                              || nd.Attributes["class"].Value.Contains("EtOod pkphOe") //30-06-2022//29-06-2022
                              || nd.Attributes["class"].Value == "wU9Tkd" || nd.Attributes["class"].Value.Contains("P8ujBc") //22-02-2022 //01-02-2022 //10-07-2021
-                             || nd.Attributes["class"].Value == "g card-section") //30-08-2021 missing classic link
+                             || nd.Attributes["class"].Value == "g card-section" || nd.Attributes["class"].Value == "card-section svwwZ") //21-09-2023//30-08-2021 missing classic link
                             {
                                 //17-10-2019
                                 string vdos = string.Empty;

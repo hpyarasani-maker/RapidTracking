@@ -799,7 +799,7 @@ namespace RapidTrackingCloudSingleThread
                     if (node.Attributes["class"]?.Value == "mnr-c xpd O9g5cc uUPGi") //09-09-2021 applied ? condition
                         nds = node.SelectNodes(".//div[contains(@class,'KJDcUb')]"); //28-07-2020 //29-07-2020 included contains function
                 if (nds == null)
-                    nds = node.SelectNodes(".//div[@class='setTDc']|.//div[@class='P8ujBc v5yQqb jqWpsc']"); //02-02-2022 moved from 687 line   // 25-10-2019
+                    nds = node.SelectNodes(".//div[@class='setTDc']|.//div[contains(@class, 'P8ujBc v5yQqb')]");//21-09-2023 //02-02-2022 moved from 687 line   // 25-10-2019
             }
             if (nds != null)
             {
@@ -995,7 +995,7 @@ namespace RapidTrackingCloudSingleThread
                             // || nd.Attributes["class"].Value.Contains("mnr-c xpd EtOod pkphOe")//30-09-2022 commented //10-06-2022
                              || nd.Attributes["class"].Value.Contains("EtOod pkphOe") //30-06-2022//29-06-2022
                              || nd.Attributes["class"].Value == "wU9Tkd" || nd.Attributes["class"].Value.Contains("P8ujBc") //22-02-2022 //01-02-2022 //10-07-2021
-                             || nd.Attributes["class"].Value == "g card-section") //30-08-2021 missing classic link
+                             || nd.Attributes["class"].Value == "g card-section" || nd.Attributes["class"].Value == "card-section svwwZ") //21-09-2023//30-08-2021 missing classic link
                             {
                                 //17-10-2019
                                 string vdos = string.Empty;
@@ -1872,7 +1872,7 @@ namespace RapidTrackingCloudSingleThread
                 }
             }
             catch { }
-            string pattern1 = @"\\x22\\x3e\\x3ca jsname\\x3d\\x22UWckNb\\x22 class\\x3d\\x22sXtWJb\\x22 href\\x3d\\x22(.*?)\\x22 data-ved\\x3d\\x22"; //11-09-2023
+            string pattern1 = @"\\x22\\x3e\\x3ca jsname\\x3d\\x22UWckNb\\x22 class\\x3d\\x22sXtWJb\\x22 href\\x3d\\x22(.*?)\\x22";//21-09-2023 //11-09-2023
             re = new Regex(pattern1, RegexOptions.IgnoreCase | RegexOptions.Singleline);
             mc = re.Matches(html);
             try
@@ -1906,7 +1906,7 @@ namespace RapidTrackingCloudSingleThread
             if (nds == null) //11-09-2023
                 nds = node.SelectNodes(".//h3/div/span/a[contains(@class,'sXtWJb')]"); //11-09-2023
             if (nds == null)//23-12-2021
-                nds = node.SelectNodes(".//a[@class='GBgvb']");//23-12-2021
+                nds = node.SelectNodes(".//a[@class='GBgvb']|.//a[@class='B1uW2d ellip PZPZlf']");//20-09-2023//23-12-2021
             if (nds == null)
                 nds = node.SelectNodes(".//div[@class='WcS13d']/a");  //05-10-2020 included selector for missing classic links
             if (nds == null)
@@ -2151,6 +2151,8 @@ namespace RapidTrackingCloudSingleThread
                         title = nd.SelectSingleNode(".//div[contains(@class,'tNxQIb ynAwRc nDgy9d')]|.//div[contains(@class,'ynAwRc tNxQIb nDgy9d')]");//08-05-2023//01-02-2023//11-01-2023
                     if (title == null)//18-08-2023
                         title = nd.SelectSingleNode(".//div[contains(@class,'eAaXgc aKoISd')]");//18-08-2023
+                    if (title == null)//20-09-2023
+                        title = nd.SelectSingleNode(".//div[contains(@class,'eAaXgc WZaQJf')]");//20-09-2023
                     string url = nd.Attributes["href"].Value;
                     if (!url.Contains("/search?q=")) //09-09-2022 avoid google link
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title.InnerText) + "\" />");
@@ -2653,7 +2655,7 @@ namespace RapidTrackingCloudSingleThread
             /*nd = node.SelectSingleNode(".//g-tray-header[contains(@class,'kno-fb-ctx gsrt')]"); //23-03-2022//19-01-2023 //Top Sights and Flights
             if (nd != null)
                 return "TopSights";*/ //23-03-2022//19-01-2023
-            if (node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]|.//div[@class='tkQJMd']") != null || node.Attributes["class"]?.Value == "WlTAzf mnr-c vk_c")//03-07-2023 //23-03-2022
+            if (node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]|.//div[@class='tkQJMd']") != null || node.Attributes["class"]?.Value == "WlTAzf mnr-c vk_c" || node.Attributes["class"]?.Value == "WlTAzf Ww4FFb vt6azd vk_c")//21-09-2023//03-07-2023 //23-03-2022
                 return "Flights";//23-03-2022
 
             if (node.SelectSingleNode(".//g-card[@class='cvoI5e']|.//g-tray-header[@class='iI6nue ieGFJe']") != null || node.SelectSingleNode(".//g-card[@class='U8KfXc']") != null)//11-01-2023 //23-11-2020 //20-11-2020
@@ -2769,7 +2771,7 @@ namespace RapidTrackingCloudSingleThread
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='MIyI4c']"); //19-08-2021 updated for carousel block 
             if (nd != null)
-                if (node.SelectSingleNode(".//img[contains(@alt,'Map of ')]|.//div[@jsname='sSUqrd']|.//div[@class='EDblX DAVP1']") == null || (node.SelectSingleNode(".//div[@class='g8xmv']") != null))//25-07-2022//21-07-2022 //19-07-2022
+                if (node.SelectSingleNode(".//img[contains(@alt,'Map of ')]|.//div[@jsname='sSUqrd']|.//div[@class='EDblX DAVP1']") == null || (node.SelectSingleNode(".//div[@class='g8xmv']|.//div[@class='gGI6vc']") != null))//19-09-2023//25-07-2022//21-07-2022 //19-07-2022
                     return "Carousel";
 
             nd = node.SelectSingleNode(".//div[@class='TyzpY']");

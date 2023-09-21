@@ -672,7 +672,7 @@ namespace SingleJobidProject
                    && (node.SelectSingleNode(".//div[@class='MjjYud']") != null || node.SelectSingleNode(".//div[@id='rhs']") == null))//25-01-2023//10-01-2023//12-10-2022//end of 10-10-2022
             {
                 //HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'g tF2Cxc')]|.//div[@class='g dFd2Tb']|.//div[contains(@class,'g Ww4FFb')]|.//div[@class='BYM4Nd']|.//div[@class='AuVD cUnQKe']|.//div[@class='cUnQKe']|.//div[@class='uVMCKf']");//20-04-2023
-                HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'g tF2Cxc')]|.//div[contains(@class,'g dFd2Tb')]|.//div[contains(@class,'g Ww4FFb')]|.//div[@class='g zXItKe']|.//div[@class='BYM4Nd']|.//div[@class='AuVD cUnQKe']|.//div[@class='cUnQKe']|.//div[@class='cUnQKe vt6azd']|.//div[@class='uVMCKf']|.//g-card[@class='tkfIqc g']|.//div[contains(@class,'g PmEWq')]"); //14-09-2023//23-08-2023
+                HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'g tF2Cxc')]|.//div[contains(@class,'g dFd2Tb')]|.//div[contains(@class,'g Ww4FFb')]|.//div[@class='g zXItKe']|.//div[@class='BYM4Nd']|.//div[@class='AuVD cUnQKe']|.//div[@class='cUnQKe']|.//div[@class='cUnQKe vt6azd']|.//div[@class='uVMCKf']|.//g-card[@class='tkfIqc g']|.//div[contains(@class, 'g PmEWq')]|.//g-scrolling-carousel[@class='arDHIe']|.//g-section-with-header[@class='yG4QQe TBC9ub']");//19-09-2023 //14-09-2023//23-08-2023
                 if (nds == null && (node.Attributes["class"]?.Value == "g tF2Cxc" || node.Attributes["class"]?.Value == "g Ww4FFb vt6azd tF2Cxc asEBEc"))//17-11-2022//20-04-2022
                     nds = node.SelectNodes(".");//20-04-2022 
                 if (nds == null)
@@ -703,6 +703,20 @@ namespace SingleJobidProject
 
                         if (nd.SelectSingleNode(".//h3[@role='heading']|.//div[@role='heading']") != null)//20-04-2023
                         {
+                            if (nd.HasClass("arDHIe"))//19-09-2023
+                            {
+                                s.Append("<block type=\"carousel\" url=\"\">");
+                                s.Append(GetCarousel(nd));
+                                s.Append("</block>");
+                                continue;
+                            }//19-09-2023
+                            if (nd.SelectSingleNode(".//div[@class='e2BEnf q8U8x']") != null)//19-09-2023
+                            {
+                                s.Append("<block type=\"topStories\" url=\"\">");
+                                s.Append(GetTopStories(nd));
+                                s.Append("</block>");
+                                continue;
+                            }//19-09-2023
                             //if (nd.SelectSingleNode(".//h3[@role='heading']|.//div[@role='heading']").InnerText == "Videos")//20-04-2023
                             if (node.SelectSingleNode(".//div[@jsname='wRSfy']") != null && node.SelectSingleNode(".//div[@class='g']") == null)//05-06-2023
                             {
@@ -1461,6 +1475,8 @@ namespace SingleJobidProject
                 nd = node.SelectNodes(".//div[@jsname='WUSFrc']/g-link/a");
             if (nd == null)
                 nd = node.SelectNodes(".//div[@class='v1uiFd']/g-link/a");  // 11-05-2020
+            if (nd == null) //21-09-2023
+                nd = node.SelectNodes(".//div[@class='yM0Ysd']/a[@class='OE6E7b']"); //21-09-2023
             string url = "";
             if (nd != null)
             {
@@ -1479,7 +1495,7 @@ namespace SingleJobidProject
             }
             if (nd == null)
             {
-                nd = node.SelectNodes(".//a[@class='ttwCMe']");
+                nd = node.SelectNodes(".//a[@class='ttwCMe']|.//div[@jsname='jXK9ad']/div/a");//19-09-2023
                 if (nd != null)
                     foreach (HtmlNode nd1 in nd)
                     {
@@ -1487,7 +1503,7 @@ namespace SingleJobidProject
                         {
                             url = nd1.Attributes["href"].Value;
                         }
-                        HtmlNode hn = nd1.SelectSingleNode(".//div[contains(@class,'oyj2db')]");//01-08-2023
+                        HtmlNode hn = nd1.SelectSingleNode(".//div[contains(@class,'oyj2db')]|.//div[@class='JjtOHd']");//19-09-2023//01-08-2023
 
                         string title1 = hn.InnerText;
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title1) + "\" />");
@@ -1953,7 +1969,7 @@ namespace SingleJobidProject
             }
             // end of map changes.
 
-            nd = node.SelectSingleNode(".//div[@id='kx']|.//div[@id='rrg']|.//div[@class='oHJrJb']|.//div[@class='q6PGbe']|.//g-scrolling-carousel[@class='arDHIe']");//01-09-2022//03-11-2021 CS Block//05-08-2020 included selector for carousel
+            nd = node.SelectSingleNode(".//div[@id='kx']|.//div[@id='rrg']|.//div[@class='oHJrJb']|.//div[@class='q6PGbe']|.//g-scrolling-carousel[@class='arDHIe']|.//div[@class='jhtnKe oJxN6']|.//div[@jsname='GDPwke']");//21-09-2023//19-09-2023//01-09-2022//03-11-2021 CS Block//05-08-2020 included selector for carousel
             if (nd != null)
             {
                 return "Carousel";
@@ -2034,7 +2050,9 @@ namespace SingleJobidProject
                 || node.SelectSingleNode(".//div[@class='WlTAzf mnr-c']") != null //23-03-2022
                 || node.SelectSingleNode(".//div[@class='AxJnmb Wdsnue']") != null //05-01-2023
                 || node.SelectSingleNode(".//div[@class='CH6Bmd']") != null//27-02-2023
-                || node.SelectSingleNode(".//div[@class='oCLR8']") != null;//02-06-2023
+                || node.SelectSingleNode(".//div[@class='oCLR8']") != null//02-06-2023
+                || node.SelectSingleNode(".//div[@class='fPmcEc']") != null//19-09-2023
+                || node.SelectSingleNode(".//div[@class='qkC4td']") != null;//21-09-2023
             if (bVal == true)//2019-09-11
             {
                 try

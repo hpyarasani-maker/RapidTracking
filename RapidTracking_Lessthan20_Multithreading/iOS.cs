@@ -38,6 +38,8 @@ namespace TrackingTrending
             HtmlNodeCollection nodeCol = doc.DocumentNode.SelectNodes("//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']/div[@class='MUxGbd v0nnCb lyLwlc']|//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']/div/div[@class='MUxGbd v0nnCb lyLwlc']");   //29-04-2020
             if (nodeCol != null)
                 nodeCol = nodeCol[nodeCol.Count - 1].SelectNodes("a/div");  //28-04-2020
+            if (nodeCol == null)//20-09-2023
+                nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div[@class='MjjYud']/div|//div[@id='rso']/div[@class='MjjYud']/block-component");//21-09-2023//20-09-2023
             if (nodeCol == null)
                 nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-card|//div[@id='taw']/div[@class='med']/div[2]/div|//div[@id='rso']/nav|//div[@id='rso']/block-component/div|//div[contains(@id, 'arc-srp')]/div/div[@class='MjjYud']|//div[contains(@id, 'arc-srp')]/div/div/div[@class='MjjYud']|.//div[contains(@class,'TzHB6b')]");//29-03-2023//07-01-2022 event results//28-04-2020
             if (nodeCol != null && nodeCol.Count == 1)

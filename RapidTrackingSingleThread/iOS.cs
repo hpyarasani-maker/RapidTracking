@@ -2608,6 +2608,13 @@ namespace RapidTrackingSingleThread
                 int min = Convert.ToInt32(match.Groups[1].Value);
                 return (min > 0) ? (min / 60.0).ToString("##.##") : "0.0";
             }
+            match = Regex.Match(hours, @"(\d+)");//23-09-2023
+            if (match.Success)
+            {
+                int min = Convert.ToInt32(match.Groups[1].Value);
+                return (min > 0) ? (min / 60.0).ToString("##.##") : "0.0";
+            }//23-09-2023
+          
             return "";
         }//05-07-2023
         private string GetBlockType(HtmlNode node)

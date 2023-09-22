@@ -103,7 +103,7 @@ namespace RapidTrackingLibrary
                         if (n == null)
                             n = node.SelectSingleNode(".//div[contains(@class,'PZPZlf')]");//27-02-2023 //15-11-2021 KP
 
-                        if (n != null)
+                        if (node.SelectSingleNode(".//div[contains(@class,'WlTAzf ')]") == null)
                         {
                             string heading = n.InnerText;
                             sb.Append("<block type=\"knowledgeGraph\" url=\"\" title=\"" + SetTitle(heading) + "\" />");

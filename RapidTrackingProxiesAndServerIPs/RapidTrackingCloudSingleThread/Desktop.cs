@@ -1902,11 +1902,12 @@ namespace RapidTrackingCloudSingleThread
                 if (node.SelectSingleNode(".//div[@class='BET1rd']|.//div[@class='EfDVh wDYxhc NFQFxe']|.//div[contains(@class,'AxJnmb Wdsnue')]|.//div[@class='jYcvae kY5Gde']") == null //27-04-2023
                     && node.SelectSingleNode(".//div[@class='tpa-cc']|.//div[@class='kno-rdesc']|.//div[@class='RPdfze mnr-c vk_c']") == null && node.SelectSingleNode(".//g-scrolling-carousel[@class='VXdDm']") == null //03-05-2023 //22-06-2022//23-12-2021 //21-08-2021 //25-09-2020
                     && node.SelectSingleNode(".//div[contains(@class,'knowledge-finance')]|.//div[contains(@id,'knowledge-finance')]|.//div[contains(@id,'knowledge-currency')]") == null//02-05-2023 //01-05-2023
-                    && node.SelectSingleNode(".//*[@id='lu_map']|.//img[contains(@alt,'Map of')]|.//a[contains(@data-url,'/maps/')]") == null) //22-07-2022 //13-10-2021
+                    && node.SelectSingleNode(".//*[@id='lu_map']|.//img[contains(@alt,'Map of')]|.//a[contains(@data-url,'/maps/')]|.//div[@class='wDYxhc']") == null)//22-09-2023 //22-07-2022 //13-10-2021
                     return "AnswerCard";
                 else if (node.SelectSingleNode(".//div[@class='WcS13d']") != null && node.SelectSingleNode(".//div[@class='EfDVh wDYxhc NFQFxe']") != null //27-12-2021
                     || node.SelectSingleNode(".//div[@class='nmVgI3FLyE0__answer']") != null
-                    || node.SelectSingleNode(".//div[@class='N6Sb2c i29hTd']") != null)//16-06-2022 //23-03-2022
+                    || node.SelectSingleNode(".//div[@class='N6Sb2c i29hTd']") != null//16-06-2022 //23-03-2022
+                    || node.SelectSingleNode(".//div[@class='ifM9O']") != null) //23-09-2023
                     return "AnswerCard";//27-12-2021
             }
             //05-10-2020 KP Block selectors updated

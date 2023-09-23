@@ -2767,8 +2767,8 @@ namespace RapidTrackingSingleThread
             { 
                 nd = node.SelectSingleNode(".//div[@class='MVpwye Dv3U4e']");//28-09-2022 answer card
                 // if (node.SelectSingleNode(".//div[@class='FEoF4d']") == null && node.SelectSingleNode(".//div[@class='PZPZlf hb8SAc']") == null) //15-09-2022 //24-11-2022 commented
-                if (node.SelectSingleNode(".//div[@class='FEoF4d']") == null) //24-11-2022
-                return "AnswerCard";
+                if (node.SelectSingleNode(".//div[@class='FEoF4d']|.//div[@class='kno-rdesc']") == null) //23-09-2023 //24-11-2022
+                    return "AnswerCard";
             }
 
 
@@ -2940,8 +2940,9 @@ namespace RapidTrackingSingleThread
                 || ((node.SelectSingleNode(".//div[@class='UDZeY fAgajc']") != null || node.Attributes["class"]?.Value == "UDZeY fAgajc") && node.SelectSingleNode(".//span[@class='at3QRb VqFMTc p8AiDd']") == null)//13-09-2022 //12-11-2021    // 13-03-2020
                 || node.SelectSingleNode(".//div[@class='wQu7gc']") != null   //08-07-2020 mising answered card
                 || node.SelectSingleNode(".//div[@class='kp-blk OJXvsb']") != null  //26-08-2020 included selector for answered 
-                || (node.SelectSingleNode(".//div[@class='g card-section']") != null && node.SelectSingleNode(".//div[@class='tF2Cxc']") != null)) //22-04-2021 answered card
-                return "AnswerCard";
+                || (node.SelectSingleNode(".//div[@class='g card-section']") != null && node.SelectSingleNode(".//div[@class='tF2Cxc']") != null) //22-04-2021 answered card
+                || (node.SelectSingleNode(".//div[@class='kno-rdesc']") == null))//23-09-2023
+                    return "AnswerCard";
 
             nd = node.SelectSingleNode(".//div[@id='kx']|.//div[@class='pXvdUe']");
             if (nd == null)

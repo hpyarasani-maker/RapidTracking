@@ -101,11 +101,11 @@ namespace RapidTrackingMultithread
                         n = node.SelectSingleNode(".//div[@class='Ftghae iirjIb']");//16-09-2019 //
                     if (n == null)
                         n = node.SelectSingleNode(".//div[contains(@class,'PZPZlf')]"); //30-03-2023//27-02-2023 //15-11-2021 KP
-                    if (n != null)
+                    if (node.SelectSingleNode(".//div[contains(@class,'WlTAzf ')]") == null)//22-09-2023
                     {
                         string heading = n.InnerText;
                         sb.Append("<block type=\"knowledgeGraph\" url=\"\" title=\"" + SetTitle(heading) + "\" />");
-                    }
+                    }//22-09-2023
                     /*if (n != null)//19-01-2023 //23-01-2023 Googlehotels else KP Block
                         {
                             string googleHotels = string.Empty;

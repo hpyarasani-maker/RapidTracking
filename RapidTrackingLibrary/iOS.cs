@@ -137,7 +137,7 @@ namespace RapidTrackingLibrary
                             sb.Append(GetImages(node));
                             sb.Append("</block>");
                         }//11-08-2023
-                        n = node.SelectSingleNode(".//block-component/div[contains(@class, 'kno-result')]|.//div[@class='UDZeY fAgajc']");//20-09-2023//30-01-2023 Answer Card
+                        //n = node.SelectSingleNode(".//block-component/div[contains(@class, 'kno-result')]|.//div[@class='UDZeY fAgajc']");//20-09-2023//30-01-2023 Answer Card
                         //if (n != null)
                         //{
                         //    sb.Append("<block type=\"answerCard\" url=\"\">");

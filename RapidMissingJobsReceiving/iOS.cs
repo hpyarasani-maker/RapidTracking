@@ -108,11 +108,14 @@ namespace RapidMissingJobsReceiving
                         n = node.SelectSingleNode(".//div[@class='Ftghae iirjIb']");//16-09-2019
                     if (n == null)
                         n = node.SelectSingleNode(".//div[contains(@class,'PZPZlf')]"); //30-03-2023//27-02-2023 //15-11-2021 KP
-                    if (node.SelectSingleNode(".//div[contains(@class,'WlTAzf ')]") == null)//22-09-2023
+                    if (n != null)//25-09-2023
                     {
-                        string heading = n.InnerText;
-                        sb.Append("<block type=\"knowledgeGraph\" url=\"\" title=\"" + SetTitle(heading) + "\" />");
-                    }//22-09-2023
+                        if (node.SelectSingleNode(".//div[contains(@class,'WlTAzf ')]|.//div[@jsname='dTDiAc']") == null)//25-09-2023//22-09-2023
+                        {
+                            string heading = n.InnerText;
+                            sb.Append("<block type=\"knowledgeGraph\" url=\"\" title=\"" + SetTitle(heading) + "\" />");
+                        }//22-09-2023
+                    }//25-09-2023
                     /*if (n != null)//19-01-2023 //23-01-2023 Googlehotels else KP Block
                         {
                             string googleHotels = string.Empty;
@@ -140,13 +143,13 @@ namespace RapidMissingJobsReceiving
                         sb.Append(GetImages(node));
                         sb.Append("</block>");
                     }//11-08-2023
-                    n = node.SelectSingleNode(".//block-component/div[contains(@class, 'kno-result')]|.//div[@class='UDZeY fAgajc']");//20-09-2023//30-01-2023 Answer Card
-                    if (n != null)
-                    {
-                        sb.Append("<block type=\"answerCard\" url=\"\">");
-                        sb.Append(GetAnswerCard(n));
-                        sb.Append("</block>");
-                    }//30-01-2023 Answer Card
+                    //n = node.SelectSingleNode(".//block-component/div[contains(@class, 'kno-result')]|.//div[@class='UDZeY fAgajc']");//20-09-2023//30-01-2023 Answer Card
+                    //if (n != null)
+                    //{
+                    //    sb.Append("<block type=\"answerCard\" url=\"\">");
+                    //    sb.Append(GetAnswerCard(n));
+                    //    sb.Append("</block>");
+                    //}//30-01-2023 Answer Card
                     n = node.SelectSingleNode(".//g-img[@class='o8ebK']|.//g-img[@class='gRTVof']|.//div[@class='Xlcxdd']");//20-09-2023//10-10-2022//07-09-2022 missing KP block
                     if (n != null && node.SelectSingleNode(".//div[@class='KrvXD']") == null)//13-12-2022
                     {

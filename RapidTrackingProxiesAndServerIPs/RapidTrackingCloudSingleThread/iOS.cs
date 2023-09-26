@@ -2562,6 +2562,10 @@ namespace RapidTrackingCloudSingleThread
                 price = "0";//01-06-2023
             if (price.Equals("vérifier le prix"))//01-06-2023
                 price = "0";//01-06-2023
+            if (price.Equals("Preis prüfen"))
+                price = "0";
+            if (price.Equals("controlla il prezzo"))
+                price = "0";
             return price;
         }
         private string ConvertHours(string hours) //05-07-2023
@@ -2612,8 +2616,7 @@ namespace RapidTrackingCloudSingleThread
                 int min = Convert.ToInt32(match.Groups[1].Value);
                 return (min > 0) ? (min / 60.0).ToString("##.##") : "0.0";
             }//23-09-2023
-
-            return "";
+            return "0.0";//25-09-2023
         }//05-07-2023
         private string GetBlockType(HtmlNode node)
         {

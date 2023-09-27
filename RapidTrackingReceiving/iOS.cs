@@ -1791,6 +1791,8 @@ namespace Oxylabs_BulkKeywords
                     hdrNode = nd.SelectSingleNode(".//div[@class='kno-ecr-pt kno-fb-ctx HOpgu gsmt']/span");
                 if (hdrNode == null)
                     hdrNode = nd.SelectSingleNode(".//div[@class='gsrt TCmnBf']");
+                if (hdrNode == null)
+                    hdrNode = nd.SelectSingleNode(".//div[@class='SPZz6b']/h2");//27-09-2023
                 if (hdrNode == null)//26-09-2019
                     hdrNode = nd.SelectSingleNode(".//div[@class='SPZz6b']/div");//26-09-2019
                 if (hdrNode == null)

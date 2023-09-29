@@ -420,6 +420,8 @@ namespace RapidTrackingSingleThread
                             link = nd.SelectSingleNode(".//div[contains(@class,'wTrwWd')]");//06-04-2023
                         if (link == null)//17-06-2023
                             link = nd.SelectSingleNode(".//div[contains(@class,'vzhcTd')]");//17-06-2023
+                        if (link == null)//29-09-2023
+                            link = nd.SelectSingleNode(".//div[@class='UC8ZCe QS8Cxb']");//29-09-2023
                         if (link != null)
                         {
                             url = link.Attributes["href"]?.Value ?? ""; //24-01-2023

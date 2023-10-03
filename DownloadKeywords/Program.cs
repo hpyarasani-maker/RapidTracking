@@ -40,7 +40,9 @@ namespace DownloadKeywords
         }
         static void Main(string[] args)
         {
-            Console.Title = "Tracking Trending Download Remaining Keywords";
+            //Console.Title = "Tracking Trending Download Remaining Keywords";//remaining keywords
+            Console.Title = "Tracking Trending Download Full Keywords";//full keywords
+
             GetKeywordsBatch();
         }
 
@@ -48,8 +50,9 @@ namespace DownloadKeywords
         {
             try
             {
-                string qry = "Exec [dbo].[DeleteKeywords] ";
-                //string qry = "Exec [dbo].[DeleteKeywordsP]";
+                string qry = "Exec [dbo].[DeleteKeywords] ";//delete from tracking_Keywords table
+                //string qry = "Exec [dbo].[DeleteTrackingKeywords5] ";//delete from tracking_keywords5 table
+                //string qry = "Exec [dbo].[DeleteKeywordsP]";//delete from 
                 ProcessDB(qry);
             }
             catch (SqlException se)
@@ -64,7 +67,7 @@ namespace DownloadKeywords
             string myDate = DateTime.Today.ToString("yyyy-MM-dd");
             //string myDate = "2021-10-11"; //change the previous date
 
-            string url = "https://incoming.pi-datametrics.com/provider-api/tracking/get-required-searches?date=" + myDate + "&remaining-only=true"; //true means only remaining and false means all keywords
+            string url = "https://incoming.pi-datametrics.com/provider-api/tracking/get-required-searches?date=" + myDate + "&remaining-only=false"; //true means only remaining and false means all keywords
 
             string authInfo = "pisoftware" + ":" + "r00t123456";
             StringBuilder stringBuilder = new StringBuilder();
@@ -101,7 +104,8 @@ namespace DownloadKeywords
                         using (var sqlBulk = new SqlBulkCopy(StrConn()))
                         {
                             sqlBulk.BulkCopyTimeout = 0;
-                            sqlBulk.DestinationTableName = "tracking_keywords";
+                            sqlBulk.DestinationTableName = "tracking_keywords"; //download full keywords
+                            //sqlBulk.DestinationTableName = "tracking_keywords5";//download remaining keywords
                             //sqlBulk.DestinationTableName = "tracking_keywordsP"; //download the previous date keywords
                             sqlBulk.WriteToServer(dt);
                         }

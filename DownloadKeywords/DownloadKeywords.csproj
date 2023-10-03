@@ -8,10 +8,11 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>TrackingTrendingDownloadKeywords</RootNamespace>
     <AssemblyName>TrackingTrendingDownloadKeywords</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,7 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>DownloadKeywords.ExecuteJob</StartupObject>
+    <StartupObject>DownloadKeywords.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

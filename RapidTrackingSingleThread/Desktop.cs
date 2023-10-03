@@ -1015,9 +1015,9 @@ namespace RapidTrackingSingleThread
                     s.Append("</block>");
                     break;//09-11-2022
                 case "findresultson"://07-07-2023
-                    s.Append("<block type=\"findResultsOn\" url=\"\">");
+                    //s.Append("<block type=\"findResultsOn\" url=\"\">");//03-10-2023
                     s.Append(GetFindResultsOn(node));
-                    s.Append("</block>");
+                    //s.Append("</block>");//03-10-2023
                     break;//07-07-2023
                 default:
                     break;
@@ -1713,6 +1713,7 @@ namespace RapidTrackingSingleThread
         private string GetFindResultsOn(HtmlNode node) //07-07-2023 FindResultsOn Block
         {
             StringBuilder s = new StringBuilder();
+            s.Append("<block type=\"findResultsOn\" url=\"\">");//03-10-2023
             HtmlNodeCollection nds = node.SelectNodes(".//div/a[@class='dVjlWe']|.//div/a[@class='t2Yvdb']|.//div/a[@class='SsH3c']");//21-07-2023
             if (nds != null)
             {
@@ -1723,6 +1724,11 @@ namespace RapidTrackingSingleThread
                     string title = nd.SelectSingleNode(".//div[@class='NNFu9b nDgy9d']")?.InnerText ?? "";
                     s.Append("<item source=\"" + SetTitle(source) + "\" url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                 }
+                s.Append("</block>");//03-10-2023
+                if (node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]|.//div[@class='tkQJMd']") != null || node.Attributes["class"]?.Value == "WlTAzf mnr-c vk_c")
+                {
+                    s.Append(GetFlights(node));
+                }//03-10-2023
             }
             return s.ToString();
         } //07-07-2023 FindResultsOn Block

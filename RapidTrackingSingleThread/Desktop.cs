@@ -528,18 +528,18 @@ namespace RapidTrackingSingleThread
             HtmlNode colt = doc.DocumentNode.SelectSingleNode("//div[@id='tvcap']");  //20-01-2020
             if (colt != null)
             {
-                HtmlNode pNode = colt.SelectSingleNode(".//div[@jscontroller='vWOOIe']");//30-06-2023
+                HtmlNode pNode = colt.SelectSingleNode(".//div[@jscontroller='vWOOIe']|.//div[@id='tads']");//02-10-2023//30-06-2023
                 if (pNode != null)
                 {
                     s.Append("<block type=\"productListedAds\" url=\"\">");
-                    HtmlNodeCollection pNodes = pNode.SelectNodes(".//div[@class='ZPze1e']/a");
+                    HtmlNodeCollection pNodes = pNode.SelectNodes(".//div[@class='ZPze1e']/a|.//g-inner-card[contains(@class,'B5kg8b')]/a");//02-10-2023
                     if (pNodes != null)
                     {
                         foreach (var nd in pNodes)
                         {
                             var url = nd.Attributes["href"].Value;
                             url = GetRedirectedUrl(url);
-                            var title = nd.SelectSingleNode(".//div[@class='e7SMre']")?.InnerText;
+                            var title = nd.SelectSingleNode(".//div[@class='e7SMre']|.//div[@class='gCv54b']")?.InnerText;//02-10-2023
                             s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                         }
                     }

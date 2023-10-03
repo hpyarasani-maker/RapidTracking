@@ -34,7 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>DownloadKeywords.Program</StartupObject>
+    <StartupObject>DownloadKeywords.ExecuteJob</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

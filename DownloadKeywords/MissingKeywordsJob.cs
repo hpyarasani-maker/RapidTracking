@@ -67,7 +67,8 @@ namespace DownloadKeywords
                     SqlCommand ExecJob = new SqlCommand();
                     ExecJob.CommandType = CommandType.StoredProcedure;
                     ExecJob.CommandText = "msdb.dbo.sp_start_job";
-                    ExecJob.Parameters.AddWithValue("@job_name", "Delete_DB_Data_Sending");
+                    //ExecJob.Parameters.AddWithValue("@job_name", "Delete_DB_Data_Sending");//deleting keywords from dashboard_sending and Dashboard_data
+                    ExecJob.Parameters.AddWithValue("@job_name", "Delete_Dashboard_Data");//deleting keywords from Dashboard_data
                     ExecJob.Connection = DbConn; 
            
                     DbConn.Open();

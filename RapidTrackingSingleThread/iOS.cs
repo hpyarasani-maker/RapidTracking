@@ -2525,7 +2525,7 @@ namespace RapidTrackingSingleThread
                 }
             }
             s.Append("</block>");
-            if (node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]|.//div[@class='tkQJMd']") != null || node.Attributes["class"]?.Value == "WlTAzf mnr-c vk_c")
+            if (node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]|.//div[@class='tkQJMd']") != null || node.Attributes["class"]?.Value == "WlTAzf mnr-c vk_c" || node.Attributes["class"]?.Value == "WlTAzf Ww4FFb vt6azd vk_c")//04-10-2023
             {
                 s.Append(GetFlights(node));
             }

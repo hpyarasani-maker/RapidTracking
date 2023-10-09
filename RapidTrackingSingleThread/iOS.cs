@@ -2678,7 +2678,7 @@ namespace RapidTrackingSingleThread
                 if (ts)
                     return "Topstories";
             }
-            if (node.SelectSingleNode(".//div[contains(@class, 'RPdfze')]|.//div[contains(@class, 'Qkn3ie')]|.//div[@class='lMMUFc']") != null && node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]") == null)//22-09-2023//21-07-2023//07-07-2023
+            if (node.SelectSingleNode(".//div[contains(@class, 'RPdfze')]|.//div[contains(@class, 'Qkn3ie')]|.//div[@class='lMMUFc']") != null || node.Attributes["class"]?.Value == "TzHB6b Ww4FFb vt6azd DlUvEb UBoxCb LMRCfc" && node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]") == null)//09-10-2023//22-09-2023//21-07-2023//07-07-2023
                 return "FindResultsOn";
             /*nd = node.SelectSingleNode(".//g-tray-header[contains(@class,'kno-fb-ctx gsrt')]"); //23-03-2022//19-01-2023 //Top Sights and Flights
             if (nd != null)

@@ -102,7 +102,7 @@ namespace TrendingDownload
                         string sid = el.Attributes["search-engine-id"].Value;
                         string kw = el.Attributes["keyword"].Value;  
 
-                        string qry = "Insert into [dbo].[Keywords] (seid, keyword) values(" + sid + ", N'" + kw + "'); ";
+                        string qry = "Insert into [dbo].[Keywords1] (seid, keyword) values(" + sid + ", N'" + kw + "'); ";
                         ExecuteQuery(qry);      
                     }                 
                     

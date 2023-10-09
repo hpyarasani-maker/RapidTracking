@@ -103,7 +103,9 @@ namespace TrendingDownload
                         string kw = el.Attributes["keyword"].Value;  
 
                         string qry = "Insert into [dbo].[Keywords1] (seid, keyword) values(" + sid + ", N'" + kw + "'); ";
-                        ExecuteQuery(qry);      
+                        ExecuteQuery(qry); 
+                        string updateQuery = "Exec UpdateKeywords ";
+                        ExecuteQuery(updateQuery);
                     }                 
                     
                 }
@@ -119,7 +121,6 @@ namespace TrendingDownload
             //string qry = "Delete from [dbo].[Keywords]; ";
             //string qry = "Insert into [dbo].[Keywords] (seid, keword) values(" + seid + ", N'" + kw + "'); ";
             //string DbCon = "Data Source=82.136.46.2;User ID=sa;Password=Brisbane007;initial catalog=Trending;";
-
             //string DbCon = "Server=tcp:googlefirstpage.database.windows.net,1433;Initial Catalog=Trending;User ID=hemachander@googlefirstpage;Password=Brisbane007;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30";
             string DbCon = Connection();
             try

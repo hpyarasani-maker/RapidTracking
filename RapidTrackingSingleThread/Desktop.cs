@@ -2077,7 +2077,8 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@class='CH6Bmd']") != null//27-02-2023
                 || node.SelectSingleNode(".//div[@class='oCLR8']") != null//02-06-2023
                 || node.SelectSingleNode(".//div[@class='fPmcEc']") != null//19-09-2023
-                || node.SelectSingleNode(".//div[@class='qkC4td']") != null;//21-09-2023
+                || node.SelectSingleNode(".//div[@class='qkC4td']") != null//21-09-2023
+                || node.SelectNodes(".//div[@class='xSoq1']") != null;//10-10-2023
             if (bVal == true)//2019-09-11
             {
                 try

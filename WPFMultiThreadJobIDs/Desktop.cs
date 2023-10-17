@@ -1920,10 +1920,10 @@ namespace WPFMultiThreadJobIDs
                     && node.SelectSingleNode(".//div[contains(@class,'knowledge-finance')]|.//div[contains(@id,'knowledge-finance')]|.//div[contains(@id,'knowledge-currency')]") == null//02-05-2023 //01-05-2023
                     && node.SelectSingleNode(".//*[@id='lu_map']|.//img[contains(@alt,'Map of')]|.//a[contains(@data-url,'/maps/')]|.//div[@class='wDYxhc']") == null)//22-09-2023 //22-07-2022 //13-10-2021
                     return "AnswerCard";
-                else if (node.SelectSingleNode(".//div[@class='WcS13d']") != null && node.SelectSingleNode(".//div[@class='EfDVh wDYxhc NFQFxe']") != null //27-12-2021
-                    || node.SelectSingleNode(".//div[@class='nmVgI3FLyE0__answer']") != null
-                    || node.SelectSingleNode(".//div[@class='N6Sb2c i29hTd']") != null//16-06-2022 //23-03-2022
-                    || node.SelectSingleNode(".//div[@class='ifM9O']") != null) //23-09-2023
+                else if ((node.SelectSingleNode(".//div[@class='WcS13d']") != null && node.SelectSingleNode(".//div[@class='EfDVh wDYxhc NFQFxe']") != null //10-10-2023
+                     || node.SelectSingleNode(".//div[@class='nmVgI3FLyE0__answer']") != null //10-10-2023
+                     || node.SelectSingleNode(".//div[@class='N6Sb2c i29hTd']") != null //10-10-2023
+                     || node.SelectSingleNode(".//div[@class='ifM9O']") != null) && node.SelectSingleNode(".//img[contains(@alt, 'Map of')]") == null)//10-10-2023
                     return "AnswerCard";//27-12-2021
             }
             //05-10-2020 KP Block selectors updated
@@ -2073,7 +2073,8 @@ namespace WPFMultiThreadJobIDs
                 || node.SelectSingleNode(".//div[@class='CH6Bmd']") != null//27-02-2023
                 || node.SelectSingleNode(".//div[@class='oCLR8']") != null//02-06-2023
                 || node.SelectSingleNode(".//div[@class='fPmcEc']") != null//19-09-2023
-                || node.SelectSingleNode(".//div[@class='qkC4td']") != null;//21-09-2023
+                || node.SelectSingleNode(".//div[@class='qkC4td']") != null//21-09-2023
+                || node.SelectNodes(".//div[@class='xSoq1']") != null;//10-10-2023
             if (bVal == true)//2019-09-11
             {
                 try

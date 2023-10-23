@@ -104,7 +104,7 @@ namespace RapidTrackingLibrary
                             n = node.SelectSingleNode(".//div[contains(@class,'PZPZlf')]");//27-02-2023 //15-11-2021 KP
                         if (n != null)//25-09-2023
                         {
-                            if (node.SelectSingleNode(".//div[contains(@class,'WlTAzf ')]|.//div[@jsname='dTDiAc']") == null)//25-09-2023//22-09-2023
+                            if (node.SelectSingleNode(".//div[contains(@class,'WlTAzf ')]|.//div[@jsname='dTDiAc']") == null || node.SelectSingleNode(".//div[contains(@class,'XbtRGb qxsd')]") != null)//23-10-2023//25-09-2023//22-09-2023
                             {
                                 string heading = n.InnerText;
                                 sb.Append("<block type=\"knowledgeGraph\" url=\"\" title=\"" + SetTitle(heading) + "\" />");
@@ -131,7 +131,7 @@ namespace RapidTrackingLibrary
                             }
                         }*///19-01-2023 //23-01-2023 Googlehotels else KP Block
                         n = node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']");//11-08-2023 Images block
-                        if (n != null)
+                        if (n != null && node.SelectSingleNode(".//div[contains(@class,'PZPZlf')]") == null) //23-10-2023
                         {
                             sb.Append("<block type=\"images\" url=\"\">");
                             sb.Append(GetImages(node));

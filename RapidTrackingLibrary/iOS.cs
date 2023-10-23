@@ -3032,6 +3032,8 @@ namespace RapidTrackingLibrary
                 nd = node.SelectSingleNode(".//div[@class='mR2gOd pptFR']"); //25-02-2021 images selector
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='u4WRYb']");//06-12-2021 image block
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='ysxiae iRPzcb']");//23-10-2023
             if (nd != null)
             {
                 if (node.SelectSingleNode(".//div[@class='VPyzge']") == null && (node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']") != null || node.SelectSingleNode(".//div[@class='N60dNb mfMhoc']") != null || node.SelectSingleNode(".//div[@jsmodel='vqHyhf']|.//div[@jsmodel='Wn3aEc']") != null))//08-04-2022 images

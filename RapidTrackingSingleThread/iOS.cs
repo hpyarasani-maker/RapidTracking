@@ -2894,7 +2894,7 @@ namespace RapidTrackingSingleThread
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='bUNBRd mnr-c']|.//div[@class='HnYYW i8lZMc']|.//div[@class='HnYYW mfMhoc']|.//div[@class='HnYYW']/div|.//div[@class='HnYYW DFkChc']");//04-07-2023//20-11-2020 twiter classic links//26-06-2020 //13-03-2020 //include on 2019-06-24
             if (nd == null)
-                nd = node.SelectSingleNode(".//g-card[@class='g F6CFcc']|.//g-inner-card[@class='Bf5NPb']|.//div[@class='Bv2VAe']");//14-08-2023//26-06-2023//03-06-2021 twitter block
+                nd = node.SelectSingleNode(".//g-card[@class='g F6CFcc']|.//g-inner-card[contains(@class,'Bf5NPb')]|.//div[@class='Bv2VAe']");//23-10-2023//14-08-2023//26-06-2023//03-06-2021 twitter block
             if (nd != null)
             {
                 if (nd.InnerText.Contains("Twitter") || nd.SelectSingleNode(".//g-link") != null) //07-01-2021 twitter link

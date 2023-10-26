@@ -133,13 +133,13 @@ namespace RapidTrackingSingleThread
                                 sb.Append("<block type=\"knowledgeGraph\" url=\"\" title=\"" + SetTitle(heading) + "\" />");
                             }
                         }*///19-01-2023 //23-01-2023 Googlehotels else KP Block
-                        n = node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']");//11-08-2023 Images block
-                        if (n != null && node.SelectSingleNode(".//div[contains(@class,'PZPZlf')]") == null)//23-10-2023
-                        {
-                            sb.Append("<block type=\"images\" url=\"\">");
-                            sb.Append(GetImages(node));
-                            sb.Append("</block>");
-                        }//11-08-2023
+                        //n = node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']");//11-08-2023 Images block
+                        //if (n != null && node.SelectSingleNode(".//div[contains(@class,'PZPZlf')]") == null)//23-10-2023
+                        //{
+                        //    sb.Append("<block type=\"images\" url=\"\">");
+                        //    sb.Append(GetImages(node));
+                        //    sb.Append("</block>");
+                        //}//26-10-2023//11-08-2023 commented
                         //n = node.SelectSingleNode(".//block-component/div[contains(@class, 'kno-result')]|.//div[@class='UDZeY fAgajc']");//20-09-2023//30-01-2023 Answer Card
                         //if (n != null)//25-09-2023
                         //{
@@ -3017,7 +3017,9 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[@class='rKFBM gsrt wp-ms']|.//div[@class='JNkvid gsrt VJIO7b BUnLGf wp-ms']|.//span[@class='FCUp0c rQMQod']");//11-08-2023 //13-07-2020 images selector    // changes on 11-07-2019
                 if (nd != null)
                 {
-                    if (nd.InnerText == "About" || nd.InnerText.StartsWith("Images") || nd.InnerText == "Imágenes")//14-08-2023  // 07-02-2020 and 10-02-2020 21-02-2020 included title for images block
+                    if (nd.InnerText == "About")//26-10-2023
+                        return "AnswerCard";
+                    if (nd.InnerText.StartsWith("Images") || nd.InnerText == "Imágenes")//26-10-2023
                         return "Images";
                     if (nd.InnerText.Trim() == "Eventos")  // 07-02-2020 included title for Event block
                         return "Event";

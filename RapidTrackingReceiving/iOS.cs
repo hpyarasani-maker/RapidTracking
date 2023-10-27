@@ -136,13 +136,13 @@ namespace Oxylabs_BulkKeywords
                                 sb.Append("<block type=\"knowledgeGraph\" url=\"\" title=\"" + SetTitle(heading) + "\" />");
                             }
                         }*///19-01-2023 //23-01-2023 Googlehotels else KP Block
-                    n = node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']");//11-08-2023 Images block
-                    if (n != null)
-                    {
-                        sb.Append("<block type=\"images\" url=\"\">");
-                        sb.Append(GetImages(node));
-                        sb.Append("</block>");
-                    }//11-08-2023
+                    //n = node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']");//11-08-2023 Images block
+                    //if (n != null)
+                    //{
+                    //    sb.Append("<block type=\"images\" url=\"\">");
+                    //    sb.Append(GetImages(node));
+                    //    sb.Append("</block>");
+                    //}//11-08-2023
                     //n = node.SelectSingleNode(".//block-component/div[contains(@class, 'kno-result')]|.//div[@class='UDZeY fAgajc']");//20-09-2023//30-01-2023 Answer Card
                     //if (n != null)
                     //{
@@ -150,11 +150,11 @@ namespace Oxylabs_BulkKeywords
                     //    sb.Append(GetAnswerCard(n));
                     //    sb.Append("</block>");
                     //}//30-01-2023 Answer Card
-                    n = node.SelectSingleNode(".//g-img[@class='o8ebK']|.//g-img[@class='gRTVof']|.//div[@class='Xlcxdd']");//20-09-2023//10-10-2022//07-09-2022 missing KP block
-                    if (n != null && node.SelectSingleNode(".//div[@class='KrvXD']") == null)//13-12-2022
-                    {
-                        sb.Append("<block type=\"maps\" url=\"\"></block>");
-                    } //07-09-2022
+                    //n = node.SelectSingleNode(".//g-img[@class='o8ebK']|.//g-img[@class='gRTVof']|.//div[@class='Xlcxdd']");//20-09-2023//10-10-2022//07-09-2022 missing KP block
+                    //if (n != null && node.SelectSingleNode(".//div[@class='KrvXD']") == null)//13-12-2022
+                    //{
+                    //    sb.Append("<block type=\"maps\" url=\"\"></block>");
+                    //} //07-09-2022
                     continue;
                 }
                 try

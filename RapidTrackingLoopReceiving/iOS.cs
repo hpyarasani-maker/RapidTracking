@@ -2886,7 +2886,7 @@ namespace RapidTrackingLoopReceiving
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='bUNBRd mnr-c']|.//div[@class='HnYYW i8lZMc']|.//div[@class='HnYYW mfMhoc']|.//div[@class='HnYYW']/div|.//div[@class='HnYYW DFkChc']");//04-07-2023//20-11-2020 twiter classic links//26-06-2020 //13-03-2020 //include on 2019-06-24
             if (nd == null)
-                nd = node.SelectSingleNode(".//g-card[@class='g F6CFcc']|.//g-inner-card[@class='Bf5NPb']|.//div[@class='Bv2VAe']");//14-08-2023//26-06-2023//03-06-2021 twitter block
+                nd = node.SelectSingleNode(".//g-card[@class='g F6CFcc']|.//g-inner-card[contains(@class,'Bf5NPb')]|.//div[@class='Bv2VAe']");//23-10-2023//14-08-2023//26-06-2023//03-06-2021 twitter block
             if (nd != null)
             {
                 if (nd.InnerText.Contains("Twitter") || nd.SelectSingleNode(".//g-link") != null) //07-01-2021 twitter link
@@ -2997,6 +2997,8 @@ namespace RapidTrackingLoopReceiving
                 nd = node.SelectSingleNode(".//div[@class='mR2gOd pptFR']"); //25-02-2021 images selector
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='u4WRYb']");//06-12-2021 image block
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@class='ysxiae iRPzcb']");//23-10-2023
             if (nd != null)
             {
                 //if (node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']") == null) //30-08-2021 image wrong block issue
@@ -3008,7 +3010,9 @@ namespace RapidTrackingLoopReceiving
                 nd = node.SelectSingleNode(".//div[@class='rKFBM gsrt wp-ms']|.//div[@class='JNkvid gsrt VJIO7b BUnLGf wp-ms']|.//span[@class='FCUp0c rQMQod']");//11-08-2023 //13-07-2020 images selector    // changes on 11-07-2019
                 if (nd != null)
                 {
-                    if (nd.InnerText == "About" || nd.InnerText.StartsWith("Images") || nd.InnerText == "Imágenes")//14-08-2023  // 07-02-2020 and 10-02-2020 21-02-2020 included title for images block
+                    if (nd.InnerText == "About")//26-10-2023
+                        return "AnswerCard";
+                    if (nd.InnerText.StartsWith("Images") || nd.InnerText == "Imágenes")//26-10-2023
                         return "Images";
                     if (nd.InnerText.Trim() == "Eventos")  // 07-02-2020 included title for Event block
                         return "Event";
@@ -3041,7 +3045,7 @@ namespace RapidTrackingLoopReceiving
             //13-08-2019
             nd = node.SelectSingleNode(".//div[@class='aJegcc']");
             if (nd != null)
-                if (node.SelectNodes(".//div[contains(@class,'xCCdqb')]|.//div[contains(@class, 'tyUpi')]|.//div[@class='baPFxb g kSMK2']") == null)//11-04-2023//10-04-2023//06-12-2021 wrong PL block//16-09-2019
+                if (node.SelectNodes(".//div[contains(@class,'xCCdqb')]|.//div[contains(@class, 'tyUpi')]|.//div[@class='baPFxb g kSMK2']|.//div[contains(@class,'wTrwWd')]") == null)//23-10-2023//11-04-2023//10-04-2023//06-12-2021 wrong PL block//16-09-2019
                 {
                     return "ProductListedAds";
                 }

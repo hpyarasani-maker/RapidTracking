@@ -47,10 +47,9 @@ namespace RapidTrackingLibrary
                 if (nodeCol == null || (nodeCol.Count <= 1))//12-04-2023
                     nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'TzHB6b cLjAic')]|//div[contains(@id, 'arc-srp')]/div/div[@class='MjjYud']|//div[contains(@id, 'arc-srp')]/div/div/div[@class='MjjYud']") ?? nodeCol;//12-04-2023
                 if (nodeCol == null || nodeCol.Count <= 4)//02-05-2023//21-04-2023
-                    nodeCol = doc.DocumentNode.SelectNodes(".//div[@class='WvKfwe a3spGf']/div|.//div[@class='TzHB6b cLjAic LMRCfc']") ?? nodeCol;//30-10-2023//22-09-2023//21-09-2023 //19-09-2023
+                    nodeCol = doc.DocumentNode.SelectNodes(".//div[@class='WvKfwe a3spGf']/div|.//div[contains(@class, 'TzHB6b cLjAic')]") ?? nodeCol;//31-10-2023//30-10-2023//22-09-2023//21-09-2023 //19-09-2023
                 if (nodeCol == null || (nodeCol.Count >= 1 && nodeCol.Count <= 3))//27-10-2023//25-07-2022
-                 //nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div|.//div[@class='ULSxyf']") ?? nodeCol;//19-07-2022//15-07-2022
-                    nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div|.//div[contains(@class,'ULSxyf')]|//div[@class='hlcw0c']/div") ?? nodeCol;//16-12-2022//17-08-2022
+                    nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div|//div[@class='MjjYud']") ?? nodeCol;//31-10-2023//16-12-2022//17-08-2022
                 if (nodeCol == null || nodeCol.Count <= 1) //01-07-2022 swapped lines
                 {
                     nodeCol = doc.DocumentNode.SelectNodes("//div[contains(@class, 'TzHB6b cLjAic')]|.//div[@class='VT5Tde']");//14-02-2023//15-12-2022
@@ -1577,10 +1576,22 @@ namespace RapidTrackingLibrary
             }
             else
             {
-                dest = node.SelectSingleNode(".//span[@class='N7NX1d JgzqYd RES9jf']|.//span[@class='kqEaA']|.//h3[@class='OOTLje']");//26-07-2023
-                origin = dest?.InnerText.Substring(0, dest.InnerText.IndexOf(" to ")).Trim();
-                if (origin.ToLower().Equals("flights")) origin = string.Empty;//29-06-2023
-                destination = dest?.InnerText.Substring(dest.InnerText.IndexOf(" to ") + 4).Trim();
+                dest = node.SelectSingleNode(".//span[@class='N7NX1d JgzqYd RES9jf']|.//span[@class='kqEaA']|.//h3[@class='OOTLje']");//31-10-2023
+                int lenIndex = dest.InnerText.IndexOf(" to ") >= 0 ? dest.InnerText.IndexOf(" to ") :
+                        dest.InnerText.IndexOf(" nach ") >= 0 ? dest.InnerText.IndexOf(" nach ") : -1;
+                if (lenIndex == -1)
+                    lenIndex = dest.InnerText.IndexOf(" from ") >= 0 ? dest.InnerText.IndexOf(" from ") : -1;
+                origin = dest?.InnerText?.Substring(0, lenIndex).Trim(); // dest.InnerText.IndexOf(" to "));
+                if (origin.ToLower().Equals("flights") || origin.Equals("Flüge")) origin = string.Empty;
+                int len = dest.InnerText.IndexOf(" to ") >= 0 ? dest.InnerText.IndexOf(" to ") + 4 :
+                    dest.InnerText.IndexOf(" nach ") >= 0 ? dest.InnerText.IndexOf(" nach ") + 6 : -1;
+                if (len == -1)
+                {
+                    len = dest.InnerText.IndexOf(" from ") >= 0 ? dest.InnerText.IndexOf(" from ") + 6 : -1;
+                    origin = dest?.InnerText.Substring(len).Trim();
+                }
+                else
+                    destination = dest?.InnerText.Substring(len).Trim();//31-10-2023
             }
             s.Append("<block type=\"flightPack\" url=\"\" title=\"\" origin=\"" + SetTitle(origin) + "\" destination=\"" + SetTitle(destination) + "\" >");
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='aieQre']/div/a|.//div[contains(@class,'LQQ1Bd')]/div/a");

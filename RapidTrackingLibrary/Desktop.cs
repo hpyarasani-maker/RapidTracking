@@ -613,6 +613,13 @@ namespace RapidTrackingLibrary
                 s.Append("</block>");
             }
             //30-09-2022 end for new code answer card
+            HtmlNode hp = doc.DocumentNode.SelectSingleNode(".//div[@class='MaKSie']");//02-11-2023
+            if (hp != null)
+            {
+                s.Append("<block type=\"hotelPack\" url=\"\">");
+                s.Append(GetHotels(hp));
+                s.Append("</block>");
+            }//02-11-2023
             //18-03-2020
             HtmlNode imgs = colt.SelectSingleNode("//div[@class='M8OgIe']");//21-04-2023
             if (imgs != null && imgs.SelectSingleNode(".//div[@id='Odp5De']|.//div[@jscontroller='qTdDb']") == null)//15-05-2023//27-04-2023

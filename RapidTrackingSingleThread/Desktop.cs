@@ -44,9 +44,9 @@ namespace RapidTrackingSingleThread
                 if (nodeCol == null || (nodeCol.Count <= 1))
                     nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'TzHB6b cLjAic')]|.//div[contains(@id, 'arc-srp')]/div/div[@class='MjjYud']|.//div[contains(@id, 'arc-srp')]/div/div/div[@class='MjjYud']");
                 if (nodeCol == null || nodeCol.Count <= 4)
-                    nodeCol = rso.SelectNodes(".//div[@class='WvKfwe a3spGf']/div|.//div[@class='wDYxhc']");
-                if (nodeCol == null)
-                    nodeCol = rso.SelectNodes(".//div[contains(@class,'TzHB6b cLjAic')]");
+                    nodeCol = rso.SelectNodes(".//div[contains(@class,'TzHB6b cLjAic')]");//02-10-2023
+                if (nodeCol == null || nodeCol.Count <= 3)//02-10-2023
+                    nodeCol = rso.SelectNodes(".//div[@class='WvKfwe a3spGf']/div|.//div[@class='wDYxhc']");//02-10-2023
                 if (nodeCol == null || (nodeCol.Count >= 1 && nodeCol.Count <= 3))
                     nodeCol = rso.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div|.//div[@class='MjjYud']");
                 if (nodeCol != null)  //11-08-2022 //end 01-11-2023
@@ -1926,7 +1926,7 @@ namespace RapidTrackingSingleThread
                 else if ((node.SelectSingleNode(".//div[@class='WcS13d']") != null && node.SelectSingleNode(".//div[@class='EfDVh wDYxhc NFQFxe']") != null //10-10-2023
                      || node.SelectSingleNode(".//div[@class='nmVgI3FLyE0__answer']") != null //10-10-2023
                      || node.SelectSingleNode(".//div[@class='N6Sb2c i29hTd']") != null //10-10-2023
-                    || node.SelectSingleNode(".//div[@class='ifM9O']") != null) && node.SelectSingleNode(".//img[contains(@alt, 'Map of')]") == null && node.SelectSingleNode(".//h3[@role='heading']")?.InnerText != "Recipes") //30-10-2023//10-10-2023
+                    || node.SelectSingleNode(".//div[@class='ifM9O']") != null) && node.SelectSingleNode(".//img[contains(@alt, 'Map of')]") == null && node.SelectSingleNode(".//h3[@role='heading']")?.InnerText != "Recipes" && node.SelectSingleNode(".//ul/product-viewer-group|.//div[@class='aJegcc']") == null)//02-10-2023//30-10-2023//10-10-2023
                     return "AnswerCard";//27-12-2021
             }
             //05-10-2020 KP Block selectors updated

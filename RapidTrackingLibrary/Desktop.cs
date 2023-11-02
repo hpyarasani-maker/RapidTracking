@@ -256,6 +256,8 @@ namespace RapidTrackingLibrary
             if (node == null)
                 node = rcNode.SelectSingleNode(".//div[@class='UDZeY fAgajc OTFaAf']");  // 27-05-2020
             if (node == null)
+                node = rcNode.SelectSingleNode(".//div[@class='WFxqwc BGdUVb OTFaAf']");  // 02-11-2023
+            if (node == null)
                 node = rcNode.SelectSingleNode(".//div[@class='NFQFxe mod']");  // 01-06-2020
             if (node == null)
                 node = rcNode.SelectSingleNode(".//div[contains(@class, 'knowledge-panel')]");//03-03-2022

@@ -196,6 +196,8 @@ namespace WPFMultiThreadJobIDs
             if (node == null)
                 node = rcNode.SelectSingleNode(".//div[@class='UDZeY fAgajc OTFaAf']");  // 27-05-2020
             if (node == null)
+                node = rcNode.SelectSingleNode(".//div[@class='WFxqwc BGdUVb OTFaAf']");  // 02-11-2023
+            if (node == null)
                 node = rcNode.SelectSingleNode(".//div[@class='NFQFxe mod']");  // 01-06-2020
             if (node == null)
                 node = rcNode.SelectSingleNode(".//div[contains(@class, 'knowledge-panel')]");//03-03-2022
@@ -578,14 +580,21 @@ namespace WPFMultiThreadJobIDs
                 }
             }
             ///30-09-2022 start new code for answer carc
-            HtmlNode ac = doc.DocumentNode.SelectSingleNode(".//div[@class='ULSxyf a2qDab EyBRub']");
-            if (ac != null && ac.SelectSingleNode(".//div[@class='NhRr3b']") != null)
+            HtmlNode ac = doc.DocumentNode.SelectSingleNode(".//div[@class='ULSxyf a2qDab EyBRub']|.//div[@id='Odp5De']");//03-11-2023
+            if (ac != null && ac.SelectSingleNode(".//div[contains(@class,'NhRr3b')]") != null)//03-11-2023
             {
                 s.Append("<block type=\"answerCard\" url=\"\">");
                 s.Append(GetAnswerCard(ac));
                 s.Append("</block>");
             }
             //30-09-2022 end for new code answer card
+            HtmlNode hp = doc.DocumentNode.SelectSingleNode(".//div[@class='MaKSie']");//02-11-2023
+            if (hp != null)
+            {
+                s.Append("<block type=\"hotelPack\" url=\"\">");
+                s.Append(GetHotels(hp));
+                s.Append("</block>");
+            }//02-11-2023
             //18-03-2020
             HtmlNode imgs = colt.SelectSingleNode("//div[@class='M8OgIe']");//21-04-2023
             if (imgs != null && imgs.SelectSingleNode(".//div[@id='Odp5De']|.//div[@jscontroller='qTdDb']") == null)//15-05-2023//27-04-2023
@@ -1553,10 +1562,22 @@ namespace WPFMultiThreadJobIDs
             }
             else
             {
-                dest = node.SelectSingleNode(".//span[@class='N7NX1d JgzqYd RES9jf']|.//span[@class='kqEaA']|.//h3[@class='OOTLje']");//26-07-2023
-                origin = dest?.InnerText.Substring(0, dest.InnerText.IndexOf(" to ")).Trim();
-                if (origin.ToLower().Equals("flights")) origin = string.Empty;//29-06-2023
-                destination = dest?.InnerText.Substring(dest.InnerText.IndexOf(" to ") + 4).Trim();
+                dest = node.SelectSingleNode(".//span[@class='N7NX1d JgzqYd RES9jf']|.//span[@class='kqEaA']|.//h3[@class='OOTLje']");//31-10-2023
+                int lenIndex = dest.InnerText.IndexOf(" to ") >= 0 ? dest.InnerText.IndexOf(" to ") :
+                        dest.InnerText.IndexOf(" nach ") >= 0 ? dest.InnerText.IndexOf(" nach ") : -1;
+                if (lenIndex == -1)
+                    lenIndex = dest.InnerText.IndexOf(" from ") >= 0 ? dest.InnerText.IndexOf(" from ") : -1;
+                origin = dest?.InnerText?.Substring(0, lenIndex).Trim(); // dest.InnerText.IndexOf(" to "));
+                if (origin.ToLower().Equals("flights") || origin.Equals("Flüge")) origin = string.Empty;
+                int len = dest.InnerText.IndexOf(" to ") >= 0 ? dest.InnerText.IndexOf(" to ") + 4 :
+                    dest.InnerText.IndexOf(" nach ") >= 0 ? dest.InnerText.IndexOf(" nach ") + 6 : -1;
+                if (len == -1)
+                {
+                    len = dest.InnerText.IndexOf(" from ") >= 0 ? dest.InnerText.IndexOf(" from ") + 6 : -1;
+                    origin = dest?.InnerText.Substring(len).Trim();
+                }
+                else
+                    destination = dest?.InnerText.Substring(len).Trim();//31-10-2023
             }
             s.Append("<block type=\"flightPack\" url=\"\" title=\"\" origin=\"" + SetTitle(origin) + "\" destination=\"" + SetTitle(destination) + "\" >");
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='aieQre']/div/a|.//div[contains(@class,'LQQ1Bd')]/div/a");
@@ -1908,7 +1929,7 @@ namespace WPFMultiThreadJobIDs
                 else if ((node.SelectSingleNode(".//div[@class='WcS13d']") != null && node.SelectSingleNode(".//div[@class='EfDVh wDYxhc NFQFxe']") != null //10-10-2023
                      || node.SelectSingleNode(".//div[@class='nmVgI3FLyE0__answer']") != null //10-10-2023
                      || node.SelectSingleNode(".//div[@class='N6Sb2c i29hTd']") != null //10-10-2023
-                     || node.SelectSingleNode(".//div[@class='ifM9O']") != null) && node.SelectSingleNode(".//img[contains(@alt, 'Map of')]") == null)//10-10-2023
+                    || node.SelectSingleNode(".//div[@class='ifM9O']") != null) && node.SelectSingleNode(".//img[contains(@alt, 'Map of')]") == null && node.SelectSingleNode(".//h3[@role='heading']")?.InnerText != "Recipes" && node.SelectSingleNode(".//ul/product-viewer-group|.//div[@class='aJegcc']|.//div[@id='iur']") == null)//03-11-2023//02-11-2023//30-10-2023//10-10-2023
                     return "AnswerCard";//27-12-2021
             }
             //05-10-2020 KP Block selectors updated
@@ -1936,7 +1957,7 @@ namespace WPFMultiThreadJobIDs
                 nd = node.SelectSingleNode(".//div[@class='Kq2KUc']");//06-12-2022
             if (nd == null)//03-10-2023
                 nd = node.SelectSingleNode(".//div[@class='wH6SXe']");//03-10-2023
-            if (nd != null && node.Attributes["id"]?.Value != "Odp5De" && node.SelectSingleNode(".//div[@class='q6PGbe']|.//div[@class='l44Vof']|.//div[@class='P9Jfrb']|.//div[@class='o8ebK']|.//div[@class='ntKMYc']|.//img[contains(@alt,'Map of')]") == null)//06-12-2022//13-08-2022 maps //02-06-2022
+            if (nd != null && node.Attributes["id"]?.Value != "Odp5De" && node.SelectSingleNode(".//div[@class='q6PGbe']|.//div[@class='l44Vof']|.//div[@class='P9Jfrb']|.//div[@class='o8ebK']|.//div[@class='ntKMYc']|.//img[starts-with(@alt,'Map of')]") == null)//03-11-2023//06-12-2022//13-08-2022 maps //02-06-2022
             {
                 return "Images";
             }
@@ -2015,7 +2036,7 @@ namespace WPFMultiThreadJobIDs
                 || node.SelectSingleNode(".//div[@class='wXlZre B03h3d V14nKc ptcLIOszQJu__wholepage-card wp-msss']") != null//topstories 08-04-2020
                 || node.SelectSingleNode(".//div[contains(@class, 'e2BEnf U7izfe')]") != null //28-07-2021 images selectors
                 || node.SelectSingleNode(".//table[@class='nrgt']") != null || node.SelectSingleNode(".//table[@class='jmjoTe']") != null      // site links  22-08-2020 included block type selector
-                || node.SelectSingleNode(".//img[@id='lu_map']") != null      // maps
+                || node.SelectSingleNode(".//img[@id='lu_map']|.//div[@id='lu_map']") != null //02-11-2-23     // maps
                 || node.SelectSingleNode(".//div[@class='xERobd']") != null //  maps    //changed on 26-06-2019
                 || node.SelectSingleNode(".//div[@id='kx']") != null      // carousel
                 || node.SelectSingleNode(".//div[@id='fac-ut']") != null      // finance
@@ -2059,7 +2080,8 @@ namespace WPFMultiThreadJobIDs
                 || node.SelectSingleNode(".//div[@class='oCLR8']") != null//02-06-2023
                 || node.SelectSingleNode(".//div[@class='fPmcEc']") != null//19-09-2023
                 || node.SelectSingleNode(".//div[@class='qkC4td']") != null//21-09-2023
-                || node.SelectNodes(".//div[@class='xSoq1']") != null;//10-10-2023
+                || node.SelectNodes(".//div[@class='xSoq1']") != null//10-10-2023
+                || node.SelectNodes(".//div[@class='udVt6e']") != null;//02-11-2023
             if (bVal == true)//2019-09-11
             {
                 try
@@ -2068,7 +2090,7 @@ namespace WPFMultiThreadJobIDs
                     if (node.SelectSingleNode(".//div[@class='g jNVrwc Y4pkMc']|.//div[@class='g tF2Cxc']|.//div[@class='g eejeod up9jud']" +
                     //"|.//div[@class='g Ww4FFb tF2Cxc']") != null) return false; //21-07-2022//15-02-2022//02-02-2022//31-12-2021 missing CLinks
                     "|.//div[contains(@class,'g Ww4FFb')]|.//div[@class='BYM4Nd']|.//div[@class='rULfzc']|.//div[@class='g ZYT4Gf']") != null || (node.Attributes["class"]?.Value?.Contains("g Ww4FFb") ?? false)) return false;//07-08-2023//31-10-2022//11-10-2022
-                    if (node.SelectSingleNode(".//div[@class='twQ0Be']|.//div[@jsname='N760b']|.//div[@jsname='wRSfy']|.//div[contains(@class,'e2BEnf U7izfe')]|.//div[@jsname='A6RGif']|.//div[@class='P9Jfrb']|.//div[@class='ntKMYc']|.//div[@class='T6zPgb gduDCb']|.//div[@class='M0XuFe mnr-c vk_c']") != null) return true;//05-12-2022//26-09-2022//13-08-2022 maps//08-03-2022//07-03-2022//28-12-2021//10-12-2021//09-12-2021 //08-12-2021 PAlsoB   //30-08-2021 video card
+                    if (node.SelectSingleNode(".//div[@class='twQ0Be']|.//div[@jsname='N760b']|.//div[@jsname='wRSfy']|.//div[contains(@class,'e2BEnf U7izfe')]|.//div[@jsname='A6RGif']|.//div[@class='P9Jfrb']|.//div[@class='ntKMYc']|.//div[@class='T6zPgb gduDCb']|.//div[@class='M0XuFe mnr-c vk_c']|.//g-section-with-header[@class='yG4QQe TBC9ub']") != null) return true;//03-11-2023//05-12-2022//26-09-2022//13-08-2022 maps//08-03-2022//07-03-2022//28-12-2021//10-12-2021//09-12-2021 //08-12-2021 PAlsoB   //30-08-2021 video card
                     if (node.SelectSingleNode(".//div[@class='osrp-blk']|.//div[@class='tpa-cc']") != null && node.SelectSingleNode(".//div[@class='l44Vof']") == null && node.SelectSingleNode(".//div[@class='H93uF']") == null) //17-05-2022//31-12-2021
                         return false; //20-08-2021
                     if (node.Attributes["id"]?.Value == "rhs") return false;//03-03-2022
@@ -2112,7 +2134,7 @@ namespace WPFMultiThreadJobIDs
             {
                 HtmlNode nd = node.SelectSingleNode(".//h3|.//div[contains(@class,'HnYYW')]|.//div[@class='LMMXP i8lZMc']|.//div[@class='e2BEnf U7izfe']/div|.//div[@class='LMMXP mfMhoc']"); //05-08-2020 included contains function  //17-07-2020 //03-06-2020  // 02-06-2020    //01-05-2020
                 if (nd != null)
-                    if (nd.InnerText == "Top stories" || nd.InnerText == "Huvudnyheter" || nd.InnerText == "Videos" || nd.InnerText == "Video" || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws" || nd.InnerText == "Vertaalresultaat" || nd.InnerText == "Recipes" || nd.InnerText == "Vidéos")//02-12-2020 videos//05-08-2020 //29-06-2020//03-06-2020 // 02-06-2020  // 08-04-2020
+                    if ((nd.InnerText == "Top stories" || nd.InnerText == "Huvudnyheter" || nd.InnerText == "Videos" || nd.InnerText == "Video" || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws" || nd.InnerText == "Vertaalresultaat" || nd.InnerText == "Recipes" || nd.InnerText == "Vidéos") && node.SelectSingleNode(".//div[contains(@class,'g Ww4FFb')]") == null)//30-10-2023//02-12-2020 videos//05-08-2020 //29-06-2020//03-06-2020 // 02-06-2020  // 08-04-2020
                         return true;
 
                 //enable below line without new block "popularProducts"

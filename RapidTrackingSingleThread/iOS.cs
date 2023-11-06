@@ -3014,7 +3014,7 @@ namespace RapidTrackingSingleThread
             }
             else
             {
-                nd = node.SelectSingleNode(".//div[@class='rKFBM gsrt wp-ms']|.//div[@class='JNkvid gsrt VJIO7b BUnLGf wp-ms']|.//span[@class='FCUp0c rQMQod']");//11-08-2023 //13-07-2020 images selector    // changes on 11-07-2019
+                nd = node.SelectSingleNode(".//div[@class='rKFBM gsrt wp-ms']|.//div[@class='JNkvid gsrt VJIO7b BUnLGf wp-ms']|.//span[@class='FCUp0c rQMQod']|.//span[@class='mgAbYb OSrXXb RES9jf IFnjPb']");//06-11-2023//11-08-2023 //13-07-2020 images selector    // changes on 11-07-2019
                 if (nd != null)
                 {
                     if (nd.InnerText == "About")//26-10-2023

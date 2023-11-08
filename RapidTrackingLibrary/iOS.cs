@@ -1804,7 +1804,7 @@ namespace RapidTrackingLibrary
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='HnYYW FIdh1']");  // 01-06-2020
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='MQv7ze']");  // 23-06-2020
+                nd = node.SelectSingleNode(".//div[@class='MQv7ze']|.//div[@class='W2E8sb']");//08-11-2023  // 23-06-2020
             if (nd != null)
             {
                 string hdr = "";
@@ -1826,6 +1826,8 @@ namespace RapidTrackingLibrary
                 //    hdrNode = node.SelectSingleNode(".//h2[@class='qrShPb kno-ecr-pt PZPZlf HOpgu gsmt mfMhoc']/span");  //21-07-2020 included selector for KP title
                 if (hdrNode == null)
                     hdrNode = node.SelectSingleNode(".//h2[contains(@class, 'qrShPb')]/span"); //30-07-2020 included contains functions to KP title
+                if (hdrNode == null)//08-11-2023
+                    hdrNode = node.SelectSingleNode(".//div[@class='IDQilf MBeuO JIFdL']");//08-11-2023
                 if (hdrNode != null)
                     hdr = hdrNode.InnerText;
 
@@ -2745,7 +2747,7 @@ namespace RapidTrackingLibrary
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[contains(@class,'kp-blk EyBRub')]|.//div[contains(@class,'kp-hc')]"); //16-02-2022 //05-10-2020 included selector for missing KP block
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='Y2NmGf']");//26-07-2022
+                nd = node.SelectSingleNode(".//div[@class='Y2NmGf']|.//div[@class='aiNDEb']");//08-11-2023//26-07-2022
             if (nd != null)
             {
                 // 24-04-2020

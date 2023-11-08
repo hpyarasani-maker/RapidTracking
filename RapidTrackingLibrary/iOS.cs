@@ -2803,7 +2803,7 @@ namespace RapidTrackingLibrary
             if (nd != null)
             {
                 nd = node.SelectSingleNode(".//div[@class='MVpwye Dv3U4e']");//28-09-2022 answer card
-                if (node.SelectSingleNode(".//div[@class='FEoF4d']|.//div[@class='kno-rdesc']") == null) //23-09-2023 //24-11-2022//08-10-2021 Answer Card
+                if (node.SelectSingleNode(".//div[@class='FEoF4d']|.//div[@class='kno-rdesc']|.//div[contains(@class,'rbR0cd')]") == null)//08-11-2023 //23-09-2023 //24-11-2022
                     return "AnswerCard";
             }
 

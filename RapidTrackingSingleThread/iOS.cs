@@ -525,6 +525,7 @@ namespace RapidTrackingSingleThread
                                 || ((pla.SelectSingleNode(".//h3[contains(@class,'xZu9ed mfMhoc')]") != null || h3.HasClass("xc15De")) && pla.SelectSingleNode(".//h3[@role='heading']") != null)//26-09-2022 //10-07-2021
                                 || (pla.SelectSingleNode(".//div[@class='Mckyte']") != null) //12-08-2021
                                 || (pla.SelectSingleNode(".//div[@class='ZPze1e']") != null) //27-03-2023
+                                || (pla.SelectSingleNode(".//div[@role='heading']") != null)   // 08-11-2023 
                                 )
                             {
                                 s.Append("<block type=\"productListedAds\" url=\"\">");
@@ -3052,7 +3053,7 @@ namespace RapidTrackingSingleThread
             }
 
             //13-08-2019
-            nd = node.SelectSingleNode(".//div[@class='aJegcc']");
+            nd = node.SelectSingleNode(".//div[@class='aJegcc']|.//div[@class='IGtt6d imgac mnr-c cTMkTb']");//08-11-2023
             if (nd != null)
                 if (node.SelectNodes(".//div[contains(@class,'xCCdqb')]|.//div[contains(@class, 'tyUpi')]|.//div[@class='baPFxb g kSMK2']|.//div[contains(@class,'wTrwWd')]") == null)//23-10-2023//11-04-2023//10-04-2023//06-12-2021 wrong PL block//16-09-2019
                 {

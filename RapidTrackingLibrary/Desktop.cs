@@ -615,6 +615,10 @@ namespace RapidTrackingLibrary
                 s.Append(GetImages(imgs));
                 s.Append("</block>");
             }//21-04-2023
+            if (imgs != null && imgs.SelectSingleNode(".//img[contains(@alt, 'Map of')]") != null)//17-11-2023
+            {
+                s.Append("<block type=\"maps\" url=\"\"></block>");
+            }//17-11-2023
             colt = doc.DocumentNode.SelectSingleNode("//div[@id='taw']");
             if (colt != null)
             {

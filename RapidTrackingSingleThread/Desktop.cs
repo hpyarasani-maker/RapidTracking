@@ -734,7 +734,7 @@ namespace RapidTrackingSingleThread
                                 continue;
                             }//29-09-2023
                             //if (nd.SelectSingleNode(".//h3[@role='heading']|.//div[@role='heading']").InnerText == "Videos")//20-04-2023
-                            if (node.SelectSingleNode(".//div[@jsname='wRSfy']") != null && node.SelectSingleNode(".//div[@class='g']") == null)//05-06-2023
+                            if (node.SelectSingleNode(".//div[@jsname='wRSfy']") != null && node.SelectSingleNode(".//div[@class='g']|.//div[@class='Wt5Tfe']") == null)//17-11-2023//05-06-2023
                             {
                                 s.Append("<block type=\"videos\" url=\"\">");
                                 //get video urls;
@@ -757,6 +757,13 @@ namespace RapidTrackingSingleThread
                             s.Append("</block>");
                             continue;
                         }//21-07-2023
+                        if (nd.SelectSingleNode(".//div[@class='EDblX kjqWgb']") != null)//17-11-2023
+                        {
+                            s.Append("<block type=\"images\" url=\"\">");
+                            s.Append(GetImages(nd));
+                            s.Append("</block>");
+                            continue;
+                        }//17-11-2023
                         HtmlNode title = null;  // 18-11-2019
                         HtmlNode n = nd.SelectSingleNode(".//h3[@class='r']/a");
                         if (n == null)

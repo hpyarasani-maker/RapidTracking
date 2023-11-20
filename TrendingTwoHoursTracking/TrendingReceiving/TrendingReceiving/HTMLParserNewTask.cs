@@ -15,7 +15,7 @@ namespace TrendingReceiving
     {
         Desktop desktop ;
         iOS ios ;
-
+        string statusCode = string.Empty;
         string myDate = DateTime.Today.ToString("yyyy-MM-dd");
         public event KeywordDone OnKeywordDone;
         double apitime, dbtime;    // 31-03-2020
@@ -75,6 +75,7 @@ namespace TrendingReceiving
 
                 if (status == "done")
                 {
+                    var startTime = System.Diagnostics.Stopwatch.StartNew();//08-11-2023
                     //ServicePointManager.Expect100Continue = true;
                     //ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                     string resURL = job["results_url"].Value<string>();
@@ -87,6 +88,7 @@ namespace TrendingReceiving
                     string response = reader.ReadToEnd();
                     resStream.Close();
                     res.Close();
+                    var totalTime = Convert.ToDouble(startTime.ElapsedMilliseconds) / 1000;//08-11-2023
                     string result = string.Empty;
                     int orgUrls = 0;
 
@@ -116,7 +118,7 @@ namespace TrendingReceiving
                         ProcessResults(result, kw, seid, jobid, orgUrls);
 
                     // OnKeywordDone.Invoke(seid + ":  " + kw + ",  " + orgUrls);
-                    OnKeywordDone.Invoke(seid + ":  " + kw + ",  " + orgUrls + "^" +  apitime + "^" + dbtime);    // 31-03-2020
+                    OnKeywordDone.Invoke(seid + ":  " + kw + ",  " + orgUrls + "^" + statusCode + "^" + apitime + "^" + dbtime + "^" + totalTime);//08-11-2023 //31-03-2020
 
                 }
             }
@@ -134,7 +136,7 @@ namespace TrendingReceiving
                     }
                     finally { }
                 }
-                OnKeywordDone.Invoke("Error:  seid: " + seid + ",  keyword: " + kw + ",  jobid: " + jobid + "\r\n\t" + ex.Message + "^" + apitime + "^" + dbtime); //  15-04-2020     
+                OnKeywordDone.Invoke("Error:  seid: " + seid + ",  keyword: " + kw + ",  jobid: " + jobid + "\r\n\t" + ex.Message + "^" + statusCode + "^" + apitime + "^" + dbtime);    // 31-03-2020       
 
             }
         }

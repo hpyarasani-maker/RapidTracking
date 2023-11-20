@@ -733,8 +733,8 @@ namespace RapidTrackingSingleThread
                                 s.Append("</block>");
                                 continue;
                             }//29-09-2023
-                            //if (nd.SelectSingleNode(".//h3[@role='heading']|.//div[@role='heading']").InnerText == "Videos")//20-04-2023
-                            if (node.SelectSingleNode(".//div[@jsname='wRSfy']") != null && node.SelectSingleNode(".//div[@class='g']|.//div[@class='Wt5Tfe']") == null)//17-11-2023//05-06-2023
+                            if (nd.SelectSingleNode(".//div[@jsname='wRSfy']") != null && nd.SelectSingleNode(".//div[@class='g']" +
+                                "|.//div[@class='Wt5Tfe']|.//div[@class='EDblX kjqWgb']") == null)//20-11-2023//17-11-2023//05-06-2023
                             {
                                 s.Append("<block type=\"videos\" url=\"\">");
                                 //get video urls;

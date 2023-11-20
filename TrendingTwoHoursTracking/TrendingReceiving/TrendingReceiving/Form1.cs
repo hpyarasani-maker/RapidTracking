@@ -15,6 +15,7 @@ namespace TrendingReceiving
         public Form1()
         {
             InitializeComponent();
+            CheckForIllegalCrossThreadCalls = false; //20-11-2023
             WOWS.OnKeywordDone += WOWS_OnKeywordDone;
             timerExit();
             //cnt = GetOxyCount();
@@ -102,6 +103,7 @@ namespace TrendingReceiving
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Dispose(true);//20-11-2023
             Environment.Exit(Environment.ExitCode);
         }
                 

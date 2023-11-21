@@ -2215,7 +2215,11 @@ namespace RapidTrackingLoopSingleThread
             if (nds == null)
                 nds = node.SelectNodes(".//div[@data-attrid='OsrpVideos']/a|.//div[@class='ALzVK']/div/div/a");
             if (nds == null)
-                nds = node.SelectNodes(".//div[@jsname='ibnC6b']/a|.//div[@jscontroller='OmmTPc']|.//div[@class='QevLbc']/a|.//a[@class='OIDuRe']|.//div[@class='Q9mvUc']|.//div[@class='KJDcUb']|.//a[@class='ygih0']|.//div[@class='NBoMDb']/a|.//a[@class='dyWXTb']|.//div[@class='MCDgie']/a[@class='BG7Pyb']");//24-08-2023 //17-05-2022 //07-04-2022 videos item urls
+                nds = node.SelectNodes(".//div[@jsname='ibnC6b']/a|.//div[@jscontroller='OmmTPc']" +
+                    "|.//div[@class='QevLbc']/a|.//a[@class='OIDuRe']|.//div[@class='Q9mvUc']" +
+                    "|.//div[@class='KJDcUb']|.//a[@class='ygih0']|.//div[@class='NBoMDb']/a" +
+                    "|.//a[@class='dyWXTb']|.//div[@class='MCDgie']/a[@class='BG7Pyb']" +
+                    "|.//div[@class='GFu7kc']/a");//21-11-2023//24-08-2023 //17-05-2022 //07-04-2022 videos item urls
 
             if (nds != null)   // 16-09-2019
                 foreach (HtmlNode nd in nds)
@@ -2232,6 +2236,8 @@ namespace RapidTrackingLoopSingleThread
                             n = nd.SelectSingleNode(".//div[@class='nOmCmb']");//24-08-2023
                         if (n == null)
                             n = nd.SelectSingleNode(".//div[@class='k8M7xd OSrXXb tNxQIb ynAwRc']");//14-08-2023 videos item title
+                        if (n == null)//21-11-2023
+                            n = nd.SelectSingleNode(".//div[@class='ZhosBf MBI8Pd PwQv4e']");//21-11-2023
                         try
                         {
                             // Changes in Videos block on 25-06-2019

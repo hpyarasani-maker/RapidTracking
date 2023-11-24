@@ -746,6 +746,11 @@ namespace RapidTrackingLibrary
                                 s.Append("</block>");
                                 continue;
                             }
+                            if (nd.SelectSingleNode(".//div[@class='Brgz0 tw-res']") != null)//24-11-2023
+                            {
+                                s.Append(GetTwitterCards(nd));
+                                continue;
+                            }//24-11-2023
                         } // End 02-06-2020
                         if (nd.HasClass("AuVD") || nd.SelectSingleNode(".//div[@class='Wt5Tfe']") != null)//20-04-2023//05-12-2022
                         {
@@ -2117,7 +2122,8 @@ namespace RapidTrackingLibrary
             {
                 try
                 {
-                    if (node.SelectSingleNode(".//div[@class='Brgz0 tw-res']|.//div[@class='k9uN1c kfn9hb']|.//div[@class='baPFxb g kSMK2']") != null) return true;//26-10-2023//04-01-2023//16-12-2022
+                    if (node.SelectSingleNode(".//div[@class='Brgz0 tw-res']|.//div[@class='k9uN1c kfn9hb']|.//div[@class='baPFxb g kSMK2']") != null
+                        && node.SelectNodes(".//div[contains(@class,'g Ww4FFb')]") == null) return true;//24-11-2023//26-10-2023//04-01-2023//16-12-2022
                     if (node.SelectSingleNode(".//div[@class='g jNVrwc Y4pkMc']|.//div[@class='g tF2Cxc']|.//div[@class='g eejeod up9jud']" +
                     //"|.//div[@class='g Ww4FFb tF2Cxc']") != null) return false; //21-07-2022//15-02-2022//02-02-2022//31-12-2021 missing CLinks
                      "|.//div[contains(@class,'g Ww4FFb')]|.//div[@class='BYM4Nd']|.//div[@class='rULfzc']|.//div[@class='g ZYT4Gf']") != null || (node.Attributes["class"]?.Value?.Contains("g Ww4FFb") ?? false)) return false;//07-08-2023//31-10-2022//11-10-2022

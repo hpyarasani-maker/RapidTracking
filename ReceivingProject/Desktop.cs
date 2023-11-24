@@ -379,7 +379,8 @@ namespace ReceivingProject
         private string GetPopularProducts(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nodes = node.SelectNodes(".//ul/product-viewer-group/li|.//ul/div[@class='Ez5pwe']/li|.//div[@class='MhZJBd']/div[@jsname='U5epZb']");//09-12-2022
+            HtmlNodeCollection nodes = node.SelectNodes(".//ul/product-viewer-group/li|.//ul/div[@class='Ez5pwe']/li" +
+                "|.//div[@class='MhZJBd']/div[@jsname='U5epZb']|.//div[@class='MhZJBd']/div/div[@jsname='U5epZb']");//24-11-2023//09-12-2022
             if (nodes == null)//04-01-2023
                 nodes = node.SelectNodes(".//ul[contains(@class, 'sho-apgc__product-grid')]/li|.//ul[contains(@class, 'sho-apgc__product-grid')]/div/li");//06-//04-01-2023
             if (nodes != null)
@@ -736,6 +737,11 @@ namespace ReceivingProject
                                 s.Append("</block>");
                                 continue;
                             }
+                            if (nd.SelectSingleNode(".//div[@class='Brgz0 tw-res']") != null)//24-11-2023
+                            {
+                                s.Append(GetTwitterCards(nd));
+                                continue;
+                            }//24-11-2023
                         } // End 02-06-2020
                         if (nd.HasClass("AuVD") || nd.SelectSingleNode(".//div[@class='Wt5Tfe']") != null)//20-04-2023//05-12-2022
                         {
@@ -1078,7 +1084,7 @@ namespace ReceivingProject
         private string GetVideos(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nds = node.SelectNodes(".//g-inner-card/div/a|.//a[@class='X5OiLe']"); //08-12-2021 videos item urls sel
+            HtmlNodeCollection nds = node.SelectNodes(".//g-inner-card/div/a|.//a[@class='X5OiLe']|.//a[@class='xMqpbd']");//24-11-2023 //08-12-2021 videos item urls sel
             if (nds == null)
                 nds = node.SelectNodes(".//div[@jsname='ibnC6b']/div/a");   //17-07-2020
             if (nds == null)
@@ -2102,7 +2108,8 @@ namespace ReceivingProject
             {
                 try
                 {
-                    if (node.SelectSingleNode(".//div[@class='Brgz0 tw-res']|.//div[@class='k9uN1c kfn9hb']|.//div[@class='baPFxb g kSMK2']") != null) return true;//26-10-2023//04-01-2023//16-12-2022
+                    if (node.SelectSingleNode(".//div[@class='Brgz0 tw-res']|.//div[@class='k9uN1c kfn9hb']|.//div[@class='baPFxb g kSMK2']") != null
+                        && node.SelectNodes(".//div[contains(@class,'g Ww4FFb')]") == null) return true;//24-11-2023//26-10-2023//04-01-2023//16-12-2022
                     if (node.SelectSingleNode(".//div[@class='g jNVrwc Y4pkMc']|.//div[@class='g tF2Cxc']|.//div[@class='g eejeod up9jud']" +
                     //"|.//div[@class='g Ww4FFb tF2Cxc']") != null) return false; //21-07-2022//15-02-2022//02-02-2022//31-12-2021 missing CLinks
                     "|.//div[contains(@class,'g Ww4FFb')]|.//div[@class='BYM4Nd']|.//div[@class='rULfzc']|.//div[@class='g ZYT4Gf']") != null || (node.Attributes["class"]?.Value?.Contains("g Ww4FFb") ?? false)) return false;//07-08-2023//31-10-2022//11-10-2022
@@ -2164,7 +2171,7 @@ namespace ReceivingProject
                 nd = node.SelectSingleNode(".//g-img/img");
                 if (nd != null)
                 {
-                    if (nd.Attributes["alt"].Value.StartsWith("Map of ") || node.SelectSingleNode(".//div[@class='H93uF']") != null || node.SelectSingleNode(".//img[contains(@alt,'Map of ')]") != null)//06-12-2022//21-04-2022
+                    if (nd.Attributes["alt"].Value.StartsWith("Map of ") || node.SelectSingleNode(".//div[@class='H93uF']|.//div[@class='uaxL4e ef0Hld']") != null || node.SelectSingleNode(".//img[contains(@alt,'Map of ')]") != null)//24-11-2023//06-12-2022//21-04-2022
                         return true;
                     if (node.SelectSingleNode(".//div[@class='U1TUId LYh3vc']") != null) //16-12-2021
                         return false; //16-12-2021
@@ -2175,7 +2182,8 @@ namespace ReceivingProject
                         return false;//10-12-2021
                     else //10-12-2021
                         return true;
-
+                if (node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]") != null)
+                    return true;
                 HtmlNodeCollection nds = node.SelectNodes(".//div");
                 if (nds != null)
                     foreach (HtmlNode n in nds)

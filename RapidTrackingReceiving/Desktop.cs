@@ -2165,7 +2165,7 @@ namespace Oxylabs_BulkKeywords
                 nd = node.SelectSingleNode(".//g-img/img");
                 if (nd != null)
                 {
-                    if (nd.Attributes["alt"].Value.StartsWith("Map of ") || node.SelectSingleNode(".//div[@class='H93uF']") != null || node.SelectSingleNode(".//img[contains(@alt,'Map of ')]") != null)//06-12-2022//21-04-2022
+                    if (nd.Attributes["alt"].Value.StartsWith("Map of ") || node.SelectSingleNode(".//div[@class='H93uF']|.//div[@class='uaxL4e ef0Hld']") != null || node.SelectSingleNode(".//img[contains(@alt,'Map of ')]") != null)
                         return true;
                     if (node.SelectSingleNode(".//div[@class='U1TUId LYh3vc']") != null) //16-12-2021
                         return false; //16-12-2021

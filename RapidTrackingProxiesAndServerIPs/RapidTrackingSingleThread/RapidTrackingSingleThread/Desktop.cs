@@ -391,7 +391,7 @@ namespace RapidTrackingSingleThread
                     string title = string.Empty;
                     string price = string.Empty;
                     string name = string.Empty;
-                    string price_value = string.Empty;//28-11-2023
+                    string price_value = "0";//28-11-2023
                     try
                     {
                         HtmlNode link = nd.SelectSingleNode(".//a[contains(@class,'vzhcTd wTrwWd')]");

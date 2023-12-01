@@ -1598,6 +1598,7 @@ namespace RapidTrackingLibrary
             {
                 dest = node.SelectSingleNode(".//span[@class='N7NX1d JgzqYd RES9jf']|.//span[@class='kqEaA']|.//h3[@class='OOTLje']");//31-10-2023
                 int lenIndex = dest.InnerText.IndexOf(" to ") >= 0 ? dest.InnerText.IndexOf(" to ") :
+                        dest.InnerText.IndexOf(" von ") >= 0 ? dest.InnerText.IndexOf(" von ") : //01-12-2023
                         dest.InnerText.IndexOf(" nach ") >= 0 ? dest.InnerText.IndexOf(" nach ") : -1;
                 if (lenIndex == -1)
                     lenIndex = dest.InnerText.IndexOf(" from ") >= 0 ? dest.InnerText.IndexOf(" from ") : -1;
@@ -1607,7 +1608,8 @@ namespace RapidTrackingLibrary
                     dest.InnerText.IndexOf(" nach ") >= 0 ? dest.InnerText.IndexOf(" nach ") + 6 : -1;
                 if (len == -1)
                 {
-                    len = dest.InnerText.IndexOf(" from ") >= 0 ? dest.InnerText.IndexOf(" from ") + 6 : -1;
+                    len = dest.InnerText.IndexOf(" from ") >= 0 ? dest.InnerText.IndexOf(" from ") + 6 :
+                        dest.InnerText.IndexOf(" von ") >= 0 ? dest.InnerText.IndexOf(" von ") + 5 : -1;  //01-12-2023;
                     origin = dest?.InnerText.Substring(len).Trim();
                 }
                 else

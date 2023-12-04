@@ -599,7 +599,7 @@ namespace RapidTrackingLibrary
             }
             ///30-09-2022 start new code for answer carc
             HtmlNode ac = doc.DocumentNode.SelectSingleNode(".//div[@class='ULSxyf a2qDab EyBRub']|.//div[@id='Odp5De']");//03-11-2023
-            if (ac != null && ac.SelectSingleNode(".//div[contains(@class,'NhRr3b')]|.//div[@class='ifM9O']") != null)//01-12-2023//03-11-2023
+            if (ac != null && ac.SelectSingleNode(".//div[contains(@class,'NhRr3b')]|.//div[@class='wDYxhc']") != null)//04-12-2023//01-12-2023//03-11-2023
             {
                 s.Append("<block type=\"answerCard\" url=\"\">");
                 s.Append(GetAnswerCard(ac));
@@ -1270,7 +1270,7 @@ namespace RapidTrackingLibrary
             if (nds == null)//23-12-2021
                 nds = node.SelectNodes(".//a[@class='GBgvb']");//23-12-2021
             if (nds == null)
-                nds = node.SelectNodes(".//div[@class='WcS13d']"); //removed /a //05-10-2020 included selector for missing classic links
+                nds = node.SelectNodes(".//div[@class='WcS13d']|.//div[@class='V3FYCf']");//04-12-2023 //removed /a //05-10-2020 included selector for missing classic links
             if (nds == null)
                 return string.Empty;
             foreach (HtmlNode nd in nds)
@@ -1287,6 +1287,7 @@ namespace RapidTrackingLibrary
                 if (nds1 != null)
                     foreach (HtmlNode nd1 in nds1)
                     {
+                        title = nd1.SelectSingleNode(".//div[@class='erHJcf MBeuO']").InnerText ?? "";//04-12-2023
                         s.Append("<item url=\"" + SetUrl(nd1.Attributes["href"].Value) + "\" title=\"" + SetTitle(title) + "\" />");
                     }
                 //end 05-10-2020

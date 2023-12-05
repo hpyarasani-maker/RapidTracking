@@ -3017,6 +3017,8 @@ namespace RapidTrackingLibrary
                 nd = node.SelectSingleNode(".//div[@class='sPeCJd']"); //21-12-2020 selector for carousel
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='R37eoe ibYmtf']");//28-10-2022
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@jsmodel='Wn3aEc']");//05-12-2023
             if (nd != null)
             {
                 if (node.SelectSingleNode(".//g-scrolling-carousel") != null)

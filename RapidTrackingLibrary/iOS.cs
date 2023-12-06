@@ -3020,7 +3020,7 @@ namespace RapidTrackingLibrary
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='R37eoe ibYmtf']");//28-10-2022
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@jsmodel='Wn3aEc']");//05-12-2023
+                nd = node.SelectSingleNode(".//div[@class='Vvrpbd']");//05-12-2023
             if (nd != null)
             {
                 if (node.SelectSingleNode(".//g-scrolling-carousel") != null)

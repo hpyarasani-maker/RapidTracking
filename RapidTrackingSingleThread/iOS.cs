@@ -3028,7 +3028,7 @@ namespace RapidTrackingSingleThread
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='ysxiae iRPzcb']");//23-10-2023
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@jsmodel='Wn3aEc']");//05-12-2023
+                nd = node.SelectSingleNode(".//div[@class='Vvrpbd']");//05-12-2023
             if (nd != null)
             {
                 //if (node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']") == null) //30-08-2021 image wrong block issue

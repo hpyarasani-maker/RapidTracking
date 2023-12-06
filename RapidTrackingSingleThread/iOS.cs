@@ -3013,8 +3013,6 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//g-tray-header/div[contains(@class,'N60dNb')]/a"); //24-09-2020 update above line to this selector
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='N60dNb']/a|.//g-tray-header/div[@class='N60dNb i8lZMc']/div[@class='rqLLId i8lZMc']"); //05-06-2020 //08-06-2020
-                                                                                                                                                  //if (nd == null)
-                                                                                                                                                  // nd = node.SelectSingleNode(".//div[@class='bUNBRd mnr-c']/g-tray-header/div[@class='N60dNb i8lZMc']/a"); //21-07-2020 commented    //17-02-2020 included selector for images
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='gID6df']|.//div[@id='iur']/a|.//div[@id='iur']");//06-12-2021 image block //12-06-2020//05-06-2020
             if (nd == null)

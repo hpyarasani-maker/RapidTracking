@@ -2794,10 +2794,10 @@ namespace RapidTrackingSingleThread
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[contains(@class, 'vkc_np')]");//05-12-2023 answer card
             if (nd != null)
-            { 
+            {
                 //nd = node.SelectSingleNode(".//div[@class='MVpwye Dv3U4e']");//05-12-2023//28-09-2022 answer card commented
                 // if (node.SelectSingleNode(".//div[@class='FEoF4d']") == null && node.SelectSingleNode(".//div[@class='PZPZlf hb8SAc']") == null) //15-09-2022 //24-11-2022 commented
-                if (node.SelectSingleNode(".//div[@class='FEoF4d']|.//div[@class='kno-rdesc']|.//div[contains(@class,'rbR0cd')]|.//div[@class='knowledge-finance-wholepage-chart__fw-uch']") == null)//08-11-2023 //23-09-2023 //24-11-2022
+                if (node.SelectSingleNode(".//div[@class='FEoF4d']|.//div[@class='kno-rdesc']|.//div[contains(@class,'rbR0cd')]|.//div[@class='knowledge-finance-wholepage-chart__fw-uch']|.//div[@class='WFxqwc']") == null)//07-12-2023//08-11-2023 //23-09-2023 //24-11-2022
                     return "AnswerCard";
             }
 
@@ -2860,7 +2860,7 @@ namespace RapidTrackingSingleThread
                             return "Videos";
                     else if (nd.InnerHtml.ToLower().StartsWith("top stories") || nd.InnerHtml.Contains("Interesting finds")) // 18-12-2019)
                         return "Topstories";
-                    HtmlNode nd1 = node.SelectSingleNode(".//div[@class='UDZeY fAgajc']|.//div[@class='rKFBM gsrt CAd2fd wp-ms']");  //31-03-2020
+                    HtmlNode nd1 = node.SelectSingleNode(".//div[@class='UDZeY fAgajc']|.//div[@class='rKFBM gsrt CAd2fd wp-ms']|.//div[@class='WFxqwc BGdUVb']");//07-12-2023  //31-03-2020
                     if (nd1 != null)
                     {
                         return "AnswerCard";

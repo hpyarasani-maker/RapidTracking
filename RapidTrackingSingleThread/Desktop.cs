@@ -479,8 +479,10 @@ namespace RapidTrackingSingleThread
             HtmlNode crNode = doc.DocumentNode.SelectSingleNode("//div[@id='extabar']|//div[@id='appbar']");  //29-06-2020
             if (crNode != null)
             {
-                if (crNode.SelectSingleNode(".//div[@id='kx']") != null || crNode.SelectSingleNode(".//g-scrolling-carousel") != null //|| crNode.SelectSingleNode(".//div[@role='heading']") != null) //29-06-2020
-                     || crNode.SelectSingleNode(".//div[@jscontroller='envtD']") != null) //29-06-2020
+                HtmlNode carousel = crNode.SelectSingleNode(".//div[@id='kx']|.//g-scrolling-carousel|.//div[@jscontroller='envtD']");//07-12-2023 start
+                if (carousel == null)
+                    carousel = doc.DocumentNode.SelectSingleNode("//div[@id='Odp5De']")?.SelectSingleNode(".//g-scrolling-carousel");
+                if (carousel != null)//07-12-2023 end
                 {
                     s.Append("<block type=\"carousel\" url=\"\">");
                     //s.Append(GetCarousel(crNode));  // 23-10-2019
@@ -595,7 +597,7 @@ namespace RapidTrackingSingleThread
             }
             ///30-09-2022 start new code for answer carc
             HtmlNode ac = doc.DocumentNode.SelectSingleNode(".//div[@class='ULSxyf a2qDab EyBRub']|.//div[@id='Odp5De']");//03-11-2023
-            if (ac != null && ac.SelectSingleNode(".//div[contains(@class,'NhRr3b')]|.//div[@class='wDYxhc']") != null)//04-12-2023//01-12-2023//03-11-2023
+            if (ac != null && ac.SelectSingleNode(".//div[contains(@class,'NhRr3b')]|.//div[@class='wDYxhc']") != null && ac.SelectSingleNode(".//g-scrolling-carousel") == null)//07-12-2023
             {
                 s.Append("<block type=\"answerCard\" url=\"\">");
                 s.Append(GetAnswerCard(ac));

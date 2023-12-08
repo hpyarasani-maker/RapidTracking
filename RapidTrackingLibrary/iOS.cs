@@ -1749,7 +1749,7 @@ namespace RapidTrackingLibrary
                 nds = node.SelectNodes(".//div[contains(@class,'MUxGbd lyLwlc')]/a"); //01-11-2022
             if (nds == null)//08-12-2023
                 nds = node.SelectNodes(".//div[@class='DkX4ue Va3FIb EE3Upf lVm3ye']/a" +//08-12-2023
-    "|.//div[@class='DkX4ue Va3FIb EE3Upf']/a|.//div[@class='DkX4ue IBylpb Va3FIb EE3Upf lVm3ye ']/a");//08-12-2023
+                 "|.//div[@class='DkX4ue Va3FIb EE3Upf']/a|.//div[@class='DkX4ue IBylpb Va3FIb EE3Upf lVm3ye ']/a");//08-12-2023
             if (nds != null)
             {
                 s.Append("<block type=\"siteLinks\" url=\"\">");

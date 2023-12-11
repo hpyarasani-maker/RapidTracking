@@ -924,7 +924,7 @@ namespace RapidTrackingSingleThread
                                             string title = ""; // vdo.SelectSingleNode(".//div[contains(@class, 'MUxGbd v0nnCb')]").InnerText; //13-07-2022 //22-03-2021
                                             HtmlNode t = vdo.SelectSingleNode(".//div[contains(@class, 'MUxGbd v0nnCb')]");
                                             if (t == null)
-                                                t = nd.SelectSingleNode(".//div[contains(@class, 'MUxGbd v0nnCb')]");
+                                                t = nd.SelectSingleNode(".//div[contains(@class, 'oewGkc LeUQr Va3FIb EE3Upf')]");//11-12-2023
                                             if (t != null)
                                                 title = t.InnerText; //end 13-07-2022
                                             if (url.StartsWith("http") || url.StartsWith("https") || url.StartsWith("ftp")) //30-04-2020

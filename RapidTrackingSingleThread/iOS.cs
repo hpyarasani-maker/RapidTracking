@@ -2797,6 +2797,8 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[@class='MUxGbd gbj1yb WZ8Tjf aLF0Z OSrXXb']"); //04-11-2022
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[contains(@class, 'vkc_np')]");//05-12-2023 answer card
+            if (nd == null)//13-12-2023
+                nd = node.SelectSingleNode(".//div[@class='V3FYCf']");//13-12-2023
             if (nd != null)
             {
                 //nd = node.SelectSingleNode(".//div[@class='MVpwye Dv3U4e']");//05-12-2023//28-09-2022 answer card commented

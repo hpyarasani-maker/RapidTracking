@@ -3065,7 +3065,7 @@ namespace RapidTrackingLibrary
                 nd = node.SelectSingleNode(".//div[@class='ysxiae iRPzcb']");//23-10-2023
             if (nd != null)
             {
-                if (node.SelectSingleNode(".//div[@class='VPyzge']") == null && (node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']") != null || node.SelectSingleNode(".//div[@class='N60dNb mfMhoc']") != null || node.SelectSingleNode(".//div[@jsmodel='vqHyhf']|.//div[@jsmodel='Wn3aEc']") != null))//08-04-2022 images
+                if (node.SelectSingleNode(".//div[@class='VPyzge']") == null && (node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']|.//div[@class='N60dNb mfMhoc']|.//div[@jsmodel='vqHyhf']|.//div[@jsmodel='Wn3aEc']|.//div[@class='HdBr8']|.//div[@class='VKHL9c']") != null))//15-12-2023//08-04-2022 images
                     return "Images";
             }
             else

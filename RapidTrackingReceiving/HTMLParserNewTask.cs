@@ -414,7 +414,27 @@ namespace Oxylabs_BulkKeywords
                 throw ex;
             }
         }
+        private void SendToFile(string seid, string keyword, string jobid, int urlCount)
+        {
+            string dt = DateTime.Today.ToString("yyyy-MM-dd");
+            string path = @"C:\Inetpub\wwwroot\Results" + dt + ".txt";
+            if (!File.Exists(path))
+            {
+                using (StreamWriter sw = File.CreateText(path))
+                {
 
+                    sw.WriteLine(seid + "\t" + keyword + "\t" + jobid + "\t" + urlCount);
+
+                }
+            }
+            else if (File.Exists(path))
+            {
+                using (StreamWriter sw = File.AppendText(path))
+                {
+                    sw.WriteLine(seid + "\t" + keyword + "\t" + jobid + "\t" + urlCount);
+                }
+            }
+        }
         private void SendToDB(string seid, string keyword, string xml, string jobid, int urlcount)
         {
             try

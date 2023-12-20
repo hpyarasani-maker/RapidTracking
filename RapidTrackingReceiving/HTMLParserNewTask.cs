@@ -422,9 +422,7 @@ namespace Oxylabs_BulkKeywords
             {
                 using (StreamWriter sw = File.CreateText(path))
                 {
-
                     sw.WriteLine(seid + "\t" + keyword + "\t" + jobid + "\t" + urlCount);
-
                 }
             }
             else if (File.Exists(path))

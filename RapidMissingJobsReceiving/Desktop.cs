@@ -1125,7 +1125,7 @@ namespace RapidMissingJobsReceiving
                         }
                         catch { title = ""; }
                         string url = nd.Attributes["href"].Value.Trim();
-                        string creator = nd.SelectSingleNode(".//span[@class='Sg4azc']/span")?.GetDirectInnerText() ?? "";//04-12-2023
+                        string creator = nd.SelectSingleNode(".//span[@class='Sg4azc']/span")?.GetDirectInnerText().Trim() ?? "";//04-12-2023
                         if (!string.IsNullOrEmpty(SetUrl(url)))//08-08-2022
                             //s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" creatorName=\"" + SetTitle(creator) + "\" />");//04-12-2023

@@ -282,7 +282,8 @@ namespace Oxylabs_BulkKeywords
                     apitime = (ed - st).TotalSeconds;
                 }
                 DateTime st1 = DateTime.Now;
-                SendToDB(seid, kw, result, jobid, urlcount);
+                SendToDB(seid, kw, result, jobid, urlcount);//storing in database table
+                //SendToDB(seid, kw, jobid, urlcount); //creating and storing data in txt file
                 DateTime ed1 = DateTime.Now;
                 dbtime = (ed1 - st1).TotalSeconds;
                 //end of 31-03-2020
@@ -414,7 +415,7 @@ namespace Oxylabs_BulkKeywords
                 throw ex;
             }
         }
-        private void SendToFile(string seid, string keyword, string jobid, int urlCount)
+        private void SendToDB(string seid, string keyword, string jobid, int urlCount)
         {
             string dt = DateTime.Today.ToString("yyyy-MM-dd");
             string path = @"C:\Inetpub\wwwroot\Results" + dt + ".txt";

@@ -1688,7 +1688,7 @@ namespace RapidTrackingLibrary
 
             HtmlNode nd = node.SelectSingleNode(".//div[@class='_ELb']/a");
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='twQ0Be']/a");
+                nd = node.SelectSingleNode(".//div[@class='twQ0Be']/a|.//div[@class='dbsr']/a");//08-01-2024
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='NFQFxe XbtRGb qxsd mod']/div/a"); //23-01-2020  // 21-02-2020 included selector for video cards block
             if (nd != null)
@@ -2757,7 +2757,10 @@ namespace RapidTrackingLibrary
                 if (ts)
                     return "Topstories";
             }
-            /*  if (node.SelectSingleNode(".//div[contains(@class, 'RPdfze')]|.//div[contains(@class, 'Qkn3ie')]|.//div[@class='lMMUFc']") != null || node.Attributes["class"]?.Value == "TzHB6b Ww4FFb vt6azd DlUvEb UBoxCb LMRCfc" && node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]|.//div[contains(@class,'WFxqwc')]|.//div[contains(@class,'PZPZlf')]|.//div[@class='KmNjGe Iu7yDc']") == null)//15-12-2023//28-11-2023//09-10-2023//22-09-2023//21-07-2023//07-07-2023
+            /*  if (node.SelectSingleNode(".//div[contains(@class, 'RPdfze')]|.//div[contains(@class, 'Qkn3ie')]" +
+                "|.//div[@class='lMMUFc']") != null || node.Attributes["class"]?.Value == "TzHB6b Ww4FFb vt6azd DlUvEb UBoxCb LMRCfc" 
+                && node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]|.//div[contains(@class,'WFxqwc')]|.//div[contains(@class,'PZPZlf')]" +
+                "|.//div[@class='KmNjGe Iu7yDc']|.//div[@class='dbsr']/a") == null)//08-01-2024//15-12-2023//28-11-2023//09-10-2023//22-09-2023//21-07-2023//07-07-2023
               return "FindResultsOn";*/
             /*nd = node.SelectSingleNode(".//g-tray-header[contains(@class,'kno-fb-ctx gsrt')]"); //23-03-2022//19-01-2023 //Top Sights and Flights
             if (nd != null)
@@ -2819,7 +2822,7 @@ namespace RapidTrackingLibrary
             // 30-10-2019
             nd = node.SelectSingleNode(".//div[@class='_ELb']/a");
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='twQ0Be']/a");
+                nd = node.SelectSingleNode(".//div[@class='twQ0Be']/a|.//div[@class='dbsr']/a");//08-01-2024
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='kno-fb-ctx']");
             if (nd == null)

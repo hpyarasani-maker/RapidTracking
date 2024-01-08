@@ -513,7 +513,7 @@ namespace RapidTrackingSingleThread
                         if (h3 == null)
                             h3 = pla.SelectSingleNode(".//div[@class='jGAUQb']"); //07-02-2022
                         if (h3 == null)
-                            h3 = pla.SelectSingleNode(".//h3[@class='TWApbd']/div[@class='xc15De']");  //11-01-2022
+                            h3 = pla.SelectSingleNode(".//h3[@class='TWApbd']/div[@class='xc15De']|.//div[@class='TWApbd']/h3[@class='xc15De']");//08-01-2024  //11-01-2022
                         if (h3 == null)
                             h3 = pla.SelectSingleNode(".//div[@class='YW615c']"); //25-03-2022
                         if (h3 == null)

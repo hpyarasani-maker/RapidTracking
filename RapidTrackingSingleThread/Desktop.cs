@@ -1591,7 +1591,9 @@ namespace RapidTrackingSingleThread
             StringBuilder s = new StringBuilder();
             string destination = string.Empty;
             string origin = string.Empty;
-            HtmlNode dest = node.SelectSingleNode(".//input[contains(@placeholder,'destination')]|.//input[contains(@placeholder,'destinazione')]");//13-07-2023
+            HtmlNode dest = node.SelectSingleNode(".//input[contains(@placeholder,'destination')]" +
+                "|.//input[contains(@placeholder,'destinazione')]|.//input[contains(@placeholder,'destino')]" +
+                "|.//input[contains(@placeholder,'origen')]");//09-01-2024//13-07-2023
             if (dest != null)
             {
                 origin = node.SelectSingleNode(".//input[contains(@placeholder,'origin')]|.//input[contains(@placeholder,'il luogo di partenza')]|.//input[contains(@placeholder,'Ville de départ')]").Attributes["value"]?.Value ?? "";//29-12-2023//13-07-2023

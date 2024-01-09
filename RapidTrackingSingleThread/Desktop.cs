@@ -1592,11 +1592,13 @@ namespace RapidTrackingSingleThread
             string destination = string.Empty;
             string origin = string.Empty;
             HtmlNode dest = node.SelectSingleNode(".//input[contains(@placeholder,'destination')]" +
-                "|.//input[contains(@placeholder,'destinazione')]|.//input[contains(@placeholder,'destino')]" +
-                "|.//input[contains(@placeholder,'origen')]");//09-01-2024//13-07-2023
+                "|.//input[contains(@placeholder,'destinazione')]|.//input[contains(@placeholder,'destino')]|.//input[contains(@placeholder,'Ziel')]");//09-01-2024//13-07-2023
             if (dest != null)
             {
-                origin = node.SelectSingleNode(".//input[contains(@placeholder,'origin')]|.//input[contains(@placeholder,'il luogo di partenza')]|.//input[contains(@placeholder,'Ville de départ')]").Attributes["value"]?.Value ?? "";//29-12-2023//13-07-2023
+                origin = node.SelectSingleNode(".//input[contains(@placeholder,'origin')]" +
+                    "|.//input[contains(@placeholder,'il luogo di partenza')]" +
+                    "|.//input[contains(@placeholder,'Ville de départ')]" +
+                    "|.//input[contains(@placeholder,'origen')]|.//input[contains(@placeholder,'Abflugort')]").Attributes["value"]?.Value ?? "";//09-01-2024//29-12-2023//13-07-2023
                 destination = dest.Attributes["value"]?.Value ?? "";
             }
             else

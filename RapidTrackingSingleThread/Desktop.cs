@@ -2005,6 +2005,8 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[@class='Kq2KUc']");//06-12-2022
             if (nd == null)//03-10-2023
                 nd = node.SelectSingleNode(".//div[@class='wH6SXe']");//03-10-2023
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@jsmodel='Wn3aEc']");//16-01-2024
             if (nd != null && node.Attributes["id"]?.Value != "Odp5De" && node.SelectSingleNode(".//div[@class='q6PGbe']|.//div[@class='l44Vof']|.//div[@class='P9Jfrb']|.//div[@class='o8ebK']|.//div[@class='ntKMYc']|.//img[starts-with(@alt,'Map of')]") == null)//03-11-2023//06-12-2022//13-08-2022 maps //02-06-2022
             {
                 return "Images";

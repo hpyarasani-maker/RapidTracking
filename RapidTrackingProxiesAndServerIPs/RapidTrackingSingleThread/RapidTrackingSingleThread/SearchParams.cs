@@ -2810,6 +2810,30 @@ namespace RapidTrackingSingleThread
             {
             seid =765, domain ="co.ug", geo_location="Uganda", locale= "sw-ug", uule = "w+CAIQICIGVWdhbmRh",device="mobile_android"
             },//22-12-2023
+            new SearchProperties() //16-01-2024
+            {
+            seid =766, domain ="by", geo_location="Belarus", locale= "ru-by", uule = "w+CAIQICIHQmVsYXJ1cw==",device="desktop"
+            },
+            new SearchProperties()
+            {
+            seid =767, domain ="by", geo_location="Belarus", locale= "ru-by", uule = "w+CAIQICIHQmVsYXJ1cw==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+            seid =768, domain ="co.uz", geo_location="Uzbekistan", locale= "uz-uz", uule = "w+CAIQICIKVXpiZWtpc3Rhbg==",device="desktop"
+            },
+            new SearchProperties()
+            {
+            seid =769, domain ="co.uz", geo_location="Uzbekistan", locale= "uz-uz", uule = "w+CAIQICIKVXpiZWtpc3Rhbg==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+            seid =770, domain ="nl", geo_location="Aruba", locale= "en-aw", uule = "w+CAIQICIFQXJ1YmE=",device="desktop"
+            },
+            new SearchProperties()
+            {
+            seid =771, domain ="nl", geo_location="Aruba", locale= "en-aw", uule = "w+CAIQICIFQXJ1YmE=",device="mobile_android"
+            },//16-01-2024
         };
     }
 

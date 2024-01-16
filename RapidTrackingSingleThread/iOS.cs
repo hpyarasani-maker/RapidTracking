@@ -499,6 +499,8 @@ namespace RapidTrackingSingleThread
                         pla = doc.DocumentNode.SelectSingleNode(".//div[@id='tauc']/div[contains(@class, 'mnr-c')]");   // 11-01-2022
                     if (pla == null)
                         pla = doc.DocumentNode.SelectSingleNode(".//div[@id='tads']/div/div[contains(@class, 'mnr-c')]"); //07-02-2022
+                    if (pla == null)
+                        pla = doc.DocumentNode.SelectSingleNode(".//div/g-scrolling-carousel[@id='kV5x0e']");//16-01-2024
                     if (pla != null)
                     {
                         HtmlNode h3 = pla.SelectSingleNode(".//div[contains(@class,'dxR8gf')]/h3");//18-08-2022 PL item urls
@@ -518,6 +520,8 @@ namespace RapidTrackingSingleThread
                             h3 = pla.SelectSingleNode(".//div[@class='YW615c']"); //25-03-2022
                         if (h3 == null)
                             h3 = pla.SelectSingleNode(".//div[@class='Mbv3zb']");//28-12-2023
+                        if (h3 == null)
+                            h3 = pla.SelectSingleNode(".//div[@class='dGACyd']");//16-01-2024
                         if (h3 != null)
                         {
                             if ((pla.SelectSingleNode(".//h3[contains(@class,'r')]") != null && pla.SelectSingleNode(".//h3[@role='heading']") != null || (pla.SelectSingleNode(".//div[@class='YW615c']") != null && pla.SelectSingleNode(".//div[@role='heading']") != null))//25-03-2022 //13-11-2019 //20-07-2020 included "contains" 

@@ -2836,6 +2836,14 @@ new SearchProperties() //start 25-02-2021
             {
             seid =771, domain ="nl", geo_location="Aruba", locale= "en-aw", uule = "w+CAIQICIFQXJ1YmE=",device="mobile_android"
             },//16-01-2024
+            new SearchProperties() //18-01-2024
+            {
+            seid =772, domain ="fr", geo_location="Saint-Denis", locale= "fr-re", uule = "w+CAIQICILU2FpbnQtRGVuaXM=",device="desktop"
+            },
+            new SearchProperties()
+            {
+            seid =773, domain ="fr", geo_location="Saint-Denis", locale= "fr-re", uule = "w+CAIQICILU2FpbnQtRGVuaXM=",device="mobile_android"
+            },//18-01-2024
         };
     }
     class SearchProperties

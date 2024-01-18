@@ -487,7 +487,7 @@ namespace RapidTrackingSingleThread
                 // product listed ads //start of change 11-01-2022 line number 409 to 498
                 if (doc.DocumentNode.SelectSingleNode("//div[@class='mnr-c IGtt6d imgac cTMkTb']") != null
                    || doc.DocumentNode.SelectSingleNode("//div[@class='mnr-c IGtt6d imgac qs-ic fp-w cTMkTb']") != null
-                   || doc.DocumentNode.SelectSingleNode("//div[@class='IGtt6d imgac mnr-c cTMkTb']") != null //01-02-2022 //16-09-2021 missing ProductListAds
+                   || doc.DocumentNode.SelectSingleNode("//div[contains(@class,'IGtt6d imgac mnr-c')]|//div[@id='tads']/g-card/div[contains(@class, 'mnr-c')]") != null //18-01-2024 //01-02-2022 //16-09-2021 missing ProductListAds
                    || doc.DocumentNode.SelectSingleNode("//div[@id='activities-carousel-container']") != null //11-01-2022
                    || doc.DocumentNode.SelectSingleNode("//div[@class='mnr-c Ioy6jb']") != null //07-02-2022
                    )
@@ -498,7 +498,7 @@ namespace RapidTrackingSingleThread
                     if (pla == null)
                         pla = doc.DocumentNode.SelectSingleNode(".//div[@id='tauc']/div[contains(@class, 'mnr-c')]");   // 11-01-2022
                     if (pla == null)
-                        pla = doc.DocumentNode.SelectSingleNode(".//div[@id='tads']/div/div[contains(@class, 'mnr-c')]"); //07-02-2022
+                        pla = doc.DocumentNode.SelectSingleNode(".//div[@id='tads']/div/div[contains(@class, 'mnr-c')]|.//div[@id='tads']/g-card/div[contains(@class,'mnr-c')]");//18-01-2024 //07-02-2022
                     if (pla == null)
                         pla = doc.DocumentNode.SelectSingleNode(".//div/g-scrolling-carousel[@id='kV5x0e']");//16-01-2024
                     if (pla != null)
@@ -521,12 +521,12 @@ namespace RapidTrackingSingleThread
                         if (h3 == null)
                             h3 = pla.SelectSingleNode(".//div[@class='Mbv3zb']");//28-12-2023
                         if (h3 == null)
-                            h3 = pla.SelectSingleNode(".//div[@class='dGACyd']");//16-01-2024
+                            h3 = pla.SelectSingleNode(".//div[@class='dGACyd']|.//div[@class='UULivd']");//18-01-2024//16-01-2024
                         if (h3 != null)
                         {
                             if ((pla.SelectSingleNode(".//h3[contains(@class,'r')]") != null && pla.SelectSingleNode(".//h3[@role='heading']") != null || (pla.SelectSingleNode(".//div[@class='YW615c']") != null && pla.SelectSingleNode(".//div[@role='heading']") != null))//25-03-2022 //13-11-2019 //20-07-2020 included "contains" 
                                 || h3.InnerText.StartsWith("Shop for") || h3.InnerText.StartsWith("See ") || WebUtility.HtmlDecode(h3.InnerText).StartsWith("Ads·See ") || h3.InnerText.StartsWith("See&nbsp;")//07-02-2022
-                                || h3.InnerText.StartsWith("Ver ") || WebUtility.HtmlDecode(h3.InnerText).StartsWith("Anuncios·Ver ")  //15-07-2020 included for product lists ads
+                                || h3.InnerText.StartsWith("Ver ") || WebUtility.HtmlDecode(h3.InnerText).StartsWith("Anuncios·Ver ") || WebUtility.HtmlDecode(h3.InnerText).StartsWith("Sponsored")//18-01-2024  //15-07-2020 included for product lists ads
                                 || h3.InnerText.StartsWith("Anúncios&middot;Ver ") || WebUtility.HtmlDecode(h3.InnerText).StartsWith("Ads·") //09-08-2021 //10-07-2021 //16-07-2020
                                 || ((pla.SelectSingleNode(".//h3[contains(@class,'xZu9ed mfMhoc')]") != null || h3.HasClass("xc15De")) && pla.SelectSingleNode(".//h3[@role='heading']") != null)//26-09-2022 //10-07-2021
                                 || (pla.SelectSingleNode(".//div[@class='Mckyte']") != null) //12-08-2021

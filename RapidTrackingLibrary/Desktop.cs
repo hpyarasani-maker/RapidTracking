@@ -1290,8 +1290,9 @@ namespace RapidTrackingLibrary
                 if (nds1 != null)
                     foreach (HtmlNode nd1 in nds1)
                     {
-                        title = nd1.SelectSingleNode(".//div[@class='erHJcf MBeuO']").InnerText ?? "";//04-12-2023
-                        s.Append("<item url=\"" + SetUrl(nd1.Attributes["href"].Value) + "\" title=\"" + SetTitle(title) + "\" />");
+                        title = nd1.SelectSingleNode(".//div[@class='erHJcf MBeuO']")?.InnerText ?? "";//18-01-2024
+                        if (!string.IsNullOrEmpty(SetTitle(title)) && !string.IsNullOrEmpty(SetUrl(nd1.Attributes["href"]?.Value)))//18-01-2024
+                            s.Append("<item url=\"" + SetUrl(nd1.Attributes["href"].Value) + "\" title=\"" + SetTitle(title) + "\" />");
                     }
                 //end 05-10-2020
             }

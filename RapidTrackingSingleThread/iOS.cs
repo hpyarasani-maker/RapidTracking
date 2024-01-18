@@ -284,9 +284,10 @@ namespace RapidTrackingSingleThread
             //25-09-2019                        //swaped productlistedads 14-05-2020
             if (doc.DocumentNode.SelectSingleNode("//div[@class='mnr-c IGtt6d imgac']") != null || doc.DocumentNode.SelectSingleNode("//div[@class='IGtt6d imgac mnr-c']") != null) //22-06-2021 bottom PLAds 
             {
-                HtmlNode pla = doc.DocumentNode.SelectSingleNode(".//div[contains(@class, 'commercial-unit-mobile-top')]");
-                if (pla == null)
-                    pla = doc.DocumentNode.SelectSingleNode(".//div[contains(@class, 'commercial-unit-mobile-bottom')]");   // 18-09-2018
+                //HtmlNode pla = doc.DocumentNode.SelectSingleNode(".//div[contains(@class, 'commercial-unit-mobile-top')]");//commented 18-01-2024
+                //if (pla == null)
+                //    pla = doc.DocumentNode.SelectSingleNode(".//div[contains(@class, 'commercial-unit-mobile-bottom')]");   // 18-09-2018 commented //18-01-2024
+                HtmlNode pla = doc.DocumentNode.SelectSingleNode(".//div[contains(@class, 'commercial-unit-mobile-bottom')]");//18-01-2024
                 if (pla != null)
                 {
                     HtmlNode h3 = pla.SelectSingleNode(".//div[@class='dxR8gf']/h3");

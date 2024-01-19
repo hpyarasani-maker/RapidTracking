@@ -1283,7 +1283,7 @@ namespace RapidTrackingLibrary
                 HtmlNodeCollection nds1 = nd.SelectNodes(".//h3|.//div[@class='wKZW5d']"); //23-12-2021
                 if (nds1 != null)
                 {
-                    title = nd.SelectSingleNode(".//h3|.//div[@class='wKZW5d']").InnerText;
+                    title = nd.SelectSingleNode(".//h3|.//div[@class='wKZW5d']")?.InnerText;//19-01-2024 //23-12-2021
                     if (!string.IsNullOrEmpty(SetTitle(title)) && !string.IsNullOrEmpty(SetUrl(nd.Attributes["href"]?.Value))) //19-01-2024
                         s.Append("<item url=\"" + SetUrl(nd.Attributes["href"].Value) + "\" title=\"" + SetTitle(title) + "\" />");
                 }

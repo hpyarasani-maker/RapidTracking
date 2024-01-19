@@ -1268,9 +1268,8 @@ namespace RapidTrackingSingleThread
                 if (nds1 != null)
                 {
                     title = nd.SelectSingleNode(".//h3|.//div[@class='wKZW5d']").InnerText; //23-12-2021
-                    //string url = nd.Attributes["href"].Value; //10-01-2022
-                    //if (!url.Contains("/search?num=100")) //10-01-2022
-                    s.Append("<item url=\"" + SetUrl(nd.Attributes["href"].Value) + "\" title=\"" + SetTitle(title) + "\" />");
+                    if (!string.IsNullOrEmpty(SetTitle(title)) && !string.IsNullOrEmpty(SetUrl(nd.Attributes["href"]?.Value))) //19-01-2024
+                        s.Append("<item url=\"" + SetUrl(nd.Attributes["href"].Value) + "\" title=\"" + SetTitle(title) + "\" />");
                 }
                 nds1 = nd.SelectNodes(".//a");
                 if (nds1 != null)

@@ -1265,19 +1265,17 @@ namespace TrendingReceiving
                 HtmlNodeCollection nds1 = nd.SelectNodes(".//h3|.//div[@class='wKZW5d']"); //23-12-2021
                 if (nds1 != null)
                 {
-                    title = nd.SelectSingleNode(".//h3|.//div[@class='wKZW5d']").InnerText; //23-12-2021
-                    //string url = nd.Attributes["href"].Value; //10-01-2022
-                    //if (!url.Contains("/search?num=100")) //10-01-2022
-                    s.Append("<item url=\"" + SetUrl(nd.Attributes["href"].Value) + "\" title=\"" + SetTitle(title) + "\" />");
+                    title = nd.SelectSingleNode(".//h3|.//div[@class='wKZW5d']")?.InnerText;//19-01-2024 //23-12-2021
+                    if (!string.IsNullOrEmpty(SetTitle(title)) && !string.IsNullOrEmpty(SetUrl(nd.Attributes["href"]?.Value))) //19-01-2024
+                        s.Append("<item url=\"" + SetUrl(nd.Attributes["href"].Value) + "\" title=\"" + SetTitle(title) + "\" />");
                 }
                 nds1 = nd.SelectNodes(".//a");
                 if (nds1 != null)
                     foreach (HtmlNode nd1 in nds1)
                     {
-                        //string url = nd1.Attributes["href"].Value; //10-01-2022
-                        //if (!url.Contains("/search?num=100")) //10-01-2022
-                        title = nd1.SelectSingleNode(".//div[@class='erHJcf MBeuO']").InnerText ?? "";//04-12-2023
-                        s.Append("<item url=\"" + SetUrl(nd1.Attributes["href"].Value) + "\" title=\"" + SetTitle(title) + "\" />");
+                        title = nd1.SelectSingleNode(".//div[@class='erHJcf MBeuO']")?.InnerText ?? "";//18-01-2024
+                        if (!string.IsNullOrEmpty(SetTitle(title)) && !string.IsNullOrEmpty(SetUrl(nd1.Attributes["href"]?.Value)))//18-01-2024
+                            s.Append("<item url=\"" + SetUrl(nd1.Attributes["href"].Value) + "\" title=\"" + SetTitle(title) + "\" />");
                     }
                 //end 05-10-2020
             }
@@ -1589,10 +1587,14 @@ namespace TrendingReceiving
             StringBuilder s = new StringBuilder();
             string destination = string.Empty;
             string origin = string.Empty;
-            HtmlNode dest = node.SelectSingleNode(".//input[contains(@placeholder,'destination')]|.//input[contains(@placeholder,'destinazione')]");//13-07-2023
+            HtmlNode dest = node.SelectSingleNode(".//input[contains(@placeholder,'destination')]" +
+                "|.//input[contains(@placeholder,'destinazione')]|.//input[contains(@placeholder,'destino')]|.//input[contains(@placeholder,'Ziel')]");//09-01-2024//13-07-2023
             if (dest != null)
             {
-                origin = node.SelectSingleNode(".//input[contains(@placeholder,'origin')]|.//input[contains(@placeholder,'il luogo di partenza')]|.//input[contains(@placeholder,'Ville de départ')]").Attributes["value"]?.Value ?? "";//29-12-2023//13-07-2023
+                origin = node.SelectSingleNode(".//input[contains(@placeholder,'origin')]" +
+                    "|.//input[contains(@placeholder,'il luogo di partenza')]" +
+                    "|.//input[contains(@placeholder,'Ville de départ')]" +
+                    "|.//input[contains(@placeholder,'origen')]|.//input[contains(@placeholder,'Abflugort')]").Attributes["value"]?.Value ?? "";//09-01-2024//29-12-2023//13-07-2023
                 destination = dest.Attributes["value"]?.Value ?? "";
             }
             else
@@ -1601,14 +1603,15 @@ namespace TrendingReceiving
                 int lenIndex = dest.InnerText.IndexOf(" to ") >= 0 ? dest.InnerText.IndexOf(" to ") :
                         dest.InnerText.IndexOf(" von ") >= 0 ? dest.InnerText.IndexOf(" von ") : //01-12-2023
                         dest.InnerText.IndexOf(" nach ") >= 0 ? dest.InnerText.IndexOf(" nach ") :
-                        dest.InnerText.IndexOf(" a ") >= 0 ? dest.InnerText.IndexOf(" a ") : -1;//05-12-2023
+                        dest.InnerText.IndexOf(" a ") >= 0 ? dest.InnerText.IndexOf(" a ") :
+                        dest.InnerText.IndexOf(" à ") >= 0 ? dest.InnerText.IndexOf(" à ") : -1;//18-01-2024
                 if (lenIndex == -1)
                     lenIndex = dest.InnerText.IndexOf(" from ") >= 0 ? dest.InnerText.IndexOf(" from ") : -1;
                 origin = dest?.InnerText?.Substring(0, lenIndex).Trim(); // dest.InnerText.IndexOf(" to "));
-                if (origin.ToLower().Equals("flights") || origin.Equals("Flüge")) origin = string.Empty;
+                if (origin.ToLower().Equals("flights") || origin.Equals("Flüge") || origin.Equals("Vols")) origin = string.Empty;//18-01-2024
                 int len = dest.InnerText.IndexOf(" to ") >= 0 ? dest.InnerText.IndexOf(" to ") + 4 :
-                    dest.InnerText.IndexOf(" nach ") >= 0 ? dest.InnerText.IndexOf(" nach ") + 6 :
-                    dest.InnerText.IndexOf(" a ") >= 0 ? dest.InnerText.IndexOf(" a ") + 3 : -1;//05-12-2023
+                   dest.InnerText.IndexOf(" a ") >= 0 ? dest.InnerText.IndexOf(" a ") + 3 :
+                   dest.InnerText.IndexOf(" à ") >= 0 ? dest.InnerText.IndexOf(" à ") + 18 : -1;//18-01-2024
                 if (len == -1)
                 {
                     len = dest.InnerText.IndexOf(" from ") >= 0 ? dest.InnerText.IndexOf(" from ") + 6 :
@@ -1999,6 +2002,8 @@ namespace TrendingReceiving
                 nd = node.SelectSingleNode(".//div[@class='Kq2KUc']");//06-12-2022
             if (nd == null)//03-10-2023
                 nd = node.SelectSingleNode(".//div[@class='wH6SXe']");//03-10-2023
+            if (nd == null)
+                nd = node.SelectSingleNode(".//div[@jsmodel='Wn3aEc']");//16-01-2024
             if (nd != null && node.Attributes["id"]?.Value != "Odp5De" && node.SelectSingleNode(".//div[@class='q6PGbe']|.//div[@class='l44Vof']|.//div[@class='P9Jfrb']|.//div[@class='o8ebK']|.//div[@class='ntKMYc']|.//img[starts-with(@alt,'Map of')]") == null)//03-11-2023//06-12-2022//13-08-2022 maps //02-06-2022
             {
                 return "Images";

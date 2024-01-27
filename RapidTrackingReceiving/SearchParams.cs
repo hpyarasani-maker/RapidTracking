@@ -2820,6 +2820,22 @@ namespace Oxylabs_BulkKeywords
             {
             seid =773, domain ="fr", geo_location="Saint-Denis", locale= "fr-re", uule = "w+CAIQICILU2FpbnQtRGVuaXM=",device="mobile_android"
             },//18-01-2024
+            new SearchProperties() //27-01-2024
+            {
+            seid =774, domain ="nl", geo_location="Curacao", locale= "nl-cw", uule = "w+CAIQICIHQ3VyYWNhbw==",device="desktop"
+            },
+            new SearchProperties()
+            {
+            seid =775, domain ="nl", geo_location="Curacao", locale= "nl-cw", uule = "w+CAIQICIHQ3VyYWNhbw==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+            seid =776, domain ="bg", geo_location="Bulgaria", locale= "bg-bg", uule = "w+CAIQICIIQnVsZ2FyaWE=",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+            seid =777, domain ="co.ma", geo_location="Morocco", locale= "fr-ma", uule = "w+CAIQICIHTW9yb2Njbw==",device="mobile_android"
+            },//27-01-2024
         };
     }
     class SearchProperties

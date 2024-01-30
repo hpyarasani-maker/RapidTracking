@@ -1490,7 +1490,7 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectNodes(".//div[@jsname='WUSFrc']/g-link/a|.//div[@jsname='WUSFrc']/div/g-link/a" +
                     "|.//div[@class='v1uiFd']/g-link/a|.//div[@class='bogMee']/g-link/a|.//g-inner-card[@class='VoEfsd']/g-link/a" +
                     "|.//div[@class='SuG7wd']/g-inner-card/g-link/a|.//div[contains(@class,'LAALze')]/g-inner-card/g-link/a" +
-                    "|.//div[contains(@class,'LAALze')]/g-inner-card/div/g-link/a");//30-01-2024//11-12-2023//01-02-2023//14-04-2022 ///23-11-2021/25-10-2021
+                    "|.//div[contains(@class,'LAALze')]/g-inner-card/div/g-link/a|.//div[@class='bogMee']/div/g-link/a");//30-01-2024//11-12-2023//01-02-2023//14-04-2022 ///23-11-2021/25-10-2021
             string url = "";
             if (nd != null)
             {

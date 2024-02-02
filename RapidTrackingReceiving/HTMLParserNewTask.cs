@@ -128,6 +128,7 @@ namespace Oxylabs_BulkKeywords
 
                 if (status == "done")
                 {
+                    var startTime = System.Diagnostics.Stopwatch.StartNew();//08-11-2023
                     //ServicePointManager.Expect100Continue = true;
                     //ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                     string resURL = job["results_url"].Value<string>();
@@ -140,6 +141,8 @@ namespace Oxylabs_BulkKeywords
                     string response = reader.ReadToEnd();
                     resStream.Close();
                     res.Close();
+                    startTime.Stop();//08-11-2023
+                    var totalTime = Convert.ToDouble(startTime.ElapsedMilliseconds) / 1000;//08-11-2023
                     string result = string.Empty;
                     int orgUrls = 0;
                     try
@@ -166,8 +169,7 @@ namespace Oxylabs_BulkKeywords
 
                     if (!string.IsNullOrEmpty(seid))
                         ProcessResults(result, kw, seid, jobid, orgUrls);
-
-                    OnKeywordDone.Invoke(seid + ":  " + kw + ",  " + orgUrls + "^" + statusCode + "^" + apitime + "^" + dbtime);    // 31-03-2020
+                    OnKeywordDone.Invoke(seid + ":  " + kw + ",  " + orgUrls + "^" + statusCode + "^" + apitime + "^" + dbtime + "^" + totalTime);//08-11-2023 //31-03-2020
                 }
             }
             catch (Exception ex)
@@ -279,7 +281,8 @@ namespace Oxylabs_BulkKeywords
                     apitime = (ed - st).TotalSeconds;
                 }
                 DateTime st1 = DateTime.Now;
-                SendToDB(seid, kw, result, jobid, urlcount);
+                SendToDB(seid, kw, result, jobid, urlcount);//storing in database table
+                //SendToDB(seid, kw, jobid, urlcount); //creating and storing data in txt file
                 DateTime ed1 = DateTime.Now;
                 dbtime = (ed1 - st1).TotalSeconds;
                 //end of 31-03-2020
@@ -411,7 +414,25 @@ namespace Oxylabs_BulkKeywords
                 throw ex;
             }
         }
-
+        private void SendToDB(string seid, string keyword, string jobid, int urlCount)
+        {
+            string dt = DateTime.Today.ToString("yyyy-MM-dd");
+            string path = @"C:\Inetpub\wwwroot\Results" + dt + ".txt";
+            if (!File.Exists(path))
+            {
+                using (StreamWriter sw = File.CreateText(path))
+                {
+                    sw.WriteLine(seid + "\t" + keyword + "\t" + jobid + "\t" + urlCount);
+                }
+            }
+            else if (File.Exists(path))
+            {
+                using (StreamWriter sw = File.AppendText(path))
+                {
+                    sw.WriteLine(seid + "\t" + keyword + "\t" + jobid + "\t" + urlCount);
+                }
+            }
+        }
         private void SendToDB(string seid, string keyword, string xml, string jobid, int urlcount)
         {
             try

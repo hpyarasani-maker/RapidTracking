@@ -87,6 +87,7 @@ namespace TrendingLoopReceiving
                 //31-03-2020
                 lblAPITime.Text = msg[2] + " sec";
                 lblDBTime.Text = msg[3] + " sec";
+                lblDownloadedTime.Text = msg[4] + " sec";
             });
         }
 

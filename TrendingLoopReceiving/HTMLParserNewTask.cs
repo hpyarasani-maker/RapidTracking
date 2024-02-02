@@ -106,6 +106,7 @@ namespace TrendingLoopReceiving
 
                 if (status == "done")
                 {
+                    var startTime = System.Diagnostics.Stopwatch.StartNew();//08-11-2023
                     //ServicePointManager.Expect100Continue = true;
                     //ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                     string resURL = job["results_url"].Value<string>();
@@ -118,8 +119,10 @@ namespace TrendingLoopReceiving
                     string response = reader.ReadToEnd();
                     resStream.Close();
                     res.Close();
-                    //string result = string.Empty;
-                  
+                    startTime.Stop();//08-11-2023
+                    var totalTime = Convert.ToDouble(startTime.ElapsedMilliseconds) / 1000;//08-11-2023
+                                                                                           //string result = string.Empty;
+
                     int orgUrls = 0;
                 
                     try
@@ -193,7 +196,7 @@ namespace TrendingLoopReceiving
                     //        ProcessResults(result[i].ToString(), kw, seid, jobid, orgUrls);
                     //    }
 
-                    OnKeywordDone.Invoke(seid + ":  " + kw + ",  " + count + "^" + statusCode + "^" + apitime + "^" + dbtime);    // 31-03-2020
+                    OnKeywordDone.Invoke(seid + ":  " + kw + ",  " + orgUrls + "^" + statusCode + "^" + apitime + "^" + dbtime + "^" + totalTime);//08-11-2023 //31-03-2020
                 }
             }
             catch (Exception ex)

@@ -15,6 +15,7 @@ namespace TrendingReceiving
         public Form1()
         {
             InitializeComponent();
+            CheckForIllegalCrossThreadCalls = false; //20-11-2023
             WOWS.OnKeywordDone += WOWS_OnKeywordDone;
             timerExit();
             //cnt = GetOxyCount();
@@ -74,7 +75,7 @@ namespace TrendingReceiving
                 string[] msg = value.Split('^');
                 if (msg[0].StartsWith("Error:"))
                 {
-                    txtErrors.Text += msg[0] + "\r\n\r\n";
+                    txtErrors.Text += msg[0] + "\r\n\tStatusCode: " + msg[1] + "\r\n\r\n";
                     lblErrors.Text = errors++.ToString();
                 }
                 //if (value.StartsWith("Error:"))
@@ -85,10 +86,12 @@ namespace TrendingReceiving
                 else
                     lblCompletedKw.Text = msg[0];
 
+                lblStatusCode.Text = msg[1];
                 lblCount.Text = cntr++.ToString();
                 //31-03-2020
-                lblAPITime.Text = msg[1] + " sec";
-                lblDBTime.Text = msg[2] + " sec";
+                lblAPITime.Text = msg[2] + " sec";
+                lblDBTime.Text = msg[3] + " sec";
+                lblDownloadedTime.Text = msg[4] + " sec";
             });
         }
 
@@ -100,6 +103,7 @@ namespace TrendingReceiving
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Dispose(true);//20-11-2023
             Environment.Exit(Environment.ExitCode);
         }
                 

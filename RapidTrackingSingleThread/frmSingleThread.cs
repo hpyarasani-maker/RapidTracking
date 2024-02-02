@@ -600,6 +600,7 @@ namespace RapidTrackingSingleThread
                     {
                         try
                         {
+                            var startTime = System.Diagnostics.Stopwatch.StartNew();//08-11-2023
                             HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
                             httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
                             HttpWebResponse res = (HttpWebResponse)await httpWebRequest.GetResponseAsync();
@@ -610,7 +611,12 @@ namespace RapidTrackingSingleThread
                             response = reader.ReadToEnd();
                             resVal.Close();
                             res.Close();
-
+                            startTime.Stop();
+                            var totalTime = Convert.ToDouble(startTime.ElapsedMilliseconds) / 1000;//08-11-2023
+                            lblDownloadedTime.Invoke((MethodInvoker)(delegate ()//08-11-2023
+                            {
+                                lblDownloadedTime.Text = totalTime.ToString() + " sec";
+                            }));//08-11-2023
                             cbUrl[3] = "yes";
                             cnt++;
 

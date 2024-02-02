@@ -17,6 +17,7 @@ namespace Oxylabs_BulkKeywords
         public Form1()
         {
             InitializeComponent();
+            CheckForIllegalCrossThreadCalls = false; //20-11-2023
             WOWS.OnKeywordDone += WOWS_OnKeywordDone;
             TimerExit();
             //cnt = GetOxyCount();
@@ -87,6 +88,7 @@ namespace Oxylabs_BulkKeywords
                 //31-03-2020
                 lblAPITime.Text = msg[2] + " sec";
                 lblDBTime.Text = msg[3] + " sec";
+                lblDownloadedTime.Text = msg[4] + " sec";
             });
         }
 
@@ -118,6 +120,7 @@ namespace Oxylabs_BulkKeywords
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Dispose(true);//20-11-2023
             Environment.Exit(Environment.ExitCode);
         }
 

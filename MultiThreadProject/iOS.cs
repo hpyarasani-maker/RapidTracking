@@ -45,7 +45,7 @@ namespace MultiThreadProject
             if (nodeCol != null && nodeCol.Count == 1)
                 nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@class='vC5Ym DhKAUb']/div");  //23-03-2023  //17-09-2019
             if (nodeCol != null && nodeCol.Count <= 5)//31-01-2024
-                nodeCol = doc.DocumentNode.SelectNodes("//div[@jsname='QvTDgf']/div");//02-01-2024
+                nodeCol = doc.DocumentNode.SelectNodes("//div[contains(@class,'Ww4FFb vt6azd DlUvEb')]|//div[contains(@class,'uVMCKf Ww4FFb vt6azd')]|//div[contains(@class,'wHYlTd Ww4FFb vt6azd')]|//div[contains(@class,'Ww4FFb vt6azd xpd')]");//02-02-2024
             if (nodeCol == null)
                 nodeCol = doc.DocumentNode.SelectNodes("//*[@id='tscffb']");
 

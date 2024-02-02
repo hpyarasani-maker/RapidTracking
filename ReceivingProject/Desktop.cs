@@ -51,10 +51,10 @@ namespace ReceivingProject
             if (nodeCol == null || nodeCol.Count <= 4)
                 nodeCol = rso.SelectNodes(".//div[contains(@class,'TzHB6b cLjAic')]");//02-11-2023
             if (nodeCol == null || nodeCol.Count <= 3)//02-11-2023
-                nodeCol = rso.SelectNodes(".//div[@class='WvKfwe a3spGf']/div|.//div[@class='wDYxhc']");//02-11-2023
+                nodeCol = rso.SelectNodes(".//div[@class='WvKfwe a3spGf']/div");//01-02-2024//02-11-2023
             if (nodeCol == null || (nodeCol.Count >= 1 && nodeCol.Count <= 3))
-                nodeCol = rso.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div|.//div[@class='MjjYud']");
-             //11-08-2022 //end 01-11-2023
+                nodeCol = rso.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div|.//div[@class='MjjYud']|.//div[contains(@class,'g Ww4FFb')]");//01-02-2024
+                                                                                                                                                                                 //11-08-2022 //end 01-11-2023
             string ndText = "";
             if (nodeCol != null) //11-08-2022
             foreach (HtmlNode node in nodeCol)

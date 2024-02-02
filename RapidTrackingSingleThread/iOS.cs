@@ -46,7 +46,7 @@ namespace RapidTrackingSingleThread
                 if (nodeCol != null && nodeCol.Count == 1)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@class='vC5Ym DhKAUb']/div");  //23-03-2023  //17-09-2019
                 if (nodeCol != null && nodeCol.Count <= 5)//31-01-2024
-                    nodeCol = doc.DocumentNode.SelectNodes("//div[contains(@class,'uVMCKf Ww4FFb vt6azd')]|//div[contains(@class,'wHYlTd Ww4FFb vt6azd')]|//div[contains(@class,'Ww4FFb vt6azd xpd')]");//01-02-2024//31-01-2024
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@jsname='QvTDgf']/div");//02-01-2024
                 if (nodeCol == null)
                     nodeCol = doc.DocumentNode.SelectNodes("//*[@id='tscffb']");
 
@@ -3166,7 +3166,7 @@ namespace RapidTrackingSingleThread
             //17-01-2020
             nd = node.SelectSingleNode(".//div[@class='Lgnr0e J88qA BmP5tf']");
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']|.//div[@class='LEHmvf adDDi']");//24-08-2023
+                nd = node.SelectSingleNode(".//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']|.//div[@class='LEHmvf adDDi']|.//div[@class='V3FYCf']");//02-02-2024
             if (nd != null)
             {
                 //30-03-2020

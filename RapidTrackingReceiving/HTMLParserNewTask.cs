@@ -52,9 +52,9 @@ namespace Oxylabs_BulkKeywords
             //string url = "http://seresults.azurewebsites.net/api/callbackrapidTrackingnewmobile/"; //mobile new keywords
             // string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingnewcommakeywords/";  // new comma keywords
 
-            string url = "http://seresults.azurewebsites.net/api/callbackuk503desktoptemp/"; //receiving New SEIDs
+            //string url = "http://seresults.azurewebsites.net/api/callbackuk503desktoptemp/"; //receiving New SEIDs
             //string url = "http://seresults.azurewebsites.net/api/trackingtrending/";
-            //string url = "http://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58
+            string url = "http://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58
             //string url = "http://seresults.azurewebsites.net/api/callbackuk106mobile/";      // 106
             //string url = "http://seresults.azurewebsites.net/api/callbackus1desktop/";     // 1
             //string url = "http://seresults.azurewebsites.net/api/callbackus102mobile/";      // 102
@@ -128,7 +128,7 @@ namespace Oxylabs_BulkKeywords
 
                 if (status == "done")
                 {
-                    var startTime = System.Diagnostics.Stopwatch.StartNew();//08-11-2023
+                   // var startTime = System.Diagnostics.Stopwatch.StartNew();//08-11-2023
                     //ServicePointManager.Expect100Continue = true;
                     //ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                     string resURL = job["results_url"].Value<string>();
@@ -141,8 +141,8 @@ namespace Oxylabs_BulkKeywords
                     string response = reader.ReadToEnd();
                     resStream.Close();
                     res.Close();
-                    startTime.Stop();//08-11-2023
-                    var totalTime = Convert.ToDouble(startTime.ElapsedMilliseconds) / 1000;//08-11-2023
+                    //startTime.Stop();//08-11-2023
+                    //var totalTime = Convert.ToDouble(startTime.ElapsedMilliseconds) / 1000;//08-11-2023
                     string result = string.Empty;
                     int orgUrls = 0;
                     try
@@ -169,7 +169,9 @@ namespace Oxylabs_BulkKeywords
 
                     if (!string.IsNullOrEmpty(seid))
                         ProcessResults(result, kw, seid, jobid, orgUrls);
-                    OnKeywordDone.Invoke(seid + ":  " + kw + ",  " + orgUrls + "^" + statusCode + "^" + apitime + "^" + dbtime + "^" + totalTime);//08-11-2023 //31-03-2020
+                    //OnKeywordDone.Invoke(seid + ":  " + kw + ",  " + orgUrls + "^" + statusCode + "^" + apitime + "^" + dbtime + "^" + totalTime);//08-11-2023 //31-03-2020
+                    OnKeywordDone.Invoke(seid + ":  " + kw + ",  " + orgUrls + "^" + statusCode + "^" + apitime + "^" + dbtime);//08-11-2023 //31-03-2020
+
                 }
             }
             catch (Exception ex)
@@ -456,13 +458,13 @@ namespace Oxylabs_BulkKeywords
 
                         comm.ExecuteNonQuery();
 
-                        if (urlcount < 20)
-                        {
-                            string qry = "exec [InsertLessthan20] '" + myDate + "',N'" + keyword.Replace("'", "''") + "'," + seid + ",N''," + urlcount + ",'" + jobid + "'";
-                            comm.CommandText = qry;
-                            comm.CommandType = CommandType.Text;
-                            comm.ExecuteNonQuery();
-                        }
+                        //if (urlcount < 20)
+                        //{
+                        //    string qry = "exec [InsertLessthan20] '" + myDate + "',N'" + keyword.Replace("'", "''") + "'," + seid + ",N''," + urlcount + ",'" + jobid + "'";
+                        //    comm.CommandText = qry;
+                        //    comm.CommandType = CommandType.Text;
+                        //    comm.ExecuteNonQuery();
+                        //}
                     }
                 }
 

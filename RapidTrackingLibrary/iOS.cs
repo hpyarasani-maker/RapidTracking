@@ -2873,7 +2873,7 @@ namespace RapidTrackingLibrary
                 //nd = node.SelectSingleNode(".//div[@class='MVpwye Dv3U4e']");//05-12-2023//28-09-2022 answer card
                 if (node.SelectSingleNode(".//div[@class='FEoF4d']|.//div[@class='kno-rdesc']|.//div[contains(@class,'rbR0cd')]" +
                    "|.//div[@class='knowledge-finance-wholepage-chart__fw-uch']|.//div[@class='WFxqwc']|.//div[@class='KrvXD']" +
-                   "|.//div[@class='hoJlSb']") == null)//05-02-2024//07-12-2023//08-11-2023 //23-09-2023 //24-11-2022
+                   "|.//div[@class='hoJlSb']|.//div[@class='Vo9TVc nG7hRb']") == null)//06-02-2024//05-02-2024//07-12-2023//08-11-2023 //23-09-2023 //24-11-2022
                     return "AnswerCard";
             }
 

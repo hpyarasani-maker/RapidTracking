@@ -624,7 +624,7 @@ namespace RapidTrackingSingleThread
                 s.Append(GetImages(imgs));
                 s.Append("</block>");
             }//21-04-2023
-            if (imgs != null && imgs.SelectSingleNode(".//img[contains(@alt, 'Map of')]") != null)//17-11-2023
+            if (imgs != null && imgs.SelectSingleNode(".//img[contains(@alt, 'Map of')]|.//div[contains(@class,'o8ebK')]") != null)//08-02-2024//17-11-2023
             {
                 s.Append("<block type=\"maps\" url=\"\"></block>");
             }//17-11-2023
@@ -2208,7 +2208,7 @@ namespace RapidTrackingSingleThread
                 {
                     if (nd.Attributes["alt"].Value.StartsWith("Map of ") || node.SelectSingleNode(".//div[@class='H93uF']" + //24-11-2023//06-12-2022//21-04-2022
                         "|.//div[@class='uaxL4e ef0Hld']") != null || node.SelectSingleNode(".//img[contains(@alt,'Map of ')]" +
-                        "|.//img[contains(@alt,'Karte von ')]|.//img[contains(@alt,'karte')]") != null)//22-01-2024//05-12-2023
+                        "|.//img[contains(@alt,'Karte von ')]|.//img[contains(@alt,'karte')]|.//div[contains(@class,'o8ebK')]") != null)//08-02-2024//22-01-2024//05-12-2023
                         return true;
                     if (node.SelectSingleNode(".//div[@class='U1TUId LYh3vc']") != null) //16-12-2021
                         return false; //16-12-2021

@@ -1945,7 +1945,7 @@ namespace RapidTrackingSingleThread
             if (nds == null)//23-12-2021
                 nds = node.SelectNodes(".//a[@class='GBgvb']|.//a[@class='B1uW2d ellip PZPZlf']");//20-09-2023//23-12-2021
             if (nds == null)
-                nds = node.SelectNodes(".//div[@class='WcS13d']/a");  //05-10-2020 included selector for missing classic links
+                nds = node.SelectNodes(".//div[@class='WcS13d']/a|.//div[contains(@class, 'V3FYCf')]/a");//08-02-2024  //05-10-2020 included selector for missing classic links
             if (nds == null)
                 return string.Empty;
             foreach (HtmlNode nd in nds)

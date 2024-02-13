@@ -1506,6 +1506,8 @@ namespace RapidTrackingLibrary
             StringBuilder s = new StringBuilder();
             ArrayList al = new ArrayList();  //25-06-2020
             HtmlNodeCollection nd = node.SelectNodes(".//div[@jsmodel='uIhXXc']/div/g-scrolling-carousel/div/div/div/ul[@class='Kjd0sd']/div/div/g-inner-card/a");
+            if (nd == null)//13-02-2024
+                nd = node.SelectNodes(".//div[@class='GWRUbe LAZUFc']/span/g-link/a");//13-02-2024
             if (nd == null)
                 nd = node.SelectNodes(".//div[@jsname='WUSFrc']/g-link/a|.//div[@jsname='WUSFrc']/div/g-link/a" +
                     "|.//div[@class='v1uiFd']/g-link/a|.//div[@class='bogMee']/g-link/a|.//g-inner-card[@class='VoEfsd']/g-link/a" +

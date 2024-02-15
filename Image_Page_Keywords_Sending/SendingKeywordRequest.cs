@@ -83,17 +83,17 @@ namespace Image_Page_Keywords_Sending
             string password = "b5FCvgkjxx";
             string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
 
-            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58
-            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackuk106mobile/";       // 106
-            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackus1desktop/";     // 1            
-            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackus102mobile/";     // 102
-            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackotherdesktop/";  // other desktop
-            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackothermobile/";  // other mobile
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackuk106mobile/";       // 106
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackus1desktop/";     // 1            
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackus102mobile/";     // 102
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackotherdesktop/";  // other desktop
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackothermobile/";  // other mobile
 
             //string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidtrackingimagedesktop/"; //402 Mobile Image links
-            //string callbackURL = "http://seresults.azurewebsites.net/api/callback74images/"; // 74 desktop page urls 
-            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackimages/"; //401 desktop image links
-            string callbackURL = "http://seresults.azurewebsites.net/api/callbacknews/"; // news 140 and 382 Mobile Image Page Links
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callback74images/"; // 74 desktop page urls 
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackimages/"; //401 desktop image links
+            string callbackURL = "https://seresults.azurewebsites.net/api/callbacknews/"; // news 140 and 382 Mobile Image Page Links
             string[] keyword = { sp.query };
             OxyParams op = new OxyParams()
             {

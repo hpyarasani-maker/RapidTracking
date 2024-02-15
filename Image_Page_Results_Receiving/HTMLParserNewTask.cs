@@ -32,17 +32,17 @@ namespace Image_Page_Results_Receiving
 
         private void StartProcess()
         {
-            //string url = "http://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58
-            //string url = "http://seresults.azurewebsites.net/api/callbackuk106mobile/";      // 106
-            //string url = "http://seresults.azurewebsites.net/api/callbackus1desktop/";     // 1
-            //string url = "http://seresults.azurewebsites.net/api/callbackus102mobile/";      // 102
-            //string url = "http://seresults.azurewebsites.net/api/callbackotherdesktop/";  // other desktop
-            //string url = "http://seresults.azurewebsites.net/api/callbackothermobile/";   // other mobiles
+            //string url = "https://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58
+            //string url = "https://seresults.azurewebsites.net/api/callbackuk106mobile/";      // 106
+            //string url = "https://seresults.azurewebsites.net/api/callbackus1desktop/";     // 1
+            //string url = "https://seresults.azurewebsites.net/api/callbackus102mobile/";      // 102
+            //string url = "https://seresults.azurewebsites.net/api/callbackotherdesktop/";  // other desktop
+            //string url = "https://seresults.azurewebsites.net/api/callbackothermobile/";   // other mobiles
 
-            //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingimagedesktop/"; // image urls //402 mobile images links
-            //string url = "http://seresults.azurewebsites.net/api/callback74images/"; // 74 desktop page urls 
-            //string url = "http://seresults.azurewebsites.net/api/callbackimages/"; //401 desktop image links
-            string url = "http://seresults.azurewebsites.net/api/callbacknews/";      // news 140 and 382 Mobile Image Page Links
+            //string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingimagedesktop/"; // image urls //402 mobile images links
+            //string url = "https://seresults.azurewebsites.net/api/callback74images/"; // 74 desktop page urls 
+            //string url = "https://seresults.azurewebsites.net/api/callbackimages/"; //401 desktop image links
+            string url = "https://seresults.azurewebsites.net/api/callbacknews/";      // news 140 and 382 Mobile Image Page Links
 
 
 

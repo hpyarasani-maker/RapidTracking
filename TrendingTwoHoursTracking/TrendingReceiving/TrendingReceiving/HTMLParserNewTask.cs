@@ -33,8 +33,8 @@ namespace TrendingReceiving
 
         private void StartProcess()
         {
-            //string url = "http://seresults.azurewebsites.net/api/callbacktrendingdesktop/";       // Desktop
-            string url = "http://seresults.azurewebsites.net/api/callbacktrendingmobile/";       // Mobile
+            //string url = "https://seresults.azurewebsites.net/api/callbacktrendingdesktop/";       // Desktop
+            string url = "https://seresults.azurewebsites.net/api/callbacktrendingmobile/";       // Mobile
 
 
             WebClient client = new WebClient();

@@ -121,7 +121,7 @@ namespace SendingProject
         {
             //ServicePointManager.Expect100Continue = true;
             //ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-            Uri queryUri = new Uri("https://data.oxylabs.io/v1/queries/batch"); //29-07-2021 changed https:// using http://
+            Uri queryUri = new Uri("https://data.oxylabs.io/v1/queries/batch"); //29-07-2021 changed https:// using https://
             //string username = "gpidatametrics";
             //string password = "sdV5X3fcX6";
             string username = "piintelligenceunit";

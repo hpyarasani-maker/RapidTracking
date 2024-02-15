@@ -91,8 +91,8 @@ namespace TrendingSending
             string password = "b5FCvgkjxx";
             string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
 
-            //string callbackURL = "http://seresults.azurewebsites.net/api/callbacktrendingdesktop/";       // Desktop
-            string callbackURL = "http://seresults.azurewebsites.net/api/callbacktrendingmobile/";       // Mobile
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbacktrendingdesktop/";       // Desktop
+            string callbackURL = "https://seresults.azurewebsites.net/api/callbacktrendingmobile/";       // Mobile
 
             OxyParams op = new OxyParams()
             {

@@ -44,30 +44,30 @@ namespace RapidTrackingLoopReceiving
 
         private void StartProcess()
         {
-            //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking desktop and all keywords
-            //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking mobile
-            // string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
-            //string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobilehotel/";  // rapid tracking mobile
-            //string url = "http://seresults.azurewebsites.net/api/callbackrapidTrackingnewdesktop/"; //Desktop new keywords
-            //string url = "http://seresults.azurewebsites.net/api/callbackrapidTrackingnewmobile/"; //mobile new keywords
-            // string url = "http://seresults.azurewebsites.net/api/callbackrapidtrackingnewcommakeywords/";  // new comma keywords
+            //string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking desktop and all keywords
+            //string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking mobile
+            // string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
+            //string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingmobilehotel/";  // rapid tracking mobile
+            //string url = "https://seresults.azurewebsites.net/api/callbackrapidTrackingnewdesktop/"; //Desktop new keywords
+            //string url = "https://seresults.azurewebsites.net/api/callbackrapidTrackingnewmobile/"; //mobile new keywords
+            // string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingnewcommakeywords/";  // new comma keywords
 
-            string url = "http://seresults.azurewebsites.net/api/callbackuk503desktoptemp/"; //receiving New SEIDs
-            //string url = "http://seresults.azurewebsites.net/api/trackingtrending/";
-            //string url = "http://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58
-            //string url = "http://seresults.azurewebsites.net/api/callbackuk106mobile/";      // 106
-            //string url = "http://seresults.azurewebsites.net/api/callbackus1desktop/";     // 1
-            //string url = "http://seresults.azurewebsites.net/api/callbackus102mobile/";      // 102
-            //string url = "http://seresults.azurewebsites.net/api/callbackotherdesktop/";  // other desktop
-            //string url = "http://seresults.azurewebsites.net/api/callbackothermobile/";   // other mobiles
+            string url = "https://seresults.azurewebsites.net/api/callbackuk503desktoptemp/"; //receiving New SEIDs
+            //string url = "https://seresults.azurewebsites.net/api/trackingtrending/";
+            //string url = "https://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58
+            //string url = "https://seresults.azurewebsites.net/api/callbackuk106mobile/";      // 106
+            //string url = "https://seresults.azurewebsites.net/api/callbackus1desktop/";     // 1
+            //string url = "https://seresults.azurewebsites.net/api/callbackus102mobile/";      // 102
+            //string url = "https://seresults.azurewebsites.net/api/callbackotherdesktop/";  // other desktop
+            //string url = "https://seresults.azurewebsites.net/api/callbackothermobile/";   // other mobiles
 
-            //string url = "http://seresults.azurewebsites.net/api/callbackimagesdesktop/";       // images desktop
-            //string url = "http://seresults.azurewebsites.net/api/callbackimagesmobile/";      // images mobilse
-            //string url = "http://seresults.azurewebsites.net/api/callback74images/";
-            //string url = "http://previous.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking mobile
-            //string url = "http://previous.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
-            //string url = "http://previous.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking other desktop
-            //string url = "http://previous.azurewebsites.net/api/callbackuk58desktop/";       // 58 sending for previous date
+            //string url = "https://seresults.azurewebsites.net/api/callbackimagesdesktop/";       // images desktop
+            //string url = "https://seresults.azurewebsites.net/api/callbackimagesmobile/";      // images mobilse
+            //string url = "https://seresults.azurewebsites.net/api/callback74images/";
+            //string url = "https://previous.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking mobile
+            //string url = "https://previous.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
+            //string url = "https://previous.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking other desktop
+            //string url = "https://previous.azurewebsites.net/api/callbackuk58desktop/";       // 58 sending for previous date
 
             Uri ul = new Uri(url);
             using (var client = new HttpClient())

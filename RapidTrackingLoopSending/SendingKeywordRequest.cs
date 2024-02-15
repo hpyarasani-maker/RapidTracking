@@ -120,41 +120,41 @@ namespace RapidTrackingLoopSending
         {
             //ServicePointManager.Expect100Continue = true;
             //ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-            Uri queryUri = new Uri("https://data.oxylabs.io/v1/queries/batch"); //29-07-2021 changed https:// using http://
+            Uri queryUri = new Uri("https://data.oxylabs.io/v1/queries/batch"); //29-07-2021 changed https:// using https://
             //string username = "gpidatametrics";
             //string password = "sdV5X3fcX6";
             string username = "piapp";
             string password = "b5FCvgkjxx";
             string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
 
-            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking other desktop
-            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking other mobile
-            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
-            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidtrackingmobilehotel/";
-            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidTrackingnewdesktop/"; //Desktop new keywords
-            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidTrackingnewmobile/"; //mobile new keywords
-            // string callbackURL = "http://seresults.azurewebsites.net/api/callbackrapidtrackingnewcommakeywords/";  // new comma keywords
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking other desktop
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking other mobile
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidtrackingmobilehotel/";
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidTrackingnewdesktop/"; //Desktop new keywords
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidTrackingnewmobile/"; //mobile new keywords
+            // string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidtrackingnewcommakeywords/";  // new comma keywords
 
-            string callbackURL = "http://seresults.azurewebsites.net/api/callbackuk503desktoptemp"; //sending new SEIDs
-            //string callbackURL = "http://seresults.azurewebsites.net/api/trackingtrending/";
+            string callbackURL = "https://seresults.azurewebsites.net/api/callbackuk503desktoptemp"; //sending new SEIDs
+            //string callbackURL = "https://seresults.azurewebsites.net/api/trackingtrending/";
 
-            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58
-            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackuk106mobile/";       // 106
-            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackus1desktop/";     // 1            
-            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackus102mobile/";     // 102
-            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackotherdesktop/";  // other desktop
-            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackothermobile/";  // other mobile
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackuk106mobile/";       // 106
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackus1desktop/";     // 1            
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackus102mobile/";     // 102
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackotherdesktop/";  // other desktop
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackothermobile/";  // other mobile
 
-            //string callbackURL = "http://seresults.azurewebsites.net/api/callbackimages/"; // images
-            //string callbackURL = "http://seresults.azurewebsites.net/api/callbacknews/"; // news
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackimages/"; // images
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbacknews/"; // news
 
-            //string callbackURL = "http://previous.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking other desktop
-            //string callbackURL = "http://previous.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
-            //string callbackURL = "http://previous.azurewebsites.net/api/callbackrapidtrackingmobilehotel/";
-            //string callbackURL = "http://previous.azurewebsites.net/api/callbackrapidtrackingmobile/";
-            //string callbackURL = "http://previous.azurewebsites.net/api/callbackrapidtrackingdesktop/";
-            // string callbackURL = "http://previous.azurewebsites.net/api/callbackus1desktop/";     // 1 2019-10-10
-            //string callbackURL = "http://previous.azurewebsites.net/api/callbackuk58desktop/";       // 58 sending for previous date
+            //string callbackURL = "https://previous.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking other desktop
+            //string callbackURL = "https://previous.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
+            //string callbackURL = "https://previous.azurewebsites.net/api/callbackrapidtrackingmobilehotel/";
+            //string callbackURL = "https://previous.azurewebsites.net/api/callbackrapidtrackingmobile/";
+            //string callbackURL = "https://previous.azurewebsites.net/api/callbackrapidtrackingdesktop/";
+            // string callbackURL = "https://previous.azurewebsites.net/api/callbackus1desktop/";     // 1 2019-10-10
+            //string callbackURL = "https://previous.azurewebsites.net/api/callbackuk58desktop/";       // 58 sending for previous date
             string[] keyword = { sp.query };
             OxyParams op = new OxyParams()
             {

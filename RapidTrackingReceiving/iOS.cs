@@ -73,6 +73,8 @@ namespace Oxylabs_BulkKeywords
                         {
                             foreach (HtmlNode nd in nc)
                             {
+                                if (orgLinks >= 100)//21-02-2024 testing
+                                    break;//21-02-2024 testing
                                 string s = ProcessNode(nd);
                                 ndText += s;
                                 if (s.Length > 0)
@@ -208,6 +210,8 @@ namespace Oxylabs_BulkKeywords
                             {
                                 if (nd.InnerHtml != "")
                                 {
+                                    if (orgLinks >= 100)//21-02-2024 testing
+                                        break;//21-02-2024 testing
                                     string s = ProcessNode(nd);
                                     ndText += s;
                                     if (s.Length > 0)

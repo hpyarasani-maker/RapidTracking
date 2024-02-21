@@ -2884,7 +2884,6 @@ namespace WPFMultiThreadJobIDs
             {
                seid =786, domain ="co.il", geo_location="Israel", locale= "iw-il", uule = "w+CAIQICIGSXNyYWVs", device="mobile_android"
             },//21-02-2024
-
         };
     }
     class SearchProperties

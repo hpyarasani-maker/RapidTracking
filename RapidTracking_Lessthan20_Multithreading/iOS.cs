@@ -41,7 +41,7 @@ namespace TrackingTrending
             if (nodeCol == null)//20-09-2023
                 nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div[@class='MjjYud']/div|//div[@id='rso']/div[@class='MjjYud']/block-component|.//div[contains(@class,'TzHB6b')]");//22-09-2023//21-09-2023//20-09-2023
             if (nodeCol == null || doc.DocumentNode.SelectNodes("//div[@class='WtZO4e']/div|//div[@classname='WtZO4e']/div")?.Count > 1)//25-09-2023
-                nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-card|//div[@id='taw']/div[@class='med']/div[2]/div|//div[@id='rso']/nav|//div[@id='rso']/block-component/div|//div[contains(@id, 'arc-srp')]/div/div[@class='MjjYud']|//div[contains(@id, 'arc-srp')]/div/div/div[@class='MjjYud']|.//div[contains(@class,'TzHB6b')]");//09-02-2024//02-02-2024
+                nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-card|//div[@id='taw']/div[@class='med']/div[2]/div|//div[@id='rso']/nav|//div[@id='rso']/block-component/div|//div[contains(@id, 'arc-srp')]/div/div[@class='MjjYud']|//div[contains(@id, 'arc-srp')]/div/div/div[@class='MjjYud']|.//div[contains(@class,'TzHB6b')]|.//div[@class='lEorAf']");//19-02-2024//09-02-2024//02-02-2024
             if (nodeCol != null && nodeCol.Count == 1)
                 nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@class='vC5Ym DhKAUb']/div");  //23-03-2023  //17-09-2019
             if (nodeCol != null && nodeCol.Count <= 5 && doc.DocumentNode.SelectNodes("//div[contains(@id,'kp-wp-tab-')]") != null)//02-02-2024//31-01-2024

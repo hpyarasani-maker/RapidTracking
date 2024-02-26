@@ -1824,6 +1824,24 @@ namespace RapidTrackingSingleThread
                 price = "0";//01-06-2023
             if (price.Equals("vérifier le prix"))//01-06-2023
                 price = "0";//01-06-2023
+            if (price.Equals("Preis prüfen"))//26-02-2024
+                price = "0";
+            if (price.Equals("controlla il prezzo"))
+                price = "0";
+            if (price.Equals("Consulta el precio"))
+                price = "0";
+            if (price.Equals("Consulta el precio."))
+                price = "0";
+            if (price.Equals("–"))
+                price = "0";
+            if (price.Equals("Free"))
+                price = "0";
+            if (price.Equals("ฟรี"))
+                price = "0";
+            if (price.Equals("Gratis"))
+                price = "0";
+            if (price.Equals("免費"))
+                price = "0";//26-02-2024
             return price;
         }
         private string ConvertHours(string hours) //05-07-2023

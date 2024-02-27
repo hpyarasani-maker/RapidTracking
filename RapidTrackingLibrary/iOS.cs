@@ -1837,7 +1837,7 @@ namespace RapidTrackingLibrary
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='HnYYW FIdh1']");  // 01-06-2020
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='MQv7ze']|.//div[@class='W2E8sb']");//08-11-2023  // 23-06-2020
+                nd = node.SelectSingleNode(".//div[@class='MQv7ze']|.//div[@class='W2E8sb']|.//div[@class='grvXqb']");//27-02-2024//08-11-2023  // 23-06-2020
             if (nd != null)
             {
                 string hdr = "";
@@ -2835,7 +2835,7 @@ namespace RapidTrackingLibrary
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[contains(@class,'kp-blk EyBRub')]|.//div[contains(@class,'kp-hc')]"); //16-02-2022 //05-10-2020 included selector for missing KP block
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='Y2NmGf']|.//div[@class='aiNDEb']");//08-11-2023//26-07-2022
+                nd = node.SelectSingleNode(".//div[@class='Y2NmGf']|.//div[@class='aiNDEb']|.//div[@class='grvXqb']");//27-02-2024//08-11-2023//26-07-2022
             if (nd != null)
             {
                 // 24-04-2020
@@ -2973,7 +2973,7 @@ namespace RapidTrackingLibrary
             }
             nd = node.SelectSingleNode(".//div[contains(@class, 'HOslld dutT5c')]|.//div[contains(@class, 'XNfAUb')]");//20-02-2024
             if (nd != null && node.SelectSingleNode(".//div[contains(@class, 'MRtunc')]|.//div[@class='Wt5Tfe']|.//div[@class='RyIFgf']") == null
-                || (node.SelectSingleNode(".//div[@class='VqeGe']") != null && node.SelectSingleNode(".//div[@class='NYidgb']|.//div[@class='xKf9F']") == null))//26-02-2024//20-02-2024
+                || (node.SelectSingleNode(".//div[@class='VqeGe']") != null && node.SelectSingleNode(".//div[@class='NYidgb']|.//div[@class='EDblX HG5ZQb']|.//div[@class='xKf9F']") == null))//27-02-2024//26-02-2024//20-02-2024
             {
                 return "Hotel";
             }

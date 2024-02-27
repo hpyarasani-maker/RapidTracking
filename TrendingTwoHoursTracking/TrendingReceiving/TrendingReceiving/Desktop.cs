@@ -1622,6 +1622,7 @@ namespace TrendingReceiving
                 {
                     len = dest.InnerText.IndexOf(" from ") >= 0 ? dest.InnerText.IndexOf(" from ") + 6 :
                         dest.InnerText.IndexOf("Vols ") >= 0 ? dest.InnerText.IndexOf("Vols ") + 4 : //23-02-2024
+                        dest.InnerText.IndexOf(" nach ") >= 0 ? dest.InnerText.IndexOf(" nach ") + 5 ://26-02-2024
                         dest.InnerText.IndexOf(" von ") >= 0 ? dest.InnerText.IndexOf(" von ") + 5 : -1;  //01-12-2023;
                     origin = dest?.InnerText.Substring(len).Trim();
                 }
@@ -1820,6 +1821,24 @@ namespace TrendingReceiving
                 price = "0";//01-06-2023
             if (price.Equals("vérifier le prix"))//01-06-2023
                 price = "0";//01-06-2023
+            if (price.Equals("Preis prüfen"))//26-02-2024
+                price = "0";
+            if (price.Equals("controlla il prezzo"))
+                price = "0";
+            if (price.Equals("Consulta el precio"))
+                price = "0";
+            if (price.Equals("Consulta el precio."))
+                price = "0";
+            if (price.Equals("–"))
+                price = "0";
+            if (price.Equals("Free"))
+                price = "0";
+            if (price.Equals("ฟรี"))
+                price = "0";
+            if (price.Equals("Gratis"))
+                price = "0";
+            if (price.Equals("免費"))
+                price = "0";//26-02-2024
             return price;
         }
         private string ConvertHours(string hours) //05-07-2023

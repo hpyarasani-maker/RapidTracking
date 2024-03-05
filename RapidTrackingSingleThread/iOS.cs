@@ -2236,7 +2236,7 @@ namespace RapidTrackingSingleThread
         private string GetVideos(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nds = node.SelectNodes(".//g-inner-card/a");
+            HtmlNodeCollection nds = node.SelectNodes(".//g-inner-card/a|.//div[@class='QvOPBf']");//05-03-2024
             if (nds == null)
                 nds = node.SelectNodes(".//div[@data-attrid='OsrpVideos']/a|.//div[@class='ALzVK']/div/div/a");
             if (nds == null)
@@ -2267,10 +2267,10 @@ namespace RapidTrackingSingleThread
                         {
                             // Changes in Videos block on 25-06-2019
                             HtmlNode t = nd.SelectSingleNode(".//div[@role='heading']|.//div[@class='WDJH5']");//30-09-2022
-                            if (t != null)
-                                title = t.InnerText;
+                            if (n != null)
+                                title = n.InnerText;//05-03-2024
                             else
-                                title = n.InnerText;
+                                title = t.InnerText;//05-03-2024
                         }
                         catch
                         {

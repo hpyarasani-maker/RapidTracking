@@ -2958,6 +2958,18 @@ namespace RapidTrackingSingleThread
             {
                 seid =802, domain ="co.uk", geo_location="Windsor,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIeV2luZHNvcixFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="mobile_android"
             },//21-02-2024
+            new SearchProperties()//07-03-2024
+            {
+                seid =803, domain ="bt", geo_location="Bhutan", locale= "en-bt", uule = "w+CAIQICIGQmh1dGFu",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =804, domain ="com.vc", geo_location="Saint Vincent and the Grenadines", locale= "en-vc", uule = "w+CAIQICIHR3JlbmFkYQ==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =805, domain ="tt", geo_location="Trinidad and Tobago", locale= "en-tt", uule = "w+CAIQICITVHJpbmlkYWQgYW5kIFRvYmFnbw==",device="mobile_android"
+            },//07-03-2024
         };
     }
 

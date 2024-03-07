@@ -1317,7 +1317,7 @@ namespace RapidTrackingLibrary
             bool chrt = node.SelectSingleNode(".//div[contains(@class, 'kpd-ch')]") != null;
             HtmlNode a = node.SelectSingleNode(".//div[@class='yuRUbf']/a|.//div[@class='yuRUbf']/div/a|.//div[@class='yuRUbf']/div/span/a");
             string url = a?.Attributes["href"].Value ?? "";
-            string title = node.SelectSingleNode(".//h3[contains(@class,'LC20lb'])")?.InnerText.Trim() ?? "";
+            string title = node.SelectSingleNode(".//h3[contains(@class,'LC20lb')]")?.InnerText.Trim() ?? "";
             HtmlNodeCollection ls = node.SelectNodes(".//ul/li|.//ol/li");
             if (ls != null)
             {

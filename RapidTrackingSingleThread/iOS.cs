@@ -1937,8 +1937,8 @@ namespace RapidTrackingSingleThread
             return s.ToString();
         }
 
-       
-        private string GetAnswerCard(HtmlNode node)
+
+        /*private string GetAnswerCard(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//h3[@class='r']/a");
@@ -1959,7 +1959,76 @@ namespace RapidTrackingSingleThread
                 s.Append("<item url=\"" + SetUrl(nd.Attributes["href"].Value) + "\" title=\"" + SetTitle(nd.InnerText) + "\" />");
             }
             return s.ToString();
-        }
+        }*/
+        private string GetAnswerCard(HtmlNode node)//07-03-2024
+        {
+            StringBuilder s = new StringBuilder();
+            string desc = string.Empty;
+            bool lst = false;
+            bool tbl = node.SelectSingleNode(".//table") != null;
+            bool chrt = node.SelectSingleNode(".//div[contains(@class, 'kpd-ch')]") != null;
+            bool video = node.SelectSingleNode(".//span[@class='z1asCe UIgqBe']/svg") != null;
+            string f_title = node.SelectSingleNode(".//h2/div[1]|.//div[@role='heading' and @aria-level='3']/div[contains(@class, 'JgzqYd')]|.//div[@class='iKJnec']")?.InnerText ?? "";
+            HtmlNode a = node.SelectSingleNode(".//h3/a[contains(@class,'sXtWJb')]|.//h3/div/a[contains(@class,'sXtWJb')]|.//h3/div/span/a[contains(@class,'sXtWJb')]");
+            string url = a?.Attributes["href"].Value ?? "";
+            string title = a?.InnerText ?? "";
+            HtmlNodeCollection ls = node.SelectNodes(".//ul/li|.//ol/li");
+            if (ls == null)
+            {
+                HtmlNode list = node.SelectSingleNode(".//g-accordion");
+                if (list != null)
+                {
+                    ls = list.SelectNodes(".//span[@class='s2ZLHc']");
+                }
+            }
+            if (ls != null)
+            {
+                lst = true;
+                foreach (var l in ls)
+                {
+                    desc += l.InnerText + "\n";
+                }
+                desc = desc.Remove(desc.Length - 1);
+            }
+            if (tbl)
+            {
+                HtmlNodeCollection tblRows = node.SelectNodes(".//table/tbody/tr");
+                if (tblRows != null)
+                {
+                    desc = "";
+                    foreach (HtmlNode r in tblRows)
+                    {
+                        HtmlNodeCollection th = r.SelectNodes(".//th");
+                        if (th != null)
+                        {
+                            foreach (HtmlNode t in th)
+                            {
+                                desc += t.InnerText + "\t";
+                            }
+                        }
+                        HtmlNodeCollection td = r.SelectNodes(".//td");
+                        if (td != null)
+                        {
+                            foreach (HtmlNode t in td)
+                            {
+                                desc += t.InnerText + "\t";
+                            }
+                        }
+                        desc = desc.Remove(desc.Length - 1) + "\n";
+                    }
+                    desc = desc.Remove(desc.Length - 1);
+                }
+            }
+            else
+                desc = node.SelectSingleNode(".//span[contains(@class,'ILfuVd')]")?.InnerText ?? "";
+            string cardType = lst ? "list" : tbl ? "table" : video ? "video" : chrt ? "chart" : "text";
+            s.Append("<block type=\"answerCard\" url=\"" + SetUrl(url) + "\" >");
+            s.Append("<item featureTitle=\"" + SetTitle(f_title) + "\" url=\"" + SetUrl(url) + "\" title=\"" +
+                SetTitle(title) + "\" description=\"" + SetTitle(desc) + "\" cardType=\"" + cardType + "\" />");
+            s.Append("</block>");
+            return s.ToString();
+        }//07-03-2024
+        
 
         private string GetTwitterCards(HtmlNode node)
         {

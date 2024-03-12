@@ -1306,7 +1306,7 @@ namespace RapidTrackingLibrary
             return s.ToString();
         }*/
 
-        private string GetAnswerCard(HtmlNode node)//07-03-2024
+        public string GetAnswerCard(HtmlNode node)//07-03-2024
         {
             StringBuilder s = new StringBuilder();
             string desc = string.Empty;

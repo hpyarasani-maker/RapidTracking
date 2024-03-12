@@ -2872,7 +2872,7 @@ namespace RapidTrackingLibrary
                 && node.SelectSingleNode(".//div[@jscontroller='UjNCHf']") == null)//02-01-2024//22-09-2023//21-09-2023//03-07-2023 //23-03-2022
                 return "Flights";//23-03-2022
 
-            if (node.SelectSingleNode(".//g-card[@class='cvoI5e']|.//g-tray-header[@class='iI6nue ieGFJe']") != null || node.SelectSingleNode(".//g-card[@class='U8KfXc']") != null)//11-01-2023 //23-11-2020 //20-11-2020
+            if (node.SelectSingleNode(".//g-card[@class='cvoI5e']|.//g-tray-header[contains(@class,'iI6nue')]") != null || node.SelectSingleNode(".//g-card[@class='U8KfXc']") != null)//12-03-2024//11-01-2023 //23-11-2020 //20-11-2020
             {
                 return "Jobs";
             }

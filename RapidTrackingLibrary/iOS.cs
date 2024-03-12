@@ -2027,7 +2027,7 @@ namespace RapidTrackingLibrary
                 lst = true;
                 foreach (var l in ls)
                 {
-                    desc += l.InnerText + "\n";
+                    desc += l.InnerText + "\\n";//12-03-2024
                 }
                 desc = desc.Remove(desc.Length - 1);
             }
@@ -2044,7 +2044,7 @@ namespace RapidTrackingLibrary
                         {
                             foreach (HtmlNode t in th)
                             {
-                                desc += t.InnerText + "\t";
+                                desc += t.InnerText + "\\t";//12-03-2024
                             }
                         }
                         HtmlNodeCollection td = r.SelectNodes(".//td");
@@ -2052,12 +2052,12 @@ namespace RapidTrackingLibrary
                         {
                             foreach (HtmlNode t in td)
                             {
-                                desc += t.InnerText + "\t";
+                                desc += t.InnerText + "\\t";//12-03-2024
                             }
                         }
-                        desc = desc.Remove(desc.Length - 1) + "\n";
+                        desc = desc.Remove(desc.Length - 1) + "n";
                     }
-                    desc = desc.Remove(desc.Length - 1);
+                    //desc = desc.Remove(desc.Length - 1);//12-03-2024
                 }
             }
             else

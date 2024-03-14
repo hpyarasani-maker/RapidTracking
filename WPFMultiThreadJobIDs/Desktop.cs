@@ -1245,7 +1245,7 @@ namespace WPFMultiThreadJobIDs
             return s.ToString();
         }
 
-        private string GetAnswerCard(HtmlNode node)
+        /*private string GetAnswerCard(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='r']/a");
@@ -1257,12 +1257,12 @@ namespace WPFMultiThreadJobIDs
                 nds = node.SelectNodes(".//div[@class='WcS13d']|.//div[@class='V3FYCf']");//04-12-2023 //removed /a //05-10-2020 included selector for missing classic links
             if (nds == null)
                 return string.Empty;
-
+           
             foreach (HtmlNode nd in nds)
             {
                 //05-10-2020
                 string title = "";
-
+                
                 HtmlNodeCollection nds1 = nd.SelectNodes(".//h3|.//div[@class='wKZW5d']"); //23-12-2021
                 if (nds1 != null)
                 {
@@ -1281,7 +1281,68 @@ namespace WPFMultiThreadJobIDs
                 //end 05-10-2020
             }
             return s.ToString();
-        }
+        }*/
+
+        private string GetAnswerCard(HtmlNode node)//07-03-2024
+        {
+            StringBuilder s = new StringBuilder();
+            string desc = string.Empty;
+            bool lst = false;
+            bool tbl = node.SelectSingleNode(".//table") != null;
+            bool video = node.SelectSingleNode(".//span[@class='z1asCe UIgqBe']/svg") != null;
+            string f_title = node.SelectSingleNode(".//div[@role='heading' and @ aria-level='3']")?.InnerText ?? "";
+            bool chrt = node.SelectSingleNode(".//div[contains(@class, 'kpd-ch')]") != null;
+            HtmlNode a = node.SelectSingleNode(".//div[@class='yuRUbf']/a|.//div[@class='yuRUbf']/div/a|.//div[@class='yuRUbf']/div/span/a");
+            string url = a?.Attributes["href"].Value ?? "";
+            string title = node.SelectSingleNode(".//h3[contains(@class,'LC20lb')]")?.InnerText.Trim() ?? "";
+            HtmlNodeCollection ls = node.SelectNodes(".//ul/li|.//ol/li");
+            if (ls != null)
+            {
+                lst = true;
+                foreach (var l in ls)
+                {
+                    desc += l.InnerText + "\\n";//12-03-2024
+                }
+                desc = desc.Remove(desc.Length - 1);
+            }
+            if (tbl)
+            {
+                HtmlNodeCollection tblRows = node.SelectNodes(".//table/tbody/tr");
+                if (tblRows != null)
+                {
+                    desc = "";
+                    foreach (HtmlNode r in tblRows)
+                    {
+                        HtmlNodeCollection th = r.SelectNodes(".//th");
+                        if (th != null)
+                        {
+                            foreach (HtmlNode t in th)
+                            {
+                                desc += t.InnerText + "\\t";//12-03-2024
+                            }
+                        }
+                        HtmlNodeCollection td = r.SelectNodes(".//td");
+                        if (td != null)
+                        {
+                            foreach (HtmlNode t in td)
+                            {
+                                desc += t.InnerText + "\\t";//12-03-2024
+                            }
+                        }
+                        desc = desc.Remove(desc.Length - 1) + "n";//12-03-2024
+                    }
+                    //desc = desc.Remove(desc.Length - 1);//12-03-2024
+                }
+            }
+            else
+                desc = node.SelectSingleNode(".//span[contains(@class, 'ILfuVd')]")?.InnerText ?? "";
+            string cardType = lst ? "list" : tbl ? "table" : video ? "video" : chrt ? "chart" : "text";
+            s.Append("<block type=\"answerCard\" url=\"" + SetUrl(url) + "\" >");
+            s.Append("<item featureTitle=\"" + SetTitle(f_title) + "\" url=\"" + SetUrl(url) + "\" title=\"" +
+                SetTitle(title) + "\" description=\"" + SetTitle(desc) + "\" cardType=\"" + cardType + "\" />");
+            s.Append("</block>");
+            return s.ToString();
+        }//07-03-2024
 
         private string GetTwitterCards(HtmlNode node)
         {
@@ -1949,7 +2010,7 @@ namespace WPFMultiThreadJobIDs
                 if (node.SelectSingleNode(".//div[@class='AuVD KJ7Tg cUnQKe']|.//div[contains(@class,'RTaUke')]") == null)//23-05-2023//03-05-2023 //20-07-2022
                     return "PeopleAlsoAsk"; //11-02-2020
             }
-            if (node.SelectSingleNode(".//g-card[@class='cvoI5e']|.//g-tray-header[@class='iI6nue ieGFJe']") != null || node.SelectSingleNode(".//g-card[@class='U8KfXc']") != null)//11-01-2023 //23-11-2020 //20-11-2020
+            if (node.SelectSingleNode(".//g-card[@class='cvoI5e']|.//g-tray-header[contains(@class,'iI6nue')]") != null || node.SelectSingleNode(".//g-card[@class='U8KfXc']") != null)//13-03-2024//11-01-2023 //23-11-2020 //20-11-2020
             {
                 return "Jobs";
             }

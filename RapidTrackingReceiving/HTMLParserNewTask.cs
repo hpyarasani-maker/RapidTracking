@@ -314,7 +314,7 @@ namespace Oxylabs_BulkKeywords
                 httpWReq.UseDefaultCredentials = true;
                 httpWReq.PreAuthenticate = true;
                 httpWReq.Credentials = CredentialCache.DefaultCredentials;
-
+                xd = null;//14-03-2024
                 httpWReq.CookieContainer = new CookieContainer();
 
                 Encoding encoding = new UTF8Encoding();
@@ -333,6 +333,7 @@ namespace Oxylabs_BulkKeywords
 
                 httpWReq.Headers[HttpRequestHeader.Authorization] = cred;
                 httpWReq.ContentLength = data.Length;
+                postData = string.Empty;//14-03-2024
                 //httpWReq.Timeout = 0;
 
                 Stream stream = httpWReq.GetRequestStream();

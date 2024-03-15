@@ -1938,7 +1938,7 @@ namespace RapidTrackingMultithread
         }
 
 
-        /*private string GetAnswerCard(HtmlNode node)
+        private string GetAnswerCard(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//h3[@class='r']/a");
@@ -1959,8 +1959,8 @@ namespace RapidTrackingMultithread
                 s.Append("<item url=\"" + SetUrl(nd.Attributes["href"].Value) + "\" title=\"" + SetTitle(nd.InnerText) + "\" />");
             }
             return s.ToString();
-        }*/
-        private string GetAnswerCard(HtmlNode node)//07-03-2024
+        }
+        /*private string GetAnswerCard(HtmlNode node)//07-03-2024
         {
             StringBuilder s = new StringBuilder();
             string desc = string.Empty;
@@ -2027,7 +2027,7 @@ namespace RapidTrackingMultithread
                 SetTitle(title) + "\" description=\"" + SetTitle(desc) + "\" cardType=\"" + cardType + "\" />");
             s.Append("</block>");
             return s.ToString();
-        }//07-03-2024
+        }//07-03-2024*/
 
 
         private string GetTwitterCards(HtmlNode node)

@@ -1242,7 +1242,7 @@ namespace TrendingDesktopSingleThread
             return s.ToString();
         }
 
-        /*private string GetAnswerCard(HtmlNode node)
+        private string GetAnswerCard(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='r']/a");
@@ -1278,9 +1278,9 @@ namespace TrendingDesktopSingleThread
                 //end 05-10-2020
             }
             return s.ToString();
-        }*/
+        }
 
-        private string GetAnswerCard(HtmlNode node)//07-03-2024
+        /*private string GetAnswerCard(HtmlNode node)//07-03-2024
         {
             StringBuilder s = new StringBuilder();
             string desc = string.Empty;
@@ -1339,7 +1339,7 @@ namespace TrendingDesktopSingleThread
                 SetTitle(title) + "\" description=\"" + SetTitle(desc) + "\" cardType=\"" + cardType + "\" />");
             s.Append("</block>");
             return s.ToString();
-        }//07-03-2024
+        }//07-03-2024*/
 
         private string GetTwitterCards(HtmlNode node)
         {

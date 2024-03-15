@@ -2359,7 +2359,11 @@ namespace RapidTrackingSingleThread
                         if (nd.Attributes["href"] != null)
                             url = nd.Attributes["href"].Value.Trim();
                         else if (nd.SelectSingleNode(".//a") != null) // 14-12-2020
-                            url = nd.SelectSingleNode(".//a").Attributes["href"].Value; // 14-12-2020
+                        {//15-03-2024
+                            url = nd.SelectSingleNode(".//a").Attributes["href"].Value;
+                            if (url == "#")
+                                url = nd.SelectSingleNode(".//a[@class='BG7Pyb']")?.Attributes["href"].Value;
+                        }//15-03-2024
                         else
                             url = nd.Attributes["data-url"].Value;
                         //end 26-06-2020

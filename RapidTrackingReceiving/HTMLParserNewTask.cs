@@ -119,6 +119,7 @@ namespace Oxylabs_BulkKeywords
             string domain = job["domain"].Value<string>();
             string jobid = job["id"].Value<string>();
             string seid = "";
+            string response = string.Empty; //18-03-2024
             try
             {
                 //string username = "gpidatametrics";
@@ -138,7 +139,7 @@ namespace Oxylabs_BulkKeywords
                     HttpWebResponse res = (HttpWebResponse)httpWebRequest.GetResponse();
                     Stream resStream = res.GetResponseStream();
                     StreamReader reader = new StreamReader(resStream, Encoding.UTF8);
-                    string response = reader.ReadToEnd();
+                    response = reader.ReadToEnd(); //18-03-2024
                     resStream.Close();
                     res.Close();
                     startTime.Stop();//08-11-2023
@@ -161,6 +162,10 @@ namespace Oxylabs_BulkKeywords
                     catch (Exception ex)
                     {
                         throw ex;
+                    }
+                    finally
+                    {
+                        response = string.Empty;//18-03-2024
                     }
 
                     // 31-03-2020

@@ -2792,7 +2792,7 @@ namespace RapidTrackingSingleThread
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='fn6bCb']|.//g-tray-header[@class='kno-fb-ctx zbA8Me ndEm3b']|.//div[@class='fhQnRd']"); //12-12-2020 applied selector for TS BT
             if (nd == null)
-                nd = node.SelectSingleNode(".//g-tray-header[contains(@class,'kno-fb-ctx')]");//27-07-2020
+                nd = node.SelectSingleNode(".//g-tray-header[contains(@class,'kno-fb-ctx')]|.//div[contains(@class,'kno-fb-ctx')]");//20-03-2024//27-07-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='qDSRad']");  // changes on 05-07-2019
             if (nd == null)

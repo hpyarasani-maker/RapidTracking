@@ -2062,11 +2062,13 @@ namespace RapidTrackingLibrary
                     //desc = desc.Remove(desc.Length - 1);//12-03-2024
                 }
             }
-            else
+             else if(string.IsNullOrEmpty(desc))//20-03-2024
+            {
                 desc = node.SelectSingleNode(".//span[contains(@class,'ILfuVd')]")?.InnerText ?? "";
+            }//20-03-2024
             string cardType = lst ? "list" : tbl ? "table" : video ? "video" : chrt ? "chart" : "text";
             s.Append("<block type=\"answerCard\" url=\"" + SetUrl(url) + "\" >");
-            s.Append("<item featureTitle=\"" + SetTitle(f_title) + "\" url=\"" + SetUrl(url) + "\" title=\"" +
+                        s.Append("<item featureTitle=\"" + SetTitle(f_title) + "\" url="" + "\" title=\"" +
                 SetTitle(title) + "\" description=\"" + SetTitle(desc) + "\" cardType=\"" + cardType + "\" />");
             s.Append("</block>");
             return s.ToString();

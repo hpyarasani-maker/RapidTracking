@@ -2031,7 +2031,7 @@ namespace RapidTrackingLibrary
                 {
                     desc += l.InnerText + "\\n";//12-03-2024
                 }
-                desc = desc.Remove(desc.Length - 1);
+                desc = desc.Remove(desc.Length - 1) + "n";
             }
             if (tbl)
             {

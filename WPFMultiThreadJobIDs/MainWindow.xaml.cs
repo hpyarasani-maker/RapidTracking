@@ -132,6 +132,7 @@ namespace WPFMultiThreadJobIDs
                             iOS clsiOS = new iOS();
                             res = clsiOS.ProcessDocument(seid, keyword, doc, out count);
                         }
+                            doc = null;
                         this.lblcount1.Dispatcher.Invoke((MethodInvoker)delegate () {
                             lblcount1.Content = "Count: " + count;
                         });
@@ -231,7 +232,8 @@ namespace WPFMultiThreadJobIDs
                             iOS clsiOS = new iOS();
                             res = clsiOS.ProcessDocument(seid, keyword, doc, out count);
                         }
-                        this.lblcount2.Dispatcher.Invoke((MethodInvoker)delegate () {
+                            doc = null;
+                            this.lblcount2.Dispatcher.Invoke((MethodInvoker)delegate () {
                             lblcount2.Content = "Count: " + count;
                         });
                         if (!string.IsNullOrEmpty(res))
@@ -341,7 +343,8 @@ namespace WPFMultiThreadJobIDs
                             iOS clsiOS = new iOS();
                             res = clsiOS.ProcessDocument(seid, keyword, doc, out count);
                         }
-                        this.lblcount3.Dispatcher.Invoke((MethodInvoker)delegate () {
+                            doc = null;
+                            this.lblcount3.Dispatcher.Invoke((MethodInvoker)delegate () {
                             lblcount3.Content = "Count: " + count;
                         });
                         if (!string.IsNullOrEmpty(res))

@@ -148,6 +148,10 @@ namespace Oxylabs_BulkKeywords
             //string strQry = "exec [dbo].[GetBulk_P] '" + myDate + "'";  //sending procedure previous date keywords
             //string strQry = "exec [dbo].[GetBulk_Desktop] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulk_Mobile] '" + myDate + "'";
+            //string strQry = "exec [dbo]. [GetBulkMobile_NewKeywords] '" + myDate + "'";
+            //string strQry = "exec [dbo]. [GetBulk_All_Mobile] '" + myDate + "'";  //Mobile Receive all keywords
+            //string strQry = "exec [dbo].[GetBulkMobile_106_1] '" + myDate + "'";
+            //string strQry = "exec [dbo].[Tracking_DB_Keywords_SEID_102_S] '" + myDate + "'";  // Last keywords
             SqlConnection objCon = null;
             SqlDataReader objData = null;
 

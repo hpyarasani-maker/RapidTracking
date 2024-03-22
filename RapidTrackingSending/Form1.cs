@@ -170,6 +170,7 @@ namespace Oxylabs_BulkKeywords
                     worklist.Refresh();
                 });
                 objData.Close();
+                objCon.Close();//22-03-2024
             }
             catch (SqlException e)
             {
@@ -212,6 +213,7 @@ namespace Oxylabs_BulkKeywords
 
             for (int i = 0; i < worklist.Items.Count; i++)
             {
+                //uncomment all for fast sending //22-03-2024
                 //mseconds = rd.Next(30, 50) * 1000; //First Sending app 29-06-2020    //SEID=58-1
                //mseconds = rd.Next(30, 70) * 1000; //First Sending app 29-06-2020    //SEID=58-2
                 //mseconds = rd.Next(30, 80) * 1000; //Second Sending app 29-06-2020 //SEID=106-1
@@ -249,12 +251,10 @@ namespace Oxylabs_BulkKeywords
                     progress_lbl.Text = "Completed : " + (i + 1) + " of " + worklist.Items.Count;                    
                     progress_lbl.Refresh();
                     lblIP.Text = ts.TotalSeconds.ToString();
-               });
-                this.Invoke((MethodInvoker)delegate ()
-                {
-                    rnd_lbl.Text = (mseconds / 1000).ToString() + " " + "seconds";
+                    rnd_lbl.Text = (mseconds / 1000).ToString() + " " + "seconds";//22-03-2024 //comment for fast sending
+                    //rnd_lbl.Text = "0 " + "seconds";//22-03-2024 uncomment for fast sending//22-03-2024
                 });
-                Thread.Sleep(mseconds); //if you want to send fast comment this line...
+                Thread.Sleep(mseconds); //if you want to send fast comment this line...//22-03-2024
             }
         }
         

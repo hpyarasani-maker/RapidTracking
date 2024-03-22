@@ -191,7 +191,7 @@ namespace Oxylabs_BulkKeywords
                 streamWriter.Write(json);
             }
 
-            string response;
+            string response=string.Empty;//22-03-2024
 
             try
             {
@@ -210,6 +210,10 @@ namespace Oxylabs_BulkKeywords
                 ProcessError(sp.seid, ex.Message.ToString()); //03-08-2021 storing error messages
                 throw ex;
             }
+            finally//22-03-2024
+            {
+                response = string.Empty;
+            }//22-03-2024
         }
         
         public void getTop100(string keyword, int seid)

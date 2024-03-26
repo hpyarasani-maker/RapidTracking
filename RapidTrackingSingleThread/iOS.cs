@@ -1388,10 +1388,10 @@ namespace RapidTrackingSingleThread
                     s.Append(GetTwitterCards(node));
                     break;
                 case "answercard":
-                    s.Append("<block type=\"answerCard\" url=\"\">");
+                    //s.Append("<block type=\"answerCard\" url=\"\">");
                     //get answer card urls;
                     s.Append(GetAnswerCard(node));
-                    s.Append("</block>");
+                    //s.Append("</block>");
                     break;
                 case "peoplealsoask":
                     s.Append("<block type=\"peopleAlsoAsk\" url=\"\">");

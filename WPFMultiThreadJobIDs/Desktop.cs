@@ -1245,7 +1245,7 @@ namespace WPFMultiThreadJobIDs
             return s.ToString();
         }
 
-        private string GetAnswerCard(HtmlNode node)
+        /*private string GetAnswerCard(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='r']/a");
@@ -1257,12 +1257,12 @@ namespace WPFMultiThreadJobIDs
                 nds = node.SelectNodes(".//div[@class='WcS13d']|.//div[@class='V3FYCf']");//04-12-2023 //removed /a //05-10-2020 included selector for missing classic links
             if (nds == null)
                 return string.Empty;
-
+           
             foreach (HtmlNode nd in nds)
             {
                 //05-10-2020
                 string title = "";
-
+                
                 HtmlNodeCollection nds1 = nd.SelectNodes(".//h3|.//div[@class='wKZW5d']"); //23-12-2021
                 if (nds1 != null)
                 {
@@ -1281,9 +1281,9 @@ namespace WPFMultiThreadJobIDs
                 //end 05-10-2020
             }
             return s.ToString();
-        }
+        }*/
 
-        /*private string GetAnswerCard(HtmlNode node)//07-03-2024
+        private string GetAnswerCard(HtmlNode node)//07-03-2024
         {
             StringBuilder s = new StringBuilder();
             string desc = string.Empty;
@@ -1303,7 +1303,7 @@ namespace WPFMultiThreadJobIDs
                 {
                     desc += l.InnerText + "\\n";//12-03-2024
                 }
-                desc = desc.Remove(desc.Length - 1);
+                desc = desc.Remove(desc.Length - 1) + "n";
             }
             if (tbl)
             {
@@ -1334,7 +1334,7 @@ namespace WPFMultiThreadJobIDs
                     //desc = desc.Remove(desc.Length - 1);//12-03-2024
                 }
             }
-           else if(string.IsNullOrEmpty(desc))//20-03-2024
+            else if (string.IsNullOrEmpty(desc))//20-03-2024
             {
                 desc = node.SelectSingleNode(".//span[contains(@class, 'ILfuVd')]")?.InnerText ?? "";
             }//20-03-2024
@@ -1344,7 +1344,7 @@ namespace WPFMultiThreadJobIDs
                 SetTitle(title) + "\" description=\"" + SetTitle(desc) + "\" cardType=\"" + cardType + "\" />");
             s.Append("</block>");
             return s.ToString();
-        }//07-03-2024*/
+        }//07-03-2024
 
         private string GetTwitterCards(HtmlNode node)
         {

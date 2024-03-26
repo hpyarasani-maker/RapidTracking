@@ -602,9 +602,9 @@ namespace TrendingReceiving
             HtmlNode ac = doc.DocumentNode.SelectSingleNode(".//div[@class='ULSxyf a2qDab EyBRub']|.//div[@id='Odp5De']");//03-11-2023
             if (ac != null && ac.SelectSingleNode(".//div[contains(@class,'NhRr3b')]|.//div[@class='wDYxhc']") != null && ac.SelectSingleNode(".//g-scrolling-carousel") == null)//07-12-2023
             {
-                s.Append("<block type=\"answerCard\" url=\"\">");
+                //s.Append("<block type=\"answerCard\" url=\"\">");
                 s.Append(GetAnswerCard(ac));
-                s.Append("</block>");
+                //s.Append("</block>");
             }
             //30-09-2022 end for new code answer card
             HtmlNode hp = doc.DocumentNode.SelectSingleNode(".//div[@class='MaKSie']");//02-11-2023
@@ -741,9 +741,9 @@ namespace TrendingReceiving
                             }//19-09-2023
                             if (nd.SelectSingleNode(".//div[@class='ifM9O']") != null)//29-09-2023
                             {
-                                s.Append("<block type=\"answerCard\" url=\"\">");
+                                //s.Append("<block type=\"answerCard\" url=\"\">");
                                 s.Append(GetAnswerCard(nd));
-                                s.Append("</block>");
+                                //s.Append("</block>");
                                 continue;
                             }//29-09-2023
                             if (nd.SelectSingleNode(".//div[@jsname='wRSfy']") != null && nd.SelectSingleNode(".//div[@class='g']" +
@@ -988,10 +988,10 @@ namespace TrendingReceiving
                     s.Append(GetTwitterCards(node));
                     break;
                 case "answercard":
-                    s.Append("<block type=\"answerCard\" url=\"\">");
+                    //s.Append("<block type=\"answerCard\" url=\"\">");
                     //get answer card urls;
                     s.Append(GetAnswerCard(node));
-                    s.Append("</block>");
+                    //s.Append("</block>");
                     break;
                 case "peoplealsoask":
                     s.Append("<block type=\"peopleAlsoAsk\" url=\"\">");

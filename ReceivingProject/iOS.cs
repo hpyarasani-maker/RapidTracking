@@ -709,7 +709,8 @@ namespace ReceivingProject
                             App2 = answernode.SelectNodes(".//div[@class='WLSb4b']");//23-06-2020
                         if (App2 != null)
                         {
-                            s.Append("<block type=\"answerCard\" url=\"\">");
+                            throw new Exception("Old Answer card block returned");//27-03-2024
+                            /*s.Append("<block type=\"answerCard\" url=\"\">");
                             foreach (HtmlNode nd in App2)
                             {
                                 string title = "";
@@ -723,7 +724,7 @@ namespace ReceivingProject
                                 s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                             }
 
-                            s.Append("</block>");
+                            s.Append("</block>");*/
                         }
                     }
                 }
@@ -1379,10 +1380,10 @@ namespace ReceivingProject
                     s.Append(GetTwitterCards(node));
                     break;
                 case "answercard":
-                    s.Append("<block type=\"answerCard\" url=\"\">");
+                    //s.Append("<block type=\"answerCard\" url=\"\">");
                     //get answer card urls;
                     s.Append(GetAnswerCard(node));
-                    s.Append("</block>");
+                    //s.Append("</block>");
                     break;
                 case "peoplealsoask":
                     s.Append("<block type=\"peopleAlsoAsk\" url=\"\">");

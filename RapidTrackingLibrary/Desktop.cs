@@ -2457,6 +2457,16 @@ namespace RapidTrackingLibrary
                 if (url.StartsWith("http:////") || url.StartsWith("https:////")) //18-09-2020 condition applied if appears http:////
                     url = url.Replace("////", "//"); //18-09-2020
 
+                if (url.Contains("adurl="))//28-03-2024
+                {
+                    int indx = url.LastIndexOf("http://");
+                    if (indx < 0)
+                    {
+                        indx = url.LastIndexOf("https://");
+                    }
+                    url = url.Remove(0, indx);
+                }//28-03-2024
+
                 if (url.Contains("&amp;grqid="))
                     url = url.Remove(url.IndexOf("&amp;grqid="));
 

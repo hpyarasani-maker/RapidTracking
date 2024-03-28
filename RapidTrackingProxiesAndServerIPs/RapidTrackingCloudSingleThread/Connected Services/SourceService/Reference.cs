@@ -90,6 +90,12 @@ namespace RapidTrackingCloudSingleThread.SourceService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetGoogleSource", ReplyAction="http://tempuri.org/IService1/GetGoogleSourceResponse")]
         System.Threading.Tasks.Task<string> GetGoogleSourceAsync(string seid, string keyword);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetBingSource", ReplyAction="http://tempuri.org/IService1/GetBingSourceResponse")]
+        string GetBingSource(string url, string userAgent);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetBingSource", ReplyAction="http://tempuri.org/IService1/GetBingSourceResponse")]
+        System.Threading.Tasks.Task<string> GetBingSourceAsync(string url, string userAgent);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetDataUsingDataContract", ReplyAction="http://tempuri.org/IService1/GetDataUsingDataContractResponse")]
         RapidTrackingCloudSingleThread.SourceService.CompositeType GetDataUsingDataContract(RapidTrackingCloudSingleThread.SourceService.CompositeType composite);
         
@@ -138,6 +144,14 @@ namespace RapidTrackingCloudSingleThread.SourceService {
         
         public System.Threading.Tasks.Task<string> GetGoogleSourceAsync(string seid, string keyword) {
             return base.Channel.GetGoogleSourceAsync(seid, keyword);
+        }
+        
+        public string GetBingSource(string url, string userAgent) {
+            return base.Channel.GetBingSource(url, userAgent);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetBingSourceAsync(string url, string userAgent) {
+            return base.Channel.GetBingSourceAsync(url, userAgent);
         }
         
         public RapidTrackingCloudSingleThread.SourceService.CompositeType GetDataUsingDataContract(RapidTrackingCloudSingleThread.SourceService.CompositeType composite) {

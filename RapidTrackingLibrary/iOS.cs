@@ -2093,7 +2093,8 @@ namespace RapidTrackingLibrary
                     nds = node.SelectNodes(".//div[@class='uR34qf dJMePd BmP5tf']/a");
                 if (nds == null)
                     nds = node.SelectNodes(".//g-card-section[contains(@class,'jDsVJf')]/a"); //27-10-2021
-
+                if (nds == null)
+                    nds = node.SelectNodes(".//div[@class='agqCtf tw-res']/g-image-section/a");//03-04-2024
                 if (nds != null)
                     foreach (HtmlNode nd in nds)
                     {

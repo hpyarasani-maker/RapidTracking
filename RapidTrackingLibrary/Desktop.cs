@@ -2425,7 +2425,7 @@ namespace RapidTrackingLibrary
 
         public string SetUrl(string url)
         {
-            if (string.IsNullOrEmpty(url)) return string.Empty; //25-08-2020
+            if (string.IsNullOrEmpty(url) || url.StartsWith("#")) return string.Empty;//05-04-2024
             try  //28-09-2020  try catch.
             {
                 //21-11-2019

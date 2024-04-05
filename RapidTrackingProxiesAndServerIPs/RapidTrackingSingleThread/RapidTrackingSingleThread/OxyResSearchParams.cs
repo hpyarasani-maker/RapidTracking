@@ -12,25 +12,26 @@ namespace RapidTrackingSingleThread
         {
             new SearchProperties()
             {
-                seid =1, country="cc-US", locale="en-us", uule="w+CAIQICINVW5pdGVkIFN0YXRlcw==",device="desktop"
+                seid =1, domain ="com", country="cc-US", locale="en-us", uule="w+CAIQICINVW5pdGVkIFN0YXRlcw==",device="desktop"
             },
             new SearchProperties()
             {
-                seid =58, country="cc-UK", locale= "en-gb",uule = "w+CAIQICIOVW5pdGVkIEtpbmdkb20=",device="desktop"
+                seid =58, domain ="co.uk", country="cc-UK", locale= "en-gb",uule = "w+CAIQICIOVW5pdGVkIEtpbmdkb20=",device="desktop"
             },
             new SearchProperties()
             {
-                seid =102, country="cc-US", locale="en-us", uule="w+CAIQICINVW5pdGVkIFN0YXRlcw==",device="mobile_android"
+                seid =102, domain ="com", country="cc-US", locale="en-us", uule="w+CAIQICINVW5pdGVkIFN0YXRlcw==",device="mobile_android"
             },
             new SearchProperties()
             {
-                seid =106, country="cc-UK", locale= "en-gb",uule = "w+CAIQICIOVW5pdGVkIEtpbmdkb20=",device="mobile_android"
+                seid =106, domain ="co.uk", country="cc-UK", locale= "en-gb",uule = "w+CAIQICIOVW5pdGVkIEtpbmdkb20=",device="mobile_android"
             },
         };
 
         public class SearchProperties
         {
             public int seid { get; set; }
+            public string domain { get; set; }
             public string country { get; set; }
             public string locale { get; set; }
             public string uule { get; set; }

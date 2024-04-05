@@ -2047,6 +2047,8 @@ namespace ReceivingProject
                     nds = node.SelectNodes(".//div[@class='uR34qf dJMePd BmP5tf']/a");
                 if (nds == null)
                     nds = node.SelectNodes(".//g-card-section[contains(@class,'jDsVJf')]/a"); //27-10-2021
+                if (nds == null)
+                    nds = node.SelectNodes(".//div[@class='agqCtf tw-res']/g-image-section/a");//03-04-2024
                 if (nds != null)
                     foreach (HtmlNode nd in nds)
                     {
@@ -2831,7 +2833,7 @@ namespace ReceivingProject
                             ts = false;
                     }
                 }
-                if (ts)
+                if (ts && node.SelectSingleNode(".//div[@class='imso-ml-c PZPZlf']|.//div[@class='Bv2VAe']|.//div[@jsname='GDPwke']|.//div[@id='imso-root']") == null)//04-04-2024//02-04-2024
                     return "Topstories";
             }
             if (node.SelectSingleNode(".//div[contains(@class, 'RPdfze')]") != null || (node.SelectSingleNode(".//div[contains(@class, 'Qkn3ie')]" +
@@ -3181,7 +3183,7 @@ namespace ReceivingProject
                 nd = node.SelectSingleNode(".//div[@class='Vvrpbd']");//05-12-2023
             if (nd != null)
             {
-                if (node.SelectSingleNode(".//div[@class='VPyzge']") == null && (node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']" +
+                if (node.SelectSingleNode(".//div[@class='VPyzge']|.//div[@class='aJegcc']") == null && (node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']" + //04-04-2024
                     "|.//div[@class='N60dNb mfMhoc']|.//div[@jsmodel='vqHyhf']|.//div[@jsmodel='Wn3aEc']|.//div[@class='HdBr8']|.//div[@class='VKHL9c']" +
                     "|.//div[@class='IZE3Td']") != null))//02-02-2024//01-02-2024//15-12-2023
                     return "Images";
@@ -3625,6 +3627,16 @@ namespace ReceivingProject
 
                 if (url.StartsWith("http:////") || url.StartsWith("https:////")) //18-09-2020 condition applied if appears http:////
                     url = url.Replace("////", "//"); //18-09-2020
+
+                if (url.Contains("adurl="))//28-03-2024
+                {
+                    int indx = url.LastIndexOf("http://");
+                    if (indx < 0)
+                    {
+                        indx = url.LastIndexOf("https://");
+                    }
+                    url = url.Remove(0, indx);
+                }//28-03-2024
 
                 if (url.Contains("&amp;grqid="))
                     url = url.Remove(url.IndexOf("&amp;grqid="));

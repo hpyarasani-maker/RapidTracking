@@ -513,8 +513,8 @@ namespace RapidTrackingSingleClassicLinks
             Uri queryUri = new Uri("http://data.oxylabs.io/v1/queries/batch");
             //string username = "gpidatametrics";
             //string password = "sdV5X3fcX6";
-            string username = "piapp";
-            string password = "b5FCvgkjxx";
+            string username = "optreccs";
+            string password = "E7%nyS5g3ZoFCt";
             string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
             string[] keyword = { sp.query };
 

@@ -65,7 +65,7 @@ namespace RapidTrackingSingleThread
                 //string myDate = "2019-11-20";
 
 
-                string kwQry = "Exec [GetKeywords_Site] '" + myDate + "'";//08-04-2024
+                string kwQry = "[Tracking_DB_Keywords_Seid_102] '" + myDate + "'";
                 //string kwQry = "[Tracking_DB_Keywords_Seid_103p] '" + myDate + "'";               
                 //string kwQry = "[GetCommaKeywordsP] '" + myDate + "'";               
                 //string kwQry = "[Tracking_DB_Keywords_Seid_102_P] '" + myDate + "'"; //tracking previous date single keywords
@@ -85,7 +85,7 @@ namespace RapidTrackingSingleThread
                 foreach (string s in lstKWs.Items)
                 {
                     string seid = s.Split(':')[0];
-                    string kw = s.Split(':')[1] + ":" + s.Split(':')[2];
+                    string kw = s.Split(':')[1];
                     bool result = false;
                     try
                     {
@@ -456,7 +456,7 @@ namespace RapidTrackingSingleThread
                     {
                         comm.CommandTimeout = 0;
                         comm.CommandType = CommandType.StoredProcedure;
-                        comm.CommandText = "Insert_Dashboard_Data_Site";
+                        comm.CommandText = "Insert_dashboard_data";
                         comm.Parameters.Add("Date", SqlDbType.DateTime).Value = myDate;
                         comm.Parameters.Add("Name", SqlDbType.NVarChar).Value = keyword; //.Replace("'", "''");
                         comm.Parameters.Add("Seid", SqlDbType.Int).Value = seid;

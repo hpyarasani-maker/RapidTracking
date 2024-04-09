@@ -67,8 +67,6 @@
     <Compile Include="OxylabsProxiesSeeMore.cs" />
     <Compile Include="OxylabsProxies_Ads.cs" />
     <Compile Include="OxyParams.cs" />
-    <Compile Include="OxyResidentialProxies.cs" />
-    <Compile Include="OxyResSearchParams.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchParams.cs" />

@@ -161,7 +161,7 @@ namespace RapidTrackingResSingleThread
 
         public object SearchParams { get; private set; }
 
-        public string[] GetTop100Desktop(string keyword, int seid, out string ip, string domain, string locale, string uule)
+        public string[] GetTop100Desktop(string keyword,string country, int seid, out string ip, string domain, string locale, string uule)
         {
 
             ArrayList DesktopResult = new ArrayList();
@@ -193,7 +193,7 @@ namespace RapidTrackingResSingleThread
 
         }
         //----------------------------------------------- For Non Hotel Keywords -------------------------------------//
-        public string[] GetTop100Mobile(string keyword, int seid, out string ip, string domain, string locale, string uule)
+        public string[] GetTop100Mobile(string keyword, int seid,string country, out string ip, string domain, string locale, string uule)
         {
             ArrayList MobileResult = new ArrayList();
 

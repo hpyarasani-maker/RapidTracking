@@ -13,7 +13,7 @@ using System.Text;
 using Newtonsoft.Json.Linq;
 using System.Net.Http;
 
-namespace RapidTrackingResSingleThread
+namespace RapidTrackingMultiThreadFirstPageResIPs
 {
     class OxyResidentialProxies
     {
@@ -52,7 +52,7 @@ namespace RapidTrackingResSingleThread
                 req.CookieContainer = new CookieContainer();
                 req.Headers.Clear();
                 req.UseDefaultCredentials = true;
-                req.UserAgent = @"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36";
+                req.UserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 14_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) FxiOS/124.0 Mobile/15E148 Safari/605.1.15";
                 WebProxy proxy;
                 if (ip.Length <= 15)
                 {
@@ -107,13 +107,12 @@ namespace RapidTrackingResSingleThread
             {
                 ip = GetProxyIP(country);
                 ipaddress = ip;
-                //string session_id = new Random().Next().ToString();
                 Uri uri = new Uri(url);
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create(uri);
                 req.CookieContainer = new CookieContainer();
                 req.Headers.Clear();
                 req.UseDefaultCredentials = true;
-                req.UserAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 14_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) FxiOS/124.0 Mobile/15E148 Safari/605.1.15";
+                req.UserAgent = @"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36";
                 WebProxy proxy;
                 if (ip.Length <= 15)
                 {
@@ -175,14 +174,14 @@ namespace RapidTrackingResSingleThread
                     locale1[0] = locale1[0] + "-" + locale1[1];
                 }
                 //url = "" + googleurl + "" + domain + "/search?q=" + keyword + "&gl=" + locale1[2] + "&hl=" + locale1[0] + "&num=" + num + "&safe_search=" + safesearch + "&safe=" + safe + "&aomd=" + aomd + "&uule=" + uule + "&gs_l=" + device + "&gws_rd=ssl,cr";
-                url = "https://www.google." + domain + "/search?q=" + keyword + "&gl=" + locale1[2] + "&hl=" + locale1[0] + "&safe_search=0&safe=off&aomd=1" + "&uule=" + uule;
+                url = "https://www.google." + domain + "/search?q=" + keyword + "&gl=" + locale1[2] + "&hl=" + locale1[0] + "&safe_search=0&safe=off&aomd=1";
 
             }
 
             else if (locale1.Length == 2)
             {
                 //url = "" + googleurl + "" + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&num=" + num + "&safe_search=" + safesearch + "&safe=" + safe + "&aomd=" + aomd + "&uule=" + uule + "&gs_l=" + device + "&gws_rd=ssl,cr";
-                url = "https://www.google." + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&safe_search=0&safe=off&aomd=1" + "&uule=" + uule;
+                url = "https://www.google." + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&safe_search=0&safe=off&aomd=1";
 
             }
 
@@ -206,13 +205,13 @@ namespace RapidTrackingResSingleThread
                     locale1[0] = locale1[0] + "-" + locale1[1];
                 }
                 //url = "" + googleurl + "" + domain + "/search?q=" + keyword + "&gl=" + locale1[2] + "&hl=" + locale1[0] + "&num=" + num + "&safe_search=" + safesearch + "&safe=" + safe + "&aomd=" + aomd + "&uule=" + uule + "&gs_l=" + device + "-gws-serp.3.0&gws_rd=ssl,cr";
-                url = "https://www.google." + domain + "/search?q=" + keyword + "&gl=" + locale1[2] + "&hl=" + locale1[0] + "&safe_search=0&safe=off&aomd=1";
+                url = "https://www.google." + domain + "/search?q=" + keyword + "&gl=" + locale1[2] + "&hl=" + locale1[0] + "&safe_search=0&safe=off&aomd=1" + "&uule=" + uule;
 
             }
             else if (locale1.Length == 2)
             {
                 //url = "" + googleurl + "" + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&num=" + num + "&safe_search=" + safesearch + "&safe=" + safe + "&aomd=" + aomd + "&uule=" + uule + "&gs_l=" + device + "-gws-serp.3.0&gws_rd=ssl,cr";
-                url = "https://www.google." + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&safe_search=0&safe=off&aomd=1";
+                url = "https://www.google." + domain + "/search?q=" + keyword + "&gl=" + locale1[1] + "&hl=" + locale1[0] + "&safe_search=0&safe=off&aomd=1" + "&uule=" + uule;
 
             }
 

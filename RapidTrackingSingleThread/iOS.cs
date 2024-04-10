@@ -278,7 +278,7 @@ namespace RapidTrackingSingleThread
                     foreach (HtmlNode nd in col)
                     {
                         var url = nd.Attributes["href"].Value.Trim();
-                        url = GetRedirectedUrl(url);
+                        url = GetRedirectedUrl_TextAds(url);//10-04-2024
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(nd.InnerText) + "\" />");
                     }
                 }
@@ -326,7 +326,7 @@ namespace RapidTrackingSingleThread
                                 foreach (HtmlNode nd in cl)
                                 {
                                     var url = nd.Attributes["href"].Value;
-                                    url = GetRedirectedUrl(url);
+                                    url = GetRedirectedUrl_TextAds(url);//10-04-2024
                                     if (!string.IsNullOrEmpty(nd.SelectSingleNode(".//h4|.//div[contains(@class,'bXPcId pymv4e')]").InnerText) && !string.IsNullOrEmpty(url.Trim())) //04-11-2022   //13-11-2019
                                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(nd.SelectSingleNode(".//h4|.//div[contains(@class,'bXPcId pymv4e')]").InnerText) + "\" />");//05-01-2023
                                 }
@@ -562,7 +562,7 @@ namespace RapidTrackingSingleThread
                                     foreach (HtmlNode nd in cl)
                                     {
                                         var url = nd.Attributes["href"].Value;
-                                        url = GetRedirectedUrl(url);
+                                        url = GetRedirectedUrl_TextAds(url);//10-04-2024
                                         //25-06-2020
                                         string title;
                                         if (nd.SelectSingleNode(".//h4") != null)
@@ -3645,7 +3645,10 @@ namespace RapidTrackingSingleThread
                     {
                         indx = url.LastIndexOf("https://");
                     }
-                    url = url.Remove(0, indx);
+                    if (indx > 0) //10-04-2024
+                    {
+                        url = url.Remove(0, indx);
+                    }//10-04-2024
                 }//28-03-2024
 
                 if (url.Contains("&amp;grqid="))

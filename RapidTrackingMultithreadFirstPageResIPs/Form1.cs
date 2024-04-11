@@ -1,0 +1,1145 @@
+﻿using System;
+using System.Windows.Forms;
+using System.Data.SqlClient;
+using System.Text;
+using System.IO;
+using System.Threading;
+using System.Net;
+using System.Data;
+using System.Xml;
+
+namespace RapidTrackingMultithreadFirstPageResIPs
+{
+    public partial class Form1 : Form
+    {
+        //ServerIP server0 = new ServerIP();
+        OxyResidentialProxies server0 = new OxyResidentialProxies();
+
+        string xmlPath1 = "C:\\inetpub\\wwwroot\\RapidTrackingFirstPage_1_GT0.xml";
+        string xmlPath2 = "C:\\inetpub\\wwwroot\\RapidTrackingFirstPage_2_GT0.xml";
+        string xmlPath3 = "C:\\inetpub\\wwwroot\\RapidTrackingFirstPage_3_GT0.xml";
+
+        string strCon = string.Empty;
+        string liveurl = string.Empty;
+        public string myDate = string.Empty;
+        static Random rd = new Random();
+        System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+        bool process1 = false;
+        bool process2 = false;
+        bool process3 = false;
+        public Form1()
+        {
+            InitializeComponent();
+            //TimerExit();
+            strCon = Common.ReadConnection();
+            liveurl = Common.ReadAPI();
+        }
+
+        void TimerExit()
+        {
+            timer.Interval = 60 * 60000;
+            timer.Tick += new EventHandler(Timer_Tick);
+            timer.Start();
+        }
+
+        void Timer_Tick(object sender, EventArgs e)
+        {
+            timer.Stop();
+            Environment.Exit(Environment.ExitCode);
+        }
+
+        
+
+        public void GenerateWorklist2()
+        {
+            worklist1.Invoke((MethodInvoker)(delegate ()
+            {
+                worklist1.Items.Clear();
+                //worklist1.Items.Add("102:donald trump");
+            }));
+            Cursor.Current = System.Windows.Forms.Cursors.WaitCursor;
+            date_picker.Format = DateTimePickerFormat.Custom;
+            date_picker.CustomFormat = "yyyy-MM-dd";
+            myDate = date_picker.Text;
+            //return;
+           
+            string strSql = "Exec GetKeywords '" + myDate + "',1";
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
+                {
+                    con.Open();
+                    using (SqlCommand comm = new SqlCommand(strSql, con))
+                    {
+                        comm.CommandTimeout = 0;
+                        using (SqlDataReader dr = comm.ExecuteReader(CommandBehavior.CloseConnection))
+                        {
+                            while (dr.Read())
+                            {
+                                this.Invoke((MethodInvoker)delegate ()
+                                {
+                                    worklist1.Items.Add(dr[0].ToString() + ":" + dr[1].ToString());
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                string errMsg = "Database Connection is temporarily not working\n" + ex.ToString();
+                errorList.Invoke((MethodInvoker)(delegate ()
+                {
+                    errorList.Items.Add(errMsg);
+                }));
+
+            }
+            catch (Exception ex)
+            {
+                errorList.Invoke((MethodInvoker)(delegate ()
+                {
+                    errorList.Items.Add(ex.ToString());
+                }));
+            }
+            finally
+            {
+              
+            }
+        }
+
+        public void GenerateWorklist6()
+        {
+            worklist2.Invoke((MethodInvoker)(delegate ()
+            {
+                worklist2.Items.Clear();
+            }));
+
+            Cursor.Current = System.Windows.Forms.Cursors.WaitCursor;
+            date_picker.Format = DateTimePickerFormat.Custom;
+            date_picker.CustomFormat = "yyyy-MM-dd";
+            myDate = date_picker.Text;
+            //return;
+
+            string strSql = "Exec GetKeywords '" + myDate + "',2";
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
+                {
+                    con.Open();
+                    using (SqlCommand comm = new SqlCommand(strSql, con))
+                    {
+                        comm.CommandTimeout = 0;
+                        using (SqlDataReader dr = comm.ExecuteReader(CommandBehavior.CloseConnection))
+                        {
+                            while (dr.Read())
+                            {
+                                this.Invoke((MethodInvoker)delegate ()
+                                {
+                                    worklist2.Items.Add(dr[0].ToString() + ":" + dr[1].ToString());
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                string errMsg = "Database Connection is temporarily not working\n" + ex.ToString();
+                errorList.Invoke((MethodInvoker)(delegate ()
+                {
+                    errorList.Items.Add(errMsg);
+                }));
+
+            }
+            catch (Exception ex)
+            {
+                errorList.Invoke((MethodInvoker)(delegate ()
+                {
+                    errorList.Items.Add(ex.ToString());
+                }));
+            }
+            finally
+            {
+
+            }
+        }
+
+        public void GenerateWorklist12()
+        {
+            worklist3.Invoke((MethodInvoker)(delegate ()
+            {
+                worklist3.Items.Clear();
+            }));
+            Cursor.Current = System.Windows.Forms.Cursors.WaitCursor;
+            date_picker.Format = DateTimePickerFormat.Custom;
+            date_picker.CustomFormat = "yyyy-MM-dd";
+            myDate = date_picker.Text;
+            //return;
+            //string strSql = "exec [dbo].[GetKeywordsAdult_3] '" + myDate + "'";
+
+            //string strSql = "exec [dbo].[GetAllKeywords_ServerIps_3] '" + myDate + "'";
+            string strSql = "Exec GetKeywords '" + myDate + "',3";
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
+                {
+                    con.Open();
+                    using (SqlCommand comm = new SqlCommand(strSql, con))
+                    {
+                        comm.CommandTimeout = 0;
+                        using (SqlDataReader dr = comm.ExecuteReader(CommandBehavior.CloseConnection))
+                        {
+                            while (dr.Read())
+                            {
+                                this.Invoke((MethodInvoker)delegate ()
+                                {
+                                    worklist3.Items.Add(dr[0].ToString() + ":" + dr[1].ToString());
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                string errMsg = "Database Connection is temporarily not working\n" + ex.ToString();
+                errorList.Invoke((MethodInvoker)(delegate ()
+                {
+                    errorList.Items.Add(errMsg);
+                }));
+
+            }
+            catch (Exception ex)
+            {
+                errorList.Invoke((MethodInvoker)(delegate ()
+                {
+                    errorList.Items.Add(ex.ToString());
+                }));
+            }
+            finally
+            {
+
+            }
+        }
+
+        public int GetWorklistSize2()
+        {
+            int worklistSize = worklist1.Items.Count;
+            return worklistSize;
+        }
+
+        public int GetWorklistSize6()
+        {
+            int worklistSize = worklist2.Items.Count;
+            return worklistSize;
+        }
+
+        public int GetWorklistSize12()
+        {
+            int worklistSize = worklist3.Items.Count;
+            return worklistSize;
+        }
+
+        public void ProcessResults2(string seid, string kn)
+        {
+            
+            int mseconds = rd.Next(20, 30) * 1000;
+            string[] seresults = new string[1];
+            date_picker.Format = DateTimePickerFormat.Custom;
+            date_picker.CustomFormat = "yyyy-MM-dd";
+            string myDate = date_picker.Text;
+
+            try
+            {
+                seresults = server0.GetTop100(kn, int.Parse(seid), out string ip);
+                string tName = Thread.CurrentThread.Name;
+                this.Invoke((MethodInvoker)(delegate ()
+                {
+                    iptxt_txt.Text += tName + ": " + seid + ", " + kn + ", \r\nIP: " + ip + ",  " + DateTime.Now.ToString() + "\r\n\r\n";
+                }));
+            }
+            catch (WebException ex)
+            {
+                results1.Invoke((MethodInvoker)(delegate ()
+                {
+                    results1.Items.Add(ex.Message);
+                    results1.Refresh();
+                }));
+                return;
+            }
+
+            results1.Invoke((MethodInvoker)(delegate ()
+            {
+                results1.Items.Clear();
+            }));
+            if (string.IsNullOrEmpty(seresults[0]) || seresults[0].Trim().StartsWith("Index was outside the bounds of the array"))
+            {
+                results1.Invoke((MethodInvoker)(delegate ()
+                {
+                    results1.Items.Add("no Result");
+                    results1.Refresh();
+                }));
+            }
+
+            if (int.Parse(seresults[1]) < 1)
+            {
+                results1.Invoke((MethodInvoker)(delegate ()
+                {
+                    results1.Items.Add("no Results");
+                    results1.Refresh();
+                }));
+            }
+            else if (seresults[1].ToString().Contains("Value cannot be null") || seresults[1].ToString().Trim().Contains("index was outside the bounds of the array"))
+            {
+                results1.Invoke((MethodInvoker)(delegate ()
+                {
+                    results1.Items.Add("no Results");
+                    results1.Refresh();
+                }));
+            }
+            else
+            {                
+                results1.Invoke((MethodInvoker)(delegate ()
+                {
+                    
+                }));
+                results1.Invoke((MethodInvoker)(delegate ()
+                {
+                    results1.Items.Add(seid + " " + kn);
+                    label1.Text = "Classic Links : " + (seresults[1]);
+                }));
+
+                if (myDate != "")
+                {
+                    try
+                    {
+                        int rescount1 = int.Parse(seresults[1]);
+                        if (rescount1 > 20)
+                        {
+                            SendToAPI1(seid, kn, seresults[0]);
+                            SendToDB(seid, kn, seresults[0], int.Parse(seresults[1]));
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        string error = ex.Message;
+                    }
+                }
+            }
+
+            this.Invoke((MethodInvoker)delegate ()
+            {
+                rnd_lbl4.Text = (mseconds / 1000).ToString() + " " + "seconds";
+            });
+            Thread.Sleep(mseconds); 
+
+        }
+
+        public void ProcessResults6(string seid, string kn)
+        {
+            int mseconds = rd.Next(20, 40) * 1000;
+            string[] seresults = new string[1];
+            date_picker.Format = DateTimePickerFormat.Custom;
+            date_picker.CustomFormat = "yyyy-MM-dd";
+            string myDate = date_picker.Text;
+
+            try
+            {
+                seresults = server0.GetTop100(kn, int.Parse(seid), out string ip);
+                string tName = Thread.CurrentThread.Name;
+                this.Invoke((MethodInvoker)(delegate ()
+                {
+                    iptxt_txt.Text += tName + ": " + seid + ", " + kn + ", \r\nIP: " + ip + ",  " + DateTime.Now.ToString() + "\r\n\r\n";
+                }));
+            }
+            catch (WebException ex)
+            {
+                results2.Invoke((MethodInvoker)(delegate ()
+                {
+                    results2.Items.Add(ex.Message);
+                    results2.Refresh();
+                }));
+                return;
+            }
+
+            results2.Invoke((MethodInvoker)(delegate ()
+            {
+                results2.Items.Clear();
+            }));
+            if (string.IsNullOrEmpty(seresults[0]) || seresults[0].Trim().StartsWith("Index was outside the bounds of the array"))
+            {
+                results1.Invoke((MethodInvoker)(delegate ()
+                {
+                    results2.Items.Add("no Results");
+                    results2.Refresh();
+                }));
+
+            }
+
+            if (int.Parse(seresults[1]) < 1)
+            {
+                results2.Invoke((MethodInvoker)(delegate ()
+                {
+                    results2.Items.Add("no Results");
+                    results2.Refresh();
+                }));
+            }
+            else if (seresults[1].ToString().Contains("Value cannot be null") || seresults[1].ToString().Trim().Contains("index was outside the bounds of the array"))
+            {
+                results2.Invoke((MethodInvoker)(delegate ()
+                {
+                    results2.Items.Add("no Results");
+                    results2.Refresh();
+                }));
+
+            }
+            else
+            {
+                results2.Invoke((MethodInvoker)(delegate ()
+                {
+                    
+                }));
+
+                results2.Invoke((MethodInvoker)(delegate ()
+                {
+                    results2.Items.Add(seid + " " + kn);
+                    label2.Text = "Classic Links : " + (seresults[1]);
+
+                }));
+            }
+
+            if (myDate != "")
+            {
+                try
+                {
+                    int rescount2 = int.Parse(seresults[1]);
+                    if (rescount2 > 20)
+                    {
+                        SendToAPI2(seid, kn, seresults[0]);
+                        SendToDB(seid, kn, seresults[0], int.Parse(seresults[1]));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    string error1 = ex.Message;
+                }
+            }
+
+            this.Invoke((MethodInvoker)delegate ()
+            {
+                rnd_lbl5.Text = (mseconds / 1000).ToString() + " " + "seconds";
+            });
+            Thread.Sleep(mseconds);
+        }
+
+
+        public void ProcessResults12(string seid, string kn)
+        {
+            int mseconds = rd.Next(20, 50) * 1000;
+            string[] seresults = new string[1];
+            date_picker.Format = DateTimePickerFormat.Custom;
+            date_picker.CustomFormat = "yyyy-MM-dd";
+            string myDate = date_picker.Text;
+
+            try
+            {
+                seresults = server0.GetTop100(kn, int.Parse(seid), out string ip);
+                string tName = Thread.CurrentThread.Name;
+                this.Invoke((MethodInvoker)(delegate ()
+                {
+                    iptxt_txt.Text += tName + ": " + seid + ", " + kn + ", \r\nIP: " + ip + ",  " + DateTime.Now.ToString() + "\r\n\r\n";
+                }));
+            }
+            catch (WebException ex)
+            {
+                results3.Invoke((MethodInvoker)(delegate ()
+                {
+                    results3.Items.Add(ex.Message);
+                    results3.Refresh();
+                }));
+                return;
+            }
+
+            results3.Invoke((MethodInvoker)(delegate ()
+            {
+                results3.Items.Clear();
+            }));
+            if (string.IsNullOrEmpty(seresults[0]) || seresults[0].Trim().StartsWith("Index was outside the bounds of the array"))
+            {
+                results3.Invoke((MethodInvoker)(delegate ()
+                {
+                    results3.Items.Add("no result.");
+                    results3.Refresh();
+                }));
+
+            }
+
+            if (int.Parse(seresults[1]) < 1)
+            {
+                results3.Invoke((MethodInvoker)(delegate ()
+                {
+                    results3.Items.Add("no Results");
+                    results3.Refresh();
+                }));
+            }
+            else if (seresults[1].ToString().Contains("Value cannot be null") || seresults[1].ToString().Trim().Contains("index was outside the bounds of the array"))
+            {
+                results3.Invoke((MethodInvoker)(delegate ()
+                {
+                    results3.Items.Add("no Results.");
+                    results3.Refresh();
+                }));
+            }
+            else
+            {
+                results3.Invoke((MethodInvoker)(delegate ()
+                {
+                    
+                }));
+
+                results3.Invoke((MethodInvoker)(delegate ()
+                {
+                    results3.Items.Add(seid + " " + kn);
+                    label3.Text = "Classic Links : " + (seresults[1]);
+                }));
+
+                if (myDate != "")
+                {
+                    try
+                    {
+                        int rescount3 = int.Parse(seresults[1]);
+                        if (rescount3 > 20)
+                        {
+                            SendToAPI3(seid, kn, seresults[0]);
+                            SendToDB(seid, kn, seresults[0], int.Parse(seresults[1]));
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        string error2 = ex.Message;
+                    }
+                }
+            }
+
+            this.Invoke((MethodInvoker)delegate ()
+            {
+                rnd_lbl6.Text = (mseconds / 1000).ToString() + " " + "seconds";
+            });
+            Thread.Sleep(mseconds);
+        }
+
+        public void ProcessWorklist2()
+        {
+            string resultsString;
+            char sep;
+            Array resultsArray;
+            string seid;
+            string kn;
+
+            try
+            {
+                for (int i = 0; i < worklist1.Items.Count; i++)
+                {
+                    // get next Project ID, Search Engine ID, Keyword ID and Keyword from worklist
+                    resultsString = worklist1.Items[i].ToString();
+                    sep = ':';
+                    resultsArray = resultsString.Split(sep);
+                    seid = resultsArray.GetValue(0).ToString();
+                    kn = resultsArray.GetValue(1).ToString();
+                    try
+                    {
+                        ProcessResults2(seid, kn);
+                       
+                    }
+                    catch (Exception ex)
+                    {
+                        txtError.Invoke((MethodInvoker)(delegate ()
+                        {
+                            txtError.Text += ex.Message.ToString() + ":" + DateTime.Now.ToString() + "\r\n";
+                        }));
+                    }
+
+                    // update progress label
+                    progress_seid2.Invoke((MethodInvoker)(delegate ()
+                    {
+                        progress_seid2.Text = "Completed : " + (i + 1) + " of " + worklist1.Items.Count;
+                        results1.Refresh();
+                        progress_seid2.Refresh();
+                    }));
+
+                }
+            }
+            catch (Exception ex)
+            {
+                string errorMsg = ex.ToString();
+                errorList.Invoke((MethodInvoker)(delegate ()
+                {
+                    errorList.Items.Add(errorMsg);
+                }));
+            }
+            process1 = true;
+            if (process1 && process2 && process3)
+                Environment.Exit(Environment.ExitCode);
+        }
+
+        public void ProcessWorklist6()
+        {
+            string resultsString;
+            char sep;
+            Array resultsArray;
+            string seid;
+            string kn;
+            try
+            {
+                for (int i = 0; i < worklist2.Items.Count; i++)
+                {
+                    // get next Project ID, Search Engine ID, Keyword ID and Keyword from worklist
+                    resultsString = worklist2.Items[i].ToString();
+                    sep = ':';
+                    resultsArray = resultsString.Split(sep);
+                    seid = resultsArray.GetValue(0).ToString();
+                    kn = resultsArray.GetValue(1).ToString();
+
+                    try
+                    {
+                        ProcessResults6(seid, kn);
+                    }
+                    catch (Exception ex)
+                    {
+                        txtError.Invoke((MethodInvoker)(delegate ()
+                        {
+                            txtError.Text += ex.Message.ToString() + ":" + DateTime.Now.ToString() + "\r\n";
+                        }));
+                    }
+
+                    // update progress label
+                    progress_seid6.Invoke((MethodInvoker)(delegate ()
+                    {
+                        progress_seid6.Text = "Completed : " + (i + 1) + " of " + worklist2.Items.Count;
+                        results2.Refresh();
+                        progress_seid6.Refresh();
+                    }));
+
+                }
+            }
+            catch (Exception ex)
+            {
+                string errorMsg = ex.ToString();
+                errorList.Invoke((MethodInvoker)(delegate ()
+                {
+                    errorList.Items.Add(errorMsg);
+                }));
+            }
+            process2 = true;
+            if (process1 && process2 && process3)
+                Environment.Exit(Environment.ExitCode);
+        }
+
+        public void ProcessWorklist12()
+        {
+            string resultsString;
+            char sep;
+            Array resultsArray;
+            string seid;
+            string kn;
+            try
+            {
+                for (int i = 0; i < worklist3.Items.Count; i++)
+                {
+                    // get next Project ID, Search Engine ID, Keyword ID and Keyword from worklist
+                    resultsString = worklist3.Items[i].ToString();
+                    sep = ':';
+                    resultsArray = resultsString.Split(sep);
+                    seid = resultsArray.GetValue(0).ToString();
+                    kn = resultsArray.GetValue(1).ToString();
+
+                    try
+                    {
+                        ProcessResults12(seid, kn);
+                    }
+                    catch (Exception ex)
+                    {
+                        txtError.Invoke((MethodInvoker)(delegate ()
+                        {
+                            txtError.Text += ex.Message.ToString() + ":" + DateTime.Now.ToString() + "\r\n";
+                        }));
+                    }
+                    progress_seid12.Invoke((MethodInvoker)(delegate ()
+                    {
+                        progress_seid12.Text = "Completed : " + (i + 1) + " of " + worklist3.Items.Count;
+                        results3.Refresh();
+                        progress_seid12.Refresh();
+                    }));
+                }
+            }
+            catch (Exception ex)
+            {
+                string errorMsg = ex.ToString();
+                errorList.Invoke((MethodInvoker)(delegate ()
+                {
+                    errorList.Items.Add(errorMsg);
+                }));
+            }
+            process3 = true;
+            if (process1 && process2 && process3)
+                Environment.Exit(Environment.ExitCode);
+        }
+
+        public void MainLoop2()
+        {
+            //generateWorklist2();
+            while (GetWorklistSize2() > 0)
+            {
+                ProcessWorklist2();
+                GenerateWorklist2();
+            }
+        }
+
+        public void MainLoop6()
+        {
+            Thread.Sleep(3000);
+
+            //generateWorklist6();
+            while (GetWorklistSize6() > 0)
+            {
+                ProcessWorklist6();
+                GenerateWorklist6();
+            }
+        }
+
+        public void MainLoop12()
+        {
+            Thread.Sleep(6000);
+
+            //generateWorklist12();
+            while (GetWorklistSize12() > 0)
+            {
+                ProcessWorklist12();
+                GenerateWorklist12();
+            }
+        }
+
+
+        //[STAThread]
+        //static void Main()
+        //{
+        //    Application.Run(new Form1());
+        //}
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            this.Invoke((MethodInvoker)(delegate ()
+            {
+                date_picker.Value = DateTime.Today;
+            }));
+
+            liveurl = Common.ReadAPI();
+
+            this.Invoke((MethodInvoker)(delegate ()
+            {
+                this.Text = "D_TrackingTrending_(1-2-3)_All_GT20_Proxies"; // Multithreads  Proxies
+
+                //this.Text = "D_TrackingTrending_(1-2-3)_GT20_Proxies"; 
+
+            }));
+
+            Thread myThread2 = new Thread(new ThreadStart(MainLoop2));
+            myThread2.Name = "Thread 1";
+            GenerateWorklist2();
+
+            if (GetWorklistSize2() > 0)
+            {
+                myThread2.Start();
+            }
+            else
+            {
+                myThread2.Abort();
+            }
+            
+            Thread myThread6 = new Thread(new ThreadStart(MainLoop6));
+            myThread6.Name = "Thread 2";
+            GenerateWorklist6();
+            if (GetWorklistSize6() > 0)
+            {
+                myThread6.Start();
+            }
+            else
+            {
+                myThread6.Abort();
+            }
+
+            Thread myThread12 = new Thread(new ThreadStart(MainLoop12));
+            myThread12.Name = "Thread 3";
+            GenerateWorklist12();
+            if (GetWorklistSize12() > 0)
+            {
+                myThread12.Start();
+            }
+            else
+            {
+                myThread12.Abort();
+            }
+        }
+
+        private void SendToAPI1(string seid, string kw, string res)
+        {
+            XmlDocument xd = new XmlDocument();
+            res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + res;
+            xd.LoadXml(res);
+            xd.Save(xmlPath1);
+
+            //SendToURL
+
+            string submitURL = Common.ReadAPI();
+
+            string user = "pisoftware";
+            string pwd = "r00t123456";
+            try
+            {
+                HttpWebRequest httpWReq = (HttpWebRequest)WebRequest.Create(submitURL);
+                httpWReq.UseDefaultCredentials = true;
+                httpWReq.PreAuthenticate = true;
+                httpWReq.Credentials = CredentialCache.DefaultCredentials;
+
+                Encoding encoding = new UTF8Encoding();
+                string postData = GetTextFromXMLFile(xmlPath1);
+                byte[] data = encoding.GetBytes(postData);
+
+                httpWReq.ProtocolVersion = HttpVersion.Version11;
+                httpWReq.Method = "POST";
+                httpWReq.ContentType = "application/x-www-form-urlencoded";
+
+
+                string auth = string.Format("{0}:{1}", user, pwd);
+                string enc = Convert.ToBase64String(Encoding.ASCII.GetBytes(auth));
+                string cred = string.Format("{0} {1}", "Basic", enc);
+
+
+                httpWReq.Headers[HttpRequestHeader.Authorization] = cred;
+                httpWReq.ContentLength = data.Length;
+                //httpWReq.Timeout = 0;
+
+                Stream stream = httpWReq.GetRequestStream();
+                stream.Write(data, 0, data.Length);
+                stream.Close();
+
+                HttpWebResponse response = (HttpWebResponse)httpWReq.GetResponse();
+                string s = response.ToString();
+                StreamReader reader = new StreamReader(response.GetResponseStream());
+                //System.Threading.Thread.Sleep(2000);
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    reader.Close();
+                    response.Close();
+                    throw new Exception(response.StatusCode + ": " + response.StatusDescription);
+                }
+
+                String xmlResponse = "";
+                String temp = null;
+                while ((temp = reader.ReadLine()) != null)
+                {
+                    xmlResponse += temp;
+                }
+                reader.Close();
+                response.Close();
+            }
+            catch (WebException ex)
+            {
+                string error = "";
+                string message = "";
+
+                using (WebResponse response = ex.Response)
+                {
+                    if (response != null)
+                    {
+                        HttpWebResponse httpResponse = (HttpWebResponse)response;
+                        error = string.Format("Error:{0}", httpResponse.StatusCode);
+
+                        using (Stream data = response.GetResponseStream())
+                        using (var reader = new StreamReader(data))
+                        {
+                            message = reader.ReadToEnd();
+                        }
+                    }
+                }
+
+                this.Invoke((MethodInvoker)delegate ()
+                {
+                    txtError.Text += ex.Message + "\r\n";
+                });
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error: " + ex.Message);
+            }
+        }
+        private void SendToAPI2(string seid, string kw, string res)
+        {
+            XmlDocument xd = new XmlDocument();
+            res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + res;
+            xd.LoadXml(res);
+            xd.Save(xmlPath2);
+
+            //SendToURL
+
+            string submitURL = Common.ReadAPI();
+
+            string user = "pisoftware";
+            string pwd = "r00t123456";
+            try
+            {
+                HttpWebRequest httpWReq = (HttpWebRequest)WebRequest.Create(submitURL);
+                httpWReq.UseDefaultCredentials = true;
+                httpWReq.PreAuthenticate = true;
+                httpWReq.Credentials = CredentialCache.DefaultCredentials;
+
+                Encoding encoding = new UTF8Encoding();
+                string postData = GetTextFromXMLFile(xmlPath2);
+                byte[] data = encoding.GetBytes(postData);
+
+                httpWReq.ProtocolVersion = HttpVersion.Version11;
+                httpWReq.Method = "POST";
+                httpWReq.ContentType = "application/x-www-form-urlencoded";
+
+
+                string auth = string.Format("{0}:{1}", user, pwd);
+                string enc = Convert.ToBase64String(Encoding.ASCII.GetBytes(auth));
+                string cred = string.Format("{0} {1}", "Basic", enc);
+
+
+                httpWReq.Headers[HttpRequestHeader.Authorization] = cred;
+                httpWReq.ContentLength = data.Length;
+                //httpWReq.Timeout = 0;
+
+                Stream stream = httpWReq.GetRequestStream();
+                stream.Write(data, 0, data.Length);
+                stream.Close();
+
+                HttpWebResponse response = (HttpWebResponse)httpWReq.GetResponse();
+                string s = response.ToString();
+                StreamReader reader = new StreamReader(response.GetResponseStream());
+                //System.Threading.Thread.Sleep(2000);
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    reader.Close();
+                    response.Close();
+                    throw new Exception(response.StatusCode + ": " + response.StatusDescription);
+                }
+
+                String xmlResponse = "";
+                String temp = null;
+                while ((temp = reader.ReadLine()) != null)
+                {
+                    xmlResponse += temp;
+                }
+                reader.Close();
+                response.Close();
+            }
+            catch (WebException ex)
+            {
+                string error = "";
+                string message = "";
+
+                using (WebResponse response = ex.Response)
+                {
+                    if (response != null)
+                    {
+                        HttpWebResponse httpResponse = (HttpWebResponse)response;
+                        error = string.Format("Error:{0}", httpResponse.StatusCode);
+
+                        using (Stream data = response.GetResponseStream())
+                        using (var reader = new StreamReader(data))
+                        {
+                            message = reader.ReadToEnd();
+                        }
+                    }
+                }
+
+                this.Invoke((MethodInvoker)delegate ()
+                {
+                    txtError.Text += ex.Message + "\r\n";
+                });
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error: " + ex.Message);
+            }
+
+        }
+        private void SendToAPI3(string seid, string kw, string res)
+        {
+            XmlDocument xd = new XmlDocument();
+            res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + res;
+            xd.LoadXml(res);
+            xd.Save(xmlPath3);
+
+            //SendToURL
+
+            string submitURL = Common.ReadAPI();
+
+            string user = "pisoftware";
+            string pwd = "r00t123456";
+            try
+            {
+                HttpWebRequest httpWReq = (HttpWebRequest)WebRequest.Create(submitURL);
+                httpWReq.UseDefaultCredentials = true;
+                httpWReq.PreAuthenticate = true;
+                httpWReq.Credentials = CredentialCache.DefaultCredentials;
+
+                Encoding encoding = new UTF8Encoding();
+                string postData = GetTextFromXMLFile(xmlPath3);
+                byte[] data = encoding.GetBytes(postData);
+
+                httpWReq.ProtocolVersion = HttpVersion.Version11;
+                httpWReq.Method = "POST";
+                httpWReq.ContentType = "application/x-www-form-urlencoded"; //charset=UTF-8";  
+
+
+                string auth = string.Format("{0}:{1}", user, pwd);
+                string enc = Convert.ToBase64String(Encoding.ASCII.GetBytes(auth));
+                string cred = string.Format("{0} {1}", "Basic", enc);
+
+
+                httpWReq.Headers[HttpRequestHeader.Authorization] = cred;
+                httpWReq.ContentLength = data.Length;
+                //httpWReq.Timeout = 0;
+
+                Stream stream = httpWReq.GetRequestStream();
+                stream.Write(data, 0, data.Length);
+                stream.Close();
+
+                HttpWebResponse response = (HttpWebResponse)httpWReq.GetResponse();
+                string s = response.ToString();
+                StreamReader reader = new StreamReader(response.GetResponseStream());
+                //System.Threading.Thread.Sleep(2000);
+
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    reader.Close();
+                    response.Close();
+                    throw new Exception(response.StatusCode + ": " + response.StatusDescription);
+                }
+
+                String xmlResponse = "";
+                String temp = null;
+                while ((temp = reader.ReadLine()) != null)
+                {
+                    xmlResponse += temp;
+                }
+                reader.Close();
+                response.Close();
+            }
+            catch (WebException ex)
+            {
+                string error = "";
+                string message = "";
+
+                using (WebResponse response = ex.Response)
+                {
+                    if (response != null)
+                    {
+                        HttpWebResponse httpResponse = (HttpWebResponse)response;
+                        error = string.Format("Error:{0}", httpResponse.StatusCode);
+
+                        using (Stream data = response.GetResponseStream())
+                        using (var reader = new StreamReader(data))
+                        {
+                            message = reader.ReadToEnd();
+                        }
+                    }
+                }
+                this.Invoke((MethodInvoker)delegate ()
+                {
+                    txtError.Text += ex.Message + "\r\n";
+                });
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error: " + ex.Message);
+            }
+
+        }
+        private void SendToDB(string seid, string keyword, string xml, int urlcount)
+        {
+            try
+            {
+                string myDate = DateTime.Today.ToString("yyyy-MM-dd");
+                using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
+                {
+                    con.Open();
+                    using (SqlCommand comm = con.CreateCommand())
+                    {
+                        comm.CommandTimeout = 0;
+                        comm.CommandType = CommandType.StoredProcedure;
+                        comm.CommandText = "Insert_Dashboard_Data";
+                        comm.Parameters.Add("date", SqlDbType.DateTime).Value = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"); ;
+                        comm.Parameters.Add("name", SqlDbType.NVarChar).Value = keyword;
+                        comm.Parameters.Add("Seid", SqlDbType.Int).Value = seid;
+                        comm.Parameters.Add("count", SqlDbType.Int).Value = urlcount;
+                        comm.Parameters.Add("XmlData", SqlDbType.Xml).Value = xml.Replace("'", "''");
+
+                        comm.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.Invoke((MethodInvoker)delegate ()
+                {
+                    txtError.Text += ex.Message + "\r\n";
+                });
+            }
+            finally { }
+        }
+
+
+        private string GetTextFromXMLFile(string file)
+        {
+            StreamReader reader = new StreamReader(file);
+            string ret = reader.ReadToEnd();
+            reader.Close();
+            return ret;
+        }
+
+
+        private void Process_btn_Click(object sender, EventArgs e)
+        {
+            Thread myThread2 = new Thread(new ThreadStart(MainLoop2));
+            GenerateWorklist2();
+
+            if (GetWorklistSize2() > 0)
+            {
+                myThread2.Start();
+            }
+            else
+            {
+                myThread2.Abort();
+            }
+
+            Thread myThread6 = new Thread(new ThreadStart(MainLoop6));
+            GenerateWorklist6();
+            if (GetWorklistSize6() > 0)
+            {
+                myThread6.Start();
+            }
+            else
+            {
+                myThread6.Abort();
+            }
+            Thread myThread12 = new Thread(new ThreadStart(MainLoop12));
+
+            GenerateWorklist12();
+            if (GetWorklistSize12() > 0)
+            {
+                myThread12.Start();
+            }
+            else
+            {
+                myThread12.Abort();
+            }
+        }
+    }
+}

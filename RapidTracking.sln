@@ -93,6 +93,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RapidTrackingSingleClassicL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RapidTrackingResSingleThread", "RapidTrackingResSingleThread\RapidTrackingResSingleThread.csproj", "{83B9D43D-F5E0-482C-91D2-60F47EF72206}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RapidTrackingMultithreadFirstPageResIPs", "RapidTrackingMultithreadFirstPageResIPs\RapidTrackingMultithreadFirstPageResIPs.csproj", "{3AB98B14-BC35-471A-AD3F-12C02CCC25CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -259,6 +261,10 @@ Global
 		{83B9D43D-F5E0-482C-91D2-60F47EF72206}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83B9D43D-F5E0-482C-91D2-60F47EF72206}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83B9D43D-F5E0-482C-91D2-60F47EF72206}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AB98B14-BC35-471A-AD3F-12C02CCC25CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AB98B14-BC35-471A-AD3F-12C02CCC25CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AB98B14-BC35-471A-AD3F-12C02CCC25CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AB98B14-BC35-471A-AD3F-12C02CCC25CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -285,6 +291,7 @@ Global
 		{6100DF28-FBC6-45F9-8BEC-A2813717B4A4} = {A9D7CFF3-4A81-4449-B858-4FF7F83D7ECA}
 		{5088ECFC-CAE5-4A68-A7B2-D408FF58D7E6} = {DA65E61C-3E12-4EE5-9B99-19DF8866C32F}
 		{83B9D43D-F5E0-482C-91D2-60F47EF72206} = {104B593A-3D64-46F5-8DA7-749FFFC06950}
+		{3AB98B14-BC35-471A-AD3F-12C02CCC25CF} = {104B593A-3D64-46F5-8DA7-749FFFC06950}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3CC0E919-BB8B-43E6-8485-F143616171A0}

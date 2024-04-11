@@ -21,7 +21,7 @@ namespace RapidTrackingMultithreadFirstPageResIPs
             this.seid = seid;//23-06-2023
             count = 0;
             if (doc == null) throw new Exception("No source found.");
-
+            //if (string.IsNullOrEmpty(doc.ToString())) return string.Empty;
             HtmlNode htmlNode = doc.DocumentNode.SelectSingleNode("//table[@id='mn']");
             if (htmlNode != null)
             {

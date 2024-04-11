@@ -331,7 +331,7 @@ namespace RapidTrackingMultithreadFirstPageResIPs
             {
                 rnd_lbl4.Text = (mseconds / 1000).ToString() + " " + "seconds";
             });
-            Thread.Sleep(mseconds); 
+            //Thread.Sleep(mseconds); 
 
         }
 
@@ -429,7 +429,7 @@ namespace RapidTrackingMultithreadFirstPageResIPs
             {
                 rnd_lbl5.Text = (mseconds / 1000).ToString() + " " + "seconds";
             });
-            Thread.Sleep(mseconds);
+            //Thread.Sleep(mseconds);
         }
 
 
@@ -525,7 +525,7 @@ namespace RapidTrackingMultithreadFirstPageResIPs
             {
                 rnd_lbl6.Text = (mseconds / 1000).ToString() + " " + "seconds";
             });
-            Thread.Sleep(mseconds);
+            //Thread.Sleep(mseconds);
         }
 
         public void ProcessWorklist2()

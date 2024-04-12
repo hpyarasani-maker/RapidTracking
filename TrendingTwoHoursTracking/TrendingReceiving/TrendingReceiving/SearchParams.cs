@@ -2949,6 +2949,10 @@ new SearchProperties() //start 25-02-2021
             {
                 seid =805, domain ="tt", geo_location="Trinidad and Tobago", locale= "en-tt", uule = "w+CAIQICITVHJpbmlkYWQgYW5kIFRvYmFnbw==",device="mobile_android"
             },//07-03-2024
+            new SearchProperties()//12-04-2024
+            {
+                seid =806, domain ="com.cy", geo_location="Famagusta,Cyprus", locale= "en-cy", uule = "w+CAIQICIQRmFtYWd1c3RhLEN5cHJ1cw==", device="mobile_android"
+            },//12-04-2024
         };
     }
 

@@ -2960,6 +2960,10 @@ new SearchProperties() //start 25-02-2021
             {
                 seid =802, domain ="co.uk", geo_location="Windsor,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIeV2luZHNvcixFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="mobile_android"
             },//21-02-2024
+            new SearchProperties()//12-04-2024
+            {
+                seid =806, domain ="com.cy", geo_location="Famagusta,Cyprus", locale= "en-cy", uule = "w+CAIQICIQRmFtYWd1c3RhLEN5cHJ1cw==", device="mobile_android"
+            },//12-04-2024
         };
     }
     class SearchProperties

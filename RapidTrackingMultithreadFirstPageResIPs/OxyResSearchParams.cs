@@ -26,6 +26,10 @@ namespace RapidTrackingMultithreadFirstPageResIPs
             {
                 seid =106, domain ="co.uk", country="cc-UK", locale= "en-gb",uule = "w+CAIQICIOVW5pdGVkIEtpbmdkb20=",device="mobile_android"
             },
+            new SearchProperties()//12-04-2024
+            {
+                seid =806, domain ="com.cy", geo_location="Famagusta,Cyprus", locale= "en-cy", uule = "w+CAIQICIQRmFtYWd1c3RhLEN5cHJ1cw==", device="mobile_android"
+            },//12-04-2024
         };
 
         public class SearchProperties

@@ -270,7 +270,7 @@ namespace RapidMissingJobsReceiving
                     foreach (HtmlNode nd in col)
                     {
                         var url = nd.Attributes["href"].Value.Trim();
-                        url = GetRedirectedUrl(url);
+                        url = GetRedirectedUrl_TextAds(url);//10-04-2024
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(nd.InnerText) + "\" />");
                     }
                 }
@@ -318,7 +318,7 @@ namespace RapidMissingJobsReceiving
                                 foreach (HtmlNode nd in cl)
                                 {
                                     var url = nd.Attributes["href"].Value;
-                                    url = GetRedirectedUrl(url);
+                                    url = GetRedirectedUrl_TextAds(url);//10-04-2024
                                     if (!string.IsNullOrEmpty(nd.SelectSingleNode(".//h4|.//div[contains(@class,'bXPcId pymv4e')]").InnerText) && !string.IsNullOrEmpty(url.Trim())) //04-11-2022   //13-11-2019
                                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(nd.SelectSingleNode(".//h4|.//div[contains(@class,'bXPcId pymv4e')]").InnerText) + "\" />");//05-01-2023
                                 }
@@ -554,7 +554,7 @@ namespace RapidMissingJobsReceiving
                                     foreach (HtmlNode nd in cl)
                                     {
                                         var url = nd.Attributes["href"].Value;
-                                        url = GetRedirectedUrl(url);
+                                        url = GetRedirectedUrl_TextAds(url);//10-04-2024
                                         //25-06-2020
                                         string title;
                                         if (nd.SelectSingleNode(".//h4") != null)
@@ -2946,7 +2946,7 @@ namespace RapidMissingJobsReceiving
                 // if (node.SelectSingleNode(".//div[@class='FEoF4d']") == null && node.SelectSingleNode(".//div[@class='PZPZlf hb8SAc']") == null) //15-09-2022 //24-11-2022 commented
                 if (node.SelectSingleNode(".//div[@class='FEoF4d']|.//div[@class='kno-rdesc']|.//div[contains(@class,'rbR0cd')]" +
                     "|.//div[@class='knowledge-finance-wholepage-chart__fw-uch']|.//div[@class='WFxqwc']|.//div[@class='KrvXD']" +
-                    "|.//div[@class='hoJlSb']|.//div[@class='Vo9TVc nG7hRb']|.//div[@jsname='xQjRM']") == null)//14-02-2024//06-02-2024//05-02-2024//07-12-2023//08-11-2023 //23-09-2023 //24-11-2022
+                   "|.//div[@class='hoJlSb']|.//div[@class='Vo9TVc nG7hRb']|.//div[@jsname='xQjRM']|.//div[@class='x3SAYd']|.//div[@class='XNfAUb']") == null)//15-04-2024//10-04-2024//14-02-2024//06-02-2024//05-02-2024//07-12-2023//08-11-2023 //23-09-2023 //24-11-2022
                     return "AnswerCard";
             }
 
@@ -3048,7 +3048,7 @@ namespace RapidMissingJobsReceiving
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='IbDT9d q8U8x aTI8gc RES9jf']"); //17-02-2022
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='IEBeid']|.//g-img[@class='o8ebK']|.//div[@class='KrvXD']|.//div[@class='hoJlSb']");//05-02-2024//16-09-2022//10-05-2022 //04-03-2022
+                nd = node.SelectSingleNode(".//div[@class='IEBeid']|.//g-img[@class='o8ebK']|.//div[@class='KrvXD']|.//div[@class='hoJlSb']|.//div[@class='x3SAYd']");//10-04-2024//05-02-2024//16-09-2022//10-05-2022 //04-03-2022
             if (nd != null)
             {
                 if (nd.SelectSingleNode(".//div[@jsname='r4nke']") == null)//27-07-2022
@@ -3598,7 +3598,7 @@ namespace RapidMissingJobsReceiving
 
         public string SetUrl(string url)
         {
-            if (string.IsNullOrEmpty(url)) return string.Empty; //24-08-2020
+            if (string.IsNullOrEmpty(url) || url.StartsWith("#")) return string.Empty;//05-04-2024 //24-08-2020
             try  //28-09-2020  try catch.
             {
                 //21-11-2019
@@ -3638,7 +3638,10 @@ namespace RapidMissingJobsReceiving
                     {
                         indx = url.LastIndexOf("https://");
                     }
-                    url = url.Remove(0, indx);
+                    if (indx > 0) //10-04-2024
+                    {
+                        url = url.Remove(0, indx);
+                    }//10-04-2024
                 }//28-03-2024
 
                 if (url.Contains("&amp;grqid="))

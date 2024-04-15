@@ -65,6 +65,8 @@ namespace TrendingLoopReceiving
 
             foreach (HtmlNode node in nodeCol)
             {
+                if (node.Attributes["class"]?.Value?.Contains("Ww4FFb vt6azd DlUvEb") == true && node.SelectSingleNode(".//div[@class='lU8tTd']") != null)//05-04-2024
+                    continue;//05-04-2024
                 HtmlNode fsh = node.SelectSingleNode(".//*[@id='knowledge-finance-wholepage__fw-sticky-header']");
                 if (fsh != null)
                 {

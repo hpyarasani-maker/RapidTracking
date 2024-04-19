@@ -1980,6 +1980,12 @@ namespace RapidTrackingSingleThread
             HtmlNode a = node.SelectSingleNode(".//h3/a[contains(@class,'sXtWJb')]|.//h3/div/a[contains(@class,'sXtWJb')]|.//h3/div/span/a[contains(@class,'sXtWJb')]");
             string url = a?.Attributes["href"].Value ?? "";
             string title = a?.InnerText ?? "";
+            if (a == null)//19-04-2024
+            {
+                a = node.SelectSingleNode(".//div[@class='V3FYCf']/div[2]/a");
+                url = a?.Attributes["href"].Value ?? "";
+                title = a.SelectSingleNode(".//div[@class='erHJcf MBeuO']")?.InnerText ?? "";
+            }//19-04-2024
             HtmlNodeCollection ls = node.SelectNodes(".//ul/li|.//ol/li");
             if (ls == null)
             {

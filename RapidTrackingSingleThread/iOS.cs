@@ -2877,7 +2877,7 @@ namespace RapidTrackingSingleThread
             if (node.SelectSingleNode(".//div[@id='imso-root']") != null || node.SelectSingleNode(".//div[contains(@class,'tsp-view')]") != null //24-11-2020 for eventresults included contains func //node.SelectSingleNode(".//div[@class='tsp-view r-iDNua10DBk4I']") != null
                 || node.SelectSingleNode(".//div[@class='nA3Vyd SBFvB']") != null || node.SelectSingleNode(".//div[@class='nJXhWc nA3Vyd']") != null 
                 || node.SelectSingleNode(".//div[@class='AE4e7c']") != null || node.SelectSingleNode(".//div[@class='SBFvB']") != null //06-10-2021 Event block   //22-05-2020 included selector for event block
-                || node.SelectSingleNode(".//div[@class='imso-ml-c PZPZlf']|.//div[@class='RRXMad']|.//div[@jsname='GDPwke'] ") != null//22-09-2022 event block
+                || node.SelectSingleNode(".//div[@class='imso-ml-c PZPZlf']") != null//22-09-2022 event block
                 || node.SelectSingleNode(".//table[@class='vk_tbl Uekwlc']") != null) //22-04-2024
                 return "Event";
 

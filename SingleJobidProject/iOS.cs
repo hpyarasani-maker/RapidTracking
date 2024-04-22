@@ -1973,19 +1973,20 @@ namespace SingleJobidProject
             HtmlNode a = node.SelectSingleNode(".//h3/a[contains(@class,'sXtWJb')]|.//h3/div/a[contains(@class,'sXtWJb')]|.//h3/div/span/a[contains(@class,'sXtWJb')]");
             string url = a?.Attributes["href"].Value ?? "";
             string title = a?.InnerText ?? "";
+            string itemUrl = string.Empty;//22-04-2024
             if (a == null)//19-04-2024
             {
                 a = node.SelectSingleNode(".//div[@class='V3FYCf']/div[2]/a");
                 url = a?.Attributes["href"].Value ?? "";
-                title = a.SelectSingleNode(".//div[@class='erHJcf MBeuO']")?.InnerText ?? "";
+                title = a?.SelectSingleNode(".//div[@class='erHJcf MBeuO']")?.InnerText ?? "";//22-04-2024
             }//19-04-2024
             HtmlNodeCollection ls = node.SelectNodes(".//ul/li|.//ol/li");
             if (ls == null)
             {
-                HtmlNode list = node.SelectSingleNode(".//g-accordion");
+                HtmlNode list = node.SelectSingleNode(".//g-accordion|.//div[@class='n5o0ed']");//22-04-2024
                 if (list != null)
                 {
-                    ls = list.SelectNodes(".//span[@class='s2ZLHc']");
+                    ls = list.SelectNodes(".//span[@class='s2ZLHc']|.//span[contains(@class, 'vBnbff AmJ0Je')]");//22-04-2024
                 }
             }
             if (ls != null)
@@ -1993,9 +1994,11 @@ namespace SingleJobidProject
                 lst = true;
                 foreach (var l in ls)
                 {
-                    desc += l.InnerText + "\\n";//12-03-2024
+                    HtmlNode spn = l.SelectSingleNode(".//span[@class='cQp1Ab']");
+                    desc += (spn?.InnerText ?? l.InnerText) + "\\n";
+                    itemUrl += SetUrl(l.SelectSingleNode(".//a")?.Attributes["href"]?.Value) != "" ? SetUrl(l.SelectSingleNode(".//a")?.Attributes["href"]?.Value) + "\\n" : "";//22-04-2024
                 }
-                desc = desc.Remove(desc.Length - 1) + "n";
+                itemUrl = itemUrl.Remove(itemUrl.Length - 1) + "n";//22-04-2024
             }
             if (tbl)
             {
@@ -2032,7 +2035,7 @@ namespace SingleJobidProject
             }//20-03-2024
             string cardType = lst ? "list" : tbl ? "table" : video ? "video" : chrt ? "chart" : "text";
             s.Append("<block type=\"answerCard\" url=\"" + SetUrl(url) + "\" >");
-            s.Append("<item featureTitle=\"" + SetTitle(f_title) + "\" url=\"\" title=\"" +
+            s.Append("<item featureTitle=\"" + SetTitle(f_title) + "\" url=\"" + itemUrl + "\" title=\"" +//22-04-2024
                 SetTitle(title) + "\" description=\"" + SetTitle(desc) + "\" cardType=\"" + cardType + "\" />");
             s.Append("</block>");
             return s.ToString();
@@ -2843,7 +2846,7 @@ namespace SingleJobidProject
                             ts = false;
                     }
                 }
-                if (ts && node.SelectSingleNode(".//div[@class='imso-ml-c PZPZlf']|.//div[@class='Bv2VAe']|.//div[@jsname='GDPwke']|.//div[@id='imso-root']") == null)//04-04-2024//02-04-2024
+                if (ts && node.SelectSingleNode(".//div[@class='imso-ml-c PZPZlf']|.//div[@class='Bv2VAe']|.//div[@jsname='GDPwke']|.//div[@id='imso-root']|.//table[@class='vk_tbl Uekwlc']") == null)//22-04-2024//04-04-2024//02-04-2024
                     return "Topstories";
             }
             if (node.SelectSingleNode(".//div[contains(@class, 'RPdfze')]") != null || (node.SelectSingleNode(".//div[contains(@class, 'Qkn3ie')]" +
@@ -2867,7 +2870,8 @@ namespace SingleJobidProject
             if (node.SelectSingleNode(".//div[@id='imso-root']") != null || node.SelectSingleNode(".//div[contains(@class,'tsp-view')]") != null //24-11-2020 for eventresults included contains func //node.SelectSingleNode(".//div[@class='tsp-view r-iDNua10DBk4I']") != null
                 || node.SelectSingleNode(".//div[@class='nA3Vyd SBFvB']") != null || node.SelectSingleNode(".//div[@class='nJXhWc nA3Vyd']") != null
                 || node.SelectSingleNode(".//div[@class='AE4e7c']") != null || node.SelectSingleNode(".//div[@class='SBFvB']") != null //06-10-2021 Event block   //22-05-2020 included selector for event block
-                || node.SelectSingleNode(".//div[@class='imso-ml-c PZPZlf']") != null)//22-09-2022 event block
+                || node.SelectSingleNode(".//div[@class='imso-ml-c PZPZlf']") != null//22-09-2022 event block
+                || node.SelectSingleNode(".//table[@class='vk_tbl Uekwlc']") != null) //22-04-2024
                 return "Event";
 
             //swapped 19-03-2020            

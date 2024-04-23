@@ -38,7 +38,7 @@ namespace RapidTrackingLibrary
                 if (nodeCol != null)
                     nodeCol = nodeCol[nodeCol.Count - 1].SelectNodes("a/div");  //28-04-2020
                 if (nodeCol == null)//20-09-2023
-                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div[@class='MjjYud']/div|//div[@id='rso']/div[@class='MjjYud']/block-component|.//div[contains(@class,'TzHB6b')]");//22-09-2023//21-09-2023//20-09-2023
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div[@class='MjjYud']/div|//div[@id='rso']/div[@class='MjjYud']/block-component|//div[@id='rso']/div[@class='MjjYud']/c-wiz|.//div[contains(@class,'TzHB6b')]");//25-04-2024//22-09-2023//21-09-2023//20-09-2023
                 if (nodeCol == null || doc.DocumentNode.SelectNodes("//div[@class='WtZO4e']/div|//div[@classname='WtZO4e']/div")?.Count > 1)//25-09-2023
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-card|//div[@id='taw']/div[@class='med']/div[2]/div" +
                     "|//div[@id='rso']/nav|//div[@id='rso']/block-component/div|//div[contains(@id, 'arc-srp')]/div/div[@class='MjjYud']" +
@@ -2539,10 +2539,16 @@ namespace RapidTrackingLibrary
                     else
                         destination = dest?.InnerText.Substring(len).Trim(); // dest.InnerText.IndexOf(" to ") + 4).Trim();
                 }
-                catch { }
+                catch {
+                    dest = node.SelectSingleNode(".//div[@class='wHYlTd C5w57c']"); //25-04-2024
+                    int lenIndex = dest.GetDirectInnerText().IndexOf(" da ") >= 0 ? dest.GetDirectInnerText().IndexOf(" da ") + 4 : -1;//25-04-2024
+                    origin = lenIndex >= 0 ? dest?.GetDirectInnerText()?.Substring(lenIndex).Trim() : "";//25-05-2024
+                    lenIndex = origin.IndexOf("&nbsp;&middot;");//25-05-2025
+                    origin = !string.IsNullOrEmpty(origin) && lenIndex >= 0 ? origin.Substring(0, lenIndex) : origin;//25-04-2024
+                }
             }
             s.Append("<block type=\"flightPack\" url=\"\" title=\"\" origin=\"" + SetTitle(origin) + "\" destination=\"" + SetTitle(destination) + "\" >");
-            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='aieQre']/div/a|.//div[contains(@class,'LQQ1Bd')]/div/a|.//div[@class='qR29te']/div/a");//02-01-2024
+            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='aieQre']/div/a|.//div[contains(@class,'LQQ1Bd')]/div/a|.//div[@class='qR29te']/div/a|.//div[@jsname='VMmjWc']/div/a");//25-04-2024
             if (nds != null)
             {
                 foreach (HtmlNode nd in nds)
@@ -2550,7 +2556,7 @@ namespace RapidTrackingLibrary
                     try
                     {
                         //02-01-2024 start changes
-                        string airline = nd.SelectSingleNode(".//span[@class='ps0VMc']|.//div[@class='A4fsl']|.//div[@class='eqdsgd']|.//div[@class='ZhosBf MBI8Pd dctkEf']")?.InnerText.Trim() ?? "";
+                        string airline = nd.SelectSingleNode(".//span[@class='ps0VMc']|.//div[@class='A4fsl']|.//div[@class='eqdsgd']|.//div[@class='ZhosBf MBI8Pd dctkEf']|.//div[@class='WMTAoe']")?.InnerText.Trim() ?? "";//25-05-2024
                         string hours = nd.SelectSingleNode(".//span[@class='sRcB8']|.//div[@class='QTPlac']/span[2]")?.InnerText.Trim(); // ?? "0h 0m";
                         if (string.IsNullOrEmpty(hours))
                         {
@@ -2563,7 +2569,7 @@ namespace RapidTrackingLibrary
                             if (string.IsNullOrEmpty(hours))
                                 hours = "0h 0m";
                         }
-                        string connecting = nd.SelectSingleNode(".//span[@class='u85UCd']|.//div[@class='QTPlac']/span[1]")?.InnerText.Trim(); // ?? "";
+                        string connecting = nd.SelectSingleNode(".//span[@class='u85UCd']|.//div[@class='QTPlac']/span[1]|.//div[@class='vaaCdf']")?.InnerText.Trim(); // ?? "";//25-04-2024
                         if (string.IsNullOrEmpty(connecting))
                         {
                             connecting = nd.SelectSingleNode(".//div[@class='oYQBg v5K7qb ApHyTb cHaqb']")?.InnerText;

@@ -2701,14 +2701,18 @@ namespace RapidTrackingLibrary
         {
             StringBuilder s = new StringBuilder();
             s.Append("<block type=\"findResultsOn\" url=\"\">");
-            HtmlNodeCollection nds = node.SelectNodes(".//div/a[@class='dVjlWe']|.//div/a[@class='t2Yvdb']|.//div/a[@class='SsH3c']");
+            HtmlNodeCollection nds = node.SelectNodes(".//div/a[@class='dVjlWe']|.//div/a[@class='t2Yvdb']|.//div/a[@class='SsH3c']|.//div[@class='IF221e EXH1Ce']");//25-04-2024
             if (nds != null)
             {
                 foreach (var nd in nds)
                 {
                     string url = nd.Attributes["href"].Value;
-                    string source = nd.SelectSingleNode(".//span[@class='dsJOWd']|.//span[@class='izosSe']|.//span[@class='UhM1oe']")?.InnerText ?? "";
-                    string title = nd.SelectSingleNode(".//div[@class='NNFu9b nDgy9d']")?.InnerText ?? "";
+                    if (string.IsNullOrEmpty(url))//25-04-2024
+                    {
+                        url = nd.SelectSingleNode(".//a")?.Attributes["href"]?.Value ?? "";
+                    }//25-04-2024
+                    string source = nd.SelectSingleNode(".//span[@class='dsJOWd']|.//span[@class='izosSe']|.//span[@class='UhM1oe']|.//div[@class='cyspcb DH9lqb']/span")?.InnerText ?? "";//25-04-2024
+                    string title = nd.SelectSingleNode(".//div[@class='NNFu9b nDgy9d']|.//div[@class='VaiWld YiPTpf']")?.InnerText ?? "";//25-04-2024
                     s.Append("<item source=\"" + SetTitle(source) + "\" url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                 }
             }
@@ -2889,8 +2893,8 @@ namespace RapidTrackingLibrary
                 if (ts && node.SelectSingleNode(".//div[@class='imso-ml-c PZPZlf']|.//div[@class='Bv2VAe']|.//div[@jsname='GDPwke']|.//div[@id='imso-root']|.//table[@class='vk_tbl Uekwlc']") == null)//22-04-2024//04-04-2024//02-04-2024
                     return "Topstories";
             }
-             if (node.SelectSingleNode(".//div[contains(@class, 'RPdfze')]") != null || (node.SelectSingleNode(".//div[contains(@class, 'Qkn3ie')]" +
-                "|.//div[@class='lMMUFc']") != null && node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]" +
+            if (node.SelectSingleNode(".//div[contains(@class, 'RPdfze')]|.//div[@class='XNfAUb']") != null || (node.SelectSingleNode(".//div[contains(@class, 'Qkn3ie')]" +//25-04-2024
+   "|.//div[@class='lMMUFc']") != null && node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]" +
                 "|.//div[contains(@class,'WFxqwc')]|.//div[contains(@class,'PZPZlf')]" +
                 "|.//div[@class='KmNjGe Iu7yDc']") == null))//09-01-2024//08-01-2024//15-12-2023//28-11-2023//09-10-2023//22-09-2023//21-07-2023//07-07-2023
                 return "FindResultsOn";

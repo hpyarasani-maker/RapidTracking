@@ -2043,7 +2043,8 @@ namespace RapidTrackingLibrary
                     desc += (spn?.InnerText ?? l.InnerText) + "\\n";
                     itemUrl += SetUrl(l.SelectSingleNode(".//a")?.Attributes["href"]?.Value) != "" ? SetUrl(l.SelectSingleNode(".//a")?.Attributes["href"]?.Value) + "\\n" : "";//22-04-2024
                 }
-                itemUrl = itemUrl.Remove(itemUrl.Length - 1) + "n";//22-04-2024
+                if (!string.IsNullOrEmpty(itemUrl)) //24-04-2024
+                    itemUrl = itemUrl.Remove(itemUrl.Length - 1) + "n";//22-04-2024
             }
             if (tbl)
             {

@@ -1318,6 +1318,12 @@ namespace RapidTrackingLibrary
             HtmlNode a = node.SelectSingleNode(".//div[@class='yuRUbf']/a|.//div[@class='yuRUbf']/div/a|.//div[@class='yuRUbf']/div/span/a");
             string url = a?.Attributes["href"].Value ?? "";
             string title = node.SelectSingleNode(".//h3[contains(@class,'LC20lb')]")?.InnerText.Trim() ?? "";
+            if (a == null)//25-04-2024
+            {
+                a = node.SelectSingleNode(".//div[@class='V3FYCf']/div[2]/a|.//div[@class='V3FYCf']/div[3]/a");
+                url = a?.Attributes["href"].Value ?? "";
+                title = a?.SelectSingleNode(".//div[@class='erHJcf MBeuO']")?.InnerText ?? "";
+            }//25-04-2024
             HtmlNodeCollection ls = node.SelectNodes(".//ul/li|.//ol/li");
             if (ls != null)
             {

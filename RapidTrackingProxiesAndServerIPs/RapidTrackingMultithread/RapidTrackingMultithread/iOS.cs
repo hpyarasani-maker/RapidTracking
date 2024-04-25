@@ -40,7 +40,7 @@ namespace RapidTrackingMultithread
             if (nodeCol != null)
                 nodeCol = nodeCol[nodeCol.Count - 1].SelectNodes("a/div");  //28-04-2020
             if (nodeCol == null)//20-09-2023
-                nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div[@class='MjjYud']/div|//div[@id='rso']/div[@class='MjjYud']/block-component|.//div[contains(@class,'TzHB6b')]");//22-09-2023//21-09-2023//20-09-2023
+                nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div[@class='MjjYud']/div|//div[@id='rso']/div[@class='MjjYud']/block-component|//div[@id='rso']/div[@class='MjjYud']/c-wiz|.//div[contains(@class,'TzHB6b')]");//23-04-2024//22-09-2023//21-09-2023//20-09-2023
             if (nodeCol == null || doc.DocumentNode.SelectNodes("//div[@class='WtZO4e']/div|//div[@classname='WtZO4e']/div")?.Count > 1)//25-09-2023
                 nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-card|//div[@id='taw']/div[@class='med']/div[2]/div" +
                 "|//div[@id='rso']/nav|//div[@id='rso']/block-component/div|//div[contains(@id, 'arc-srp')]/div/div[@class='MjjYud']" +

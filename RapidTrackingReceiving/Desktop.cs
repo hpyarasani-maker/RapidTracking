@@ -527,7 +527,7 @@ namespace Oxylabs_BulkKeywords
             if (colt != null)
             {
                 HtmlNode pNode = colt.SelectSingleNode(".//div[@jscontroller='vWOOIe']|.//div[@id='tads']");//02-10-2023//30-06-2023
-                if (pNode != null && pla == null)//26-10-2023
+                if (pNode != null && pla == null && pNode.SelectSingleNode(".//div[contains(@class, 'commercial-unit-desktop-top')]") != null)//26-04-2024//26-10-2023
                 {
                     s.Append("<block type=\"productListedAds\" url=\"\">");
                     HtmlNodeCollection pNodes = pNode.SelectNodes(".//div[@class='ZPze1e']/a|.//g-inner-card[contains(@class,'B5kg8b')]/a");//02-10-2023
@@ -1676,19 +1676,23 @@ namespace Oxylabs_BulkKeywords
                         dest.InnerText.IndexOf(" nach ") >= 0 ? dest.InnerText.IndexOf(" nach ") :
                         dest.InnerText.IndexOf(" a ") >= 0 ? dest.InnerText.IndexOf(" a ") :
                         dest.InnerText.IndexOf("Vols ") >= 0 ? dest.InnerText.IndexOf("Vols ") : //23-02-2024
+                        dest.InnerText.IndexOf(" da ") >= 0 ? dest.InnerText.IndexOf(" da ") : //26-04-2024
+                        dest.InnerText.IndexOf(" per ") >= 0 ? dest.InnerText.IndexOf(" per ") : //26-04-2024
                         dest.InnerText.IndexOf(" à ") >= 0 ? dest.InnerText.IndexOf(" à ") : -1;//18-01-2024
                 if (lenIndex == -1)
                     lenIndex = dest.InnerText.IndexOf(" from ") >= 0 ? dest.InnerText.IndexOf(" from ") : -1;
                 origin = dest?.InnerText?.Substring(0, lenIndex).Trim(); // dest.InnerText.IndexOf(" to "));
-                if (origin.ToLower().Equals("flights") || origin.Equals("Flüge") || origin.Equals("Vols")) origin = string.Empty;//18-01-2024
+                if (origin.ToLower().Equals("flights") || origin.Equals("Flüge") || origin.Equals("Vols") || origin.Equals("Voli")) origin = string.Empty;//26-04-2024//18-01-2024
                 int len = dest.InnerText.IndexOf(" to ") >= 0 ? dest.InnerText.IndexOf(" to ") + 4 :
-                   dest.InnerText.IndexOf(" a ") >= 0 ? dest.InnerText.IndexOf(" a ") + 3 :
+                    dest.InnerText.IndexOf(" per ") >= 0 ? dest.InnerText.IndexOf(" per ") + 5 : //26-04-2024
+                    dest.InnerText.IndexOf(" a ") >= 0 ? dest.InnerText.IndexOf(" a ") + 3 :
                    dest.InnerText.IndexOf(" à ") >= 0 ? dest.InnerText.IndexOf(" à ") + 18 : -1;//18-01-2024
                 if (len == -1)
                 {
                     len = dest.InnerText.IndexOf(" from ") >= 0 ? dest.InnerText.IndexOf(" from ") + 6 :
                         dest.InnerText.IndexOf("Vols ") >= 0 ? dest.InnerText.IndexOf("Vols ") + 4 : //23-02-2024
                         dest.InnerText.IndexOf(" nach ") >= 0 ? dest.InnerText.IndexOf(" nach ") + 5 ://26-02-2024
+                        dest.InnerText.IndexOf(" da ") >= 0 ? dest.InnerText.IndexOf(" da ") + 4 ://26-04-2024
                         dest.InnerText.IndexOf(" von ") >= 0 ? dest.InnerText.IndexOf(" von ") + 5 : -1;  //01-12-2023;
                     origin = dest?.InnerText.Substring(len).Trim();
                 }
@@ -2098,7 +2102,9 @@ namespace Oxylabs_BulkKeywords
                 nd = node.SelectSingleNode(".//div[@class='wH6SXe']");//03-10-2023
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@jsmodel='Wn3aEc']");//16-01-2024
-            if (nd != null && node.Attributes["id"]?.Value != "Odp5De" && node.SelectSingleNode(".//div[@class='q6PGbe']|.//div[@class='l44Vof']|.//div[@class='P9Jfrb']|.//div[@class='o8ebK']|.//div[@class='ntKMYc']|.//img[starts-with(@alt,'Map of')]|.//div[@class='aJegcc']") == null)//01-02-2024//03-11-2023//06-12-2022//13-08-2022 maps //02-06-2022
+            if (nd != null && (node.SelectNodes(".//div[@jsname='dTDiAc']") != null || (node.Attributes["id"]?.Value != "Odp5De" &&
+                node.SelectSingleNode(".//div[@class='q6PGbe']|.//div[@class='l44Vof']|.//div[@class='P9Jfrb']|.//div[@class='o8ebK']" +
+                "|.//div[@class='ntKMYc']|.//img[starts-with(@alt,'Map of')]|.//div[@class='aJegcc']") == null)))//26-04-2024//01-02-2024//03-11-2023//06-12-2022//13-08-2022 maps //02-06-2022
             {
                 return "Images";
             }

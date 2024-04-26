@@ -2864,7 +2864,7 @@ namespace RapidTrackingJobIDResults
                 if (ts && node.SelectSingleNode(".//div[@class='imso-ml-c PZPZlf']|.//div[@class='Bv2VAe']|.//div[@jsname='GDPwke']|.//div[@id='imso-root']|.//table[@class='vk_tbl Uekwlc']") == null)//22-04-2024//04-04-2024//02-04-2024
                     return "Topstories";
             }
-            if (node.SelectSingleNode(".//div[contains(@class, 'RPdfze')]|.//div[@class='XNfAUb']") != null || (node.SelectSingleNode(".//div[contains(@class, 'Qkn3ie')]" +//23-04-2024
+            if (node.SelectSingleNode(".//div[contains(@class, 'RPdfze')]") != null || (node.SelectSingleNode(".//div[contains(@class, 'Qkn3ie')]" +//26-04-2024//23-04-2024
                 "|.//div[@class='lMMUFc']") != null && node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]" +
                 "|.//div[contains(@class,'WFxqwc')]|.//div[contains(@class,'PZPZlf')]" +
                 "|.//div[@class='KmNjGe Iu7yDc']") == null))//09-01-2024//08-01-2024//15-12-2023//28-11-2023//09-10-2023//22-09-2023//21-07-2023//07-07-2023

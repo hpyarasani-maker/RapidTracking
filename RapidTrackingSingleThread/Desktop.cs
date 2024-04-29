@@ -2510,7 +2510,10 @@ namespace RapidTrackingSingleThread
                     {
                         indx = url.LastIndexOf("https://");
                     }
-                    url = url.Remove(0, indx);
+                    if (indx > 0) //29-04-2024
+                    {
+                        url = url.Remove(0, indx);
+                    }//29-04-2024
                 }//28-03-2024
 
                 if (url.Contains("&amp;grqid="))

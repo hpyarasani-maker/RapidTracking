@@ -64,7 +64,7 @@
     </Compile>
     <Compile Include="iOS.cs" />
     <Compile Include="OxyResidentialProxies.cs" />
-    <Compile Include="OxyResSearchParams.cs" />
+    <Compile Include="SearchParams.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">

@@ -258,7 +258,7 @@ namespace RapidTrackingResSingleThread
         {
             string[] seresults = new string[1];
 
-            IEnumerable<OxyResSearchParams.SearchProperties> list = OxyResSearchParams.searches.ToList<OxyResSearchParams.SearchProperties>().Where(s => s.seid == seid);
+            IEnumerable<SearchParams.SearchProperties> list = SearchParams.searches.ToList<SearchParams.SearchProperties>().Where(s => s.seid == seid);
             string sip = string.Empty;
             foreach (var value in list)
             {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RapidTrackingMultithreadFirstPageResIPs
 {
-    public class OxyResSearchParams
+    public class SearchParams
     {
         public static IList<SearchProperties> searches = new List<SearchProperties>()
         {

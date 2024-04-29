@@ -484,7 +484,7 @@ namespace RapidTrackingMultithreadFirstPageResIPs
                 if (carousel != null)//07-12-2023 end
                 {
                     s.Append("<block type=\"carousel\" url=\"\">");
-                    //s.Append(GetCarousel(crNode));  // 23-10-2019
+                    s.Append(GetCarousel(carousel));//29-04-2024 uncommented  // 23-10-2019
                     s.Append("</block>");
                 }
             }
@@ -1876,7 +1876,7 @@ namespace RapidTrackingMultithreadFirstPageResIPs
             var val = ConvertNumber(value);
             if (val == null) return null;
             var res = Convertprice(val);
-            var locale = OxyResSearchParams.searches.FirstOrDefault(l => l.seid == seid).locale;
+            var locale = SearchParams.searches.FirstOrDefault(l => l.seid == seid).locale;
             var cs = new RegionInfo(locale).ISOCurrencySymbol;
             return string.Join(" ", cs, res);
         }//23-06-2023
@@ -2504,7 +2504,10 @@ namespace RapidTrackingMultithreadFirstPageResIPs
                     {
                         indx = url.LastIndexOf("https://");
                     }
-                    url = url.Remove(0, indx);
+                    if (indx > 0) //29-04-2024
+                    {
+                        url = url.Remove(0, indx);
+                    }//29-04-2024
                 }//28-03-2024
 
                 if (url.Contains("&amp;grqid="))

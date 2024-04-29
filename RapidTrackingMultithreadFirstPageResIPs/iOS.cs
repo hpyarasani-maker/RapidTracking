@@ -2732,7 +2732,7 @@ namespace RapidTrackingMultithreadFirstPageResIPs
             var val = ConvertNumber(value);
             if (val == null) return null;
             var res = Convertprice(val);
-            var locale = OxyResSearchParams.searches.FirstOrDefault(l => l.seid == seid).locale;
+            var locale = SearchParams.searches.FirstOrDefault(l => l.seid == seid).locale;
             var cs = new RegionInfo(locale).ISOCurrencySymbol;
             return string.Join(" ", cs, res);
         }//23-06-2023

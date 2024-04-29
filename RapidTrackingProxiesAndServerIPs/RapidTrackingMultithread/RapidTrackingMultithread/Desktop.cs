@@ -481,7 +481,7 @@ namespace RapidTrackingMultithread
                 if (carousel != null)//07-12-2023 end
                 {
                     s.Append("<block type=\"carousel\" url=\"\">");
-                    //s.Append(GetCarousel(crNode));  // 23-10-2019
+                    s.Append(GetCarousel(carousel));//29-04-2024 uncommented  // 23-10-2019
                     s.Append("</block>");
                 }
             }
@@ -2501,7 +2501,10 @@ namespace RapidTrackingMultithread
                     {
                         indx = url.LastIndexOf("https://");
                     }
-                    url = url.Remove(0, indx);
+                    if (indx > 0) //29-04-2024
+                    {
+                        url = url.Remove(0, indx);
+                    }//29-04-2024
                 }//28-03-2024
 
                 if (url.Contains("&amp;grqid="))

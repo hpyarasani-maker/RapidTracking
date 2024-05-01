@@ -3311,7 +3311,7 @@ namespace Oxylabs_BulkKeywords
             new SearchProperties()
             {
                 seid =896, domain ="co.uk", geo_location="York,North Yorkshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIrWW9yayxOb3J0aCBZb3Jrc2hpcmUsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==",device="mobile_android"
-            },//01-05-2024 
+            },//01-05-2024
         };
     }
     class SearchProperties

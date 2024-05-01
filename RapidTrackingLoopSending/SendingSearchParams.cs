@@ -2950,6 +2950,366 @@ namespace RapidTrackingLoopSending
             {
                 seid =806, domain ="com.cy", geo_location="Famagusta,Cyprus", locale= "en-cy", uule = "w+CAIQICIQRmFtYWd1c3RhLEN5cHJ1cw==", device="mobile_android"
             },//12-04-2024
+            new SearchProperties() //01-05-2024 from seid 807 to 896
+            {
+                seid =807, domain ="co.uk", geo_location="Altrincham,Greater Manchester,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICI0QWx0cmluY2hhbSxHcmVhdGVyIE1hbmNoZXN0ZXIsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =808, domain ="co.uk", geo_location="Altrincham,Greater Manchester,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICI0QWx0cmluY2hhbSxHcmVhdGVyIE1hbmNoZXN0ZXIsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =809, domain ="co.uk", geo_location="Banbury,Oxfordshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIqQmFuYnVyeSxPeGZvcmRzaGlyZSxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =810, domain ="co.uk", geo_location="Banbury,Oxfordshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIqQmFuYnVyeSxPeGZvcmRzaGlyZSxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =811, domain ="co.uk", geo_location="Berkhamsted,Hertfordshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIwQmVya2hhbXN0ZWQsSGVydGZvcmRzaGlyZSxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =812, domain ="co.uk", geo_location="Berkhamsted,Hertfordshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIwQmVya2hhbXN0ZWQsSGVydGZvcmRzaGlyZSxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =813, domain ="co.uk", geo_location="Beverley,East Riding of Yorkshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICI4QmV2ZXJsZXksRWFzdCBSaWRpbmcgb2YgWW9ya3NoaXJlLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =814, domain ="co.uk", geo_location="Beverley,East Riding of Yorkshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICI4QmV2ZXJsZXksRWFzdCBSaWRpbmcgb2YgWW9ya3NoaXJlLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =815, domain ="co.uk", geo_location="Bishops Stortford,Hertfordshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICI2QmlzaG9wcyBTdG9ydGZvcmQsSGVydGZvcmRzaGlyZSxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =816, domain ="co.uk", geo_location="Bishops Stortford,Hertfordshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICI2QmlzaG9wcyBTdG9ydGZvcmQsSGVydGZvcmRzaGlyZSxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =817, domain ="co.uk", geo_location="Bracknell,Berkshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIqQnJhY2tuZWxsLEJlcmtzaGlyZSxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =818, domain ="co.uk", geo_location="Bracknell,Berkshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIqQnJhY2tuZWxsLEJlcmtzaGlyZSxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =819, domain ="co.uk", geo_location="Camberley,Surrey,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICInQ2FtYmVybGV5LFN1cnJleSxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =820, domain ="co.uk", geo_location="Camberley,Surrey,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICInQ2FtYmVybGV5LFN1cnJleSxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =821, domain ="co.uk", geo_location="Canterbury,Kent,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICImQ2FudGVyYnVyeSxLZW50LEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =822, domain ="co.uk", geo_location="Canterbury,Kent,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICImQ2FudGVyYnVyeSxLZW50LEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =823, domain ="co.uk", geo_location="Chelmsford,Essex,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICInQ2hlbG1zZm9yZCxFc3NleCxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =824, domain ="co.uk", geo_location="Chelmsford,Essex,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICInQ2hlbG1zZm9yZCxFc3NleCxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =825, domain ="co.uk", geo_location="Cheltenham,Gloucestershire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIxQ2hlbHRlbmhhbSxHbG91Y2VzdGVyc2hpcmUsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =826, domain ="co.uk", geo_location="Cheltenham,Gloucestershire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIxQ2hlbHRlbmhhbSxHbG91Y2VzdGVyc2hpcmUsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =827, domain ="co.uk", geo_location="Chester,Cheshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICInQ2hlc3RlcixDaGVzaGlyZSxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =828, domain ="co.uk", geo_location="Chester,Cheshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICInQ2hlc3RlcixDaGVzaGlyZSxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =829, domain ="co.uk", geo_location="Chesterfield,Derbyshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIuQ2hlc3RlcmZpZWxkLERlcmJ5c2hpcmUsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =830, domain ="co.uk", geo_location="Chesterfield,Derbyshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIuQ2hlc3RlcmZpZWxkLERlcmJ5c2hpcmUsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =831, domain ="co.uk", geo_location="Colchester,Essex,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICInQ29sY2hlc3RlcixFc3NleCxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =832, domain ="co.uk", geo_location="Colchester,Essex,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICInQ29sY2hlc3RlcixFc3NleCxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =833, domain ="co.uk", geo_location="Crewe,Cheshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIlQ3Jld2UsQ2hlc2hpcmUsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =834, domain ="co.uk", geo_location="Crewe,Cheshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIlQ3Jld2UsQ2hlc2hpcmUsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =835, domain ="co.uk", geo_location="Derby,Derbyshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICInRGVyYnksRGVyYnlzaGlyZSxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =836, domain ="co.uk", geo_location="Derby,Derbyshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICInRGVyYnksRGVyYnlzaGlyZSxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =837, domain ="co.uk", geo_location="Durham,County Durham,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIrRHVyaGFtLENvdW50eSBEdXJoYW0sRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =838, domain ="co.uk", geo_location="Durham,County Durham,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIrRHVyaGFtLENvdW50eSBEdXJoYW0sRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =839, domain ="co.uk", geo_location="Exeter,Devon,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIjRXhldGVyLERldm9uLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =840, domain ="co.uk", geo_location="Exeter,Devon,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIjRXhldGVyLERldm9uLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =841, domain ="co.uk", geo_location="Farnborough,Hampshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIsRmFybmJvcm91Z2gsSGFtcHNoaXJlLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =842, domain ="co.uk", geo_location="Farnborough,Hampshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIsRmFybmJvcm91Z2gsSGFtcHNoaXJlLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =843, domain ="co.uk", geo_location="Fleet,Hampshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICImRmxlZXQsSGFtcHNoaXJlLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =844, domain ="co.uk", geo_location="Fleet,Hampshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICImRmxlZXQsSGFtcHNoaXJlLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =845, domain ="co.uk", geo_location="Guildford,Surrey,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICInR3VpbGRmb3JkLFN1cnJleSxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =846, domain ="co.uk", geo_location="Guildford,Surrey,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICInR3VpbGRmb3JkLFN1cnJleSxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =847, domain ="co.uk", geo_location="Harrogate,North Yorkshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIwSGFycm9nYXRlLE5vcnRoIFlvcmtzaGlyZSxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =848, domain ="co.uk", geo_location="Harrogate,North Yorkshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIwSGFycm9nYXRlLE5vcnRoIFlvcmtzaGlyZSxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =849, domain ="co.uk", geo_location="High Wycombe,Buckinghamshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIzSGlnaCBXeWNvbWJlLEJ1Y2tpbmdoYW1zaGlyZSxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =850, domain ="co.uk", geo_location="High Wycombe,Buckinghamshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIzSGlnaCBXeWNvbWJlLEJ1Y2tpbmdoYW1zaGlyZSxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =851, domain ="co.uk", geo_location="Huddersfield,West Yorkshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIySHVkZGVyc2ZpZWxkLFdlc3QgWW9ya3NoaXJlLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =852, domain ="co.uk", geo_location="Huddersfield,West Yorkshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIySHVkZGVyc2ZpZWxkLFdlc3QgWW9ya3NoaXJlLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =853, domain ="co.uk", geo_location="Kingston,Greater London,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIuS2luZ3N0b24sR3JlYXRlciBMb25kb24sRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =854, domain ="co.uk", geo_location="Kingston,Greater London,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIuS2luZ3N0b24sR3JlYXRlciBMb25kb24sRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =855, domain ="co.uk", geo_location="Knutsford,Cheshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIpS251dHNmb3JkLENoZXNoaXJlLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =856, domain ="co.uk", geo_location="Knutsford,Cheshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIpS251dHNmb3JkLENoZXNoaXJlLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =857, domain ="co.uk", geo_location="Leamington Spa,Warwickshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIyTGVhbWluZ3RvbiBTcGEsV2Fyd2lja3NoaXJlLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =858, domain ="co.uk", geo_location="Leamington Spa,Warwickshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIyTGVhbWluZ3RvbiBTcGEsV2Fyd2lja3NoaXJlLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =859, domain ="co.uk", geo_location="Lincoln,Lincolnshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIrTGluY29sbixMaW5jb2xuc2hpcmUsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =860, domain ="co.uk", geo_location="Lincoln,Lincolnshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIrTGluY29sbixMaW5jb2xuc2hpcmUsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =861, domain ="co.uk", geo_location="Middlesbrough,North Yorkshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICI0TWlkZGxlc2Jyb3VnaCxOb3J0aCBZb3Jrc2hpcmUsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =862, domain ="co.uk", geo_location="Middlesbrough,North Yorkshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICI0TWlkZGxlc2Jyb3VnaCxOb3J0aCBZb3Jrc2hpcmUsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =863, domain ="co.uk", geo_location="North Shields,Tyne and Wear,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIyTm9ydGggU2hpZWxkcyxUeW5lIGFuZCBXZWFyLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =864, domain ="co.uk", geo_location="North Shields,Tyne and Wear,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIyTm9ydGggU2hpZWxkcyxUeW5lIGFuZCBXZWFyLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =865, domain ="co.uk", geo_location="Rickmansworth,Hertfordshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIyUmlja21hbnN3b3J0aCxIZXJ0Zm9yZHNoaXJlLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =866, domain ="co.uk", geo_location="Rickmansworth,Hertfordshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIyUmlja21hbnN3b3J0aCxIZXJ0Zm9yZHNoaXJlLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =867, domain ="co.uk", geo_location="Sevenoaks,Kent,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIlU2V2ZW5vYWtzLEtlbnQsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =868, domain ="co.uk", geo_location="Sevenoaks,Kent,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIlU2V2ZW5vYWtzLEtlbnQsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =869, domain ="co.uk", geo_location="Solihull,West Midlands,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICItU29saWh1bGwsV2VzdCBNaWRsYW5kcyxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =870, domain ="co.uk", geo_location="Solihull,West Midlands,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICItU29saWh1bGwsV2VzdCBNaWRsYW5kcyxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =871, domain ="co.uk", geo_location="St Albans,Hertfordshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIuU3QgQWxiYW5zLEhlcnRmb3Jkc2hpcmUsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =872, domain ="co.uk", geo_location="St Albans,Hertfordshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIuU3QgQWxiYW5zLEhlcnRmb3Jkc2hpcmUsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =873, domain ="co.uk", geo_location="Stamford,Lincolnshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIsU3RhbWZvcmQsTGluY29sbnNoaXJlLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =874, domain ="co.uk", geo_location="Stamford,Lincolnshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIsU3RhbWZvcmQsTGluY29sbnNoaXJlLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =875, domain ="co.uk", geo_location="Stockport,Greater Manchester,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIzU3RvY2twb3J0LEdyZWF0ZXIgTWFuY2hlc3RlcixFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =876, domain ="co.uk", geo_location="Stockport,Greater Manchester,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIzU3RvY2twb3J0LEdyZWF0ZXIgTWFuY2hlc3RlcixFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =877, domain ="co.uk", geo_location="Stoke On Trent,Staffordshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIzU3Rva2UgT24gVHJlbnQsU3RhZmZvcmRzaGlyZSxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =878, domain ="co.uk", geo_location="Stoke On Trent,Staffordshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIzU3Rva2UgT24gVHJlbnQsU3RhZmZvcmRzaGlyZSxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =879, domain ="co.uk", geo_location="Sutton Coldfield,Warwickshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICI0U3V0dG9uIENvbGRmaWVsZCxXYXJ3aWNrc2hpcmUsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =880, domain ="co.uk", geo_location="Sutton Coldfield,Warwickshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICI0U3V0dG9uIENvbGRmaWVsZCxXYXJ3aWNrc2hpcmUsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =881, domain ="co.uk", geo_location="Swindon,Wiltshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIoU3dpbmRvbixXaWx0c2hpcmUsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =882, domain ="co.uk", geo_location="Swindon,Wiltshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIoU3dpbmRvbixXaWx0c2hpcmUsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =883, domain ="co.uk", geo_location="Tunbridge Wells,Kent,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIrVHVuYnJpZGdlIFdlbGxzLEtlbnQsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =884, domain ="co.uk", geo_location="Tunbridge Wells,Kent,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIrVHVuYnJpZGdlIFdlbGxzLEtlbnQsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =885, domain ="co.uk", geo_location="Warrington,Cheshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIqV2FycmluZ3RvbixDaGVzaGlyZSxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =886, domain ="co.uk", geo_location="Warrington,Cheshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIqV2FycmluZ3RvbixDaGVzaGlyZSxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =887, domain ="co.uk", geo_location="Wetherby,West Yorkshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIuV2V0aGVyYnksV2VzdCBZb3Jrc2hpcmUsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =888, domain ="co.uk", geo_location="Wetherby,West Yorkshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIuV2V0aGVyYnksV2VzdCBZb3Jrc2hpcmUsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =889, domain ="co.uk", geo_location="Winchester,Hampshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIrV2luY2hlc3RlcixIYW1wc2hpcmUsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =890, domain ="co.uk", geo_location="Winchester,Hampshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIrV2luY2hlc3RlcixIYW1wc2hpcmUsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =891, domain ="co.uk", geo_location="Woking,Surrey,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIkV29raW5nLFN1cnJleSxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =892, domain ="co.uk", geo_location="Woking,Surrey,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIkV29raW5nLFN1cnJleSxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =893, domain ="co.uk", geo_location="Worcester,Worcestershire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIvV29yY2VzdGVyLFdvcmNlc3RlcnNoaXJlLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =894, domain ="co.uk", geo_location="Worcester,Worcestershire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIvV29yY2VzdGVyLFdvcmNlc3RlcnNoaXJlLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =895, domain ="co.uk", geo_location="York,North Yorkshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIrWW9yayxOb3J0aCBZb3Jrc2hpcmUsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =896, domain ="co.uk", geo_location="York,North Yorkshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIrWW9yayxOb3J0aCBZb3Jrc2hpcmUsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==",device="mobile_android"
+            },//01-05-2024
         };
     }
 

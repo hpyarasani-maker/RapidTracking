@@ -2864,7 +2864,7 @@ namespace Oxylabs_BulkKeywords
                     return "Topstories";
             }
             if (node.SelectSingleNode(".//div[contains(@class, 'RPdfze')]") != null || (node.SelectSingleNode(".//div[contains(@class, 'Qkn3ie')]" +//26-04-2024//23-04-2024
-                "|.//div[@class='lMMUFc']") != null && node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]" +
+                "|.//div[@class='lMMUFc']|.//div[@class='oj7Mub eVNxY']") != null && node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]" +//08-05-2024
                 "|.//div[contains(@class,'WFxqwc')]|.//div[contains(@class,'PZPZlf')]" +
                 "|.//div[@class='KmNjGe Iu7yDc']") == null))//09-01-2024//08-01-2024//15-12-2023//28-11-2023//09-10-2023//22-09-2023//21-07-2023//07-07-2023
                 return "FindResultsOn";

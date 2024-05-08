@@ -3261,7 +3261,7 @@ namespace RapidTrackingSingleThread
             }
 
             //13-08-2019
-            nd = node.SelectSingleNode(".//div[@class='aJegcc']|.//div[@class='IGtt6d imgac mnr-c cTMkTb']");//08-11-2023
+            nd = node.SelectSingleNode(".//div[@class='aJegcc']|.//div[contains(@class,'IGtt6d imgac mnr-c')]");//08-05-2024//08-11-2023
             if (nd != null)
                 if (node.SelectNodes(".//div[contains(@class,'xCCdqb')]|.//div[contains(@class, 'tyUpi')]|.//div[@class='baPFxb g kSMK2']|.//div[contains(@class,'wTrwWd')]") == null)//23-10-2023//11-04-2023//10-04-2023//06-12-2021 wrong PL block//16-09-2019
                 {

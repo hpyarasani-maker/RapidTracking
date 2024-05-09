@@ -3053,6 +3053,8 @@ namespace RapidTrackingSingleThread
                     nd = node.SelectSingleNode(".//div[@role='heading']/div[@class='HnYYW i8lZMc']|.//div[@role='heading']/div[@class='HnYYW mfMhoc']|.//div[@class='BNeawe deIvCb AP7Wnd']|.//div[contains(@class,'HnYYW')]/div[@role='heading']");//19-02-2024//19-11-2021//30-07-2020   // 24-06-2020   // 21-02-2020
                 if (nd == null)//26-02-2024
                     nd = node.SelectSingleNode(".//div[contains(@class, 'QlyiV')]");//26-02-2024
+                if (nd == null)//09-05-2024
+                    nd = node.SelectSingleNode(".//div[@role='heading']/span/span[@class='sOq4Gc']");//09-05-2024
                 if (nd != null)
                 {
                     if (nd.InnerHtml.ToLower().StartsWith("video") || nd.InnerHtml.ToLower().StartsWith("vídeo")) //07-02-2020 included title for video block for different language

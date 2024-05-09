@@ -2663,7 +2663,7 @@ namespace RapidTrackingLibrary
                         string title = nd.SelectSingleNode(".//div[contains(@class,'BTPx6e')]|.//div[@class='Yt787 aKoISd']|.//span[@class='Yt787']")?.InnerText.Trim() ?? "";//20-02-2024 //29-06-2023//01-03-2023
                         string rating = nd.SelectSingleNode(".//span[contains(@class,'YrbPuc')]")?.InnerText.Trim() ?? "";
                         string reviews = nd.SelectSingleNode(".//span[@class='RDApEe YrbPuc']")?.InnerText.Trim() ?? "";
-                        string price = nd.SelectSingleNode(".//div[contains(@class,'VSZCrf')]/span|.//div[@class='QIeQge']|.//div[@class='Z6yUYe RiJqbb RES9jf']|.//div[@class='rDUZLd JNI6Yb']/span|.//div[@class='wHYlTd RES9jf OSrXXb']/span")?.InnerText.Trim() ?? "";//27-02-2024//20-02-2024//29-06-2023//02-03-2023//22-02-2023
+                        string price = nd.SelectSingleNode(".//div[contains(@class,'VSZCrf')]/span|.//div[@class='QIeQge']|.//div[@class='Z6yUYe RiJqbb RES9jf']|.//div[@class='rDUZLd JNI6Yb']/span|.//div[@class='wHYlTd RES9jf OSrXXb']/span|.//div[@class='VaiWld']/div/span[@class='JNI6Yb']")?.InnerText.Trim() ?? "";//09-05-2024//27-02-2024//20-02-2024//29-06-2023//02-03-2023//22-02-2023
                         if (price != "")
                         {
                             price_value = Convertprice(price);
@@ -3083,7 +3083,8 @@ namespace RapidTrackingLibrary
                 || (node.SelectSingleNode(".//div[@class='VqeGe']") != null && node.SelectSingleNode(".//div[@class='NYidgb']|.//div[@class='xKf9F']") == null))//27-02-2024//26-02-2024//20-02-2024
             {
                 if ((node.SelectSingleNode(".//div[@class='Gqsa8d']") != null && node.SelectSingleNode(".//div[@class='EDblX HG5ZQb']") != null)//27-02-2024
-                    || (node.SelectSingleNode(".//div[@class='HOslld dutT5c']|.//div[@class='zJUuqf adDDi']") != null && (node.SelectSingleNode(".//div[@class='RyIFgf']") == null || node.SelectNodes(".//div[contains(@class,'EXH1Ce')]") != null))//29-04-2024//16-03-2024//27-02-2024
+                    || (node.SelectSingleNode(".//div[@class='HOslld dutT5c']|.//div[@class='zJUuqf adDDi']|.//div[@class='IZE3Td']") != null
+                    && (node.SelectSingleNode(".//div[@class='RyIFgf']") == null || node.SelectNodes(".//div[contains(@class,'EXH1Ce')]") != null))//09-05-2024//29-04-2024//16-03-2024//27-02-2024
                     && (node.SelectSingleNode(".//div[@class='vDF3Oc jIrdcd']") == null))//01-05-2024
                     return "Hotel";
             }

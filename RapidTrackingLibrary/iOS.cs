@@ -1979,6 +1979,23 @@ namespace RapidTrackingLibrary
                 }
             }
             catch { }//11-09-2023
+            string pattern2 = @"div class\\x3d\\x22wep10b\\x22\\x3e\\x3ca class\\x3d\\x22JolMid\\x22 href\\x3d\\x22(.*?)\\x22";//09-05-2024
+            re = new Regex(pattern2, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+            mc = re.Matches(html);
+            try
+            {
+                foreach (Match m in mc)
+                {
+                    string url = HttpUtility.HtmlDecode(HttpUtility.HtmlEncode(m.Groups[1].Value));
+                    if (url.StartsWith("http") || url.StartsWith("https"))
+                    {
+                        url = SetYTUrl(url, yt);
+                        if (x < titles.Length)
+                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");
+                    }
+                }
+            }
+            catch { }//09-05-2024
             for (; x < titles.Length; x++)//18-02-2022
                 s.Append("<item url=\"\" title=\"" + SetTitle(titles[x]) + "\" />");//18-02-2022
             return s.ToString();

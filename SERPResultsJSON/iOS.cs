@@ -1939,6 +1939,23 @@ namespace SERPResultsJSON
                 }
             }
             catch { }//11-09-2023
+            string pattern2 = @"div class\\x3d\\x22wep10b\\x22\\x3e\\x3ca class\\x3d\\x22JolMid\\x22 href\\x3d\\x22(.*?)\\x22";//09-05-2024
+            re = new Regex(pattern2, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+            mc = re.Matches(html);
+            try
+            {
+                foreach (Match m in mc)
+                {
+                    string url = HttpUtility.HtmlDecode(HttpUtility.HtmlEncode(m.Groups[1].Value));
+                    if (url.StartsWith("http") || url.StartsWith("https"))
+                    {
+                        url = SetYTUrl(url, yt);
+                        if (x < titles.Length)
+                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");
+                    }
+                }
+            }
+            catch { }//09-05-2024
             for (; x < titles.Length; x++)//18-02-2022
                 s.Append("<item url=\"\" title=\"" + SetTitle(titles[x]) + "\" />");//18-02-2022
             return s.ToString();
@@ -2643,7 +2660,7 @@ namespace SERPResultsJSON
                         string title = nd.SelectSingleNode(".//div[contains(@class,'BTPx6e')]|.//div[@class='Yt787 aKoISd']|.//span[@class='Yt787']")?.InnerText.Trim() ?? "";//20-02-2024 //29-06-2023//01-03-2023
                         string rating = nd.SelectSingleNode(".//span[contains(@class,'YrbPuc')]")?.InnerText.Trim() ?? "";
                         string reviews = nd.SelectSingleNode(".//span[@class='RDApEe YrbPuc']")?.InnerText.Trim() ?? "";
-                        string price = nd.SelectSingleNode(".//div[contains(@class,'VSZCrf')]/span|.//div[@class='QIeQge']|.//div[@class='Z6yUYe RiJqbb RES9jf']|.//div[@class='rDUZLd JNI6Yb']/span|.//div[@class='wHYlTd RES9jf OSrXXb']/span")?.InnerText.Trim() ?? "";//27-02-2024//20-02-2024//29-06-2023//02-03-2023//22-02-2023
+                        string price = nd.SelectSingleNode(".//div[contains(@class,'VSZCrf')]/span|.//div[@class='QIeQge']|.//div[@class='Z6yUYe RiJqbb RES9jf']|.//div[@class='rDUZLd JNI6Yb']/span|.//div[@class='wHYlTd RES9jf OSrXXb']/span|.//div[@class='VaiWld']/div/span[@class='JNI6Yb']")?.InnerText.Trim() ?? "";//09-05-2024//27-02-2024//20-02-2024//29-06-2023//02-03-2023//22-02-2023
                         if (price != "")
                         {
                             price = ConvertNumber(price);//23-06-2023
@@ -2867,11 +2884,11 @@ namespace SERPResultsJSON
                             ts = false;
                     }
                 }
-                if (ts && node.SelectSingleNode(".//div[@class='imso-ml-c PZPZlf']|.//div[@class='Bv2VAe']|.//div[@jsname='GDPwke']|.//div[@id='imso-root']|.//table[@class='vk_tbl Uekwlc']") == null)//22-04-2024//04-04-2024//02-04-2024
+                if (ts && node.SelectSingleNode(".//div[@class='imso-ml-c PZPZlf']|.//div[@class='Bv2VAe']|.//div[@jsname='GDPwke']|.//div[@id='imso-root']|.//table[@class='vk_tbl Uekwlc']|.//div[@jscontroller='WoVPie']") == null)//07-05-2024//22-04-2024//04-04-2024//02-04-2024
                     return "Topstories";
             }
             if (node.SelectSingleNode(".//div[contains(@class, 'RPdfze')]") != null || (node.SelectSingleNode(".//div[contains(@class, 'Qkn3ie')]" +//26-04-2024//23-04-2024
-                "|.//div[@class='lMMUFc']") != null && node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]" +
+                "|.//div[@class='lMMUFc']|.//div[@class='oj7Mub eVNxY']") != null && node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]" +//08-05-2024
                 "|.//div[contains(@class,'WFxqwc')]|.//div[contains(@class,'PZPZlf')]" +
                 "|.//div[@class='KmNjGe Iu7yDc']") == null))//09-01-2024//08-01-2024//15-12-2023//28-11-2023//09-10-2023//22-09-2023//21-07-2023//07-07-2023
                 return "FindResultsOn";
@@ -2891,7 +2908,7 @@ namespace SERPResultsJSON
             if (node.SelectSingleNode(".//div[@id='imso-root']") != null || node.SelectSingleNode(".//div[contains(@class,'tsp-view')]") != null //24-11-2020 for eventresults included contains func //node.SelectSingleNode(".//div[@class='tsp-view r-iDNua10DBk4I']") != null
                 || node.SelectSingleNode(".//div[@class='nA3Vyd SBFvB']") != null || node.SelectSingleNode(".//div[@class='nJXhWc nA3Vyd']") != null
                 || node.SelectSingleNode(".//div[@class='AE4e7c']") != null || node.SelectSingleNode(".//div[@class='SBFvB']") != null //06-10-2021 Event block   //22-05-2020 included selector for event block
-                || node.SelectSingleNode(".//div[@class='imso-ml-c PZPZlf']") != null//22-09-2022 event block
+                || node.SelectSingleNode(".//div[@class='imso-ml-c PZPZlf']|.//div[@jscontroller='WoVPie']") != null//07-05-2024//22-09-2022 event block
                 || node.SelectSingleNode(".//table[@class='vk_tbl Uekwlc']") != null) //22-04-2024
                 return "Event";
 
@@ -3036,6 +3053,8 @@ namespace SERPResultsJSON
                     nd = node.SelectSingleNode(".//div[@role='heading']/div[@class='HnYYW i8lZMc']|.//div[@role='heading']/div[@class='HnYYW mfMhoc']|.//div[@class='BNeawe deIvCb AP7Wnd']|.//div[contains(@class,'HnYYW')]/div[@role='heading']");//19-02-2024//19-11-2021//30-07-2020   // 24-06-2020   // 21-02-2020
                 if (nd == null)//26-02-2024
                     nd = node.SelectSingleNode(".//div[contains(@class, 'QlyiV')]");//26-02-2024
+                if (nd == null)//09-05-2024
+                    nd = node.SelectSingleNode(".//div[@role='heading']/span/span[@class='sOq4Gc']");//09-05-2024
                 if (nd != null)
                 {
                     if (nd.InnerHtml.ToLower().StartsWith("video") || nd.InnerHtml.ToLower().StartsWith("vídeo")) //07-02-2020 included title for video block for different language
@@ -3069,7 +3088,8 @@ namespace SERPResultsJSON
                 || (node.SelectSingleNode(".//div[@class='VqeGe']") != null && node.SelectSingleNode(".//div[@class='NYidgb']|.//div[@class='xKf9F']") == null))//27-02-2024//26-02-2024//20-02-2024
             {
                 if ((node.SelectSingleNode(".//div[@class='Gqsa8d']") != null && node.SelectSingleNode(".//div[@class='EDblX HG5ZQb']") != null)//27-02-2024
-                || (node.SelectSingleNode(".//div[@class='HOslld dutT5c']|.//div[@class='zJUuqf adDDi']") != null && (node.SelectSingleNode(".//div[@class='RyIFgf']") == null || node.SelectNodes(".//div[contains(@class,'EXH1Ce')]") != null))//29-04-2024//16-03-2024//27-02-2024
+                || (node.SelectSingleNode(".//div[@class='HOslld dutT5c']|.//div[@class='zJUuqf adDDi']|.//div[@class='IZE3Td']") != null
+                && (node.SelectSingleNode(".//div[@class='RyIFgf']") == null || node.SelectNodes(".//div[contains(@class,'EXH1Ce')]") != null))//09-05-2024//29-04-2024//16-03-2024//27-02-2024
                 && (node.SelectSingleNode(".//div[@class='vDF3Oc jIrdcd']") == null))//01-05-2024
                     return "Hotel";
             }
@@ -3262,7 +3282,7 @@ namespace SERPResultsJSON
             }
 
             //13-08-2019
-            nd = node.SelectSingleNode(".//div[@class='aJegcc']|.//div[@class='IGtt6d imgac mnr-c cTMkTb']");//08-11-2023
+            nd = node.SelectSingleNode(".//div[@class='aJegcc']|.//div[contains(@class,'IGtt6d imgac mnr-c')]");//08-05-2024//08-11-2023
             if (nd != null)
                 if (node.SelectNodes(".//div[contains(@class,'xCCdqb')]|.//div[contains(@class, 'tyUpi')]|.//div[@class='baPFxb g kSMK2']|.//div[contains(@class,'wTrwWd')]") == null)//23-10-2023//11-04-2023//10-04-2023//06-12-2021 wrong PL block//16-09-2019
                 {

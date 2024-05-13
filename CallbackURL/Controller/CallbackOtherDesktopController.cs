@@ -4,9 +4,11 @@ using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Net;
 using System.Web.Http;
+using CallbackURL.Filters;
 
 namespace CallbackURL.Controller
 {
+    [MyAuthorizationFilter]
     public class CallbackOtherDesktopController : ApiController
     {
         public static ArrayList alData = new ArrayList();

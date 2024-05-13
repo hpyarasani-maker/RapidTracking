@@ -8,7 +8,6 @@ using CallbackURL.Filters;
 
 namespace CallbackURL.Controller
 {
-    [MyAuthorizationFilter]
     public class CallbackOtherDesktopController : ApiController
     {
         public static ArrayList alData = new ArrayList();

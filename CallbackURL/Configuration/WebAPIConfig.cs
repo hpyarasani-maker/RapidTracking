@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CallbackURL.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,6 +19,7 @@ namespace CallbackURL.Configuration
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+            GlobalConfiguration.Configuration.MessageHandlers.Add(new BasicAuthenticationHandler());
         }
     }
 }

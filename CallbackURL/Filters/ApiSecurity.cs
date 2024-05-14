@@ -13,10 +13,5 @@ namespace CallbackURL.Filters
         {
             return username.Equals("pisoftware") && password.Equals("Pi*Soft74UBXi");//13-05-2024
         }
-
-        internal bool Authenticate(string name, string password)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

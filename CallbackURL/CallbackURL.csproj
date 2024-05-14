@@ -122,7 +122,6 @@
     <Compile Include="Filters\BasicAuthenticationHandler.cs" />
     <Compile Include="Filters\BasicAuthenticationIdentity.cs" />
     <Compile Include="Filters\JsonStringResultExtension.cs" />
-    <Compile Include="Filters\MyAuthorizationFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

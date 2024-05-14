@@ -17,7 +17,7 @@ namespace CallbackURL.Filters
             {
                 var basicAuth = identity as BasicAuthenticationIdentity;
 
-                var user = new CallbackURL.Filters.ApiSecurity();
+                var user = new ApiSecurity();
                 
                 if (user.Authenticate(basicAuth.Name, basicAuth.Password))
                     return true;

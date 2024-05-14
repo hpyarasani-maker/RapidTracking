@@ -4,14 +4,13 @@ using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Net;
 using System.Web.Http;
-
+using CallbackURL.Filters;
 namespace CallbackURL.Controller
 {
     public class CallbackBingCommaController : ApiController
     {
         public static ArrayList alData = new ArrayList();
         public static readonly object obj = new object();
-
 
         // GET: api/CallbackBingComma
         public OxyCallbackResponse Get()

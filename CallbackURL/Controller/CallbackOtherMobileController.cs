@@ -4,6 +4,7 @@ using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Net;
 using System.Web.Http;
+using CallbackURL.Filters;
 
 namespace CallbackURL.Controller
 {
@@ -14,6 +15,7 @@ namespace CallbackURL.Controller
 
 
         // GET: api/CallbackOtherMobile
+        [BasicAuthentication]
         public OxyCallbackResponse Get()
         {
             lock (obj)

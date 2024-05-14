@@ -29,8 +29,8 @@ namespace CallbackURL.Filters
                     var userName = usernamePasswordArray[0];
                     var password = usernamePasswordArray[1];
 
-                    var isValid = userName == "pisoftware" && password == "r00t123456";
-
+                    //var isValid = userName == "pisoftware" && password == "r00t123456";
+                    var isValid = ApiSecurity.VaidateUser(userName, password);//14-05-2024
 
                     bool authenticated;
                     

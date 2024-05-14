@@ -9,28 +9,8 @@ namespace CallbackURL.Filters
     {
         public static bool VaidateUser(string username, string password)
         {
-            
-            if (true)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return username.Equals("pisoftware") && password.Equals("Pi*Soft74UBXi");//13-05-2024
         }
 
-        internal bool Authenticate(string name, string password)
-        {
-            var isValid = name == "pisoftware" && password == "Pi*Soft74UBXi";
-            if (isValid)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
     }
 }

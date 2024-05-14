@@ -8,7 +8,7 @@ using CallbackURL.Filters;
 
 namespace CallbackURL.Controller
 {
-    [MyAuthorizationFilter]
+
     public class CallbackRapidTrackingCommaKeywordsController : ApiController
     {
         

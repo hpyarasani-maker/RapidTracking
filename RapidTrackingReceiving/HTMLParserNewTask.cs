@@ -74,7 +74,7 @@ namespace Oxylabs_BulkKeywords
             using (var client = new HttpClient())
             {
                 //WebClient client = new WebClient();
-
+                client.BaseAddress = ul;//12-05-2024
                 while (true)
                 {
                     /*try
@@ -95,7 +95,6 @@ namespace Oxylabs_BulkKeywords
                     {
                         string response = "";
                         client.DefaultRequestHeaders.Clear();
-                        client.BaseAddress = ul;//12-05-2024
                         string credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{username}:{password}"));//12-05-2024
                         client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", credentials);//12-05-2024
                         client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));

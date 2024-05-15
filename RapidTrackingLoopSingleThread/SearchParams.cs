@@ -3325,6 +3325,14 @@ namespace RapidTrackingLoopSingleThread
             {
                 seid =896, domain ="co.uk", geo_location="York,North Yorkshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIrWW9yayxOb3J0aCBZb3Jrc2hpcmUsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==",device="mobile_android"
             },//01-05-2024
+            new SearchProperties()//15-05-2024
+            {
+                seid =897, domain ="com.np", geo_location="Nepal", locale= "en-np", uule = "w+CAIQICIFTmVwYWw=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =898, domain ="com.np", geo_location="Nepal", locale= "en-np", uule = "w+CAIQICIFTmVwYWw=",device="mobile_android"
+            },//15-05-2024
         };
     }
     class SearchProperties

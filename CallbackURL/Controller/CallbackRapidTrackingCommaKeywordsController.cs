@@ -19,6 +19,7 @@ namespace CallbackURL.Controller
 
         // GET: api/CallbackRapidTrackingCommaKeywords
         [BasicAuthentication]
+        [HttpGet]
         public OxyCallbackResponse Get()
         {
             lock (obj)

@@ -12,9 +12,9 @@ namespace CallbackURL.Controller
     {
         public static ArrayList alData = new ArrayList();
         public static readonly object obj = new object();
-        
-        [HttpGet]
         // GET: api/CallbackOtherDesktop
+        [BasicAuthentication]
+        [HttpGet]
         public OxyCallbackResponse Get()
         {
             lock (obj)

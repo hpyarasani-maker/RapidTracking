@@ -16,6 +16,7 @@ namespace CallbackURL.Controller
 
         // GET: api/CallbackOtherMobile
         [BasicAuthentication]
+        [HttpGet]
         public OxyCallbackResponse Get()
         {
             lock (obj)

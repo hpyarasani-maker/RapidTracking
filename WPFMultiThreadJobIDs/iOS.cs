@@ -2052,8 +2052,8 @@ namespace WPFMultiThreadJobIDs
                 desc = node.SelectSingleNode(".//span[contains(@class,'ILfuVd')]")?.InnerText ?? "";
             }//20-03-2024
             string cardType = lst ? "list" : tbl ? "table" : video ? "video" : chrt ? "chart" : "text";
-            s.Append("<block type=\"answerCard\" url=\"" + SetUrl(url) + "\" >");
-            s.Append("<item featureTitle=\"" + SetTitle(f_title) + "\" url=\"" + itemUrl + "\" title=\"" +//22-04-2024
+            s.Append("<block type=\"answerCard\" url=\"\">");//17-05-2024
+            s.Append("<item featureTitle=\"" + SetTitle(f_title) + "\" url=\"" + (!string.IsNullOrEmpty(itemUrl) ? itemUrl : SetUrl(url)) + "\" title=\"" +//17-05-2024//22-04-2024
                 SetTitle(title) + "\" description=\"" + SetTitle(desc) + "\" cardType=\"" + cardType + "\" />");
             s.Append("</block>");
             return s.ToString();

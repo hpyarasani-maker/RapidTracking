@@ -1,4 +1,5 @@
-﻿using CallbackURL.Models;
+﻿using CallbackURL.Filters;
+using CallbackURL.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Collections;
@@ -14,6 +15,8 @@ namespace CallbackURL.Controller
 
 
         // GET: api/CallbackRapidTrackingNewMobile
+        [BasicAuthentication]
+        [HttpGet]
         public OxyCallbackResponse Get()
         {
             lock (obj)

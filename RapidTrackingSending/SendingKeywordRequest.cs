@@ -134,7 +134,6 @@ namespace Oxylabs_BulkKeywords
             //string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidTrackingnewdesktop/"; //Desktop new keywords
             //string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidTrackingnewmobile/"; //mobile new keywords
             // string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidtrackingnewcommakeywords/";  // new comma keywords
-
             //string callbackURL = "https://seresults.azurewebsites.net/api/callbackuk503desktoptemp"; //sending new SEIDs
             //string callbackURL = "https://seresults.azurewebsites.net/api/trackingtrending/";
 
@@ -147,7 +146,8 @@ namespace Oxylabs_BulkKeywords
 
             //string callbackURL = "https://seresults.azurewebsites.net/api/callbackimages/"; // images
             //string callbackURL = "https://seresults.azurewebsites.net/api/callbacknews/"; // news
-
+            //string callbackURL = "https://seresults.azurewebsites.net/api/trackingdatadesktop/"; //long lengthy keywords including startwith double quotes and images
+            //string callbackURL = "https://seresults.azurewebsites.net/api/trackingdatamobile/";
             //string callbackURL = "https://previous.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking other desktop
             //string callbackURL = "https://previous.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
             //string callbackURL = "https://previous.azurewebsites.net/api/callbackrapidtrackingmobilehotel/";

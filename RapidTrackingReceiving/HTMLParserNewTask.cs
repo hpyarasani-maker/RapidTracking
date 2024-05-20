@@ -51,7 +51,6 @@ namespace Oxylabs_BulkKeywords
             //string url = "https://seresults.azurewebsites.net/api/callbackrapidTrackingnewdesktop/"; //Desktop new keywords
             //string url = "https://seresults.azurewebsites.net/api/callbackrapidTrackingnewmobile/"; //mobile new keywords
             // string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingnewcommakeywords/";  // new comma keywords
-
             //string url = "https://seresults.azurewebsites.net/api/callbackuk503desktoptemp/"; //receiving New SEIDs
             //string url = "https://seresults.azurewebsites.net/api/trackingtrending/";
             //string url = "https://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58
@@ -63,6 +62,8 @@ namespace Oxylabs_BulkKeywords
             //string url = "https://seresults.azurewebsites.net/api/callbackimagesdesktop/";       // images desktop
             //string url = "https://seresults.azurewebsites.net/api/callbackimagesmobile/";      // images mobilse
             //string url = "https://seresults.azurewebsites.net/api/callback74images/";
+            //string url = "https://seresults.azurewebsites.net/api/trackingdatadesktop/"; //long lengthy keywords including startwith double quotes and images
+            //string url = "https://seresults.azurewebsites.net/api/trackingdatamobile/";
             //string url = "https://previous.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking mobile
             //string url = "https://previous.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
             //string url = "https://previous.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking other desktop

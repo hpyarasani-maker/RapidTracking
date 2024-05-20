@@ -37,7 +37,8 @@ namespace TrendingLoopReceiving
             };
             t1.Start();
         }
-
+        string username = "pisoftware";
+        string password = "Pi*Soft74UBXi";
         private void StartProcess()
         {
             string url = "https://seresults.azurewebsites.net/api/callbacktrendingdesktop/";       // Desktop
@@ -47,6 +48,7 @@ namespace TrendingLoopReceiving
             using (var client = new HttpClient())
             {
                 //WebClient client = new WebClient();
+                client.BaseAddress = ul;//12-05-2024
                 while (true)
                 {
                     /*try
@@ -67,6 +69,8 @@ namespace TrendingLoopReceiving
                     {
                         string response = "";
                         client.DefaultRequestHeaders.Clear();
+                        string credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{username}:{password}"));//12-05-2024
+                        client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", credentials);//12-05-2024
                         client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
                         response = client.GetStringAsync(ul).Result;
                         if (response != "null")

@@ -1,4 +1,5 @@
-﻿using CallbackURL.Models;
+﻿using CallbackURL.Filters;
+using CallbackURL.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Collections;
@@ -12,7 +13,8 @@ namespace CallbackURL.Controller
         public static ArrayList alData = new ArrayList();
         public static readonly object obj = new object();
 
-
+        [BasicAuthentication]
+        [HttpGet]
         // GET: api/CallbackTrendingDesktop
         public OxyCallbackResponse Get()
         {

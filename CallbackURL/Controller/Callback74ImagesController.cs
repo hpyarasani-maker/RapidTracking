@@ -1,4 +1,5 @@
-﻿using CallbackURL.Models;
+﻿using CallbackURL.Filters;
+using CallbackURL.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Collections;
@@ -13,6 +14,8 @@ namespace CallbackURL.Controller
         public static readonly object obj = new object();
 
         // GET: Callback74Images
+        [BasicAuthentication]
+        [HttpGet]
         public OxyCallbackResponse Get()
         {
             lock (obj)

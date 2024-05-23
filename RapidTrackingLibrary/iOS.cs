@@ -42,7 +42,7 @@ namespace RapidTrackingLibrary
                 if (nodeCol == null || doc.DocumentNode.SelectNodes("//div[@class='WtZO4e']/div|//div[@classname='WtZO4e']/div")?.Count > 1)//25-09-2023
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-card|//div[@id='taw']/div[@class='med']/div[2]/div" +
                     "|//div[@id='rso']/nav|//div[@id='rso']/block-component/div|//div[contains(@id, 'arc-srp')]/div/div[@class='MjjYud']" +
-                    "|//div[contains(@id, 'arc-srp')]/div/div/div[@class='MjjYud']|.//div[contains(@class,'TzHB6b')]|//div[@class='lU8tTd']");//13-03-2024
+                    "|//div[contains(@id, 'arc-srp')]/div/div/div[@class='MjjYud']|.//div[contains(@class,'TzHB6b')]|//div[@class='lU8tTd']|//div[contains(@id, 'arc-srp')]/div/div/div[@id='tads']|//div[contains(@id, 'arc-srp')]/div/div[@id='tadsb']");//23-05-2024
                 if (nodeCol != null && nodeCol.Count == 1)
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@class='vC5Ym DhKAUb']/div");  //23-03-2023  //17-09-2019
                 if (nodeCol != null && nodeCol.Count <= 5 && doc.DocumentNode.SelectNodes("//div[contains(@id,'kp-wp-tab-')]") != null)//02-02-2024//31-01-2024
@@ -395,8 +395,9 @@ namespace RapidTrackingLibrary
                     }
                 }
             }//25-09-2019
-            // Ads  added or condition
-            HtmlNodeCollection col = doc.DocumentNode.SelectNodes("//div[@id='tadsb']/div[@class='C4eCVc c']/ol/li|.//div[@id='tadsb']/div[@class='uEierd']"); //18-09-2020 included selector for bottom adwords // 24-04-2020   included class selector
+             // Ads  added or condition
+            HtmlNode ads = doc.DocumentNode.SelectSingleNode("//div[@id='bottomads']");//23-05-2024
+            HtmlNodeCollection col = ads.SelectNodes("//div[@id='tadsb']/div[@class='C4eCVc c']/ol/li|.//div[@id='tadsb']/div[@class='uEierd']|.//div[@id='tadsb']/div/div[@class='uEierd']");//23-05-2024
             if (col != null)
             {
                 s.Append("<block type=\"adwords\" url=\"\">");
@@ -642,7 +643,7 @@ namespace RapidTrackingLibrary
 
                 HtmlNodeCollection col = crNode.SelectNodes(".//div[contains(@id,'tads')]/ol/li");
                 if (col == null)
-                    col = doc.DocumentNode.SelectNodes("//div[@id='tads']/div/ol/li|//div[@jsname='hWE2jd']|//div[@id='tads']/div[@class='uEierd']|.//div[@id='tads']/div/div[@class='uEierd']" +
+                    col = crNode.SelectNodes(".//div[@id='tads']/div/ol/li|.//div[@jsname='hWE2jd']|.//div[@id='tads']/div[@class='uEierd']|.//div[@id='tads']/div/div[@class='uEierd']" +//23-05-2024
                        "|//div[@id='tads']/div[@class='mnr-c O9g5cc uUPGi']|//div[contains(@class,'yDDB0e')]");//19-08-2022//28-03-2022 "/div" included//04-10-2021 updated selector for missing
 
                 if (col != null)
@@ -1164,7 +1165,11 @@ namespace RapidTrackingLibrary
                                     {
                                         s.Append("<block type=\"adwords\" url=\"\">");
                                         u = SetUrl(u);
-                                        if (!string.IsNullOrEmpty(u))
+                                        if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(nv.Attributes["href"]?.Value)))//23-05-2024
+                                        {
+                                            u = GetRedirectedUrl_TextAds(nv.Attributes["href"].Value);
+                                        }
+                                        else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(nv.Attributes["data-rw"]?.Value)))//23-05-2024
                                             s.Append("<item url=\"" + SetUrl(u) + "\"  title=\"" + SetTitle(t) + "\" />");
                                         s.Append("</block>");
                                     }//05-01-2023

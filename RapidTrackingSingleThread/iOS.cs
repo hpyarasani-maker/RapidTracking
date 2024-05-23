@@ -1145,6 +1145,7 @@ namespace RapidTrackingSingleThread
                                         if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(nv.Attributes["href"]?.Value)))//23-05-2024
                                         {
                                             u = GetRedirectedUrl_TextAds(nv.Attributes["href"].Value);
+                                            s.Append("<item url=\"" + SetUrl(u) + "\" title=\"" + SetTitle(t) + "\" />");
                                         }
                                         else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(nv.Attributes["data-rw"]?.Value)))//23-05-2024
                                             s.Append("<item url=\"" + SetUrl(u) + "\"  title=\"" + SetTitle(t) + "\" />");

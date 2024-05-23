@@ -1417,7 +1417,7 @@ namespace RapidTrackingSingleThread
                             s.Append("<item url=\"" + SetUrl(url) + "\" title=\"\" />");
                             existed = true;
                         }
-                        else//2024-05-23
+                        else if (nd.Attributes.Contains("href"))//2024-05-23
                         {
                             url = nd.Attributes["href"]?.Value.Trim() ?? "";
                             s.Append("<item url=\"" + SetUrl(url) + "\" title=\"\" />");

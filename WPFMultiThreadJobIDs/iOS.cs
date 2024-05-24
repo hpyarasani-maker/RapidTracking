@@ -347,8 +347,9 @@ namespace WPFMultiThreadJobIDs
                     }
                 }
             }//25-09-2019
-            // Ads  added or condition
-            HtmlNodeCollection col = doc.DocumentNode.SelectNodes("//div[@id='tadsb']/div[@class='C4eCVc c']/ol/li|.//div[@id='tadsb']/div[@class='uEierd']|.//div[@id='tadsb']/div/div[@class='uEierd']");//28-03-2022 "/div" included //18-09-2020 included selector for bottom adwords // 24-04-2020   included class selector
+             // Ads  added or condition
+            HtmlNode ads = doc.DocumentNode.SelectSingleNode("//div[@id='bottomads']");//23-05-2024
+            HtmlNodeCollection col = ads.SelectNodes("//div[@id='tadsb']/div[@class='C4eCVc c']/ol/li|.//div[@id='tadsb']/div[@class='uEierd']|.//div[@id='tadsb']/div/div[@class='uEierd']");//23-05-2024
             if (col != null)
             {
                 s.Append("<block type=\"adwords\" url=\"\">");
@@ -616,7 +617,7 @@ namespace WPFMultiThreadJobIDs
 
                 HtmlNodeCollection col = crNode.SelectNodes(".//div[contains(@id,'tads')]/ol/li");
                 if (col == null)
-                    col = doc.DocumentNode.SelectNodes("//div[@id='tads']/div/ol/li|//div[@jsname='hWE2jd']|//div[@id='tads']/div[@class='uEierd']|.//div[@id='tads']/div/div[@class='uEierd']" +
+                    col = crNode.SelectNodes(".//div[@id='tads']/div/ol/li|.//div[@jsname='hWE2jd']|.//div[@id='tads']/div[@class='uEierd']|.//div[@id='tads']/div/div[@class='uEierd']" +//23-05-2024
                         "|//div[@id='tads']/div[@class='mnr-c O9g5cc uUPGi']|//div[contains(@class,'yDDB0e')]");//19-08-2022//28-03-2022 "/div" included//04-10-2021 updated selector for missing adwords
                 if (col != null)
                 {
@@ -1133,9 +1134,16 @@ namespace WPFMultiThreadJobIDs
                                     if (node.SelectSingleNode(".//div[@class='eMXfhf']") != null)
                                     {
                                         s.Append("<block type=\"adwords\" url=\"\">");
-                                        u = SetUrl(u);
+                                        if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(nv.Attributes["href"]?.Value)))//24-05-2024
+                                        {
+                                            u = GetRedirectedUrl_TextAds(nv.Attributes["href"].Value);
+                                        }
+                                        else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(nv.Attributes["data-rw"]?.Value)))
+                                        {
+                                            u = GetRedirectedUrl_TextAds(nv.Attributes["data-rw"].Value);
+                                        }
                                         if (!string.IsNullOrEmpty(u))
-                                            s.Append("<item url=\"" + SetUrl(u) + "\"  title=\"" + SetTitle(t) + "\" />");
+                                            s.Append("<item url=\"" + u + "\" title=\"" + SetTitle(t) + "\" />");//24-05-2024
                                         s.Append("</block>");
                                     }//05-01-2023
                                     else if (orgLinks < 100)
@@ -2884,7 +2892,7 @@ namespace WPFMultiThreadJobIDs
             if (node.SelectSingleNode(".//div[contains(@class, 'RPdfze')]") != null || (node.SelectSingleNode(".//div[contains(@class, 'Qkn3ie')]" +//26-04-2024//23-04-2024
                 "|.//div[@class='lMMUFc']|.//div[@class='oj7Mub eVNxY']") != null && node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]" +//08-05-2024
                 "|.//div[contains(@class,'WFxqwc')]|.//div[contains(@class,'PZPZlf')]" +
-                "|.//div[@class='KmNjGe Iu7yDc']") == null))//09-01-2024//08-01-2024//15-12-2023//28-11-2023//09-10-2023//22-09-2023//21-07-2023//07-07-2023
+                "|.//div[@class='KmNjGe Iu7yDc']|.//div[@class='EDblX HG5ZQb']") == null))//15-05-2024
                 return "FindResultsOn";
             /*nd = node.SelectSingleNode(".//g-tray-header[contains(@class,'kno-fb-ctx gsrt')]"); //23-03-2022//19-01-2023 //Top Sights and Flights
             if (nd != null)

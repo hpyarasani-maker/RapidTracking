@@ -1141,12 +1141,16 @@ namespace RapidTrackingSingleThread
                                     if (node.SelectSingleNode(".//div[@class='eMXfhf']") != null)
                                     {
                                         s.Append("<block type=\"adwords\" url=\"\">");
-                                        u = SetUrl(u);
-                                        if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(nv.Attributes["href"]?.Value)))//23-05-2024
+                                        if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(nv.Attributes["href"]?.Value)))//24-05-2024
                                         {
                                             u = GetRedirectedUrl_TextAds(nv.Attributes["href"].Value);
-                                            s.Append("<item url=\"" + SetUrl(u) + "\" title=\"" + SetTitle(t) + "\" />");
                                         }
+                                        else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(nv.Attributes["data-rw"]?.Value)))
+                                        {
+                                            u = GetRedirectedUrl_TextAds(nv.Attributes["data-rw"].Value);
+                                        }
+                                        if (!string.IsNullOrEmpty(u))
+                                            s.Append("<item url=\"" + u + "\" title=\"" + SetTitle(t) + "\" />");//24-05-2024
                                         else if (!string.IsNullOrEmpty(GetRedirectedUrl_TextAds(nv.Attributes["data-rw"]?.Value)))//23-05-2024
                                             s.Append("<item url=\"" + SetUrl(u) + "\"  title=\"" + SetTitle(t) + "\" />");
                                         s.Append("</block>");

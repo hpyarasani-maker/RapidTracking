@@ -1388,7 +1388,7 @@ namespace RapidTrackingLoopReceiving
         private string GetImages(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'eA0Zlc PZPZlf JX86yc ivg-i')]|.//div[@jsname='dTDiAc']"); //11-08-2021 //09-08-2021
+            HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'eA0Zlc PZPZlf JX86yc ivg-i')]|.//div[@jsname='dTDiAc']|.//div[@class='w43QB EXH1Ce']/a"); //23-05-2024//11-08-2021 //09-08-2021
             if (nds == null)
                 nds = node.SelectNodes(".//g-img/img");
             bool existed = false;
@@ -1411,6 +1411,12 @@ namespace RapidTrackingLoopReceiving
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"\" />");
                         existed = true;
                     }
+                    else if (nd.Attributes.Contains("href"))//2024-05-23
+                    {
+                        url = nd.Attributes["href"]?.Value.Trim() ?? "";
+                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"\" />");
+                        existed = true;
+                    }//2024-05-23
                 }
             if (!existed)
             {

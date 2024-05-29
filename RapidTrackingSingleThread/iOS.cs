@@ -2595,7 +2595,7 @@ namespace RapidTrackingSingleThread
                         string priceValue = string.Empty;
                         string hoursValue = string.Empty;
                         string title = string.Empty;
-                        if (node.SelectSingleNode(".//div[@class='UgpQWe']|.//div[@class='xwYPZe']") == null)//24-08-2023
+                        if (node.SelectSingleNode(".//div[@class='UgpQWe']|.//div[@class='xwYPZe']|.//div[@role='list']") == null)//29-05-2024//24-08-2023
                         {
                             title = airline;
                             airline = string.Empty;
@@ -2898,7 +2898,7 @@ namespace RapidTrackingSingleThread
             if (node.SelectSingleNode(".//div[contains(@class, 'RPdfze')]") != null || (node.SelectSingleNode(".//div[contains(@class, 'Qkn3ie')]" +//26-04-2024//23-04-2024
                 "|.//div[@class='lMMUFc']|.//div[@class='oj7Mub eVNxY']") != null && node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]" +//08-05-2024
                 "|.//div[contains(@class,'WFxqwc')]|.//div[contains(@class,'PZPZlf')]" +
-                "|.//div[@class='KmNjGe Iu7yDc']|.//div[@class='EDblX HG5ZQb']") == null))//15-05-2024
+                "|.//div[@class='KmNjGe Iu7yDc']|.//div[@class='EDblX HG5ZQb']") == null || node.SelectSingleNode(".//div[@jscontroller='QQ51Ce']") != null ))//29-05-2024//15-05-2024
                 return "FindResultsOn";
             /*nd = node.SelectSingleNode(".//g-tray-header[contains(@class,'kno-fb-ctx gsrt')]"); //23-03-2022//19-01-2023 //Top Sights and Flights
             if (nd != null)

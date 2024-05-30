@@ -1491,11 +1491,10 @@ namespace RapidTrackingLibrary
         public string GetJobs(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();
-
             s.Append("<block type=\"jobs\" url=\"\">");
-
-            HtmlNodeCollection nodes = node.SelectNodes(".//ul/li/div[@class='PwjeAc']");
+            HtmlNodeCollection nodes = node.SelectNodes(".//ul/li/div[@class='PwjeAc']|.//div[@class='L5NwLd']");//30-05-2024
             if (nodes != null)
+                if (nodes != null)
             {
                 foreach (HtmlNode nd in nodes)
                 {
@@ -1507,8 +1506,13 @@ namespace RapidTrackingLibrary
                         if (url.StartsWith("https://www.google.")) url = string.Empty;
                         url = SetUrl(url);
                     }
-
-                    string title = nd.SelectSingleNode(".//div[@role='heading']").InnerText;
+                    else if (nd.Attributes.Contains("data-share-url"))//30-05-2024
+                    {
+                        url = nd.Attributes["data-share-url"]?.Value.Trim() ?? "";
+                        if (url.StartsWith("https://www.google.")) url = string.Empty;
+                        url = SetUrl(url);
+                    }//30-05-2024
+                    string title = nd.SelectSingleNode(".//div[@role='heading']|.//div[@class='tNxQIb PUpOsf']").InnerText;//30-05-2024
                     if (!string.IsNullOrEmpty(url) || !string.IsNullOrEmpty(title))
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                 }
@@ -2941,6 +2945,7 @@ namespace RapidTrackingLibrary
             }
 
             if (node.SelectSingleNode(".//div[@id='imso-root']") != null || node.SelectSingleNode(".//div[contains(@class,'tsp-view')]") != null //24-11-2020 for eventresults included contains func //node.SelectSingleNode(".//div[@class='tsp-view r-iDNua10DBk4I']") != null
+                || node.SelectSingleNode(".//div[@data-id='jobs-detail-viewer']") != null //30-05-2024
                 || node.SelectSingleNode(".//div[@class='nA3Vyd SBFvB']") != null || node.SelectSingleNode(".//div[@class='nJXhWc nA3Vyd']") != null
                 || node.SelectSingleNode(".//div[@class='AE4e7c']") != null || node.SelectSingleNode(".//div[@class='SBFvB']") != null //06-10-2021 Event block   //22-05-2020 included selector for event block
                 || node.SelectSingleNode(".//div[@class='imso-ml-c PZPZlf']|.//div[@class='RRXMad']|.//div[@jsname='GDPwke']|.//div[@jscontroller='WoVPie']") != null//07-05-2024//22-09-2022 event block

@@ -2201,7 +2201,7 @@ namespace RapidTrackingLibrary
         {
             bool bVal = (node.SelectSingleNode(".//h3[@class='zQlLed']") != null  // top stories       
                 || node.SelectSingleNode(".//div[@class='wXlZre B03h3d V14nKc ptcLIOszQJu__wholepage-card wp-msss']") != null//topstories 08-04-2020
-                || node.SelectSingleNode(".//div[@class='e2BEnf U7izfe']") != null//topstories 01-06-2020
+                || node.SelectSingleNode(".//div[contains(@class, 'e2BEnf U7izfe')]|.//div[@class='x7cRLb']") != null //03-06-2024//28-07-2021 images selectors
                 || node.SelectSingleNode(".//div[@class='e2BEnf U7izfe hWIMdd mfMhoc']") != null //29-07-2021 topstories selector
                 || node.SelectSingleNode(".//div[@class='e2BEnf U7izfe mfMhoc']") != null //21-09-2020 images selectors
                 || node.SelectSingleNode(".//div[contains(@class, 'e2BEnf U7izfe')]") != null //28-07-2021 images selectors

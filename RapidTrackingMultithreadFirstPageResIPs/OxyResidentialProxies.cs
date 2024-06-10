@@ -32,7 +32,7 @@ namespace RapidTrackingMultithreadFirstPageResIPs
             var client = new WebClient();
             client.Proxy = new WebProxy("pr.oxylabs.io:7777");
             string aaa = $"residatametrics-{country}";
-            client.Proxy.Credentials = new NetworkCredential($"customer-residatametrics-{country}", "ITQxGcjDdiq2oHM44UBX^");
+            client.Proxy.Credentials = new NetworkCredential($"customer-respidatametrics-{country}", "SeEx6#^dwuu#6");
             string res = client.DownloadString("https://ip.oxylabs.io/location");
             JObject obj = JObject.Parse(res);
             string ip = obj["ip"].Value<string>();
@@ -62,7 +62,7 @@ namespace RapidTrackingMultithreadFirstPageResIPs
                         //Address = new Uri("http://[" + ip + "]:60000"),//ipv6
                         BypassProxyOnLocal = false,
                         UseDefaultCredentials = false,
-                        Credentials = new NetworkCredential("customer-residatametrics", "ITQxGcjDdiq2oHM44UBX^")
+                        Credentials = new NetworkCredential("customer-respidatametrics", "SeEx6#^dwuu#6")
                         //Credentials = new NetworkCredential("customer-residatametrics" + "-sessid-" + session_id, "ITQxGcjDdiq2oHM44UBX^")
                     };
                 }
@@ -74,7 +74,7 @@ namespace RapidTrackingMultithreadFirstPageResIPs
                         Address = new Uri("http://[" + ip + "]:60000"),//ipv6
                         BypassProxyOnLocal = false,
                         UseDefaultCredentials = false,
-                        Credentials = new NetworkCredential("customer-residatametrics", "ITQxGcjDdiq2oHM44UBX^")
+                        Credentials = new NetworkCredential("customer-respidatametrics", "SeEx6#^dwuu#6")
                         //Credentials = new NetworkCredential("customer-residatametrics" + "-sessid-" + session_id, "ITQxGcjDdiq2oHM44UBX^")
                     };
                 }
@@ -123,7 +123,7 @@ namespace RapidTrackingMultithreadFirstPageResIPs
                         //Address = new Uri("http://[" + ip + "]:60000"),//ipv6
                         BypassProxyOnLocal = false,
                         UseDefaultCredentials = false,
-                        Credentials = new NetworkCredential("customer-residatametrics", "ITQxGcjDdiq2oHM44UBX^")
+                        Credentials = new NetworkCredential("customer-respidatametrics", "SeEx6#^dwuu#6")
                         //Credentials = new NetworkCredential("customer-residatametrics" + "-sessid-" + session_id, "ITQxGcjDdiq2oHM44UBX^")
                     };
                 }
@@ -135,7 +135,7 @@ namespace RapidTrackingMultithreadFirstPageResIPs
                         Address = new Uri("http://[" + ip + "]:60000"),//ipv6
                         BypassProxyOnLocal = false,
                         UseDefaultCredentials = false,
-                        Credentials = new NetworkCredential("customer-residatametrics", "ITQxGcjDdiq2oHM44UBX^")
+                        Credentials = new NetworkCredential("customer-respidatametrics", "SeEx6#^dwuu#6")
                         //Credentials = new NetworkCredential("customer-residatametrics" + "-sessid-" + session_id, "ITQxGcjDdiq2oHM44UBX^")
                     };
                 }

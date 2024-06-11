@@ -1049,14 +1049,47 @@ namespace RapidTrackingSingleThread
                     s.Append(GetFindResultsOn(node));
                     //s.Append("</block>");//03-10-2023
                     break;//07-07-2023
+                case "dataset"://11-06-2024 DataSet Block
+                    s.Append("<block type=\"dataset\" url=\"\">");
+                    s.Append(GetDataset(node));
+                    s.Append("</block>");
+                    break;//11-06-2024
                 default:
                     break;
             }
             return s.ToString();
-
         }
-
-
+        private string GetDataset(HtmlNode node)//11-06-2024 DataSet Block
+        {
+            StringBuilder s = new StringBuilder();
+            HtmlNodeCollection nodes = node.SelectNodes(".//div[contains(@class, 'bba2i')]");
+            if (nodes != null)
+            {
+                foreach (HtmlNode nd in nodes)
+                {
+                    string url = "";
+                    string title = string.Empty;
+                    string pDate = string.Empty;
+                    HtmlNode link = nd.SelectSingleNode(".//a");
+                    if (link != null)
+                    {
+                        url = link.Attributes["href"]?.Value;
+                        title = link.SelectSingleNode(".//h3")?.InnerText ?? "";
+                    }
+                    pDate = nd.SelectSingleNode(".//div/span[@class='ppk8Ge']")?.InnerText ?? "";
+                    if (!string.IsNullOrEmpty(pDate))
+                    {
+                        try
+                        {
+                            pDate = DateTimeOffset.Parse(pDate).ToString("yyyy-MM-dd");
+                        }
+                        catch { pDate = ""; }
+                    }
+                    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" publishDate=\"" + pDate + "\" />");
+                }
+            }
+            return s.ToString();
+        }//11-06-2024
         //20-11-2020
         private string GetJobs(HtmlNode node)
         {
@@ -2186,6 +2219,9 @@ namespace RapidTrackingSingleThread
             {
                 return "Popular";//09-11-2022 PopularProducts
             }
+            nd = node.SelectSingleNode(".//div[contains(@class, 'bba2i')]");//11-06-2024 DataSet Block
+            if (nd != null)
+                return "Dataset";//11-06-2024
             return "";
         }
 

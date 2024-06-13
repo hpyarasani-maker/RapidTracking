@@ -12,19 +12,19 @@ namespace RapidTrackingResSingleThread
         {
             new SearchProperties()
             {
-                seid =1, domain ="com", country="cc-US", locale="en-us", uule="w+CAIQICINVW5pdGVkIFN0YXRlcw==",device="desktop"
+                seid =1, domain ="com", country="US", locale="en-us", uule="w+CAIQICINVW5pdGVkIFN0YXRlcw==",device="desktop"
             },
             new SearchProperties()
             {
-                seid =58, domain ="co.uk", country="cc-UK", locale= "en-gb",uule = "w+CAIQICIOVW5pdGVkIEtpbmdkb20=",device="desktop"
+                seid =58, domain ="co.uk", country="UK", locale= "en-gb",uule = "w+CAIQICIOVW5pdGVkIEtpbmdkb20=",device="desktop"
             },
             new SearchProperties()
             {
-                seid =102, domain ="com", country="cc-US", locale="en-us", uule="w+CAIQICINVW5pdGVkIFN0YXRlcw==",device="mobile_android"
+                seid =102, domain ="com", country="US", locale="en-us", uule="w+CAIQICINVW5pdGVkIFN0YXRlcw==",device="mobile_android"
             },
             new SearchProperties()
             {
-                seid =106, domain ="co.uk", country="cc-UK", locale= "en-gb",uule = "w+CAIQICIOVW5pdGVkIEtpbmdkb20=",device="mobile_android"
+                seid =106, domain ="co.uk", country="UK", locale= "en-gb",uule = "w+CAIQICIOVW5pdGVkIEtpbmdkb20=",device="mobile_android"
             },
         };
 

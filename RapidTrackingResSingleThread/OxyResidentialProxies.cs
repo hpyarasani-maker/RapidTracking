@@ -26,21 +26,21 @@ namespace RapidTrackingResSingleThread
         string url = string.Empty;
         //public string IP = string.Empty;
 
-        
-        private string GetProxyIP(string country)
-        {
-            var client = new WebClient();
-            client.Proxy = new WebProxy("pr.oxylabs.io:7777");
-            string aaa = $"residatametrics-{country}";
-            client.Proxy.Credentials = new NetworkCredential($"customer-respidatametrics-{country}", "SeEx6#^dwuu#6");
-            string res = client.DownloadString("https://ip.oxylabs.io/location");
-            JObject obj = JObject.Parse(res);
-            string ip = obj["ip"].Value<string>();
-            return ip;
-        }
 
+        /*  private string GetProxyIP(string country)
+          {
+              var client = new WebClient();
+              client.Proxy = new WebProxy("pr.oxylabs.io:7777");
+              string aaa = $"residatametrics-{country}";
+              client.Proxy.Credentials = new NetworkCredential($"customer-respidatametrics-{country}", "SeEx6#^dwuu#6");
+              string res = client.DownloadString("https://ip.oxylabs.io/location");
+              JObject obj = JObject.Parse(res);
+              string ip = obj["ip"].Value<string>();
+              return ip;
+          }
+          */
 
-        public string GetWebDataSource(string url, string country, out string ip)
+        /*public string GetWebDataSource(string url, string country, out string ip)
         {
             string ipaddress = string.Empty;
             try
@@ -159,9 +159,20 @@ namespace RapidTrackingResSingleThread
             {
                 throw new Exception("IP Error: " + ipaddress + ex.Message);
             }
+        }*/
+        public string GetWebDataSource(string url, string country)
+        {
+            var client = new Client(country);//value should be eg:- "US" two letters country 
+            string res = client.DownloadString(url);
+            return res;
         }
-
-        public string[] GetTop100Desktop(string keyword,string country, int seid, out string ip, string domain, string locale, string uule)
+        public string GetWebDataMobileSource(string url, string country)
+        {
+            var client = new Client(country); //value should be eg:- "US" two letters country 
+            string res = client.DownloadString(url);
+            return res;
+        }
+        public string[] GetTop100Desktop(string keyword,string country, int seid, string domain, string locale, string uule)
         {
 
             ArrayList DesktopResult = new ArrayList();
@@ -186,14 +197,14 @@ namespace RapidTrackingResSingleThread
 
             }
 
-            string HTML = GetWebDataSource(url,country, out ip);
+            string HTML = GetWebDataSource(url,country);
             string[] dr = DesktoppatternTrending(HTML, keyword, seid.ToString());
 
             return dr;
 
         }
         //----------------------------------------------- For Non Hotel Keywords -------------------------------------//
-        public string[] GetTop100Mobile(string keyword, string country, int seid, out string ip, string domain, string locale, string uule)
+        public string[] GetTop100Mobile(string keyword, string country, int seid, string domain, string locale, string uule)
         {
             ArrayList MobileResult = new ArrayList();
 
@@ -216,7 +227,7 @@ namespace RapidTrackingResSingleThread
 
             }
 
-            string HTML = GetWebDataMobileSource(url,country, out ip);
+            string HTML = GetWebDataMobileSource(url,country);
             //File.WriteAllText(@"c:\inetpub\wwwroot\dallas.html", HTML);
             string[] mr = MobilepatternTrending(HTML, keyword, seid.ToString());
             return mr;
@@ -264,11 +275,11 @@ namespace RapidTrackingResSingleThread
             {
                 if (value.device == "desktop")
                 {
-                    seresults = GetTop100Desktop(keyword, value.country, seid, out sip, value.domain, value.locale, value.uule);
+                    seresults = GetTop100Desktop(keyword, value.country, seid, value.domain, value.locale, value.uule);
                 }
                 else if (value.device == "mobile_android")
                 {
-                    seresults = GetTop100Mobile(keyword, value.country, seid, out sip, value.domain, value.locale, value.uule);
+                    seresults = GetTop100Mobile(keyword, value.country, seid, value.domain, value.locale, value.uule);
                 }
             }
             ip = sip;

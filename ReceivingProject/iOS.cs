@@ -1454,12 +1454,47 @@ namespace ReceivingProject
                     s.Append(GetFindResultsOn(node));
                     //s.Append("</block>");
                     break;//09-08-2023//07-07-2023
+                /*case "dataset"://11-06-2024 DataSet Block
+                    s.Append("<block type=\"dataset\" url=\"\">");
+                    s.Append(GetDataset(node));
+                    s.Append("</block>");
+                    break;//11-06-2024*/
                 default:
                     break;
             }
             return s.ToString();
-
         }
+        private string GetDataset(HtmlNode node)//11-06-2024 DataSet Block
+        {
+            StringBuilder s = new StringBuilder();
+            HtmlNodeCollection nodes = node.SelectNodes(".//div[contains(@class, 'bba2i')]");
+            if (nodes != null)
+            {
+                foreach (HtmlNode nd in nodes)
+                {
+                    string url = "";
+                    string title = string.Empty;
+                    string pDate = string.Empty;
+                    HtmlNode link = nd.SelectSingleNode(".//a");
+                    if (link != null)
+                    {
+                        url = link.Attributes["href"]?.Value;
+                        title = link.SelectSingleNode(".//h3")?.InnerText ?? "";
+                    }
+                    pDate = nd.SelectSingleNode(".//div/span[@class='ppk8Ge']")?.InnerText ?? "";
+                    if (!string.IsNullOrEmpty(pDate))
+                    {
+                        try
+                        {
+                            pDate = DateTimeOffset.Parse(pDate).ToString("yyyy-MM-dd");
+                        }
+                        catch { pDate = ""; }
+                    }
+                    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" publishDate=\"" + pDate + "\" />");
+                }
+            }
+            return s.ToString();
+        }//11-06-2024
 
         //20-11-2020
         private string GetJobs(HtmlNode node)
@@ -2894,7 +2929,8 @@ namespace ReceivingProject
                 "|.//div[@class='lMMUFc']|.//div[@class='oj7Mub eVNxY']") != null && node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]" +//08-05-2024
                 "|.//div[contains(@class,'WFxqwc')]|.//div[contains(@class,'PZPZlf')]" +
                 "|.//div[@class='KmNjGe Iu7yDc']|.//div[@class='EDblX HG5ZQb']") == null || node.SelectSingleNode(".//div[@jscontroller='QQ51Ce']") != null && node.SelectSingleNode(".//div[contains(@class,'N8D9gb OdBhM')]|.//div[@class='rNSxBe XNfAUb']") == null))//06-06-2024//29-05-2024//15-05-2024
-                return "FindResultsOn";
+                if (node.SelectNodes(".//div[@jsname='Sicp7d']") == null)//10-06-2024
+                    return "FindResultsOn";
             /*nd = node.SelectSingleNode(".//g-tray-header[contains(@class,'kno-fb-ctx gsrt')]"); //23-03-2022//19-01-2023 //Top Sights and Flights
             if (nd != null)
                 return "TopSights";*/ //23-03-2022//19-01-2023
@@ -3243,7 +3279,7 @@ namespace ReceivingProject
                 nd = node.SelectSingleNode(".//div[@class='Vvrpbd']");//05-12-2023
             if (nd != null)
             {
-                if (node.SelectSingleNode(".//div[@class='VPyzge']|.//div[@class='aJegcc']") == null && (node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']" + //04-04-2024
+                if (node.SelectSingleNode(".//div[@class='VPyzge']|.//div[@class='aJegcc']|.//div[@jsname='Sicp7d']") == null && (node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']" +//10-06-2024 //04-04-2024
                     "|.//div[@class='N60dNb mfMhoc']|.//div[@jsmodel='vqHyhf']|.//div[@jsmodel='Wn3aEc']|.//div[@class='HdBr8']|.//div[@class='VKHL9c']" +
                     "|.//div[@class='IZE3Td']") != null))//02-02-2024//01-02-2024//15-12-2023
                     return "Images";
@@ -3300,6 +3336,9 @@ namespace ReceivingProject
             /*nd = node.SelectSingleNode(".//div[contains(@class, 'vZFyxc')]");//22-11-2022 refine the searches
             if (nd != null)
                 return "Refine";*///22-11-2022
+            /*nd = node.SelectSingleNode(".//div[contains(@class, 'bba2i')]");//11-06-2024 DataSet Block
+            if (nd != null)
+                return "Dataset";//11-06-2024*/
             return "";
         }
 
@@ -3351,6 +3390,7 @@ namespace ReceivingProject
 
             //22-11-2019
             nd = node.SelectSingleNode(".//div[@class='g kno-result rQUFld mnr-c g-blk']|.//w-answer/div[@class='MUxGbd t51gnb lyLwlc lEBKkf']|.//div[@class='ifM9O']|.//div[@class='Q9mvUc']|.//div[contains(@class,'tkQJMd')]|.//div[contains(@class, 'RPdfze')]|.//div[contains(@class, 'Qkn3ie')]");//22-09-2023//07-07-2023 FindResultsOn block //03-07-2023//08-07-2022//16-02-2022 //01-10-2020 Answered Card selector included
+            //nd = node.SelectSingleNode(".//div[@class='g kno-result rQUFld mnr-c g-blk']|.//w-answer/div[@class='MUxGbd t51gnb lyLwlc lEBKkf']|.//div[@class='ifM9O']|.//div[@class='Q9mvUc']|.//div[contains(@class,'tkQJMd')]|.//div[contains(@class, 'RPdfze')]|.//div[contains(@class, 'Qkn3ie')]|.//div/span[@class='kL6Fzb']");//11-0-2024 DataSet Block or uncomment above line
             if (nd != null)
             {
                 return true;

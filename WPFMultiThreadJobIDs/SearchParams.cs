@@ -3356,6 +3356,286 @@ namespace WPFMultiThreadJobIDs
             {
                 seid = 904, domain ="com", geo_location="Maryland,United States", locale= "en-us", uule = "w+CAIQICIWTWFyeWxhbmQsVW5pdGVkIFN0YXRlcw==",device="mobile_android"
             },//03-06-2024
+            new SearchProperties()//19-06-2024
+            {
+                seid = 905, domain ="al", geo_location="Albania", locale= "en-al", uule = "w+CAIQICIHQWxiYW5pYQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 906, domain ="al", geo_location="Albania", locale= "en-al", uule = "w+CAIQICIHQWxiYW5pYQ==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 907, domain ="am", geo_location="Armenia", locale= "en-am", uule = "w+CAIQICIHQXJtZW5pYQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 908, domain ="am", geo_location="Armenia", locale= "en-am", uule = "w+CAIQICIHQXJtZW5pYQ==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 909, domain ="aw", geo_location="Aruba", locale= "en-aw", uule = "w+CAIQICIFQXJ1YmE=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 910, domain ="aw", geo_location="Aruba", locale= "en-aw", uule = "w+CAIQICIFQXJ1YmE=",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 911, domain ="at", geo_location="Austria", locale= "en-at", uule = "w+CAIQICIHQXVzdHJpYQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 912, domain ="at", geo_location="Austria", locale= "en-at", uule = "w+CAIQICIHQXVzdHJpYQ==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 913, domain ="ba", geo_location="Bosnia and Herzegovina", locale= "en-ba", uule = "w+CAIQICIWQm9zbmlhIGFuZCBIZXJ6ZWdvdmluYQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 914, domain ="ba", geo_location="Bosnia and Herzegovina", locale= "en-ba", uule = "w+CAIQICIWQm9zbmlhIGFuZCBIZXJ6ZWdvdmluYQ==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 915, domain ="com.co", geo_location="Colombia", locale= "en-co", uule = "w+CAIQICIIQ29sb21iaWE=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 916, domain ="com.co", geo_location="Colombia", locale= "en-co", uule = "w+CAIQICIIQ29sb21iaWE=",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 917, domain ="co.cr", geo_location="Costa Rica", locale= "en-cr", uule = "w+CAIQICIKQ29zdGEgUmljYQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 918, domain ="co.cr", geo_location="Costa Rica", locale= "en-cr", uule = "w+CAIQICIKQ29zdGEgUmljYQ==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 919, domain ="hr", geo_location="Croatia", locale= "en-hr", uule = "w+CAIQICIHQ3JvYXRpYQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 920, domain ="hr", geo_location="Croatia", locale= "en-hr", uule = "w+CAIQICIHQ3JvYXRpYQ==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 921, domain ="com.cy", geo_location="Cyprus", locale= "en-cy", uule = "w+CAIQICIGQ3lwcnVz",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 922, domain ="com.cy", geo_location="Cyprus", locale= "en-cy", uule = "w+CAIQICIGQ3lwcnVz",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 923, domain ="com.do", geo_location="Dominican Republic", locale= "en-do", uule = "w+CAIQICISRG9taW5pY2FuIFJlcHVibGlj",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 924, domain ="com.do", geo_location="Dominican Republic", locale= "en-do", uule = "w+CAIQICISRG9taW5pY2FuIFJlcHVibGlj",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 925, domain ="com.ec", geo_location="Ecuador", locale= "en-ec", uule ="w+CAIQICIHRWN1YWRvcg==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 926, domain ="com.ec", geo_location="Ecuador", locale= "en-ec", uule = "w+CAIQICIHRWN1YWRvcg==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 927, domain ="com.sv", geo_location="El Salvador", locale= "en-sv", uule ="w+CAIQICILRWwgU2FsdmFkb3I=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 928, domain ="com.sv", geo_location="El Salvador", locale= "en-sv", uule ="w+CAIQICILRWwgU2FsdmFkb3I=",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 929, domain ="ge", geo_location="Georgia", locale= "en-ge", uule ="w+CAIQICIHR2VvcmdpYQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 930, domain ="ge", geo_location="Georgia", locale= "en-ge", uule ="w+CAIQICIHR2VvcmdpYQ==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 931, domain ="gr", geo_location="Greece", locale= "en-gr", uule ="w+CAIQICIGR3JlZWNl",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 932, domain ="gr", geo_location="Greece", locale= "en-gr", uule ="w+CAIQICIGR3JlZWNl",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 933, domain ="com.gt", geo_location="Guatemala", locale= "en-gt", uule ="w+CAIQICIJR3VhdGVtYWxh",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 934, domain ="com.gt", geo_location="Guatemala", locale= "en-gt", uule ="w+CAIQICIJR3VhdGVtYWxh",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 935, domain ="hu", geo_location="Hungary", locale= "en-hu", uule ="w+CAIQICIHSHVuZ2FyeQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 936, domain ="hu", geo_location="Hungary", locale= "en-hu", uule ="w+CAIQICIHSHVuZ2FyeQ==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 937, domain ="kz", geo_location="Kazakhstan", locale= "en-kz", uule ="w+CAIQICIKS2F6YWtoc3Rhbg==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 938, domain ="kz", geo_location="Kazakhstan", locale= "en-kz", uule ="w+CAIQICIKS2F6YWtoc3Rhbg==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 939, domain ="kg", geo_location="Kyrgyzstan", locale= "en-kg", uule ="w+CAIQICIKS3lyZ3l6c3Rhbg==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 940, domain ="kg", geo_location="Kyrgyzstan", locale= "en-kg", uule = "w+CAIQICIKS3lyZ3l6c3Rhbg==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 941, domain ="lt", geo_location="Lithuania", locale= "en-lt", uule ="w+CAIQICIJTGl0aHVhbmlh",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 942, domain ="lt", geo_location="Lithuania", locale= "en-lt", uule = "w+CAIQICIJTGl0aHVhbmlh",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 943, domain ="mv", geo_location="Maldives", locale= "en-mv", uule ="w+CAIQICIITWFsZGl2ZXM=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 944, domain ="mv", geo_location="Maldives", locale= "en-mv", uule = "w+CAIQICIITWFsZGl2ZXM=",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 945, domain ="md", geo_location="Moldova", locale= "en-md", uule ="w+CAIQICIHTW9sZG92YQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 946, domain ="md", geo_location="Moldova", locale= "en-md", uule = "w+CAIQICIHTW9sZG92YQ==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 947, domain ="me", geo_location="Montenegro", locale= "en-me", uule ="w+CAIQICIKTW9udGVuZWdybw==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 948, domain ="me", geo_location="Montenegro", locale= "en-me", uule = "w+CAIQICIKTW9udGVuZWdybw==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 949, domain ="co.ma", geo_location="Morocco", locale= "en-ma", uule ="w+CAIQICIHTW9yb2Njbw==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 950, domain ="co.ma", geo_location="Morocco", locale= "en-ma", uule = "w+CAIQICIHTW9yb2Njbw==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 951, domain ="mk", geo_location="North Macedonia", locale= "en-mk", uule ="w+CAIQICIJTWFjZWRvbmlh",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 952, domain ="mk", geo_location="North Macedonia", locale= "en-mk", uule = "w+CAIQICIJTWFjZWRvbmlh",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 953, domain ="ps", geo_location="Palestine", locale= "en-ps", uule ="w+CAIQICIJUGFsZXN0aW5l",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 954, domain ="ps", geo_location="Palestine", locale= "en-ps", uule = "w+CAIQICIJUGFsZXN0aW5l",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 955, domain ="pl", geo_location="Poland", locale= "en-pl", uule ="w+CAIQICIGUG9sYW5k",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 956, domain ="pl", geo_location="Poland", locale= "en-pl", uule = "w+CAIQICIGUG9sYW5k",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 957, domain ="pt", geo_location="Portugal", locale= "en-pt", uule ="w+CAIQICIIUG9ydHVnYWw=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 958, domain ="pt", geo_location="Portugal", locale= "en-pt", uule = "w+CAIQICIIUG9ydHVnYWw=",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 959, domain ="rs", geo_location="Serbia", locale= "en-rs", uule ="w+CAIQICIGU2VyYmlh",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 960, domain ="rs", geo_location="Serbia", locale= "en-rs", uule = "w+CAIQICIGU2VyYmlh",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 961, domain ="es", geo_location="Spain", locale= "en-es", uule ="w+CAIQICIFU3BhaW4=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 962, domain ="es", geo_location="Spain", locale= "en-es", uule = "w+CAIQICIFU3BhaW4=",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 963, domain ="com.ua", geo_location="Ukraine", locale= "en-ua", uule ="w+CAIQICIHVWtyYWluZQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 964, domain ="com.ua", geo_location="Ukraine", locale= "en-ua", uule = "w+CAIQICIHVWtyYWluZQ==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 965, domain ="co.uz", geo_location="Uzbekistan", locale= "en-uz", uule ="w+CAIQICIKVXpiZWtpc3Rhbg==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 966, domain ="co.uz", geo_location="Uzbekistan", locale= "en-uz", uule = "w+CAIQICIKVXpiZWtpc3Rhbg==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 967, domain ="kz", geo_location="Kazakhstan", locale= "ru-kz", uule ="w+CAIQICIKS2F6YWtoc3Rhbg==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 968, domain ="kz", geo_location="Kazakhstan", locale= "ru-kz", uule = "w+CAIQICIKS2F6YWtoc3Rhbg==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 969, domain ="kg", geo_location="Kyrgyzstan", locale= "ru-kg", uule ="w+CAIQICIKS3lyZ3l6c3Rhbg==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 970, domain ="kg", geo_location="Kyrgyzstan", locale= "ru-kg", uule = "w+CAIQICIKS3lyZ3l6c3Rhbg==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 971, domain ="md", geo_location="Moldova", locale= "ru-md", uule ="w+CAIQICIHTW9sZG92YQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 972, domain ="md", geo_location="Moldova", locale= "ru-md", uule = "w+CAIQICIHTW9sZG92YQ==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 973, domain ="com.cy", geo_location="Cyprus", locale= "tr-cy", uule ="w+CAIQICIGQ3lwcnVz",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 974, domain ="com.cy", geo_location="Cyprus", locale= "tr-cy", uule = "w+CAIQICIGQ3lwcnVz",device="mobile_android"
+            },//19-06-2024
         };
     }
     class SearchProperties

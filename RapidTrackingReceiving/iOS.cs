@@ -2893,7 +2893,7 @@ namespace Oxylabs_BulkKeywords
             {
                 bool ts = true;
                 //start07-08-2020 //map selector
-                if (node.SelectSingleNode(".//img[@alt='Affected area']") != null)
+                if (node.SelectSingleNode(".//img[@alt='Affected area']|.//div[@class='ysxiae iRPzcb'].//div[contains(@class,'qtOtne')]") != null) //18-06-2024
                     ts = false;
                 // end07-08-2020
                 HtmlNode n = node.SelectSingleNode(".//div[@class='FRH7Ye gsrt']");

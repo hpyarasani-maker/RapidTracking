@@ -3369,11 +3369,11 @@ namespace RapidTrackingLoopSingleThread
             },
             new SearchProperties()
             {
-                seid = 909, domain ="aw", geo_location="Aruba", locale= "en-aw", uule = "w+CAIQICIFQXJ1YmE=",device="desktop"
+                seid = 909, domain ="nl", geo_location="Aruba", locale= "en-aw", uule = "w+CAIQICIFQXJ1YmE=",device="desktop"
             },
             new SearchProperties()
             {
-                seid = 910, domain ="aw", geo_location="Aruba", locale= "en-aw", uule = "w+CAIQICIFQXJ1YmE=",device="mobile_android"
+                seid = 910, domain ="nl", geo_location="Aruba", locale= "en-aw", uule = "w+CAIQICIFQXJ1YmE=",device="mobile_android"
             },
             new SearchProperties()
             {

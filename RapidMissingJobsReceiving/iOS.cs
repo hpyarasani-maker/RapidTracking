@@ -64,7 +64,7 @@ namespace RapidMissingJobsReceiving
 
             foreach (HtmlNode node in nodeCol)
             {
-                if (node.Attributes["class"]?.Value?.Contains("Ww4FFb vt6azd DlUvEb") == true && node.SelectSingleNode(".//div[@class='lU8tTd']") != null)//05-04-2024
+                if (node.Attributes["class"]?.Value?.Contains("Ww4FFb vt6azd DlUvEb") == true && node.SelectSingleNode(".//div[@class='lU8tTd']") != null && node.SelectSingleNode(".//div[@class='lEorAf']/div[@class='lU8tTd']") == null)//24-06-2024//05-04-2024
                     continue;//05-04-2024
                 HtmlNode fsh = node.SelectSingleNode(".//*[@id='knowledge-finance-wholepage__fw-sticky-header']");
                 if (fsh != null)

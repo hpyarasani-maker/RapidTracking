@@ -2899,7 +2899,7 @@ namespace TrendingReceiving
             {
                 bool ts = true;
                 //start07-08-2020 //map selector
-                if (node.SelectSingleNode(".//img[@alt='Affected area']|.//div[@class='ysxiae iRPzcb'].//div[contains(@class,'qtOtne')]") != null) //18-06-2024
+                if (node.SelectSingleNode(".//img[@alt='Affected area']") != null) //24-06-2024
                     ts = false;
                 // end07-08-2020
                 HtmlNode n = node.SelectSingleNode(".//div[@class='FRH7Ye gsrt']");
@@ -2935,8 +2935,8 @@ namespace TrendingReceiving
             if (node.SelectSingleNode(".//div[contains(@class, 'RPdfze')]") != null || (node.SelectSingleNode(".//div[contains(@class, 'Qkn3ie')]" +//26-04-2024//23-04-2024
                 "|.//div[@class='lMMUFc']|.//div[@class='oj7Mub eVNxY']") != null && node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]" +//08-05-2024
                 "|.//div[contains(@class,'WFxqwc')]|.//div[contains(@class,'PZPZlf')]" +
-                "|.//div[@class='KmNjGe Iu7yDc']|.//div[@class='EDblX HG5ZQb']") == null || node.SelectSingleNode(".//div[@jscontroller='QQ51Ce']") != null && node.SelectSingleNode(".//div[contains(@class,'N8D9gb OdBhM')]|.//div[@class='rNSxBe XNfAUb']") == null))//06-06-2024//29-05-2024//15-05-2024
-                if (node.SelectNodes(".//div[@jsname='Sicp7d']") == null)//10-06-2024
+                "|.//div[@class='KmNjGe Iu7yDc']|.//div[@class='EDblX HG5ZQb']") == null || node.SelectSingleNode(".//div[@jscontroller='QQ51Ce']") != null && node.SelectSingleNode(".//div[contains(@class,'N8D9gb OdBhM')]|.//div[contains(@class,'XNfAUb')]") == null))//24-06-2024//06-06-2024//29-05-2024//15-05-2024
+                if (node.SelectNodes(".//div[@jsname='Sicp7d']|.//div[@class='ysxiae iRPzcb']|.//div[contains(@class,'qtOtne')]") == null)//24-06-2024//10-06-2024
                     return "FindResultsOn";
             /*nd = node.SelectSingleNode(".//g-tray-header[contains(@class,'kno-fb-ctx gsrt')]"); //23-03-2022//19-01-2023 //Top Sights and Flights
             if (nd != null)

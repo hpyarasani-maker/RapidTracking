@@ -160,17 +160,15 @@ namespace RapidTrackingResSingleThread
                 throw new Exception("IP Error: " + ipaddress + ex.Message);
             }
         }*/
-        public string GetWebDataSource(string url, string country)
+        public async void GetWebDataSource(string url,string country)
         {
-            var client = new Client(country);//value should be eg:- "US" two letters country 
-            string res = client.DownloadString(url);
-            return res;
+            Client c = new Client();
+            await c.DesktopOverView(url, country);
         }
-        public string GetWebDataMobileSource(string url, string country)
+        public async void GetWebDataMobileSource(string url, string country)
         {
-            var client = new Client(country); //value should be eg:- "US" two letters country 
-            string res = client.DownloadString(url);
-            return res;
+            Client c = new Client();
+            await c.MobileOverView(url, country);
         }
         public string[] GetTop100Desktop(string keyword,string country, int seid, string domain, string locale, string uule)
         {
@@ -227,7 +225,7 @@ namespace RapidTrackingResSingleThread
 
             }
 
-            string HTML = GetWebDataMobileSource(url,country);
+            var HTML = GetWebDataMobileSource(url,country);
             //File.WriteAllText(@"c:\inetpub\wwwroot\dallas.html", HTML);
             string[] mr = MobilepatternTrending(HTML, keyword, seid.ToString());
             return mr;

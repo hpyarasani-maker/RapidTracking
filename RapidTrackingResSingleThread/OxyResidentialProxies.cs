@@ -12,6 +12,7 @@ using System.Net;
 using System.Text;
 using Newtonsoft.Json.Linq;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace RapidTrackingResSingleThread
 {
@@ -160,17 +161,18 @@ namespace RapidTrackingResSingleThread
                 throw new Exception("IP Error: " + ipaddress + ex.Message);
             }
         }*/
-        public async void GetWebDataSource(string url,string country)
+        public async Task<string> GetWebDataSource(string url, string country)
+        {
+            Task.Delay(3000).Wait();
+            Client c = new Client();
+            return await c.DesktopOverView(url, country);
+        }
+        public async Task<string> GetWebDataMobileSource(string url, string country)
         {
             Client c = new Client();
-            await c.DesktopOverView(url, country);
+            return await c.MobileOverView(url, country);
         }
-        public async void GetWebDataMobileSource(string url, string country)
-        {
-            Client c = new Client();
-            await c.MobileOverView(url, country);
-        }
-        public string[] GetTop100Desktop(string keyword,string country, int seid, string domain, string locale, string uule)
+        public string[] GetTop100DesktopAsync(string keyword, string country, int seid, string domain, string locale, string uule)
         {
 
             ArrayList DesktopResult = new ArrayList();
@@ -195,11 +197,10 @@ namespace RapidTrackingResSingleThread
 
             }
 
-            string HTML = GetWebDataSource(url,country);
+            string HTML = GetWebDataSource(url, country).Result;
+            File.WriteAllText(@"C:\inetpub\wwwroot\html\" + seid + "_" + keyword + ".html", HTML, Encoding.UTF8);
             string[] dr = DesktoppatternTrending(HTML, keyword, seid.ToString());
-
             return dr;
-
         }
         //----------------------------------------------- For Non Hotel Keywords -------------------------------------//
         public string[] GetTop100Mobile(string keyword, string country, int seid, string domain, string locale, string uule)
@@ -225,11 +226,10 @@ namespace RapidTrackingResSingleThread
 
             }
 
-            var HTML = GetWebDataMobileSource(url,country);
-            //File.WriteAllText(@"c:\inetpub\wwwroot\dallas.html", HTML);
+            string HTML = GetWebDataMobileSource(url,country).Result;
+            File.WriteAllText(@"C:\inetpub\wwwroot\html\" + seid + "_" + keyword + ".html", HTML, Encoding.UTF8);
             string[] mr = MobilepatternTrending(HTML, keyword, seid.ToString());
             return mr;
-
         }
 
 
@@ -273,7 +273,7 @@ namespace RapidTrackingResSingleThread
             {
                 if (value.device == "desktop")
                 {
-                    seresults = GetTop100Desktop(keyword, value.country, seid, value.domain, value.locale, value.uule);
+                    seresults = GetTop100DesktopAsync(keyword, value.country, seid, value.domain, value.locale, value.uule);
                 }
                 else if (value.device == "mobile_android")
                 {

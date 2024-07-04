@@ -1794,6 +1794,8 @@ namespace RapidTrackingLibrary
                 nds = node.SelectNodes(".//div[contains(@class, 'Va3FIb EE3Upf lVm3ye')]/a");//11-12-2023
             if (nds == null)//08-12-2023
                 nds = node.SelectNodes(".//div[@class='E8hWLe SVMeif BmP5tf']/div/a");//08-12-2023
+            if (nds == null)//04-07-2024
+                nds = node.SelectNodes(".//div[@class='ygsXjf x4gf3d elIge qR29te']/div/a");//04-07-2024
             if (nds != null)
             {
                 s.Append("<block type=\"siteLinks\" url=\"\">");

@@ -1304,6 +1304,8 @@ namespace RapidTrackingSingleThread
                 "|.//ul[contains(@class,'gYe3nc LAEtub')]/li|.//ul[contains(@class,'lvS33d nodrpc')]/li");//16-11-2023//23-05-2023//08-05-2023
             if (nodes == null)
                 nodes = node.SelectNodes(".//ul[contains(@class, 'sho-apgc__product-grid')]/li|.//ul/li[@class='J4ZKO wTrwWd']|.//ul[contains(@class,'sho-apgc__product-grid')]/div/li");//06-03-2023
+            if (nodes == null)//04-07-2024
+                nodes = node.SelectNodes(".//g-inner-card[@jsname='rlaLld']");//04-07-2024
             if (nodes != null)
             {
                 foreach (HtmlNode nd in nodes)

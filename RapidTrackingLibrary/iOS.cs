@@ -869,7 +869,8 @@ namespace RapidTrackingLibrary
                         if (nd.SelectSingleNode(".//div[@jscontroller='i5z2Rc']") != null
                             || nd.SelectSingleNode(".//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']") != null //13-12-2019
                              || nd.SelectSingleNode(".//div[@class='MUxGbd v0nnCb lyLwlc']") != null    //16-12-2020
-                            || nd.SelectSingleNode(".//div[@class='E8hWLe SVMeif BmP5tf']") != null) //21-07-2022
+                             || nd.SelectSingleNode(".//div[@class='E8hWLe SVMeif BmP5tf']") != null //21-07-2022
+                             || nd.SelectSingleNode(".//div[@class='GssVdc']") != null)//04-07-2024
                         {
                             s.Append(GetSiteLinks(nd)); if (nd.SelectSingleNode(".//div[@class='ki5rnd']|.//div[@class='yR4jwc']|.//div[@class='UyqAp']|.//div[@class='qs-io aig-lst']") != null)//30-08-2023 
                                 continue;

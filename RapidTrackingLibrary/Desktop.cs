@@ -625,8 +625,8 @@ namespace RapidTrackingLibrary
                 s.Append(GetHotels(hp));
                 s.Append("</block>");
             }//02-11-2023
-            //18-03-2020
-            HtmlNode imgs = colt.SelectSingleNode("//div[@class='M8OgIe']");//21-04-2023
+             //18-03-2020
+            HtmlNode imgs = colt.SelectSingleNode("//div[contains(@class, 'M8OgIe')]");//08-07-2024//21-04-2023
             if (imgs != null && (imgs.SelectSingleNode(".//div[@id='Odp5De']|.//div[@jscontroller='qTdDb']") == null || imgs.SelectSingleNode(".//div[@class='QjXCXd']") != null))//04-01-2024//15-05-2023//27-04-2023
             {
                 s.Append("<block type=\"images\" url=\"\">");
@@ -2133,7 +2133,7 @@ namespace RapidTrackingLibrary
                 nd = node.SelectSingleNode(".//div[@class='wH6SXe']");//03-10-2023
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@jsmodel='Wn3aEc']");//16-01-2024
-            if (nd != null && (node.SelectNodes(".//div[@jsname='dTDiAc']") != null || (node.Attributes["id"]?.Value != "Odp5De" &&
+            if (nd != null && ((node.SelectNodes(".//div[@jsname='dTDiAc']") != null && node.SelectSingleNode(".//div[@class='o8ebK']") == null) || (node.Attributes["id"]?.Value != "Odp5De" && //08-07-2024
                 node.SelectSingleNode(".//div[@class='q6PGbe']|.//div[@class='l44Vof']|.//div[@class='P9Jfrb']|.//div[@class='o8ebK']" +
                 "|.//div[@class='ntKMYc']|.//img[starts-with(@alt,'Map of')]|.//div[@class='aJegcc']") == null)))//26-04-2024//01-02-2024//03-11-2023//06-12-2022//13-08-2022 maps //02-06-2022
             {

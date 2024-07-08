@@ -2115,6 +2115,7 @@ namespace RapidTrackingSingleThread
                     return "AnswerCard";
                 else if ((node.SelectSingleNode(".//div[@class='WcS13d']") != null && node.SelectSingleNode(".//div[@class='EfDVh wDYxhc NFQFxe']") != null //10-10-2023
                      || node.SelectSingleNode(".//div[@class='nmVgI3FLyE0__answer']") != null //10-10-2023
+                     || node.SelectSingleNode(".//div[@class='setTDc']") != null //08-07-2024
                      || node.SelectSingleNode(".//div[@class='N6Sb2c i29hTd']") != null //10-10-2023
                     || node.SelectSingleNode(".//div[@class='ifM9O']") != null) && node.SelectSingleNode(".//img[contains(@alt, 'Map of')]") == null 
                     && node.SelectSingleNode(".//h3[@role='heading']")?.InnerText != "Recipes"

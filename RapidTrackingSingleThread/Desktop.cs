@@ -2364,7 +2364,7 @@ namespace RapidTrackingSingleThread
                         return false;//10-12-2021
                     else //10-12-2021
                         return true;
-                if (node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]") != null)
+                if (node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]|.//div[@class='wYpZje']") != null)//08-07-2024
                     return true;
                 HtmlNodeCollection nds = node.SelectNodes(".//div");
                 if (nds != null)

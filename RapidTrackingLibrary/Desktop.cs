@@ -2333,7 +2333,7 @@ namespace RapidTrackingLibrary
                         return false;//10-12-2021
                     else //10-12-2021
                         return true;
-                if (node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]") != null)//24-11-2023
+                if (node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]|.//div[@class='wYpZje']") != null)//08-07-2024
                     return true;//24-11-2023
                 HtmlNodeCollection nds = node.SelectNodes(".//div");
                 if (nds != null)

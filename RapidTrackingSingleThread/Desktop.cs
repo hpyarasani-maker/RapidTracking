@@ -394,7 +394,7 @@ namespace RapidTrackingSingleThread
             HtmlNodeCollection nodes = node.SelectNodes(".//ul/li/div[contains(@class,'wTrwWd')]");//13-06-2024
             if (nodes == null)//13-06-2024
                 nodes = node.SelectNodes(".//ul/product-viewer-group/li|.//ul/div[@class='Ez5pwe']/li" +
-                "|.//div[@class='MhZJBd']/div[@jsname='U5epZb']|.//div[@class='MhZJBd']/div/div[@jsname='U5epZb']");//24-11-2023//09-12-2022
+                "|.//div[@class='MhZJBd']//div[@jsname='U5epZb']");//08-07-2024//24-11-2023//09-12-2022                
             if (nodes == null)//04-01-2023
                 nodes = node.SelectNodes(".//ul[contains(@class, 'sho-apgc__product-grid')]/li|.//ul[contains(@class, 'sho-apgc__product-grid')]/div/li");//06-//04-01-2023
             if (nodes != null)

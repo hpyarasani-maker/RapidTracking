@@ -2012,7 +2012,8 @@ namespace RapidTrackingLibrary
                     }
                 }
             }
-            catch { }//09-05-2024string pattern3 = @"(\\x3e\\x3ca class\\x3d\\x22CcXKqe\\x22|\\x3c\Wspan\\x3e\\x3c\Wspan\\x3e\\x3c\Wspan\\x3e\\x3ca|\\x3c\Wdiv\\x3e\\x3c\Wspan\\x3e\\x3ca) href\\x3d\\x22(.*?)\\x22";//09-07-2024
+            catch { }//09-05-2024
+            string pattern3 = @"(\\x3e\\x3ca class\\x3d\\x22CcXKqe\\x22|\\x3c\Wspan\\x3e\\x3c\Wspan\\x3e\\x3c\Wspan\\x3e\\x3ca|\\x3c\Wdiv\\x3e\\x3c\Wspan\\x3e\\x3ca) href\\x3d\\x22(.*?)\\x22";//09-07-2024
             re = new Regex(pattern3, RegexOptions.IgnoreCase | RegexOptions.Singleline);
             mc = re.Matches(html);
             try

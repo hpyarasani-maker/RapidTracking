@@ -2006,6 +2006,23 @@ namespace TrendingReceiving
                 }
             }
             catch { }//09-05-2024
+            string pattern3 = @"(\\x3e\\x3ca class\\x3d\\x22CcXKqe\\x22|\\x3c\Wspan\\x3e\\x3c\Wspan\\x3e\\x3c\Wspan\\x3e\\x3ca|\\x3c\Wdiv\\x3e\\x3c\Wspan\\x3e\\x3ca) href\\x3d\\x22(.*?)\\x22";//09-07-2024
+            re = new Regex(pattern3, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+            mc = re.Matches(html);
+            try
+            {
+                foreach (Match m in mc)
+                {
+                    string url = HttpUtility.HtmlDecode(HttpUtility.HtmlEncode(m.Groups[2].Value));
+                    if (url.StartsWith("http") || url.StartsWith("https"))
+                    {
+                        url = SetYTUrl(url, yt);
+                        if (x < titles.Length)
+                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");
+                    }
+                }
+            }
+            catch { }//09-07-2024 (edited) 
             for (; x < titles.Length; x++)//18-02-2022
                 s.Append("<item url=\"\" title=\"" + SetTitle(titles[x]) + "\" />");//18-02-2022
             return s.ToString();

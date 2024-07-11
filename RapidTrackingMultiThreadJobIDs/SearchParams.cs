@@ -3684,6 +3684,10 @@ namespace RapidTrackingMultiThreadJobIDs
             {
                 seid = 986, domain ="am", geo_location="Armenia", locale= "ru-am", uule = "w+CAIQICIHQXJtZW5pYQ==",device="mobile_android"
             },//04-07-2024
+            new SearchProperties()//10-07-2024
+            {
+                seid = 987, domain ="co.il", geo_location="Israel", locale= "en-il", uule = "w+CAIQICIGSXNyYWVs",device="mobile_android"
+            },//10-07-2024
         };
     }
     class SearchProperties

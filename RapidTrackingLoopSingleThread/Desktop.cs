@@ -1051,11 +1051,11 @@ namespace RapidTrackingLoopSingleThread
                     s.Append(GetFindResultsOn(node));
                     //s.Append("</block>");//03-10-2023
                     break;//07-07-2023
-                /*case "dataset"://11-06-2024 DataSet Block
-                    s.Append("<block type=\"dataset\" url=\"\">");
+                case "dataset"://11-06-2024 DataSet Block
+                    s.Append("<block type=\"dataset\" >");
                     s.Append(GetDataset(node));
                     s.Append("</block>");
-                    break;//11-06-2024*/
+                    break;//11-06-2024
                 default:
                     break;
             }
@@ -2223,9 +2223,9 @@ namespace RapidTrackingLoopSingleThread
             {
                 return "Popular";//09-11-2022 PopularProducts
             }
-            /*nd = node.SelectSingleNode(".//div[contains(@class, 'bba2i')]");//11-06-2024 DataSet Block
+            nd = node.SelectSingleNode(".//div[contains(@class, 'bba2i')]");//11-06-2024 DataSet Block
             if (nd != null)
-                return "Dataset";//11-06-2024*/
+                return "Dataset";//11-06-2024
             return "";
         }
 

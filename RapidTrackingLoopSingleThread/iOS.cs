@@ -1468,11 +1468,11 @@ namespace RapidTrackingLoopSingleThread
                     s.Append(GetFindResultsOn(node));
                     //s.Append("</block>");
                     break;//09-08-2023//07-07-2023
-                /*case "dataset"://11-06-2024 DataSet Block
-                    s.Append("<block type=\"dataset\" url=\"\">");
+                case "dataset"://11-06-2024 DataSet Block
+                    s.Append("<block type=\"dataset\" >");
                     s.Append(GetDataset(node));
                     s.Append("</block>");
-                    break;//11-06-2024*/
+                    break;//11-06-2024
                 default:
                     break;
             }
@@ -3369,9 +3369,9 @@ namespace RapidTrackingLoopSingleThread
             /*nd = node.SelectSingleNode(".//div[contains(@class, 'vZFyxc')]");//22-11-2022 refine the searches
             if (nd != null)
                 return "Refine";*///22-11-2022
-            /*nd = node.SelectSingleNode(".//div[contains(@class, 'bba2i')]");//11-06-2024 DataSet Block
+            nd = node.SelectSingleNode(".//div[contains(@class, 'bba2i')]");//11-06-2024 DataSet Block
             if (nd != null)
-                return "Dataset";//11-06-2024*/
+                return "Dataset";//11-06-2024
             return "";
         }
 
@@ -3422,8 +3422,8 @@ namespace RapidTrackingLoopSingleThread
                 return false;
 
             //22-11-2019
-            nd = node.SelectSingleNode(".//div[@class='g kno-result rQUFld mnr-c g-blk']|.//w-answer/div[@class='MUxGbd t51gnb lyLwlc lEBKkf']|.//div[@class='ifM9O']|.//div[@class='Q9mvUc']|.//div[contains(@class,'tkQJMd')]|.//div[contains(@class, 'RPdfze')]|.//div[contains(@class, 'Qkn3ie')]");//22-09-2023//07-07-2023 FindResultsOn block //03-07-2023//08-07-2022//16-02-2022 //01-10-2020 Answered Card selector included
-            //nd = node.SelectSingleNode(".//div[@class='g kno-result rQUFld mnr-c g-blk']|.//w-answer/div[@class='MUxGbd t51gnb lyLwlc lEBKkf']|.//div[@class='ifM9O']|.//div[@class='Q9mvUc']|.//div[contains(@class,'tkQJMd')]|.//div[contains(@class, 'RPdfze')]|.//div[contains(@class, 'Qkn3ie')]|.//div/span[@class='kL6Fzb']");//11-0-2024 DataSet Block or uncomment above line
+            //nd = node.SelectSingleNode(".//div[@class='g kno-result rQUFld mnr-c g-blk']|.//w-answer/div[@class='MUxGbd t51gnb lyLwlc lEBKkf']|.//div[@class='ifM9O']|.//div[@class='Q9mvUc']|.//div[contains(@class,'tkQJMd')]|.//div[contains(@class, 'RPdfze')]|.//div[contains(@class, 'Qkn3ie')]");//22-09-2023//07-07-2023 FindResultsOn block //03-07-2023//08-07-2022//16-02-2022 //01-10-2020 Answered Card selector included
+            nd = node.SelectSingleNode(".//div[@class='g kno-result rQUFld mnr-c g-blk']|.//w-answer/div[@class='MUxGbd t51gnb lyLwlc lEBKkf']|.//div[@class='ifM9O']|.//div[@class='Q9mvUc']|.//div[contains(@class,'tkQJMd')]|.//div[contains(@class, 'RPdfze')]|.//div[contains(@class, 'Qkn3ie')]|.//div/span[@class='kL6Fzb']");//11-0-2024 DataSet Block or uncomment above line
             if (nd != null)
             {
                 return true;

@@ -1100,7 +1100,7 @@ namespace RapidTrackingLibrary
         {
             StringBuilder s = new StringBuilder();
             s.Append("<block type=\"jobs\" url=\"\">");
-            HtmlNodeCollection nodes = node.SelectNodes(".//li/div[@class='PwjeAc']"); //15-07-2022
+            HtmlNodeCollection nodes = node.SelectNodes(".//li/div[@class='PwjeAc']|.//div[@class='L5NwLd']");//19-07-2024 //15-07-2022
             if (nodes != null)
             {
                 foreach (HtmlNode nd in nodes)
@@ -1114,7 +1114,7 @@ namespace RapidTrackingLibrary
                         url = SetUrl(url);
                     }
 
-                    string title = nd.SelectSingleNode(".//div[@role='heading']").InnerText;
+                    string title = nd.SelectSingleNode(".//div[@role='heading']|.//div[@class='tNxQIb PUpOsf']")?.InnerText;//19-07-2024
                     if (!string.IsNullOrEmpty(url) || !string.IsNullOrEmpty(title))
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                 }
@@ -2091,7 +2091,7 @@ namespace RapidTrackingLibrary
                 if (node.SelectSingleNode(".//div[@class='AuVD KJ7Tg cUnQKe']|.//div[@class='cUnQKe RTaUke']") == null)//03-05-2023 //20-07-2022
                     return "PeopleAlsoAsk"; //11-02-2020
             }
-            if (node.SelectSingleNode(".//g-card[@class='cvoI5e']|.//g-tray-header[contains(@class,'iI6nue')]") != null || node.SelectSingleNode(".//g-card[@class='U8KfXc']") != null)//13-03-2024//11-01-2023 //23-11-2020 //20-11-2020
+            if (node.SelectSingleNode(".//g-card[@class='cvoI5e']|.//g-tray-header[contains(@class,'iI6nue')]") != null || node.SelectSingleNode(".//g-card[@class='U8KfXc']") != null || node.SelectSingleNode(".//div[@class='ZNyqGc']") != null)//19-07-2024//13-03-2024//11-01-2023 //23-11-2020 //20-11-2020
             {
                 return "Jobs";
             }
@@ -2295,6 +2295,7 @@ namespace RapidTrackingLibrary
             || node.SelectSingleNode(".//div[@class='CH6Bmd']") != null //27-02-2023
             || node.SelectSingleNode(".//div[@class='oCLR8']") != null//02-06-2023
             || node.SelectSingleNode(".//div[@class='fPmcEc']") != null//19-09-2023
+            || node.SelectSingleNode(".//div[@class='ZNyqGc']") != null//19-07-2024 Jobs
             || node.SelectSingleNode(".//div[@class='qkC4td']") != null//21-09-2023
              || node.SelectNodes(".//div[@class='xSoq1']") != null//10-10-2023
                 || node.SelectNodes(".//div[@class='udVt6e']") != null;//02-11-2023

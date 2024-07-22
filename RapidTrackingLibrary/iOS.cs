@@ -3356,7 +3356,7 @@ namespace RapidTrackingLibrary
                         return "AnswerCard";
                     if (nd.InnerText.StartsWith("Images") || nd.InnerText == "Imágenes")//26-10-20232020 and 10-02-2020 21-02-2020 included title for images block
                         return "Images";
-                    if (nd.InnerText.Trim() == "Eventos")  // 07-02-2020 included title for Event block
+                    if (nd.InnerText.Trim() == "Eventos" || nd.InnerText.Trim() == "Events")//22-07-2024 // 07-02-2020 included title for Event block
                         return "Event";
                 }
             }

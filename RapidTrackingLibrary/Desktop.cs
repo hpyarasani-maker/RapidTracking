@@ -427,6 +427,8 @@ namespace RapidTrackingLibrary
                             link = nd.SelectSingleNode(".//div[contains(@class,'wTrwWd')]");//06-04-2023
                         if (link == null)//17-06-2023
                             link = nd.SelectSingleNode(".//div[contains(@class,'vzhcTd')]");//17-06-2023
+                        if (link == null)//22-07-2024
+                            link = nd.SelectSingleNode(".//div[@class='V5fewe']");//22-07-2024
                         if (link == null)//29-09-2023
                             link = nd.SelectSingleNode(".//div[@class='UC8ZCe QS8Cxb']");//29-09-2023
                         if (link != null)

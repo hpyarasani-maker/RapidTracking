@@ -53,6 +53,8 @@ namespace SingleJobidProject
             }//08-02-2024
             foreach (HtmlNode node in nodeCol)
             {
+                if (node.Attributes["class"]?.Value?.Contains("TzHB6b cLjAic") == true && node.SelectSingleNode(".//div[@class='cUnQKe']|.//div[contains(@class,'g Ww4FFb')]") != null)//22-07-2024
+                    { continue; }//22-07-2024
                 if (node.HasClass("kp-wholepage"))
                 {
                     continue;

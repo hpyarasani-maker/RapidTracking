@@ -2424,7 +2424,7 @@ namespace RapidTrackingSingleThread
                     "|.//div[@class='QevLbc']/a|.//a[@class='OIDuRe']|.//div[@class='Q9mvUc']" +
                     "|.//div[@class='KJDcUb']|.//a[@class='ygih0']|.//div[@class='NBoMDb']/a" +
                     "|.//a[@class='dyWXTb']|.//div[@class='MCDgie']/a[@class='BG7Pyb']" +
-                    "|.//div[@class='GFu7kc']/a|.//div[@class='iyrWae']/a");//26-02-2024//21-11-2023//24-08-2023 //17-05-2022 //07-04-2022 videos item urls
+                    "|.//div[@class='GFu7kc']/a|.//div[@class='iyrWae']/a|.//a[@class='tAAiTd']");//22-07-2024//26-02-2024//21-11-2023//24-08-2023 //17-05-2022 //07-04-2022 videos item urls
 
             if (nds != null)   // 16-09-2019
                 foreach (HtmlNode nd in nds)
@@ -2441,6 +2441,8 @@ namespace RapidTrackingSingleThread
                             n = nd.SelectSingleNode(".//div[@class='nOmCmb']");//24-08-2023
                         if (n == null)
                             n = nd.SelectSingleNode(".//div[@class='k8M7xd OSrXXb tNxQIb ynAwRc']");//14-08-2023 videos item title
+                        if (n == null)
+                            n = nd.SelectSingleNode(".//div[contains(@class,'ynAwRc OSrXXb')]");//22-07-2024
                         if (n == null)//21-11-2023
                             n = nd.SelectSingleNode(".//div[@class='ZhosBf MBI8Pd PwQv4e']");//21-11-2023
                         try
@@ -2474,7 +2476,7 @@ namespace RapidTrackingSingleThread
                             url = nd.Attributes["data-url"].Value;
                         //end 26-06-2020
                         if (url.Contains("/search?") || url.StartsWith("#")) url = "";//11-04-2022
-                        string creator = nd.SelectSingleNode(".//div[@class='YDQ8Te Fy8FNd OSrXXb']/span[3]")?.InnerText.Trim() ?? "";//04-12-2023
+                        string creator = nd.SelectSingleNode(".//div[@class='YDQ8Te Fy8FNd OSrXXb']/span[3]|.//div[@class='pDdfmc YqCW4e OSrXXb']/span[3]")?.InnerText.Trim() ?? "";//22-07-2024//04-12-2023
                         if (!string.IsNullOrEmpty(url.Trim()) || !string.IsNullOrEmpty(title.Trim())) //11-04-2022
                                                                                                       //s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                             s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" creatorName=\"" + SetTitle(creator) + "\" />");//04-12-2023
@@ -2955,7 +2957,7 @@ namespace RapidTrackingSingleThread
                             ts = false;
                     }
                 }
-                if (ts && node.SelectSingleNode(".//div[@class='imso-ml-c PZPZlf']|.//div[@class='Bv2VAe']|.//div[@jsname='GDPwke']|.//div[@id='imso-root']|.//table[@class='vk_tbl Uekwlc']|.//div[@jscontroller='WoVPie']") == null)//07-05-2024//22-04-2024//04-04-2024//02-04-2024
+                if (ts && node.SelectSingleNode(".//div[@class='imso-ml-c PZPZlf']|.//div[@class='Bv2VAe']|.//div[@jsname='GDPwke']|.//div[@id='imso-root']|.//table[@class='vk_tbl Uekwlc']|.//div[@jscontroller='WoVPie']|.//div[@class='j2cNYe']") == null)//20-07-2024//07-05-2024//22-04-2024//04-04-2024//02-04-2024
                     return "Topstories";
             }
             if (node.SelectSingleNode(".//div[contains(@class, 'RPdfze')]") != null || (node.SelectSingleNode(".//div[contains(@class, 'Qkn3ie')]" +//26-04-2024//23-04-2024
@@ -3061,13 +3063,13 @@ namespace RapidTrackingSingleThread
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[contains(@class, 'vkc_np')]");//05-12-2023 answer card
             if (nd == null)//13-12-2023
-                nd = node.SelectSingleNode(".//div[@class='V3FYCf']|.//div[@class='LkFg6b']|.//div[@class='wHYlTd C5w57c']");//02-02-2024//01-02-2024//13-12-2023
+                nd = node.SelectSingleNode(".//div[@class='V3FYCf']|.//div[@class='LkFg6b']|.//div[@class='wHYlTd C5w57c']|.//div[@class='ysxiae iRPzcb']");//22-07-2024//02-02-2024//01-02-2024//13-12-2023
             if (nd != null)
             {
                 //nd = node.SelectSingleNode(".//div[@class='MVpwye Dv3U4e']");//05-12-2023//28-09-2022 answer card commented
                 // if (node.SelectSingleNode(".//div[@class='FEoF4d']") == null && node.SelectSingleNode(".//div[@class='PZPZlf hb8SAc']") == null) //15-09-2022 //24-11-2022 commented
                 if (node.SelectSingleNode(".//div[@class='FEoF4d']|.//div[@class='kno-rdesc']|.//div[contains(@class,'rbR0cd')]" +
-                    "|.//div[@class='knowledge-finance-wholepage-chart__fw-uch']|.//div[@class='WFxqwc']|.//div[@class='KrvXD']" +
+                    "|.//div[@class='knowledge-finance-wholepage-chart__fw-uch']|.//div[@class='WFxqwc']|.//div[@class='KrvXD']|.//div[contains(@class,'dnXCYb')]" +//23-07-2024
                     "|.//div[@class='hoJlSb']|.//div[@class='Vo9TVc nG7hRb']|.//div[@jsname='xQjRM']|.//div[@class='x3SAYd']|.//div[@class='XNfAUb']") == null || node.SelectSingleNode(".//div[@class='V3FYCf']") != null)//05-07-2024
                     return "AnswerCard";
             }
@@ -3314,7 +3316,7 @@ namespace RapidTrackingSingleThread
             {
                 if (node.SelectSingleNode(".//div[@class='VPyzge']|.//div[@class='aJegcc']|.//div[@jsname='Sicp7d']") == null && (node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']" +//10-06-2024 //04-04-2024
                     "|.//div[@class='N60dNb mfMhoc']|.//div[@jsmodel='vqHyhf']|.//div[@jsmodel='Wn3aEc']|.//div[@class='HdBr8']|.//div[@class='VKHL9c']" +
-                    "|.//div[@class='IZE3Td']") != null))//02-02-2024//01-02-2024//15-12-2023
+                    "|.//div[@class='IZE3Td']/div[@id='iur']") != null))//23-07-2024//02-02-2024//01-02-2024//15-12-2023
                     return "Images";
             }
             else
@@ -3326,7 +3328,7 @@ namespace RapidTrackingSingleThread
                         return "AnswerCard";
                     if (nd.InnerText.StartsWith("Images") || nd.InnerText == "Imágenes")//26-10-2023
                         return "Images";
-                    if (nd.InnerText.Trim() == "Eventos")  // 07-02-2020 included title for Event block
+                    if (nd.InnerText.Trim() == "Eventos" || nd.InnerText.Trim() == "Events")//22-07-2024  // 07-02-2020 included title for Event block
                         return "Event";
                 }
             }

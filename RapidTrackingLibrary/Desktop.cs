@@ -2115,7 +2115,7 @@ namespace RapidTrackingLibrary
                 || node.SelectSingleNode(".//div[@class='HaXvv kfn9hb']") != null || node.SelectSingleNode(".//div[@class='tsp-view']") != null //24-11-2020 selector for eventresults block//07-02-2020
                 || node.SelectSingleNode(".//div[@class='AxJnmb Wdsnue']") != null || node.SelectSingleNode(".//div[@class='tsp-fvcfc']") != null //05-01-2023 //02-08-2021 event block selector
                  || node.SelectSingleNode(".//g-expandable-content[@jscontroller='Ah7cLd']|.//div[@class='wYpZje']") != null)//08-07-2024
-                if (node.SelectSingleNode(".//div[@class='aeayCf mnr-c']") == null)//20-07-2024
+                if (node.SelectSingleNode(".//div[@class='aeayCf mnr-c']|.//div/product-viewer-group|.//div[@class='aJegcc']") == null)//29-07-2024//20-07-2024
                     return "Event";
 
             if (node.SelectSingleNode(".//div[@id='cwmcwd']|.//div[@class='wDYxhc']") != null || node.SelectSingleNode(".//div[@class='ifM9O']") != null
@@ -2232,7 +2232,7 @@ namespace RapidTrackingLibrary
             {
                 return "SiteLinks";
             }
-            nd = node.SelectSingleNode(".//ul/product-viewer-group|.//div[@class='aJegcc']");//09-12-2022 //09-11-2022 PopularProducts
+            nd = node.SelectSingleNode(".//ul/product-viewer-group|.//div/product-viewer-group|.//div[@class='aJegcc']");
             if (nd != null)//09-11-2022 PopularProducts
             {
                 return "Popular";//09-11-2022 PopularProducts

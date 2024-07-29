@@ -3344,7 +3344,7 @@ namespace RapidTrackingLibrary
             {
                 if (node.SelectSingleNode(".//div[@class='VPyzge']|.//div[@class='aJegcc']|.//div[@jsname='Sicp7d']") == null && (node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']" +//10-06-2024 //04-04-2024
                      "|.//div[@class='N60dNb mfMhoc']|.//div[@jsmodel='vqHyhf']|.//div[@jsmodel='Wn3aEc']|.//div[@class='HdBr8']|.//div[@class='VKHL9c']" +
-                    "|.//div[@class='IZE3Td']/div[@id='iur']") != null))//23-07-2024//02-02-2024//01-02-2024//15-12-2023
+                    "|.//div[@class='IZE3Td']/div[@id='iur']|.//div[@class='IZE3Td']/div[@jscontroller='gOTY1']") != null))//29-07-2024//23-07-2024//02-02-2024//01-02-2024//15-12-2023
                     return "Images";
             }
             else

@@ -77,6 +77,11 @@ namespace RapidTrackingMultiThreadJobIDs
                             foreach (HtmlNode nd in nc)
                             {
                                 string s = ProcessNode(nd);
+                                if (!string.IsNullOrEmpty(s))//29-07-2024
+                                {
+                                    if (s.StartsWith("<block type=\"popularProducts\"") && sb.ToString().Contains(s))
+                                        s = string.Empty;
+                                }//29-07-2024
                                 ndText += s;
                                 if (s.Length > 0)
                                     sb.Append(s);
@@ -166,6 +171,11 @@ namespace RapidTrackingMultiThreadJobIDs
                     if (node.InnerHtml != "")
                     {
                         string s = ProcessNode(node);
+                        if (!string.IsNullOrEmpty(s))//29-07-2024
+                        {
+                            if (s.StartsWith("<block type=\"popularProducts\"") && sb.ToString().Contains(s))
+                                s = string.Empty;
+                        }//29-07-2024
                         ndText += s;
                         if (s.Length > 0)
                             sb.Append(s);
@@ -216,6 +226,11 @@ namespace RapidTrackingMultiThreadJobIDs
                                         s = ProcessNode(nd);
                                     }
                                     catch { }
+                                    if (!string.IsNullOrEmpty(s))//29-07-2024
+                                    {
+                                        if (s.StartsWith("<block type=\"popularProducts\"") && sb.ToString().Contains(s))
+                                            s = string.Empty;
+                                    }//29-07-2024
                                     ndText += s;
                                     if (s.Length > 0)
                                         sb.Append(s);

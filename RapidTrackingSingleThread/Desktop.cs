@@ -1634,6 +1634,8 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectNodes(".//div[@jsname='WUSFrc']/g-link/a");
             if (nd == null)
                 nd = node.SelectNodes(".//div[@class='v1uiFd']/g-link/a");  // 11-05-2020
+            if(nd == null)//31-07-2024
+                nd = node.SelectNodes(".//div[@class='x4Oxj']/a");//31-07-2024
             if (nd == null) //21-09-2023
                 nd = node.SelectNodes(".//div[@class='yM0Ysd']/a[@class='OE6E7b']"); //21-09-2023
             string url = "";
@@ -1641,13 +1643,17 @@ namespace RapidTrackingSingleThread
             {
                 foreach (HtmlNode nd1 in nd)
                 {
+                    string title = "";//31-07-2024
                     url = nd1.Attributes["href"].Value;
                     HtmlNode hn = nd1.SelectSingleNode(".//div[@class='mB12kf JRhSae nDgy9d']");
                     if (hn == null)
                         hn = nd1.SelectSingleNode(".//div[contains(@class, 'hfac6')]"); //28-07-2020
                     //if (hn == null)
                     //    hn = nd1.SelectSingleNode(".//div[@class='hfac6d oz3cqf vH5Lmd']");//04-06-2020 //28-07-2020
-                    string title = hn.InnerText;
+                    if (hn != null) //31-07-2024
+                        title = hn.InnerText;
+                    else
+                        title = nd1.Attributes["aria-label"]?.Value ?? "";//31-07-2024
                     s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
 
                 }

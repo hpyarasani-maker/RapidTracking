@@ -301,9 +301,6 @@ namespace SingleJobidProject
             //25-09-2019                        //swaped productlistedads 14-05-2020
             if (doc.DocumentNode.SelectSingleNode("//div[@class='mnr-c IGtt6d imgac']") != null || doc.DocumentNode.SelectSingleNode("//div[@class='IGtt6d imgac mnr-c']") != null) //22-06-2021 bottom PLAds 
             {
-                //HtmlNode pla = doc.DocumentNode.SelectSingleNode(".//div[contains(@class, 'commercial-unit-mobile-top')]");//commented 18-01-2024
-                //if (pla == null)
-                //    pla = doc.DocumentNode.SelectSingleNode(".//div[contains(@class, 'commercial-unit-mobile-bottom')]");   // 18-09-2018 commented //18-01-2024
                 HtmlNode pla = doc.DocumentNode.SelectSingleNode(".//div[contains(@class, 'commercial-unit-mobile-bottom')]");//18-01-2024
                 if (pla != null)
                 {
@@ -370,7 +367,9 @@ namespace SingleJobidProject
                 s.Append("<block type=\"adwords\" url=\"\">");
                 foreach (HtmlNode nd in col)
                 {
-                    HtmlNode n = nd.SelectSingleNode(".//div[@class='d5oMvf KJDcUb']/a|.//div[contains(@class,'v5yQqb')]/a"); //11-11-2021
+                    HtmlNode n = nd.SelectSingleNode(".//div[@class='amDzVb Q6JQs']/a");//01-08-2024
+                    if (n == null)//01-08-2024
+                        n = nd.SelectSingleNode(".//div[@class='d5oMvf KJDcUb']/a|.//div[contains(@class,'v5yQqb')]/a"); //11-11-2021
                     if (n == null)
                         n = nd.SelectSingleNode(".//div[@class='d5oMvf KJDcUb dJMePd T4Yo']/a|.//div[@class='hJlC3']/a");//21-02-2024  //22-06-2020
                     if (n == null)
@@ -381,7 +380,7 @@ namespace SingleJobidProject
                     {
                         //22-06-2020
                         string title = string.Empty;
-                        HtmlNode t = n.SelectSingleNode(".//h3|.//div[@role='heading']");
+                        HtmlNode t = n.SelectSingleNode(".//h3|.//div[@role='heading']|.//div[@class='cr2Eb A5hgG MBeuO']");//01-08-2024
                         if (t != null)
                             title = t.InnerText;
                         //end 22-06-2020
@@ -641,6 +640,8 @@ namespace SingleJobidProject
                     {
                         HtmlNode n = nd.SelectSingleNode(".//div[@class='ad_cclk']/a[2]");
                         if (n == null)
+                            n = nd.SelectSingleNode(".//div[@class='amDzVb Q6JQs']/a");//01-08-2024
+                        if (n == null)//01-08-2024
                             n = nd.SelectSingleNode(".//div[@class='d5oMvf']/a|.//div[contains(@class,'v5yQqb')]/a"); //11-11-2021
                         if (n == null)
                             n = nd.SelectSingleNode(".//div[@class='d5oMvf KJDcUb']/a|.//div[@class='hJlC3']/a");//21-02-2024
@@ -658,6 +659,7 @@ namespace SingleJobidProject
                                 : (n.SelectSingleNode(".//div[@role='heading']") != null) ? n.SelectSingleNode(".//div[@role='heading']").InnerText
                                 : (n.SelectSingleNode(".//div[@class='mdzVfb gAWudd']") != null) ? n.SelectSingleNode(".//div[@class='mdzVfb gAWudd']").InnerText  // 01-04-2020
                                 : (n.SelectSingleNode(".//div[@class='pXVgMc']") != null) ? n.SelectSingleNode(".//div[@class='pXVgMc']").InnerText //19-08-2022
+                                : (n.SelectSingleNode(".//div[@class='cr2Eb A5hgG MBeuO']") != null) ? n.SelectSingleNode(".//div[@class='cr2Eb A5hgG MBeuO']").InnerText//01-08-2024
                                 : n.InnerText;
 
                             //24-08-2020
@@ -1325,7 +1327,9 @@ namespace SingleJobidProject
                     string name = string.Empty;
                     string price_value = "0";//28-11-2023
                     //HtmlNode link = nd.SelectSingleNode(".//a");
-                    HtmlNode link = nd.SelectSingleNode(".//div[@class='NcgzWb Nplhsf']|.//div[@class='yDecDe w4sdvb']|.//g-inner-card[@class='ivG6i']/div|.//div[@class='NcgzWb']/div[@class='Nplhsf']|.//div[@class='UC8ZCe QS8Cxb']|.//div[contains(@class,'wTrwWd')]");//07-06-2023//25-04-2023//16-03-2023
+                    HtmlNode link = nd.SelectSingleNode(".//div[@class='NcgzWb Nplhsf']|.//div[@class='yDecDe w4sdvb']" +
+                        "|.//g-inner-card[@class='ivG6i']/div|.//div[@class='NcgzWb']/div[@class='Nplhsf']|.//div[@class='UC8ZCe QS8Cxb']" +
+                        "|.//div[contains(@class,'wTrwWd')]|.//div[@class='wSg9Ab StGn8b']");//01-08-2024//07-06-2023//25-04-2023//16-03-2023
                     if (link != null)
                     {
                         url = link.Attributes["href"]?.Value;

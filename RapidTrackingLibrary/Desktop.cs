@@ -44,7 +44,7 @@ namespace RapidTrackingLibrary
                 if (nodeCol == null || nodeCol.Count <= 4)
                     nodeCol = rso.SelectNodes(".//div[contains(@class,'TzHB6b cLjAic')]");//02-11-2023
                 if (nodeCol == null || nodeCol.Count <= 3)//02-11-2023
-                    nodeCol = rso.SelectNodes(".//div[@class='WvKfwe a3spGf']/div");//01-02-2024//02-11-2023
+                    nodeCol = rso.SelectNodes(".//div[@class='WvKfwe a3spGf']/div|.//div[@class='aviV4d']");//01-08-2024//01-02-2024//02-11-2023
                 if (nodeCol == null || (nodeCol.Count >= 1 && nodeCol.Count <= 5))//09-02-2024
                 {//08-02-2024
                     if (rso.SelectNodes("//div[contains(@id,'kp-wp-tab-')]") != null)
@@ -2179,7 +2179,7 @@ namespace RapidTrackingLibrary
                 nd = node.SelectSingleNode(".//div[@jsmodel='Wn3aEc']");//16-01-2024
             if (nd != null && ((node.SelectNodes(".//div[@jsname='dTDiAc']") != null && node.SelectSingleNode(".//div[@class='o8ebK']") == null) || (node.Attributes["id"]?.Value != "Odp5De" && //08-07-2024
                 node.SelectSingleNode(".//div[@class='q6PGbe']|.//div[@class='l44Vof']|.//div[@class='P9Jfrb']|.//div[@class='o8ebK']" +
-                "|.//div[@class='ntKMYc']|.//img[starts-with(@alt,'Map of')]|.//div[@class='aJegcc']") == null)))//26-04-2024//01-02-2024//03-11-2023//06-12-2022//13-08-2022 maps //02-06-2022
+                "|.//div[@class='ntKMYc']|.//img[starts-with(@alt,'Map of')]|.//div[@class='aJegcc']|.//div[contains(@class,'knowledge-finance-wholepage')]") == null)))//01-08-2024//26-04-2024//01-02-2024//03-11-2023//06-12-2022//13-08-2022 maps //02-06-2022
             {
                 return "Images";
             }
@@ -2228,6 +2228,8 @@ namespace RapidTrackingLibrary
                 nd = node.SelectSingleNode(".//div[contains(@class,'obcontainer')]"); //02-11-2021 finance block
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[contains(@class,'kno-fb-ctx')]"); //13-10-2021 finance
+            if (nd == null)//01-08-2024
+                nd = node.SelectSingleNode(".//div[contains(@class,'knowledge-finance-wholepage')]");//01-08-2024
             if (nd != null)
             {
                 if (node.SelectSingleNode(".//div[@class='NhRr3b']|.//div[contains(@id,'knowledge-currency')]|.//div[contains(@class,'knowledge-finance')]|.//div[@class='dzpFPb']") != null)//17-01-2023//09-01-2023//17-06-2022
@@ -2261,7 +2263,7 @@ namespace RapidTrackingLibrary
                 || node.SelectSingleNode(".//img[@id='lu_map']|.//div[@id='lu_map']") != null //02-11-2-23     // maps
                 || node.SelectSingleNode(".//div[@class='xERobd']") != null //  maps    //changed on 26-06-2019
                 || node.SelectSingleNode(".//div[@id='kx']") != null      // carousel
-                || node.SelectSingleNode(".//div[@id='fac-ut']") != null      // finance
+                || node.SelectSingleNode(".//div[@id='fac-ut']|.//div[contains(@class,'knowledge-finance-wholepage')]") != null //01-08-2024 //finance
                 || node.SelectSingleNode(".//div[@class='_Zfh']") != null   // twitters
                 || node.SelectSingleNode(".//div[@class='Brgz0 tw-res']") != null   // twitters                
                 || node.SelectSingleNode(".//div[@class='_OKe']") != null   // answer card / people also ask

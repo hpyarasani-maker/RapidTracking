@@ -24,16 +24,16 @@ namespace Oxylabs_BulkKeywords
 
         public event KeywordDone OnKeywordDone;
         double apitime, dbtime;    // 31-03-2020
-
+        Thread t1; //06-08-2024
         public HTMLParserNewTask()
         {
             desktop = new Desktop();
             ios = new iOS();
 
-            Thread t1 = new Thread(new ThreadStart(StartProcess))
+            t1 = new Thread(new ThreadStart(StartProcess))//06-08-2024
             {
                 //Name = "All_1"
-                Name = "NewSEIDs_2"
+                Name = "NewSEIDs_3"
                 // Name = "Mobile_102_10"
                 ///Name = "CommaKeywords_1"
                 //Name = "ODesktop_20"
@@ -307,7 +307,7 @@ namespace Oxylabs_BulkKeywords
 
         private async Task SendXmlToAPI(string seid, string kw, string res) //06-08-2024
         {
-            string tname = Thread.CurrentThread.Name;
+            string tname = t1.Name;//06-08-2024
             string path = @"C:\Inetpub\wwwroot\rapidtracking_" + tname + ".xml";
 
             XmlDocument xd = new XmlDocument();

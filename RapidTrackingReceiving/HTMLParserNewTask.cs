@@ -10,6 +10,7 @@ using System.Data;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Net.Http;
+using System.Threading.Tasks;
 //using Oxylabs_TrackingComponent;
 
 namespace Oxylabs_BulkKeywords
@@ -42,7 +43,7 @@ namespace Oxylabs_BulkKeywords
             t1.Start();
         }
 
-        private void StartProcess()
+        private async void StartProcess() //06-08-2024
         {
             string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking desktop and all keywords
             //string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking mobile
@@ -99,9 +100,9 @@ namespace Oxylabs_BulkKeywords
                         string credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{username}:{password}"));//12-05-2024
                         client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", credentials);//12-05-2024
                         client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-                        response = client.GetStringAsync(ul).Result;
+                        response = await client.GetStringAsync(ul); //06-08-2024  //.Result;
                         if (response != "null")
-                            DoProcess(response);
+                            await DoProcess(response); //06-08-2024
                     }
 
                     catch (Exception ex)
@@ -114,7 +115,7 @@ namespace Oxylabs_BulkKeywords
             }
         }
 
-        private void DoProcess(string resp)
+        private async Task DoProcess(string resp) //06-08-2024
         {
             JObject job = JObject.Parse(resp);
             string status = job["status"].Value<string>();
@@ -142,10 +143,10 @@ namespace Oxylabs_BulkKeywords
                     HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(resURL);
                     string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
                     httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
-                    HttpWebResponse res = (HttpWebResponse)httpWebRequest.GetResponse();
+                    HttpWebResponse res = (HttpWebResponse)await httpWebRequest.GetResponseAsync(); //06-08-2024
                     Stream resStream = res.GetResponseStream();
                     StreamReader reader = new StreamReader(resStream, Encoding.UTF8);
-                    response = reader.ReadToEnd(); //18-03-2024
+                    response = await reader.ReadToEndAsync(); //06-08-2024
                     resStream.Close();
                     res.Close();
                     startTime.Stop();//08-11-2023
@@ -179,7 +180,7 @@ namespace Oxylabs_BulkKeywords
                     dbtime = 0.0;
 
                     if (!string.IsNullOrEmpty(seid))
-                        ProcessResults(result, kw, seid, jobid, orgUrls);
+                        await ProcessResults(result, kw, seid, jobid, orgUrls); //06-08-2024
                     OnKeywordDone.Invoke(seid + ":  " + kw + ",  " + orgUrls + "^" + statusCode + "^" + apitime + "^" + dbtime + "^" + totalTime);//08-11-2023 //31-03-2020
                 }
             }
@@ -193,7 +194,7 @@ namespace Oxylabs_BulkKeywords
                         bool isOldPage = false;
                         if (ex.Message == "Old page found.")
                             isOldPage = true;
-                        ProcessError(kw, seid, jobid, isOldPage);
+                        await ProcessError(kw, seid, jobid, isOldPage); //06-08-2024
                     }
                     finally { }
                 }
@@ -201,7 +202,7 @@ namespace Oxylabs_BulkKeywords
             }
         }
 
-        private void ProcessError(string kw, string seid, string jobid, bool isOldPage)
+        private async Task ProcessError(string kw, string seid, string jobid, bool isOldPage) //06-08-2024
         {
             string qry = "insert into dashboard_dataerrors (date, name, seid, jobid) values(Convert(varchar(10),'" + myDate + "',103), N'" +
                   kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "' )";
@@ -217,12 +218,12 @@ namespace Oxylabs_BulkKeywords
                     using (SqlCommand comm = new SqlCommand(qry, con))
                     {
                         comm.CommandTimeout = 0;
-                        comm.ExecuteNonQuery();
+                        await comm.ExecuteNonQueryAsync(); //06-08-2024
 
                         if (isOldPage)
                         {
                             comm.CommandText = qryOld;
-                            comm.ExecuteNonQuery();
+                            await comm.ExecuteNonQueryAsync(); //06-08-2024
                         }
                     }
                 }
@@ -274,7 +275,7 @@ namespace Oxylabs_BulkKeywords
             }
         }
 
-        private void ProcessResults(string result, string kw, string seid, string jobid, int urlcount)
+        private async Task ProcessResults(string result, string kw, string seid, string jobid, int urlcount) //06-08-2024
         {
             if (string.IsNullOrEmpty(result))
             {
@@ -287,12 +288,12 @@ namespace Oxylabs_BulkKeywords
                 if (urlcount > 20)
                 {
                     DateTime st = DateTime.Now;
-                    SendXmlToAPI(seid, kw, result);
+                    await SendXmlToAPI(seid, kw, result); //06-08-2024
                     DateTime ed = DateTime.Now;
                     apitime = (ed - st).TotalSeconds;
                 }
                 DateTime st1 = DateTime.Now;
-                SendToDB(seid, kw, result, jobid, urlcount);//storing in database table
+                await SendToDB(seid, kw, result, jobid, urlcount);//storing in database table //06-08-2024
                 //SendToDB(seid, kw, jobid, urlcount); //creating and storing data in txt file
                 DateTime ed1 = DateTime.Now;
                 dbtime = (ed1 - st1).TotalSeconds;
@@ -304,7 +305,7 @@ namespace Oxylabs_BulkKeywords
             }
         }
 
-        private void SendXmlToAPI(string seid, string kw, string res)
+        private async Task SendXmlToAPI(string seid, string kw, string res) //06-08-2024
         {
             string tname = Thread.CurrentThread.Name;
             string path = @"C:\Inetpub\wwwroot\rapidtracking_" + tname + ".xml";
@@ -329,7 +330,7 @@ namespace Oxylabs_BulkKeywords
                 httpWReq.CookieContainer = new CookieContainer();
 
                 Encoding encoding = new UTF8Encoding();
-                string postData = GetTextFromXMLFile(path);
+                string postData = await GetTextFromXMLFile(path); //06-08-2024
                 byte[] data = encoding.GetBytes(postData);
 
                 httpWReq.ProtocolVersion = HttpVersion.Version11;
@@ -347,11 +348,11 @@ namespace Oxylabs_BulkKeywords
                 postData = string.Empty;//14-03-2024
                 //httpWReq.Timeout = 0;
 
-                Stream stream = httpWReq.GetRequestStream();
+                Stream stream = await httpWReq.GetRequestStreamAsync(); //06-08-2024
                 stream.Write(data, 0, data.Length);
                 stream.Close();
 
-                HttpWebResponse response = (HttpWebResponse)httpWReq.GetResponse();
+                HttpWebResponse response = (HttpWebResponse)await httpWReq.GetResponseAsync(); //06-08-2024
                 //statusCode = response.StatusCode.ToString();
                 StreamReader reader = new StreamReader(response.GetResponseStream());
                 if (response.StatusCode != HttpStatusCode.OK)
@@ -381,7 +382,7 @@ namespace Oxylabs_BulkKeywords
                     using (Stream data = response.GetResponseStream())
                     using (var reader = new StreamReader(data))
                     {
-                        errorMsg += "\r\n" + reader.ReadToEnd();
+                        errorMsg += "\r\n" + await reader.ReadToEndAsync(); //06-08-2024
                     }
                 }
 
@@ -394,10 +395,10 @@ namespace Oxylabs_BulkKeywords
             }
         }
 
-        private string GetTextFromXMLFile(string file)
+        private async Task<string> GetTextFromXMLFile(string file) //06-08-2024
         {
             StreamReader reader = new StreamReader(file);
-            string ret = reader.ReadToEnd();
+            string ret = await reader.ReadToEndAsync(); //06-08-2024
             reader.Close();
             return ret;
         }
@@ -445,7 +446,7 @@ namespace Oxylabs_BulkKeywords
                 }
             }
         }
-        private void SendToDB(string seid, string keyword, string xml, string jobid, int urlcount)
+        private async Task SendToDB(string seid, string keyword, string xml, string jobid, int urlcount) //06-08-2024
         {
             try
             {
@@ -466,7 +467,7 @@ namespace Oxylabs_BulkKeywords
                         comm.Parameters.Add("Count", SqlDbType.Int).Value = urlcount;
                         comm.Parameters.Add("XmlData", SqlDbType.Xml).Value = xml.Replace("'", "''");
 
-                        comm.ExecuteNonQuery();
+                        await comm.ExecuteNonQueryAsync(); //06-08-2024
 
                         //if (urlcount < 20)
                         //{
@@ -502,4 +503,3 @@ namespace Oxylabs_BulkKeywords
 
     }
 }
-

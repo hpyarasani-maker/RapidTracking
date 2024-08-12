@@ -1490,11 +1490,32 @@ namespace RapidTrackingSingleThread
                     s.Append(GetDataset(node));
                     s.Append("</block>");
                     break;//11-06-2024
+                case "adwords"://12-08-2024 multiple Adwords in top, middle & bootom
+                    s.Append(GetAdwords(node));
+                    break;//12-08-2024 multiple Adwords in top, middle & bootom
                 default:
                     break;
             }
             return s.ToString();
         }
+        private string GetAdwords(HtmlNode node)//12-08-2024 multiple Adwords in top, middle & bootom
+        {
+            StringBuilder s = new StringBuilder();
+            s.Append("<block type=\"adwords\" url=\"\">");
+            HtmlNodeCollection nodes = node.SelectNodes(".//div[@class='QxKkX']/a|.//div[@class='UeUWyc']/a");
+            if (nodes != null)
+            {
+                foreach (HtmlNode n in nodes)
+                {
+                    var url = GetRedirectedUrl_TextAds(n.Attributes["href"]?.Value);
+                    var title = n.SelectSingleNode(".//div[contains(@class,'b2u8d')]")?.InnerText ?? "";
+                    if (!string.IsNullOrEmpty(url))
+                        s.Append("<item url=\"" + url + "\" title=\"" + SetTitle(title) + "\" />");
+                }
+            }
+            s.Append("</block>");
+            return s.ToString();
+        }//12-08-2024 multiple Adwords in top, middle & bootom//12-08-2024 multiple Adwords in top, middle & bootom
         private string GetDataset(HtmlNode node)//11-06-2024 DataSet Block
         {
             StringBuilder s = new StringBuilder();
@@ -3389,6 +3410,9 @@ namespace RapidTrackingSingleThread
             nd = node.SelectSingleNode(".//div[contains(@class, 'bba2i')]");//11-06-2024 DataSet Block
             if (nd != null)
                 return "Dataset";//11-06-2024
+            nd = node.SelectSingleNode(".//div/h1[contains(@class, 'bNg8Rb')]|.//div/span[contains(@class, 'stGWLc')]");//12-08-2024 multiple Adwords in top, middle & bootom
+            if (nd != null && (nd.InnerText.Contains("Ads") || nd.InnerText.Contains("Sponsored")))
+                return "Adwords";//12-08-2024 multiple Adwords in top, middle & bootom
             return "";
         }
 

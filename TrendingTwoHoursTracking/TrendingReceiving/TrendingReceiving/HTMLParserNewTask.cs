@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace TrendingReceiving
@@ -20,19 +21,20 @@ namespace TrendingReceiving
         string myDate = DateTime.Today.ToString("yyyy-MM-dd");
         public event KeywordDone OnKeywordDone;
         double apitime, dbtime;    // 31-03-2020
+        Thread t1; //14-08-2024
         public HTMLParserNewTask()
         {
             desktop = new Desktop();
             ios = new iOS();
 
-            Thread t1 = new Thread(new ThreadStart(StartProcess))
+            t1 = new Thread(new ThreadStart(StartProcess))//14-08-2024
             {
                 Name = "twm_1"
             };
             t1.Start();
         }
 
-        private void StartProcess()
+        private async void StartProcess()//14-08-2024
         {
             //string url = "https://seresults.azurewebsites.net/api/callbacktrendingdesktop/";       // Desktop
             string url = "https://seresults.azurewebsites.net/api/callbacktrendingmobile/";       // Mobile
@@ -55,7 +57,7 @@ namespace TrendingReceiving
                         client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
                         response = client.GetStringAsync(ul).Result;
                         if (response != "null")
-                            DoProcess(response);
+                            await DoProcess(response);//14-08-2024
                     }
 
                     catch (Exception ex)
@@ -66,7 +68,7 @@ namespace TrendingReceiving
             }
         }
 
-        private void DoProcess(string resp)
+        private async Task DoProcess(string resp)//14-08-2024
         {         
             JObject job = JObject.Parse(resp);
             string status = job["status"].Value<string>();
@@ -93,10 +95,10 @@ namespace TrendingReceiving
                     HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(resURL);
                     string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
                     httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
-                    HttpWebResponse res = (HttpWebResponse) httpWebRequest.GetResponse();
+                    HttpWebResponse res = (HttpWebResponse)await httpWebRequest.GetResponseAsync();//14-08-2024
                     Stream resStream = res.GetResponseStream();
                     StreamReader reader = new StreamReader(resStream, Encoding.UTF8);
-                    string response = reader.ReadToEnd();
+                    string response =await reader.ReadToEndAsync();//14-08-2024
                     resStream.Close();
                     res.Close();
                     var totalTime = Convert.ToDouble(startTime.ElapsedMilliseconds) / 1000;//08-11-2023
@@ -126,7 +128,7 @@ namespace TrendingReceiving
                     }
 
                     if (!string.IsNullOrEmpty(seid))
-                        ProcessResults(result, kw, seid, jobid, orgUrls);
+                        await ProcessResults(result, kw, seid, jobid, orgUrls);//14-08-2024
 
                     // OnKeywordDone.Invoke(seid + ":  " + kw + ",  " + orgUrls);
                     OnKeywordDone.Invoke(seid + ":  " + kw + ",  " + orgUrls + "^" + statusCode + "^" + apitime + "^" + dbtime + "^" + totalTime);//08-11-2023 //31-03-2020
@@ -143,7 +145,7 @@ namespace TrendingReceiving
                         bool isOldPage = false;
                         if (ex.Message == "Old page found.")
                             isOldPage = true;
-                        ProcessError(kw, seid, jobid, isOldPage);
+                        await ProcessError(kw, seid, jobid, isOldPage);//14-08-2024
                     }
                     finally { }
                 }
@@ -152,7 +154,7 @@ namespace TrendingReceiving
             }
         }
 
-        private void ProcessError(string kw, string seid, string jobid, bool isOldPage)
+        private async Task ProcessError(string kw, string seid, string jobid, bool isOldPage)//14-08-2024
         {
             string dt = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ");
             string qry = "insert into dashboard_dataerrors (date, name, seid, jobid) values('" + dt + "', N'" +
@@ -173,7 +175,7 @@ namespace TrendingReceiving
                         if (isOldPage)
                         {
                             comm.CommandText = qryOld;
-                            comm.ExecuteNonQuery();
+                            await comm.ExecuteNonQueryAsync();//14-08-2024
                         }
                     }
                 }
@@ -223,7 +225,7 @@ namespace TrendingReceiving
             }
         }
 
-        private void ProcessResults(string result, string kw, string seid, string jobid, int urlcount)
+        private async Task ProcessResults(string result, string kw, string seid, string jobid, int urlcount)//14-08-2024
         {                           
             if (string.IsNullOrEmpty(result))
             {
@@ -235,12 +237,12 @@ namespace TrendingReceiving
                 if (urlcount > 20)
                 {
                     DateTime st = DateTime.Now;
-                    SendXmlToAPI(seid, kw, result);
+                    await SendXmlToAPI(seid, kw, result);//14-08-2024
                     DateTime ed = DateTime.Now;
                     apitime = (ed - st).TotalSeconds;
 
                     DateTime st1 = DateTime.Now;
-                    SendToDB(seid, kw, result, urlcount);
+                    await SendToDB(seid, kw, result, urlcount);
                     DateTime ed1 = DateTime.Now;
                     dbtime = (ed1 - st1).TotalSeconds;
                     //end of 31-03-2020
@@ -252,7 +254,7 @@ namespace TrendingReceiving
             }
         }      
 
-        private void SendXmlToAPI(string seid, string kw, string res)
+        private async Task SendXmlToAPI(string seid, string kw, string res)//14-08-2024
         {
             string tname = Thread.CurrentThread.Name;
             string path = @"C:\Inetpub\wwwroot\oxycallback_" + tname + ".xml";
@@ -275,7 +277,7 @@ namespace TrendingReceiving
                 httpWReq.Credentials = CredentialCache.DefaultCredentials;
 
                 Encoding encoding = new UTF8Encoding();
-                string postData = GetTextFromXMLFile(path);
+                string postData = await GetTextFromXMLFile(path);//14-08-2024
                 byte[] data = encoding.GetBytes(postData);
 
                 httpWReq.ProtocolVersion = HttpVersion.Version11;
@@ -292,11 +294,11 @@ namespace TrendingReceiving
                 httpWReq.ContentLength = data.Length;
                 //httpWReq.Timeout = 0;
 
-                Stream stream = httpWReq.GetRequestStream();
+                Stream stream = await httpWReq.GetRequestStreamAsync(); //14-08-2024
                 stream.Write(data, 0, data.Length);
                 stream.Close();
 
-                HttpWebResponse response = (HttpWebResponse)httpWReq.GetResponse();
+                HttpWebResponse response = (HttpWebResponse)await httpWReq.GetResponseAsync();//14-08-2024
                 //string s = response.ToString();
                 StreamReader reader = new StreamReader(response.GetResponseStream());
                 if (response.StatusCode != HttpStatusCode.OK)
@@ -325,7 +327,7 @@ namespace TrendingReceiving
                     using (Stream data = response.GetResponseStream())
                     using (var reader = new StreamReader(data))
                     {
-                        errorMsg += "\r\n" + reader.ReadToEnd();
+                        errorMsg += "\r\n" + await reader.ReadToEndAsync();//14-08-2024
                     }
                 }                    
 
@@ -338,10 +340,10 @@ namespace TrendingReceiving
             }
         }
 
-        private string GetTextFromXMLFile(string file)
+        private async Task<string> GetTextFromXMLFile(string file)
         {
             StreamReader reader = new StreamReader(file);
-            string ret = reader.ReadToEnd();
+            string ret = await reader.ReadToEndAsync();//14-08-2024
             reader.Close();
             return ret;
         }
@@ -369,7 +371,7 @@ namespace TrendingReceiving
             }
         }
 
-        private void SendToDB(string seid, string keyword, string xml, int urlcount)
+        private async Task SendToDB(string seid, string keyword, string xml, int urlcount)//14-08-2024
         {
             //string qry = "Insert into TrendingXmlResults(date, seid, keyword, xmldata) values('" + DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ") + "', " + seid + ", N'" + keyword.Replace("'", "''") + "', N'" + xml.Replace("'", "''") + "') ";
             //qry += "Update [dbo].[Keywords] set status=1 where seid=" + seid + " and keyword=N'" + keyword.Replace("'", "''") + "'; ";
@@ -390,7 +392,7 @@ namespace TrendingReceiving
                         comm.Parameters.Add("Keyword", SqlDbType.NVarChar).Value = keyword; 
                         comm.Parameters.Add("XmlData", SqlDbType.Xml).Value = xml.Replace("'", "''");
 
-                        comm.ExecuteNonQuery();
+                        await comm.ExecuteNonQueryAsync();//14-08-2024
                     }
                 }
             }

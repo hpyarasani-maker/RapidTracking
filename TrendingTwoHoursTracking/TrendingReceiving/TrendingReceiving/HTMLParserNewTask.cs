@@ -55,7 +55,7 @@ namespace TrendingReceiving
                         string credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{username}:{password}"));//12-05-2024
                         client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", credentials);//12-05-2024
                         client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-                        response = client.GetStringAsync(ul).Result;
+                        response = await client.GetStringAsync(ul);//14-08-2024
                         if (response != "null")
                             await DoProcess(response);//14-08-2024
                     }
@@ -242,7 +242,7 @@ namespace TrendingReceiving
                     apitime = (ed - st).TotalSeconds;
 
                     DateTime st1 = DateTime.Now;
-                    await SendToDB(seid, kw, result, urlcount);
+                    await SendToDB(seid, kw, result, urlcount);//14-08-2024
                     DateTime ed1 = DateTime.Now;
                     dbtime = (ed1 - st1).TotalSeconds;
                     //end of 31-03-2020
@@ -256,7 +256,7 @@ namespace TrendingReceiving
 
         private async Task SendXmlToAPI(string seid, string kw, string res)//14-08-2024
         {
-            string tname = Thread.CurrentThread.Name;
+            string tname = t1.Name;//14-08-2024
             string path = @"C:\Inetpub\wwwroot\oxycallback_" + tname + ".xml";
 
             XmlDocument xd = new XmlDocument();
@@ -340,7 +340,7 @@ namespace TrendingReceiving
             }
         }
 
-        private async Task<string> GetTextFromXMLFile(string file)
+        private async Task<string> GetTextFromXMLFile(string file)//14-08-2024
         {
             StreamReader reader = new StreamReader(file);
             string ret = await reader.ReadToEndAsync();//14-08-2024

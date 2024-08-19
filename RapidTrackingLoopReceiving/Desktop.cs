@@ -2064,7 +2064,7 @@ namespace RapidTrackingLoopReceiving
                 return "TopSights";*///23-03-2022//19-01-2023
 
             nd = node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]|.//div[contains(@class, 'vdQmEd')]|.//div[@class='cj1ht QkBAO oYQBg']");//29-07-2024//29-06-2023//23-03-2022
-            if (nd != null && nd.SelectNodes(".//div[@class='MxQnIc']") == null)//30-06-2023
+            if (nd != null && nd.SelectNodes(".//div[@class='MxQnIc']") == null && node.SelectSingleNode(".//div[@class='XNfAUb']") == null)//19-08-2024//30-06-2023
                 return "Flights";//23-03-2022
 
             //nd = node.SelectSingleNode(".//div[@class='kp-blk cUnQKe']|.//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']|.//div[@jsname='N760b']");//08-07-2021//04-12-2020 //11-02-2020

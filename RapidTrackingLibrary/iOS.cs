@@ -1512,6 +1512,9 @@ namespace RapidTrackingLibrary
                 case "adwords"://12-08-2024 multiple Adwords in top, middle & bootom
                     s.Append(GetAdwords(node));
                     break;//12-08-2024 multiple Adwords in top, middle & bootom
+                case "aioverview"://21-08-2024
+                    s.Append(GetAioverview(node));
+                    break;//21-08-2024
                 default:
                     break;
             }
@@ -3442,6 +3445,8 @@ namespace RapidTrackingLibrary
             nd = node.SelectSingleNode(".//div/h1[contains(@class, 'bNg8Rb')]|.//div/span[contains(@class, 'stGWLc')]");//12-08-2024 multiple Adwords in top, middle & bootom
             if (nd != null && (nd.InnerText.Contains("Ads") || nd.InnerText.Contains("Sponsored")))
                 return "Adwords";//12-08-2024 multiple Adwords in top, middle & bootom
+            if (nd != null)//21-08-2024
+                return "aiOverview";//21-08-2024 AIOverview
             return "";
         }
 
@@ -3666,7 +3671,61 @@ namespace RapidTrackingLibrary
                 || node.SelectSingleNode(".//div[@class='urrG9 v5yQqb jqWpsc']|.//div[@class='lNvPub cP7qLd v5yQqb']|.//div[@class='adXOEf v5yQqb']" +
                 "|.//div[@class='T61Aje v5yQqb']|.//div[contains(@class, 'WFyfFf')]") != null || node.SelectSingleNode(".//div[contains(@class,'kb0PBd cvP2Ce')]") != null;//13-08-2024//04-06-2024//14-02-2024//23-08-2023 != null//17-05-2023 //31-05-2022
         }
-
+        public string GetAioverview(HtmlNode node)//21-08-2024 AIOverview
+        {
+            StringBuilder s = new StringBuilder();
+            s.Append("<block type=\"aiOverview\" url=\"\">");
+            HtmlNodeCollection nodes = node.SelectNodes(".//div[contains(@class, 'WaaZC')]");
+            if (nodes != null)
+            {
+                foreach (HtmlNode nd in nodes)
+                {
+                    string paragraph = "";
+                    string url = "";
+                    string title = string.Empty;
+                    //int count = 0;
+                    HtmlNode pgh = nd.SelectSingleNode(".//div[@data-attrid='SGEParagraphFeedback']");
+                    if (pgh != null)
+                    {
+                        paragraph = pgh.InnerText.IndexOf("&nbsp;") != -1 ? pgh.InnerText.Substring(0, pgh.InnerText.IndexOf("&nbsp;")) : pgh.InnerText;
+                        s.Append("<item type=\"paragraph\" content=\"" + paragraph + "\" />");
+                    }
+                    HtmlNodeCollection ls = nd.SelectNodes(".//ul/li|.//ol/li");
+                    if (ls != null)
+                    {
+                        string lcontent = "";
+                        foreach (var l in ls)
+                        {
+                            HtmlNode eli = l.SelectSingleNode(".//div[@jsname='K8SI3e']");//rPeykc uP58nb PZPZlf
+                            if (eli != null)
+                            {
+                                lcontent += eli.InnerText + ":";
+                            }
+                            lcontent += l.InnerText.IndexOf("&nbsp;") != -1 ? l.InnerText.Substring(0, l.InnerText.IndexOf("&nbsp;")) +
+                                s.Append("<item type=\"list\" content=\"" + lcontent.Remove(lcontent.Length - 1) + "\" />")
+                                : l.InnerText + "\\n";
+                            HtmlNodeCollection lr = l.SelectNodes(".//a[@class='ddkIM rz5jw c30Ztd']");
+                            if (lr != null)
+                            {
+                                foreach (var r in lr)
+                                {
+                                    if (r != null)
+                                    {
+                                        url = r.Attributes["href"]?.Value ?? "";
+                                        title = r.Attributes["aria-label"]?.Value ?? "";
+                                        s.Append("<item type=\"resources\" title=\"" + SetTitle(title) + "\" url=\"" + SetUrl(url) + "\" />");
+                                    }
+                                }
+                            }
+                        }
+                        //lcontent = lcontent.Remove(lcontent.Length - 1);
+                        //s.Append("<item type=\"list\" content=\"" + lcontent + "\" />");
+                    }
+                }
+            }
+            s.Append("</block>");
+            return s.ToString();
+        }//21-08-2024 AIOverview
         internal object GetTop100GoogleUKMobileImages_PageURLs(string kw, string v1, string v2, string v3, string v4, string v5)
         {
             throw new NotImplementedException();

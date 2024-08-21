@@ -3675,7 +3675,7 @@ namespace RapidTrackingSingleThread
                         string lcontent = "";
                         foreach (var l in ls)
                         {
-                            HtmlNode eli = l.SelectSingleNode(".//div[@jsname='K8SI3e']");//rPeykc uP58nb PZPZlf
+                            HtmlNode eli = l.SelectSingleNode(".//div[@jsname='K8SI3e']|.//div[@class='Gur8Ad']");//rPeykc uP58nb PZPZlf
                             if (eli != null)
                             {
                                 lcontent += eli.InnerText + ":";

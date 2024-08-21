@@ -3673,16 +3673,24 @@ namespace RapidTrackingSingleThread
                     if (ls != null)
                     {
                         string lcontent = "";
+                        int cnt = 0;
                         foreach (var l in ls)
                         {
-                            HtmlNode eli = l.SelectSingleNode(".//div[@jsname='K8SI3e']|.//div[@class='Gur8Ad']");//rPeykc uP58nb PZPZlf
+                            HtmlNode eli = l.SelectSingleNode(".//div[@jsname='K8SI3e']|.//div[@class='Gur8Ad']");
+                            cnt++;
                             if (eli != null)
                             {
                                 lcontent += eli.InnerText + ":";
                             }
-                            lcontent += l.InnerText.IndexOf("&nbsp;") != -1 ? l.InnerText.Substring(0, l.InnerText.IndexOf("&nbsp;")) +
-                                s.Append("<item type=\"list\" content=\"" + lcontent.Remove(lcontent.Length - 1) + "\" />")
-                                : l.InnerText + "\\n";
+                            if (cnt == ls.Count)
+                            {
+                                lcontent += l.InnerText.IndexOf("&nbsp;") != -1 ? l.InnerText.Substring(0, l.InnerText.IndexOf("&nbsp;"))
+                                    : l.InnerText;
+                                s.Append("<item type=\"list\" content=\"" + lcontent + "\" />");
+                            }
+                            else
+                                lcontent += l.InnerText.IndexOf("&nbsp;") != -1 ? l.InnerText.Substring(0, l.InnerText.IndexOf("&nbsp;")) + "\\n"
+                                    : l.InnerText + "\\n";
                             HtmlNodeCollection lr = l.SelectNodes(".//a[@class='ddkIM rz5jw c30Ztd']");
                             if (lr != null)
                             {

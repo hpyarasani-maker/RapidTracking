@@ -2426,6 +2426,10 @@ namespace RapidTrackingSingleThread
         {
             StringBuilder s = new StringBuilder();
             s.Append("<block type=\"aiOverview\" url=\"\">");
+            s.Append("</block>");
+            return s.ToString();
+            /*StringBuilder s = new StringBuilder();
+            s.Append("<block type=\"aiOverview\" url=\"\">");
             HtmlNodeCollection nodes = node.SelectNodes(".//div[contains(@class, 'WaaZC Zh8Myb')]");
             if (nodes != null)
             {
@@ -2474,7 +2478,7 @@ namespace RapidTrackingSingleThread
                 }
             }
             s.Append("</block>");
-            return s.ToString();
+            return s.ToString();*/
         }//21-08-2024 AIOverView Method
         private string ConvertReviews(string reviews)//20-01-2023 display only numbers
         {

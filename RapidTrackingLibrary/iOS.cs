@@ -3675,6 +3675,10 @@ namespace RapidTrackingLibrary
         {
             StringBuilder s = new StringBuilder();
             s.Append("<block type=\"aiOverview\" url=\"\">");
+            s.Append("</block>");
+            return s.ToString();
+            /*StringBuilder s = new StringBuilder();
+            s.Append("<block type=\"aiOverview\" url=\"\">");
             HtmlNodeCollection nodes = node.SelectNodes(".//div[contains(@class, 'WaaZC')]");
             if (nodes != null)
             {
@@ -3732,7 +3736,7 @@ namespace RapidTrackingLibrary
                 }
             }
             s.Append("</block>");
-            return s.ToString();
+            return s.ToString();*/
         }//21-08-2024 AIOverview
         internal object GetTop100GoogleUKMobileImages_PageURLs(string kw, string v1, string v2, string v3, string v4, string v5)
         {

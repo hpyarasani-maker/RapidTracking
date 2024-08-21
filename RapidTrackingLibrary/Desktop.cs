@@ -670,7 +670,11 @@ namespace RapidTrackingLibrary
                 }
             }
             //end of 18-03-2020
-
+            colt = doc.DocumentNode.SelectSingleNode("//div[@class='GcKpu']");//21-08-2024 AIOverview
+            if (colt != null)
+            {
+                s.Append(GetAioverview(colt));
+            }//21-08-2024 AIOverview
             return s.ToString();
         }
 
@@ -1057,6 +1061,9 @@ namespace RapidTrackingLibrary
                     s.Append(GetDataset(node));
                     s.Append("</block>");
                     break;//11-06-2024
+                case "aioverview"://21-08-2024
+                    s.Append(GetAioverview(node));
+                    break;//21-08-2024
                 default:
                     break;
             }
@@ -2248,6 +2255,9 @@ namespace RapidTrackingLibrary
             nd = node.SelectSingleNode(".//div[contains(@class, 'bba2i')]");//11-06-2024 DataSet Block
             if (nd != null)
                 return "Dataset";//11-06-2024
+            nd = node.SelectSingleNode(".//div[@class='GcKpu']");//21-08-2024 AIOverview
+            if (nd != null)
+                return "aiOverview";//21-08-2024 AIOverview
             return "";
         }
 
@@ -2419,7 +2429,60 @@ namespace RapidTrackingLibrary
                 || node.SelectSingleNode(".//div[contains(@class,'g PmEWq')]|.//div[@class='g zXItKe']") != null //14-09-2023//23-08-2023
                 || node.Attributes["class"]?.Value == "g PmEWq");//08-02-2024
         }
-       
+        public string GetAioverview(HtmlNode node)//21-08-2024 AIOverView Method
+        {
+            StringBuilder s = new StringBuilder();
+            s.Append("<block type=\"aiOverview\" url=\"\">");
+            HtmlNodeCollection nodes = node.SelectNodes(".//div[contains(@class, 'WaaZC Zh8Myb')]");
+            if (nodes != null)
+            {
+                foreach (HtmlNode nd in nodes)
+                {
+                    string paragraph = "";
+                    string url = "";
+                    string title = string.Empty;
+                    HtmlNode pgh = nd.SelectSingleNode(".//div[@data-attrid='SGEParagraphFeedback']");//rPeykc uP58nb PZPZlf
+                    if (pgh != null)
+                    {
+                        paragraph = pgh.InnerText.IndexOf("&nbsp;") != -1 ? pgh.InnerText.Substring(0, pgh.InnerText.IndexOf("&nbsp;")) : pgh.InnerText;
+                        s.Append("<item type=\"paragraph\" content=\"" + paragraph + "\" />");
+                    }
+                    HtmlNodeCollection ls = nd.SelectNodes(".//ul/li|.//ol/li");
+                    if (ls != null)
+                    {
+                        string lcontent = "";
+                        foreach (var l in ls)
+                        {
+                            HtmlNode eli = l.SelectSingleNode(".//div[@jsname='K8SI3e']");//rPeykc uP58nb PZPZlf
+                            if (eli != null)
+                            {
+                                lcontent += eli.InnerText + ":";
+                            }
+                            lcontent += l.InnerText.IndexOf("&nbsp;") != -1 ? l.InnerText.Substring(0, l.InnerText.IndexOf("&nbsp;")) +
+                                s.Append("<item type=\"list\" content=\"" + lcontent.Remove(lcontent.Length - 1) + "\" />")
+                                : l.InnerText + "\\n";
+                            HtmlNodeCollection lr = l.SelectNodes(".//a[@class='ddkIM rz5jw c30Ztd']");
+                            if (lr != null)
+                            {
+                                foreach (var r in lr)
+                                {
+                                    if (r != null)
+                                    {
+                                        url = r.Attributes["href"]?.Value ?? "";
+                                        title = r.Attributes["aria-label"]?.Value ?? "";
+                                        s.Append("<item type=\"resources\" title=\"" + SetTitle(title) + "\" url=\"" + SetUrl(url) + "\" />");
+                                    }
+                                }
+                            }
+                        }
+                        //lcontent = lcontent.Remove(lcontent.Length - 1);
+                        //s.Append("<item type=\"list\" content=\"" + lcontent + "\" />");
+                    }
+                }
+            }
+            s.Append("</block>");
+            return s.ToString();
+        }//21-08-2024 AIOverView Method
 
         //07-11-2019
         public string GetRedirectedUrl(string url)

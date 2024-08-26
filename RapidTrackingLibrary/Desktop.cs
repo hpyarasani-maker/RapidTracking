@@ -2316,7 +2316,8 @@ namespace RapidTrackingLibrary
             || node.SelectSingleNode(".//div[@class='ZNyqGc']") != null//19-07-2024 Jobs
             || node.SelectSingleNode(".//div[@class='qkC4td']") != null//21-09-2023
              || node.SelectNodes(".//div[@class='xSoq1']") != null//10-10-2023
-                || node.SelectNodes(".//div[@class='udVt6e']") != null;//02-11-2023
+                || node.SelectNodes(".//div[@class='udVt6e']") != null//02-11-2023
+             || node.SelectNodes(".//div[contains(@class,'suI2B')]") != null;//26-08-2024
             if (bVal == true)//2019-09-11
             {
                 try

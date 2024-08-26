@@ -1778,7 +1778,7 @@ namespace RapidTrackingSingleThread
                         string title = string.Empty;//26-08-2024
                         if (node.SelectSingleNode(".//div[@class='UgpQWe']") == null && node.SelectSingleNode(".//div/a[contains(@class,'a-no-hover-decoration')]") == null) //14-09-2023
                         {
-                            title = airline;
+                            title = airline;//26-08-2024
                             airline = string.Empty;
                         }
                         if (!string.IsNullOrEmpty(hours))

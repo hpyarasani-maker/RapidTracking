@@ -2199,6 +2199,8 @@ namespace RapidTrackingSingleThread
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='uR34qf dJMePd BmP5tf']/a");
                 if (nds == null)
+                    nds = node.SelectNodes(".//div[@class='BzDIh PNK1lb LTpi9b']/a");//26-08-2024
+                if (nds == null)
                      nds = node.SelectNodes(".//g-card-section[contains(@class,'jDsVJf')]/a"); //27-10-2021
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='agqCtf tw-res']/g-card-section/a");//24-04-2024

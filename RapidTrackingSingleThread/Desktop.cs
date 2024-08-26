@@ -1775,9 +1775,10 @@ namespace RapidTrackingSingleThread
                         string price = nd.SelectSingleNode(".//span[@class='xqqLDd']|.//span[@class='cirEce']|.//div[@class='n22NNe']|.//div[@class='YK0p7d rZFLMc']")?.InnerText.Trim() ?? "0";//29-07-2024
                         string priceValue = string.Empty;
                         string hoursValue = string.Empty;
+                        string title = string.Empty;//26-08-2024
                         if (node.SelectSingleNode(".//div[@class='UgpQWe']") == null && node.SelectSingleNode(".//div/a[contains(@class,'a-no-hover-decoration')]") == null) //14-09-2023
                         {
-                            destination = airline;
+                            title = airline;
                             airline = string.Empty;
                         }
                         if (!string.IsNullOrEmpty(hours))
@@ -1788,7 +1789,7 @@ namespace RapidTrackingSingleThread
                         {
                             priceValue = Convertprice(price);
                         }
-                        s.Append("<item url=\"\" title=\"\"  airline =\"" + SetTitle(airline) + "\" duration=\"" + SetTitle(hours) + "\" durationValue=\"" + hoursValue + "\" connections=\"" + SetTitle(connecting) + "\" price=\"" + price + "\" priceValue=\"" + priceValue + "\" />");
+                        s.Append("<item url=\"\" title=\"" + SetTitle(title) + "\"  airline =\"" + SetTitle(airline) + "\" duration=\"" + SetTitle(hours) + "\" durationValue=\"" + hoursValue + "\" connections=\"" + SetTitle(connecting) + "\" price=\"" + price + "\" priceValue=\"" + priceValue + "\" />");//26-08-2024
                     }
                     catch { }
                 }

@@ -3677,7 +3677,7 @@ namespace RapidTrackingLibrary
         public string GetAioverview(HtmlNode node)//21-08-2024 AIOverview
         {
             StringBuilder s = new StringBuilder();
-            s.Append("<block type=\"aiOverview\" url=\"\">");
+            s.Append("<block type=\"aiOverview\"\">");
             s.Append("</block>");
             return s.ToString();
             /*StringBuilder s = new StringBuilder();

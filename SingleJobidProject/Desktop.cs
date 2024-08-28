@@ -656,7 +656,11 @@ namespace SingleJobidProject
                 }
             }
             //end of 18-03-2020
-
+            colt = doc.DocumentNode.SelectSingleNode("//div[@class='GcKpu']");//21-08-2024 AIOverview
+            if (colt != null)
+            {
+                s.Append(GetAioverview(colt));
+            }//21-08-2024 AIOverview
             return s.ToString();
         }
 
@@ -1050,6 +1054,9 @@ namespace SingleJobidProject
                     s.Append(GetDataset(node));
                     s.Append("</block>");
                     break;//11-06-2024
+                case "aioverview"://21-08-2024
+                    s.Append(GetAioverview(node));
+                    break;//21-08-2024
                 default:
                     break;
             }
@@ -1760,9 +1767,10 @@ namespace SingleJobidProject
                         string price = nd.SelectSingleNode(".//span[@class='xqqLDd']|.//span[@class='cirEce']|.//div[@class='n22NNe']|.//div[@class='YK0p7d rZFLMc']")?.InnerText.Trim() ?? "0";//29-07-2024
                         string priceValue = string.Empty;
                         string hoursValue = string.Empty;
+                        string title = string.Empty;//26-08-2024
                         if (node.SelectSingleNode(".//div[@class='UgpQWe']") == null && node.SelectSingleNode(".//div/a[contains(@class,'a-no-hover-decoration')]") == null) //14-09-2023
                         {
-                            destination = airline;
+                            title = airline;//26-08-2024
                             airline = string.Empty;
                         }
                         if (!string.IsNullOrEmpty(hours))
@@ -1773,7 +1781,7 @@ namespace SingleJobidProject
                         {
                             priceValue = Convertprice(price);
                         }
-                        s.Append("<item url=\"\" title=\"\"  airline =\"" + SetTitle(airline) + "\" duration=\"" + SetTitle(hours) + "\" durationValue=\"" + hoursValue + "\" connections=\"" + SetTitle(connecting) + "\" price=\"" + price + "\" priceValue=\"" + priceValue + "\" />");
+                        s.Append("<item url=\"\" title=\"" + SetTitle(title) + "\"  airline =\"" + SetTitle(airline) + "\" duration=\"" + SetTitle(hours) + "\" durationValue=\"" + hoursValue + "\" connections=\"" + SetTitle(connecting) + "\" price=\"" + price + "\" priceValue=\"" + priceValue + "\" />");//26-08-2024
                     }
                     catch { }
                 }
@@ -2096,7 +2104,7 @@ namespace SingleJobidProject
                 || node.SelectSingleNode(".//div[@class='HaXvv kfn9hb']") != null || node.SelectSingleNode(".//div[@class='tsp-view']") != null //24-11-2020 selector for eventresults block//07-02-2020
                 || node.SelectSingleNode(".//div[@class='AxJnmb Wdsnue']") != null || node.SelectSingleNode(".//div[@class='tsp-fvcfc']") != null //05-01-2023 //02-08-2021 event block selector
                 || node.SelectSingleNode(".//g-expandable-content[@jscontroller='Ah7cLd']|.//div[@class='wYpZje']") != null)//08-07-2024
-                if (node.SelectSingleNode(".//div[@class='aeayCf mnr-c']|.//div/product-viewer-group|.//div[@class='aJegcc']") == null)//29-07-2024//20-07-2024
+                if (node.SelectSingleNode(".//div[@class='aeayCf mnr-c']|.//div/product-viewer-group|.//div[@class='aJegcc']|.//div[@id='iur']") == null)//20-08-2024//29-07-2024//20-07-2024
                     return "Event";
 
             if (node.SelectSingleNode(".//div[@id='cwmcwd']|.//div[@class='wDYxhc']") != null || node.SelectSingleNode(".//div[@class='ifM9O']") != null //21-04-2023
@@ -2229,6 +2237,9 @@ namespace SingleJobidProject
             nd = node.SelectSingleNode(".//div[contains(@class, 'bba2i')]");//11-06-2024 DataSet Block
             if (nd != null)
                 return "Dataset";//11-06-2024
+            nd = node.SelectSingleNode(".//div[@class='GcKpu']");//21-08-2024 AIOverview
+            if (nd != null)
+                return "aiOverview";//21-08-2024 AIOverview
             return "";
         }
 
@@ -2284,7 +2295,8 @@ namespace SingleJobidProject
                 || node.SelectSingleNode(".//div[@class='ZNyqGc']") != null//19-07-2024 Jobs
                 || node.SelectSingleNode(".//div[@class='qkC4td']") != null//21-09-2023
                 || node.SelectNodes(".//div[@class='xSoq1']") != null//10-10-2023
-                || node.SelectNodes(".//div[@class='udVt6e']") != null;//02-11-2023
+                || node.SelectNodes(".//div[@class='udVt6e']") != null//02-11-2023
+                || node.SelectNodes(".//div[contains(@class,'suI2B')]") != null;//26-08-2024
             if (bVal == true)//2019-09-11
             {
                 try
@@ -2404,6 +2416,63 @@ namespace SingleJobidProject
                 || node.SelectSingleNode(".//div[contains(@class,'g PmEWq')]|.//div[@class='g zXItKe']") != null //14-09-2023//23-08-2023
                 || node.Attributes["class"]?.Value == "g PmEWq");//08-02-2024
         }
+        private string GetAioverview(HtmlNode node)//21-08-2024 AIOverView Method
+        {
+            StringBuilder s = new StringBuilder();
+            s.Append("<block type=\"aiOverview\"/>");
+            return s.ToString();
+            /*StringBuilder s = new StringBuilder();
+            s.Append("<block type=\"aiOverview\" url=\"\">");
+            HtmlNodeCollection nodes = node.SelectNodes(".//div[contains(@class, 'WaaZC Zh8Myb')]");
+            if (nodes != null)
+            {
+                foreach (HtmlNode nd in nodes)
+                {
+                    string paragraph = "";
+                    string url = "";
+                    string title = string.Empty;
+                    HtmlNode pgh = nd.SelectSingleNode(".//div[@data-attrid='SGEParagraphFeedback']");//rPeykc uP58nb PZPZlf
+                    if (pgh != null)
+                    {
+                        paragraph = pgh.InnerText.IndexOf("&nbsp;") != -1 ? pgh.InnerText.Substring(0, pgh.InnerText.IndexOf("&nbsp;")) : pgh.InnerText;
+                        s.Append("<item type=\"paragraph\" content=\"" + paragraph + "\" />");
+                    }
+                    HtmlNodeCollection ls = nd.SelectNodes(".//ul/li|.//ol/li");
+                    if (ls != null)
+                    {
+                        string lcontent = "";
+                        foreach (var l in ls)
+                        {
+                            HtmlNode eli = l.SelectSingleNode(".//div[@jsname='K8SI3e']");//rPeykc uP58nb PZPZlf
+                            if (eli != null)
+                            {
+                                lcontent += eli.InnerText + ":";
+                            }
+                            lcontent += l.InnerText.IndexOf("&nbsp;") != -1 ? l.InnerText.Substring(0, l.InnerText.IndexOf("&nbsp;")) +
+                                s.Append("<item type=\"list\" content=\"" + lcontent.Remove(lcontent.Length - 1) + "\" />")
+                                : l.InnerText + "\\n";
+                            HtmlNodeCollection lr = l.SelectNodes(".//a[@class='ddkIM rz5jw c30Ztd']");
+                            if (lr != null)
+                            {
+                                foreach (var r in lr)
+                                {
+                                    if (r != null)
+                                    {
+                                        url = r.Attributes["href"]?.Value ?? "";
+                                        title = r.Attributes["aria-label"]?.Value ?? "";
+                                        s.Append("<item type=\"resources\" title=\"" + SetTitle(title) + "\" url=\"" + SetUrl(url) + "\" />");
+                                    }
+                                }
+                            }
+                        }
+                        //lcontent = lcontent.Remove(lcontent.Length - 1);
+                        //s.Append("<item type=\"list\" content=\"" + lcontent + "\" />");
+                    }
+                }
+            }
+            s.Append("</block>");
+            return s.ToString();*/
+        }//21-08-2024 AIOverView Method
         private string ConvertReviews(string reviews)//20-01-2023 display only numbers
         {
             if (string.IsNullOrEmpty(reviews)) return null;//26-06-2023

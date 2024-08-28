@@ -3277,7 +3277,7 @@ namespace RapidTrackingLibrary
                 nd = node.SelectSingleNode(".//g-card[@class='g F6CFcc']|.//g-inner-card[contains(@class,'Bf5NPb')]|.//div[@class='Bv2VAe']");//23-10-2023//14-08-2023//26-06-2023//03-06-2021 twitter block
             if (nd != null)
             {
-                if (nd.InnerText.Contains("Twitter") || nd.SelectSingleNode(".//g-link") != null) //07-01-2021 twitter link
+                if (nd.InnerText.Contains("Twitter") || nd.SelectSingleNode(".//g-link") != null || nd.SelectSingleNode(".//div[@class='agqCtf tw-res']") != null)//28-08-2024//07-01-2021 twitter link
                     return "Twitters";
             }
             nd = node.SelectSingleNode(".//div[@class='_OKe']");

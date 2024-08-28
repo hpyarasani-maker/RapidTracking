@@ -3114,7 +3114,7 @@ namespace RapidTrackingSingleThread
             {
                 //nd = node.SelectSingleNode(".//div[@class='MVpwye Dv3U4e']");//05-12-2023//28-09-2022 answer card commented
                 // if (node.SelectSingleNode(".//div[@class='FEoF4d']") == null && node.SelectSingleNode(".//div[@class='PZPZlf hb8SAc']") == null) //15-09-2022 //24-11-2022 commented
-                if (node.SelectSingleNode(".//div[@class='FEoF4d']|.//div[@class='kno-rdesc']|.//div[contains(@class,'rbR0cd')]|.//g-card[@class='g F6CFcc']" +//15-08-2024
+                if (node.SelectSingleNode(".//div[@class='FEoF4d']|.//div[@class='kno-rdesc']|.//div[contains(@class,'rbR0cd')]|.//g-card[@class='g F6CFcc']|.//div[@class='zhYvOe OuaH0']" +//28-08-2024//15-08-2024
                     "|.//div[@class='knowledge-finance-wholepage-chart__fw-uch']|.//div[@class='WFxqwc']|.//div[@class='KrvXD']|.//div[contains(@class,'dnXCYb')]" +//23-07-2024
                     "|.//div[@class='hoJlSb']|.//div[@class='Vo9TVc nG7hRb']|.//div[@jsname='xQjRM']|.//div[@class='x3SAYd']|.//div[@class='XNfAUb']|.//div[@jsname='VMmjWc']") == null || node.SelectSingleNode(".//div[@class='V3FYCf']") != null)//29-07-2024//05-07-2024
                     return "AnswerCard";

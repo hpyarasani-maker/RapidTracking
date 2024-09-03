@@ -3674,6 +3674,62 @@ namespace Oxylabs_BulkKeywords
             {
                 seid = 987, domain ="co.il", geo_location="Israel", locale= "en-il", uule = "w+CAIQICIGSXNyYWVs",device="mobile_android"
             },//10-07-2024
+            new SearchProperties()//03-09-2024
+            {
+                seid = 988, domain ="ad", geo_location="Andorra", locale= "ca-ad", uule = "w+CAIQICIHQW5kb3JyYQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 989, domain ="ad", geo_location="Andorra", locale= "ca-ad", uule = "w+CAIQICIHQW5kb3JyYQ==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 990, domain ="es", geo_location="Canary Islands,Spain", locale= "es-es", uule = "w+CAIQICIUQ2FuYXJ5IElzbGFuZHMsU3BhaW4=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 991, domain ="es", geo_location="Canary Islands,Spain", locale= "es-es", uule = "w+CAIQICIUQ2FuYXJ5IElzbGFuZHMsU3BhaW4=",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 992, domain ="com.af", geo_location="Afghanistan", locale= "ar-af", uule = "w+CAIQICILQWZnaGFuaXN0YW4=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 993, domain ="com.af", geo_location="Afghanistan", locale= "ar-af", uule = "w+CAIQICILQWZnaGFuaXN0YW4=",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 994, domain ="iq", geo_location="Iraq", locale= "ar-iq", uule = "w+CAIQICIESXJhcQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 995, domain ="iq", geo_location="Iraq", locale= "ar-iq", uule = "w+CAIQICIESXJhcQ==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 996, domain ="az", geo_location="Azerbaijan", locale= "az-az", uule = "w+CAIQICIKQXplcmJhaWphbg==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 997, domain ="az", geo_location="Azerbaijan", locale= "az-az", uule = "w+CAIQICIKQXplcmJhaWphbg==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 998, domain ="az", geo_location="Azerbaijan", locale= "ru-az", uule = "w+CAIQICIKQXplcmJhaWphbg==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 999, domain ="az", geo_location="Azerbaijan", locale= "ru-az", uule = "w+CAIQICIKQXplcmJhaWphbg==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 1000, domain ="lu", geo_location="Luxembourg", locale= "fr-lu", uule = "w+CAIQICIKTHV4ZW1ib3VyZw==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 1001, domain ="lu", geo_location="Luxembourg", locale= "fr-lu", uule = "w+CAIQICIKTHV4ZW1ib3VyZw==",device="mobile_android"
+            },//03-09-2024
         };
     }
 

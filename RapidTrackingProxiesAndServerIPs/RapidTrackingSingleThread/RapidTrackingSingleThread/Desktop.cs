@@ -658,7 +658,7 @@ namespace RapidTrackingSingleThread
                 }
             }
             //end of 18-03-2020
-            colt = doc.DocumentNode.SelectSingleNode("//div[@class='GcKpu']");//21-08-2024 AIOverview
+            colt = doc.DocumentNode.SelectSingleNode("//div[@class='GcKpu']|.//div[contains(@class,'Fzsovc')]");//03-09-2024//21-08-2024 AIOverview
             if (colt != null)
             {
                 s.Append(GetAioverview(colt));
@@ -2239,7 +2239,7 @@ namespace RapidTrackingSingleThread
             nd = node.SelectSingleNode(".//div[contains(@class, 'bba2i')]");//11-06-2024 DataSet Block
             if (nd != null)
                 return "Dataset";//11-06-2024
-            nd = node.SelectSingleNode(".//div[@class='GcKpu']");//21-08-2024 AIOverview
+            nd = node.SelectSingleNode(".//div[@class='GcKpu']|.//div[contains(@class,'Fzsovc')]");//03-09-2024//21-08-2024 AIOverview
             if (nd != null)
                 return "aiOverview";//21-08-2024 AIOverview
             return "";

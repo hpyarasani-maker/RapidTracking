@@ -1504,10 +1504,10 @@ namespace TrendingReceiving
         private string GetAdwords(HtmlNode node)//12-08-2024 multiple Adwords in top, middle & bootom
         {
             StringBuilder s = new StringBuilder();
-            s.Append("<block type=\"adwords\" url=\"\">");
             HtmlNodeCollection nodes = node.SelectNodes(".//div[@class='QxKkX']/a|.//div[@class='UeUWyc']/a");
             if (nodes != null)
             {
+                s.Append("<block type=\"adwords\" url=\"\">");//04-09-2024
                 foreach (HtmlNode n in nodes)
                 {
                     var url = GetRedirectedUrl_TextAds(n.Attributes["href"]?.Value);
@@ -1515,8 +1515,8 @@ namespace TrendingReceiving
                     if (!string.IsNullOrEmpty(url))
                         s.Append("<item url=\"" + url + "\" title=\"" + SetTitle(title) + "\" />");
                 }
+                s.Append("</block>");//04-09-2024
             }
-            s.Append("</block>");
             return s.ToString();
         }//12-08-2024 multiple Adwords in top, middle & bootom//12-08-2024 multiple Adwords in top, middle & bootom
         private string GetDataset(HtmlNode node)//11-06-2024 DataSet Block

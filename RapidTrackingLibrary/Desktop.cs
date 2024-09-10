@@ -543,7 +543,7 @@ namespace RapidTrackingLibrary
             if (colt != null)
             {
                 HtmlNode pNode = colt.SelectSingleNode(".//div[@jscontroller='vWOOIe']|.//div[@id='tads']");//02-10-2023//30-06-2023
-                if (pNode != null && pla == null && pNode.SelectSingleNode(".//div[contains(@class, 'commercial-unit-desktop-top')]|.//div[@class='dGACyd']") != null)//14-06-2024//26-04-2024//26-10-2023
+                if (pNode != null && pla == null && pNode.SelectSingleNode(".//div[contains(@class, 'commercial-unit-desktop-top')]|.//div[@class='dGACyd']|.//div[@id='tauc']") != null)//10-09-2024//14-06-2024//26-04-2024//26-10-2023
                 {
                     s.Append("<block type=\"productListedAds\" url=\"\">");
                     HtmlNodeCollection pNodes = pNode.SelectNodes(".//div[@class='ZPze1e']/a|.//g-inner-card[contains(@class,'B5kg8b')]/a");//02-10-2023

@@ -2203,7 +2203,7 @@ namespace RapidTrackingSingleThread
                 if (nds == null)
                      nds = node.SelectNodes(".//g-card-section[contains(@class,'jDsVJf')]/a"); //27-10-2021
                 if (nds == null)
-                    nds = node.SelectNodes(".//div[@class='agqCtf tw-res']/g-card-section/a");//24-04-2024
+                    nds = node.SelectNodes(".//div[@class='agqCtf tw-res']/g-card-section/a|.//a[@class='WlydOe eR6uYd']");//11-09-2024//24-04-2024
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='agqCtf tw-res']/g-image-section/a");//03-04-2024
                 if (nds != null)
@@ -3003,7 +3003,7 @@ namespace RapidTrackingSingleThread
                             ts = false;
                     }
                 }
-                if (ts && node.SelectSingleNode(".//div[@class='imso-ml-c PZPZlf']|.//div[@class='Bv2VAe']|.//div[@jsname='GDPwke']|.//div[@id='imso-root']|.//table[@class='vk_tbl Uekwlc']|.//div[@jscontroller='WoVPie']|.//div[@class='j2cNYe']") == null)//20-07-2024//07-05-2024//22-04-2024//04-04-2024//02-04-2024
+                if (ts && node.SelectSingleNode(".//div[@class='imso-ml-c PZPZlf']|.//div[@class='Bv2VAe']|.//div[@jsname='GDPwke']|.//div[@id='imso-root']|.//table[@class='vk_tbl Uekwlc']|.//div[@jscontroller='WoVPie']|.//div[@class='j2cNYe']|.//div[@class='agqCtf tw-res']") == null)//11-09-2024//20-07-2024//07-05-2024//22-04-2024//04-04-2024//02-04-2024
                     return "Topstories";
             }
             if (node.SelectSingleNode(".//div[contains(@class, 'RPdfze')]") != null || (node.SelectSingleNode(".//div[contains(@class, 'Qkn3ie')]" +//26-04-2024//23-04-2024
@@ -3241,7 +3241,7 @@ namespace RapidTrackingSingleThread
                     return "Maps";
             }
 
-            nd = node.SelectSingleNode(".//div[@class='JVrfPc']");
+            nd = node.SelectSingleNode(".//div[@class='JVrfPc']|.//div[@class='lU8tTd EyBRub']");//11-09-2024
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='bUNBRd mnr-c']|.//div[@class='HnYYW i8lZMc']|.//div[@class='HnYYW mfMhoc']|.//div[@class='HnYYW']/div|.//div[@class='HnYYW DFkChc']");//04-07-2023//20-11-2020 twiter classic links//26-06-2020 //13-03-2020 //include on 2019-06-24
             if (nd == null)

@@ -531,7 +531,7 @@ namespace RapidTrackingJobIDResults
             if (colt != null)
             {
                 HtmlNode pNode = colt.SelectSingleNode(".//div[@jscontroller='vWOOIe']|.//div[@id='tads']");//02-10-2023//30-06-2023
-                if (pNode != null && pla == null && pNode.SelectSingleNode(".//div[contains(@class, 'commercial-unit-desktop-top')]|.//div[@class='dGACyd']") != null)//14-06-2024//26-04-2024//26-10-2023
+                if (pNode != null && pla == null && pNode.SelectSingleNode(".//div[contains(@class, 'commercial-unit-desktop-top')]|.//div[@class='dGACyd']|.//div[@id='tauc']") != null)//10-09-2024//14-06-2024//26-04-2024//26-10-2023
                 {
                     s.Append("<block type=\"productListedAds\" url=\"\">");
                     HtmlNodeCollection pNodes = pNode.SelectNodes(".//div[@class='ZPze1e']/a|.//g-inner-card[contains(@class,'B5kg8b')]/a");//02-10-2023
@@ -2231,7 +2231,7 @@ namespace RapidTrackingJobIDResults
             {
                 return "SiteLinks";
             }
-            nd = node.SelectSingleNode(".//ul/product-viewer-group|.//div/product-viewer-group|.//div[@class='aJegcc']");//29-07-2024//09-12-2022 //09-11-2022 PopularProducts
+            nd = node.SelectSingleNode(".//ul/product-viewer-group|.//div/product-viewer-group|.//div[contains(@class,'aJegcc')]");//10-09-2024//29-07-2024//09-12-2022 //09-11-2022 PopularProducts
             if (nd != null)//09-11-2022 PopularProducts
             {
                 return "Popular";//09-11-2022 PopularProducts
@@ -2360,7 +2360,7 @@ namespace RapidTrackingJobIDResults
 
                 //enable below line without new block "popularProducts"
                 //if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null || node.SelectSingleNode(".//div[@class='dzpFPb']") != null)//28-05-2022//06-04-2022 //13-10-2021
-                if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null || node.SelectSingleNode(".//div[@class='dzpFPb']") != null || node.SelectSingleNode(".//div[@jscontroller='Yma7vd']") != null || node.SelectSingleNode(".//div[@class='aJegcc']") != null || node.SelectSingleNode(".//div[@class='IbDT9d']") != null)//24-05-2023//09-12-2022//09-11-2022 shopping
+                if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null || node.SelectSingleNode(".//div[@class='dzpFPb']") != null || node.SelectSingleNode(".//div[@jscontroller='Yma7vd']") != null || node.SelectSingleNode(".//div[contains(@class,'aJegcc')]") != null || node.SelectSingleNode(".//div[@class='IbDT9d']") != null)//10-09-2024//24-05-2023//09-12-2022//09-11-2022 shopping
                     if (node.SelectSingleNode(".//div[contains(@class,'g Ww4FFb')]") == null)//21-07-2023
                         return true;
                 if (node.SelectSingleNode(".//div[contains(@class, 'RPdfze')]|.//div[contains(@class, 'nJMOzb')]|.//div[contains(@class, 'Qkn3ie')]|.//div[contains(@class, 'vdQmEd')]|.//div[@class='lMMUFc']|.//div[@class='wH6SXe']|.//div[contains(@class,'WlTAzf')]|.//div[@class='cj1ht QkBAO oYQBg']") != null)//29-07-2024//10-11-2023//03-10-2023//21-07-2023//07-07-2023//29-06-2023

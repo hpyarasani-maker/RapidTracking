@@ -1110,6 +1110,8 @@ namespace RapidTrackingSingleThread
                                     nv = nd.SelectSingleNode(".//a[@class='C8nzq JTuIPc amp_r']");
                                 if (nv == null)
                                     nv = nd.SelectSingleNode(".//a[@class='C8nzq JTuIPc']");
+                                if (nv == null)//19-09-2024
+                                    nv = nd.SelectSingleNode(".//a[contains(@class,'cz3goc OcpZAb')]");//19-09-2024
                                 if (nv == null)
                                     nv = nd.SelectSingleNode(".//a[@class='C8nzq BmP5tf amp_r']");  // 10-06-2020 swapped from below
                                 if (nv == null)

@@ -1803,6 +1803,8 @@ namespace Oxylabs_BulkKeywords
                 n = node.SelectSingleNode(".//a[contains(@class,'sXtWJb')]");//16-12-2020 //15-12-2020
             if (n == null)//13-08-2024
                 n = node.SelectSingleNode(".//a[@class='rTyHce jgWGIe']");//13-08-2024
+            if (n == null)//19-09-2024
+                n = node.SelectSingleNode(".//a[contains(@class,'cz3goc OcpZAb')]");//19-09-2024
             if (n != null)
             {
                 if (orgLinks < 100)

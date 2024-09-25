@@ -2058,9 +2058,7 @@ namespace RapidTrackingLibrary
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='CEMjEf NUnG9d']/g-img"); //06-04-2022 TS
             if (nd == null)//27-04-2023
-                nd = node.SelectSingleNode(".//div[@class='aUSklf']");//27-04-2023
-            if (nd == null)//25-09-2024
-                nd = node.SelectSingleNode(".//g-section-with-header[@class='yG4QQe TBC9ub']");//25-09-2024
+                nd = node.SelectSingleNode(".//div[@class='aUSklf']|.//div[@jsname='K9a4Re']");//25-09-2024
             if (nd != null)
                 return "topstories";
             if (nd == null)

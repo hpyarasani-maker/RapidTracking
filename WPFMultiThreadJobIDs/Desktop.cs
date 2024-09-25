@@ -35,6 +35,7 @@ namespace WPFMultiThreadJobIDs
             sb.Append("<section col=\"main\">");
             string topStuff = GetTopStuff(doc);
             ndText = topStuff;
+            sb.Append(topStuff);
             HtmlNode rso = doc.DocumentNode.SelectSingleNode("//div[@id='rso']");
             HtmlNodeCollection nodeCol = rso.SelectNodes(".//div[@class='MjjYud']");
             if (nodeCol == null || (nodeCol.Count <= 1))

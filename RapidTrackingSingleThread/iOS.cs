@@ -847,6 +847,8 @@ namespace RapidTrackingSingleThread
                     nds = node.SelectNodes(".//div[@class='setTDc']|.//div[contains(@class, 'P8ujBc v5yQqb')]|.//div[@class='WFyfFf yOwOKc']|.//div[@class='kb0PBd cvP2Ce jGGQ5e']");//04-06-2024//14-02-2024
                 if (nds == null && (node.Attributes["jsname"]?.Value == "pKB8Bc" || node.Attributes["class"]?.Value == "Ww4FFb vt6azd"))//1e-08-2024//14-02-2024
                     nds = node.SelectNodes(".");//14-02-2024//21-09-2023 //02-02-2022 moved from 687 line   // 25-10-2019
+                if (nds == null)//30-09-2024
+                    nds = node.SelectNodes(".//div[@class='AGopnf']");//30-09-2024
             }
             if (nds != null)
             {
@@ -1042,7 +1044,8 @@ namespace RapidTrackingSingleThread
                              || nd.Attributes["class"].Value == "g card-section svwwZ" || nd.Attributes["class"].Value == "card-section"  //15-12-2020//03-11-2020 //06-10-2020 classic type block type
                              || nd.Attributes["class"].Value == "d5oMvf KJDcUb" || nd.Attributes["class"].Value == "c6gxKe card-section" //20-05-2021) //09-02-2021
                              || nd.Attributes["class"].Value.Contains("KJDcUb") || nd.Attributes["class"].Value == "mnr-c OH1ZUd xpd O9g5cc uUPGi" //27-01-2022 classic links //09-09-2021 missing classic links
-                            // || nd.Attributes["class"].Value.Contains("mnr-c xpd EtOod pkphOe")//30-09-2022 commented //10-06-2022
+                            || nd.Attributes["class"].Value == "wU9Tkd" || nd.Attributes["class"].Value.Contains("P8ujBc") || nd.Attributes["class"].Value == "AGopnf"//30-09-2024
+                             // || nd.Attributes["class"].Value.Contains("mnr-c xpd EtOod pkphOe")//30-09-2022 commented //10-06-2022
                              || nd.Attributes["class"].Value.Contains("EtOod pkphOe") || nd.Attributes["class"].Value.Contains("WFyfFf")//14-02-2024 //30-06-2022//29-06-2022
                              || nd.Attributes["class"].Value == "wU9Tkd" || nd.Attributes["class"].Value.Contains("P8ujBc") //22-02-2022 //01-02-2022 //10-07-2021
                              || nd.Attributes["class"].Value == "g card-section" || nd.Attributes["class"].Value == "card-section svwwZ" || nd.Attributes["class"].Value == "kb0PBd cvP2Ce jGGQ5e") //04-06-2024//21-09-2023//30-08-2021 missing classic link

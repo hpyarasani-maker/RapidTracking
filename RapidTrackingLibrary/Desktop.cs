@@ -2070,7 +2070,7 @@ namespace RapidTrackingLibrary
                 nd = node.SelectSingleNode(".//div[contains(@class, 'LMMXP')]");  //23-07-2020
             //if (nd == null)
             //    nd = node.SelectSingleNode(".//div[@class='LMMXP mfMhoc']");  //23-07-2020 //17-07-2020
-            if (nd == null)
+            if (nd != null && node.SelectSingleNode(".//div[@class='fN9oz']") == null)//01-10-2024
                 nd = node.SelectSingleNode(".//div[@class='sQkmof']");//23-07-2020 included selector for videos
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@jsname='wRSfy']"); //02-12-2020 included for videos block

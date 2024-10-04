@@ -1057,9 +1057,9 @@ namespace SingleJobidProject
                 case "aioverview"://21-08-2024
                     s.Append(GetAioverview(node));
                     break;//21-08-2024
-                case "classiclinkcarousel"://30-09-2024 ClassicLinkCarousel
+                /*case "classiclinkcarousel"://30-09-2024 ClassicLinkCarousel
                     s.Append(GetClassicLinkCarousel(node));
-                    break;//30-09-2024 ClassicLinkCarousel
+                    break;//30-09-2024 ClassicLinkCarousel*/
                 default:
                     break;
             }
@@ -2268,9 +2268,9 @@ namespace SingleJobidProject
             nd = node.SelectSingleNode(".//div[@class='GcKpu']|.//div[contains(@class,'Fzsovc')]");//03-09-2024//21-08-2024 AIOverview
             if (nd != null)
                 return "aiOverview";//21-08-2024 AIOverview
-            nd = node.SelectSingleNode(".//div[@data-snf='RqgZTc' and (@data-sncf='1' or @data-sncf='2')]");//30-09-2024 ClassicLinkCarousel
+            /*nd = node.SelectSingleNode(".//div[@data-snf='RqgZTc' and (@data-sncf='1' or @data-sncf='2')]");//30-09-2024 ClassicLinkCarousel
             if (nd != null)
-                return "classicLinkCarousel";//30-09-2024 ClassicLinkCarousel
+                return "classicLinkCarousel";//30-09-2024 ClassicLinkCarousel*/
             return "";
         }
 
@@ -2386,9 +2386,9 @@ namespace SingleJobidProject
                 if (nd != null)
                     if ((nd.InnerText == "Top stories" || nd.InnerText == "Huvudnyheter" || nd.InnerText == "Videos" || nd.InnerText == "Video" || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws" || nd.InnerText == "Vertaalresultaat" || nd.InnerText == "Recipes" || nd.InnerText == "Vidéos") && node.SelectSingleNode(".//div[contains(@class,'g Ww4FFb')]") == null)//30-10-2023//02-12-2020 videos//05-08-2020 //29-06-2020//03-06-2020 // 02-06-2020  // 08-04-2020
                         return true;
-                nd = node.SelectSingleNode(".//div[@data-snf='RqgZTc' and (@data-sncf='1' or @data-sncf='2')]");//30-09-2024 ClassicLinkCarousel
+                /*nd = node.SelectSingleNode(".//div[@data-snf='RqgZTc' and (@data-sncf='1' or @data-sncf='2')]");//30-09-2024 ClassicLinkCarousel
                 if (nd != null)
-                    return true;//30-09-2024 ClassicLinkCarousel
+                    return true;//30-09-2024 ClassicLinkCarousel*/
                 //enable below line without new block "popularProducts"
                 //if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null || node.SelectSingleNode(".//div[@class='dzpFPb']") != null)//28-05-2022//06-04-2022 //13-10-2021
                 if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null || node.SelectSingleNode(".//div[@class='dzpFPb']") != null || node.SelectSingleNode(".//div[@jscontroller='Yma7vd']") != null || node.SelectSingleNode(".//div[contains(@class,'aJegcc')]") != null || node.SelectSingleNode(".//div[@class='IbDT9d']") != null)//10-09-2024//24-05-2023//09-12-2022//09-11-2022 shopping

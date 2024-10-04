@@ -1496,9 +1496,9 @@ namespace TrackingTrending
                 case "aioverview"://21-08-2024
                     s.Append(GetAioverview(node));
                     break;//21-08-2024
-                case "classiclinkcarousel"://30-09-2024 ClassicLinkCarousel
+                /*case "classiclinkcarousel"://30-09-2024 ClassicLinkCarousel
                     s.Append(GetClassicLinkCarousel(node));
-                    break;//30-09-2024 ClassicLinkCarousel
+                    break;//30-09-2024 ClassicLinkCarousel*/
                 default:
                     break;
             }
@@ -3463,9 +3463,9 @@ namespace TrackingTrending
             nd = node.SelectSingleNode(".//div[@class='GcKpu']|.//div[contains(@class,'Fzsovc')]");//28-08-2024
             if (nd != null)//21-08-2024
                 return "aiOverview";//21-08-2024 AIOverview
-            nd = node.SelectSingleNode(".//div[@data-snf='RqgZTc' and (@data-sncf='1' or @data-sncf='2')]");//30-09-2024 ClassicLinkCarousel
+            /*nd = node.SelectSingleNode(".//div[@data-snf='RqgZTc' and (@data-sncf='1' or @data-sncf='2')]");//30-09-2024 ClassicLinkCarousel
             if (nd != null)
-                return "classicLinkCarousel";//30-09-2024 ClassicLinkCarousel
+                return "classicLinkCarousel";//30-09-2024 ClassicLinkCarousel*/
             return "";
         }
 
@@ -3492,9 +3492,9 @@ namespace TrackingTrending
                      || nd.InnerText == "Fler resultat" || nd.InnerText == "Flere resultater" || nd.InnerText == "Plus de résultats")    // 13-12-2019
                     return false;
             }
-            nd = node.SelectSingleNode(".//div[@data-snf='RqgZTc' and (@data-sncf='1' or @data-sncf='2')]");//30-09-2024 ClassicLinkCarousel
+            /*nd = node.SelectSingleNode(".//div[@data-snf='RqgZTc' and (@data-sncf='1' or @data-sncf='2')]");//30-09-2024 ClassicLinkCarousel
             if (nd != null)
-                return true;//30-09-2024 ClassicLinkCarousel
+                return true;//30-09-2024 ClassicLinkCarousel*/
             if (node.SelectSingleNode(".//div[contains(@class, 'Z3ngN')]") != null) //22-03-2021
                 return false;
             if (node.SelectSingleNode(".//video-voyager[@class='LnSx5b']|.//div[@class='lNvPub v5yQqb']" +

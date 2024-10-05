@@ -840,6 +840,8 @@ namespace SingleJobidProject
                     nds = node.SelectNodes(".//div[@class='setTDc']|.//div[contains(@class, 'P8ujBc v5yQqb')]|.//div[@class='WFyfFf yOwOKc']|.//div[@class='kb0PBd cvP2Ce jGGQ5e']");//04-06-2024//14-02-2024
                 if (nds == null && (node.Attributes["jsname"]?.Value == "pKB8Bc" || node.Attributes["class"]?.Value == "Ww4FFb vt6azd"))//1e-08-2024//14-02-2024
                     nds = node.SelectNodes(".");//14-02-2024//21-09-2023 //02-02-2022 moved from 687 line   // 25-10-2019
+                if (nds == null)//30-09-2024
+                    nds = node.SelectNodes(".//div[@class='AGopnf']");//30-09-2024
             }
             if (nds != null)
             {
@@ -1035,7 +1037,8 @@ namespace SingleJobidProject
                              || nd.Attributes["class"].Value == "g card-section svwwZ" || nd.Attributes["class"].Value == "card-section"  //15-12-2020//03-11-2020 //06-10-2020 classic type block type
                              || nd.Attributes["class"].Value == "d5oMvf KJDcUb" || nd.Attributes["class"].Value == "c6gxKe card-section" //20-05-2021) //09-02-2021
                              || nd.Attributes["class"].Value.Contains("KJDcUb") || nd.Attributes["class"].Value == "mnr-c OH1ZUd xpd O9g5cc uUPGi" //27-01-2022 classic links //09-09-2021 missing classic links
-                            // || nd.Attributes["class"].Value.Contains("mnr-c xpd EtOod pkphOe")//30-09-2022 commented //10-06-2022
+                            || nd.Attributes["class"].Value == "wU9Tkd" || nd.Attributes["class"].Value.Contains("P8ujBc") || nd.Attributes["class"].Value == "AGopnf"//30-09-2024
+                                                                                                                                                                      // || nd.Attributes["class"].Value.Contains("mnr-c xpd EtOod pkphOe")//30-09-2022 commented //10-06-2022
                              || nd.Attributes["class"].Value.Contains("EtOod pkphOe") || nd.Attributes["class"].Value.Contains("WFyfFf")//14-02-2024 //30-06-2022//29-06-2022
                              || nd.Attributes["class"].Value == "wU9Tkd" || nd.Attributes["class"].Value.Contains("P8ujBc") //22-02-2022 //01-02-2022 //10-07-2021
                              || nd.Attributes["class"].Value == "g card-section" || nd.Attributes["class"].Value == "card-section svwwZ" || nd.Attributes["class"].Value == "kb0PBd cvP2Ce jGGQ5e") //04-06-2024//21-09-2023//30-08-2021 missing classic link
@@ -1493,6 +1496,9 @@ namespace SingleJobidProject
                 case "aioverview"://21-08-2024
                     s.Append(GetAioverview(node));
                     break;//21-08-2024
+                /*case "classiclinkcarousel"://30-09-2024 ClassicLinkCarousel
+                    s.Append(GetClassicLinkCarousel(node));
+                    break;//30-09-2024 ClassicLinkCarousel*/
                 default:
                     break;
             }
@@ -2470,7 +2476,8 @@ namespace SingleJobidProject
                     "|.//div[@class='QevLbc']/a|.//a[@class='OIDuRe']|.//div[@class='Q9mvUc']" +
                     "|.//div[@class='KJDcUb']|.//a[@class='ygih0']|.//div[@class='NBoMDb']/a" +
                     "|.//a[@class='dyWXTb']|.//div[@class='MCDgie']/a[@class='BG7Pyb']" +
-                    "|.//div[@class='GFu7kc']/a|.//div[@class='iyrWae']/a|.//a[@class='tAAiTd']|.//div[@class='fLyK8']/a");//12-08-2024//22-07-2024//26-02-2024//21-11-2023//24-08-2023 //17-05-2022 //07-04-2022 videos item urls
+                    "|.//div[@class='GFu7kc']/a|.//div[@class='iyrWae']/a|.//a[@class='tAAiTd']" +
+                    "|.//div[@class='fLyK8']/a|.//div[@class='IflIfe']");//01-10-2024//12-08-2024//22-07-2024//26-02-2024//21-11-2023//24-08-2023 //17-05-2022 //07-04-2022 videos item urls
 
             if (nds != null)   // 16-09-2019
                 foreach (HtmlNode nd in nds)
@@ -2491,6 +2498,8 @@ namespace SingleJobidProject
                             n = nd.SelectSingleNode(".//div[contains(@class,'ynAwRc OSrXXb')]");//22-07-2024
                         if (n == null)//21-11-2023
                             n = nd.SelectSingleNode(".//div[@class='ZhosBf MBI8Pd PwQv4e']");//21-11-2023
+                        if (n == null)//01-10-2024
+                            n = nd.SelectSingleNode(".//div[contains(@class,'ec0wHe N8D9gb')]");//01-10-2024
                         try
                         {
                             // Changes in Videos block on 25-06-2019
@@ -2522,7 +2531,8 @@ namespace SingleJobidProject
                             url = nd.Attributes["data-url"].Value;
                         //end 26-06-2020
                         if (url.Contains("/search?") || url.StartsWith("#")) url = "";//11-04-2022
-                        string creator = nd.SelectSingleNode(".//div[@class='YDQ8Te Fy8FNd OSrXXb']/span[3]|.//div[@class='pDdfmc YqCW4e OSrXXb']/span[3]|.//span[@class='GbZYR OSrXXb']")?.InnerText.Trim() ?? "";//12-08-2024//22-07-2024//04-12-2023
+                        string creator = nd.SelectSingleNode(".//div[@class='YDQ8Te Fy8FNd OSrXXb']/span[3]|.//div[@class='pDdfmc YqCW4e OSrXXb']/span[3]" +
+                            "|.//span[@class='GbZYR OSrXXb']|.//div[contains(@class,'R8BTeb q8U8x')]")?.InnerText.Trim() ?? "";//01-10-2024//12-08-2024//22-07-2024//04-12-2023
                         if (!string.IsNullOrEmpty(url.Trim()) || !string.IsNullOrEmpty(title.Trim())) //11-04-2022
                                                                                                       //s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                             s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" creatorName=\"" + SetTitle(creator) + "\" />");//04-12-2023
@@ -2845,6 +2855,31 @@ namespace SingleJobidProject
             }
             return s.ToString();
         }//09-08-2023//07-07-2023 FindResultsOn Block
+        private string GetClassicLinkCarousel(HtmlNode node)//30-09-2024 ClassicLinkCarousel
+        {
+            StringBuilder s = new StringBuilder();
+            HtmlNode n = node.SelectSingleNode(".//div[@class='P8ujBc v5yQqb jqWpsc']/a");
+            if (n != null)
+            {
+                HtmlNode t = n.SelectSingleNode(".//div[@role='heading']");
+                s.Append("<block type=\"classickLinkCarousel\" url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(t.InnerText) + "\" >");
+                HtmlNodeCollection nds = node.SelectNodes(".//div[@class='IF221e EXH1Ce']");
+                if (nds != null)
+                {
+                    foreach (HtmlNode nd in nds)
+                    {
+                        HtmlNode a = nd.SelectSingleNode(".//a");
+                        HtmlNode t1 = nd.SelectSingleNode(".//div/span[@class='Yt787']");
+                        if (a != null && t1 != null)
+                        {
+                            s.Append("<item url=\"" + SetUrl(a.Attributes["href"].Value) + "\" title=\"" + SetTitle(t1.InnerText) + "\" />");
+                        }
+                    }
+                }
+                s.Append("</block>");
+            }
+            return s.ToString();
+        }//30-09-2024 ClassicLinkCarousel
         private string ConvertNumber(string value)//23-06-2023
         {
             if (string.IsNullOrEmpty(value))
@@ -3151,6 +3186,8 @@ namespace SingleJobidProject
                 nd = node.SelectSingleNode(".//div[@class='w8TE8']");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@id='tsuid196']");
+            if (nd == null)//01-10-2024
+                nd = node.SelectSingleNode(".//div[@class='YSlUOe']");//01-10-2024
             if (nd != null)
                 if (!node.InnerText.Contains("Popular products") && node.SelectSingleNode(".//div[@class='I2lQic']") == null && node.SelectSingleNode(".//div[@class='IEBeid']") == null && node.SelectSingleNode(".//div[@id='iur']") == null)//29-08-2022//09-03-2022//24-09-2021 maps //29-06-2021 avoiding wrong block
                     if (node.SelectSingleNode(".//div[contains(@class,'qdrjAc Dwsemf')]|.//div[contains(@class,'zTpPx')]") == null && node.SelectSingleNode(".//img[contains(@alt,'Map of ')]") == null && node.SelectSingleNode(".//g-img[@class='o8ebK']") == null)//20-05-2022//05-05-2022 //28-10-2021
@@ -3426,6 +3463,9 @@ namespace SingleJobidProject
             nd = node.SelectSingleNode(".//div[@class='GcKpu']|.//div[contains(@class,'Fzsovc')]");//28-08-2024
             if (nd != null)//21-08-2024
                 return "aiOverview";//21-08-2024 AIOverview
+            /*nd = node.SelectSingleNode(".//div[@data-snf='RqgZTc' and (@data-sncf='1' or @data-sncf='2')]");//30-09-2024 ClassicLinkCarousel
+            if (nd != null)
+                return "classicLinkCarousel";//30-09-2024 ClassicLinkCarousel*/
             return "";
         }
 
@@ -3452,6 +3492,9 @@ namespace SingleJobidProject
                      || nd.InnerText == "Fler resultat" || nd.InnerText == "Flere resultater" || nd.InnerText == "Plus de résultats")    // 13-12-2019
                     return false;
             }
+            /*nd = node.SelectSingleNode(".//div[@data-snf='RqgZTc' and (@data-sncf='1' or @data-sncf='2')]");//30-09-2024 ClassicLinkCarousel
+            if (nd != null)
+                return true;//30-09-2024 ClassicLinkCarousel*/
             if (node.SelectSingleNode(".//div[contains(@class, 'Z3ngN')]") != null) //22-03-2021
                 return false;
             if (node.SelectSingleNode(".//video-voyager[@class='LnSx5b']|.//div[@class='lNvPub v5yQqb']" +

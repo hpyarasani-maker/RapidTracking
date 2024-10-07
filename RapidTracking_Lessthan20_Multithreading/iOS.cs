@@ -3190,7 +3190,8 @@ namespace TrackingTrending
                 nd = node.SelectSingleNode(".//div[@class='YSlUOe']");//01-10-2024
             if (nd != null)
                 if (!node.InnerText.Contains("Popular products") && node.SelectSingleNode(".//div[@class='I2lQic']") == null && node.SelectSingleNode(".//div[@class='IEBeid']") == null && node.SelectSingleNode(".//div[@id='iur']") == null)//29-08-2022//09-03-2022//24-09-2021 maps //29-06-2021 avoiding wrong block
-                    if (node.SelectSingleNode(".//div[contains(@class,'qdrjAc Dwsemf')]|.//div[contains(@class,'zTpPx')]") == null && node.SelectSingleNode(".//img[contains(@alt,'Map of ')]") == null && node.SelectSingleNode(".//g-img[@class='o8ebK']") == null)//20-05-2022//05-05-2022 //28-10-2021
+                    if (node.SelectSingleNode(".//div[contains(@class,'qdrjAc Dwsemf')]|.//div[contains(@class,'zTpPx')]") == null && node.SelectSingleNode(".//img[contains(@alt,'Map of ')]") == null
+                        && node.SelectSingleNode(".//g-img[@class='o8ebK']") == null && node.SelectSingleNode(".//div[@class='Wt5Tfe']") == null)//05-10-2024//20-05-2022//05-05-2022 //28-10-2021
                         return "Videos";
             nd = node.SelectSingleNode(".//div[@class='TvV1fe']|.//div[@class='pXvdUe']"); //14-12-2020 videos
             if (nd == null)

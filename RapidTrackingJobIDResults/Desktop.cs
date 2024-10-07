@@ -225,6 +225,101 @@ namespace RapidTrackingJobIDResults
             return s.ToString();
         }
 
+        private string GetRightStuff(HtmlDocument doc)
+        {
+            StringBuilder s = new StringBuilder();
+
+            HtmlNode rcNode = doc.DocumentNode.SelectSingleNode("//div[@id='rhs_block']");
+            if (rcNode == null)
+                rcNode = doc.DocumentNode.SelectSingleNode("//div[@id='rhs']"); // 18-11-2019
+            if (rcNode == null)
+                rcNode = doc.DocumentNode.SelectSingleNode("//div[contains(@class, 'rhscol col')]"); // 21-04-2020
+            if (rcNode == null)
+                return string.Empty;
+
+            // product listed ads
+            HtmlNode sNode = rcNode.SelectSingleNode(".//div[@class='cu-container']");
+            if (sNode != null)
+            {
+                if (!sNode.InnerHtml.Contains("iKidV"))//22-10-2019
+                {
+                    s.Append("<block type=\"productListedAds\" url=\"\">");
+                    HtmlNodeCollection cl = sNode.SelectNodes(".//a[@class='plantl pla-unit-title-link']");
+                    if (cl == null)
+                        cl = sNode.SelectNodes(".//a[@class='plantl pla-unit-single-clickable-target clickable-card']");
+                    if (cl == null)
+                        cl = sNode.SelectNodes(".//div[@class='mnr-c pla-unit']/a[2]");
+                    if (cl == null)
+                        cl = sNode.SelectNodes(".//div[@class='pla-unit-title']/a");
+                    if (cl == null)
+                        cl = sNode.SelectNodes(".//div[@class='twpSFc mnr-c']/a[2]");
+                    if (cl != null)
+                    {
+                        foreach (HtmlNode nd in cl)
+                        {
+                            // 18-11-2019
+                            string title = nd.InnerText;
+                            var url = nd.Attributes["href"].Value.Trim();
+                            url = GetRedirectedUrl(url);
+                            if (string.IsNullOrEmpty(title.Trim()))
+                            {
+                                HtmlNode nd1 = nd.SelectSingleNode(".//span[@class='rhsl4']");
+                                if (nd1 != null)
+                                    title = SetTitle(nd1.InnerText);
+                            }
+                            if (string.IsNullOrEmpty(title.Trim()))
+                            {
+                                title = nd.Attributes["aria-label"]?.Value;
+                            }
+                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+
+                        }
+                    }
+                    s.Append("</block>");
+                }
+            }
+
+            // kp
+            HtmlNode node = rcNode.SelectSingleNode(".//div[@class='kp-header']");
+            if (node == null)
+                node = rcNode.SelectSingleNode(".//div[@class='rhsvw explore-xpanels-desktop__xpanel-wrapper']");
+            if (node == null)
+                node = rcNode.SelectSingleNode(".//div[@class='iKidV']");//22-10-2019
+            if (node == null)
+                node = rcNode.SelectSingleNode(".//div[@class='kp-wholepage EyBRub kp-wholepage-osrp HSryR']");  // 06-11-2019
+            if (node == null)
+                node = rcNode.SelectSingleNode(".//div[contains(@class,'kp-wholepage kp-wholepage-osrp')]");  // 11-05-2020 //16-10-2020 kp block in contains functions
+            if (node == null)
+                node = rcNode.SelectSingleNode(".//div[contains(@class,'kp-wholepage-osrp')]");//01-08-2022
+            if (node == null)
+                node = rcNode.SelectSingleNode(".//div[@class='Y37F6d Nn2Stf']");  // 21-04-2020
+            if (node == null)
+                node = rcNode.SelectSingleNode(".//div[@class='UDZeY fAgajc OTFaAf']");  // 27-05-2020
+            if (node == null)
+                node = rcNode.SelectSingleNode(".//div[@class='WFxqwc BGdUVb OTFaAf']");  // 02-11-2023
+            if (node == null)
+                node = rcNode.SelectSingleNode(".//div[@class='NFQFxe mod']");  // 01-06-2020
+            if (node == null)
+                node = rcNode.SelectSingleNode(".//div[contains(@class, 'knowledge-panel')]");//03-03-2022
+            if (node != null)     //'kp-blk knowledge-panel _Rqb _RJe']") != null) //|.//div[@role='heading']/div[1]/span //comment or uncomment only KP block
+            {
+                s.Append("<block type=\"knowledgeGraph\" url=\"\" />");
+            }
+            /*if (node != null)//18-01-2023 Google Hotels from KP block
+            {
+                string googleHotels = string.Empty;
+                if (node.SelectSingleNode(".//div/a[@class='ln-osrp-et']") != null)
+                {
+                    googleHotels = GetGoogleHotels(rcNode);
+                    if (!string.IsNullOrEmpty(googleHotels))
+                        s.Append(googleHotels);
+                }
+                else if (string.IsNullOrEmpty(googleHotels))
+                    s.Append("<block type=\"knowledgeGraph\" url=\"\" />");
+            }*///18-01-2023 Google Hotels from KP block
+            return s.ToString();
+        }
+
         private string GetBottomStuff(HtmlDocument doc)
         {
             StringBuilder s = new StringBuilder();
@@ -2083,7 +2178,7 @@ namespace RapidTrackingJobIDResults
             HtmlNode nd1 = null;
             if (nd != null)
                 nd1 = node.SelectSingleNode(".//div[@class='g']");
-            if (nd != null && nd1 == null)
+            if (nd != null && nd1 == null && node.SelectSingleNode(".//div[@class='fN9oz']") == null)//07-10-2024
                 return "videos";
             //end 15-10-2020
             nd = node.SelectSingleNode(".//div[@class='_Zfh']");
@@ -2232,7 +2327,7 @@ namespace RapidTrackingJobIDResults
             // end of map changes.
 
             nd = node.SelectSingleNode(".//div[@id='kx']|.//div[@id='rrg']|.//div[@class='oHJrJb']|.//div[@class='q6PGbe']|.//g-scrolling-carousel[@class='arDHIe']|.//div[@class='jhtnKe oJxN6']|.//div[@jsname='GDPwke']");//21-09-2023//19-09-2023//01-09-2022//03-11-2021 CS Block//05-08-2020 included selector for carousel
-            if (nd != null)
+            if (nd != null && node.SelectSingleNode(".//div[@class='fN9oz']") == null)//07-10-2024
             {
                 return "Carousel";
             }

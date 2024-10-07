@@ -2083,7 +2083,7 @@ namespace WPFMultiThreadJobIDs
             HtmlNode nd1 = null;
             if (nd != null)
                 nd1 = node.SelectSingleNode(".//div[@class='g']");
-            if (nd != null && nd1 == null)
+            if (nd != null && nd1 == null && node.SelectSingleNode(".//div[@class='fN9oz']") == null)//07-10-2024
                 return "videos";
             //end 15-10-2020
             nd = node.SelectSingleNode(".//div[@class='_Zfh']");
@@ -2232,7 +2232,7 @@ namespace WPFMultiThreadJobIDs
             // end of map changes.
 
             nd = node.SelectSingleNode(".//div[@id='kx']|.//div[@id='rrg']|.//div[@class='oHJrJb']|.//div[@class='q6PGbe']|.//g-scrolling-carousel[@class='arDHIe']|.//div[@class='jhtnKe oJxN6']|.//div[@jsname='GDPwke']");//21-09-2023//19-09-2023//01-09-2022//03-11-2021 CS Block//05-08-2020 included selector for carousel
-            if (nd != null)
+            if (nd != null && node.SelectSingleNode(".//div[@class='fN9oz']") == null)//07-10-2024
             {
                 return "Carousel";
             }

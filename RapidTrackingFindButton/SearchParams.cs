@@ -3744,6 +3744,30 @@ new SearchProperties() //start 25-02-2021
             {
                 seid = 1001, domain ="lu", geo_location="Luxembourg", locale= "fr-lu", uule = "w+CAIQICIKTHV4ZW1ib3VyZw==",device="mobile_android"
             },//03-09-2024
+            new SearchProperties()//07-10-2024
+            {
+                seid =1002, domain ="co.uk", geo_location = "Hertford,Hertfordshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICItSGVydGZvcmQsSGVydGZvcmRzaGlyZSxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =1003, domain ="co.uk", geo_location = "Hertford,Hertfordshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICItSGVydGZvcmQsSGVydGZvcmRzaGlyZSxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =1004, domain ="co.uk", geo_location = "Redbourne,Lincolnshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICItUmVkYm91cm5lLExpbmNvbG5zaGlyZSxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =1005, domain ="co.uk", geo_location = "Redbourne,Lincolnshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICItUmVkYm91cm5lLExpbmNvbG5zaGlyZSxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =1006, domain ="co.uk", geo_location = "Welwyn Garden City,Hertfordshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICI3V2Vsd3luIEdhcmRlbiBDaXR5LEhlcnRmb3Jkc2hpcmUsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =1007, domain ="co.uk", geo_location = "Welwyn Garden City,Hertfordshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICI3V2Vsd3luIEdhcmRlbiBDaXR5LEhlcnRmb3Jkc2hpcmUsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==",device="mobile_android"
+            },//07-10-2024
         };
     }
     class SearchProperties

@@ -64,21 +64,25 @@ namespace RapidMissingJobsReceiving
             if (nodeCol != null) //11-08-2022
             foreach (HtmlNode node in nodeCol)
             {
-                if (node.HasClass("kp-wholepage"))
-                {
-                    continue;
-                }
-                try
-                {
-                    if (node.InnerHtml != "")
+                    if (node.HasClass("kp-wholepage"))
                     {
-                        string s = ProcessNode(node);
-                        ndText += s;
-                        if (s.Length > 0)
-                            sb.Append(s);
+                        continue;
                     }
-                }
-                catch { }
+                    if (node.HasClass("TzHB6b") && node.SelectSingleNode(".//div[contains(@class,'g Ww4FFb')]|.//div[@class='g PmEWq']|.//div[@class='Wt5Tfe']|.//div[@class='g']/div[@class='BYM4Nd']|.//div[@class='Lv2Cle']|.//g-section-with-header[@class='yG4QQe TBC9ub']|.//div[@class='uVMCKf']") != null)//09-10-2024
+                    {
+                        continue;
+                    }//09-10-2024
+                    try
+                    {
+                        if (node.InnerHtml != "")
+                        {
+                            string s = ProcessNode(node);
+                            ndText += s;
+                            if (s.Length > 0)
+                                sb.Append(s);
+                        }
+                    }
+                    catch { }
             }
             // 23-03-2020
             if (string.IsNullOrEmpty(ndText) || orgLinks == 0)//08-04-2020

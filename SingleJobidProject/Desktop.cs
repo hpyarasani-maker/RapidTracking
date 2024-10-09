@@ -57,6 +57,10 @@ namespace SingleJobidProject
                 {
                     continue;
                 }
+                if (node.HasClass("TzHB6b") && node.SelectSingleNode(".//div[contains(@class,'g Ww4FFb')]|.//div[@class='g PmEWq']|.//div[@class='Wt5Tfe']|.//div[@class='g']/div[@class='BYM4Nd']|.//div[@class='Lv2Cle']|.//g-section-with-header[@class='yG4QQe TBC9ub']|.//div[@class='uVMCKf']") != null)//09-10-2024
+                {
+                    continue;
+                }//09-10-2024
                 try
                 {
                     if (node.InnerHtml != "")

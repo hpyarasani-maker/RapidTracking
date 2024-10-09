@@ -50,7 +50,7 @@ namespace RapidTrackingSingleThread
                 if (nodeCol == null || (nodeCol.Count >= 1 && nodeCol.Count <= 5))//09-02-2024
                 {//08-02-2024
                     if (rso.SelectNodes("//div[contains(@id,'kp-wp-tab-')]") != null)
-                        nodeCol = rso.SelectNodes(".//div[contains(@class,'TzHB6b cLjAic')]|.//div[contains(@class, 'TzHB6b j8lBAb') and (.//div[contains(@class, 'RPdfze mnr-c vk_c')])]|.//div[contains(@class,'g Ww4FFb')]|.//div[@class='g PmEWq']|.//div[@class='Wt5Tfe']|.//div[@class='g']/div[@class='BYM4Nd']|.//div[@class='Lv2Cle']|.//g-section-with-header[@class='yG4QQe TBC9ub']|.//div[@class='uVMCKf']");//08-10-2024//07-10-2024//03-10-2024//22-07-2024//20-07-2024//09-07-2024
+                        nodeCol = rso.SelectNodes(".//div[contains(@class,'TzHB6b cLjAic')]|.//div[contains(@class,'TzHB6b j8lBAb p7kDMc cLjAic')]|.//div[contains(@class,'g Ww4FFb')]|.//div[@class='g PmEWq']|.//div[@class='Wt5Tfe']|.//div[@class='g']/div[@class='BYM4Nd']|.//div[@class='Lv2Cle']|.//g-section-with-header[@class='yG4QQe TBC9ub']|.//div[@class='uVMCKf']");//09-10-2024
                     else
                         nodeCol = rso.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div|.//div[@class='MjjYud']|.//div[contains(@class,'g Ww4FFb')]");
                 }//08-02-2024
@@ -61,6 +61,10 @@ namespace RapidTrackingSingleThread
                     {
                         continue;
                     }
+                    if (node.HasClass("TzHB6b") && node.SelectSingleNode(".//div[contains(@class,'g Ww4FFb')]|.//div[@class='g PmEWq']|.//div[@class='Wt5Tfe']|.//div[@class='g']/div[@class='BYM4Nd']|.//div[@class='Lv2Cle']|.//g-section-with-header[@class='yG4QQe TBC9ub']|.//div[@class='uVMCKf']") != null)//09-10-2024
+                    {
+                        continue;
+                    }//09-10-2024
                     try
                     {
                         if (node.InnerHtml != "")

@@ -627,7 +627,7 @@ namespace RapidTrackingSingleThread
             }//02-11-2023
             //18-03-2020
             HtmlNode imgs = colt?.SelectSingleNode("//div[contains(@class, 'M8OgIe')]");//30-09-2024//08-07-2024//21-04-2023
-            if (imgs != null && (imgs.SelectSingleNode(".//div[@id='Odp5De']|.//div[@jscontroller='qTdDb']") == null || imgs.SelectSingleNode(".//div[@class='QjXCXd']") != null))//04-01-2024//15-05-2023//27-04-2023
+            if (imgs != null && (imgs.SelectSingleNode(".//div[@id='Odp5De']|.//div[@jscontroller='qTdDb']") == null || imgs.SelectSingleNode(".//div[@class='QjXCXd']|.//div[@class='Lv2Cle']") != null))//10-10-2024//04-01-2024//15-05-2023//27-04-2023
             {
                 s.Append("<block type=\"images\" url=\"\">");
                 s.Append(GetImages(imgs));

@@ -3242,7 +3242,7 @@ namespace RapidTrackingJobIDResults
             {
                 return "Videos";
             }
-            nd = node.SelectSingleNode(".//div[contains(@class, 'HOslld dutT5c')]|.//div[contains(@class, 'XNfAUb')]");//20-02-2024
+            nd = node.SelectSingleNode(".//div[contains(@class,'HOslld dutT5c')and(.//div[contains(@class,'sPLMud')])]|.//div[contains(@class, 'XNfAUb')]");//10-10-2024//20-02-2024
             if (nd != null && node.SelectSingleNode(".//div[contains(@class, 'MRtunc')]|.//div[@class='Wt5Tfe']|.//div[@class='RyIFgf']") == null
                 || (node.SelectSingleNode(".//div[@class='VqeGe']") != null && node.SelectSingleNode(".//div[@class='NYidgb']|.//div[@class='xKf9F']") == null))//27-02-2024//26-02-2024//20-02-2024
             {

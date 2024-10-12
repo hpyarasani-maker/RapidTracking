@@ -1097,9 +1097,9 @@ namespace RapidTrackingSingleThread
                 case "classiclinksitelinks"://11-10-2024 classicLinkSiteLinks
                     s.Append(GetClassicLinkSiteLinks(node));
                     break;//11-10-2024 classicLinkSiteLinks
-                case "sitecarousel"://11-10-2024 siteCarousel
-                    s.Append(GetSiteCarousel(node));
-                    break;//11-10-2024 siteCarousel
+                case "sitescarousel"://11-10-2024 sitesCarousel
+                    s.Append(GetSitesCarousel(node));
+                    break;//11-10-2024 sitesCarousel
                 default:
                     break;
             }
@@ -1151,10 +1151,10 @@ namespace RapidTrackingSingleThread
             }
             return s.ToString();
         } // 11-10-2024
-        private string GetSiteCarousel(HtmlNode node)//11-10-2024 siteCarousel
+        private string GetSiteCarousel(HtmlNode node)//11-10-2024 sitesCarousel
         {
             StringBuilder s = new StringBuilder();
-            s.Append("<block type=\"siteCarousel\">");
+            s.Append("<block type=\"sitesCarousel\">");
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='IF221e EXH1Ce']");
             if (nds != null)
             {
@@ -1171,7 +1171,7 @@ namespace RapidTrackingSingleThread
             }
             s.Append("</block>");
             return s.ToString();
-        }//11-10-2024 siteCarousel
+        }//11-10-2024 sitesCarousel
         private string GetDataset(HtmlNode node)//11-06-2024 DataSet Block
         {
             StringBuilder s = new StringBuilder();
@@ -2384,9 +2384,9 @@ namespace RapidTrackingSingleThread
             nd = node.SelectSingleNode(".//div[@class='AuVD wHYlTd Ww4FFb vt6azd']|.//div[@class='Wt5Tfe']"); //11-10-2024  peoplealsosearch
             if (nd != null)
                 return "PeopleAlsoSearch"; // 11-10-2024 PeopleAlsoSearch
-            nd = node.SelectSingleNode(".//div[contains(@class,'Ww4FFb vt6azd')and(.//div[(@class='XNfAUb')])]");//11-10-2024 siteCarousel
+            nd = node.SelectSingleNode(".//div[contains(@class,'Ww4FFb vt6azd')and(.//div[(@class='XNfAUb')])]");//11-10-2024 sitesCarousel
             if (nd != null)
-                return "siteCarousel";//11-10-2024 
+                return "sitesCarousel";//11-10-2024 
             return "";
         }
 
@@ -2505,9 +2505,9 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[@data-snf='RqgZTc' and (@data-sncf='1' or @data-sncf='2')]");//30-09-2024 ClassicLinkCarousel
                 if (nd != null)
                     return true;//30-09-2024 ClassicLinkCarousel
-                nd = node.SelectSingleNode(".//div[contains(@class,'Ww4FFb vt6azd')and(.//div[(@class='XNfAUb')])]");//11-10-2024 siteCarousel
+                nd = node.SelectSingleNode(".//div[contains(@class,'Ww4FFb vt6azd')and(.//div[(@class='XNfAUb')])]");//11-10-2024 sitesCarousel
                 if (nd != null)
-                    return true;//11-10-2024 siteCarousel
+                    return true;//11-10-2024 sitesCarousel
                 nd = node.SelectSingleNode(".//div[@data-snf='gdePb' and (@data-sncf='1' or @data-sncf='2'or @data-sncf='3')]");//11-10-2024 classicLinkSiteLinks
                 if (nd != null)
                     return true;//11-10-2024 classicLinkSiteLinks  

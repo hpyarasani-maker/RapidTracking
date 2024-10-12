@@ -474,10 +474,48 @@ namespace RapidTrackingLibrary
                     }
                 }
                 s.Append("</block>");
-
             }
-
-
+            HtmlNode colpas = doc.DocumentNode.SelectSingleNode("//div[@id='botstuff']");//11-10-2024  PeopleAlsoSearch  block
+            if (colpas != null)
+            {
+                HtmlNode node = colpas.SelectSingleNode(".//div[@class='AuVD wHYlTd Ww4FFb vt6azd']");
+                if (node != null)
+                {
+                    if (node.SelectSingleNode(".//div[@class='T6zPgb']/div[@role='heading']") != null)
+                    {
+                        s.Append("<block type=\"peopleAlsoSearch\" >");
+                        HtmlNodeCollection nc = node.SelectNodes(".//div[@class='oatEtb']/span");
+                        if (nc != null)
+                            foreach (HtmlNode n in nc)
+                            {
+                                string title = n.InnerText;
+                                s.Append("<item title=\"" + SetTitle(title) + "\" />");
+                            }
+                        s.Append("</block>");
+                    }
+                }
+            } //11-10-2024   PeopleAlsoSearch  block
+            /*HtmlNode colb = doc.DocumentNode.SelectSingleNode("//div[@id='botstuff']");//related searches //21-11-2022
+            if (colb != null)
+            {
+                HtmlNode node = colb.SelectSingleNode(".//div[@class='AuVD wHYlTd Ww4FFb vt6azd']");
+                if (node != null)
+                {
+                    if (node.SelectSingleNode(".//div[@class='T6zPgb']/div[@role='heading']") != null)
+                    {
+                        s.Append("<block type=\"relatedSearches\" url=\"\">");
+                        HtmlNodeCollection nc = node.SelectNodes(".//a[@class='iOJVmb']");
+                        if (nc != null)
+                            foreach (HtmlNode n in nc)
+                            {
+                                string url = n.Attributes["href"]?.Value;
+                                string title = n.InnerText;
+                                s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                            }
+                        s.Append("</block>");
+                    }
+                }
+            }*///related searches //21-11-2022
             return s.ToString();
         }
 
@@ -1519,13 +1557,116 @@ namespace RapidTrackingLibrary
                 case "aioverview"://21-08-2024
                     s.Append(GetAioverview(node));
                     break;//21-08-2024
+                case "classiclinkcarousel"://30-09-2024 ClassicLinkCarousel
+                    s.Append(GetClassicLinkCarousel(node));
+                    break;//30-09-2024 ClassicLinkCarousel
+                case "peoplealsosearch": // 11-10-2024  PeopleAlsoSearch
+                    s.Append(GetPeopleAlsoSearch(node));
+                    break;// 11-10-2024  PeopleAlsoSearch
+                case "classiclinksitelinks"://11-10-2024 classicLinkSiteLinks
+                    s.Append(GetClassicLinkSiteLinks(node));
+                    break;//11-10-2024 classicLinkSiteLinks
+                case "sitescarousel"://11-10-2024 sitesCarousel
+                    s.Append(GetsitesCarousel(node));
+                    break;//11-10-2024 sitesCarousel
                 default:
                     break;
             }
             return s.ToString();
-
         }
-        private string GetAdwords(HtmlNode node)//12-08-2024 multiple Adwords in top, middle & bootom
+        public string GetClassicLinkCarousel(HtmlNode node)//30-09-2024 ClassicLinkCarousel
+        {
+            StringBuilder s = new StringBuilder();
+            HtmlNode n = node.SelectSingleNode(".//div[@class='P8ujBc v5yQqb jqWpsc']/a");
+            if (n != null)
+            {
+                HtmlNode t = n.SelectSingleNode(".//div[@role='heading']");
+                s.Append("<block type=\"classickLinkCarousel\" url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(t.InnerText) + "\" >");
+                HtmlNodeCollection nds = node.SelectNodes(".//div[@class='IF221e EXH1Ce']");
+                if (nds != null)
+                {
+                    foreach (HtmlNode nd in nds)
+                    {
+                        HtmlNode a = nd.SelectSingleNode(".//a");
+                        HtmlNode t1 = nd.SelectSingleNode(".//div/span[@class='Yt787']");
+                        if (a != null && t1 != null)
+                        {
+                            s.Append("<item url=\"" + SetUrl(a.Attributes["href"].Value) + "\" title=\"" + SetTitle(t1.InnerText) + "\" />");
+                        }
+                    }
+                }
+                s.Append("</block>");
+            }
+            return s.ToString();
+        }//30-09-2024 ClassicLinkCarousel
+        public string GetClassicLinkSiteLinks(HtmlNode node)//11-10-2024 ClassicLinkSiteLinks
+        {
+            StringBuilder s = new StringBuilder();
+            HtmlNode n = node.SelectSingleNode(".//div[@class='P8ujBc v5yQqb jqWpsc']/a");
+            if (n != null)
+            {
+                HtmlNode t = n.SelectSingleNode(".//div[@role='heading']");
+                s.Append("<block type=\"classicLinkSiteLinks\" url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(t.InnerText) + "\" >");
+                HtmlNodeCollection nds = node.SelectNodes(".//a[@class='dM1Yyd']|.//div[@class='HiHjCd']/a");
+                if (nds != null)
+                {
+                    foreach (HtmlNode nd in nds)
+                    {
+                        string url = nd.Attributes["href"]?.Value ?? "";
+                        string title = nd?.InnerText ?? "";
+                        if (url != null && title != null)
+                        {
+                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                        }
+                    }
+                }
+                s.Append("</block>");
+            }
+            return s.ToString();
+        }//11-10-2024 ClassicLinkSiteLinks
+        public string GetPeopleAlsoSearch(HtmlNode node) //11-10-2024
+        {
+            StringBuilder s = new StringBuilder();
+            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='Wt5Tfe']");
+            if (node != null)
+            {
+                if (node.SelectSingleNode(".//div[@class='T6zPgb']/div[@role='heading']") != null)
+                {
+                    s.Append("<block type=\"peopleAlsoSearch\" >");
+                    HtmlNodeCollection nc = node.SelectNodes(".//div[@class='oatEtb']/span");
+                    if (nc != null)
+                        foreach (HtmlNode n in nc)
+                        {
+                            string title = n.InnerText;
+                            s.Append("<item title=\"" + SetTitle(title) + "\" />");
+                        }
+                    s.Append("</block>");
+                }
+            }
+            return s.ToString();
+        } // 15-07-2024
+        public string GetsitesCarousel(HtmlNode node)//11-10-2024 sitesCarousel
+        {
+            StringBuilder s = new StringBuilder();
+            s.Append("<block type=\"sitesCarousel\">");
+            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='IF221e EXH1Ce']");
+            if (nds != null)
+            {
+                foreach (HtmlNode nd in nds)
+                {
+                    HtmlNode a = nd.SelectSingleNode(".//a");
+                    HtmlNode t1 = nd.SelectSingleNode(".//div[@class='LJEGod YiPTpf']");
+                    HtmlNode s1 = nd.SelectSingleNode(".//div[@class='cyspcb DH9lqb']|.//div[@class='LbKnXb YAG2qc UYJxh']");
+                    if (a != null && t1 != null && s1 != null)
+                    {
+                        s.Append("<item url=\"" + SetUrl(a.Attributes["href"].Value) + "\" title=\"" + SetTitle(t1.InnerText) + "\" source=\"" + SetTitle(s1.InnerText) + "\" />");
+                    }
+                }
+            }
+            s.Append("</block>");
+            return s.ToString();
+        }//11-10-2024 sitesCarousel
+        public string GetAdwords(HtmlNode node)//12-08-2024 multiple Adwords in top, middle & bootom
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nodes = node.SelectNodes(".//div[@class='QxKkX']/a|.//div[@class='UeUWyc']/a");
@@ -1544,7 +1685,7 @@ namespace RapidTrackingLibrary
             s.Append("</block>");
             return s.ToString();
         }//12-08-2024 multiple Adwords in top, middle & bootom//12-08-2024 multiple Adwords in top, middle & bootom
-        private string GetDataset(HtmlNode node)//11-06-2024 DataSet Block
+        public string GetDataset(HtmlNode node)//11-06-2024 DataSet Block
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nodes = node.SelectNodes(".//div[contains(@class, 'bba2i')]");
@@ -3464,6 +3605,18 @@ namespace RapidTrackingLibrary
             nd = node.SelectSingleNode(".//div[@class='GcKpu']|.//div[contains(@class,'Fzsovc')]");//28-08-2024
             if (nd != null)//21-08-2024
                 return "aiOverview";//21-08-2024 AIOverview
+            nd = node.SelectSingleNode(".//div[@data-snf='RqgZTc' and (@data-sncf='1' or @data-sncf='2')]");//30-09-2024 ClassicLinkCarousel
+            if (nd != null)
+                return "classicLinkCarousel";//30-09-2024 ClassicLinkCarousel
+            nd = node.SelectSingleNode(".//div[@data-snf='gdePb' and (@data-sncf='1' or @data-sncf='2'or @data-sncf='3')]");//11-10-2024 classicLinkSiteLinks
+            if (nd != null)
+                return "classicLinkSiteLinks";//11-10-2024 classicLinkSiteLinks
+            nd = node.SelectSingleNode(".//div[@class='Wt5Tfe']");//11-10-2024 peoplealsosearch
+            if (nd != null)
+                return "PeopleAlsoSearch"; // 11-10-2024 PeopleAlsoSearch
+            nd = node.SelectSingleNode(".//div[contains(@class,'Ww4FFb vt6azd') or (.//div[@class='zJUuqf adDDi']) and (.//div[(@class='XNfAUb')])]");//11-10-2024 sitesCarousel
+            if (nd != null)
+                return "sitesCarousel";//11-10-2024 
             return "";
         }
 
@@ -3490,6 +3643,15 @@ namespace RapidTrackingLibrary
                      || nd.InnerText == "Fler resultat" || nd.InnerText == "Flere resultater" || nd.InnerText == "Plus de résultats")    // 13-12-2019
                     return false;
             }
+            nd = node.SelectSingleNode(".//div[@data-snf='RqgZTc' and (@data-sncf='1' or @data-sncf='2')]");//30-09-2024 ClassicLinkCarousel
+            if (nd != null)
+                return true;//30-09-2024 ClassicLinkCarousel
+            nd = node.SelectSingleNode(".//div[contains(@class,'Ww4FFb vt6azd')and(.//div[(@class='XNfAUb')])]");//11-10-2024 sitesCarousel
+            if (nd != null)
+                return true;//11-10-2024 sitesCarousel
+            nd = node.SelectSingleNode(".//div[@data-snf='gdePb' and (@data-sncf='1' or @data-sncf='2'or @data-sncf='3')]");//11-10-2024 classicLinkSiteLinks
+            if (nd != null)
+                return true;//11-10-2024 classicLinkSiteLinks
             if (node.SelectSingleNode(".//div[contains(@class, 'Z3ngN')]") != null) //22-03-2021
                 return false;
             if (node.SelectSingleNode(".//video-voyager[@class='LnSx5b']|.//div[@class='lNvPub v5yQqb']" +

@@ -1594,7 +1594,7 @@ namespace RapidTrackingSingleThread
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='Wt5Tfe']");
             if (node != null)
             {
-                if (node.SelectSingleNode(".//div[@class='T6zPgb']/div[@role='heading']") != null)
+                if (node.SelectSingleNode(".//div[@class='T6zPgb']/div[@role='heading']|.//div[@class='HnYYW DFkChc']/div[@role='heading']") != null)//14-10-2024
                 {
                     s.Append("<block type=\"peopleAlsoSearch\" >");
                     HtmlNodeCollection nc = node.SelectNodes(".//div[@class='oatEtb']/span");

@@ -1119,7 +1119,7 @@ namespace RapidTrackingLibrary
                     s.Append(GetClassicLinkSiteLinks(node));
                     break;//11-10-2024 classicLinkSiteLinks
                 case "sitescarousel"://11-10-2024 sitesCarousel
-                    s.Append(GetSiteCarousel(node));
+                    s.Append(GetSitesCarousel(node));
                     break;//11-10-2024 sitesCarousel
                 default:
                     break;
@@ -1152,7 +1152,7 @@ namespace RapidTrackingLibrary
             }
             return s.ToString();
         }//11-10-2024 ClassicLinkSiteLinks
-        public string GetSiteCarousel(HtmlNode node)//11-10-2024 sitesCarousel
+        public string GetSitesCarousel(HtmlNode node)//11-10-2024 sitesCarousel
         {
             StringBuilder s = new StringBuilder();
             s.Append("<block type=\"sitesCarousel\">");

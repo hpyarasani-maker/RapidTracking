@@ -1151,7 +1151,7 @@ namespace RapidTrackingSingleThread
             }
             return s.ToString();
         } // 11-10-2024
-        private string GetSiteCarousel(HtmlNode node)//11-10-2024 sitesCarousel
+        private string GetSitesCarousel(HtmlNode node)//11-10-2024 sitesCarousel
         {
             StringBuilder s = new StringBuilder();
             s.Append("<block type=\"sitesCarousel\">");

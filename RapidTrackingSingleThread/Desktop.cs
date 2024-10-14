@@ -246,7 +246,7 @@ namespace RapidTrackingSingleThread
                 HtmlNodeCollection col = colb.SelectNodes(".//div[@id='tadsb']/ol/li|.//div[@id='tads']/div[@class='uEierd']|.//div[@id='tadsb']/div[@class='uEierd']|.//div[@id='tadsb']/div[@class='uEierd']|.//div[@id='tadsb']/div/div[@class='uEierd']");//28-03-2022 "/div" included //24-09-2020 bottom adwords//21-09-2020 updated bottom adwords   //20-01-2020
                 if (col == null)
                     col = colb.SelectNodes(".//div[@id='tadsb']/div/ol/li");   //16-04-2020
-                if (col == null) return s.ToString();   //20-01-2020 enable without related searches or comment it if related search required
+                //if (col == null) return s.ToString();   //20-01-2020 enable without related searches or comment it if related search required
                 if (col != null) //enable for related searches
                 {
                     s.Append("<block type=\"adwords\" url=\"\">");

@@ -1531,9 +1531,15 @@ namespace RapidTrackingSingleThread
                 case "aioverview"://21-08-2024
                     s.Append(GetAioverview(node));
                     break;//21-08-2024
+                case "classiclinkcarousel"://30-09-2024 ClassicLinkCarousel
+                    s.Append(GetClassicLinkCarousel(node));
+                    break;//30-09-2024 ClassicLinkCarousel
                 case "peoplealsosearch": // 11-10-2024  PeopleAlsoSearch
                     s.Append(GetPeopleAlsoSearch(node));
                     break;// 11-10-2024  PeopleAlsoSearch
+                case "classiclinksitelinks"://11-10-2024 classicLinkSiteLinks
+                    s.Append(GetClassicLinkSiteLinks(node));
+                    break;//11-10-2024 classicLinkSiteLinks
                 case "sitescarousel"://11-10-2024 sitesCarousel
                     s.Append(GetsitesCarousel(node));
                     break;//11-10-2024 sitesCarousel
@@ -3568,6 +3574,12 @@ namespace RapidTrackingSingleThread
             nd = node.SelectSingleNode(".//div[@class='GcKpu']|.//div[contains(@class,'Fzsovc')]");//28-08-2024
             if (nd != null)//21-08-2024
                 return "aiOverview";//21-08-2024 AIOverview
+            nd = node.SelectSingleNode(".//div[@data-snf='RqgZTc' and (@data-sncf='1' or @data-sncf='2')]");//30-09-2024 ClassicLinkCarousel
+            if (nd != null)
+                return "classicLinkCarousel";//30-09-2024 ClassicLinkCarousel
+            nd = node.SelectSingleNode(".//div[@data-snf='gdePb' and (@data-sncf='1' or @data-sncf='2'or @data-sncf='3')]");//11-10-2024 classicLinkSiteLinks
+            if (nd != null)
+                return "classicLinkSiteLinks";//11-10-2024 classicLinkSiteLinks
             nd = node.SelectSingleNode(".//div[@class='Wt5Tfe']");//11-10-2024 peoplealsosearch
             if (nd != null)
                 return "PeopleAlsoSearch"; // 11-10-2024 PeopleAlsoSearch
@@ -3600,6 +3612,12 @@ namespace RapidTrackingSingleThread
                      || nd.InnerText == "Fler resultat" || nd.InnerText == "Flere resultater" || nd.InnerText == "Plus de résultats")    // 13-12-2019
                     return false;
             }
+            nd = node.SelectSingleNode(".//div[@data-snf='RqgZTc' and (@data-sncf='1' or @data-sncf='2')]");//30-09-2024 ClassicLinkCarousel
+            if (nd != null)
+                return true;//30-09-2024 ClassicLinkCarousel
+            nd = node.SelectSingleNode(".//div[contains(@class,'Ww4FFb vt6azd')and(.//div[(@class='XNfAUb')])]");//11-10-2024 sitesCarousel
+            if (nd != null)
+                return true;//11-10-2024 sitesCarousel
             nd = node.SelectSingleNode(".//div[@data-snf='gdePb' and (@data-sncf='1' or @data-sncf='2'or @data-sncf='3')]");//11-10-2024 classicLinkSiteLinks
             if (nd != null)
                 return true;//11-10-2024 classicLinkSiteLinks

@@ -1585,7 +1585,7 @@ namespace RapidTrackingLibrary
             if (n != null)
             {
                 HtmlNode t = n.SelectSingleNode(".//div[@role='heading']");
-                s.Append("<block type=\"classickLinkCarousel\" url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(t.InnerText) + "\" >");
+                s.Append("<block type=\"classicLinkCarousel\" url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(t.InnerText) + "\" >");
                 HtmlNodeCollection nds = node.SelectNodes(".//div[@class='IF221e EXH1Ce']");
                 if (nds != null)
                 {

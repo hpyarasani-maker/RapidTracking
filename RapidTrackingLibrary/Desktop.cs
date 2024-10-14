@@ -842,7 +842,7 @@ namespace RapidTrackingLibrary
                             s.Append("</block>");
                             continue;
                         }//17-11-2023
-                        if (nd.SelectSingleNode(".//div[@class='EDblX HG5ZQb' and @role='list']") != null && nd.SelectNodes(".//div[@class='VqeGe']") == null)//14-10-2024
+                        if (nd.SelectSingleNode(".//div[@class='EDblX HG5ZQb' and @role='list']") != null)//14-10-2024
                         {
                             s.Append(GetClassicLinkCarousel(nd));
                             continue;

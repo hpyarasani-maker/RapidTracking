@@ -2536,10 +2536,7 @@ namespace RapidTrackingLibrary
                         return true;
                 nd = node.SelectSingleNode(".//div[contains(@class,'Ww4FFb vt6azd')and(.//div[(@class='XNfAUb')])]");//11-10-2024 sitesCarousel
                 if (nd != null)
-                    return true;//11-10-2024 sitesCarousel
-                nd = node.SelectSingleNode(".//div[@data-snf='gdePb' and (@data-sncf='1' or @data-sncf='2'or @data-sncf='3')]");//11-10-2024 classicLinkSiteLinks
-                if (nd != null)
-                    return true;//11-10-2024 classicLinkSiteLinks  
+                    return true;//11-10-2024 sitesCarousel 
                 if (node.SelectSingleNode(".//div[contains(@class,'kp-blk')]") != null || node.SelectSingleNode(".//div[@class='dzpFPb']") != null || node.SelectSingleNode(".//div[@jscontroller='Yma7vd']") != null || node.SelectSingleNode(".//div[contains(@class,'aJegcc')]") != null || node.SelectSingleNode(".//div[@class='IbDT9d']") != null)//10-09-2024//24-05-2023//09-12-2022//09-11-2022 shopping
                     if (node.SelectSingleNode(".//div[contains(@class,'g Ww4FFb')]") == null)//21-07-2023
                         return true;

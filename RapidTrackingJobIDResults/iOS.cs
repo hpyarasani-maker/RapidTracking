@@ -1527,9 +1527,9 @@ namespace RapidTrackingJobIDResults
                 case "peoplealsosearch": // 11-10-2024  PeopleAlsoSearch
                     s.Append(GetPeopleAlsoSearch(node));
                     break;// 11-10-2024  PeopleAlsoSearch
-                case "sitescarousel"://11-10-2024 sitesCarousel
-                    s.Append(GetsitesCarousel(node));
-                    break;//11-10-2024 sitesCarousel
+                //case "sitescarousel"://11-10-2024 sitesCarousel
+                //    s.Append(GetsitesCarousel(node));
+                //    break;//11-10-2024 sitesCarousel
                 default:
                     break;
             }
@@ -3566,9 +3566,9 @@ namespace RapidTrackingJobIDResults
             nd = node.SelectSingleNode(".//div[@class='Wt5Tfe']");//11-10-2024 peoplealsosearch
             if (nd != null)
                 return "PeopleAlsoSearch"; // 11-10-2024 PeopleAlsoSearch
-            nd = node.SelectSingleNode(".//div[contains(@class,'Ww4FFb vt6azd') or (.//div[@class='zJUuqf adDDi']) and (.//div[(@class='XNfAUb')])]");//11-10-2024 sitesCarousel
-            if (nd != null && node.SelectSingleNode(".//div[@class='owgUHc']|.//div[@class='wPNfjb']|.//div[@class='zhYvOe']") == null)
-                return "sitesCarousel";//11-10-2024 
+            //nd = node.SelectSingleNode(".//div[contains(@class,'Ww4FFb vt6azd') or (.//div[@class='zJUuqf adDDi']) and (.//div[(@class='XNfAUb')])]");//11-10-2024 sitesCarousel
+            //if (nd != null && node.SelectSingleNode(".//div[@class='owgUHc']|.//div[@class='wPNfjb']|.//div[@class='zhYvOe']|.//div[@class='YB4h9 ky4hfd']") == null)
+            //  return "sitesCarousel";//11-10-2024 
             return "";
         }
 
@@ -3595,9 +3595,9 @@ namespace RapidTrackingJobIDResults
                      || nd.InnerText == "Fler resultat" || nd.InnerText == "Flere resultater" || nd.InnerText == "Plus de résultats")    // 13-12-2019
                     return false;
             }
-            nd = node.SelectSingleNode(".//div[contains(@class,'Ww4FFb vt6azd')and(.//div[(@class='XNfAUb')])]");//11-10-2024 sitesCarousel
-            if (nd != null)
-                return true;//11-10-2024 sitesCarousel
+            //nd = node.SelectSingleNode(".//div[contains(@class,'Ww4FFb vt6azd')and(.//div[(@class='XNfAUb')])]");//11-10-2024 sitesCarousel
+            //if (nd != null)
+            //    return true;//11-10-2024 sitesCarousel
             if (node.SelectSingleNode(".//div[contains(@class, 'Z3ngN')]") != null) //22-03-2021
                 return false;
             if (node.SelectSingleNode(".//video-voyager[@class='LnSx5b']|.//div[@class='lNvPub v5yQqb']" +

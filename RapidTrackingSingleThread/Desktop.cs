@@ -1088,15 +1088,15 @@ namespace RapidTrackingSingleThread
                 case "aioverview"://21-08-2024
                     s.Append(GetAioverview(node));
                     break;//21-08-2024
-                case "classiclinkcarousel"://30-09-2024 ClassicLinkCarousel
+                /*case "classiclinkcarousel"://30-09-2024 ClassicLinkCarousel
                     s.Append(GetClassicLinkCarousel(node));
                     break;//30-09-2024 ClassicLinkCarousel
-                case "peoplealsosearch": // 11-10-2024 PeopleAlsoSearch
-                    s.Append(GetPeopleAlsoSearch(node));
-                    break;// 11-10-2024 PeopleAlsoSearch
                 case "classiclinksitelinks"://11-10-2024 classicLinkSiteLinks
                     s.Append(GetClassicLinkSiteLinks(node));
-                    break;//11-10-2024 classicLinkSiteLinks
+                    break;//11-10-2024 classicLinkSiteLinks*/
+                case "peoplealsosearch": // 11-10-2024 PeopleAlsoSearch
+                    s.Append(GetPeopleAlsoSearch(node));
+                    break;// 11-10-2024 PeopleAlsoSearch               
                 case "sitescarousel"://11-10-2024 sitesCarousel
                     s.Append(GetSitesCarousel(node));
                     break;//11-10-2024 sitesCarousel
@@ -2376,11 +2376,11 @@ namespace RapidTrackingSingleThread
             if (nd != null)
                 return "aiOverview";//21-08-2024 AIOverview
             nd = node.SelectSingleNode(".//div[@data-snf='RqgZTc' and (@data-sncf='1' or @data-sncf='2')]");//30-09-2024 ClassicLinkCarousel
-            if (nd != null)
-                return "classicLinkCarousel";//30-09-2024 ClassicLinkCarousel
-            nd = node.SelectSingleNode(".//div[@data-snf='gdePb' and (@data-sncf='1' or @data-sncf='2'or @data-sncf='3')]");//11-10-2024 classicLinkSiteLinks
-            if (nd != null)
-                return "classicLinkSiteLinks";//11-10-2024 classicLinkSiteLinks
+            //if (nd != null)
+            //    return "classicLinkCarousel";//30-09-2024 ClassicLinkCarousel
+            //nd = node.SelectSingleNode(".//div[@data-snf='gdePb' and (@data-sncf='1' or @data-sncf='2'or @data-sncf='3')]");//11-10-2024 classicLinkSiteLinks
+            //if (nd != null)
+            //    return "classicLinkSiteLinks";//11-10-2024 classicLinkSiteLinks
             nd = node.SelectSingleNode(".//div[@class='AuVD wHYlTd Ww4FFb vt6azd']|.//div[@class='Wt5Tfe']"); //11-10-2024  peoplealsosearch
             if (nd != null)
                 return "PeopleAlsoSearch"; // 11-10-2024 PeopleAlsoSearch
@@ -2502,12 +2502,12 @@ namespace RapidTrackingSingleThread
                 if (nd != null)
                     if ((nd.InnerText == "Top stories" || nd.InnerText == "Huvudnyheter" || nd.InnerText == "Videos" || nd.InnerText == "Video" || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws" || nd.InnerText == "Vertaalresultaat" || nd.InnerText == "Recipes" || nd.InnerText == "Vidéos") && node.SelectSingleNode(".//div[contains(@class,'g Ww4FFb')]") == null)//30-10-2023//02-12-2020 videos//05-08-2020 //29-06-2020//03-06-2020 // 02-06-2020  // 08-04-2020
                         return true;
-                nd = node.SelectSingleNode(".//div[@data-snf='RqgZTc' and (@data-sncf='1' or @data-sncf='2')]");//30-09-2024 ClassicLinkCarousel
-                if (nd != null)
-                    return true;//30-09-2024 ClassicLinkCarousel
-                nd = node.SelectSingleNode(".//div[contains(@class,'Ww4FFb vt6azd')and(.//div[(@class='XNfAUb')])]");//11-10-2024 sitesCarousel
-                if (nd != null)
-                    return true;//11-10-2024 sitesCarousel
+                //nd = node.SelectSingleNode(".//div[@data-snf='RqgZTc' and (@data-sncf='1' or @data-sncf='2')]");//30-09-2024 ClassicLinkCarousel
+                //if (nd != null)
+                //    return true;//30-09-2024 ClassicLinkCarousel
+                //nd = node.SelectSingleNode(".//div[contains(@class,'Ww4FFb vt6azd')and(.//div[(@class='XNfAUb')])]");//11-10-2024 sitesCarousel
+                //if (nd != null)
+                //    return true;//11-10-2024 sitesCarousel
                 nd = node.SelectSingleNode(".//div[@data-snf='gdePb' and (@data-sncf='1' or @data-sncf='2'or @data-sncf='3')]");//11-10-2024 classicLinkSiteLinks
                 if (nd != null)
                     return true;//11-10-2024 classicLinkSiteLinks  

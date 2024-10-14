@@ -976,6 +976,16 @@ namespace RapidTrackingLibrary
                             s.Append("</block>");
                             continue;
                         }//PopularProducts //11-07-2023
+                        if (nd.SelectSingleNode(".//div[@class='EDblX HG5ZQb' and @role='list']") != null)//14-10-2024 for ClassicLinksCarousel and ClassicLinkSiteLink block
+                        {
+                            s.Append(GetClassicLinkCarousel(nd));
+                            continue;
+                        }
+                        if (nd.SelectSingleNode(".//div[@class='EDblX JpOecb']") != null)
+                        {
+                            s.Append(GetClassicLinkSiteLinks(nd));
+                            continue;
+                        }//14-10-2024 for ClassicLinksCarousel and ClassicLinkSiteLink block
                         if (nd.SelectSingleNode(".//g-inner-card[@class='zf84ud THG0oc VoEfsd']") != null)
                             continue;
                         //end 27-09-2019

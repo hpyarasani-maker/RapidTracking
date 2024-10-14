@@ -816,6 +816,16 @@ namespace RapidTrackingSingleThread
                             s.Append("</block>");
                             continue;
                         }//17-11-2023
+                        if (nd.SelectSingleNode(".//div[@class='EDblX HG5ZQb' and @role='list']") != null)//14-10-2024
+                        {
+                            s.Append(GetClassicLinkCarousel(nd));
+                            continue;
+                        }
+                        if (nd.SelectSingleNode(".//div[@class='HiHjCd']|.//div[@class='Mwdfte']") != null)
+                        {
+                            s.Append(GetClassicLinkSiteLinks(nd));
+                            continue;
+                        }//14-10-2024
                         HtmlNode title = null;  // 18-11-2019
                         HtmlNode n = nd.SelectSingleNode(".//h3[@class='r']/a");
                         if (n == null)

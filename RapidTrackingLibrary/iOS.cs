@@ -3644,9 +3644,6 @@ namespace RapidTrackingLibrary
             nd = node.SelectSingleNode(".//div[contains(@class,'Ww4FFb vt6azd')and(.//div[(@class='XNfAUb')])]");//11-10-2024 sitesCarousel
             if (nd != null)
                 return true;//11-10-2024 sitesCarousel
-            nd = node.SelectSingleNode(".//div[@data-snf='gdePb' and (@data-sncf='1' or @data-sncf='2'or @data-sncf='3')]");//11-10-2024 classicLinkSiteLinks
-            if (nd != null)
-                return true;//11-10-2024 classicLinkSiteLinks
             if (node.SelectSingleNode(".//div[contains(@class, 'Z3ngN')]") != null) //22-03-2021
                 return false;
             if (node.SelectSingleNode(".//video-voyager[@class='LnSx5b']|.//div[@class='lNvPub v5yQqb']" +

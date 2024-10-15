@@ -1890,28 +1890,29 @@ namespace RapidTrackingSingleThread
         }
 
         //start 13-08-2019
-        public string ProductListedAds(HtmlNode node)
+        private string ProductListedAds(HtmlNode node)//15-10-2024
         {
             StringBuilder s = new StringBuilder();
-
-            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='Lt4Ktd']/div");
+            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='Lt4Ktd']/div|.//div[@class='F6uqce']");//14-10-2024
             if (nds != null)
             {
-                HtmlNodeCollection nd = node.SelectNodes(".//g-inner-card[@class='zj3nWc Nplhsf wOt4nf VoEfsd']/a");
+                HtmlNodeCollection nd = node.SelectNodes(".//g-inner-card[@class='zj3nWc Nplhsf wOt4nf VoEfsd']/a|.//div[@class='QxKkX']/a");//14-10-2024
+                //14-10-2024
                 foreach (HtmlNode nd1 in nd)
                 {
-                    string title = nd1.InnerText;
+                    string title = "";
                     string url = "";
-                    if (url.Contains("http"))
-                    {
-                        url = nd1.Attributes["href"].Value;
-                    }
-                    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
-                }
+                    if (nd1.SelectSingleNode(".//div[@class='b2u8d unNvPe Kbussc zEMETe']") == null)
+                    { title = nd1.InnerText; }
+                    else if (nd1.SelectSingleNode(".//div[@class='b2u8d unNvPe Kbussc zEMETe']") != null)
+                        title = nd1.SelectSingleNode(".//div[@class='b2u8d unNvPe Kbussc zEMETe']").InnerText;
+                    url = nd1.Attributes["href"]?.Value ?? "";
+                    if (!string.IsNullOrEmpty(title) && !string.IsNullOrEmpty(url.Trim()))
+                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                }//end //14-10-2024
             }
-
             return s.ToString();
-        }//start 13-08-2019
+        }//start 13-08-2019 //15-10-2024
 
         private string GetVideoCard(HtmlNode node)
         {
@@ -3545,7 +3546,7 @@ namespace RapidTrackingSingleThread
             }
 
             //13-08-2019
-            nd = node.SelectSingleNode(".//div[@class='aJegcc']|.//div[contains(@class,'IGtt6d imgac mnr-c')]");//08-05-2024//08-11-2023
+            nd = node.SelectSingleNode(".//div[@class='aJegcc']|.//div[contains(@class,'IGtt6d imgac mnr-c')]|.//div[@class='owgUHc']");//15-10-2024//08-05-2024//08-11-2023
             if (nd != null)
                 if (node.SelectNodes(".//div[contains(@class,'xCCdqb')]|.//div[contains(@class, 'tyUpi')]|.//div[@class='baPFxb g kSMK2']|.//div[contains(@class,'wTrwWd')]") == null)//23-10-2023//11-04-2023//10-04-2023//06-12-2021 wrong PL block//16-09-2019
                 {

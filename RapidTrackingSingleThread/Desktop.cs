@@ -1124,10 +1124,7 @@ namespace RapidTrackingSingleThread
                     {
                         string url = nd.Attributes["href"]?.Value ?? "";
                         string title = nd?.InnerText ?? "";
-                        if (url != null && title != null)
-                        {
-                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
-                        }
+                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                     }
                 }
                 s.Append("</block>");
@@ -1165,12 +1162,9 @@ namespace RapidTrackingSingleThread
                 foreach (HtmlNode nd in nds)
                 {
                     HtmlNode a = nd.SelectSingleNode(".//a");
-                    HtmlNode t1 = nd.SelectSingleNode(".//div[@role='heading']");
-                    HtmlNode s1 = nd.SelectSingleNode(".//div[@class='LbKnXb YAG2qc UYJxh']|.//div[@class='cyspcb DH9lqb']");
-                    if (a != null && t1 != null && s1 != null)
-                    {
-                        s.Append("<item url=\"" + SetUrl(a.Attributes["href"].Value) + "\" title=\"" + SetTitle(t1.InnerText) + "\" source=\"" + SetTitle(s1.InnerText) + "\" />");
-                    }
+                    string t1 = nd.SelectSingleNode(".//div[@role='heading']")?.InnerText ?? "";//15-10-2024
+                    string s1 = nd.SelectSingleNode(".//div[@class='LbKnXb YAG2qc UYJxh']|.//div[@class='cyspcb DH9lqb']")?.InnerText ?? "";//15-10-2024
+                    s.Append("<item url=\"" + SetUrl(a.Attributes["href"].Value) + "\" title=\"" + SetTitle(t1) + "\" source=\"" + SetTitle(s1) + "\" />");
                 }
             }
             s.Append("</block>");
@@ -2039,11 +2033,8 @@ namespace RapidTrackingSingleThread
                     foreach (HtmlNode nd in nds)
                     {
                         HtmlNode a = nd.SelectSingleNode(".//a");
-                        HtmlNode t1 = nd.SelectSingleNode(".//div[@role='heading']|.//div[@class='ORij0c vqseUe']/span");//15-10-2024
-                        if (a != null && t1 != null)
-                        {
-                            s.Append("<item url=\"" + SetUrl(a.Attributes["href"].Value) + "\" title=\"" + SetTitle(t1.InnerText) + "\" />");
-                        }
+                        string t1 = nd.SelectSingleNode(".//div[@role='heading']|.//div[@class='ORij0c vqseUe']/span")?.InnerText ?? "";//15-10-2024
+                        s.Append("<item url=\"" + SetUrl(a.Attributes["href"].Value) + "\" title=\"" + SetTitle(t1) + "\" />");
                     }
                     s.Append("</block>");//15-10-2024
                 }

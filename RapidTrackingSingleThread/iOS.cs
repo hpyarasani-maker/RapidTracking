@@ -1548,16 +1548,18 @@ namespace RapidTrackingSingleThread
             HtmlNode n = node.SelectSingleNode(".//div[contains(@class,'P8ujBc v5yQqb')]/a");//15-10-2024
             if (n != null)
             {
-                HtmlNode t = n.SelectSingleNode(".//div[@role='heading']");
-                HtmlNodeCollection nds = node.SelectNodes(".//div[@class='IF221e EXH1Ce']|.//div[@class='VqeGe']");//15-10-2024
+                HtmlNode t = n.SelectSingleNode(".//div[@role='heading']");//15-10-2024
+                HtmlNodeCollection nds = node.SelectNodes(".//div[@class='IF221e EXH1Ce']");//15-10-2024
+                if (nds != null)
+                    nds = node.SelectNodes(".//div[@class='VqeGe']");
                 if (nds != null)
                 {
                     s.Append("<block type=\"classicLinkCarousel\" url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(t.InnerText) + "\" >");//15-10-2024
                     foreach (HtmlNode nd in nds)
                     {
-                        HtmlNode a = nd.SelectSingleNode(".//a");
+                        string url = nd.SelectSingleNode(".//a")?.Attributes["href"]?.Value ?? "";//15-10-2024
                         string t1 = nd.SelectSingleNode(".//div/span[@class='Yt787']|.//div[@class='ORij0c vqseUe']/span")?.InnerText ?? "";//15-10-2024
-                        s.Append("<item url=\"" + SetUrl(a.Attributes["href"].Value) + "\" title=\"" + SetTitle(t1) + "\" />");
+                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(t1) + "\" />");
                     }
                     s.Append("</block>");//15-10-2024
                 }

@@ -2020,7 +2020,9 @@ namespace Oxylabs_BulkKeywords
             if (n != null)
             {
                 HtmlNode t = n.SelectSingleNode(".//h3");
-                HtmlNodeCollection nds = node.SelectNodes(".//div[@class='IF221e EXH1Ce']|.//div[@class='EDblX HG5ZQb']/div");//15-10-2024
+                HtmlNodeCollection nds = node.SelectNodes(".//div[@class='IF221e EXH1Ce']");
+                if (nds != null)
+                    nds = node.SelectNodes(".//div[@class='EDblX HG5ZQb']/div");//15-10-2024
                 if (nds != null)
                 {
                     s.Append("<block type=\"classicLinkCarousel\" url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(t.InnerText) + "\" >");//15-10-2024

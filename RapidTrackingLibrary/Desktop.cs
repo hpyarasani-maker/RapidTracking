@@ -1175,7 +1175,9 @@ namespace RapidTrackingLibrary
         public string GetClassicLinkCarousel(HtmlNode node)//30-09-2024 ClassicLinkCarousel
         {
             StringBuilder s = new StringBuilder();
-            HtmlNode n = node.SelectSingleNode(".//div[@class='yuRUbf']/a|.//div[@class='yuRUbf']/div/a|.//div[@class='yuRUbf']/div/span/a");
+            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='IF221e EXH1Ce']");
+            if (nds != null)
+                nds = node.SelectNodes(".//div[@class='EDblX HG5ZQb']/div");//15-10-2024
             if (n != null)
             {
                 HtmlNode t = n.SelectSingleNode(".//h3");

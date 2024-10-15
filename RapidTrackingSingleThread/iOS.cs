@@ -1559,7 +1559,10 @@ namespace RapidTrackingSingleThread
                     {
                         string url = nd.SelectSingleNode(".//a")?.Attributes["href"]?.Value ?? "";//15-10-2024
                         string t1 = nd.SelectSingleNode(".//div/span[@class='Yt787']|.//div[@class='ORij0c vqseUe']/span")?.InnerText ?? "";//15-10-2024
-                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(t1) + "\" />");
+                        if (!string.IsNullOrEmpty(url) || !string.IsNullOrEmpty(t1))//15-10-2024
+                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(t1) + "\" />");
+                        else if (!string.IsNullOrEmpty(url) && !string.IsNullOrEmpty(t1))
+                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(t1) + "\" />");//15-10-2024
                     }
                     s.Append("</block>");//15-10-2024
                 }

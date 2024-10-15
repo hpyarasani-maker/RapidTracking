@@ -2034,9 +2034,12 @@ namespace RapidTrackingSingleThread
                     s.Append("<block type=\"classicLinkCarousel\" url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(t.InnerText) + "\" >");//15-10-2024
                     foreach (HtmlNode nd in nds)
                     {
-                        HtmlNode a = nd.SelectSingleNode(".//a");
+                        string url = nd.SelectSingleNode(".//a")?.Attributes["href"]?.Value ?? "";//15-10-2024
                         string t1 = nd.SelectSingleNode(".//div[@role='heading']|.//div[@class='ORij0c vqseUe']/span")?.InnerText ?? "";//15-10-2024
-                        s.Append("<item url=\"" + SetUrl(a.Attributes["href"].Value) + "\" title=\"" + SetTitle(t1) + "\" />");
+                        if (!string.IsNullOrEmpty(url) || !string.IsNullOrEmpty(t1))//15-10-2024
+                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(t1) + "\" />");
+                        else if (!string.IsNullOrEmpty(url) && !string.IsNullOrEmpty(t1))
+                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(t1) + "\" />");//15-10-2024
                     }
                     s.Append("</block>");//15-10-2024
                 }

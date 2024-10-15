@@ -821,7 +821,7 @@ namespace RapidTrackingSingleThread
                             s.Append(GetClassicLinkCarousel(nd));
                             continue;
                         }
-                        if (nd.SelectSingleNode(".//div[@class='HiHjCd']|.//div[@class='Mwdfte']") != null)
+                        if (nd.SelectSingleNode(".//div[contains(@class,'HiHjCd')]|.//div[@class='Mwdfte']") != null)//15-10-2024
                         {
                             s.Append(GetClassicLinkSiteLinks(nd));
                             continue;
@@ -1117,7 +1117,7 @@ namespace RapidTrackingSingleThread
             {
                 HtmlNode t = n.SelectSingleNode(".//h3");
                 s.Append("<block type=\"classicLinkSiteLinks\" url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(t.InnerText) + "\" >");
-                HtmlNodeCollection nds = node.SelectNodes(".//a[@class='dM1Yyd']|.//div[@class='HiHjCd']/a");
+                HtmlNodeCollection nds = node.SelectNodes(".//a[@class='dM1Yyd']|.//div[contains(@class,'HiHjCd')]/a");//15-10-2024
                 if (nds != null)
                 {
                     foreach (HtmlNode nd in nds)

@@ -2032,21 +2032,21 @@ namespace RapidTrackingSingleThread
             if (n != null)
             {
                 HtmlNode t = n.SelectSingleNode(".//h3");
-                s.Append("<block type=\"classicLinkCarousel\" url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(t.InnerText) + "\" >");
-                HtmlNodeCollection nds = node.SelectNodes(".//div[@class='IF221e EXH1Ce']");
+                HtmlNodeCollection nds = node.SelectNodes(".//div[@class='IF221e EXH1Ce']|.//div[@class='EDblX HG5ZQb']/div");//15-10-2024
                 if (nds != null)
                 {
+                    s.Append("<block type=\"classicLinkCarousel\" url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(t.InnerText) + "\" >");//15-10-2024
                     foreach (HtmlNode nd in nds)
                     {
                         HtmlNode a = nd.SelectSingleNode(".//a");
-                        HtmlNode t1 = nd.SelectSingleNode(".//div[@role='heading']");
+                        HtmlNode t1 = nd.SelectSingleNode(".//div[@role='heading']|.//div[@class='ORij0c vqseUe']/span");//15-10-2024
                         if (a != null && t1 != null)
                         {
                             s.Append("<item url=\"" + SetUrl(a.Attributes["href"].Value) + "\" title=\"" + SetTitle(t1.InnerText) + "\" />");
                         }
                     }
+                    s.Append("</block>");//15-10-2024
                 }
-                s.Append("</block>");
             }
             return s.ToString();
         }//30-09-2024 ClassicLinkCarousel

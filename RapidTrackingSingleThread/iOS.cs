@@ -933,7 +933,7 @@ namespace RapidTrackingSingleThread
                             s.Append("</block>");
                             continue;
                         }//PopularProducts //11-07-2023
-                        if (nd.SelectSingleNode(".//div[@class='EDblX HG5ZQb' and @role='list']") != null && nd.SelectNodes(".//div[@class='yzlnle XNfAUb']") == null)//14-10-2024 for ClassicLinksCarousel and ClassicLinkSiteLink block
+                        if (nd.SelectSingleNode(".//div[@data-snf='RqgZTc' and (@data-sncf='1' or @data-sncf='2')]") != null && nd.SelectNodes(".//div[@class='yzlnle XNfAUb']|.//div[@class='ORij0c vqseUe']|.//div[contains(@class,'ec0wHe N8D9gb M8CEed GUHazd')]") == null)//15-10-2024//14-10-2024 for ClassicLinksCarousel and ClassicLinkSiteLink block
                         {
                             s.Append(GetClassicLinkCarousel(nd));
                             continue;

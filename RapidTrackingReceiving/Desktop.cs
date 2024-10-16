@@ -1151,6 +1151,10 @@ namespace Oxylabs_BulkKeywords
                         }
                     s.Append("</block>");
                 }
+                if (!s.ToString().Contains("<item title="))//16-10-2024
+                {
+                    s.Clear();
+                }
             }
             return s.ToString();
         }//14-10-2024

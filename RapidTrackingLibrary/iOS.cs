@@ -2600,6 +2600,8 @@ namespace RapidTrackingLibrary
                         title = nd.SelectSingleNode(".//div[contains(@class,'eAaXgc WZaQJf')]");//20-09-2023
                     if (title == null)
                         title = nd.SelectSingleNode(".//div[contains(@class,'eAaXgc cPUhZb')]");//10-10-2023
+                    if (title == null)
+                        title = nd.SelectSingleNode(".//div[contains(@class,'eAaXgc RES9jf')]");//16-10-2024
                     string url = nd.Attributes["href"].Value;
                     s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title.InnerText) + "\" />");
                 }

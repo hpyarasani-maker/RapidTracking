@@ -2557,6 +2557,8 @@ namespace RapidTrackingSingleThread
                         title = nd.SelectSingleNode(".//div[contains(@class,'eAaXgc WZaQJf')]");//20-09-2023
                     if (title == null)
                         title = nd.SelectSingleNode(".//div[contains(@class,'eAaXgc cPUhZb')]");//10-10-2023
+                    if (title == null)
+                        title = nd.SelectSingleNode(".//div[contains(@class,'eAaXgc RES9jf')]");//16-10-2024
                     string url = nd.Attributes["href"].Value;
                     if (!url.Contains("/search?q=")) //09-09-2022 avoid google link
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title.InnerText) + "\" />");

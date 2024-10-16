@@ -1578,55 +1578,73 @@ namespace RapidTrackingLibrary
             }
             return s.ToString();
         }
-        public string GetClassicLinkCarousel(HtmlNode node)//30-09-2024 ClassicLinkCarousel
+        public string GetClassicLinkCarousel(HtmlNode node)//30-09-2024 ClassicLinkCarousel //16-10-2024
         {
             StringBuilder s = new StringBuilder();
-            HtmlNode n = node.SelectSingleNode(".//div[contains(@class,'P8ujBc v5yQqb')]/a");//15-10-2024
+            HtmlNode n = node.SelectSingleNode(".//div[contains(@class,'P8ujBc v5yQqb')]/a");
+            if (n == null)
+                n = node.SelectSingleNode(".//div[@class='OhZyZc']/a");
             if (n != null)
             {
                 HtmlNode t = n.SelectSingleNode(".//div[@role='heading']");
-                HtmlNodeCollection nds = node.SelectNodes(".//div[@class='IF221e EXH1Ce']");//15-10-2024
-                if (nds != null)
-                    nds = node.SelectNodes(".//div[@class='VqeGe']");//15-10-2024
+                HtmlNodeCollection nds = node.SelectNodes(".//div[@class='IF221e EXH1Ce']");
+                if (nds == null)
+                    nds = node.SelectNodes(".//div[@class='VqeGe']");
                 if (nds != null)
                 {
-                    s.Append("<block type=\"classicLinkCarousel\" url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(t.InnerText) + "\" >");//15-10-2024
+                    s.Append("<block type=\"classickLinkCarousel\" url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(t.InnerText) + "\" >");
                     foreach (HtmlNode nd in nds)
                     {
-                        string url = nd.SelectSingleNode(".//a")?.Attributes["href"]?.Value ?? "";//15-10-2024
-                        string t1 = nd.SelectSingleNode(".//div/span[@class='Yt787']|.//div[@class='ORij0c vqseUe']/span")?.InnerText ?? "";//15-10-2024
-                        if (!string.IsNullOrEmpty(url) || !string.IsNullOrEmpty(t1))//15-10-2024
-                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(t1) + "\" />");
-                        else if (!string.IsNullOrEmpty(url) && !string.IsNullOrEmpty(t1))
-                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(t1) + "\" />");//15-10-2024
+                        HtmlNode a = nd.SelectSingleNode(".//a");
+                        string t1 = nd.SelectSingleNode(".//div/span[@class='Yt787']|.//div[@class='ORij0c vqseUe']/span")?.InnerText ?? "";
+                        if (a == null && string.IsNullOrEmpty(t1))
+                            continue;
+                        s.Append("<item url=\"" + SetUrl(a?.Attributes["href"]?.Value) + "\" title=\"" + SetTitle(t1) + "\" />");
                     }
-                    s.Append("</block>");//15-10-2024
+                    s.Append("</block>");
+                }
+                if (!s.ToString().Contains("<item url="))
+                {
+                    s.Clear();
+                    s.Append("<item url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(t.InnerText) + "\" />");
+                    orgLinks++;
                 }
             }
             return s.ToString();
-        }//30-09-2024 ClassicLinkCarousel
-        public string GetClassicLinkSiteLinks(HtmlNode node)//11-10-2024 ClassicLinkSiteLinks
+        }//30-09-2024 ClassicLinkCarousel //16-10-2024
+        public string GetClassicLinkSiteLinks(HtmlNode node)//11-10-2024 ClassicLinkSiteLinks //16-10-2024
         {
             StringBuilder s = new StringBuilder();
-            HtmlNode n = node.SelectSingleNode(".//div[@class='P8ujBc v5yQqb jqWpsc']/a|.//div[@class='kb0PBd cvP2Ce jGGQ5e']/div/a");//15-10-2024
+            HtmlNode n = node.SelectSingleNode(".//div[@class='P8ujBc v5yQqb jqWpsc']/a");
+            if (n == null)
+                n = node.SelectSingleNode(".//div[@class='OhZyZc']/a");
             if (n != null)
             {
                 HtmlNode t = n.SelectSingleNode(".//div[@role='heading']");
-                s.Append("<block type=\"classicLinkSiteLinks\" url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(t.InnerText) + "\" >");
-                HtmlNodeCollection nds = node.SelectNodes(".//a[@class='dM1Yyd']|.//div[@class='HiHjCd']/a|.//a[@class='GqbEwc unhzXb']");//15-10-2024
+                HtmlNodeCollection nds = node.SelectNodes(".//a[@class='dM1Yyd']|.//div[@class='HiHjCd']/a");
+                if (nds == null)
+                    nds = node.SelectNodes(".//div[@class='EDblX JpOecb']/a");
                 if (nds != null)
                 {
+                    s.Append("<block type=\"classicLinkSiteLinks\" url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(t.InnerText) + "\" >");
                     foreach (HtmlNode nd in nds)
                     {
                         string url = nd.Attributes["href"]?.Value ?? "";
                         string title = nd?.InnerText ?? "";
+                        if (string.IsNullOrEmpty(url) && string.IsNullOrEmpty(title)) continue;
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                     }
+                    s.Append("</block>");
                 }
-                s.Append("</block>");
+                if (!s.ToString().Contains("<item url="))
+                {
+                    s.Clear();
+                    s.Append("<item url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(t.InnerText) + "\" />");
+                    orgLinks++;
+                }
             }
             return s.ToString();
-        }//11-10-2024 ClassicLinkSiteLinks
+        }//11-10-2024 ClassicLinkSiteLinks //16-10-2024
         public string GetPeopleAlsoSearch(HtmlNode node) //11-10-2024
         {
             StringBuilder s = new StringBuilder();
@@ -1648,24 +1666,28 @@ namespace RapidTrackingLibrary
             }
             return s.ToString();
         } // 15-07-2024
-        public string GetsitesCarousel(HtmlNode node)//11-10-2024 sitesCarousel
+        public string GetsitesCarousel(HtmlNode node)//11-10-2024 sitesCarousel //16-10-2024
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='IF221e EXH1Ce']");
             if (nds != null)
             {
-                s.Append("<block type=\"sitesCarousel\">");//15-10-2024
+                s.Append("<block type=\"sitesCarousel\">");
                 foreach (HtmlNode nd in nds)
                 {
                     HtmlNode a = nd.SelectSingleNode(".//a");
                     string t1 = nd.SelectSingleNode(".//div[contains(@class,'LJEGod')]")?.InnerText ?? "";
                     string s1 = nd.SelectSingleNode(".//div[@class='cyspcb DH9lqb']|.//div[@class='LbKnXb YAG2qc UYJxh']")?.InnerText ?? "";
+                    if (a == null && string.IsNullOrEmpty(t1) && string.IsNullOrEmpty(s1))
+                        continue;
                     s.Append("<item url=\"" + SetUrl(a.Attributes["href"].Value) + "\" title=\"" + SetTitle(t1) + "\" source=\"" + SetTitle(s1) + "\" />");
                 }
-                s.Append("</block>");//15-10-2024
+                s.Append("</block>");
+                if (!s.ToString().Contains("<item url="))
+                    s.Clear();
             }
             return s.ToString();
-        }//11-10-2024 sitesCarousel
+        }//11-10-2024 sitesCarousel //16-10-2024
         public string GetAdwords(HtmlNode node)//12-08-2024 multiple Adwords in top, middle & bootom
         {
             StringBuilder s = new StringBuilder();

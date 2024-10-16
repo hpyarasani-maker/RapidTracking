@@ -1592,7 +1592,7 @@ namespace RapidTrackingLibrary
                     nds = node.SelectNodes(".//div[@class='VqeGe']");
                 if (nds != null)
                 {
-                    s.Append("<block type=\"classickLinkCarousel\" url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(t.InnerText) + "\" >");
+                    s.Append("<block type=\"classicLinkCarousel\" url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(t.InnerText) + "\" >");
                     foreach (HtmlNode nd in nds)
                     {
                         HtmlNode a = nd.SelectSingleNode(".//a");

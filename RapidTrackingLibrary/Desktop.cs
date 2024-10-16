@@ -343,6 +343,10 @@ namespace RapidTrackingLibrary
                             }
                         s.Append("</block>");
                     }
+                    if (!s.ToString().Contains("<item title="))//16-10-2024
+                    {
+                        s.Clear();
+                    }
                 }
             } //11-10-2024  PeopleAlsoSearch  block
         

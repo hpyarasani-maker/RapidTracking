@@ -937,7 +937,7 @@ namespace RapidTrackingLibrary
                                 continue;
                         }
                         //21-02-2020  included selector for the Apps Block
-                        if (nd.SelectSingleNode(".//div[@class='ki5rnd']|.//div[@class='yR4jwc']|.//div[@class='qs-io aig-lst']") != null)//30-08-2023 //31-08-2020  //20-05-2020 included selector for app block
+                        if (nd.SelectSingleNode(".//div[@data-snf='RqgZTc' and (@data-sncf='1' or @data-sncf='2')]|.//div[@class='EDblX HG5ZQb'and (@role='list')]") != null && nd.SelectNodes(".//div[@class='yzlnle XNfAUb']|.//div[@class='ORij0c vqseUe']|.//div[contains(@class,'ec0wHe N8D9gb M8CEed GUHazd')]|.//div[@class='LbKnXb YAG2qc UYJxh']|.//div[@class='cyspcb DH9lqb']") == null)//18-10-2024//15-10-2024//14-10-2024 for ClassicLinksCarousel and ClassicLinkSiteLink block
                         {
                             s.Append(GetApps(nd));
                             continue;

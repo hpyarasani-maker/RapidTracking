@@ -913,6 +913,8 @@ namespace RapidTrackingLibrary
                     nds = node.SelectNodes(".");//14-02-2024//21-09-2023 //02-02-2022 moved from 687 line   // 25-10-2019
                 if (nds == null)//30-09-2024
                     nds = node.SelectNodes(".//div[@class='AGopnf']");//30-09-2024
+                if (nds != null && node.Attributes["class"]?.Value == "Ww4FFb vt6azd" || node.Attributes["class"]?.Value == "g Ww4FFb vt6azd")//21-10-2024
+                    nds = node.SelectNodes(".");//21-10-2024
             }
             if (nds != null)
             {
@@ -937,7 +939,7 @@ namespace RapidTrackingLibrary
                                 continue;
                         }
                         //21-02-2020  included selector for the Apps Block
-                        if (nd.SelectSingleNode(".//div[@data-snf='RqgZTc' and (@data-sncf='1' or @data-sncf='2')]|.//div[@class='EDblX HG5ZQb'and (@role='list')]") != null && nd.SelectNodes(".//div[@class='yzlnle XNfAUb']|.//div[@class='ORij0c vqseUe']|.//div[contains(@class,'ec0wHe N8D9gb M8CEed GUHazd')]|.//div[@class='LbKnXb YAG2qc UYJxh']|.//div[@class='cyspcb DH9lqb']") == null)//18-10-2024//15-10-2024//14-10-2024 for ClassicLinksCarousel and ClassicLinkSiteLink block
+                        if (nd.SelectSingleNode(".//div[@data-snf='RqgZTc' and (@data-sncf='1' or @data-sncf='2')]|.//div[@class='EDblX HG5ZQb' and @role='list']") != null && nd.SelectNodes(".//div[@class='yzlnle XNfAUb']|.//div[contains(@class,'ec0wHe N8D9gb M8CEed GUHazd')]|.//div[@class='LbKnXb YAG2qc UYJxh']|.//div[@class='cyspcb DH9lqb']") == null)//21-10-2024//18-10-2024//15-10-2024//14-10-2024 for ClassicLinksCarousel and ClassicLinkSiteLink block
                         {
                             s.Append(GetApps(nd));
                             continue;

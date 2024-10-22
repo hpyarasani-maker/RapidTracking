@@ -1685,12 +1685,12 @@ namespace RapidTrackingLibrary
                 s.Append("<block type=\"sitesCarousel\">");
                 foreach (HtmlNode nd in nds)
                 {
-                    HtmlNode a = nd.SelectSingleNode(".//a");
+                    string url = nd.SelectSingleNode(".//a")?.Attributes["href"]?.Value ?? "";//22-10-2024
                     string t1 = nd.SelectSingleNode(".//div[contains(@class,'LJEGod')]")?.InnerText ?? "";
                     string s1 = nd.SelectSingleNode(".//div[@class='cyspcb DH9lqb']|.//div[@class='LbKnXb YAG2qc UYJxh']")?.InnerText ?? "";
-                    if (a == null && string.IsNullOrEmpty(t1) && string.IsNullOrEmpty(s1))
+                    if (string.IsNullOrEmpty(SetUrl(url)) && string.IsNullOrEmpty(t1) && string.IsNullOrEmpty(s1))//22-10-2024
                         continue;
-                    s.Append("<item url=\"" + SetUrl(a.Attributes["href"].Value) + "\" title=\"" + SetTitle(t1) + "\" source=\"" + SetTitle(s1) + "\" />");
+                    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(t1) + "\" source=\"" + SetTitle(s1) + "\" />");//22-10-2024
                 }
                 s.Append("</block>");
                 if (!s.ToString().Contains("<item url="))

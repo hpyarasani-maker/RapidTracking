@@ -62,6 +62,8 @@ namespace MultiThreadProject
             {
                 if (node.Attributes["class"]?.Value?.Contains("Ww4FFb vt6azd DlUvEb") == true && node.SelectSingleNode(".//div[@class='lU8tTd']") != null && node.SelectSingleNode(".//div[@class='lEorAf']/div[@class='lU8tTd']") == null)//24-06-2024//05-04-2024
                     continue;//05-04-2024
+                if (node.SelectSingleNode(".//div[@class='AuVD wHYlTd Ww4FFb vt6azd']") != null && node.SelectSingleNode(".//div[@class='Wt5Tfe']") != null)//22-10-2024
+                    continue;
                 HtmlNode fsh = node.SelectSingleNode(".//*[@id='knowledge-finance-wholepage__fw-sticky-header']");
                 if (fsh != null)
                 {

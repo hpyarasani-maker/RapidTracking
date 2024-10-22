@@ -2365,7 +2365,11 @@ namespace RapidTrackingLibrary
             {
                 return "Images";
             }
-
+            nd = node.SelectSingleNode(".//div[@class='kuRgBc']|.//div[@class='ZVAQpe']|.//div[@class='fPmcEc']");//22-10-2024//27-02-2023 hotel pack
+            if (nd != null)
+            {
+                return "Hotel";
+            }
             nd = node.SelectSingleNode(".//*[@id='lu_map']");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='xERobd']|.//div[@class='H93uF']|.//div[@class='CH6Bmd']|.//div[@class='vs2hJf']|.//div[@class='o8ebK']");//02-06-2022//27-05-2022//05-03-2022//22-01-2022  //changed on 26-06-2019

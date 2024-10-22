@@ -592,17 +592,17 @@ namespace RapidTrackingLibrary
             if (colt != null)
             {
                 HtmlNode pNode = colt.SelectSingleNode(".//div[@jscontroller='vWOOIe']|.//div[@id='tads']");//02-10-2023//30-06-2023
-                if (pNode != null && pla == null && pNode.SelectSingleNode(".//div[contains(@class, 'commercial-unit-desktop-top')]|.//div[@class='dGACyd']|.//div[@id='tauc']") != null)//10-09-2024//14-06-2024//26-04-2024//26-10-2023
+                if (pNode != null && pla == null && pNode.SelectSingleNode(".//div[contains(@class, 'commercial-unit-desktop-top')]|.//div[@class='dGACyd']|.//div[@id='tauc']|.//div[@class='z7KNEc']") != null)//22-10-2024//10-09-2024//14-06-2024//26-04-2024//26-10-2023
                 {
                     s.Append("<block type=\"productListedAds\" url=\"\">");
-                    HtmlNodeCollection pNodes = pNode.SelectNodes(".//div[@class='ZPze1e']/a|.//g-inner-card[contains(@class,'B5kg8b')]/a");//02-10-2023
+                    HtmlNodeCollection pNodes = pNode.SelectNodes(".//div[@class='ZPze1e']/a|.//g-inner-card[contains(@class,'B5kg8b')]/a|.//div[@class='VqeGe']/a");//22-10-2024//02-10-2023
                     if (pNodes != null)
                     {
                         foreach (var nd in pNodes)
                         {
-                            var url = nd.Attributes["href"].Value;
+                            var url = nd?.Attributes["href"]?.Value ?? "";
                             url = GetRedirectedUrl(url);
-                            var title = nd.SelectSingleNode(".//div[@class='e7SMre']|.//div[@class='gCv54b']")?.InnerText;//02-10-2023
+                            var title = nd.SelectSingleNode(".//div[@class='e7SMre']|.//div[@class='gCv54b']|.//div[@class='WqhEtf UkEzBc']")?.InnerText ?? "";//22-10-2024//02-10-2023
                             s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                         }
                     }

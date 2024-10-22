@@ -903,9 +903,12 @@ namespace RapidTrackingLibrary
                         "|.//div[contains(@class,'card-section')]|.//div[@class='wU9Tkd']|.//div[@jsname='wRSfy']|.//div[@class='tKdlvb jqWpsc']|.//div[@class='mnr-c YibVsd']" +//16-12-2021
                          //"|.//div[@class='mnr-c YibVsd']|.//div[@class='mnr-c xpd EtOod pkphOe']|.//div[contains(@class,'EtOod pkphOe')]");//30-06-2022//10-06-2022//16-12-2021 commented //29-06-2022
                          "|.//div[@class='mnr-c YibVsd']|.//div[contains(@class,'EtOod pkphOe')]|.//div[contains(@class,'Ww4FFb vt6azd')]");//02-09-2022 video block
-                if (nds == null)//22-02-2022
-                    if (node.Attributes["class"]?.Value == "mnr-c" && node.SelectSingleNode(".//div/div[contains(@class,'P8ujBc')]") != null)//22-02-2022
-                        nds = node.SelectNodes(".//div/div[contains(@class,'P8ujBc')]");//22-02-2022
+                if (nds == null) //24-11-2022
+                    nds = (node.SelectNodes(".//div[@class='P8ujBc v5yQqb jqWpsc']") != null && node.SelectNodes(".//div[@class='nMqco Gcxb4e']") != null) ? nds = node.SelectNodes(".//div[@class='N54PNb BToiNc cvP2Ce']|.//div[contains(@class,'Ww4FFb vt6azd')]") : nds = null;//22-10-2024
+                if (nds == null)
+                    nds = (node.SelectNodes(".//div[@class='P8ujBc v5yQqb jqWpsc' and contains(@class,'EtOod pkphOe')]") == null
+                    && node.SelectNodes(".//div[contains(@class,'EtOod pkphOe')]") != null) ? nds = node.SelectNodes(".//div[@class='P8ujBc v5yQqb jqWpsc']|.//div[contains(@class,'Ww4FFb vt6azd')]|.//div[contains(@class,'EtOod pkphOe')]") : nds = null;//22-10-2024//06-02-2023//16-01-2023 //24-11-2022//14-09-2022
+                nds = node.SelectNodes(".//div/div[contains(@class,'P8ujBc')]");//22-02-2022
                 if (nds == null)
                     if (node.Attributes["class"]?.Value == "mnr-c xpd O9g5cc uUPGi") //09-09-2021 applied ? condition
                         nds = node.SelectNodes(".//div[contains(@class,'KJDcUb')]"); //28-07-2020 //29-07-2020 included contains function

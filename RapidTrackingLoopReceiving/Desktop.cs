@@ -948,6 +948,11 @@ namespace RapidTrackingLoopReceiving
                         s.Append(GetSiteLinks(n));
                         continue;
                     }//14-12-2022
+                    if (n.SelectSingleNode(".//div[contains(@class,'HiHjCd')]|.//div[@class='Mwdfte']") != null)//23-10-2024
+                    {
+                        s.Append(GetClassicLinkSiteLinks(n));
+                        continue;
+                    }//23-10-2024
                     //12-10-2022
                     if ((Regex.IsMatch(n.OuterHtml, "id=\"vidthumb\\d*\"") && (n.SelectSingleNode(".//div[@class='ij69rd UHe5G']") != null || n.SelectSingleNode(".//div[@class='ij69rd TUOsUe UHe5G']") != null)) || n.SelectSingleNode(".//div[contains(@class,'U1TUId')]|.//div[@class='J1mWY']|.//div[contains(@class,'c8rnLc flgn0c')]") != null)//21-11-2023//30-05-2023
                     {

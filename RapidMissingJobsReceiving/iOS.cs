@@ -844,7 +844,10 @@ namespace RapidMissingJobsReceiving
                         //"|.//div[@class='fhQnRd']|.//div[@id='iur']|.//div[contains(@class,'cUnQKe wHYlTd Ww4FFb vt6azd')]|.//div[@class='uVMCKf Ww4FFb vt6azd']|.//div[@class='Ww4FFb vt6azd tRkSqb']|.//div[@class='xLjnU']");//28-08-2023 //18-08-2023
                         "|.//div[@class='fhQnRd']|.//div[@id='iur']|.//div[contains(@class,'Ww4FFb vt6azd')]");//01-09-2023//30-08-2023
                 if (nds == null) //24-11-2022
-                    nds = node.SelectNodes(".//div[@class='P8ujBc v5yQqb jqWpsc']|.//div[contains(@class,'Ww4FFb vt6azd')]|.//div[contains(@class,'EtOod pkphOe')]");//06-02-2023//16-01-2023 //24-11-2022//14-09-2022
+                    nds = (node.SelectNodes(".//div[@class='P8ujBc v5yQqb jqWpsc']") != null && node.SelectNodes(".//div[@class='nMqco Gcxb4e']") != null) ? nds = node.SelectNodes(".//div[@class='N54PNb BToiNc cvP2Ce']|.//div[contains(@class,'Ww4FFb vt6azd')]") : nds = null;//22-10-2024
+                if (nds == null)
+                    nds = (node.SelectNodes(".//div[@class='P8ujBc v5yQqb jqWpsc' and contains(@class,'EtOod pkphOe')]") == null
+                    && node.SelectNodes(".//div[contains(@class,'EtOod pkphOe')]") != null) ? nds = node.SelectNodes(".//div[@class='P8ujBc v5yQqb jqWpsc']|.//div[contains(@class,'Ww4FFb vt6azd')]|.//div[contains(@class,'EtOod pkphOe')]") : nds = null;//22-10-2024//06-02-2023//16-01-2023 //24-11-2022//14-09-2022
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='mnr-c O9g5cc uUPGi']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='HD8Pae mnr-c xpd O9g5cc uUPGi']|.//div[@class='mnr-c']/div/div[contains(@class,'P8ujBc')]|.//div[@class='mnr-c P5XtRe']" + //25-03-2022 //22-02-2022
                         "|.//div/g-card[@class='XqIXXe']|.//g-card[@id='tscffb']|.//g-card[@class='g F6CFcc']|.//div[@class='khgTR lWEpfd']" +
@@ -2081,7 +2084,7 @@ namespace RapidMissingJobsReceiving
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='Y37F6d Nn2Stf']");  // 21-04-2020
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='HnYYW FIdh1']");  // 01-06-2020
+                nd = node.SelectSingleNode(".//div[@class='HnYYW FIdh1']|.//div[@class='A2pSt']");//23-10-2024// 01-06-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='MQv7ze']|.//div[@class='W2E8sb']|.//div[@class='grvXqb']");//27-02-2024//08-11-2023  // 23-06-2020
             if (nd != null)
@@ -3220,7 +3223,7 @@ namespace RapidMissingJobsReceiving
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[contains(@class,'kp-blk EyBRub')]|.//div[contains(@class,'kp-hc')]"); //16-02-2022//05-10-2020 included selector for missing KP block
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='Y2NmGf']|.//div[@class='aiNDEb']|.//div[@class='grvXqb']");//27-02-2024//08-11-2023//26-07-2022
+                nd = node.SelectSingleNode(".//div[@class='Y2NmGf']|.//div[@class='aiNDEb']|.//div[@class='grvXqb']|.//div[@class='A2pSt']");//23-10-2024//27-02-2024//08-11-2023//26-07-2022
             if (nd != null)
             {
                 // 24-04-2020

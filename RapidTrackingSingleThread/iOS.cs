@@ -2092,7 +2092,7 @@ namespace RapidTrackingSingleThread
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='Y37F6d Nn2Stf']");  // 21-04-2020
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='HnYYW FIdh1']");  // 01-06-2020
+                nd = node.SelectSingleNode(".//div[@class='HnYYW FIdh1']|.//div[@class='A2pSt']");//23-10-2024// 01-06-2020
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='MQv7ze']|.//div[@class='W2E8sb']|.//div[@class='grvXqb']");//27-02-2024//08-11-2023  // 23-06-2020
             if (nd != null)
@@ -3230,7 +3230,7 @@ namespace RapidTrackingSingleThread
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[contains(@class,'kp-blk EyBRub')]|.//div[contains(@class,'kp-hc')]"); //16-02-2022//05-10-2020 included selector for missing KP block
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='Y2NmGf']|.//div[@class='aiNDEb']|.//div[@class='grvXqb']");//27-02-2024//08-11-2023//26-07-2022
+                nd = node.SelectSingleNode(".//div[@class='Y2NmGf']|.//div[@class='aiNDEb']|.//div[@class='grvXqb']|.//div[@class='A2pSt']");//23-10-2024//27-02-2024//08-11-2023//26-07-2022
             if (nd != null)
             {
                 // 24-04-2020

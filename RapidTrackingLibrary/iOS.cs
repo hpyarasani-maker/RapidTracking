@@ -82,6 +82,8 @@ namespace RapidTrackingLibrary
                                     {
                                         if (s.StartsWith("<block type=\"popularProducts\"") && sb.ToString().Contains(s))
                                             s = string.Empty;
+                                        if (s.StartsWith("<block type=\"peopleAlsoSearch\"") && sb.ToString().Contains(s))//24-10-2024
+                                            s = string.Empty;//24-10-2024
                                     }//29-07-2024
                                     ndText += s;
                                     if (s.Length > 0)

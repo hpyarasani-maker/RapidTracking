@@ -2344,14 +2344,11 @@ namespace RapidTrackingSingleThread
             {
                 desc = node.SelectSingleNode(".//span[contains(@class,'ILfuVd')]")?.InnerText ?? "";
             }//20-03-2024
-            string cardType = lst ? "list" : tbl ? "table" : video ? "video" : chrt ? "chart" : "text";
-            if (!string.IsNullOrEmpty(itemUrl) || !string.IsNullOrEmpty(SetUrl(url)))//24-10-2024
-            {
+            string cardType = lst ? "list" : tbl ? "table" : video ? "video" : chrt ? "chart" : "text";           
                 s.Append("<block type=\"answerCard\" url=\"\">");
                 s.Append("<item featureTitle=\"" + SetTitle(f_title) + "\" url=\"" + (!string.IsNullOrEmpty(itemUrl) ? itemUrl : SetUrl(url)) + "\" title=\"" +
                     SetTitle(title) + "\" description=\"" + SetTitle(desc) + "\" cardType=\"" + cardType + "\" />");
                 s.Append("</block>");
-            }//24-10-2024
             return s.ToString();
         }//07-03-2024
 

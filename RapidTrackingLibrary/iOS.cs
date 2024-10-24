@@ -2397,10 +2397,13 @@ namespace RapidTrackingLibrary
                 desc = node.SelectSingleNode(".//span[contains(@class,'ILfuVd')]")?.InnerText ?? "";
             }//20-03-2024
             string cardType = lst ? "list" : tbl ? "table" : video ? "video" : chrt ? "chart" : "text";
-            s.Append("<block type=\"answerCard\" url=\"\">");//17-05-2024
-            s.Append("<item featureTitle=\"" + SetTitle(f_title) + "\" url=\"" + (!string.IsNullOrEmpty(itemUrl) ? itemUrl : SetUrl(url)) + "\" title=\"" +//17-05-2024//22-04-2024
-                SetTitle(title) + "\" description=\"" + SetTitle(desc) + "\" cardType=\"" + cardType + "\" />");
-            s.Append("</block>");
+            if (!string.IsNullOrEmpty(itemUrl) || !string.IsNullOrEmpty(SetUrl(url)))
+            {
+                s.Append("<block type=\"answerCard\" url=\"\">");
+                s.Append("<item featureTitle=\"" + SetTitle(f_title) + "\" url=\"" + (!string.IsNullOrEmpty(itemUrl) ? itemUrl : SetUrl(url)) + "\" title=\"" +
+                    SetTitle(title) + "\" description=\"" + SetTitle(desc) + "\" cardType=\"" + cardType + "\" />");
+                s.Append("</block>");
+            }
             return s.ToString();
         }//07-03-2024
 
@@ -3334,7 +3337,7 @@ namespace RapidTrackingLibrary
             {
                 //nd = node.SelectSingleNode(".//div[@class='MVpwye Dv3U4e']");//05-12-2023//28-09-2022 answer card
                 if (node.SelectSingleNode(".//div[@class='FEoF4d']|.//div[@class='kno-rdesc']|.//div[contains(@class,'rbR0cd')]|.//g-card[@class='g F6CFcc']|.//div[@class='zhYvOe OuaH0']" +//28-08-2024//15-08-2024
-                  "|.//div[@class='knowledge-finance-wholepage-chart__fw-uch']|.//div[@class='WFxqwc']|.//div[@class='KrvXD']|.//div[contains(@class,'dnXCYb')]" +
+                  "|.//div[@class='knowledge-finance-wholepage-chart__fw-uch']|.//div[@class='WFxqwc']|.//div[@class='KrvXD']|.//div[contains(@class,'dnXCYb')]|.//div[@class='tlibce KXPste']" +//24-10-2024//23-07-2024
                   "|.//div[@class='hoJlSb']|.//div[@class='Vo9TVc nG7hRb']|.//div[@jsname='xQjRM']|.//div[@class='x3SAYd']|.//div[@class='XNfAUb']|.//div[@jsname='VMmjWc']|.//div[@class='agqCtf tw-res']") == null || node.SelectSingleNode(".//div[@class='V3FYCf']") != null)//19-09-2024//29-07-2024//05-07-2024
                     return "AnswerCard";
             }

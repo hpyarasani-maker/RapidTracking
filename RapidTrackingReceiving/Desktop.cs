@@ -2288,7 +2288,7 @@ namespace Oxylabs_BulkKeywords
                     || node.SelectSingleNode(".//div[@class='ifM9O']") != null) && node.SelectSingleNode(".//img[contains(@alt, 'Map of')]") == null
                     && node.SelectSingleNode(".//h3[@role='heading']")?.InnerText != "Recipes"
                     && node.SelectSingleNode(".//ul/product-viewer-group|.//div[@class='aJegcc']|.//div[@id='iur']|.//div[contains(@id, 'lu_map')]|.//div[contains(@class, 'lu_map')]") == null //09-11-2023
-                    && node.SelectSingleNode(".//div[@class='knowledge-finance-wholepage-chart__fw-uch']") == null) //09-11-2023
+                    && node.SelectSingleNode(".//div[@class='knowledge-finance-wholepage-chart__fw-uch']|.//div[@class='fPmcEc']") == null)//24-10-2024 //09-11-2023
                     return "AnswerCard";//27-12-2021
             }
             //05-10-2020 KP Block selectors updated

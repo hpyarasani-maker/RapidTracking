@@ -989,7 +989,7 @@ namespace RapidTrackingLibrary
                             s.Append("</block>");
                             continue;
                         }//PopularProducts //11-07-2023
-                        if (nd.SelectSingleNode(".//div[@data-snf='RqgZTc' and (@data-sncf='1' or @data-sncf='2')]") != null && nd.SelectNodes(".//div[@class='yzlnle XNfAUb']|.//div[@class='ORij0c vqseUe']|.//div[contains(@class,'ec0wHe N8D9gb M8CEed GUHazd')]") == null)//15-10-2024//14-10-2024 for ClassicLinksCarousel and ClassicLinkSiteLink block
+                        if (nd.SelectSingleNode(".//div[@data-snf='RqgZTc' and (@data-sncf='1' or @data-sncf='2')]|.//div[@class='EDblX HG5ZQb' and @role='list']") != null && nd.SelectNodes(".//div[@class='yzlnle XNfAUb']|.//div[contains(@class,'ec0wHe N8D9gb M8CEed GUHazd')]|.//div[@class='LbKnXb YAG2qc UYJxh']|.//div[@class='cyspcb DH9lqb']|.//div[@class='OdBhM OInZCf cyspcb']") == null)//25-10-2024//21-10-2024//18-10-2024//15-10-2024//14-10-2024 for ClassicLinksCarousel and ClassicLinkSiteLink block
                         {
                             s.Append(GetClassicLinkCarousel(nd));
                             continue;

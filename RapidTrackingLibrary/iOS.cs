@@ -2325,7 +2325,7 @@ namespace RapidTrackingLibrary
             }
             return s.ToString();
         }*/
-        private string GetAnswerCard(HtmlNode node)//07-03-2024//28-10-2024
+        public string GetAnswerCard(HtmlNode node)//07-03-2024//28-10-2024
         {
             StringBuilder s = new StringBuilder();
             string desc = string.Empty;
@@ -2424,6 +2424,41 @@ namespace RapidTrackingLibrary
             }
             return s.ToString();
         }//07-03-2024//28-10-2024
+        public string GetTwitterCards(HtmlNode node)
+        {
+            StringBuilder s = new StringBuilder();
+            HtmlNode hn = node.SelectSingleNode(".//div[@class='JVrfPc']/a");
+            if (hn == null)
+                hn = node.SelectSingleNode(".//g-link//a"); //included on 2019-06-24
+            if (hn != null)
+            {
+                s.Append("<block type=\"twitterCards\" url=\"" + SetUrl(hn.Attributes["href"].Value) + "\">");
+
+                HtmlNodeCollection nds = node.SelectNodes(".//div[@class='uR34qf oIY2kd JTuIPc']/a");
+
+                if (nds == null)
+                    nds = node.SelectNodes(".//div[@class='uR34qf dJMePd JTuIPc']/a");
+                if (nds == null)
+                    nds = node.SelectNodes(".//div[@class='uR34qf dJMePd BmP5tf']/a");
+                if (nds == null)
+                    nds = node.SelectNodes(".//div[@class='BzDIh PNK1lb LTpi9b']/a");//26-08-2024
+                if (nds == null)
+                    nds = node.SelectNodes(".//g-card-section[contains(@class,'jDsVJf')]/a"); //27-10-2021
+                if (nds == null)
+                    nds = node.SelectNodes(".//div[@class='agqCtf tw-res']/g-card-section/a|.//a[@class='WlydOe eR6uYd']");//11-09-2024//24-04-2024
+                if (nds == null)
+                    nds = node.SelectNodes(".//div[@class='agqCtf tw-res']/g-image-section/a");//03-04-2024
+                if (nds != null)
+                    foreach (HtmlNode nd in nds)
+                    {
+                        s.Append("<item url=\"" + SetUrl(nd.Attributes["href"].Value) + "\" title=\"\" />");
+                    }
+                s.Append("</block>");
+            }
+            return s.ToString();
+        }
+
+        //09-08-2021 update images item urls
         public string GetImages(HtmlNode node)
         {
             bool existed = false;

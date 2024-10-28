@@ -1616,7 +1616,7 @@ namespace RapidTrackingLibrary
                     }
                     s.Append("</block>");
                 }
-                if (!s.ToString().Contains("<item url="))
+                if (!s.ToString().Contains("<item url=") || s.ToString().Contains("<item url=\"\" title=\"\""))//28-10-2024
                 {
                     s.Clear();
                     s.Append("<item url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(t.InnerText) + "\" />");

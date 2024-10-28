@@ -2271,7 +2271,7 @@ namespace RapidTrackingSingleThread
             }
             return s.ToString();
         }*/
-        private string GetAnswerCard(HtmlNode node)//07-03-2024
+        private string GetAnswerCard(HtmlNode node)//07-03-2024//28-10-2024
         {
             StringBuilder s = new StringBuilder();
             string desc = string.Empty;
@@ -2283,22 +2283,15 @@ namespace RapidTrackingSingleThread
             HtmlNode a = node.SelectSingleNode(".//h3/a[contains(@class,'sXtWJb')]|.//h3/div/a[contains(@class,'sXtWJb')]|.//h3/div/span/a[contains(@class,'sXtWJb')]");
             string url = a?.Attributes["href"].Value ?? "";
             string title = a?.InnerText ?? "";
-            string itemUrl = string.Empty;//22-04-2024
-            if (a == null)//19-04-2024
+            string itemUrl = string.Empty;
+            bool multi = false;
+            if (a == null)
             {
                 a = node.SelectSingleNode(".//div[@class='V3FYCf']/div[2]/a");
                 url = a?.Attributes["href"].Value ?? "";
-                title = a?.SelectSingleNode(".//div[@class='erHJcf MBeuO']")?.InnerText ?? "";//22-04-2024
-            }//19-04-2024
-            HtmlNodeCollection ls = node.SelectNodes(".//ul/li|.//ol/li");
-            if (ls == null)
-            {
-                HtmlNode list = node.SelectSingleNode(".//g-accordion|.//div[@class='n5o0ed']");//22-04-2024
-                if (list != null)
-                {
-                    ls = list.SelectNodes(".//span[@class='s2ZLHc']|.//span[contains(@class, 'vBnbff AmJ0Je')]");//22-04-2024
-                }
+                title = a?.SelectSingleNode(".//div[@class='erHJcf MBeuO']")?.InnerText ?? "";
             }
+            HtmlNodeCollection ls = node.SelectNodes(".//ul/li|.//ol/li");
             if (ls != null)
             {
                 lst = true;
@@ -2306,10 +2299,34 @@ namespace RapidTrackingSingleThread
                 {
                     HtmlNode spn = l.SelectSingleNode(".//span[@class='cQp1Ab']");
                     desc += (spn?.InnerText ?? l.InnerText) + "\\n";
-                    itemUrl += SetUrl(l.SelectSingleNode(".//a")?.Attributes["href"]?.Value) != "" ? SetUrl(l.SelectSingleNode(".//a")?.Attributes["href"]?.Value) + "\\n" : "";//22-04-2024
+                    itemUrl += SetUrl(l.SelectSingleNode(".//a")?.Attributes["href"]?.Value) != "" ? SetUrl(l.SelectSingleNode(".//a")?.Attributes["href"]?.Value) + "\\n" : "";
                 }
-                if (!string.IsNullOrEmpty(itemUrl)) //24-04-2024
-                    itemUrl = itemUrl.Remove(itemUrl.Length - 1) + "n";//22-04-2024
+                if (!string.IsNullOrEmpty(itemUrl))
+                    itemUrl = itemUrl.Remove(itemUrl.Length - 1) + "n";
+            }
+            if (ls == null)
+            {
+                HtmlNode list = node.SelectSingleNode(".//g-accordion|.//div[@class='n5o0ed']");
+                if (list != null)
+                {
+                    ls = list.SelectNodes(".//span[@class='s2ZLHc']|.//span[contains(@class, 'vBnbff AmJ0Je')]");
+                }
+                if (ls != null)
+                {
+                    multi = true;
+                    s.Append("<block type=\"answerCard\">");
+                    foreach (var l in ls)
+                    {
+                        HtmlNode spn = l.SelectSingleNode(".//span[@class='cQp1Ab']");
+                        desc = spn?.InnerText ?? l.InnerText;
+                        url = SetUrl(l.SelectSingleNode(".//a")?.Attributes["href"]?.Value ?? "");
+                        title = l.SelectSingleNode(".//div[@class='rNKqKd EhdWxb']")?.InnerText ?? "";
+                        if (!string.IsNullOrEmpty(url) && !string.IsNullOrEmpty(title))
+                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" description=\"" +
+                                SetTitle(desc) + "\" cardType=\"text\" />");
+                    }
+                    s.Append("</block>");
+                }
             }
             if (tbl)
             {
@@ -2324,7 +2341,7 @@ namespace RapidTrackingSingleThread
                         {
                             foreach (HtmlNode t in th)
                             {
-                                desc += t.InnerText + "\\t";//12-03-2024
+                                desc += t.InnerText + "\\t";
                             }
                         }
                         HtmlNodeCollection td = r.SelectNodes(".//td");
@@ -2332,27 +2349,27 @@ namespace RapidTrackingSingleThread
                         {
                             foreach (HtmlNode t in td)
                             {
-                                desc += t.InnerText + "\\t";//12-03-2024
+                                desc += t.InnerText + "\\t";
                             }
                         }
-                        desc = desc.Remove(desc.Length - 1) + "n";//12-03-2024
+                        desc = desc.Remove(desc.Length - 1) + "n";
                     }
-                    //desc = desc.Remove(desc.Length - 1);//12-03-2024
                 }
             }
-            else if(string.IsNullOrEmpty(desc))//20-03-2024
+            else if (string.IsNullOrEmpty(desc))
             {
                 desc = node.SelectSingleNode(".//span[contains(@class,'ILfuVd')]")?.InnerText ?? "";
-            }//20-03-2024
-            string cardType = lst ? "list" : tbl ? "table" : video ? "video" : chrt ? "chart" : "text";           
-                s.Append("<block type=\"answerCard\" url=\"\">");
-                s.Append("<item featureTitle=\"" + SetTitle(f_title) + "\" url=\"" + (!string.IsNullOrEmpty(itemUrl) ? itemUrl : SetUrl(url)) + "\" title=\"" +
+            }
+            if (!multi)
+            {
+                string cardType = lst ? "list" : tbl ? "table" : video ? "video" : chrt ? "chart" : "text";
+                s.Append("<block type=\"answerCard\">");
+                s.Append("<item url=\"" + (!string.IsNullOrEmpty(itemUrl) ? itemUrl : SetUrl(url)) + "\" title=\"" +
                     SetTitle(title) + "\" description=\"" + SetTitle(desc) + "\" cardType=\"" + cardType + "\" />");
                 s.Append("</block>");
+            }
             return s.ToString();
-        }//07-03-2024
-
-
+        }//07-03-2024//28-10-2024
         private string GetTwitterCards(HtmlNode node)
         {
             StringBuilder s = new StringBuilder();

@@ -1572,11 +1572,11 @@ namespace RapidTrackingSingleThread
                     s.Append("<block type=\"classicLinkCarousel\" url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(t.InnerText) + "\" >");
                     foreach (HtmlNode nd in nds)
                     {
-                        HtmlNode a = nd.SelectSingleNode(".//a");
+                        string url = nd.SelectSingleNode(".//a")?.Attributes["href"]?.Value ?? "";//28-10-2024
                         string t1 = nd.SelectSingleNode(".//div/span[@class='Yt787']|.//div[@class='ORij0c vqseUe']/span")?.InnerText ?? "";
-                        if (a == null && string.IsNullOrEmpty(t1))
+                        if (string.IsNullOrEmpty(SetUrl(url)) && string.IsNullOrEmpty(t1))//28-10-2024
                             continue;
-                        s.Append("<item url=\"" + SetUrl(a?.Attributes["href"]?.Value) + "\" title=\"" + SetTitle(t1) + "\" />");
+                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(t1) + "\" />");//28-10-2024
                     }
                     s.Append("</block>");
                 }

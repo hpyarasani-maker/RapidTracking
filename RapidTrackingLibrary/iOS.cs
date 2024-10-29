@@ -2333,7 +2333,6 @@ namespace RapidTrackingLibrary
             bool tbl = node.SelectSingleNode(".//table") != null;
             bool chrt = node.SelectSingleNode(".//div[contains(@class, 'kpd-ch')]") != null;
             bool video = node.SelectSingleNode(".//span[@class='z1asCe UIgqBe']/svg") != null;
-            string f_title = node.SelectSingleNode(".//h2/div[1]|.//div[@role='heading' and @aria-level='3']/div[contains(@class, 'JgzqYd')]|.//div[@class='iKJnec']")?.InnerText ?? "";
             HtmlNode a = node.SelectSingleNode(".//h3/a[contains(@class,'sXtWJb')]|.//h3/div/a[contains(@class,'sXtWJb')]|.//h3/div/span/a[contains(@class,'sXtWJb')]");
             string url = a?.Attributes["href"].Value ?? "";
             string title = a?.InnerText ?? "";
@@ -2375,9 +2374,10 @@ namespace RapidTrackingLibrary
                         desc = spn?.InnerText ?? l.InnerText;
                         url = SetUrl(l.SelectSingleNode(".//a")?.Attributes["href"]?.Value ?? "");
                         title = l.SelectSingleNode(".//div[@class='rNKqKd EhdWxb']")?.InnerText ?? "";
-                        if (!string.IsNullOrEmpty(url) && !string.IsNullOrEmpty(title))
-                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" description=\"" +
-                                SetTitle(desc) + "\" cardType=\"text\" />");
+                        if (string.IsNullOrEmpty(SetUrl(url)) || string.IsNullOrEmpty(title))//29-10-2024
+                            throw new Exception("Title or url in answercard item element is empty.");//29-10-2024
+                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" description=\"" +
+                            SetTitle(desc) + "\" cardType=\"text\" />");
                     }
                     s.Append("</block>");
                 }
@@ -2417,6 +2417,8 @@ namespace RapidTrackingLibrary
             if (!multi)
             {
                 string cardType = lst ? "list" : tbl ? "table" : video ? "video" : chrt ? "chart" : "text";
+                if (string.IsNullOrEmpty(SetUrl(url)) || string.IsNullOrEmpty(title))//29-10-2024
+                    throw new Exception("Title or url in answercard item element is empty.");//29-10-2024
                 s.Append("<block type=\"answerCard\">");
                 s.Append("<item url=\"" + (!string.IsNullOrEmpty(itemUrl) ? itemUrl : SetUrl(url)) + "\" title=\"" +
                     SetTitle(title) + "\" description=\"" + SetTitle(desc) + "\" cardType=\"" + cardType + "\" />");
@@ -3617,8 +3619,8 @@ namespace RapidTrackingLibrary
                 nd = node.SelectSingleNode(".//div[@class='rKFBM gsrt wp-ms']|.//div[@class='JNkvid gsrt VJIO7b BUnLGf wp-ms']|.//span[@class='FCUp0c rQMQod']|.//span[@class='mgAbYb OSrXXb RES9jf IFnjPb']");//06-11-2023//11-08-2023 //13-07-2020 images selector    // changes on 11-07-2019
                 if (nd != null)
                 {
-                    if (nd.InnerText == "About")//26-10-2023
-                        return "AnswerCard";
+                    //if (nd.InnerText == "About")//26-10-2023 commented on 29-10-2024
+                    //    return "AnswerCard";
                     if (nd.InnerText.StartsWith("Images") || nd.InnerText == "Imágenes")//26-10-20232020 and 10-02-2020 21-02-2020 included title for images block
                         return "Images";
                     if (nd.InnerText.Trim() == "Eventos" || nd.InnerText.Trim() == "Events")//22-07-2024 // 07-02-2020 included title for Event block

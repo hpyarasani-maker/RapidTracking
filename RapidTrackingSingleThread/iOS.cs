@@ -2279,7 +2279,6 @@ namespace RapidTrackingSingleThread
             bool tbl = node.SelectSingleNode(".//table") != null;
             bool chrt = node.SelectSingleNode(".//div[contains(@class, 'kpd-ch')]") != null;
             bool video = node.SelectSingleNode(".//span[@class='z1asCe UIgqBe']/svg") != null;
-            string f_title = node.SelectSingleNode(".//h2/div[1]|.//div[@role='heading' and @aria-level='3']/div[contains(@class, 'JgzqYd')]|.//div[@class='iKJnec']")?.InnerText ?? "";
             HtmlNode a = node.SelectSingleNode(".//h3/a[contains(@class,'sXtWJb')]|.//h3/div/a[contains(@class,'sXtWJb')]|.//h3/div/span/a[contains(@class,'sXtWJb')]");
             string url = a?.Attributes["href"].Value ?? "";
             string title = a?.InnerText ?? "";
@@ -2321,7 +2320,8 @@ namespace RapidTrackingSingleThread
                         desc = spn?.InnerText ?? l.InnerText;
                         url = SetUrl(l.SelectSingleNode(".//a")?.Attributes["href"]?.Value ?? "");
                         title = l.SelectSingleNode(".//div[@class='rNKqKd EhdWxb']")?.InnerText ?? "";
-                        if (!string.IsNullOrEmpty(url) && !string.IsNullOrEmpty(title))
+                         if (string.IsNullOrEmpty(SetUrl(url)) || string.IsNullOrEmpty(title))//29-10-2024
+                           throw new Exception("Title or url in answercard item element is empty.");//29-10-2024
                             s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" description=\"" +
                                 SetTitle(desc) + "\" cardType=\"text\" />");
                     }
@@ -2363,6 +2363,8 @@ namespace RapidTrackingSingleThread
             if (!multi)
             {
                 string cardType = lst ? "list" : tbl ? "table" : video ? "video" : chrt ? "chart" : "text";
+                if (string.IsNullOrEmpty(SetUrl(url)) || string.IsNullOrEmpty(title))//29-10-2024
+                    throw new Exception("Title or url in answercard item element is empty.");//29-10-2024
                 s.Append("<block type=\"answerCard\">");
                 s.Append("<item url=\"" + (!string.IsNullOrEmpty(itemUrl) ? itemUrl : SetUrl(url)) + "\" title=\"" +
                     SetTitle(title) + "\" description=\"" + SetTitle(desc) + "\" cardType=\"" + cardType + "\" />");
@@ -3412,7 +3414,7 @@ namespace RapidTrackingSingleThread
                 && (node.SelectSingleNode(".//div[@class='vDF3Oc jIrdcd']|.//div[contains(@class,'qtOtne')]|.//div[@class='YB4h9 ky4hfd']|.//div[@class='oj7Mub eVNxY']|.//div[@class='aJegcc']|.//div[@class='nC7kNc RrlBtc']") == null))//26-09-2024//24-09-2024//26-07-2024//04-07-2024//01-05-2024
                     return "Hotel";
             }
-            nd = node.SelectSingleNode(".//*[@id='rXuTZe']");
+            nd = node.SelectSingleNode("./[@id='rXuTZe']");
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='I2lQic']");//05-11-2019
             if (nd == null)
@@ -3446,7 +3448,7 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//g-card[@class='g F6CFcc']|.//g-inner-card[contains(@class,'Bf5NPb')]|.//div[@class='Bv2VAe']");//23-10-2023//14-08-2023//26-06-2023//03-06-2021 twitter block
             if (nd != null)
             {
-                if (nd.InnerText.Contains("Twitter") || nd.SelectSingleNode(".//g-link") != null || nd.SelectSingleNode(".//div[@class='agqCtf tw-res']")!=null)//28-08-2024//07-01-2021 twitter link
+                if (nd.InnerText.Contains("Twitter") || nd.SelectSingleNode(".//g-link") != null || nd.SelectSingleNode(".//div[@class='agqCtf tw-res']") != null)//28-08-2024//07-01-2021 twitter link
                     return "Twitters";
             }
             nd = node.SelectSingleNode(".//div[@class='_OKe']");
@@ -3476,7 +3478,8 @@ namespace RapidTrackingSingleThread
             }
             // changed on 05-07-2019
             else if (node.SelectSingleNode(".//div[@class='HnYYW']") != null)
-            {                HtmlNode n = node.SelectSingleNode(".//div[@class='HnYYW']");
+            {
+                HtmlNode n = node.SelectSingleNode(".//div[@class='HnYYW']");
                 if (n.InnerText == "People also ask" || n.InnerText == "Nutzer fragen auch" || n.InnerText == "Le persone hanno chiesto anche" || n.InnerText == "Orang juga bertanya")  //26-11-2019
                     return "PeopleAlsoAsk";
             }
@@ -3567,8 +3570,8 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[@class='rKFBM gsrt wp-ms']|.//div[@class='JNkvid gsrt VJIO7b BUnLGf wp-ms']|.//span[@class='FCUp0c rQMQod']|.//span[@class='mgAbYb OSrXXb RES9jf IFnjPb']");//06-11-2023//11-08-2023 //13-07-2020 images selector    // changes on 11-07-2019
                 if (nd != null)
                 {
-                    if (nd.InnerText == "About")//26-10-2023
-                        return "AnswerCard";
+                    //if (nd.InnerText == "About")//26-10-2023 commented on 29-10-2024
+                    //    return "AnswerCard";
                     if (nd.InnerText.StartsWith("Images") || nd.InnerText == "Imágenes")//26-10-2023
                         return "Images";
                     if (nd.InnerText.Trim() == "Eventos" || nd.InnerText.Trim() == "Events")//22-07-2024  // 07-02-2020 included title for Event block
@@ -3586,7 +3589,7 @@ namespace RapidTrackingSingleThread
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='aviV4d']|.//div[@class='ILuMad t6aJGf']|.//div[@class='c23Rxd UyGhtb']");//15-12-2023//12-10-2021
             if (nd == null)
-                 nd = node.SelectSingleNode(".//div[contains(@class,'rbR0cd')]"); //08-05-2021 in contains //21-05-2020 finance block included selector
+                nd = node.SelectSingleNode(".//div[contains(@class,'rbR0cd')]"); //08-05-2021 in contains //21-05-2020 finance block included selector
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='knowledge-finance-wholepage-chart__fw-uch']"); //16-12-2021 finance block
             if (nd != null)
@@ -3613,7 +3616,7 @@ namespace RapidTrackingSingleThread
             }
             /*nd = node.SelectSingleNode(".//div[contains(@class, 'vZFyxc')]");//22-11-2022 refine the searches
             if (nd != null)
-                return "Refine";*///22-11-2022
+                return "Refine";//22-11-2022
             nd = node.SelectSingleNode(".//div[contains(@class, 'bba2i')]");//11-06-2024 DataSet Block
             if (nd != null)
                 return "Dataset";//11-06-2024

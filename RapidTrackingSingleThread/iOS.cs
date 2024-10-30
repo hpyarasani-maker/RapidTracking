@@ -2967,6 +2967,8 @@ namespace RapidTrackingSingleThread
                 nds = node.SelectNodes(".//div[@class='bwQnad cH66Ue']");//29-06-2023
             if (nds == null)//20-02-2024
                 nds = node.SelectNodes(".//div[contains(@class,'EXH1Ce')]");//27-02-2024//20-02-2024
+            if (nds == null)//30-10-2024
+                nds = node.SelectNodes(".//div[@class='qR29te']");//30-10-2024
             if (nds != null)
             {
                 foreach (HtmlNode nd in nds)
@@ -2975,7 +2977,7 @@ namespace RapidTrackingSingleThread
                     {
                         string price_value = string.Empty;
                         string additional_info = string.Empty;
-                        string title = nd.SelectSingleNode(".//div[contains(@class,'BTPx6e')]|.//div[@class='Yt787 aKoISd']|.//span[@class='Yt787']")?.InnerText.Trim() ?? "";//20-02-2024 //29-06-2023//01-03-2023
+                        string title = nd.SelectSingleNode(".//div[contains(@class,'BTPx6e')]|.//div[@class='Yt787 aKoISd']|.//span[@class='Yt787']|.//div[@class='ZhosBf W59sce dctkEf']")?.InnerText.Trim() ?? "";//30-10-2024//20-02-2024 //29-06-2023//01-03-2023
                         string rating = nd.SelectSingleNode(".//span[contains(@class,'YrbPuc')]")?.InnerText.Trim() ?? "";
                         string reviews = nd.SelectSingleNode(".//span[@class='RDApEe YrbPuc']")?.InnerText.Trim() ?? "";
                         string price = nd.SelectSingleNode(".//div[contains(@class,'VSZCrf')]/span|.//div[@class='QIeQge']|.//div[@class='Z6yUYe RiJqbb RES9jf']|.//div[@class='rDUZLd JNI6Yb']/span|.//div[@class='wHYlTd RES9jf OSrXXb']/span|.//div[@class='VaiWld']/div/span[@class='JNI6Yb']")?.InnerText.Trim() ?? "";//09-05-2024//27-02-2024//20-02-2024//29-06-2023//02-03-2023//22-02-2023

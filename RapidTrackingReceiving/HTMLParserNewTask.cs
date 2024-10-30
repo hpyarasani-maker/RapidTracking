@@ -22,15 +22,15 @@ namespace Oxylabs_BulkKeywords
         string statusCode = string.Empty;
         readonly string myDate = DateTime.Today.ToString("yyyy-MM-dd");
 
-        public event KeywordDone OnKeywordDone;
+        public event KeywordDone OnKeywordDone;//30-10-2024
         double apitime, dbtime;    // 31-03-2020
         Thread t1; //06-08-2024
         public HTMLParserNewTask()
         {
             desktop = new Desktop();
-            desktop.OnKeywordDone += Desktop_OnKeywordDone;
+            desktop.OnKeywordDone += Desktop_OnKeywordDone;//30-10-2024
             ios = new iOS();
-            ios.OnKeywordDone += Ios_OnKeywordDone;
+            ios.OnKeywordDone += Ios_OnKeywordDone;//30-10-2024
             t1 = new Thread(new ThreadStart(StartProcess))//06-08-2024
             {
                 //Name = "All_1"
@@ -43,11 +43,11 @@ namespace Oxylabs_BulkKeywords
             };
             t1.Start();
         }
-        private void Ios_OnKeywordDone(string value)
+        private void Ios_OnKeywordDone(string value)//30-10-2024
         {
             OnKeywordDone.Invoke(value);
         }
-        private void Desktop_OnKeywordDone(string value)
+        private void Desktop_OnKeywordDone(string value)//30-10-2024
         {
             OnKeywordDone.Invoke(value);
         }
@@ -171,9 +171,9 @@ namespace Oxylabs_BulkKeywords
                         seid = sp.seid.ToString();
 
                         if (device == "desktop")
-                            result = desktop.ProcessDocument(seid, kw, jobid, response, out orgUrls);
+                            result = desktop.ProcessDocument(seid, kw, jobid, response, out orgUrls);//30-10-2024
                         else
-                            result = ios.ProcessDocument(seid, kw, jobid, response, out orgUrls);
+                            result = ios.ProcessDocument(seid, kw, jobid, response, out orgUrls);//30-10-2024
                     }
                     catch (Exception ex)
                     {

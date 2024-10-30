@@ -28,8 +28,9 @@ namespace Oxylabs_BulkKeywords
         public HTMLParserNewTask()
         {
             desktop = new Desktop();
+            desktop.OnKeywordDone += Desktop_OnKeywordDone;
             ios = new iOS();
-
+            ios.OnKeywordDone += Ios_OnKeywordDone;
             t1 = new Thread(new ThreadStart(StartProcess))//06-08-2024
             {
                 //Name = "All_1"
@@ -41,6 +42,14 @@ namespace Oxylabs_BulkKeywords
                 //Name = "NewComma"
             };
             t1.Start();
+        }
+        private void Ios_OnKeywordDone(string value)
+        {
+            OnKeywordDone.Invoke(value);
+        }
+        private void Desktop_OnKeywordDone(string value)
+        {
+            OnKeywordDone.Invoke(value);
         }
 
         private async void StartProcess() //06-08-2024
@@ -162,9 +171,9 @@ namespace Oxylabs_BulkKeywords
                         seid = sp.seid.ToString();
 
                         if (device == "desktop")
-                            result = desktop.ProcessDocument(seid, kw, response, out orgUrls);
+                            result = desktop.ProcessDocument(seid, kw, jobid, response, out orgUrls);
                         else
-                            result = ios.ProcessDocument(seid, kw, response, out orgUrls);
+                            result = ios.ProcessDocument(seid, kw, jobid, response, out orgUrls);
                     }
                     catch (Exception ex)
                     {

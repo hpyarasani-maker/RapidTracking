@@ -15,8 +15,8 @@ namespace Oxylabs_BulkKeywords
     {
         int orgLinks;
         string html; string seid = string.Empty;//23-06-2023
-
-        public string ProcessDocument(string seid, string keyword, string htmlsource, out int organicurls)
+        public event KeywordDone OnKeywordDone;
+        public string ProcessDocument(string seid, string keyword, string jobid, string htmlsource, out int organicurls)
         {
             this.seid = seid;//23-06-2023
             if (string.IsNullOrEmpty(htmlsource))
@@ -82,8 +82,11 @@ namespace Oxylabs_BulkKeywords
                                 sb.Append(s);
                         }
                     }
-                    catch { }
-            }
+                    catch (Exception ex)
+                    {
+                        OnKeywordDone.Invoke("Error:  seid: " + seid + ",  keyword: " + keyword + ",  jobid: " + jobid + "\r\n\t" + ex.Message + "^0^0.0^0.0^0");
+                    }
+                }
             // 23-03-2020
             if (string.IsNullOrEmpty(ndText) || orgLinks == 0)//08-04-2020
             {
@@ -105,8 +108,11 @@ namespace Oxylabs_BulkKeywords
                                 sb.Append(s);
                         }
                     }
-                    catch { }
-                }
+                        catch (Exception ex)
+                        {
+                            OnKeywordDone.Invoke("Error:  seid: " + seid + ",  keyword: " + keyword + ",  jobid: " + jobid + "\r\n\t" + ex.Message + "^0^0.0^0.0^0");
+                        }
+                    }
             }
             // 23-03-2020
 

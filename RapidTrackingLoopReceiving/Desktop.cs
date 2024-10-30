@@ -1453,18 +1453,18 @@ namespace RapidTrackingLoopReceiving
             return s.ToString();
         }*/
 
-        private string GetAnswerCard(HtmlNode node)//07-03-2024
+        private string GetAnswerCard(HtmlNode node)//07-03-2024//28-10-2024
         {
             StringBuilder s = new StringBuilder();
             string desc = string.Empty;
             bool lst = false;
             bool tbl = node.SelectSingleNode(".//table") != null;
             bool video = node.SelectSingleNode(".//span[@class='z1asCe UIgqBe']/svg") != null;
-            string f_title = (node.SelectNodes(".//span[contains(@class, 'ILfuVd')]") == null) ? node.SelectSingleNode(".//div[@role='heading' and @ aria-level='3']")?.InnerText ?? "" : "";//20-03-2024
             bool chrt = node.SelectSingleNode(".//div[contains(@class, 'kpd-ch')]") != null;
             HtmlNode a = node.SelectSingleNode(".//div[@class='yuRUbf']/a|.//div[@class='yuRUbf']/div/a|.//div[@class='yuRUbf']/div/span/a");
             string url = a?.Attributes["href"].Value ?? "";
             string title = node.SelectSingleNode(".//h3[contains(@class,'LC20lb')]")?.InnerText.Trim() ?? "";
+            string itemUrl = string.Empty;
             if (a == null) //25-04-2024
             {
                 a = node.SelectSingleNode(".//div[@class='V3FYCf']/div[2]/a|.//div[@class='V3FYCf']/div[3]/a");
@@ -1472,7 +1472,7 @@ namespace RapidTrackingLoopReceiving
                 title = a?.SelectSingleNode(".//div[@class='erHJcf MBeuO']")?.InnerText ?? "";
             }//25-04-2024
             HtmlNodeCollection ls = node.SelectNodes(".//ul/li|.//ol/li");
-            if (ls != null)
+            if (ls != null && node.SelectNodes(".//div[@class='GcKpu']|.//div[contains(@class,'Fzsovc')]") == null)//29-10-2024
             {
                 lst = true;
                 foreach (var l in ls)
@@ -1515,12 +1515,14 @@ namespace RapidTrackingLoopReceiving
                 desc = node.SelectSingleNode(".//span[contains(@class, 'ILfuVd')]")?.InnerText ?? "";
             }//20-03-2024
             string cardType = lst ? "list" : tbl ? "table" : video ? "video" : chrt ? "chart" : "text";
-            s.Append("<block type=\"answerCard\" url=\"\">");//17-05-2024
-            s.Append("<item featureTitle=\"" + SetTitle(f_title) + "\" url=\"" + SetUrl(url) + "\" title=\"" +//17-05-2024
+            if (string.IsNullOrEmpty(SetUrl(url)) || string.IsNullOrEmpty(title))//29-10-2024
+                throw new Exception("Title or url in answercard item element is empty.");//29-10-2024
+            s.Append("<block type=\"answerCard\">");//17-05-2024
+            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" +//17-05-2024
                 SetTitle(title) + "\" description=\"" + SetTitle(desc) + "\" cardType=\"" + cardType + "\" />");
             s.Append("</block>");
             return s.ToString();
-        }//07-03-2024
+        }//07-03-2024//28-10-2024
 
         private string GetTwitterCards(HtmlNode node)
         {
@@ -2279,7 +2281,7 @@ namespace RapidTrackingLoopReceiving
                 if (node.SelectSingleNode(".//div[@class='BET1rd']|.//div[@class='EfDVh wDYxhc NFQFxe']|.//div[contains(@class,'AxJnmb Wdsnue')]|.//div[@class='jYcvae kY5Gde']") == null //27-04-2023
                     && node.SelectSingleNode(".//div[@class='tpa-cc']|.//div[@class='kno-rdesc']|.//div[@class='RPdfze mnr-c vk_c']") == null && node.SelectSingleNode(".//g-scrolling-carousel[@class='VXdDm']") == null //03-05-2023 //22-06-2022//23-12-2021 //21-08-2021 //25-09-2020
                     && node.SelectSingleNode(".//div[contains(@class,'knowledge-finance')]|.//div[contains(@id,'knowledge-finance')]|.//div[contains(@id,'knowledge-currency')]") == null//02-05-2023 //01-05-2023
-                    && node.SelectSingleNode(".//*[@id='lu_map']|.//img[contains(@alt,'Map of')]|.//a[contains(@data-url,'/maps/')]|.//div[@class='wDYxhc']") == null)//22-09-2023 //22-07-2022 //13-10-2021
+                   && node.SelectSingleNode(".//*[@id='lu_map']|.//img[contains(@alt,'Map of')]|.//a[contains(@data-url,'/maps/')]|.//div[@class='wDYxhc']|.//div[contains(@class,'gJBeNe d2F2Td')]") == null)//22-09-2023 //22-07-2022 //13-10-2021//29-10-2024
                     return "AnswerCard";
                 else if ((node.SelectSingleNode(".//div[@class='WcS13d']") != null && node.SelectSingleNode(".//div[@class='EfDVh wDYxhc NFQFxe']") != null //10-10-2023
                      || node.SelectSingleNode(".//div[@class='nmVgI3FLyE0__answer']") != null //10-10-2023
@@ -2288,7 +2290,7 @@ namespace RapidTrackingLoopReceiving
                     || node.SelectSingleNode(".//div[@class='ifM9O']") != null) && node.SelectSingleNode(".//img[contains(@alt, 'Map of')]") == null
                     && node.SelectSingleNode(".//h3[@role='heading']")?.InnerText != "Recipes"
                     && node.SelectSingleNode(".//ul/product-viewer-group|.//div[@class='aJegcc']|.//div[@id='iur']|.//div[contains(@id, 'lu_map')]|.//div[contains(@class, 'lu_map')]") == null //09-11-2023
-                    && node.SelectSingleNode(".//div[@class='knowledge-finance-wholepage-chart__fw-uch']|.//div[@class='fPmcEc']") == null)//24-10-2024 //09-11-2023
+                    && node.SelectSingleNode(".//div[@class='knowledge-finance-wholepage-chart__fw-uch']|.//div[@class='fPmcEc']|.//div[contains(@class,'gJBeNe d2F2Td')]") == null)//24-10-2024 //09-11-2023//29-10-2024
                     return "AnswerCard";//27-12-2021
             }
             //05-10-2020 KP Block selectors updated

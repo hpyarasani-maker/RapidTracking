@@ -299,7 +299,7 @@ namespace RapidMissingJobsReceiving
                         if (node.SelectSingleNode(".//div[contains(@class,'T6zPgb')]/div[@role='heading']") != null)
                         {
                             s.Append("<block type=\"peopleAlsoSearch\" >");
-                            HtmlNodeCollection nc = node.SelectNodes(".//div[@class='oatEtb']/span");
+                            HtmlNodeCollection nc = node.SelectNodes(".//div[@class='oatEtb']/span|.//div[@class='oatEtb']/div/span");//01-11-2024
                             if (nc != null)
                                 foreach (HtmlNode n in nc)
                                 {
@@ -1151,7 +1151,7 @@ namespace RapidMissingJobsReceiving
                 if (nd.SelectSingleNode(".//div[contains(@class,'T6zPgb')]/div[@role='heading']") != null)
                 {
                     s.Append("<block type=\"peopleAlsoSearch\" >");
-                    HtmlNodeCollection nc = nd.SelectNodes(".//div[@class='oatEtb']/span");
+                    HtmlNodeCollection nc = node.SelectNodes(".//div[@class='oatEtb']/span|.//div[@class='oatEtb']/div/span");//01-11-2024
                     if (nc != null)
                         foreach (HtmlNode n in nc)
                         {

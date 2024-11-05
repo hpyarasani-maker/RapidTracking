@@ -3263,7 +3263,7 @@ namespace RapidTrackingLibrary
             return "TopSights";*/ //23-03-2022//19-01-2023
             if ((node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]|.//div[contains(@class, 'tkQJMd')]|.//div[@class='zhYvOe']|.//div[@class='p21Z4']") != null//23-04-2024 //03-01-2024
                 || node.Attributes["class"]?.Value == "WlTAzf mnr-c vk_c" || node.Attributes["class"]?.Value == "WlTAzf Ww4FFb vt6azd vk_c")
-                && node.SelectSingleNode(".//div[@jscontroller='UjNCHf']|.//div[@class='RRXMad']|.//div[@jsname='GDPwke']|.//div[@class='zhYvOe']") == null)//14-10-2024//19-01-2024//02-01-2024//22-09-2023//21-09-2023//03-07-2023 //23-03-2022
+                && node.SelectSingleNode(".//div[@jscontroller='UjNCHf']|.//div[@class='RRXMad']|.//div[@jsname='GDPwke']") == null)//14-10-2024//19-01-2024//02-01-2024//22-09-2023//21-09-2023//03-07-2023 //23-03-2022
                 return "Flights";//23-03-2022
 
             if (node.SelectSingleNode(".//g-card[@class='cvoI5e']|.//g-tray-header[contains(@class,'iI6nue')]") != null

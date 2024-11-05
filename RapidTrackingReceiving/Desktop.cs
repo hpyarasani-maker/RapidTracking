@@ -84,9 +84,13 @@ namespace Oxylabs_BulkKeywords
                     }
                     catch (Exception ex)//30-10-2024
                     {
-                        OnKeywordDone.Invoke("Error:  seid: " + seid + ",  keyword: " + keyword + ",  jobid: " + jobid + "\r\n\t" + ex.Message + "^0^0.0^0.0^0");
+                        //OnKeywordDone.Invoke("Error:  seid: " + seid + ",  keyword: " + keyword + ",  jobid: " + jobid + "\r\n\t" + ex.Message + "^0^0.0^0.0^0");
+                        if (ex.Message.Contains("answercard"))//05-11-2024
+                        {
+                            OnKeywordDone.Invoke("Error:  seid: " + seid + ",  keyword: " + keyword + ",  jobid: " + jobid + "\r\n\t" + ex.Message + "^0^0.0^0.0^0");
+                        }//05-11-2024                    
                     }
-                }
+             }
             // 23-03-2020
             if (string.IsNullOrEmpty(ndText) || orgLinks == 0)//08-04-2020
             {
@@ -110,7 +114,11 @@ namespace Oxylabs_BulkKeywords
                     }
                         catch (Exception ex)//30-10-2024
                         {
-                            OnKeywordDone.Invoke("Error:  seid: " + seid + ",  keyword: " + keyword + ",  jobid: " + jobid + "\r\n\t" + ex.Message + "^0^0.0^0.0^0");
+                            //OnKeywordDone.Invoke("Error:  seid: " + seid + ",  keyword: " + keyword + ",  jobid: " + jobid + "\r\n\t" + ex.Message + "^0^0.0^0.0^0");
+                            if (ex.Message.Contains("answercard"))//05-11-2024
+                            {
+                                OnKeywordDone.Invoke("Error:  seid: " + seid + ",  keyword: " + keyword + ",  jobid: " + jobid + "\r\n\t" + ex.Message + "^0^0.0^0.0^0");
+                            }//05-11-2024
                         }
                     }
             }

@@ -2340,9 +2340,9 @@ namespace RapidTrackingLibrary
             bool multi = false;
             if (a == null)
             {
-                a = node.SelectSingleNode(".//div[@class='V3FYCf']/div[2]/a");
+                a = node.SelectSingleNode(".//div[@class='V3FYCf']/div[2]/a|.//div[contains(@class,'V3FYCf')]/a");//05-11-2024
                 url = a?.Attributes["href"].Value ?? "";
-                title = a?.SelectSingleNode(".//div[@class='erHJcf MBeuO']")?.InnerText ?? "";
+                title = a?.SelectSingleNode(".//div[contains(@class,'MBeuO')]")?.InnerText ?? "";//05-11-2024
             }
             HtmlNodeCollection ls = node.SelectNodes(".//ul/li|.//ol/li");
             if (ls != null)

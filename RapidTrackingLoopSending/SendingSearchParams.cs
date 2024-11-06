@@ -3754,6 +3754,70 @@ namespace RapidTrackingLoopSending
             {
                 seid =1007, domain ="co.uk", geo_location = "Welwyn Garden City,Hertfordshire,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICI3V2Vsd3luIEdhcmRlbiBDaXR5LEhlcnRmb3Jkc2hpcmUsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==",device="mobile_android"
             },//07-10-2024
+            new SearchProperties()//06-11-2024
+            {
+                seid =1008, domain ="cd", geo_location = "Democratic Republic of the Congo", locale= "fr-cd", uule = "w+CAIQICIgRGVtb2NyYXRpYyBSZXB1YmxpYyBvZiB0aGUgQ29uZ28=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =1009, domain ="cd", geo_location = "Democratic Republic of the Congo", locale= "fr-cd", uule = "w+CAIQICIgRGVtb2NyYXRpYyBSZXB1YmxpYyBvZiB0aGUgQ29uZ28=",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =1010, domain ="cd", geo_location = "Democratic Republic of the Congo", locale= "en-cd", uule = "w+CAIQICIgRGVtb2NyYXRpYyBSZXB1YmxpYyBvZiB0aGUgQ29uZ28=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =1011, domain ="cd", geo_location = "Democratic Republic of the Congo", locale= "en-cd", uule = "w+CAIQICIgRGVtb2NyYXRpYyBSZXB1YmxpYyBvZiB0aGUgQ29uZ28=",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =1012, domain ="com.et", geo_location = "Ethiopia", locale= "am-et", uule = "w+CAIQICIIRXRoaW9waWE=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =1013, domain ="com.et", geo_location = "Ethiopia", locale= "am-et", uule = "w+CAIQICIIRXRoaW9waWE=",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =1014, domain ="com.et", geo_location = "Ethiopia", locale= "en-et", uule = "w+CAIQICIIRXRoaW9waWE=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =1015, domain ="com.et", geo_location = "Ethiopia", locale= "en-et", uule = "w+CAIQICIIRXRoaW9waWE=",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =1016, domain ="co.ls", geo_location = "Lesotho", locale= "st-ls", uule = "w+CAIQICIHTGVzb3Robw==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =1017, domain ="co.ls", geo_location = "Lesotho", locale= "st-ls", uule = "w+CAIQICIHTGVzb3Robw==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =1018, domain ="co.ls", geo_location = "Lesotho", locale= "en-ls", uule = "w+CAIQICIHTGVzb3Robw==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =1019, domain ="co.ls", geo_location = "Lesotho", locale= "en-ls", uule = "w+CAIQICIHTGVzb3Robw==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =1020, domain ="co.mz", geo_location = "Mozambique", locale= "pt-mz", uule = "w+CAIQICIKTW96YW1iaXF1ZQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =1021, domain ="co.mz", geo_location = "Mozambique", locale= "pt-mz", uule = "w+CAIQICIKTW96YW1iaXF1ZQ==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =1022, domain ="co.mz", geo_location = "Mozambique", locale= "en-mz", uule = "w+CAIQICIKTW96YW1iaXF1ZQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =1023, domain ="co.mz", geo_location = "Mozambique", locale= "en-mz", uule = "w+CAIQICIKTW96YW1iaXF1ZQ==",device="mobile_android"
+            },//06-11-2024
         };
     }
 

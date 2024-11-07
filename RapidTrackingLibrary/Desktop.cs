@@ -2327,7 +2327,7 @@ namespace RapidTrackingLibrary
                 if (node.SelectSingleNode(".//div[@class='BET1rd']|.//div[@class='EfDVh wDYxhc NFQFxe']|.//div[contains(@class,'AxJnmb Wdsnue')]|.//div[@class='jYcvae kY5Gde']") == null //27-04-2023
                     && node.SelectSingleNode(".//div[@class='tpa-cc']|.//div[@class='kno-rdesc']|.//div[@class='RPdfze mnr-c vk_c']") == null && node.SelectSingleNode(".//g-scrolling-carousel[@class='VXdDm']") == null //03-05-203 //22-06-2022//23-12-2021 //21-08-2021 //25-09-2020
                     && node.SelectSingleNode(".//div[contains(@class,'knowledge-finance')]|.//div[contains(@id,'knowledge-finance')]|.//div[contains(@id,'knowledge-currency')]") == null//02-05-2023 //01-05-2023
-                   && node.SelectSingleNode(".//*[@id='lu_map']|.//img[contains(@alt,'Map of')]|.//a[contains(@data-url,'/maps/')]|.//div[@class='wDYxhc']|.//div[contains(@class,'gJBeNe d2F2Td')]") == null)//22-09-2023 //22-07-2022 //13-10-2021//29-10-2024
+                   && node.SelectSingleNode(".//*[@id='lu_map']|.//img[contains(@alt,'Map of')]|.//a[contains(@data-url,'/maps/')]|.//div[@class='wDYxhc']|.//div[contains(@class,'gJBeNe d2F2Td')]|.//div[contains(@class,'kpd-ch')]") == null)//07-11-2024//22-09-2023 //22-07-2022 //13-10-2021//29-10-2024
                     return "AnswerCard";
                 else if ((node.SelectSingleNode(".//div[@class='WcS13d']") != null && node.SelectSingleNode(".//div[@class='EfDVh wDYxhc NFQFxe']") != null //10-10-2023
                      || node.SelectSingleNode(".//div[@class='nmVgI3FLyE0__answer']") != null //10-10-2023

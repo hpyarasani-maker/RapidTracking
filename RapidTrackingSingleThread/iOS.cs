@@ -3869,72 +3869,91 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@class='urrG9 v5yQqb jqWpsc']|.//div[@class='lNvPub cP7qLd v5yQqb']|.//div[@class='adXOEf v5yQqb']" +
                 "|.//div[@class='T61Aje v5yQqb']|.//div[contains(@class, 'WFyfFf')]") != null || node.SelectSingleNode(".//div[contains(@class,'kb0PBd cvP2Ce')]") != null;//13-08-2024//04-06-2024//14-02-2024//23-08-2023 != null//17-05-2023 //31-05-2022
         }
-        private string GetAioverview(HtmlNode node)//21-08-2024 AIOverview Method
+        private string GetAioverview(HtmlNode node)//08-11-2024//21-08-2024 AIOverView Method
         {
             StringBuilder s = new StringBuilder();
             s.Append("<block type=\"aiOverview\"/>");
             return s.ToString();
             /*StringBuilder s = new StringBuilder();
-            s.Append("<block type=\"aiOverview\" url=\"\">");
+            s.Append("<block type=\"aiOverview\" >");
             HtmlNodeCollection nodes = node.SelectNodes(".//div[contains(@class, 'WaaZC')]");
             if (nodes != null)
             {
                 foreach (HtmlNode nd in nodes)
                 {
-                    string paragraph = "";
-                    string url = "";
-                    string title = string.Empty;
-                    //int count = 0;
-                    HtmlNode pgh = nd.SelectSingleNode(".//div[@data-attrid='SGEParagraphFeedback']");
-                    if (pgh != null)
-                    {
-                        paragraph = pgh.InnerText.IndexOf("&nbsp;") != -1 ? pgh.InnerText.Substring(0, pgh.InnerText.IndexOf("&nbsp;")) : pgh.InnerText;
-                        s.Append("<item type=\"paragraph\" content=\"" + paragraph + "\" />");
-                    }
-                    HtmlNodeCollection ls = nd.SelectNodes(".//ul/li|.//ol/li");
+                    HtmlNodeCollection ls = nd.SelectNodes(".//div[@class='RJPOee EIJn2']/ul/li");
+                    if (ls == null)
+                        ls = nd.SelectNodes(".//ul/li[@class='K3KsMc']");
                     if (ls != null)
                     {
-                        string lcontent = "";
-                        int cnt = 0;
-                        foreach (var l in ls)
+                        foreach (HtmlNode nd1 in ls)
                         {
-                            HtmlNode eli = l.SelectSingleNode(".//div[@jsname='K8SI3e']|.//div[@class='Gur8Ad']");
-                            cnt++;
-                            if (eli != null)
+                            string content = string.Empty;
+                            string url = string.Empty;
+                            HtmlNodeCollection spanCol = nd1.SelectNodes(".//span/span");
+                            if (spanCol != null)
                             {
-                                lcontent += eli.InnerText + ":";
-                            }
-                            if (cnt == ls.Count)
-                            {
-                                lcontent += l.InnerText.IndexOf("&nbsp;") != -1 ? l.InnerText.Substring(0, l.InnerText.IndexOf("&nbsp;"))
-                                    : l.InnerText;
-                                s.Append("<item type=\"list\" content=\"" + lcontent + "\" />");
-                            }
-                            else
-                                lcontent += l.InnerText.IndexOf("&nbsp;") != -1 ? l.InnerText.Substring(0, l.InnerText.IndexOf("&nbsp;")) + "\\n"
-                                    : l.InnerText + "\\n";
-                            HtmlNodeCollection lr = l.SelectNodes(".//a[@class='ddkIM rz5jw c30Ztd']");
-                            if (lr != null)
-                            {
-                                foreach (var r in lr)
+                                foreach (HtmlNode sp in spanCol)
                                 {
-                                    if (r != null)
+                                    content += sp.InnerText + " ";
+                                }
+                            }
+                            HtmlNode urlNode = nd1.SelectSingleNode(".//div[contains(@class,'acn1Z')]");
+                            if (urlNode != null)
+                            {
+                                HtmlNode link = urlNode.SelectSingleNode(".//ul/li/a");
+                                if (link != null)
+                                {
+                                    url = link.Attributes["href"]?.Value ?? "";
+                                }
+                            }
+                            if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(content))
+                            {
+                                s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" + content.Replace("&nbsp;", "") + "\" />");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        string content = string.Empty;
+                        string url = string.Empty;
+                        HtmlNode nd1 = nd.SelectSingleNode(".//div[@class='RJPOee EIJn2']/div");
+                        if (nd1 == null)
+                            nd1 = nd.SelectSingleNode(".//div[contains(@class,'rPeykc')]");
+                        if (nd1 != null)
+                        {
+                            content = nd1.SelectSingleNode(".//span[@role='heading']")?.InnerText ?? "";
+                            if (string.IsNullOrEmpty(content))
+                            {
+                                HtmlNodeCollection spanCol = nd1.SelectNodes(".//span/span");
+                                if (spanCol != null)
+                                {
+                                    foreach (HtmlNode sp in spanCol)
                                     {
-                                        url = r.Attributes["href"]?.Value ?? "";
-                                        title = r.Attributes["aria-label"]?.Value ?? "";
-                                        s.Append("<item type=\"resources\" title=\"" + SetTitle(title) + "\" url=\"" + SetUrl(url) + "\" />");
+                                        content += sp.InnerText + " ";
                                     }
                                 }
                             }
+                            HtmlNode urlNode = nd1.SelectSingleNode(".//div[contains(@class,'acn1Z')]");
+                            if (urlNode != null)
+                            {
+                                HtmlNode link = urlNode.SelectSingleNode(".//ul/li/a");
+                                if (link != null)
+                                {
+                                    url = link.Attributes["href"]?.Value ?? "";
+                                }
+                            }
                         }
-                        //lcontent = lcontent.Remove(lcontent.Length - 1);
-                        //s.Append("<item type=\"list\" content=\"" + lcontent + "\" />");
+                        if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(content))
+                        {
+                            s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" + content.Replace("&nbsp;", "") + "\" />");
+                        }
                     }
                 }
             }
             s.Append("</block>");
             return s.ToString();*/
-        }//21-08-2024 AIOverview
+        }//08-11-2024//21-08-2024 AIOverView Method
 
         internal object GetTop100GoogleUKMobileImages_PageURLs(string kw, string v1, string v2, string v3, string v4, string v5)
         {

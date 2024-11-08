@@ -691,7 +691,7 @@ namespace RapidTrackingSingleThread
                 }
             }
             //end of 18-03-2020
-            colt = doc.DocumentNode.SelectSingleNode("//div[@class='GcKpu']|.//div[contains(@class,'Fzsovc')]");//03-09-2024//21-08-2024 AIOverview
+            colt = doc.DocumentNode.SelectSingleNode("//div[@class='M8OgIe']|//div[@class='GcKpu']|.//div[contains(@class,'Fzsovc')]");//08-11-2024//03-09-2024//21-08-2024 AIOverview
             if (colt != null)
             {
                 s.Append(GetAioverview(colt));

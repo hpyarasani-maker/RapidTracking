@@ -203,7 +203,7 @@ namespace Oxylabs_BulkKeywords
                         bool isOldPage = false;
                         if (ex.Message == "Old page found.")
                             isOldPage = true;
-                        await ProcessError(kw, seid, jobid, isOldPage); //06-08-2024
+                        await ProcessError(kw, seid, jobid,ex.Message.ToString(), isOldPage); //09-11-2024//06-08-2024
                     }
                     finally { }
                 }
@@ -211,13 +211,13 @@ namespace Oxylabs_BulkKeywords
             }
         }
 
-        private async Task ProcessError(string kw, string seid, string jobid, bool isOldPage) //06-08-2024
+        private async Task ProcessError(string kw, string seid, string jobid,string message, bool isOldPage)//09-11-2024 //06-08-2024
         {
-            string qry = "insert into dashboard_dataerrors (date, name, seid, jobid) values(Convert(varchar(10),'" + myDate + "',103), N'" +
-                  kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "' )";
+            string qry = "insert into dashboard_dataerrors (date, name, seid, jobid,message) values(Convert(varchar(10),'" + myDate + "',103), N'" +
+                  kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "','"+message+"' )";//09-11-2024
 
-            string qryOld = "insert into dashboard_oldgooglepage (date, keyword, seid, jobid) values('" + DateTime.Now + "', N'" +
-                 kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "' )";
+            string qryOld = "insert into dashboard_oldgooglepage (date, keyword, seid, jobid,message) values('" + DateTime.Now + "', N'" +
+                 kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "','" + message + "'  )";//09-11-2024
 
             using (SqlConnection con = new SqlConnection(StrConn()))
             {

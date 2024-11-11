@@ -3886,8 +3886,8 @@ namespace Oxylabs_BulkKeywords
             StringBuilder s = new StringBuilder();
             s.Append("<block type=\"aiOverview\"/>");
             return s.ToString();
-            /*StringBuilder s = new StringBuilder();
-            s.Append("<block type=\"aiOverview\" >");
+            /* StringBuilder s = new StringBuilder();
+            s.Append("<block type=\"aiOverview\">");
             HtmlNodeCollection nodes = node.SelectNodes(".//div[contains(@class, 'WaaZC')]");
             if (nodes != null)
             {
@@ -3902,7 +3902,7 @@ namespace Oxylabs_BulkKeywords
                         {
                             string content = string.Empty;
                             string url = string.Empty;
-                            HtmlNodeCollection spanCol = nd1.SelectNodes(".//span/span");
+                            HtmlNodeCollection spanCol = nd1.SelectNodes(".//span/span|.//div[@class='vM0jzc']/span");//09-11-2024
                             if (spanCol != null)
                             {
                                 foreach (HtmlNode sp in spanCol)
@@ -3921,7 +3921,7 @@ namespace Oxylabs_BulkKeywords
                             }
                             if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(content))
                             {
-                                s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" + content.Replace("&nbsp;", "") + "\" />");
+                                s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" +SetTitle(content.Replace("&nbsp;", "")) + "\" />");
                             }
                         }
                     }
@@ -3931,10 +3931,14 @@ namespace Oxylabs_BulkKeywords
                         string url = string.Empty;
                         HtmlNode nd1 = nd.SelectSingleNode(".//div[@class='RJPOee EIJn2']/div");
                         if (nd1 == null)
-                            nd1 = nd.SelectSingleNode(".//div[contains(@class,'rPeykc')]");
+                            nd1 = nd.SelectSingleNode(".//div[contains(@class,'rPeykc')]|.//ul/li|.//ol/li");//09-11-2024
                         if (nd1 != null)
                         {
-                            content = nd1.SelectSingleNode(".//span[@role='heading']")?.InnerText ?? "";
+                            HtmlNode cnt = nd1.SelectSingleNode(".//span[@role='heading']");//09-11-2024
+                            if (cnt == null)
+                                content = nd1.InnerText ?? "";
+                            else
+                                content = cnt?.InnerText ?? "";//09-11-2024
                             if (string.IsNullOrEmpty(content))
                             {
                                 HtmlNodeCollection spanCol = nd1.SelectNodes(".//span/span");
@@ -3958,7 +3962,7 @@ namespace Oxylabs_BulkKeywords
                         }
                         if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(content))
                         {
-                            s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" + content.Replace("&nbsp;", "") + "\" />");
+                            s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" +SetTitle(content.Replace("&nbsp;", "")) + "\" />");//09-11-2024
                         }
                     }
                 }

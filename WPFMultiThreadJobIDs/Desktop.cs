@@ -42,8 +42,8 @@ namespace WPFMultiThreadJobIDs
                 nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'TzHB6b cLjAic')]|.//div[contains(@id, 'arc-srp')]/div/div[@class='MjjYud']|.//div[contains(@id, 'arc-srp')]/div/div/div[@class='MjjYud']");
             if (nodeCol == null || nodeCol.Count <= 4)
                 nodeCol = rso.SelectNodes(".//div[contains(@class,'TzHB6b cLjAic')]");//02-11-2023
-            if (nodeCol == null || nodeCol.Count <= 3)//02-11-2023
-                nodeCol = rso.SelectNodes(".//div[@class='WvKfwe a3spGf']/div|.//div[@class='aviV4d']");//01-08-2024//01-02-2024//02-11-2023
+            //if (nodeCol == null || nodeCol.Count <= 3)//02-11-2023
+            //    nodeCol = rso.SelectNodes(".//div[@class='WvKfwe a3spGf']/div|.//div[@class='aviV4d']");//01-08-2024//01-02-2024//02-11-2023
             if (nodeCol == null || (nodeCol.Count >= 1 && nodeCol.Count <= 5))//09-02-2024
             {//08-02-2024
                 if (rso.SelectNodes("//div[contains(@id,'kp-wp-tab-')]") != null)

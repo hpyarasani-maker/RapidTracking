@@ -2404,7 +2404,7 @@ namespace RapidTrackingSingleThread
             if (nd != null)
                 return "Dataset";//11-06-2024
             nd = node.SelectSingleNode(".//div[@class='GcKpu']|.//div[@class='M8OgIe']");//13-11-2024//03-09-2024//21-08-2024 AIOverview
-            if (nd != null && doc.DocumentNode.SelectSingleNode(".//div[contains(@class,'Fzsovc')]") != null)//13-11-2024
+            if (nd != null && node.SelectSingleNode(".//div[contains(@class,'Fzsovc')]") != null)//13-11-2024
                 return "aiOverview";//21-08-2024 AIOverview
             nd = node.SelectSingleNode(".//div[@class='oIk2Cb']");//14-10-2024 //11-10-2024  peoplealsosearch
             if (nd != null)

@@ -1902,7 +1902,7 @@ namespace Oxylabs_BulkKeywords
                 {
                     try
                     {
-                        string airline = nd.SelectSingleNode(".//span[@class='ps0VMc']|.//div[@class='A4fsl']|.//div[@class='ZhosBf MBI8Pd dctkEf']")?.InnerText.Trim() ?? "";//29-07-2024
+                        string airline = nd.SelectSingleNode(".//span[@class='ps0VMc']|.//div[@class='A4fsl']|.//div[@class='ZhosBf MBI8Pd dctkEf']|.//div[@class='eqdsgd']")?.InnerText.Trim() ?? "";//15-11-2024//29-07-2024
                         string hours = nd.SelectSingleNode(".//span[@class='sRcB8']|.//div[@class='QTPlac']/span[3]|.//div[@class='TM2JYd']")?.InnerText.Trim() ?? "0h 0m";//29-07-2024
                         string connecting = nd.SelectSingleNode(".//span[@class='u85UCd']|.//div[@class='QTPlac']/span[1]|.//div[@class='GfzIoc']")?.InnerText.Trim() ?? "";//29-07-2024
                         connecting = string.IsNullOrEmpty(connecting) ? "Nonstop" : !connecting.Contains("Connecting") && !connecting.Contains("Nonstop") ? "Connecting" : connecting;
@@ -2595,12 +2595,12 @@ namespace Oxylabs_BulkKeywords
                 || node.SelectSingleNode(".//div[contains(@class,'g PmEWq')]|.//div[@class='g zXItKe']") != null //14-09-2023//23-08-2023
                 || node.Attributes["class"]?.Value == "g PmEWq");//08-02-2024
         }
-        private string GetAioverview(HtmlNode node)//08-11-2024//21-08-2024 AIOverView Method
+        private string GetAioverview(HtmlNode node)//08-11-2024//21-08-2024 AIOverView Method//15-11-2024 updated to full block
         {
+            //StringBuilder s = new StringBuilder();
+            //s.Append("<block type=\"aiOverview\"/>");
+            //return s.ToString();
             StringBuilder s = new StringBuilder();
-            s.Append("<block type=\"aiOverview\"/>");
-            return s.ToString();
-            /*StringBuilder s = new StringBuilder();
             s.Append("<block type=\"aiOverview\" >");
             HtmlNodeCollection nodes = node.SelectNodes(".//div[contains(@class, 'WaaZC')]");
             if (nodes != null)
@@ -2678,8 +2678,8 @@ namespace Oxylabs_BulkKeywords
                 }
             }
             s.Append("</block>");
-            return s.ToString();*/
-        }//08-11-2024//21-08-2024 AIOverView Method
+            return s.ToString();
+        }//08-11-2024//21-08-2024 AIOverView Method//15-11-2024
         private string ConvertReviews(string reviews)//20-01-2023 display only numbers
         {
             if (string.IsNullOrEmpty(reviews)) return null;//26-06-2023

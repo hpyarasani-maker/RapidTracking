@@ -3877,12 +3877,12 @@ namespace Oxylabs_BulkKeywords
                 || node.SelectSingleNode(".//div[@class='urrG9 v5yQqb jqWpsc']|.//div[@class='lNvPub cP7qLd v5yQqb']|.//div[@class='adXOEf v5yQqb']" +
                 "|.//div[@class='T61Aje v5yQqb']|.//div[contains(@class, 'WFyfFf')]") != null || node.SelectSingleNode(".//div[contains(@class,'kb0PBd cvP2Ce')]") != null;//13-08-2024//04-06-2024//14-02-2024//23-08-2023 != null//17-05-2023 //31-05-2022
         }
-        private string GetAioverview(HtmlNode node)//08-11-2024//21-08-2024 AIOverView Method
+        private string GetAioverview(HtmlNode node)//08-11-2024//21-08-2024 AIOverView Method//15-11-2024 updated to full block
         {
+            //StringBuilder s = new StringBuilder();
+            //s.Append("<block type=\"aiOverview\"/>");
+            //return s.ToString();
             StringBuilder s = new StringBuilder();
-            s.Append("<block type=\"aiOverview\"/>");
-            return s.ToString();
-            /* StringBuilder s = new StringBuilder();
             s.Append("<block type=\"aiOverview\">");
             HtmlNodeCollection nodes = node.SelectNodes(".//div[contains(@class, 'WaaZC')]");
             if (nodes != null)
@@ -3917,7 +3917,7 @@ namespace Oxylabs_BulkKeywords
                             }
                             if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(content))
                             {
-                                s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" +SetTitle(content.Replace("&nbsp;", "")) + "\" />");
+                                s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" + SetTitle(content.Replace("&nbsp;", "")) + "\" />");
                             }
                         }
                     }
@@ -3958,14 +3958,14 @@ namespace Oxylabs_BulkKeywords
                         }
                         if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(content))
                         {
-                            s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" +SetTitle(content.Replace("&nbsp;", "")) + "\" />");//09-11-2024
+                            s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" + SetTitle(content.Replace("&nbsp;", "")) + "\" />");//09-11-2024
                         }
                     }
                 }
             }
             s.Append("</block>");
-            return s.ToString();*/
-        }//08-11-2024//21-08-2024 AIOverView Method
+            return s.ToString();
+        }//08-11-2024//21-08-2024 AIOverView Method//15-11-2024
 
         internal object GetTop100GoogleUKMobileImages_PageURLs(string kw, string v1, string v2, string v3, string v4, string v5)
         {

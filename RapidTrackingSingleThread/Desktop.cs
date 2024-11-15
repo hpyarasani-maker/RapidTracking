@@ -644,7 +644,7 @@ namespace RapidTrackingSingleThread
             HtmlNode hp = doc.DocumentNode.SelectSingleNode(".//div[@class='MaKSie']");//02-11-2023
             if (hp != null)
             {
-                s.Append("<block type=\"hotelPack\" url=\"\">");
+                s.Append("<block type=\"hotelPack\">");//15-11-2024
                 s.Append(GetHotels(hp));
                 s.Append("</block>");
             }//02-11-2023
@@ -1032,7 +1032,7 @@ namespace RapidTrackingSingleThread
                     s.Append("<block type=\"maps\" url=\"\"></block>");
                     break;
                 case "hotel":
-                    s.Append("<block type=\"hotelPack\" url=\"\">");//24-03-2022
+                    s.Append("<block type=\"hotelPack\">");//24-03-2022//15-11-2024
                     s.Append(GetHotels(node));
                     s.Append("</block>");//24-03-2022
                     break;
@@ -1949,7 +1949,7 @@ namespace RapidTrackingSingleThread
             s.Append("</block>");
             return s.ToString();
         }//29-06-2023//15-11-2024
-        private string GetHotels(HtmlNode node)//24-03-2022 new element Maps
+        private string GetHotels(HtmlNode node)//24-03-2022 new element Maps//15-11-2024 removed url attribute from both blocktype and item elements
         {
             StringBuilder s = new StringBuilder();
             //HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'hmHBZd')]|.//div/a[contains(@class,'hmHBZd')]|.//div[@class='fQtNvd']|.//div[@class='KmZaZb']|.//div[@class='Fcmcxd']");//11-05-2023//26-04-2023//19-04-2023
@@ -1997,29 +1997,29 @@ namespace RapidTrackingSingleThread
                         if (string.IsNullOrEmpty(reviewNumbers) && string.IsNullOrEmpty(rating) && string.IsNullOrEmpty(price))
                         {
                             if (!string.IsNullOrEmpty(additional_info)) additional_info = additional_info.Remove(additional_info.Length - 1);//15-05-2023
-                            s.Append("<item url=\"\" additionalInfo=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
+                            s.Append("<item additionalInfo=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
                         }
                         else if (string.IsNullOrEmpty(price))
                         {
                             if (!string.IsNullOrEmpty(additional_info)) additional_info = additional_info.Remove(additional_info.Length - 1);
-                            s.Append("<item url=\"\" rating=\"" + SetTitle(rating.Replace(",", ".")) + "\" totalReviews=\"" + SetTitle(reviewNumbers) + "\" additionalInfo=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
+                            s.Append("<item rating=\"" + SetTitle(rating.Replace(",", ".")) + "\" totalReviews=\"" + SetTitle(reviewNumbers) + "\" additionalInfo=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
                         }
                         else if (string.IsNullOrEmpty(reviewNumbers) || string.IsNullOrEmpty(rating))
                         {
                             if (!string.IsNullOrEmpty(additional_info)) additional_info = additional_info.Remove(additional_info.Length - 1);//15-05-2023
-                            s.Append("<item url=\"\" price=\"" + SetTitle(price) + "\" priceValue=\"" + SetTitle(price_value) + "\" additionalInfo=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
+                            s.Append("<item price=\"" + SetTitle(price) + "\" priceValue=\"" + SetTitle(price_value) + "\" additionalInfo=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
                         }
                         else
                         {
                             if (!string.IsNullOrEmpty(additional_info)) additional_info = additional_info.Remove(additional_info.Length - 1);
-                            s.Append("<item url=\"\" price=\"" + SetTitle(price) + "\" priceValue=\"" + SetTitle(price_value) + "\" rating=\"" + SetTitle(rating.Replace(",", ".")) + "\" totalReviews=\"" + SetTitle(reviewNumbers) + "\" additionalInfo=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
+                            s.Append("<item price=\"" + SetTitle(price) + "\" priceValue=\"" + SetTitle(price_value) + "\" rating=\"" + SetTitle(rating.Replace(",", ".")) + "\" totalReviews=\"" + SetTitle(reviewNumbers) + "\" additionalInfo=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
                         }
                     }
                     catch { }
                 }
             }
             return s.ToString();
-        }//24-03-2022
+        }//24-03-2022//15-11-2024
         private string GetFindResultsOn(HtmlNode node) //07-07-2023 FindResultsOn Block
         {
             StringBuilder s = new StringBuilder();

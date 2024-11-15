@@ -1960,7 +1960,7 @@ namespace RapidTrackingLibrary
                 {
                     try
                     {
-                        string airline = nd.SelectSingleNode(".//span[@class='ps0VMc']|.//div[@class='A4fsl']|.//div[@class='ZhosBf MBI8Pd dctkEf']")?.InnerText.Trim() ?? "";//29-07-2024
+                        string airline = nd.SelectSingleNode(".//span[@class='ps0VMc']|.//div[@class='A4fsl']|.//div[@class='ZhosBf MBI8Pd dctkEf']|.//div[@class='eqdsgd']")?.InnerText.Trim() ?? "";//15-11-2024//29-07-2024
                         string hours = nd.SelectSingleNode(".//span[@class='sRcB8']|.//div[@class='QTPlac']/span[3]|.//div[@class='TM2JYd']")?.InnerText.Trim() ?? "0h 0m";//29-07-2024
                         string connecting = nd.SelectSingleNode(".//span[@class='u85UCd']|.//div[@class='QTPlac']/span[1]|.//div[@class='GfzIoc']")?.InnerText.Trim() ?? "";//29-07-2024
                         connecting = string.IsNullOrEmpty(connecting) ? "Nonstop" : !connecting.Contains("Connecting") && !connecting.Contains("Nonstop") ? "Connecting" : connecting;

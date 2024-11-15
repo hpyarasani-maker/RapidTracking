@@ -1462,7 +1462,7 @@ namespace RapidTrackingLoopSingleThread
                     s.Append("<block type=\"maps\" url=\"\"></block>");
                     break;
                 case "hotel":
-                    s.Append("<block type=\"hotelPack\" url=\"\">");//24-03-2022
+                    s.Append("<block type=\"hotelPack\">");//24-03-2022//15-11-2024
                     s.Append(GetHotels(node));
                     s.Append("</block>");//24-03-2022
                     break;
@@ -1562,7 +1562,7 @@ namespace RapidTrackingLoopSingleThread
             StringBuilder s = new StringBuilder();
             HtmlNode n = node.SelectSingleNode(".//div[contains(@class,'P8ujBc v5yQqb')]/a");
             if (n == null)
-                n = node.SelectSingleNode(".//div[@class='OhZyZc']/a");
+                n = node.SelectSingleNode(".//div[@class='OhZyZc']/a|.//div[@class='v5yQqb jqWpsc']/a");//15-11-2024
             if (n != null)
             {
                 HtmlNode t = n.SelectSingleNode(".//div[@role='heading']");
@@ -1575,7 +1575,7 @@ namespace RapidTrackingLoopSingleThread
                     foreach (HtmlNode nd in nds)
                     {
                         string url = nd.SelectSingleNode(".//a")?.Attributes["href"]?.Value ?? "";//28-10-2024
-                        string t1 = nd.SelectSingleNode(".//div/span[@class='Yt787']|.//div[@class='ORij0c vqseUe']/span")?.InnerText ?? "";
+                        string t1 = nd.SelectSingleNode(".//div/span[@class='Yt787']|.//div[@class='ORij0c vqseUe']/span|.//a/span[@class='Yt787']")?.InnerText ?? "";//15-11-2024
                         if (string.IsNullOrEmpty(SetUrl(url)) && string.IsNullOrEmpty(t1))//28-10-2024
                             continue;
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(t1) + "\" />");//28-10-2024
@@ -2813,7 +2813,7 @@ namespace RapidTrackingLoopSingleThread
             } // end of 23-01-2020  // 21-02-2020
             return s.ToString();
         }
-        private string GetFlights(HtmlNode node) //06-07-2023
+        private string GetFlights(HtmlNode node) //06-07-2023//15-11-2024 updated method and removed url and title attributes from blocktype and item elements
         {
             StringBuilder s = new StringBuilder();
             string destination = string.Empty;
@@ -2867,7 +2867,7 @@ namespace RapidTrackingLoopSingleThread
                 }//22-09-2023
             }
 
-            s.Append("<block type=\"flightPack\" url=\"\" title=\"\" origin=\"" + SetTitle(origin) + "\" destination=\"" + SetTitle(destination) + "\" >");
+            s.Append("<block type=\"flightPack\" origin=\"" + SetTitle(origin) + "\" destination=\"" + SetTitle(destination) + "\" >");
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='aieQre']/div/a|.//div[contains(@class,'LQQ1Bd')]/div/a|.//div[@class='qR29te']/div/a|.//div[@jsname='VMmjWc']/div/a");//23-04-2024
             if (nds != null)
             {
@@ -2901,17 +2901,12 @@ namespace RapidTrackingLoopSingleThread
                             if (string.IsNullOrEmpty(connecting))
                                 connecting = "";
                         }
+                        connecting = string.IsNullOrEmpty(connecting) ? "Nonstop" : !connecting.Contains("Connecting") && !connecting.Contains("Nonstop") ? "Connecting" : connecting;
                         string price = nd.SelectSingleNode(".//span[@class='xqqLDd']|.//span[@class='cirEce']|.//div[@class='n22NNe']" +
                             "|.//div[@class='rZFLMc']|.//div[@class='g1sBec']|.//div[@class='YK0p7d rZFLMc']")?.InnerText.Trim() ?? "0"; //05-07-2024//23-04-2024
                         //02-01-2024 end
                         string priceValue = string.Empty;
                         string hoursValue = string.Empty;
-                        string title = string.Empty;
-                        if (node.SelectSingleNode(".//div[@class='UgpQWe']|.//div[@class='xwYPZe']|.//div[@role='list']") == null)//29-05-2024//24-08-2023
-                        {
-                            title = airline;
-                            airline = string.Empty;
-                        }
                         if (!string.IsNullOrEmpty(hours))
                         {
                             hoursValue = ConvertHours(hours);
@@ -2920,7 +2915,7 @@ namespace RapidTrackingLoopSingleThread
                         {
                             priceValue = Convertprice(price);
                         }
-                        s.Append("<item url=\"\" airline=\"" + SetTitle(airline) + "\" title=\"" + SetTitle(title) + "\" duration=\"" + SetTitle(hours) + "\" durationValue=\"" + hoursValue + "\" connections=\"" + SetTitle(connecting) + "\" price=\"" + price + "\" priceValue=\"" + priceValue + "\" />");
+                        s.Append("<item airline=\"" + SetTitle(airline) + "\" duration=\"" + SetTitle(hours) + "\" durationValue=\"" + hoursValue + "\" connections=\"" + SetTitle(connecting) + "\" price=\"" + price + "\" priceValue=\"" + priceValue + "\" />");
                     }
                     catch { }
                 }
@@ -2937,6 +2932,7 @@ namespace RapidTrackingLoopSingleThread
                             string airline = "";
                             string hours = nd.SelectSingleNode(".//div[@class='BNeawe DwrKqd']/span")?.InnerText.Trim() ?? nd.SelectSingleNode(".//td[1]/div/div[contains(@class,'BNeawe')]/span[2]")?.InnerText.Trim() ?? "0h 0m"; //27-09-2023 //22-09-2023
                             string connecting = nd.SelectSingleNode(".//div[contains(@class,'BNeawe')]/span[@class='BNeawe']")?.InnerText.Trim() ?? nd.SelectSingleNode(".//div[@class='BNeawe']")?.InnerText.Trim() ?? "";//22-09-2023
+                            connecting = string.IsNullOrEmpty(connecting) ? "Nonstop" : !connecting.Contains("Connecting") && !connecting.Contains("Nonstop") ? "Connecting" : connecting;
                             string price = nd.SelectSingleNode(".//div[@class='BNeawe DwrKqd']")?.GetDirectInnerText() ?? nd.SelectSingleNode(".//td[2]/div/div[@class='BNeawe']")?.GetDirectInnerText() ?? "0";//22-09-2023
                             string priceValue = string.Empty;
                             string hoursValue = string.Empty;
@@ -2948,7 +2944,7 @@ namespace RapidTrackingLoopSingleThread
                             {
                                 priceValue = Convertprice(price);
                             }
-                            s.Append("<item url=\"\" title=\"\" airline=\"" + SetTitle(airline) + "\" duration=\"" + SetTitle(hours) + "\" durationValue=\"" + hoursValue + "\" connections=\"" + SetTitle(connecting) + "\" price=\"" + price + "\" priceValue=\"" + priceValue + "\" />");
+                            s.Append("<item airline=\"" + SetTitle(airline) + "\" duration=\"" + SetTitle(hours) + "\" durationValue=\"" + hoursValue + "\" connections=\"" + SetTitle(connecting) + "\" price=\"" + price + "\" priceValue=\"" + priceValue + "\" />");
                         }
                         catch { }
                     }
@@ -2956,8 +2952,8 @@ namespace RapidTrackingLoopSingleThread
             }
             s.Append("</block>");
             return s.ToString();
-        }//06-07-2023//03-07-2023//05-06-2023
-        private string GetHotels(HtmlNode node)//24-03-2022 new element Maps
+        }//06-07-2023//03-07-2023//05-06-2023//15-11-2024
+        private string GetHotels(HtmlNode node)//24-03-2022 new element Maps//15-11-2024 removed url from blocktype and item elements
         {
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'M0T4Vc')]");//17-05-2023
@@ -2999,29 +2995,29 @@ namespace RapidTrackingLoopSingleThread
                         if (string.IsNullOrEmpty(reviewNumbers) && string.IsNullOrEmpty(rating) && string.IsNullOrEmpty(price))
                         {
                             if (!string.IsNullOrEmpty(additional_info)) additional_info = additional_info.Remove(additional_info.Length - 1);//15-05-2023
-                            s.Append("<item url=\"\" additionalInfo=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
+                            s.Append("<item additionalInfo=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
                         }
                         else if (string.IsNullOrEmpty(price))
                         {
                             if (!string.IsNullOrEmpty(additional_info)) additional_info = additional_info.Remove(additional_info.Length - 1);
-                            s.Append("<item url=\"\" rating=\"" + SetTitle(rating.Replace(",", ".")) + "\" totalReviews=\"" + SetTitle(reviewNumbers) + "\" additionalInfo=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
+                            s.Append("<item rating=\"" + SetTitle(rating.Replace(",", ".")) + "\" totalReviews=\"" + SetTitle(reviewNumbers) + "\" additionalInfo=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
                         }
                         else if (string.IsNullOrEmpty(reviewNumbers) || string.IsNullOrEmpty(rating))
                         {
                             if (!string.IsNullOrEmpty(additional_info)) additional_info = additional_info.Remove(additional_info.Length - 1);//15-05-2023
-                            s.Append("<item url=\"\" price=\"" + SetTitle(price) + "\" priceValue=\"" + SetTitle(price_value) + "\" additionalInfo=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
+                            s.Append("<item price=\"" + SetTitle(price) + "\" priceValue=\"" + SetTitle(price_value) + "\" additionalInfo=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
                         }
                         else
                         {
                             if (!string.IsNullOrEmpty(additional_info)) additional_info = additional_info.Remove(additional_info.Length - 1);
-                            s.Append("<item url=\"\" price=\"" + SetTitle(price) + "\" priceValue=\"" + SetTitle(price_value) + "\" rating=\"" + SetTitle(rating.Replace(",", ".")) + "\" totalReviews=\"" + SetTitle(reviewNumbers) + "\" additionalInfo=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
+                            s.Append("<item price=\"" + SetTitle(price) + "\" priceValue=\"" + SetTitle(price_value) + "\" rating=\"" + SetTitle(rating.Replace(",", ".")) + "\" totalReviews=\"" + SetTitle(reviewNumbers) + "\" additionalInfo=\"" + SetTitle(additional_info) + "\" title=\"" + SetTitle(title) + "\" />");
                         }
                     }
                     catch { }
                 }
             }
             return s.ToString();
-        }//24-03-2022
+        }//24-03-2022//15-11-2024
         private string GetFindResultsOn(HtmlNode node)//09-08-2023//07-07-2023 FindResultsOn Block
         {
             StringBuilder s = new StringBuilder();
@@ -3568,7 +3564,7 @@ namespace RapidTrackingLoopSingleThread
                 nd = node.SelectSingleNode(".//div[@class='Vvrpbd']");//05-12-2023
             if (nd != null)
             {
-                if (node.SelectSingleNode(".//div[@class='VPyzge']|.//div[@class='aJegcc']|.//div[@jsname='Sicp7d']") == null && (node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']" +//10-06-2024 //04-04-2024
+                if (node.SelectSingleNode(".//div[@class='VPyzge']|.//div[@class='aJegcc']|.//div[@jsname='Sicp7d']|.//div[@class='YB4h9 ky4hfd']") == null && (node.SelectSingleNode(".//div[@class='kno-fiu kno-liu']" +//15-11-2024//10-06-2024 //04-04-2024
                     "|.//div[@class='N60dNb mfMhoc']|.//div[@jsmodel='vqHyhf']|.//div[@jsmodel='Wn3aEc']|.//div[@class='HdBr8']|.//div[@class='VKHL9c']" +
                     "|.//div[@class='IZE3Td']/div[@id='iur']|.//div[@class='IZE3Td']/div[@jscontroller='gOTY1']") != null))//29-07-2024//23-07-2024//02-02-2024//01-02-2024//15-12-2023
                     return "Images";
@@ -3872,12 +3868,12 @@ namespace RapidTrackingLoopSingleThread
                 || node.SelectSingleNode(".//div[@class='urrG9 v5yQqb jqWpsc']|.//div[@class='lNvPub cP7qLd v5yQqb']|.//div[@class='adXOEf v5yQqb']" +
                 "|.//div[@class='T61Aje v5yQqb']|.//div[contains(@class, 'WFyfFf')]") != null || node.SelectSingleNode(".//div[contains(@class,'kb0PBd cvP2Ce')]") != null;//13-08-2024//04-06-2024//14-02-2024//23-08-2023 != null//17-05-2023 //31-05-2022
         }
-        private string GetAioverview(HtmlNode node)//08-11-2024//21-08-2024 AIOverView Method
+        private string GetAioverview(HtmlNode node)//08-11-2024//21-08-2024 AIOverView Method//15-11-2024 updated to full block
         {
+            //StringBuilder s = new StringBuilder();
+            //s.Append("<block type=\"aiOverview\"/>");
+            //return s.ToString();
             StringBuilder s = new StringBuilder();
-            s.Append("<block type=\"aiOverview\"/>");
-            return s.ToString();
-            /* StringBuilder s = new StringBuilder();
             s.Append("<block type=\"aiOverview\">");
             HtmlNodeCollection nodes = node.SelectNodes(".//div[contains(@class, 'WaaZC')]");
             if (nodes != null)
@@ -3912,7 +3908,7 @@ namespace RapidTrackingLoopSingleThread
                             }
                             if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(content))
                             {
-                                s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" +SetTitle(content.Replace("&nbsp;", "")) + "\" />");
+                                s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" + SetTitle(content.Replace("&nbsp;", "")) + "\" />");
                             }
                         }
                     }
@@ -3953,14 +3949,14 @@ namespace RapidTrackingLoopSingleThread
                         }
                         if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(content))
                         {
-                            s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" +SetTitle(content.Replace("&nbsp;", "")) + "\" />");//09-11-2024
+                            s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" + SetTitle(content.Replace("&nbsp;", "")) + "\" />");//09-11-2024
                         }
                     }
                 }
             }
             s.Append("</block>");
-            return s.ToString();*/
-        }//08-11-2024//21-08-2024 AIOverView Method
+            return s.ToString();
+        }//08-11-2024//21-08-2024 AIOverView Method//15-11-2024
 
         internal object GetTop100GoogleUKMobileImages_PageURLs(string kw, string v1, string v2, string v3, string v4, string v5)
         {

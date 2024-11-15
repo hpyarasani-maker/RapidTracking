@@ -2631,7 +2631,7 @@ namespace RapidTrackingLibrary
             //s.Append("<block type=\"aiOverview\"/>");
             //return s.ToString();
             StringBuilder s = new StringBuilder();
-            s.Append("<block type=\"aiOverview\" >");
+            s.Append("<block type=\"aiOverview\">");
             HtmlNodeCollection nodes = node.SelectNodes(".//div[contains(@class, 'WaaZC')]");
             if (nodes != null)
             {

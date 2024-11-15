@@ -2625,12 +2625,12 @@ namespace RapidTrackingLibrary
                 || node.SelectSingleNode(".//div[contains(@class,'g PmEWq')]|.//div[@class='g zXItKe']") != null //14-09-2023//23-08-2023
                 || node.Attributes["class"]?.Value == "g PmEWq");//08-02-2024
         }
-        public string GetAioverview(HtmlNode node)//08-11-2024//21-08-2024 AIOverView Method
+        public string GetAioverview(HtmlNode node)//08-11-2024//21-08-2024 AIOverView Method//15-11-2024 updated to full block
         {
+            //StringBuilder s = new StringBuilder();
+            //s.Append("<block type=\"aiOverview\"/>");
+            //return s.ToString();
             StringBuilder s = new StringBuilder();
-            s.Append("<block type=\"aiOverview\"/>");
-            return s.ToString();
-            /*StringBuilder s = new StringBuilder();
             s.Append("<block type=\"aiOverview\" >");
             HtmlNodeCollection nodes = node.SelectNodes(".//div[contains(@class, 'WaaZC')]");
             if (nodes != null)
@@ -2708,8 +2708,8 @@ namespace RapidTrackingLibrary
                 }
             }
             s.Append("</block>");
-            return s.ToString();*/
-        }//08-11-2024//21-08-2024 AIOverView Method
+            return s.ToString();
+        }//08-11-2024//21-08-2024 AIOverView Method//15-11-2024
 
         //07-11-2019
         public string GetRedirectedUrl(string url)

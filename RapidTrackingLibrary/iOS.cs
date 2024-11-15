@@ -1549,11 +1549,11 @@ namespace RapidTrackingLibrary
                     s.Append(GetTopSights(node));
                     s.Append("</block>");
                     break;*/
-                /* case "flights":
-                     s.Append("<block type=\"google_flights\" url=\"\">");
+                 case "flights":
+                     //s.Append("<block type=\"google_flights\" url=\"\">");
                      s.Append(GetFlights(node));
-                     s.Append("</block>");//23-03-2022
-                     break;*/
+                     //s.Append("</block>");//23-03-2022
+                     break;
                 /*case "refine": //refine the search 23-11-2022
                     s.Append("<block type=\"refineBySearches\" url=\"\">");
                     s.Append(GetRefineBySearches(node));
@@ -2853,7 +2853,7 @@ namespace RapidTrackingLibrary
             } // end of 23-01-2020  // 21-02-2020
             return s.ToString();
         }
-        public string GetFlights(HtmlNode node) //06-07-2023
+        public string GetFlights(HtmlNode node) //06-07-2023//15-11-2024 updated method and removed url and title attributes from blocktype and item elements
         {
             StringBuilder s = new StringBuilder();
             string destination = string.Empty;
@@ -2874,11 +2874,13 @@ namespace RapidTrackingLibrary
                 }
                 destination = destination.Trim();
             }
+
             else //09-08-2023
             {
                 try
-                {
-                    dest = node.SelectSingleNode(".//span[@class='XaP5ee IFnjPb RES9jf']|.//span[@class='mgAbYb OSrXXb RES9jf IFnjPb']|.//h3[@class='IFnjPb RES9jf']");//02-01-2023
+                {//22-09-2023
+
+                    dest = node.SelectSingleNode(".//span[@class='XaP5ee IFnjPb RES9jf']|.//span[@class='mgAbYb OSrXXb RES9jf IFnjPb']|.//h3[@class='IFnjPb RES9jf']");//02-01-2024
                     int lenIndex = dest.InnerText.IndexOf(" to ") >= 0 ? dest.InnerText.IndexOf(" to ") :
                         dest.InnerText.IndexOf(" nach ") >= 0 ? dest.InnerText.IndexOf(" nach ") : -1;
                     if (lenIndex == -1)
@@ -2894,16 +2896,18 @@ namespace RapidTrackingLibrary
                     }
                     else
                         destination = dest?.InnerText.Substring(len).Trim(); // dest.InnerText.IndexOf(" to ") + 4).Trim();
-                }
-                catch {
+                }//09-08-2023
+                catch
+                {
                     dest = node.SelectSingleNode(".//div[@class='wHYlTd C5w57c']"); //23-04-2024
                     int lenIndex = dest.GetDirectInnerText().IndexOf(" da ") >= 0 ? dest.GetDirectInnerText().IndexOf(" da ") + 4 : -1;//23-04-2024
                     origin = lenIndex >= 0 ? dest?.GetDirectInnerText()?.Substring(lenIndex).Trim() : "";//25-05-2024
                     lenIndex = origin.IndexOf("&nbsp;&middot;");//25-05-2025
                     origin = !string.IsNullOrEmpty(origin) && lenIndex >= 0 ? origin.Substring(0, lenIndex) : origin;//23-04-2024
-                }
+                }//22-09-2023
             }
-            s.Append("<block type=\"flightPack\" url=\"\" title=\"\" origin=\"" + SetTitle(origin) + "\" destination=\"" + SetTitle(destination) + "\" >");
+
+            s.Append("<block type=\"flightPack\" origin=\"" + SetTitle(origin) + "\" destination=\"" + SetTitle(destination) + "\" >");
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='aieQre']/div/a|.//div[contains(@class,'LQQ1Bd')]/div/a|.//div[@class='qR29te']/div/a|.//div[@jsname='VMmjWc']/div/a");//23-04-2024
             if (nds != null)
             {
@@ -2937,17 +2941,12 @@ namespace RapidTrackingLibrary
                             if (string.IsNullOrEmpty(connecting))
                                 connecting = "";
                         }
+                        connecting = string.IsNullOrEmpty(connecting) ? "Nonstop" : !connecting.Contains("Connecting") && !connecting.Contains("Nonstop") ? "Connecting" : connecting;
                         string price = nd.SelectSingleNode(".//span[@class='xqqLDd']|.//span[@class='cirEce']|.//div[@class='n22NNe']" +
                             "|.//div[@class='rZFLMc']|.//div[@class='g1sBec']|.//div[@class='YK0p7d rZFLMc']")?.InnerText.Trim() ?? "0"; //05-07-2024//23-04-2024
                         //02-01-2024 end
                         string priceValue = string.Empty;
                         string hoursValue = string.Empty;
-                        string title = string.Empty;
-                        if (node.SelectSingleNode(".//div[@class='UgpQWe']|.//div[@class='xwYPZe']|.//div[@role='list']") == null)//29-05-2024//24-08-2023
-                        {
-                            title = airline;
-                            airline = string.Empty;
-                        }
                         if (!string.IsNullOrEmpty(hours))
                         {
                             hoursValue = ConvertHours(hours);
@@ -2956,7 +2955,7 @@ namespace RapidTrackingLibrary
                         {
                             priceValue = Convertprice(price);
                         }
-                        s.Append("<item url=\"\" airline=\"" + SetTitle(airline) + "\" title=\"" + SetTitle(title) + "\" duration=\"" + SetTitle(hours) + "\" durationValue=\"" + hoursValue + "\" connections=\"" + SetTitle(connecting) + "\" price=\"" + price + "\" priceValue=\"" + priceValue + "\" />");
+                        s.Append("<item airline=\"" + SetTitle(airline) + "\" duration=\"" + SetTitle(hours) + "\" durationValue=\"" + hoursValue + "\" connections=\"" + SetTitle(connecting) + "\" price=\"" + price + "\" priceValue=\"" + priceValue + "\" />");
                     }
                     catch { }
                 }
@@ -2973,6 +2972,7 @@ namespace RapidTrackingLibrary
                             string airline = "";
                             string hours = nd.SelectSingleNode(".//div[@class='BNeawe DwrKqd']/span")?.InnerText.Trim() ?? nd.SelectSingleNode(".//td[1]/div/div[contains(@class,'BNeawe')]/span[2]")?.InnerText.Trim() ?? "0h 0m"; //27-09-2023 //22-09-2023
                             string connecting = nd.SelectSingleNode(".//div[contains(@class,'BNeawe')]/span[@class='BNeawe']")?.InnerText.Trim() ?? nd.SelectSingleNode(".//div[@class='BNeawe']")?.InnerText.Trim() ?? "";//22-09-2023
+                            connecting = string.IsNullOrEmpty(connecting) ? "Nonstop" : !connecting.Contains("Connecting") && !connecting.Contains("Nonstop") ? "Connecting" : connecting;
                             string price = nd.SelectSingleNode(".//div[@class='BNeawe DwrKqd']")?.GetDirectInnerText() ?? nd.SelectSingleNode(".//td[2]/div/div[@class='BNeawe']")?.GetDirectInnerText() ?? "0";//22-09-2023
                             string priceValue = string.Empty;
                             string hoursValue = string.Empty;
@@ -2984,7 +2984,7 @@ namespace RapidTrackingLibrary
                             {
                                 priceValue = Convertprice(price);
                             }
-                            s.Append("<item url=\"\" title=\"\" airline=\"" + SetTitle(airline) + "\" duration=\"" + SetTitle(hours) + "\" durationValue=\"" + hoursValue + "\" connections=\"" + SetTitle(connecting) + "\" price=\"" + price + "\" priceValue=\"" + priceValue + "\" />");
+                            s.Append("<item airline=\"" + SetTitle(airline) + "\" duration=\"" + SetTitle(hours) + "\" durationValue=\"" + hoursValue + "\" connections=\"" + SetTitle(connecting) + "\" price=\"" + price + "\" priceValue=\"" + priceValue + "\" />");
                         }
                         catch { }
                     }
@@ -2992,7 +2992,7 @@ namespace RapidTrackingLibrary
             }
             s.Append("</block>");
             return s.ToString();
-        }//06-07-2023//03-07-2023//05-06-2023
+        }//06-07-2023//03-07-2023//05-06-2023//15-11-2024
         public string GetHotels(HtmlNode node)//24-03-2022 new element Maps
         {
             StringBuilder s = new StringBuilder();

@@ -1105,11 +1105,11 @@ namespace RapidTrackingLibrary
                     s.Append(GetTopSights(node));
                     s.Append("</block>");
                     break;*/
-                /*case "flights":
-                    s.Append("<block type=\"flightPack\" url=\"\">");
+                case "flights":
+                    //s.Append("<block type=\"flightPack\" url=\"\">");
                     s.Append(GetFlights(node));
-                    s.Append("</block>");
-                    break;*/ //23-02-2022
+                    //s.Append("</block>");
+                    break; //23-02-2022
                 case "popular": //09-11-2022
                     s.Append("<block type=\"popularProducts\" url=\"\">");
                     s.Append(GetPopularProducts(node));
@@ -1906,7 +1906,7 @@ namespace RapidTrackingLibrary
 
             return s.ToString();
         }
-        public string GetFlights(HtmlNode node)//29-06-2023
+        public string GetFlights(HtmlNode node)//29-06-2023//15-11-2024 updated method and removed url and title attributes from blocktype and item elements
         {
             StringBuilder s = new StringBuilder();
             string destination = string.Empty;
@@ -1928,6 +1928,7 @@ namespace RapidTrackingLibrary
                         dest.InnerText.IndexOf(" von ") >= 0 ? dest.InnerText.IndexOf(" von ") : //01-12-2023
                         dest.InnerText.IndexOf(" nach ") >= 0 ? dest.InnerText.IndexOf(" nach ") :
                         dest.InnerText.IndexOf(" a ") >= 0 ? dest.InnerText.IndexOf(" a ") :
+                        dest.InnerText.IndexOf("Vols ") >= 0 ? dest.InnerText.IndexOf("Vols ") : //23-02-2024
                         dest.InnerText.IndexOf(" da ") >= 0 ? dest.InnerText.IndexOf(" da ") : //26-04-2024
                         dest.InnerText.IndexOf(" per ") >= 0 ? dest.InnerText.IndexOf(" per ") : //26-04-2024
                         dest.InnerText.IndexOf(" à ") >= 0 ? dest.InnerText.IndexOf(" à ") : -1;//18-01-2024
@@ -1937,7 +1938,7 @@ namespace RapidTrackingLibrary
                 if (origin.ToLower().Equals("flights") || origin.Equals("Flüge") || origin.Equals("Vols") || origin.Equals("Voli")) origin = string.Empty;//26-04-2024//18-01-2024
                 int len = dest.InnerText.IndexOf(" to ") >= 0 ? dest.InnerText.IndexOf(" to ") + 4 :
                     dest.InnerText.IndexOf(" per ") >= 0 ? dest.InnerText.IndexOf(" per ") + 5 : //26-04-2024
-                   dest.InnerText.IndexOf(" a ") >= 0 ? dest.InnerText.IndexOf(" a ") + 3 :
+                    dest.InnerText.IndexOf(" a ") >= 0 ? dest.InnerText.IndexOf(" a ") + 3 :
                    dest.InnerText.IndexOf(" à ") >= 0 ? dest.InnerText.IndexOf(" à ") + 18 : -1;//18-01-2024
                 if (len == -1)
                 {
@@ -1951,7 +1952,7 @@ namespace RapidTrackingLibrary
                 else
                     destination = dest?.InnerText.Substring(len).Trim();//31-10-2023
             }
-            s.Append("<block type=\"flightPack\" url=\"\" title=\"\" origin=\"" + SetTitle(origin) + "\" destination=\"" + SetTitle(destination) + "\" >");
+            s.Append("<block type=\"flightPack\" origin=\"" + SetTitle(origin) + "\" destination=\"" + SetTitle(destination) + "\" >");
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='aieQre']/div/a|.//div[contains(@class,'LQQ1Bd')]/div/a|.//div[@class='qR29te']/div/a");//29-07-2024
             if (nds != null)
             {
@@ -1962,15 +1963,10 @@ namespace RapidTrackingLibrary
                         string airline = nd.SelectSingleNode(".//span[@class='ps0VMc']|.//div[@class='A4fsl']|.//div[@class='ZhosBf MBI8Pd dctkEf']")?.InnerText.Trim() ?? "";//29-07-2024
                         string hours = nd.SelectSingleNode(".//span[@class='sRcB8']|.//div[@class='QTPlac']/span[3]|.//div[@class='TM2JYd']")?.InnerText.Trim() ?? "0h 0m";//29-07-2024
                         string connecting = nd.SelectSingleNode(".//span[@class='u85UCd']|.//div[@class='QTPlac']/span[1]|.//div[@class='GfzIoc']")?.InnerText.Trim() ?? "";//29-07-2024
+                        connecting = string.IsNullOrEmpty(connecting) ? "Nonstop" : !connecting.Contains("Connecting") && !connecting.Contains("Nonstop") ? "Connecting" : connecting;
                         string price = nd.SelectSingleNode(".//span[@class='xqqLDd']|.//span[@class='cirEce']|.//div[@class='n22NNe']|.//div[@class='YK0p7d rZFLMc']")?.InnerText.Trim() ?? "0";//29-07-2024
                         string priceValue = string.Empty;
                         string hoursValue = string.Empty;
-                        string title = string.Empty;//26-08-2024
-                        if (node.SelectSingleNode(".//div[@class='UgpQWe']") == null && node.SelectSingleNode(".//div/a[contains(@class,'a-no-hover-decoration')]") == null) //14-09-2023
-                        {
-                            title = airline;//26-08-2024
-                            airline = string.Empty;
-                        }
                         if (!string.IsNullOrEmpty(hours))
                         {
                             hoursValue = ConvertHours(hours);
@@ -1979,7 +1975,7 @@ namespace RapidTrackingLibrary
                         {
                             priceValue = Convertprice(price);
                         }
-                        s.Append("<item url=\"\" title=\"" + SetTitle(title) + "\"  airline =\"" + SetTitle(airline) + "\" duration=\"" + SetTitle(hours) + "\" durationValue=\"" + hoursValue + "\" connections=\"" + SetTitle(connecting) + "\" price=\"" + price + "\" priceValue=\"" + priceValue + "\" />");//26-08-2024
+                        s.Append("<item airline =\"" + SetTitle(airline) + "\" duration=\"" + SetTitle(hours) + "\" durationValue=\"" + hoursValue + "\" connections=\"" + SetTitle(connecting) + "\" price=\"" + price + "\" priceValue=\"" + priceValue + "\" />");//26-08-2024
                     }
                     catch { }
                 }
@@ -1996,6 +1992,7 @@ namespace RapidTrackingLibrary
                             string airline = "";
                             string hours = nd.SelectSingleNode(".//div[@class='BNeawe DwrKqd']/span")?.InnerText.Trim() ?? "0h 0m";
                             string connecting = nd.SelectSingleNode(".//div[@class='BNeawe']")?.InnerText.Trim() ?? "";
+                            connecting = string.IsNullOrEmpty(connecting) ? "Nonstop" : !connecting.Contains("Connecting") && !connecting.Contains("Nonstop") ? "Connecting" : connecting;
                             string price = nd.SelectSingleNode(".//div[@class='BNeawe DwrKqd']")?.GetDirectInnerText() ?? "0";
                             string priceValue = string.Empty;
                             string hoursValue = string.Empty;
@@ -2007,7 +2004,7 @@ namespace RapidTrackingLibrary
                             {
                                 priceValue = Convertprice(price);
                             }
-                            s.Append("<item url=\"\" title=\"\" airline=\"" + SetTitle(airline) + "\" duration=\"" + SetTitle(hours) + "\" durationValue=\"" + hoursValue + "\" connections=\"" + SetTitle(connecting) + "\" price=\"" + price + "\" priceValue=\"" + priceValue + "\" />");
+                            s.Append("<item airline=\"" + SetTitle(airline) + "\" duration=\"" + SetTitle(hours) + "\" durationValue=\"" + hoursValue + "\" connections=\"" + SetTitle(connecting) + "\" price=\"" + price + "\" priceValue=\"" + priceValue + "\" />");
                         }
                         catch { }
                     }
@@ -2015,7 +2012,7 @@ namespace RapidTrackingLibrary
             }
             s.Append("</block>");
             return s.ToString();
-        }//29-06-2023
+        }//29-06-2023//15-11-2024
         public string GetHotels(HtmlNode node)//24-03-2022 new element Maps
         {
             StringBuilder s = new StringBuilder();

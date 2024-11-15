@@ -1596,7 +1596,7 @@ namespace RapidTrackingLibrary
             StringBuilder s = new StringBuilder();
             HtmlNode n = node.SelectSingleNode(".//div[contains(@class,'P8ujBc v5yQqb')]/a");
             if (n == null)
-                n = node.SelectSingleNode(".//div[@class='OhZyZc']/a");
+                n = node.SelectSingleNode(".//div[@class='OhZyZc']/a|.//div[@class='v5yQqb jqWpsc']/a");//15-11-2024
             if (n != null)
             {
                 HtmlNode t = n.SelectSingleNode(".//div[@role='heading']");
@@ -1609,7 +1609,7 @@ namespace RapidTrackingLibrary
                     foreach (HtmlNode nd in nds)
                     {
                         string url = nd.SelectSingleNode(".//a")?.Attributes["href"]?.Value ?? "";//28-10-2024
-                        string t1 = nd.SelectSingleNode(".//div/span[@class='Yt787']|.//div[@class='ORij0c vqseUe']/span")?.InnerText ?? "";
+                        string t1 = nd.SelectSingleNode(".//div/span[@class='Yt787']|.//div[@class='ORij0c vqseUe']/span|.//a/span[@class='Yt787']")?.InnerText ?? "";//15-11-2024
                         if (string.IsNullOrEmpty(SetUrl(url)) && string.IsNullOrEmpty(t1))//28-10-2024
                             continue;
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(t1) + "\" />");//28-10-2024

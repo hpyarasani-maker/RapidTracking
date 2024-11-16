@@ -2623,7 +2623,7 @@ namespace TrackingTrending
                             }
                             if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(content))
                             {
-                                s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" + content.Replace("&nbsp;", "") + "\" />");
+                                s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" + SetTitle(content.Replace("&nbsp;", "")) + "\" />");//16-11-2024
                             }
                         }
                     }
@@ -2660,7 +2660,7 @@ namespace TrackingTrending
                         }
                         if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(content))
                         {
-                            s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" + content.Replace("&nbsp;", "") + "\" />");
+                            s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" + SetTitle(content.Replace("&nbsp;", "")) + "\" />");//16-11-2024
                         }
                     }
                 }

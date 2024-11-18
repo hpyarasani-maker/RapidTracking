@@ -2658,6 +2658,7 @@ namespace RapidTrackingLibrary
                                     if (sp.HasClass("UV3uM"))
                                         break;
                                     content += sp.InnerText + " ";
+                                    content = content.TrimEnd();//18-11-2024
                                 }
                             }
                             HtmlNode urlNode = nd1.SelectSingleNode(".//div[contains(@class,'acn1Z')]");
@@ -2697,6 +2698,7 @@ namespace RapidTrackingLibrary
                                         if (sp.HasClass("UV3uM"))
                                             break;
                                         content += sp.InnerText + " ";
+                                        content = content.TrimEnd();//18-11-2024
                                     }
                                 }
                             }

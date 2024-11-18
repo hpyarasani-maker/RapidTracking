@@ -3899,8 +3899,8 @@ namespace RapidTrackingSingleThread
                                     if (sp.HasClass("UV3uM"))
                                         break;
                                     content += sp.InnerText + " ";
-                                    content = content.TrimEnd();//18-11-2024
                                 }
+                                content = content.TrimEnd();//18-11-2024
                             }
                             HtmlNode urlNode = nd1.SelectSingleNode(".//div[contains(@class,'acn1Z')]");
                             if (urlNode != null)
@@ -3939,8 +3939,8 @@ namespace RapidTrackingSingleThread
                                         if (sp.HasClass("UV3uM"))
                                             break;
                                         content += sp.InnerText + " ";
-                                        content = content.TrimEnd();//18-11-2024
                                     }
+                                    content = content.TrimEnd();//18-11-2024
                                 }
                             }
                             HtmlNode urlNode = nd1.SelectSingleNode(".//div[contains(@class,'acn1Z')]");

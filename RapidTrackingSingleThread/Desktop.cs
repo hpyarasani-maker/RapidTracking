@@ -525,7 +525,12 @@ namespace RapidTrackingSingleThread
                     s.Append("</block>");
                 }
             }
-
+            //AIOverview block //18-11-2024
+            HtmlNode colt = doc.DocumentNode.SelectSingleNode(".//div[@class='M8OgIe']|.//div[@class='GcKpu']");//13-11-2024//08-11-2024//03-09-2024//21-08-2024 AIOverview
+            if (colt != null && doc.DocumentNode.SelectSingleNode(".//div[contains(@class,'Fzsovc')]") != null)//13-11-2024
+            {
+                s.Append(GetAioverview(colt));
+            }//21-08-2024 AIOverview
             // product listed ads
             HtmlNode pla = doc.DocumentNode.SelectSingleNode("//div[contains(@class,'cu-container')]"); //25-09-2020 included contains for existing selector
             if (pla != null)
@@ -560,7 +565,7 @@ namespace RapidTrackingSingleThread
             }
 
             // text ads
-            HtmlNode colt = doc.DocumentNode.SelectSingleNode("//div[@id='tvcap']");  //20-01-2020
+            colt = doc.DocumentNode.SelectSingleNode("//div[@id='tvcap']");  //20-01-2020//18-11-2024
             if (colt != null)
             {
                 HtmlNode pNode = colt.SelectSingleNode(".//div[@jscontroller='vWOOIe']|.//div[@id='tads']");//02-10-2023//30-06-2023
@@ -691,11 +696,6 @@ namespace RapidTrackingSingleThread
                 }
             }
             //end of 18-03-2020
-            colt = doc.DocumentNode.SelectSingleNode(".//div[@class='M8OgIe']|.//div[@class='GcKpu']");//13-11-2024//08-11-2024//03-09-2024//21-08-2024 AIOverview
-            if (colt != null && doc.DocumentNode.SelectSingleNode(".//div[contains(@class,'Fzsovc')]") != null)//13-11-2024
-            {
-                s.Append(GetAioverview(colt));
-            }//21-08-2024 AIOverview
             return s.ToString();
         }
 

@@ -2682,6 +2682,21 @@ namespace RapidTrackingSingleThread
                         }
                     }
                 }
+                nodes = node.SelectNodes(".//div[contains(@class, 'fx92l')]/ul/li");//18-11-2024
+                if (nodes != null)
+                {
+                    foreach (HtmlNode nd in nodes)
+                    {
+                        string url = nd.SelectSingleNode(".//a")?.Attributes["href"]?.Value ?? "";
+                        string t = nd.SelectSingleNode(".//div[@class='mNme1d tNxQIb']")?.InnerText ?? "";
+                        string t1 = nd.SelectSingleNode(".//div[@class='ZigeC wHYlTd']/span")?.InnerText ?? "";
+                        string content = !string.IsNullOrEmpty(t) ? t + " " + t1 : t1;
+                        if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(content))
+                        {
+                            s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" + SetTitle(content.Replace("&nbsp;", "")) + "\" />");
+                        }
+                    }
+                }//18-11-2024
             }
             s.Append("</block>");
             return s.ToString();

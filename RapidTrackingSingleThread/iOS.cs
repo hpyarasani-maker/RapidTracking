@@ -3906,49 +3906,50 @@ namespace RapidTrackingSingleThread
                             }
                             if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(content))
                             {
-                                s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" +SetTitle(content.Replace("&nbsp;", "")) + "\" />");
+                                s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" + SetTitle(content.Replace("&nbsp;", "")) + "\" />");
                             }
                         }
                     }
-                    else
+                    else//18-11-2024
                     {
                         string content = string.Empty;
                         string url = string.Empty;
-                        HtmlNode nd1 = nd.SelectSingleNode(".//div[@class='RJPOee EIJn2']/div");
-                        if (nd1 == null)
-                            nd1 = nd.SelectSingleNode(".//div[contains(@class,'rPeykc')]|.//ul/li|.//ol/li");//09-11-2024
-                        if (nd1 != null)
-                        {
-                            HtmlNode cnt = nd1.SelectSingleNode(".//span[@role='heading']");//09-11-2024
-                            if (cnt == null)
-                                content = nd1.InnerText ?? "";
-                            else
-                                content = cnt?.InnerText ?? "";//09-11-2024
-                            if (string.IsNullOrEmpty(content))
+                        HtmlNodeCollection nds = nd.SelectNodes(".//div[@class='RJPOee EIJn2']/div");
+                        if (nds == null)
+                            nds = nd.SelectNodes(".//div[contains(@class,'rPeykc')]|.//ul/li|.//ol/li");//09-11-2024
+                        if (nds != null)
+                            foreach (var nd1 in nds)
                             {
-                                HtmlNodeCollection spanCol = nd1.SelectNodes(".//span/span");
-                                if (spanCol != null)
+                                HtmlNode cnt = nd1.SelectSingleNode(".//span[@role='heading']");//09-11-2024
+                                if (cnt == null)
+                                    content = nd1.InnerText ?? "";
+                                else
+                                    content = cnt?.InnerText ?? "";//09-11-2024
+                                if (string.IsNullOrEmpty(content))
                                 {
-                                    foreach (HtmlNode sp in spanCol)
+                                    HtmlNodeCollection spanCol = nd1.SelectNodes(".//span/span");
+                                    if (spanCol != null)
                                     {
-                                        content += sp.InnerText + " ";
+                                        foreach (HtmlNode sp in spanCol)
+                                        {
+                                            content += sp.InnerText + " ";
+                                        }
                                     }
                                 }
-                            }
-                            HtmlNode urlNode = nd1.SelectSingleNode(".//div[contains(@class,'acn1Z')]");
-                            if (urlNode != null)
-                            {
-                                HtmlNode link = urlNode.SelectSingleNode(".//ul/li/a");
-                                if (link != null)
+                                HtmlNode urlNode = nd1.SelectSingleNode(".//div[contains(@class,'acn1Z')]");
+                                if (urlNode != null)
                                 {
-                                    url = link.Attributes["href"]?.Value ?? "";
+                                    HtmlNode link = urlNode.SelectSingleNode(".//ul/li/a");
+                                    if (link != null)
+                                    {
+                                        url = link.Attributes["href"]?.Value ?? "";
+                                    }
+                                }
+                                if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(content))
+                                {
+                                    s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" + SetTitle(content.Replace("&nbsp;", "")) + "\" />");//09-11-2024
                                 }
                             }
-                        }
-                        if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(content))
-                        {
-                            s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" +SetTitle(content.Replace("&nbsp;", "")) + "\" />");//09-11-2024
-                        }
                     }
                 }
             }

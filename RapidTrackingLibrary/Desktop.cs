@@ -2625,7 +2625,7 @@ namespace RapidTrackingLibrary
                 || node.SelectSingleNode(".//div[contains(@class,'g PmEWq')]|.//div[@class='g zXItKe']") != null //14-09-2023//23-08-2023
                 || node.Attributes["class"]?.Value == "g PmEWq");//08-02-2024
         }
-        public string GetAioverview(HtmlNode node)//08-11-2024//21-08-2024 AIOverView Method//15-11-2024 updated to full block
+        public string GetAioverview(HtmlNode node)//18-11-2024//08-11-2024//21-08-2024 AIOverView Method//15-11-2024 updated to full block
         {
             //StringBuilder s = new StringBuilder();
             //s.Append("<block type=\"aiOverview\"/>");
@@ -2639,18 +2639,24 @@ namespace RapidTrackingLibrary
                 {
                     HtmlNodeCollection ls = nd.SelectNodes(".//div[@class='RJPOee EIJn2']/ul/li");
                     if (ls == null)
-                        ls = nd.SelectNodes(".//ul/li[@class='K3KsMc']");
+                        ls = nd.SelectNodes(".//ol[@jscontroller='M2ABbc']/li|.//ul[@jscontroller='M2ABbc']/li");
+                    if (ls == null)
+                        ls = nd.SelectNodes(".//ol/li[@class='K3KsMc']|.//ul/li[@class='K3KsMc']|.//ul/li[@class='pWtQDd']");
                     if (ls != null)
                     {
                         foreach (HtmlNode nd1 in ls)
                         {
                             string content = string.Empty;
                             string url = string.Empty;
-                            HtmlNodeCollection spanCol = nd1.SelectNodes(".//span/span");
+                            HtmlNodeCollection spanCol = nd1.SelectNodes(".//span/span|.//div[@class='vM0jzc']/span");
+                            if (spanCol != null && spanCol[0].InnerText.Equals("&nbsp;"))
+                                spanCol = nd1.SelectNodes(".//span");
                             if (spanCol != null)
                             {
                                 foreach (HtmlNode sp in spanCol)
                                 {
+                                    if (sp.HasClass("UV3uM"))
+                                        break;
                                     content += sp.InnerText + " ";
                                 }
                             }
@@ -2665,7 +2671,7 @@ namespace RapidTrackingLibrary
                             }
                             if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(content))
                             {
-                                s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" + SetTitle(content.Replace("&nbsp;", "")) + "\" />");//16-11-2024
+                                s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" + SetTitle(content.Replace("&nbsp;", "")) + "\" />");
                             }
                         }
                     }
@@ -2681,11 +2687,15 @@ namespace RapidTrackingLibrary
                             content = nd1.SelectSingleNode(".//span[@role='heading']")?.InnerText ?? "";
                             if (string.IsNullOrEmpty(content))
                             {
-                                HtmlNodeCollection spanCol = nd1.SelectNodes(".//span/span");
+                                HtmlNodeCollection spanCol = nd1.SelectNodes(".//span/span|.//div[@class='vM0jzc']/span");
+                                if (spanCol != null && spanCol[0].InnerText.Equals("&nbsp;"))
+                                    spanCol = nd1.SelectNodes(".//span");
                                 if (spanCol != null)
                                 {
                                     foreach (HtmlNode sp in spanCol)
                                     {
+                                        if (sp.HasClass("UV3uM"))
+                                            break;
                                         content += sp.InnerText + " ";
                                     }
                                 }
@@ -2702,15 +2712,14 @@ namespace RapidTrackingLibrary
                         }
                         if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(content))
                         {
-                            s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" + SetTitle(content.Replace("&nbsp;", "")) + "\" />");//16-11-2024
+                            s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" + SetTitle(content.Replace("&nbsp;", "")) + "\" />");
                         }
                     }
                 }
             }
             s.Append("</block>");
             return s.ToString();
-        }//08-11-2024//21-08-2024 AIOverView Method//15-11-2024
-
+        }//18-11-2024//08-11-2024//21-08-2024 AIOverView Method//15-11-2024
         //07-11-2019
         public string GetRedirectedUrl(string url)
         {

@@ -3935,7 +3935,7 @@ namespace RapidTrackingLibrary
                             string content = string.Empty;
                             string url = string.Empty;
                             HtmlNodeCollection spanCol = nd1.SelectNodes(".//span/span|.//div[@class='vM0jzc']/span");
-                            if (spanCol != null && spanCol[0].InnerText.Equals("&nbsp;"))
+                            if (spanCol == null || (spanCol != null && spanCol[0].InnerText.Equals("&nbsp;")))
                                 spanCol = nd1.SelectNodes(".//span");
                             if (spanCol != null)
                             {
@@ -3974,7 +3974,7 @@ namespace RapidTrackingLibrary
                             if (string.IsNullOrEmpty(content))
                             {
                                 HtmlNodeCollection spanCol = nd1.SelectNodes(".//span/span|.//div[@class='vM0jzc']/span");
-                                if (spanCol != null && spanCol[0].InnerText.Equals("&nbsp;"))
+                                if (spanCol == null || (spanCol != null && spanCol[0].InnerText.Equals("&nbsp;")))
                                     spanCol = nd1.SelectNodes(".//span");
                                 if (spanCol != null)
                                 {

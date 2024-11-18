@@ -2613,7 +2613,7 @@ namespace RapidTrackingSingleThread
                             string content = string.Empty;
                             string url = string.Empty;
                             HtmlNodeCollection spanCol = nd1.SelectNodes(".//span/span|.//div[@class='vM0jzc']/span");
-                            if (spanCol != null && spanCol[0].InnerText.Equals("&nbsp;"))
+                            if (spanCol == null || (spanCol != null && spanCol[0].InnerText.Equals("&nbsp;")))//18-11-2024
                                 spanCol = nd1.SelectNodes(".//span");
                             if (spanCol != null)
                             {
@@ -2652,7 +2652,7 @@ namespace RapidTrackingSingleThread
                             if (string.IsNullOrEmpty(content))
                             {
                                 HtmlNodeCollection spanCol = nd1.SelectNodes(".//span/span|.//div[@class='vM0jzc']/span");
-                                if (spanCol != null && spanCol[0].InnerText.Equals("&nbsp;"))
+                                if (spanCol == null || (spanCol != null && spanCol[0].InnerText.Equals("&nbsp;")))//18-11-2024
                                     spanCol = nd1.SelectNodes(".//span");
                                 if (spanCol != null)
                                 {

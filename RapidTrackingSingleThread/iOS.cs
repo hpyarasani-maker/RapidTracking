@@ -661,7 +661,16 @@ namespace RapidTrackingSingleThread
                         }
                     }
                 }//end of change //11-01-2022
-
+                else //19-11-2024
+                {
+                    HtmlNode node = doc.DocumentNode.SelectSingleNode("//div[@id='tads']/div[contains(@class,'z7KNEc')]");
+                    if (node != null)
+                    {
+                        s.Append("<block type=\"productListedAds\" url=\"\">");
+                        s.Append(ProductListedAds(node));
+                        s.Append("</block>");
+                    }
+                }//19-11-2024
                 HtmlNodeCollection col = crNode.SelectNodes(".//div[contains(@id,'tads')]/ol/li");
                 if (col == null)
                     col = crNode.SelectNodes(".//div[@id='tads']/div/ol/li|.//div[@jsname='hWE2jd']|.//div[@id='tads']/div[@class='uEierd']|.//div[@id='tads']/div/div[@class='uEierd']" +//23-05-2024
@@ -1928,20 +1937,15 @@ namespace RapidTrackingSingleThread
         private string ProductListedAds(HtmlNode node)//15-10-2024
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='Lt4Ktd']/div|.//div[@class='F6uqce']");//14-10-2024
+            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='Lt4Ktd']/div|.//div[@class='F6uqce']|.//div[@class='VNaOAc']");//19-11-2024
             if (nds != null)
             {
-                HtmlNodeCollection nd = node.SelectNodes(".//g-inner-card[@class='zj3nWc Nplhsf wOt4nf VoEfsd']/a|.//div[@class='QxKkX']/a");//14-10-2024
+                HtmlNodeCollection nd = node.SelectNodes(".//g-inner-card[@class='zj3nWc Nplhsf wOt4nf VoEfsd']/a|.//div[@class='QxKkX']/a|.//div[@class='VqeGe']/a");//19-11-2024
                 //14-10-2024
                 foreach (HtmlNode nd1 in nd)
                 {
-                    string title = "";
-                    string url = "";
-                    if (nd1.SelectSingleNode(".//div[@class='b2u8d unNvPe Kbussc zEMETe']") == null)
-                    { title = nd1.InnerText; }
-                    else if (nd1.SelectSingleNode(".//div[@class='b2u8d unNvPe Kbussc zEMETe']") != null)
-                        title = nd1.SelectSingleNode(".//div[@class='b2u8d unNvPe Kbussc zEMETe']").InnerText;
-                    url = nd1.Attributes["href"]?.Value ?? "";
+                    string title = nd1.SelectSingleNode(".//div[@class='b2u8d unNvPe Kbussc zEMETe']|.//div[@class='KZYtMc c5G9eb wHYlTd GS5rRd']")?.InnerText ?? nd1?.InnerText; //19-11-2024
+                    string url = nd1.Attributes["href"]?.Value ?? "";//19-11-2024
                     if (!string.IsNullOrEmpty(title) && !string.IsNullOrEmpty(url.Trim()))
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                 }//end //14-10-2024

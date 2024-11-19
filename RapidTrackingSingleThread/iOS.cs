@@ -2821,7 +2821,8 @@ namespace RapidTrackingSingleThread
             string destination = string.Empty;
             string origin = string.Empty;
             HtmlNode dest = node.SelectSingleNode(".//div[@jsname='GseVJb']");
-            if (dest != null && (dest.InnerText.Contains("destination") || dest.InnerText.Contains("Ziel") || dest.InnerText.Contains("destinazione") || dest.Attributes["aria-label"].Value.Contains("Ziel") || dest.Attributes["aria-label"].Value.Contains("destin")))//22-09-2023//24-08-2023//13-07-2023
+            if (dest != null && (dest.InnerText.Contains("destination") || dest.InnerText.Contains("Ziel") || dest.InnerText.Contains("destinazione") 
+                || dest.Attributes["aria-label"].Value.Contains("Ziel") || dest.Attributes["aria-label"].Value.Contains("destin")||dest.InnerText.Contains("すべての空港")))//19-11-2024//22-09-2023//24-08-2023//13-07-2023
             {
                 var spn = node.SelectSingleNode(".//div[@jsname='S9WWYc']").SelectNodes(".//span[not(contains(@aria-hidden, 'false'))]");
                 foreach (var sp in spn)
@@ -3480,7 +3481,7 @@ namespace RapidTrackingSingleThread
                 && node.SelectSingleNode(".//div[@class='answered-question']") == null)
                 || (node.SelectSingleNode(".//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']") != null))
             {
-                if (!node.InnerText.StartsWith("People also search for") && !node.InnerText.StartsWith("Otras personas también buscan") && node.SelectSingleNode(".//div[contains(@class,'Eee1Bd')]|.//div[contains(@class,'AuVD')]|.//div[@class='NYidgb']") == null)//04-07-2024//13-10-2023//27-01-2023//11-07-2022 contains //21-12-2020//25-05-2020
+                if (!node.InnerText.StartsWith("People also search for") && !node.InnerText.StartsWith("Otras personas también buscan") && node.SelectSingleNode(".//div[contains(@class,'Eee1Bd')]|.//div[contains(@class,'AuVD')]|.//div[@class='NYidgb']|.//div[@class='Wt5Tfe']") == null)//19-11-2024//04-07-2024//13-10-2023//27-01-2023//11-07-2022 contains //21-12-2020//25-05-2020
                     return "PeopleAlsoAsk";
             }
             // changed on 05-07-2019

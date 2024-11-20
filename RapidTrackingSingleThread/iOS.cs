@@ -3665,7 +3665,7 @@ namespace RapidTrackingSingleThread
                         return true;//12-11-2021
                 if (node.SelectSingleNode(".//div[@class='b2Rnsc']") != null)//16-10-2024
                     return true;
-                if (nd.InnerText == "More results" || nd.InnerText == "Top results" || nd.InnerText == "Toppresultater" || nd.InnerText == "También se buscó" //27-10-2021
+                if (nd.InnerText == "More results" || nd.InnerText == "Top results" || nd.InnerText == "Toppresultater" //20-11-2024 //27-10-2021
                      || nd.InnerText == "Fler resultat" || nd.InnerText == "Flere resultater" || nd.InnerText == "Plus de résultats")    // 13-12-2019
                     return false;
             }

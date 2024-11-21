@@ -33,13 +33,9 @@ namespace AIOReceiving
             ios.OnKeywordDone += Ios_OnKeywordDone;//30-10-2024
             t1 = new Thread(new ThreadStart(StartProcess))//06-08-2024
             {
-                //Name = "All_1"
-                Name = "NewSEIDs_3"
-                // Name = "Mobile_102_10"
-                ///Name = "CommaKeywords_1"
-                //Name = "ODesktop_20"
-                //Name = "NewMobile_4"
-                //Name = "NewComma"
+                //Name = "AIO_ALll_1"
+                Name = "AIO_1"
+                ///Name = "AIO_CommaKeywords_1"
             };
             t1.Start();
         }
@@ -54,30 +50,8 @@ namespace AIOReceiving
 
         private async void StartProcess() //06-08-2024
         {
-            string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking desktop and all keywords
-            //string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking mobile
-            // string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
-            //string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingmobilehotel/";  // rapid tracking mobile
-            //string url = "https://seresults.azurewebsites.net/api/callbackrapidTrackingnewdesktop/"; //Desktop new keywords
-            //string url = "https://seresults.azurewebsites.net/api/callbackrapidTrackingnewmobile/"; //mobile new keywords
-            // string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingnewcommakeywords/";  // new comma keywords
-            //string url = "https://seresults.azurewebsites.net/api/callbackuk503desktoptemp/"; //receiving New SEIDs
-            //string url = "https://seresults.azurewebsites.net/api/trackingtrending/";
-            //string url = "https://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58
-            //string url = "https://seresults.azurewebsites.net/api/callbackuk106mobile/";      // 106
-            //string url = "https://seresults.azurewebsites.net/api/callbackus1desktop/";     // 1
-            //string url = "https://seresults.azurewebsites.net/api/callbackus102mobile/";      // 102
-            //string url = "https://seresults.azurewebsites.net/api/callbackotherdesktop/";  // other desktop
-            //string url = "https://seresults.azurewebsites.net/api/callbackothermobile/";   // other mobiles
-            //string url = "https://seresults.azurewebsites.net/api/callbackimagesdesktop/";       // images desktop
-            //string url = "https://seresults.azurewebsites.net/api/callbackimagesmobile/";      // images mobilse
-            //string url = "https://seresults.azurewebsites.net/api/callback74images/";
-            //string url = "https://seresults.azurewebsites.net/api/trackingdatadesktop/"; //long lengthy keywords including startwith double quotes and images
-            //string url = "https://seresults.azurewebsites.net/api/trackingdatamobile/";
-            //string url = "https://previous.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking mobile
-            //string url = "https://previous.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
-            //string url = "https://previous.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking other desktop
-            //string url = "https://previous.azurewebsites.net/api/callbackuk58desktop/";       // 58 sending for previous date
+            //string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
+            string url = "https://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58 AIO Keyword Tracking Desktop and Mobile
 
             Uri ul = new Uri(url);
             string username = "pisoftware";

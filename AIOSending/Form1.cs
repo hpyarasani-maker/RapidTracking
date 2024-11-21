@@ -34,25 +34,7 @@ namespace AIOSending
                
         private void Form1_Load(object sender, EventArgs e)
         {
-            //Text = "D_Oxylabs_NewSEIDs";
-            //Text = "D_Oxylabs_TrackingTrending_KwdSending_106_1";
-            //Text = "D_Oxylabs_TrackingTrending_KwdSending_102_1";
-            //Text = "D_Oxylabs_TrackingTrending_KwdSending_OtherMobile_2";
-            //Text = "D_Oxylabs_TrackingTrending_KwdSending_OtherDesktop_2";
-            Text = "D_Oxylabs_RapidTracking_KwdSending_Desktop_1_2";
-            //Text = "D_Oxylabs_TrackingTrending_KwdSending_58_2";
-            //Text = "D_Oxylabs_TrackingTrending_KwdSending_All";
-            //Text = "D_Oxylabs_Tracking New Keywords_Sending";
-            //Text = "D_Oxylabs_RapidTracking_KwdSending_Mobile_Yesterdays";
-            //Text = "D_Oxylabs_RapidTracking_KwdSending_CommaKeywordsMobile_Hotels_1";
-            //Text = "D_Oxylabs_RapidTracking_KwdSending_Mobile_Hotels_1";
-            //Text = "D_Oxylabs_RapidTracking_KwdSending_NotHotelKeywords";
-            //Text = "D_Oxylabs_TrackingTrending_SendingCommaKeywords";
-            //Text = "D_Oxylabs_TrackingTrending_KwdSending_OtherDesktop_1_P";
-            //Text = "D_Oxylabs_RapidTracking_KwdSending_CommaKeywordsMobile_Hotels_1P";
-            //Text = "D_Oxylabs_RapidTracking_KwdSending_NonHotelKeywordsP";
-            //Text = "Sending KeywordsP-11-14_CommaKeywords_P";
-            //Text = "Sending Previous Date Keywords"; //sending previous date keywords
+            Text = "Sending AIO Keywords"; //sending previous date keywords
             date_picker.Value = DateTime.Today; 
 
             
@@ -131,27 +113,8 @@ namespace AIOSending
             Cursor.Current = Cursors.WaitCursor;
             string myDate = date_picker.Text;
 
-            //string strQry = "exec [dbo].[GetBulk_NewSeids] '" + myDate + "'";
-            //string strQry = "exec [dbo].[GetBulkUKDesktop_Temp_1] '" + myDate + "'";    // seid: 503
-            //string strQry = "exec [dbo].[GetBulk_All] '" + myDate + "'";
-            //string strQry = "exec [dbo]. [GetBulkDesktop_NewKeywords] '" + myDate + "'";
-            //string strQry = "exec [dbo].[GetBulkDesktop_58_2] '" + myDate + "'";
-            //string strQry = "exec [dbo].[GetBulkMobile_102_1] '" + myDate + "'";
-            //string strQry = "exec [dbo].[GetBulkDesktop_2] '" + myDate + "'";
-            //string strQry = "exec [dbo].[GetBulkMobile_2] '" + myDate + "'";
-            string strQry = "exec [dbo].[GetBulkDesktop_1_2] '" + myDate + "'";
-            //string strQry = "exec [dbo].[GetBulkMobile_Hotel] '" + myDate + "'";
-            //string strQry = "exec [dbo].[GetCommaKeywords_Hotel] '" + myDate + "'";
-            //string strQry = "exec [dbo].[GetBulkMobile_NotHotel] '" + myDate + "'";
-            //string strQry = "exec [dbo].[GetCommaKeywords] '" + myDate + "'";
-            //string strQry = "exec [dbo].[GetBulk_All] '" + myDate + "'";
-            //string strQry = "exec [dbo].[GetBulk_P] '" + myDate + "'";  //sending procedure previous date keywords
-            //string strQry = "exec [dbo].[GetBulk_Desktop] '" + myDate + "'";
-            //string strQry = "exec [dbo].[GetBulk_Mobile] '" + myDate + "'";
-            //string strQry = "exec [dbo]. [GetBulkMobile_NewKeywords] '" + myDate + "'";
-            //string strQry = "exec [dbo]. [GetBulk_All_Mobile] '" + myDate + "'";  //Mobile Receive all keywords
-            //string strQry = "exec [dbo].[GetBulkMobile_106_1] '" + myDate + "'";
-            //string strQry = "exec [dbo].[Tracking_DB_Keywords_SEID_102_S] '" + myDate + "'";  // Last keywords
+            string strQry = "exec [dbo].[GetBulk_AI_Desktop]  '" + myDate + "'";  // AIOverview Desktop keywords
+            //string strQry = "exec [dbo].[GetBulk_AI_Mobile]  '" + myDate + "'";  // AIOverview Mobile keywords
             SqlConnection objCon = null;
             SqlDataReader objData = null;
 

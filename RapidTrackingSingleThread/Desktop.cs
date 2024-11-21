@@ -2196,7 +2196,7 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[@class='CEMjEf NUnG9d']/g-img"); //06-04-2022 TS
             if (nd == null)//27-04-2023
                 nd = node.SelectSingleNode(".//div[@class='aUSklf']|.//div[@jsname='K9a4Re']");//25-09-2024
-            if (nd != null && node.SelectSingleNode(".//div[@class='fN9oz']|.//div[@class='Brgz0 tw-res']") == null)//10-10-2024//01-10-2024
+            if (nd != null && node.SelectSingleNode(".//div[@class='fN9oz']|.//div[contains(@class,'tw-res')]") == null)//21-11-2024//10-10-2024//01-10-2024
                 return "topstories";
             if (nd == null)
                 nd = node.SelectSingleNode(".//span[@class='qB1pae']");
@@ -2215,12 +2215,12 @@ namespace RapidTrackingSingleThread
             HtmlNode nd1 = null;
             if (nd != null)
                 nd1 = node.SelectSingleNode(".//div[@class='g']");
-            if (nd != null && nd1 == null && node.SelectSingleNode(".//div[@class='fN9oz']|.//div[@class='Brgz0 tw-res']") == null)//10-10-2024//07-10-2024
+            if (nd != null && nd1 == null && node.SelectSingleNode(".//div[@class='fN9oz']|.//div[contains(@class,'tw-res')]") == null)//21-11-2024//10-10-2024//07-10-2024
                 return "videos";
             //end 15-10-2020
             nd = node.SelectSingleNode(".//div[@class='_Zfh']");
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='Brgz0 tw-res']");
+                nd = node.SelectSingleNode(".//div[contains(@class,'tw-res')]");//21-11-2024
             if (nd != null)
             {
                 return "Twitters";

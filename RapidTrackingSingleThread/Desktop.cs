@@ -253,10 +253,10 @@ namespace RapidTrackingSingleThread
                     foreach (HtmlNode nd in col)
                     {
                         HtmlNode n = nd.SelectSingleNode(".//h3/a[2]|.//div[@class='ad_cclk']/a[2]|.//div[@class='d5oMvf']/a" +
-                            "|.//div[contains(@class,'v5yQqb')]/a|.//text-ad-link/a");//05-12-2023//12-11-2021 //27-06-2020
+                            "|.//div[contains(@class,'v5yQqb')]/a|.//div[@class='UCccb']/a|.//text-ad-link/a");//21-11-2024//05-12-2023//12-11-2021 //27-06-2020
                         if (n != null)
                         {
-                            HtmlNode tittlenode = n.SelectSingleNode(".//h3|.//div[@role='heading']");//27-06-2020
+                            HtmlNode tittlenode = n.SelectSingleNode(".//h3|.//div[@role='heading']|.//span[@class='uDVmCf bkEfV CAvEcc']");//21-11-2024//27-06-2020
                             try  //28-09-2020  try catch.
                             {
                                 string url = string.Empty;

@@ -3672,7 +3672,7 @@ namespace RapidTrackingLibrary
                     return "ProductListedAds";
                 }
             nd = node.SelectSingleNode(".//ul/product-viewer-group|.//div[@class='aJegcc']|.//div[@class='veLOze']");//15-10-2024//09-12-2022 //22-11-2022 shopping block
-            if (nd != null)//22-11-2022 popular
+            if (nd != null && node.SelectSingleNode(".//div[@class='nSseWb']") == null)//21-11-2024//22-11-2022 popular
             {
                 return "Popular";//22-11-2022 popular
             }
@@ -3682,7 +3682,7 @@ namespace RapidTrackingLibrary
             nd = node.SelectSingleNode(".//div/h1[contains(@class, 'bNg8Rb')]|.//div/span[contains(@class, 'stGWLc')]");//12-08-2024 multiple Adwords in top, middle & bootom
             if (nd != null && (nd.InnerText.Contains("Ads") || nd.InnerText.Contains("Sponsored")))
                 return "Adwords";//12-08-2024 multiple Adwords in top, middle & bootom
-            nd = node.SelectSingleNode(".//div[@class='GcKpu']|.//div[contains(@class,'Fzsovc')]");//28-08-2024
+            nd = node.SelectSingleNode(".//div[@class='GcKpu']|.//div[@class='nSseWb']|.//div[contains(@class,'Fzsovc')]");//21-11-2024//28-08-2024
             if (nd != null)//21-08-2024
                 return "aiOverview";//21-08-2024 AIOverview
             nd = node.SelectSingleNode(".//div[@class='Wt5Tfe']");//11-10-2024 peoplealsosearch
@@ -4014,6 +4014,22 @@ namespace RapidTrackingLibrary
                     }
                 }
             }
+            else//21-11-2024
+            {
+                nodes = node.SelectNodes(".//div[@class='K1VDEd']");
+                if (nodes != null)
+                {
+                    foreach (HtmlNode n in nodes)
+                    {
+                        string url = string.Empty;
+                        string content = n.SelectSingleNode(".//span[@class='SX17w DBuTVd']")?.InnerText ?? "";
+                        if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(content))
+                        {
+                            s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" + SetTitle(content.Replace("&nbsp;", "")) + "\" />");
+                        }
+                    }
+                }
+            }//21-11-2024
             s.Append("</block>");
             return s.ToString();
         }//18-11-2024//08-11-2024//21-08-2024 AIOverView Method//15-11-2024

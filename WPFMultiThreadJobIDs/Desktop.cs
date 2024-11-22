@@ -247,10 +247,10 @@ namespace WPFMultiThreadJobIDs
                     foreach (HtmlNode nd in col)
                     {
                         HtmlNode n = nd.SelectSingleNode(".//h3/a[2]|.//div[@class='ad_cclk']/a[2]|.//div[@class='d5oMvf']/a" +
-                            "|.//div[contains(@class,'v5yQqb')]/a|.//text-ad-link/a");//05-12-2023//12-11-2021 //27-06-2020
+                            "|.//div[contains(@class,'v5yQqb')]/a|.//div[@class='UCccb']/a|.//text-ad-link/a");//21-11-2024//05-12-2023//12-11-2021 //27-06-2020
                         if (n != null)
                         {
-                            HtmlNode tittlenode = n.SelectSingleNode(".//h3|.//div[@role='heading']");//27-06-2020
+                            HtmlNode tittlenode = n.SelectSingleNode(".//h3|.//div[@role='heading']|.//span[@class='uDVmCf bkEfV CAvEcc']");//21-11-2024//27-06-2020
                             try  //28-09-2020  try catch.
                             {
                                 string url = string.Empty;
@@ -2190,7 +2190,7 @@ namespace WPFMultiThreadJobIDs
                 nd = node.SelectSingleNode(".//div[@class='CEMjEf NUnG9d']/g-img"); //06-04-2022 TS
             if (nd == null)//27-04-2023
                 nd = node.SelectSingleNode(".//div[@class='aUSklf']|.//div[@jsname='K9a4Re']");//25-09-2024
-            if (nd != null && node.SelectSingleNode(".//div[@class='fN9oz']|.//div[@class='Brgz0 tw-res']") == null)//10-10-2024//01-10-2024
+            if (nd != null && node.SelectSingleNode(".//div[@class='fN9oz']|.//div[contains(@class,'tw-res')]") == null)//21-11-2024//10-10-2024//01-10-2024
                 return "topstories";
             if (nd == null)
                 nd = node.SelectSingleNode(".//span[@class='qB1pae']");
@@ -2209,12 +2209,12 @@ namespace WPFMultiThreadJobIDs
             HtmlNode nd1 = null;
             if (nd != null)
                 nd1 = node.SelectSingleNode(".//div[@class='g']");
-            if (nd != null && nd1 == null && node.SelectSingleNode(".//div[@class='fN9oz']|.//div[@class='Brgz0 tw-res']") == null)//10-10-2024//07-10-2024
+            if (nd != null && nd1 == null && node.SelectSingleNode(".//div[@class='fN9oz']|.//div[contains(@class,'tw-res')]") == null)//21-11-2024//10-10-2024//07-10-2024
                 return "videos";
             //end 15-10-2020
             nd = node.SelectSingleNode(".//div[@class='_Zfh']");
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='Brgz0 tw-res']");
+                nd = node.SelectSingleNode(".//div[contains(@class,'tw-res')]");//21-11-2024
             if (nd != null)
             {
                 return "Twitters";

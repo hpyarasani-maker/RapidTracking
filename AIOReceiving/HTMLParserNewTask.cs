@@ -114,8 +114,8 @@ namespace AIOReceiving
             {
                 //string username = "gpidatametrics";
                 //string password = "sdV5X3fcX6";
-                string username = "piapp";
-                string password = "b5FCvgkjxx";
+                string username = "piapp-aio";
+                string password = "4gvfnA+aBYpBNs37";
 
                 if (status == "done")
                 {

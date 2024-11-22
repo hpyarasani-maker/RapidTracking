@@ -3313,7 +3313,9 @@ namespace TrackingTrending
                 // if (node.SelectSingleNode(".//div[@class='FEoF4d']") == null && node.SelectSingleNode(".//div[@class='PZPZlf hb8SAc']") == null) //15-09-2022 //24-11-2022 commented
                 if (node.SelectSingleNode(".//div[@class='FEoF4d']|.//div[@class='kno-rdesc']|.//div[contains(@class,'rbR0cd')]|.//g-card[@class='g F6CFcc']|.//div[@class='zhYvOe OuaH0']" +//28-08-2024//15-08-2024
                     "|.//div[@class='knowledge-finance-wholepage-chart__fw-uch']|.//div[@class='WFxqwc']|.//div[@class='KrvXD']|.//div[contains(@class,'dnXCYb')]|.//div[@class='tlibce KXPste']|.//div[contains(@class, 'g kno-result')]" +//09-11-2024//24-10-2024//23-07-2024
-                     "|.//div[@class='hoJlSb']|.//div[@class='Vo9TVc nG7hRb']|.//div[@jsname='xQjRM']|.//div[@class='x3SAYd']|.//div[@class='XNfAUb']|.//div[@jsname='VMmjWc']|.//div[@class='agqCtf tw-res']|.//div[contains(@class,'gJBeNe d2F2Td')]|.//div[@jsname='dTDiAc']|.//div[contains(@class,'kpd-ch')]|.//div[@class='ILuMad t6aJGf']") == null || node.SelectSingleNode(".//div[@class='V3FYCf']") != null)//06-11-2024//19-09-2024//29-07-2024//05-07-2024//29-10-2024
+                    "|.//div[@class='hoJlSb']|.//div[@class='Vo9TVc nG7hRb']|.//div[@jsname='xQjRM']|.//div[@class='x3SAYd']|.//div[@class='XNfAUb']" +
+                    "|.//div[@jsname='VMmjWc']|.//div[@class='agqCtf tw-res']|.//div[contains(@class,'gJBeNe d2F2Td')]|.//div[@jsname='dTDiAc']" +
+                    "|.//div[contains(@class,'kpd-ch')]|.//div[@class='ILuMad t6aJGf']") == null || node.SelectSingleNode(".//div[@class='V3FYCf']|.//div[@class='n5o0ed']") != null)//06-11-2024//19-09-2024//29-07-2024//05-07-2024//29-10-2024//20-11-2024
                     return "AnswerCard";
             }
 
@@ -3413,7 +3415,7 @@ namespace TrackingTrending
                 || (node.SelectSingleNode(".//div[@class='HOslld dutT5c']|.//div[@class='zJUuqf adDDi']|.//div[@class='IZE3Td']") != null
                 && (node.SelectSingleNode(".//div[@class='RyIFgf']") == null || node.SelectNodes(".//div[contains(@class,'EXH1Ce')]") != null))//09-05-2024//29-04-2024//16-03-2024//27-02-2024
                 && (node.SelectSingleNode(".//div[@class='vDF3Oc jIrdcd']|.//div[contains(@class,'qtOtne')]|.//div[@class='YB4h9 ky4hfd']" +
-                "|.//div[@class='oj7Mub eVNxY']|.//div[@class='aJegcc']|.//div[@class='nC7kNc RrlBtc']|.//div[@class='x2KtK']") == null))//19-11-2024//26-09-2024//24-09-2024//26-07-2024//04-07-2024//01-05-2024
+                "|.//div[@class='oj7Mub eVNxY']|.//div[@class='aJegcc']|.//div[@class='nC7kNc RrlBtc']|.//div[@class='x2KtK']|.//div[@class='RyIFgf']") == null))//21-11-2024//19-11-2024//26-09-2024//24-09-2024//26-07-2024//04-07-2024//01-05-2024
                     return "Hotel";
             }
             nd = node.SelectSingleNode(".//*[@id='rXuTZe']");
@@ -3658,7 +3660,7 @@ namespace TrackingTrending
                         return true;//12-11-2021
                 if (node.SelectSingleNode(".//div[@class='b2Rnsc']") != null)//16-10-2024
                     return true;
-                if (nd.InnerText == "More results" || nd.InnerText == "Top results" || nd.InnerText == "Toppresultater" || nd.InnerText == "También se buscó" //27-10-2021
+                if (nd.InnerText == "More results" || nd.InnerText == "Top results" || nd.InnerText == "Toppresultater" //20-11-2024 //27-10-2021
                      || nd.InnerText == "Fler resultat" || nd.InnerText == "Flere resultater" || nd.InnerText == "Plus de résultats")    // 13-12-2019
                     return false;
             }

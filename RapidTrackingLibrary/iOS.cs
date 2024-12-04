@@ -2905,7 +2905,7 @@ namespace RapidTrackingLibrary
                 }//09-08-2023
                 catch
                 {
-                    dest = node.SelectSingleNode(".//div[@class='wHYlTd C5w57c']"); //23-04-2024
+                    dest = node.SelectSingleNode(".//div[@class='wHYlTd C5w57c']|.//span[@class='mgAbYb OSrXXb RES9jf IFnjPb']");//04-11-2024 //23-04-2024
                     int lenIndex = dest.GetDirectInnerText().IndexOf(" da ") >= 0 ? dest.GetDirectInnerText().IndexOf(" da ") + 4 : -1;//23-04-2024
                     origin = lenIndex >= 0 ? dest?.GetDirectInnerText()?.Substring(lenIndex).Trim() : "";//25-05-2024
                     lenIndex = origin.IndexOf("&nbsp;&middot;");//25-05-2025

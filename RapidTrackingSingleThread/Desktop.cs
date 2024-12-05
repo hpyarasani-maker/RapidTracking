@@ -1276,7 +1276,7 @@ namespace RapidTrackingSingleThread
             StringBuilder s = new StringBuilder();
             HtmlNodeCollection nds = node.SelectNodes(".//g-inner-card/div/a|.//a[@class='X5OiLe']|.//a[@class='xMqpbd']");//24-11-2023 //08-12-2021 videos item urls sel
             if (nds == null)
-                nds = node.SelectNodes(".//div[@jsname='ibnC6b']/div/a");   //17-07-2020
+                nds = node.SelectNodes(".//div[@jsname='ibnC6b']/div/a|.//div[@class='iHxmLe']/a");//05-12-2024   //17-07-2020
             if (nds == null)
                 //nds = node.SelectNodes(".//div[@class='LYyupc']/div/a|.//a[@class='X5OiLe']|.//div[@class='XpiUte']/a"); //30-08-2021 videos item url//07-07-2021 //23-07-2021
                 nds = node.SelectNodes(".//div[@class='LYyupc']/div/a|.//div[@class='XpiUte']/a|.//a[@class='xMqpbd']");//27-10-2023 //08-12-2021 videos item urls //30-08-2021 videos item url//07-07-2021 //23-07-2021
@@ -2208,7 +2208,7 @@ namespace RapidTrackingSingleThread
             //if (nd == null)
             //    nd = node.SelectSingleNode(".//div[@class='LMMXP mfMhoc']");  //23-07-2020 //17-07-2020
             if (nd == null)
-                nd = node.SelectSingleNode(".//div[@class='sQkmof']");//23-07-2020 included selector for videos
+                nd = node.SelectSingleNode(".//div[@class='sQkmof']|.//div[@class='Ylm8Fc YmeD8e']");//05-12-2024//23-07-2020 included selector for videos
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@jsname='wRSfy']"); //02-12-2020 included for videos block
             //15-10-2020

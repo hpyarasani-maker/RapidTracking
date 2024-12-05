@@ -2037,6 +2037,8 @@ namespace RapidTrackingResSingleThread
                 nds = node.SelectNodes(".//div[@class='E8hWLe SVMeif BmP5tf']/div/a");//08-12-2023
             if (nds == null)//04-07-2024
                 nds = node.SelectNodes(".//div[@class='ygsXjf x4gf3d elIge qR29te']/div/a");//04-07-2024
+            if (nds == null)//05-12-2024
+                nds = node.SelectNodes(".//div[@class='ygsXjf x4gf3d qR29te']/div/a");//05-12-2024
             if (nds != null)
             {
                 s.Append("<block type=\"siteLinks\" url=\"\">");
@@ -2865,7 +2867,7 @@ namespace RapidTrackingResSingleThread
                 }//09-08-2023
                 catch
                 {
-                    dest = node.SelectSingleNode(".//div[@class='wHYlTd C5w57c']"); //23-04-2024
+                    dest = node.SelectSingleNode(".//div[@class='wHYlTd C5w57c']|.//span[@class='mgAbYb OSrXXb RES9jf IFnjPb']");//04-11-2024 //23-04-2024
                     int lenIndex = dest.GetDirectInnerText().IndexOf(" da ") >= 0 ? dest.GetDirectInnerText().IndexOf(" da ") + 4 : -1;//23-04-2024
                     origin = lenIndex >= 0 ? dest?.GetDirectInnerText()?.Substring(lenIndex).Trim() : "";//25-05-2024
                     lenIndex = origin.IndexOf("&nbsp;&middot;");//25-05-2025
@@ -2907,7 +2909,7 @@ namespace RapidTrackingResSingleThread
                             if (string.IsNullOrEmpty(connecting))
                                 connecting = "";
                         }
-                        connecting = string.IsNullOrEmpty(connecting) ? "Nonstop" : !connecting.Contains("Connecting") && !connecting.Contains("Nonstop") ? "Connecting" : connecting;
+                        connecting = string.IsNullOrEmpty(connecting) ? "Nonstop" : !connecting.Contains("Connecting") && !connecting.Contains("Nonstop") ? "Connecting" : !connecting.Contains("Nonstop-Flug") ? "Nonstop" : !connecting.Contains("Mit Umsteigen") ? "Nonstop" : connecting;//02-12-2024
                         string price = nd.SelectSingleNode(".//span[@class='xqqLDd']|.//span[@class='cirEce']|.//div[@class='n22NNe']" +
                             "|.//div[@class='rZFLMc']|.//div[@class='g1sBec']|.//div[@class='YK0p7d rZFLMc']")?.InnerText.Trim() ?? "0"; //05-07-2024//23-04-2024
                         //02-01-2024 end
@@ -2938,7 +2940,7 @@ namespace RapidTrackingResSingleThread
                             string airline = "";
                             string hours = nd.SelectSingleNode(".//div[@class='BNeawe DwrKqd']/span")?.InnerText.Trim() ?? nd.SelectSingleNode(".//td[1]/div/div[contains(@class,'BNeawe')]/span[2]")?.InnerText.Trim() ?? "0h 0m"; //27-09-2023 //22-09-2023
                             string connecting = nd.SelectSingleNode(".//div[contains(@class,'BNeawe')]/span[@class='BNeawe']")?.InnerText.Trim() ?? nd.SelectSingleNode(".//div[@class='BNeawe']")?.InnerText.Trim() ?? "";//22-09-2023
-                            connecting = string.IsNullOrEmpty(connecting) ? "Nonstop" : !connecting.Contains("Connecting") && !connecting.Contains("Nonstop") ? "Connecting" : connecting;
+                            connecting = string.IsNullOrEmpty(connecting) ? "Nonstop" : !connecting.Contains("Connecting") && !connecting.Contains("Nonstop") ? "Connecting" : !connecting.Contains("Nonstop-Flug") ? "Nonstop" : !connecting.Contains("Mit Umsteigen") ? "Nonstop" : connecting;//02-12-2024
                             string price = nd.SelectSingleNode(".//div[@class='BNeawe DwrKqd']")?.GetDirectInnerText() ?? nd.SelectSingleNode(".//td[2]/div/div[@class='BNeawe']")?.GetDirectInnerText() ?? "0";//22-09-2023
                             string priceValue = string.Empty;
                             string hoursValue = string.Empty;
@@ -3418,7 +3420,7 @@ namespace RapidTrackingResSingleThread
             }
             nd = node.SelectSingleNode(".//div[contains(@class,'HOslld dutT5c')and(.//div[contains(@class,'sPLMud')or(.//div[contains(@class,'hNKF2b m9orme')])])]|.//div[contains(@class, 'XNfAUb')]");//18-10-2024//10-10-2024//20-02-2024
             if (nd != null && node.SelectSingleNode(".//div[contains(@class, 'MRtunc')]|.//div[@class='Wt5Tfe']|.//div[@class='RyIFgf']") == null
-                || (node.SelectSingleNode(".//div[@class='VqeGe']") != null && node.SelectSingleNode(".//div[@class='NYidgb']|.//div[@class='xKf9F']") == null))//27-02-2024//26-02-2024//20-02-2024
+                || (node.SelectSingleNode(".//div[@class='VqeGe']") != null && node.SelectSingleNode(".//div[@class='NYidgb']|.//div[@class='xKf9F']|.//div[@class='ptUfXb XuQ7g']") == null))//02-12-2024//27-02-2024//26-02-2024//20-02-2024
             {
                 if ((node.SelectSingleNode(".//div[@class='Gqsa8d']") != null && node.SelectSingleNode(".//div[@class='EDblX HG5ZQb']") != null)//27-02-2024
                 || (node.SelectSingleNode(".//div[@class='HOslld dutT5c']|.//div[@class='zJUuqf adDDi']|.//div[@class='IZE3Td']") != null

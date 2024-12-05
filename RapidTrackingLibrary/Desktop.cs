@@ -884,7 +884,10 @@ namespace RapidTrackingLibrary
                                     urls = n.Attributes["href"].Value;
                                 else
                                 {
-                                    var a = nd.SelectSingleNode(".//div[@class='ct3b9e']/a|.//div[@class='IAZbGe']/a|.//div[@class='DhN8Cf']/a|.//div[@class='E74pWd']/a|.//div[@class='DhN8Cf']/div/a|.//div[@class='IAZbGe']/div/a|.//div[@class='nhaZ2c']/div/a|.//div[@class='ARVUmc']/div/a|.//div[@class='nhaZ2c']/div/span/a");//07-09-2023//23-08-2023//28-07-2023//18-04-2023//11-02-2023 //07-04-2022   
+                                    var a = nd.SelectSingleNode(".//div[@class='ct3b9e']/a|.//div[@class='IAZbGe']/a|.//div[@class='DhN8Cf']/a" +
+                                        "|.//div[@class='E74pWd']/a|.//div[@class='DhN8Cf']/div/a|.//div[@class='IAZbGe']/div/a" +
+                                        "|.//div[@class='nhaZ2c']/div/a|.//div[@class='ARVUmc']/div/a|.//div[@class='nhaZ2c']/div/span/a" +
+                                        "|.//div[@class='xe8e1b']/div/div/span/a");//05-12-2024//07-09-2023//23-08-2023//28-07-2023//18-04-2023//11-02-2023 //07-04-2022 urls = a.Attributes["href"].Value;   
                                     if (a != null)//14-09-2023
                                     {
                                         urls = a.Attributes["href"].Value;

@@ -378,7 +378,7 @@ namespace RapidTrackingSingleThread
                 s.Append("<block type=\"adwords\" url=\"\">");
                 foreach (HtmlNode nd in col)
                 {
-                    HtmlNode n = nd.SelectSingleNode(".//div[@class='amDzVb Q6JQs']/a");//01-08-2024
+                    HtmlNode n = nd.SelectSingleNode(".//div[@class='amDzVb Q6JQs']/a|.//div[@class='amDzVb kjqyqc Q6JQs']/a");//09-12-2024//01-08-2024
                     if (n == null)//01-08-2024
                         n = nd.SelectSingleNode(".//div[@class='d5oMvf KJDcUb']/a|.//div[contains(@class,'v5yQqb')]/a"); //11-11-2021
                     if (n == null)
@@ -391,7 +391,7 @@ namespace RapidTrackingSingleThread
                     {
                         //22-06-2020
                         string title = string.Empty;
-                        HtmlNode t = n.SelectSingleNode(".//h3|.//div[@role='heading']|.//div[@class='cr2Eb A5hgG MBeuO']");//01-08-2024
+                        HtmlNode t = n.SelectSingleNode(".//h3|.//div[@role='heading']|.//div[contains(@class,'A5hgG MBeuO')]");//09-12-2024//01-08-2024
                         if (t != null)
                             title = t.InnerText;
                         //end 22-06-2020
@@ -1682,14 +1682,14 @@ namespace RapidTrackingSingleThread
         private string GetAdwords(HtmlNode node)//12-08-2024 multiple Adwords in top, middle & bootom
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nodes = node.SelectNodes(".//div[@class='QxKkX']/a|.//div[@class='UeUWyc']/a");
+            HtmlNodeCollection nodes = node.SelectNodes(".//div[@class='QxKkX']/a|.//div[@class='UeUWyc']/a|.//div[@class='ijm6te']/a[1]");//09-12-2024
             if (nodes != null)
             {
                 s.Append("<block type=\"adwords\" url=\"\">");//04-09-2024
                 foreach (HtmlNode n in nodes)
                 {
                     var url = GetRedirectedUrl_TextAds(n.Attributes["href"]?.Value);
-                    var title = n.SelectSingleNode(".//div[contains(@class,'b2u8d')]")?.InnerText ?? "";
+                    var title = n.SelectSingleNode(".//div[contains(@class,'b2u8d')]|.//div[@class='qOQZce']/span")?.InnerText ?? "";//09-12-2024
                     if (!string.IsNullOrEmpty(url))
                         s.Append("<item url=\"" + url + "\" title=\"" + SetTitle(title) + "\" />");
                 }
@@ -3667,7 +3667,7 @@ namespace RapidTrackingSingleThread
                         return false;
                     else if (node.SelectSingleNode(".//div[contains(@class,'BToiNc')]") == null)//11-07-2023
                         return true;//12-11-2021
-                if (node.SelectSingleNode(".//div[@class='b2Rnsc']") != null)//16-10-2024
+                if (node.SelectSingleNode(".//div[@class='b2Rnsc']|.//div[@id='tads']") != null)//09-12-2024//16-10-2024
                     return true;
                 if (nd.InnerText == "More results" || nd.InnerText == "Top results" || nd.InnerText == "Toppresultater" //20-11-2024 //27-10-2021
                      || nd.InnerText == "Fler resultat" || nd.InnerText == "Flere resultater" || nd.InnerText == "Plus de résultats")    // 13-12-2019

@@ -2329,7 +2329,7 @@ namespace RapidTrackingSingleThread
                 node.SelectSingleNode(".//div[@class='q6PGbe']|.//div[@class='l44Vof']|.//div[@class='P9Jfrb']|.//div[@class='o8ebK']" +
                 "|.//div[@class='ntKMYc']|.//img[starts-with(@alt,'Map of')]|.//div[@class='aJegcc']|.//div[contains(@class,'knowledge-finance-wholepage')]|.//div[@class='KYLHhb Ww4FFb vt6azd']") == null)))//15-11-2024//01-08-2024//26-04-2024//01-02-2024//03-11-2023//06-12-2022//13-08-2022 maps //02-06-2022
             {
-                if (node.SelectSingleNode(".//div[contains(@class,'EyBRub')]") == null)//05-12-2024
+                if (node.SelectSingleNode(".//div[contains(@class,'EyBRub')]") == null || node.SelectSingleNode(".//div[@id='iur']") != null)//09-12-2024//05-12-2024
                     return "Images";
             }
             nd = node.SelectSingleNode(".//div[@class='kuRgBc']|.//div[@class='ZVAQpe']|.//div[@class='fPmcEc']");//22-10-2024//27-02-2023 hotel pack

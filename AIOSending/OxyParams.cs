@@ -16,17 +16,17 @@ namespace AIOSending
         public string callback_url { get; set; }
         public string user_agent_type { get; set; }
         public string render { get; set; } //comment for desktop and uncomment to mobile
-        public List<browser_instruction> browser_instructions
+        public List<Browser_Instruction> browser_instructions
         {
             get; set;
         }//comment for deskto and uncomment to mobile
         //public List<Context> context { get; set; } uncomment for desktop and comment for mobile
     }
-    public class browser_instruction {
+    public class Browser_Instruction {
         public string type { get; set; }
-        public selector selector { get; set; }
+        public Selector selector { get; set; }
     }
-    public class selector {
+    public class Selector {
         public string type { get; set; }
         public string value { get; set; }
     }

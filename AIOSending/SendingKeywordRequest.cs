@@ -146,12 +146,12 @@ namespace AIOSending
                 parse = false, //23-09-2021 changed datatype into "int to bool"
                 user_agent_type = sp.device,
                 render = "html", //comment for desktop and uncomment for mobile
-                browser_instructions = new List<browser_instruction>
+                browser_instructions = new List<Browser_Instruction>
                 {
-                    new browser_instruction { type = "click",
-                        selector = new selector {
-                            type = "xpath",
-                            value = "//span[contains(text(), 'Show more')]"
+                    new Browser_Instruction { type = "click",
+                        selector = new Selector {
+                            type = "//div[@class='zNsLfb Jzkafd']",
+                            value = "//span[@contains(text(), 'Show more')]"
                         }
                     }
                 }//comment for desktop and uncomment for mobile

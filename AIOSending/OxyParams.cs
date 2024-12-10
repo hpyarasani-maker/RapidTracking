@@ -23,12 +23,12 @@ namespace AIOSending
         //public List<Context> context { get; set; } uncomment for desktop and comment for mobile
     }
     public class browser_instruction {
-        public string Type { get; set; }
-        public Selector Selector { get; set; }
+        public string type { get; set; }
+        public selector selector { get; set; }
     }
-    public class Selector {
-        public string Type { get; set; }
-        public string Value { get; set; }
+    public class selector {
+        public string type { get; set; }
+        public string value { get; set; }
     }
     class Context
     {

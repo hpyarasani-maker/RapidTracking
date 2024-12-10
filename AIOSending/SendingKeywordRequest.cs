@@ -148,10 +148,10 @@ namespace AIOSending
                 render = "html", //comment for desktop and uncomment for mobile
                 browser_instructions = new List<browser_instruction>
                 {
-                    new browser_instruction { Type = "click",
-                        Selector = new Selector {
-                            Type = "xpath",
-                            Value = "//span[contains(text(), 'Show more')]"
+                    new browser_instruction { type = "click",
+                        selector = new selector {
+                            type = "xpath",
+                            value = "//span[contains(text(), 'Show more')]"
                         }
                     }
                 }//comment for desktop and uncomment for mobile

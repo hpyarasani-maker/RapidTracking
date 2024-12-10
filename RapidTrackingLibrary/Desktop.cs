@@ -2263,7 +2263,7 @@ namespace RapidTrackingLibrary
             HtmlNode nd1 = null;
             if (nd != null)
                 nd1 = node.SelectSingleNode(".//div[@class='g']");
-            if (nd != null && nd1 == null && node.SelectSingleNode(".//div[@class='fN9oz']|.//div[contains(@class,'tw-res')]") == null)//21-11-2024//10-10-2024//07-10-2024
+            if (nd != null && nd1 == null && node.SelectSingleNode(".//div[@class='fN9oz']|.//div[contains(@class,'tw-res')]|.//div[@class='oj7Mub eVNxY']") == null)//10-12-2024//21-11-2024//10-10-2024//07-10-2024
                 return "videos";
             //end 15-10-2020
             nd = node.SelectSingleNode(".//div[@class='_Zfh']");
@@ -2453,7 +2453,7 @@ namespace RapidTrackingLibrary
             if (nd != null)
                 return "PeopleAlsoSearch"; // 11-10-2024 PeopleAlsoSearch
             nd = node.SelectSingleNode(".//div[contains(@class,'Ww4FFb vt6azd')and(.//div[(@class='XNfAUb')])]");//11-10-2024 sitesCarousel
-            if (nd != null)
+            if (nd != null && nd.SelectSingleNode(".//div[contains(@class,'Ylm8Fc')]") == null)//10-12-2024
                 return "sitesCarousel";//11-10-2024 
             return "";
         }

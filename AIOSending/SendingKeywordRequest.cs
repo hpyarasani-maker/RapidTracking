@@ -144,12 +144,22 @@ namespace AIOSending
                 callback_url = callbackURL,  
                 geo_location = sp.geo_location,
                 parse = false, //23-09-2021 changed datatype into "int to bool"
-                user_agent_type = sp.device,   
-                context = new List<Context> {
+                user_agent_type = sp.device,
+                render = "html", //comment for desktop and uncomment for mobile
+                browser_instructions = new List<browser_instruction>
+                {
+                    new browser_instruction { Type = "click",
+                        Selector = new Selector {
+                            Type = "xpath",
+                            Value = "//span[contains(text(), 'Show more')]"
+                        }
+                    }
+                }//comment for desktop and uncomment for mobile
+                /*context = new List<Context> { //comment for mobile and uncomment for desktop
                     new Context("tbm", sp.tbm),
                     new Context("safe_search", 0)
                     //,new Context("aomd",1)
-                }
+                }*/
             };                  
             
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(queryUri);

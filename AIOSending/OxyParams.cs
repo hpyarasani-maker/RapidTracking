@@ -12,12 +12,24 @@ namespace AIOSending
         public string locale { get; set; }
         public string geo_location { get; set; }        
         public bool parse { get; set; }//23-09-2021 changed datatype into "int to bool"
+
         public string callback_url { get; set; }
         public string user_agent_type { get; set; }
-
-        public List<Context> context { get; set; }
+        public string render { get; set; } //comment for desktop and uncomment to mobile
+        public List<browser_instruction> browser_instructions
+        {
+            get; set;
+        }//comment for deskto and uncomment to mobile
+        //public List<Context> context { get; set; } uncomment for desktop and comment for mobile
     }
-
+    public class browser_instruction {
+        public string Type { get; set; }
+        public Selector Selector { get; set; }
+    }
+    public class Selector {
+        public string Type { get; set; }
+        public string Value { get; set; }
+    }
     class Context
     {
         public string key { get; set; }

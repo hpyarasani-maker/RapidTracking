@@ -141,7 +141,7 @@ namespace AIOSending
                 limit = 100,
                 pages = 1,
                 locale = sp.locale,
-                callback_url = callbackURL,  
+                callback_url = callbackURL,
                 geo_location = sp.geo_location,
                 parse = false, //23-09-2021 changed datatype into "int to bool"
                 user_agent_type = sp.device,
@@ -150,8 +150,8 @@ namespace AIOSending
                 {
                     new Browser_Instruction { type = "click",
                         selector = new Selector {
-                            type = "//div[@class='zNsLfb Jzkafd']",
-                            value = "//span[@contains(text(), 'Show more')]"
+                            type = "xpath",
+                            value = "//div[@class='zNsLfb Jzkafd']"
                         }
                     }
                 }//comment for desktop and uncomment for mobile
@@ -160,8 +160,8 @@ namespace AIOSending
                     new Context("safe_search", 0)
                     //,new Context("aomd",1)
                 }*/
-            };                  
-            
+            };
+
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(queryUri);
             req.Headers.Clear();
 

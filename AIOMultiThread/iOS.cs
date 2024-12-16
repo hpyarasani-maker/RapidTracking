@@ -1091,7 +1091,7 @@ namespace AIOMultiThread
                             || nd.Attributes["class"].Value == "wU9Tkd" || nd.Attributes["class"].Value.Contains("P8ujBc") || nd.Attributes["class"].Value == "AGopnf"//30-09-2024
                                                                                                                                                                       // || nd.Attributes["class"].Value.Contains("mnr-c xpd EtOod pkphOe")//30-09-2022 commented //10-06-2022
                              || nd.Attributes["class"].Value.Contains("EtOod pkphOe") || nd.Attributes["class"].Value.Contains("WFyfFf")//14-02-2024 //30-06-2022//29-06-2022
-                             || nd.Attributes["class"].Value == "wU9Tkd" || nd.Attributes["class"].Value.Contains("P8ujBc") //22-02-2022 //01-02-2022 //10-07-2021
+                             || nd.Attributes["class"].Value == "wU9Tkd" || nd.Attributes["class"].Value.Contains("P8ujBc") || nd.Attributes["class"].Value.Contains("Ww4FFb vt6azd")//16-12-2024 //22-02-2022 //01-02-2022 //10-07-2021
                              || nd.Attributes["class"].Value == "g card-section" || nd.Attributes["class"].Value == "card-section svwwZ" || nd.Attributes["class"].Value == "kb0PBd cvP2Ce jGGQ5e") //04-06-2024//21-09-2023//30-08-2021 missing classic link
                             {
                                 //17-10-2019
@@ -3877,7 +3877,7 @@ namespace AIOMultiThread
             //return s.ToString();
             StringBuilder s = new StringBuilder();
             s.Append("<block type=\"aiOverview\">");
-            HtmlNodeCollection nodes = node.SelectNodes(".//div[contains(@class, 'WaaZC')]|.//div[@class='VqeGe']");//11-12-2024
+            HtmlNodeCollection nodes = node.SelectNodes(".//div[contains(@class, 'WaaZC')]");
             if (nodes != null)
             {
                 foreach (HtmlNode nd in nodes)
@@ -3928,11 +3928,9 @@ namespace AIOMultiThread
                         HtmlNode nd1 = nd.SelectSingleNode(".//div[@class='RJPOee EIJn2']/div");
                         if (nd1 == null)
                             nd1 = nd.SelectSingleNode(".//div[contains(@class,'rPeykc')]");
-                        if (nd1 == null)
-                            nd1 = nd.SelectSingleNode(".//div[@class='dsxN8b EXH1Ce PZPZlf']");//11-12-2024
                         if (nd1 != null)
                         {
-                            content = nd1.SelectSingleNode(".//span[@role='heading']|.//div[@class='y7p1tf']")?.InnerText ?? "";//11-12-2024
+                            content = nd1.SelectSingleNode(".//span[@role='heading']")?.InnerText ?? "";
                             if (string.IsNullOrEmpty(content))
                             {
                                 HtmlNodeCollection spanCol = nd1.SelectNodes(".//span/span|.//div[@class='vM0jzc']/span");
@@ -3949,17 +3947,13 @@ namespace AIOMultiThread
                                     content = content.TrimEnd();//18-11-2024
                                 }
                             }
-                            HtmlNode urlNode = nd1.SelectSingleNode(".//div[contains(@class,'acn1Z')]|.//a[@class='ddkIM rz5jw c30Ztd']");//11-12-2024
+                            HtmlNode urlNode = nd1.SelectSingleNode(".//div[contains(@class,'acn1Z')]");
                             if (urlNode != null)
                             {
                                 HtmlNode link = urlNode.SelectSingleNode(".//ul/li/a");
                                 if (link != null)
                                 {
                                     url = link.Attributes["href"]?.Value ?? "";
-                                }
-                                else
-                                {
-                                    url = urlNode.Attributes["href"]?.Value ?? "";//11-12-2024
                                 }
                             }
                         }

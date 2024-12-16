@@ -2271,7 +2271,8 @@ namespace RapidTrackingLibrary
                 nd = node.SelectSingleNode(".//div[contains(@class,'tw-res')]");//21-11-2024
             if (nd != null)
             {
-                return "Twitters";
+                if (node.SelectSingleNode(".//g-scrolling-carousel[@class='m5t0v QwDjz']") == null)//16-12-2024
+                    return "Twitters";
             }
             /*if (node.SelectSingleNode(".//div[contains(@class, 'RPdfze')]|.//div[contains(@class, 'nJMOzb')]|.//div[contains(@class, 'Qkn3ie')]|.//div[@class='lMMUFc']") != null)//21-07-2023//07-07-2023
                  return "FindResultsOn";//07-07-2023*/

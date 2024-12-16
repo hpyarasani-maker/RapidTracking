@@ -1557,7 +1557,7 @@ namespace RapidTrackingSingleThread
                 if (nds == null)
                     nds = node.SelectNodes(".//g-inner-card/div/div/div[1]/a[1]");  //02-06-2020
                 if (nds == null)
-                    nds = node.SelectNodes(".//a[@class='h4kbcd']"); //27-05-2020 twitterCard item URLs included selector
+                    nds = node.SelectNodes(".//a[contains(@class,'h4kbcd')]");//16-12-2024 //27-05-2020 twitterCard item URLs included selector
                 if (nds != null)
                     foreach (HtmlNode nd in nds)
                     {
@@ -2477,7 +2477,7 @@ namespace RapidTrackingSingleThread
             {
                 try
                 {
-                    if (node.SelectSingleNode(".//div[@class='Brgz0 tw-res']|.//div[@class='k9uN1c kfn9hb']|.//div[@class='baPFxb g kSMK2']") != null 
+                    if (node.SelectSingleNode(".//div[contains(@class,'tw-res')]|.//div[@class='k9uN1c kfn9hb']|.//div[@class='baPFxb g kSMK2']") != null//16-12-2024
                         && node.SelectNodes(".//div[contains(@class,'g Ww4FFb')]") == null) return true;//24-11-2023//26-10-2023//04-01-2023//16-12-2022
                     if (node.SelectSingleNode(".//div[@class='g jNVrwc Y4pkMc']|.//div[@class='g tF2Cxc']|.//div[@class='g eejeod up9jud']" +
                     //"|.//div[@class='g Ww4FFb tF2Cxc']") != null) return false; //21-07-2022//15-02-2022//02-02-2022//31-12-2021 missing CLinks

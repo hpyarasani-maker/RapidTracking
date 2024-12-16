@@ -16,10 +16,7 @@ namespace AIOSending
         public string callback_url { get; set; }
         public string user_agent_type { get; set; }
         public string render { get; set; } //comment for desktop and uncomment to mobile
-        public List<Browser_Instruction> browser_instructions
-        {
-            get; set;
-        }//comment for deskto and uncomment to mobile
+        public List<dynamic> browser_instructions;//comment for deskto and uncomment to mobile
         //public List<Context> context { get; set; } uncomment for desktop and comment for mobile
     }
     public class Browser_Instruction {

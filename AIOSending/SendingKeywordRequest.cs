@@ -146,13 +146,19 @@ namespace AIOSending
                 parse = false, //23-09-2021 changed datatype into "int to bool"
                 user_agent_type = sp.device,
                 render = "html", //comment for desktop and uncomment for mobile
-                browser_instructions = new List<Browser_Instruction>
+                browser_instructions = new List<dynamic>
                 {
-                    new Browser_Instruction { type = "click",
+                    new {
+                        type = "click",
                         selector = new Selector {
                             type = "xpath",
-                            value = "//div[@class='zNsLfb Jzkafd']"
+                            value = "//div[contains(@class,'zNsLfb Jzkafd')]/div/div"
                         }
+                    },
+                    new
+                    {
+                        type = "wait",
+                        wait_time_s = 10
                     }
                 }//comment for desktop and uncomment for mobile
                 /*context = new List<Context> { //comment for mobile and uncomment for desktop

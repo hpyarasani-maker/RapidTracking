@@ -2541,7 +2541,7 @@ namespace RapidTrackingSingleThread
                 if (node.SelectSingleNode(".//div[contains(@class, 'RPdfze')]|.//div[contains(@class, 'nJMOzb')]" +
                     "|.//div[contains(@class, 'Qkn3ie')]|.//div[contains(@class, 'vdQmEd')]|.//div[@class='lMMUFc']" +
                     "|.//div[@class='wH6SXe']|.//div[contains(@class,'WlTAzf')]|.//div[@class='cj1ht QkBAO oYQBg']" +
-                    "|.//div[@class='oIk2Cb']|.//div[@jsmodel='Wn3aEc']") != null && node.SelectSingleNode(".//div[contains(@class,'g')]") == null)//10-12-2024//09-12-2024//04-12-2024//14-10-2024
+                    "|.//div[@class='oIk2Cb']|.//div[@jsmodel='Wn3aEc']") != null && node.SelectSingleNode(".//div[contains(@class,'g ')]") == null)//16-12-2024//10-12-2024//09-12-2024//04-12-2024//14-10-2024
                     return true;//29-06-2023
                 // changes in map block on 19-06-2019.
                 nd = node.SelectSingleNode(".//g-img/img");

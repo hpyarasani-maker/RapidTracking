@@ -1409,7 +1409,7 @@ namespace RapidTrackingSingleThread
                          s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");//22-02-2022
                  }
              }
-            string pattern1 = @"\\x22\\x3e\\x3ca jsname\\x3d\\x22UWckNb\\x22[ class\\x3d\\x22zReHs\\x22]* href\\x3d\\x22(.*?)\\x22*[ data-jsarwt\\x3d\\x221\\x22]";//26-11-2024//08-09-2023
+            string pattern1 = @"\\x22\\x3e\\x3ca jsname\\x3d\\x22UWckNb\\x22[ class\\x3d\\x22zReHs\\x22]*[ class\\x3d\\x22VfSr4c\\x22]* href\\x3d\\x22(.*?)\\x22*[ data-jsarwt\\x3d\\x221\\x22]";//16-12-2024//26-11-2024//08-09-2023
             re = new Regex(pattern1, RegexOptions.IgnoreCase | RegexOptions.Singleline);
             mc = re.Matches(html);
             foreach (Match m in mc)

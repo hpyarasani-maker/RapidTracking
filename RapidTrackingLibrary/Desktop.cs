@@ -1142,6 +1142,9 @@ namespace RapidTrackingLibrary
                 case "sitescarousel"://11-10-2024 sitesCarousel
                     s.Append(GetSitesCarousel(node));
                     break;//11-10-2024 sitesCarousel
+                case "peoplealsobuyfrom": // 17-12-2024 PeopleAlsoBuyFrom
+                    s.Append(GetpeopleAlsoBuyFrom(node));
+                    break;//17-12-2024
                 default:
                     break;
             }
@@ -2315,7 +2318,7 @@ namespace RapidTrackingLibrary
                 || node.SelectSingleNode(".//div[@class='HaXvv kfn9hb']") != null || node.SelectSingleNode(".//div[@class='tsp-view']") != null //24-11-2020 selector for eventresults block//07-02-2020
                 || node.SelectSingleNode(".//div[@class='AxJnmb Wdsnue']") != null || node.SelectSingleNode(".//div[@class='tsp-fvcfc']") != null //05-01-2023 //02-08-2021 event block selector
                  || node.SelectSingleNode(".//g-expandable-content[@jscontroller='Ah7cLd']|.//div[@class='wYpZje']") != null)//08-07-2024
-                if (node.SelectSingleNode(".//div[@class='aeayCf mnr-c']|.//div/product-viewer-group|.//div[@class='aJegcc']|.//div[@id='iur']") == null)//20-08-2024//29-07-2024//20-07-2024
+                if (node.SelectSingleNode(".//div[@class='aeayCf mnr-c']|.//div/product-viewer-group|.//div[@class='aJegcc']|.//div[@id='iur']|.//div[@class='zxLiic']") == null)//17-12-2024//20-08-2024//29-07-2024//20-07-2024 //event and PeopleAlsoBuyFrom
                     return "Event";
 
             if (node.SelectSingleNode(".//div[@id='cwmcwd']|.//div[@class='wDYxhc']") != null || node.SelectSingleNode(".//div[@class='ifM9O']") != null
@@ -2456,6 +2459,9 @@ namespace RapidTrackingLibrary
             nd = node.SelectSingleNode(".//div[contains(@class,'Ww4FFb vt6azd')and(.//div[(@class='XNfAUb')])]");//11-10-2024 sitesCarousel
             if (nd != null && nd.SelectSingleNode(".//div[contains(@class,'Ylm8Fc')]") == null)//10-12-2024
                 return "sitesCarousel";//11-10-2024 
+            nd = node.SelectSingleNode(".//div[@class='zxLiic']");//17-12-2024 PeopleAlsoBuyFrom
+            if (nd != null)//13-11-2024
+                return "PeopleAlsoBuyFrom";//17-12-2024 PeopleAlsoBuyFrom
             return "";
         }
 
@@ -2480,13 +2486,13 @@ namespace RapidTrackingLibrary
                 || node.SelectSingleNode(".//div[@class='HaXvv kfn9hb']") != null//07-02-2020
                 || (node.SelectSingleNode(".//div[@class='ifM9O']") != null && node.SelectSingleNode(".//div[@class='Wnoohf OJXvsb']") == null)   // answer card  
                 || node.SelectSingleNode(".//div[@id='cwmcwd']|.//div[@class='wDYxhc']") != null //21-04-2023  // answer card  
-                 //|| node.SelectSingleNode(".//div[@class='vk_c card-section']") != null // answer card    
+                                                                                                 //|| node.SelectSingleNode(".//div[@class='vk_c card-section']") != null // answer card    
                 || node.SelectSingleNode(".//div[@class='d7sCQ kp-header']") != null  //03-06-2020                                                      
-               //|| node.SelectSingleNode(".//div[@class='vk_c card-section']") != null // answer card                
+                                                                                      //|| node.SelectSingleNode(".//div[@class='vk_c card-section']") != null // answer card                
                 || node.SelectSingleNode(".//div[@class='pcCUmf vCOSGb']") != null  //03-06-2020
-               //|| node.SelectSingleNode(".//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']") != null  // people also ask // 11-02-2020
+                                                                                    //|| node.SelectSingleNode(".//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']") != null  // people also ask // 11-02-2020
                 || node.SelectSingleNode(".//div[contains(@class,'cUnQKe')]") != null //08-07-2021
-               //|| node.SelectSingleNode(".//span[@data-original-name='People also ask']") != null  // people also ask
+                                                                                      //|| node.SelectSingleNode(".//span[@data-original-name='People also ask']") != null  // people also ask
                 || node.SelectSingleNode(".//h3[@class='_DM']") != null || node.SelectSingleNode(".//div[@id='imagebox_bigimages']") != null || node.SelectSingleNode(".//div[@class='mR2gOd']") != null //27-06-2020   // images
                 || node.SelectSingleNode(".//div[@class='e2BEnf']/h3") != null // videos
                 || node.SelectSingleNode(".//div[@class='e2BEnf U7izfe']/h3") != null  // videos
@@ -2515,7 +2521,8 @@ namespace RapidTrackingLibrary
             || node.SelectSingleNode(".//div[@class='qkC4td']") != null//21-09-2023
              || node.SelectNodes(".//div[@class='xSoq1']") != null//10-10-2023
                 || node.SelectNodes(".//div[@class='udVt6e']") != null//02-11-2023
-             || node.SelectNodes(".//div[contains(@class,'suI2B')]") != null;//26-08-2024
+             || node.SelectNodes(".//div[contains(@class,'suI2B')]") != null//26-08-2024
+            || node.SelectNodes(".//div[@class='zxLiic']") != null;//17-12-2024
             if (bVal == true)//2019-09-11
             {
                 try
@@ -2747,6 +2754,27 @@ namespace RapidTrackingLibrary
             return s.ToString();
         }//18-11-2024//08-11-2024//21-08-2024 AIOverView Method//15-11-2024
         //07-11-2019
+        public string GetPeopleAlsoBuyFrom(HtmlNode node)//17-12-2024 GetPeopleAlsoBuyFrom Method//17-12-2024
+        {
+            StringBuilder s = new StringBuilder();
+            s.Append("<block type=\"peopleAlsoBuyFrom\">");
+            HtmlNodeCollection nodes = node.SelectNodes(".//div[contains(@class, 'MuWMgc')]");
+            if (nodes != null)
+            {
+                foreach (HtmlNode nd in nodes)
+                {
+                    HtmlNode pnd = nd.SelectSingleNode(".//div[@class='YxfPl']/a");
+                    if (pnd != null)
+                    {
+                        string url = pnd.Attributes["href"]?.Value ?? "";
+                        string title = nd.SelectSingleNode(".//div[@class='JVjH2']")?.InnerText ?? "";
+                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                    }
+                }
+            }
+            s.Append("</block>");
+            return s.ToString();
+        }//17-12-2024 PeopleAlsoBuyFrom Method
         public string GetRedirectedUrl(string url)
         {
             try //28-09-2020  try catch.

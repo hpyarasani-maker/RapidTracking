@@ -1143,7 +1143,7 @@ namespace RapidTrackingLibrary
                     s.Append(GetSitesCarousel(node));
                     break;//11-10-2024 sitesCarousel
                 case "peoplealsobuyfrom": // 17-12-2024 PeopleAlsoBuyFrom
-                    s.Append(GetpeopleAlsoBuyFrom(node));
+                    s.Append(GetPeopleAlsoBuyFrom(node));
                     break;//17-12-2024
                 default:
                     break;

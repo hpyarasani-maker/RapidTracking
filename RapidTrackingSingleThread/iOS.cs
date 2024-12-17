@@ -3877,7 +3877,7 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@class='urrG9 v5yQqb jqWpsc']|.//div[@class='lNvPub cP7qLd v5yQqb']|.//div[@class='adXOEf v5yQqb']" +
                 "|.//div[@class='T61Aje v5yQqb']|.//div[contains(@class, 'WFyfFf')]") != null || node.SelectSingleNode(".//div[contains(@class,'kb0PBd cvP2Ce')]") != null;//13-08-2024//04-06-2024//14-02-2024//23-08-2023 != null//17-05-2023 //31-05-2022
         }
-        private string GetAioverview(HtmlNode node)//11-12-2024//18-11-2024//08-11-2024//21-08-2024 AIOverView Method//15-11-2024 updated to full block
+        private string GetAioverview(HtmlNode node)////18-11-2024//08-11-2024//21-08-2024 AIOverView Method//15-11-2024 updated to full block
         {
             //StringBuilder s = new StringBuilder();
             //s.Append("<block type=\"aiOverview\"/>");

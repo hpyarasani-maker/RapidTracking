@@ -3884,7 +3884,7 @@ namespace RapidTrackingSingleThread
             //return s.ToString();
             StringBuilder s = new StringBuilder();
             s.Append("<block type=\"aiOverview\">");
-            HtmlNodeCollection nodes = node.SelectNodes(".//div[contains(@class, 'WaaZC')]");
+            HtmlNodeCollection nodes = node.SelectNodes(".//div[contains(@class, 'WaaZC')]|.//div[@class='VqeGe']");//11-12-2024
             if (nodes != null)
             {
                 foreach (HtmlNode nd in nodes)
@@ -3935,9 +3935,11 @@ namespace RapidTrackingSingleThread
                         HtmlNode nd1 = nd.SelectSingleNode(".//div[@class='RJPOee EIJn2']/div");
                         if (nd1 == null)
                             nd1 = nd.SelectSingleNode(".//div[contains(@class,'rPeykc')]");
+                        if (nd1 == null)
+                            nd1 = nd.SelectSingleNode(".//div[@class='dsxN8b EXH1Ce PZPZlf']");//11-12-2024
                         if (nd1 != null)
                         {
-                            content = nd1.SelectSingleNode(".//span[@role='heading']")?.InnerText ?? "";
+                            content = nd1.SelectSingleNode(".//span[@role='heading']|.//div[@class='y7p1tf']")?.InnerText ?? "";//11-12-2024
                             if (string.IsNullOrEmpty(content))
                             {
                                 HtmlNodeCollection spanCol = nd1.SelectNodes(".//span/span|.//div[@class='vM0jzc']/span");
@@ -3954,13 +3956,17 @@ namespace RapidTrackingSingleThread
                                     content = content.TrimEnd();//18-11-2024
                                 }
                             }
-                            HtmlNode urlNode = nd1.SelectSingleNode(".//div[contains(@class,'acn1Z')]");
+                            HtmlNode urlNode = nd1.SelectSingleNode(".//div[contains(@class,'acn1Z')]|.//a[@class='ddkIM rz5jw c30Ztd']");//11-12-2024
                             if (urlNode != null)
                             {
                                 HtmlNode link = urlNode.SelectSingleNode(".//ul/li/a");
                                 if (link != null)
                                 {
                                     url = link.Attributes["href"]?.Value ?? "";
+                                }
+                                else
+                                {
+                                    url = urlNode.Attributes["href"]?.Value ?? "";//11-12-2024
                                 }
                             }
                         }

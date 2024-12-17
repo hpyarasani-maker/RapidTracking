@@ -1560,6 +1560,9 @@ namespace RapidTrackingSingleThread
                 case "sitescarousel"://11-10-2024 sitesCarousel
                     s.Append(GetsitesCarousel(node));
                     break;//11-10-2024 sitesCarousel
+                case "peoplealsobuyfrom"://17-12-2024 PeopleAlsoBuyFrom
+                    s.Append(GetPeopleAlsoBuyFrom(node));
+                    break;
                 default:
                     break;
             }
@@ -3644,7 +3647,10 @@ namespace RapidTrackingSingleThread
                 return "PeopleAlsoSearch"; // 11-10-2024 PeopleAlsoSearch
             nd = node.SelectSingleNode(".//div[contains(@class,'Ww4FFb vt6azd') or (.//div[@class='zJUuqf adDDi']) and (.//div[(@class='XNfAUb')])]");//11-10-2024 sitesCarousel
             if (nd != null && node.SelectSingleNode(".//div[@class='owgUHc']|.//div[@class='wPNfjb']|.//div[@class='zhYvOe']|.//div[@class='YB4h9 ky4hfd']") == null && node.SelectSingleNode(".//div[@class='LbKnXb YAG2qc UYJxh']|.//div[@class='cyspcb DH9lqb']") != null)//21-10-2024
-                return "sitesCarousel";//11-10-2024 
+                return "sitesCarousel";//11-10-2024
+            nd = node.SelectSingleNode(".//div[@class='zxLiic']");//17-12-2024 PeopleAlsoBuyFrom
+            if (nd != null)//17-12-2024
+                return "PeopleAlsoBuyFrom";//17-12-2024 PeopleAlsoBuyFrom
             return "";
         }
 
@@ -3980,6 +3986,27 @@ namespace RapidTrackingSingleThread
             s.Append("</block>");
             return s.ToString();
         }//11-12-2024//18-11-2024//08-11-2024//21-08-2024 AIOverView Method//15-11-2024
+        private string GetPeopleAlsoBuyFrom(HtmlNode node)//17-12-2024 GetPeopleAlsoBuyFrom Method//17-12-2024
+        {
+            StringBuilder s = new StringBuilder();
+            s.Append("<block type=\"peopleAlsoBuyFrom\">");
+            HtmlNodeCollection nodes = node.SelectNodes(".//div[contains(@class, 'MuWMgc')]");
+            if (nodes != null)
+            {
+                foreach (HtmlNode nd in nodes)
+                {
+                    HtmlNode pnd = nd.SelectSingleNode(".//div[@class='YxfPl']/a");
+                    if (pnd != null)
+                    {
+                        string url = pnd.Attributes["href"]?.Value ?? "";
+                        string title = nd.SelectSingleNode(".//div[@class='JVjH2']")?.InnerText ?? "";
+                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                    }
+                }
+            }
+            s.Append("</block>");
+            return s.ToString();
+        }//17-12-2024 PeopleAlsoBuyFrom Method
 
         internal object GetTop100GoogleUKMobileImages_PageURLs(string kw, string v1, string v2, string v3, string v4, string v5)
         {

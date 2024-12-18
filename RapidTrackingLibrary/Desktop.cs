@@ -2763,7 +2763,7 @@ namespace RapidTrackingLibrary
             {
                 foreach (HtmlNode nd in nodes)
                 {
-                    HtmlNode pnd = nd.SelectSingleNode(".//div[@class='YxfPl']/a");
+                    HtmlNode pnd = nd.SelectSingleNode(".//div[contains(@class,'YxfPl')]/a");//18-12-2024
                     if (pnd != null)
                     {
                         string url = pnd.Attributes["href"]?.Value ?? "";

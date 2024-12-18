@@ -3212,7 +3212,9 @@ namespace RapidTrackingSingleThread
                             ts = false;
                     }
                 }
-                if (ts && node.SelectSingleNode(".//div[@class='imso-ml-c PZPZlf']|.//div[@class='Bv2VAe']|.//div[@jsname='GDPwke']|.//div[@id='imso-root']|.//table[@class='vk_tbl Uekwlc']|.//div[@jscontroller='WoVPie']|.//div[@class='j2cNYe']|.//div[@class='agqCtf tw-res']") == null)//11-09-2024//20-07-2024//07-05-2024//22-04-2024//04-04-2024//02-04-2024
+                if (ts && node.SelectSingleNode(".//div[@class='imso-ml-c PZPZlf']|.//div[@class='Bv2VAe']|.//div[@jsname='GDPwke']|.//div[@id='imso-root']" +
+                    "|.//table[@class='vk_tbl Uekwlc']|.//div[@jscontroller='WoVPie']|.//div[@class='j2cNYe']|.//div[@class='agqCtf tw-res']" +
+                    "|.//div[contains(@class,'AxvfYd PJI6ge')]") == null)//18-12-2024//11-09-2024//20-07-2024//07-05-2024//22-04-2024//04-04-2024//02-04-2024
                     return "Topstories";
             }
             if (node.SelectSingleNode(".//div[contains(@class, 'RPdfze')]") != null || (node.SelectSingleNode(".//div[contains(@class, 'Qkn3ie')]" +//26-04-2024//23-04-2024

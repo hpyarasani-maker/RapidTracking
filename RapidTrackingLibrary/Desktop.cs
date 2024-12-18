@@ -2266,7 +2266,7 @@ namespace RapidTrackingLibrary
             HtmlNode nd1 = null;
             if (nd != null)
                 nd1 = node.SelectSingleNode(".//div[@class='g']");
-            if (nd != null && nd1 == null && node.SelectSingleNode(".//div[@class='fN9oz']|.//div[contains(@class,'tw-res')]|.//div[@class='oj7Mub eVNxY']") == null)//10-12-2024//21-11-2024//10-10-2024//07-10-2024
+            if (nd != null && nd1 == null && node.SelectSingleNode(".//div[@class='fN9oz']|.//div[contains(@class,'tw-res')]|.//div[@class='oj7Mub eVNxY']|.//div[contains(@class,'Kcn6oc')]") == null)//18-12-2024//10-12-2024//21-11-2024//10-10-2024//07-10-2024
                 return "videos";
             //end 15-10-2020
             nd = node.SelectSingleNode(".//div[@class='_Zfh']");

@@ -2757,10 +2757,10 @@ namespace RapidTrackingLibrary
         public string GetPeopleAlsoBuyFrom(HtmlNode node)//17-12-2024 GetPeopleAlsoBuyFrom Method//17-12-2024
         {
             StringBuilder s = new StringBuilder();
-            s.Append("<block type=\"peopleAlsoBuyFrom\">");
             HtmlNodeCollection nodes = node.SelectNodes(".//div[contains(@class, 'MuWMgc')]");
             if (nodes != null)
             {
+                s.Append("<block type=\"peopleAlsoBuyFrom\">");
                 foreach (HtmlNode nd in nodes)
                 {
                     HtmlNode pnd = nd.SelectSingleNode(".//div[contains(@class,'YxfPl')]/a");//18-12-2024
@@ -2768,11 +2768,12 @@ namespace RapidTrackingLibrary
                     {
                         string url = pnd.Attributes["href"]?.Value ?? "";
                         string title = nd.SelectSingleNode(".//div[@class='JVjH2']")?.InnerText ?? "";
-                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                        if (!string.IsNullOrEmpty(title) && !string.IsNullOrEmpty(url))
+                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                     }
                 }
+                s.Append("</block>");
             }
-            s.Append("</block>");
             return s.ToString();
         }//17-12-2024 PeopleAlsoBuyFrom Method
         public string GetRedirectedUrl(string url)

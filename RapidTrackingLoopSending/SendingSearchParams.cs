@@ -3826,6 +3826,58 @@ namespace RapidTrackingLoopSending
             {
                 seid =1025, domain ="com.co", geo_location="Colombia", locale= "es-co", uule = "w+CAIQICIIQ29sb21iaWE",device="mobile_android"
             },//20-11-2024
+            	new SearchProperties()//19-12-2024
+            {
+                seid = 1030, domain ="com.af", geo_location="Afghanistan", locale= "fa-af", uule = "w+CAIQICILQWZnaGFuaXN0YW4=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 1031, domain ="com.af", geo_location="Afghanistan", locale= "fa-af", uule = "w+CAIQICILQWZnaGFuaXN0YW4=",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 1032, domain ="dz", geo_location="Algeria", locale= "fr-dz", uule = "w+CAIQICIHQWxnZXJpYQ==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid =1033, domain ="nl", geo_location="Curacao", locale= "en-cw", uule = "w+CAIQICIHQ3VyYWNhbw==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid =1034, domain ="nl", geo_location="Curacao", locale= "en-cw", uule = "w+CAIQICIHQ3VyYWNhbw==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 1035, domain ="com.ly", geo_location="Libya", locale= "ar-ly", uule = "w+CAIQICIFTGlieWE=",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 1036, domain ="lu", geo_location="Luxembourg", locale= "de-lu", uule = "w+CAIQICIKTHV4ZW1ib3VyZw==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 1037, domain ="com.mt", geo_location="Malta", locale = "mt-mt", uule = "w+CAIQICIFbWFsdGE=",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 1038, domain ="com.mt", geo_location="Malta", locale = "mt-mt", uule = "w+CAIQICIFbWFsdGE=",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 1039, domain ="com.tj", geo_location="Tajikistan", locale = "tg-tj", uule = "w+CAIQICIKVGFqaWtpc3Rhbg==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 1040, domain ="com.tj", geo_location="Tajikistan", locale = "tg-tj", uule = "w+CAIQICIKVGFqaWtpc3Rhbg==",device="mobile_android"
+            },
+            new SearchProperties()
+            {
+                seid = 1041, domain ="tn", geo_location="Tunisia", locale= "fr-tn", uule = "w+CAIQICIHVHVuaXNpYQ==",device="desktop"
+            },
+            new SearchProperties()
+            {
+                seid = 1042, domain ="tn", geo_location="Tunisia", locale= "fr-tn", uule = "w+CAIQICIHVHVuaXNpYQ==",device="mobile_android"
+            },//19-12-2024
         };
     }
 

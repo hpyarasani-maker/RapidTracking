@@ -48,7 +48,8 @@ namespace RapidMissingJobsReceiving
             if (nodeCol != null && nodeCol.Count == 1)
                 nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@class='vC5Ym DhKAUb']/div");  //23-03-2023  //17-09-2019
             if (nodeCol != null && nodeCol.Count <= 5 && doc.DocumentNode.SelectNodes("//div[contains(@id,'kp-wp-tab-')]") != null)//02-02-2024//31-01-2024
-                nodeCol = doc.DocumentNode.SelectNodes("//div[contains(@class,'Ww4FFb vt6azd DlUvEb')]|//div[contains(@class,'uVMCKf Ww4FFb vt6azd')]|//div[contains(@class,'Ww4FFb vt6azd JIH9k')]" +//06-11-2024
+                nodeCol = doc.DocumentNode.SelectNodes("//div[contains(@class,'Ww4FFb vt6azd DlUvEb')]|//div[contains(@class,'uVMCKf Ww4FFb vt6azd')]" +
+                "|//div[contains(@class,'Ww4FFb vt6azd JIH9k')]|//div[contains(@class,'Ww4FFb vt6azd BjP3qb')]" +//19-12-2024//06-11-2024
                 "|//div[contains(@class,'wHYlTd Ww4FFb vt6azd')]|//div[contains(@class,'Lv2Cle Ww4FFb vt6azd')]|//div[contains(@class,'Ww4FFb vt6azd xpd')]" +
                 "|//div[contains(@class,'Ww4FFb vt6azd oGMpge')]|//div[contains(@class,'Ww4FFb vt6azd tRkSqb')]|//div[contains(@class,'Ww4FFb vt6azd F6CFcc')]" +
                 "|//div[@class='lU8tTd']|//g-card[@class='g F6CFcc']|.//div[@class='Ww4FFb vt6azd g']|.//div[@class='vtSz8d Ww4FFb vt6azd']|.//div[@class='AGopnf']");//28-11-2024//26-09-2024//10-09-2024//09-05-2024//12-03-2024

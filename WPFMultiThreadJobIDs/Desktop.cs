@@ -2218,7 +2218,9 @@ namespace WPFMultiThreadJobIDs
             HtmlNode nd1 = null;
             if (nd != null)
                 nd1 = node.SelectSingleNode(".//div[@class='g']");
-            if (nd != null && nd1 == null && node.SelectSingleNode(".//div[@class='fN9oz']|.//div[contains(@class,'tw-res')]|.//div[@class='oj7Mub eVNxY']|.//div[contains(@class,'Kcn6oc')]") == null)//18-12-2024//10-12-2024//21-11-2024//10-10-2024//07-10-2024
+            if (nd != null && nd1 == null && node.SelectSingleNode(".//div[@class='fN9oz']|.//div[contains(@class,'tw-res')]" +
+                "|.//div[@class='oj7Mub eVNxY']|.//div[contains(@class,'Kcn6oc')]|.//div[@class='CW4Rtc cTjBsf']|.//div[@class='Lv2Cle']" +
+                "|.//div[@class='Wt5Tfe']") == null)//19-12-2024//18-12-2024 videos
                 return "videos";
             //end 15-10-2020
             nd = node.SelectSingleNode(".//div[@class='_Zfh']");
@@ -2530,7 +2532,10 @@ namespace WPFMultiThreadJobIDs
             {
                 HtmlNode nd = node.SelectSingleNode(".//h3|.//div[contains(@class,'HnYYW')]|.//div[@class='LMMXP i8lZMc']|.//div[@class='e2BEnf U7izfe']/div|.//div[@class='LMMXP mfMhoc']"); //05-08-2020 included contains function  //17-07-2020 //03-06-2020  // 02-06-2020    //01-05-2020
                 if (nd != null)
-                    if ((nd.InnerText == "Top stories" || nd.InnerText == "Huvudnyheter" || nd.InnerText == "Videos" || nd.InnerText == "Video" || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws" || nd.InnerText == "Vertaalresultaat" || nd.InnerText == "Recipes" || nd.InnerText == "Vidéos") && node.SelectSingleNode(".//div[contains(@class,'g Ww4FFb')]") == null)//30-10-2023//02-12-2020 videos//05-08-2020 //29-06-2020//03-06-2020 // 02-06-2020  // 08-04-2020
+                    if ((nd.InnerText == "Top stories" || nd.InnerText == "Huvudnyheter" || nd.InnerText == "Videos" || nd.InnerText == "Video"
+                        || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws" || nd.InnerText == "Vertaalresultaat"
+                        || nd.InnerText == "Recipes" || nd.InnerText == "Vidéos")
+                        && node.SelectSingleNode(".//div[contains(@class,'g Ww4FFb')]|.//div[@class='g PmEWq']") == null)//19-12-2024//30-10-2023//02-12-2020 videos
                         return true;
                 nd = node.SelectSingleNode(".//div[contains(@class,'Ww4FFb vt6azd')and(.//div[(@class='XNfAUb')])]");//11-10-2024 sitesCarousel
                 if (nd != null && node.SelectSingleNode(".//div[@class='LbKnXb YAG2qc UYJxh']|.//div[@class='cyspcb DH9lqb']") != null) //15-10-2024
@@ -2713,10 +2718,10 @@ namespace WPFMultiThreadJobIDs
         private string GetPeopleAlsoBuyFrom(HtmlNode node)//17-12-2024 GetPeopleAlsoBuyFrom Method//17-12-2024
         {
             StringBuilder s = new StringBuilder();
-            s.Append("<block type=\"peopleAlsoBuyFrom\">");
             HtmlNodeCollection nodes = node.SelectNodes(".//div[contains(@class, 'MuWMgc')]");
             if (nodes != null)
             {
+                s.Append("<block type=\"peopleAlsoBuyFrom\">");
                 foreach (HtmlNode nd in nodes)
                 {
                     HtmlNode pnd = nd.SelectSingleNode(".//div[contains(@class,'YxfPl')]/a");//18-12-2024
@@ -2724,11 +2729,12 @@ namespace WPFMultiThreadJobIDs
                     {
                         string url = pnd.Attributes["href"]?.Value ?? "";
                         string title = nd.SelectSingleNode(".//div[@class='JVjH2']")?.InnerText ?? "";
-                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                        if (!string.IsNullOrEmpty(title) && !string.IsNullOrEmpty(url))
+                            s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                     }
                 }
+                s.Append("</block>");
             }
-            s.Append("</block>");
             return s.ToString();
         }//17-12-2024 PeopleAlsoBuyFrom Method
         private string ConvertReviews(string reviews)//20-01-2023 display only numbers

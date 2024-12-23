@@ -2203,7 +2203,7 @@ namespace RapidTrackingSingleThread
                 }
             }
             catch { }
-            string pattern1 = @"\\x22\\x3e\\x3ca jsname\\x3d\\x22UWckNb\\x22 class\\x3d\\x22sXtWJb\\x22 href\\x3d\\x22(.*?)\\x22";//21-09-2023 //11-09-2023
+            string pattern1 = @"\\x22\\x3e\\x3ca [jsname\\x3d\\x22UWckNb\\x22 class\\x3d\\x22sXtWJb\\x22]*[ class\\x3d\\x22ddkIM rz5jw c30Ztd\\x22]* href\\x3d\\x22(.*?)\\x22";//23-12-2024//21-09-2023 //11-09-2023
             re = new Regex(pattern1, RegexOptions.IgnoreCase | RegexOptions.Singleline);
             mc = re.Matches(html);
             try

@@ -3263,13 +3263,13 @@ namespace RapidTrackingLibrary
                 }
                 if (ts && node.SelectSingleNode(".//div[@class='imso-ml-c PZPZlf']|.//div[@class='Bv2VAe']|.//div[@jsname='GDPwke']|.//div[@id='imso-root']" +
                     "|.//table[@class='vk_tbl Uekwlc']|.//div[@jscontroller='WoVPie']|.//div[@class='j2cNYe']|.//div[@class='agqCtf tw-res']" +
-                    "|.//div[contains(@class,'AxvfYd PJI6ge')]") == null || node.SelectSingleNode(".//div[@class='Xeztj WIlpZe xuc']|.//div[contains(@class,'JJZKK')]") != null)//24-12-2024//18-12-2024//11-09-2024//20-07-2024//07-05-2024//22-04-2024//04-04-2024//02-04-2024
+                    "|.//div[contains(@class,'rsmgO')]") == null || node.SelectSingleNode(".//div[@class='Xeztj WIlpZe xuc']") != null)//24-12-2024//18-12-2024//11-09-2024//20-07-2024//07-05-2024//22-04-2024//04-04-2024//02-04-2024
                     return "Topstories";
             }
             if (node.SelectSingleNode(".//div[contains(@class, 'RPdfze')]") != null || (node.SelectSingleNode(".//div[contains(@class, 'Qkn3ie')]" +//26-04-2024//23-04-2024
                 "|.//div[@class='lMMUFc']") != null && node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]" +
                 "|.//div[contains(@class,'WFxqwc')]|.//div[contains(@class,'PZPZlf')]" +
-                                "|.//div[@class='KmNjGe Iu7yDc']|.//div[@class='EDblX HG5ZQb']") == null || node.SelectSingleNode(".//div[@jscontroller='QQ51Ce']") != null && node.SelectSingleNode(".//div[contains(@class,'N8D9gb OdBhM')]|.//div[contains(@class,'XNfAUb')]") == null))//24-06-2024
+                "|.//div[@class='KmNjGe Iu7yDc']|.//div[@class='EDblX HG5ZQb']") == null || node.SelectSingleNode(".//div[@jscontroller='QQ51Ce']") != null && node.SelectSingleNode(".//div[contains(@class,'N8D9gb OdBhM')]|.//div[contains(@class,'XNfAUb')]") == null))//24-06-2024
                 if (node.SelectNodes(".//div[@jsname='Sicp7d']|.//div[@class='ysxiae iRPzcb']|.//div[contains(@class,'qtOtne')]") == null)//24-06-2024//10-06-2024
                     return "FindResultsOn";
             /*nd = node.SelectSingleNode(".//g-tray-header[contains(@class,'kno-fb-ctx gsrt')]"); //23-03-2022//19-01-2023 //Top Sights and Flights

@@ -1124,11 +1124,33 @@ namespace RapidTrackingSingleThread
                 case "peoplealsobuyfrom": // 17-12-2024 PeopleAlsoBuyFrom
                     s.Append(GetPeopleAlsoBuyFrom(node));
                     break;//17-12-2024
+                case "adwords"://27-12-2024
+                    s.Append(GetAdwords(node));
+                    break;
                 default:
                     break;
             }
             return s.ToString();
         }
+        private string GetAdwords(HtmlNode node)//27-12-2024 missing adwords block middle page
+        {
+            StringBuilder s = new StringBuilder();
+            HtmlNodeCollection nodes = node.SelectNodes(".//div[contains(@class,'v5yQqb')]/a");
+            if (nodes != null)
+            {
+                s.Append("<block type=\"adwords\" url=\"\">");
+                foreach (HtmlNode n in nodes)
+                {
+                    var url = GetRedirectedUrl_TextAds(n.Attributes["href"]?.Value);
+                    var title = n.SelectSingleNode(".//div[@role='heading']/span")?.InnerText ?? "";
+                    if (!string.IsNullOrEmpty(url))
+                        s.Append("<item url=\"" + url + "\" title=\"" + SetTitle(title) + "\" />");
+                }
+                s.Append("</block>");
+            }
+            return s.ToString();
+        }//27-12-2024 missing adwords block middle page
+
         private string GetClassicLinkSiteLinks(HtmlNode node)//11-10-2024 ClassicLinkSiteLinks //16-10-2024
         {
             StringBuilder s = new StringBuilder();
@@ -2246,7 +2268,7 @@ namespace RapidTrackingSingleThread
                 return "TopSights";*///23-03-2022//19-01-2023
 
             nd = node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]|.//div[contains(@class, 'vdQmEd')]|.//div[@class='cj1ht QkBAO oYQBg']");//29-07-2024//29-06-2023//23-03-2022
-            if (nd != null && nd.SelectNodes(".//div[@class='MxQnIc']") == null && node.SelectSingleNode(".//div[@class='XNfAUb']") == null)//19-08-2024//30-06-2023
+            if (nd != null && nd.SelectNodes(".//div[@class='MxQnIc']") == null && node.SelectSingleNode(".//div[@class='XNfAUb']|.//div/h1[contains(@class, 'bNg8Rb')]") == null)//27-12-2024//19-08-2024//30-06-2023
                 return "Flights";//23-03-2022
 
             //nd = node.SelectSingleNode(".//div[@class='kp-blk cUnQKe']|.//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']|.//div[@jsname='N760b']");//08-07-2021//04-12-2020 //11-02-2020
@@ -2426,6 +2448,9 @@ namespace RapidTrackingSingleThread
             nd = node.SelectSingleNode(".//div[@class='zxLiic']");//17-12-2024 PeopleAlsoBuyFrom
             if (nd != null)//13-11-2024
                 return "PeopleAlsoBuyFrom";//17-12-2024 PeopleAlsoBuyFrom
+            nd = node.SelectSingleNode(".//div/h1[contains(@class, 'bNg8Rb')]|.//div/span[contains(@class, 'stGWLc')]");//27-12-2024
+            if (nd != null && (nd.InnerText.Contains("Ads") || nd.InnerText.Contains("Sponsored")))//27-12-2024
+                return "Adwords";//27-12-2024
             return "";
         }
 

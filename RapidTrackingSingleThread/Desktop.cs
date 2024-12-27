@@ -256,7 +256,7 @@ namespace RapidTrackingSingleThread
                             "|.//div[contains(@class,'v5yQqb')]/a|.//div[@class='UCccb']/a|.//text-ad-link/a");//21-11-2024//05-12-2023//12-11-2021 //27-06-2020
                         if (n != null)
                         {
-                            HtmlNode tittlenode = n.SelectSingleNode(".//h3|.//div[@role='heading']|.//span[@class='uDVmCf bkEfV CAvEcc']");//21-11-2024//27-06-2020
+                            HtmlNode tittlenode = n.SelectSingleNode(".//h3|.//div[@role='heading']|.//span[contains(@class,'CAvEcc')]");//27-12-2024//21-11-2024//27-06-2020
                             try  //28-09-2020  try catch.
                             {
                                 string url = string.Empty;
@@ -594,7 +594,7 @@ namespace RapidTrackingSingleThread
                     {
                         //HtmlNode n = nd.SelectSingleNode(".//h3/a[2]");
                         HtmlNode n = nd.SelectSingleNode(".//div[@class='ad_cclk']/a[2]|.//div[contains(@class,'d5oMvf')]/a" +
-                            "|.//div[contains(@class,'v5yQqb')]/a|.//div[@class='pPjAYc']/text-ad-link/a");//09-02-2024//12-11-2021 //29-08-2020 included contains fucntions //23-07-2020 included missing item urls selectors
+                            "|.//div[contains(@class,'v5yQqb')]/a|.//div[@class='pPjAYc']/text-ad-link/a|.//div[@class='UCccb']/a");//27-12-2024//09-02-2024//12-11-2021 //29-08-2020 included contains fucntions //23-07-2020 included missing item urls selectors
                         if (n != null)
                         {
                              //25-08-2020

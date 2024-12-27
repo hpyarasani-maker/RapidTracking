@@ -908,7 +908,7 @@ namespace RapidTrackingSingleThread
                              || nd.SelectSingleNode(".//div[@class='MUxGbd v0nnCb lyLwlc']") != null   //16-12-
                              || nd.SelectSingleNode(".//div[contains(@class,'E8hWLe SVMeif')]") != null //20-09-2024 //21-07-2022
                              || nd.SelectSingleNode(".//div[@class='GssVdc']") != null//04-07-2024
-                             || nd.SelectSingleNode(".//div[@class='zhYvOe OuaH0']") != null)//19-11-2024
+                             || nd.SelectSingleNode(".//div[@class='zhYvOe OuaH0']") != null && nd.SelectSingleNode(".//div[@class='EDblX JpOecb']") == null)//19-11-2024
                         {
                             s.Append(GetSiteLinks(nd));
                             continue;

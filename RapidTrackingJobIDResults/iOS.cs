@@ -901,7 +901,7 @@ namespace RapidTrackingJobIDResults
                              || nd.SelectSingleNode(".//div[@class='MUxGbd v0nnCb lyLwlc']") != null   //16-12-
                              || nd.SelectSingleNode(".//div[contains(@class,'E8hWLe SVMeif')]") != null //20-09-2024 //21-07-2022
                              || nd.SelectSingleNode(".//div[@class='GssVdc']") != null//04-07-2024
-                             || nd.SelectSingleNode(".//div[@class='zhYvOe OuaH0']") != null)//19-11-2024
+                             || nd.SelectSingleNode(".//div[@class='zhYvOe OuaH0']") != null && nd.SelectSingleNode(".//div[@class='EDblX JpOecb']") == null)//19-11-2024
                         {
                             s.Append(GetSiteLinks(nd));
                             continue;
@@ -2196,7 +2196,7 @@ namespace RapidTrackingJobIDResults
                 }
             }
             catch { }
-            string pattern1 = @"\\x22\\x3e\\x3ca jsname\\x3d\\x22UWckNb\\x22 class\\x3d\\x22sXtWJb\\x22 href\\x3d\\x22(.*?)\\x22";//21-09-2023 //11-09-2023
+            string pattern1 = @"\\x22\\x3e\\x3ca [jsname\\x3d\\x22UWckNb\\x22 class\\x3d\\x22sXtWJb\\x22]*[ class\\x3d\\x22ddkIM rz5jw c30Ztd\\x22]* href\\x3d\\x22(.*?)\\x22";//23-12-2024//21-09-2023 //11-09-2023
             re = new Regex(pattern1, RegexOptions.IgnoreCase | RegexOptions.Singleline);
             mc = re.Matches(html);
             try
@@ -3208,7 +3208,7 @@ namespace RapidTrackingJobIDResults
                 }
                 if (ts && node.SelectSingleNode(".//div[@class='imso-ml-c PZPZlf']|.//div[@class='Bv2VAe']|.//div[@jsname='GDPwke']|.//div[@id='imso-root']" +
                     "|.//table[@class='vk_tbl Uekwlc']|.//div[@jscontroller='WoVPie']|.//div[@class='j2cNYe']|.//div[@class='agqCtf tw-res']" +
-                    "|.//div[contains(@class,'AxvfYd PJI6ge')]") == null || node.SelectSingleNode(".//div[@class='Xeztj WIlpZe xuc']") != null)//18-12-2024//11-09-2024//20-07-2024//07-05-2024//22-04-2024//04-04-2024//02-04-2024
+                    "|.//div[contains(@class,'rsmgO')]") == null || node.SelectSingleNode(".//div[@class='Xeztj WIlpZe xuc']") != null)//24-12-2024//18-12-2024//11-09-2024//20-07-2024//07-05-2024//22-04-2024//04-04-2024//02-04-2024
                     return "Topstories";
             }
             if (node.SelectSingleNode(".//div[contains(@class, 'RPdfze')]") != null || (node.SelectSingleNode(".//div[contains(@class, 'Qkn3ie')]" +//26-04-2024//23-04-2024

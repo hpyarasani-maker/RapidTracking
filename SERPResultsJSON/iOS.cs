@@ -53,7 +53,8 @@ namespace SERPResultsJSON
                     "|//div[contains(@class,'Ww4FFb vt6azd JIH9k')]|//div[contains(@class,'Ww4FFb vt6azd BjP3qb')]|//div[contains(@class,'Ww4FFb vt6azd wF4fFd')]" +//27-12-2024//19-12-2024//06-11-2024
                     "|//div[contains(@class,'wHYlTd Ww4FFb vt6azd')]|//div[contains(@class,'Lv2Cle Ww4FFb vt6azd')]|//div[contains(@class,'Ww4FFb vt6azd xpd')]" +
                     "|//div[contains(@class,'Ww4FFb vt6azd oGMpge')]|//div[contains(@class,'Ww4FFb vt6azd tRkSqb')]|//div[contains(@class,'Ww4FFb vt6azd F6CFcc')]" +
-                    "|//div[@class='lU8tTd']|//g-card[@class='g F6CFcc']|.//div[@class='Ww4FFb vt6azd g']|.//div[@class='vtSz8d Ww4FFb vt6azd']|.//div[@class='AGopnf']");//28-11-2024//26-09-2024//10-09-2024//09-05-2024//12-03-2024
+                    "|//div[@class='lU8tTd']|//g-card[@class='g F6CFcc']|.//div[@class='Ww4FFb vt6azd g']|.//div[@class='vtSz8d Ww4FFb vt6azd']" +
+                    "|.//div[@class='AGopnf']|.//div[@class='Ww4FFb vt6azd']");//01-01-2025//28-11-2024//26-09-2024//10-09-2024//09-05-2024//12-03-2024
                 if (nodeCol == null)
                     nodeCol = doc.DocumentNode.SelectNodes("//*[@id='tscffb']");
 

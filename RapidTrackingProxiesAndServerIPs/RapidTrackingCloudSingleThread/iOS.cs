@@ -881,7 +881,7 @@ namespace RapidTrackingCloudSingleThread
                         nds = node.SelectNodes(".//div[contains(@class,'KJDcUb')]"); //28-07-2020 //29-07-2020 included contains function
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='setTDc']|.//div[contains(@class, 'P8ujBc v5yQqb')]|.//div[@class='WFyfFf yOwOKc']|.//div[@class='kb0PBd cvP2Ce jGGQ5e']");//04-06-2024//14-02-2024
-                if (nds == null && (node.Attributes["jsname"]?.Value == "pKB8Bc" || node.Attributes["class"]?.Value == "Ww4FFb vt6azd"))//1e-08-2024//14-02-2024
+                if (nds == null && (node.Attributes["jsname"]?.Value == "pKB8Bc" || node.Attributes["class"].Value.Contains("Ww4FFb vt6azd")))//31-12-2024//1e-08-2024//14-02-2024
                     nds = node.SelectNodes(".");//14-02-2024//21-09-2023 //02-02-2022 moved from 687 line   // 25-10-2019
                 if (nds == null)//30-09-2024
                     nds = node.SelectNodes(".//div[@class='AGopnf']");//30-09-2024

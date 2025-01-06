@@ -70,9 +70,12 @@ namespace RapidTrackingLoopReceiving
             //string url = "https://previous.azurewebsites.net/api/callbackuk58desktop/";       // 58 sending for previous date
 
             Uri ul = new Uri(url);
+            string username = "pisoftware";
+            string password = "Pi*Soft74UBXi";
             using (var client = new HttpClient())
             {
                 //WebClient client = new WebClient();
+                client.BaseAddress = ul;//12-05-2024
                 while (true)
                 {
                     /*try
@@ -93,6 +96,8 @@ namespace RapidTrackingLoopReceiving
                     {
                         string response = "";
                         client.DefaultRequestHeaders.Clear();
+                        string credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{username}:{password}"));//12-05-2024
+                        client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", credentials);//12-05-2024
                         client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
                         response = client.GetStringAsync(ul).Result;
                         if (response != "null")

@@ -125,6 +125,8 @@ namespace RapidTrackingLoopReceiving
             string domain = job["domain"].Value<string>();
             string jobid = job["id"].Value<string>();
             string seid = "";
+            SearchProperties sp = SearchParams.searches.Where(s => s.locale == hl && s.device == device && s.geo_location == gl).SingleOrDefault();
+            seid = sp.seid.ToString();
             int count = 0;
             string resx = string.Empty;
             ArrayList result = new ArrayList();
@@ -150,16 +152,13 @@ namespace RapidTrackingLoopReceiving
                     resStream.Close();
                     res.Close();
                     //string result = string.Empty;
-                  
                     int orgUrls = 0;
-                
                     try
                     {
                         //JObject obj = JObject.Parse(response);
                         //response = obj["results"][0]["content"].Value<string>();
 
-                        SearchProperties sp = SearchParams.searches.Where(s => s.locale == hl && s.device == device && s.geo_location == gl).SingleOrDefault();
-                        seid = sp.seid.ToString();
+
                         JObject obj = JObject.Parse(response);
                         var contents = obj["results"];
 
@@ -230,6 +229,10 @@ namespace RapidTrackingLoopReceiving
 
                     OnKeywordDone.Invoke(seid + ":  " + kw + ",  " + count + "^" + statusCode + "^" + apitime + "^" + dbtime);    // 31-03-2020
                 }
+                if (status == "faulted")
+                {
+                    throw new Exception("faulted");
+                }
             }
             catch (Exception ex)
             {
@@ -241,7 +244,9 @@ namespace RapidTrackingLoopReceiving
                         bool isOldPage = false;
                         if (ex.Message == "Old page found.")
                             isOldPage = true;
-                        ProcessError(kw, seid, jobid, isOldPage);
+                        if (ex.Message == "faulted")
+                            isOldPage = false;
+                        ProcessError(kw, seid, jobid,ex.Message, isOldPage);
                     }
                     finally { }
                 }
@@ -249,13 +254,13 @@ namespace RapidTrackingLoopReceiving
             }
         }
 
-        private void ProcessError(string kw, string seid, string jobid, bool isOldPage)
+        private void ProcessError(string kw, string seid, string jobid, string message,bool isOldPage)
         {
-            string qry = "insert into dashboard_dataerrors (date, name, seid, jobid) values(Convert(varchar(10),'" + myDate + "',103), N'" +
-                  kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "' )";
+            string qry = "insert into dashboard_dataerrors (date, name, seid, jobid,message) values(Convert(varchar(10),'" + myDate + "',103), N'" +
+                  kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "',N'" + message.Replace("'", "''") + "' )";//09-11-2024
 
-            string qryOld = "insert into dashboard_oldgooglepage (date, keyword, seid, jobid) values('" + DateTime.Now + "', N'" +
-                 kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "' )";
+            string qryOld = "insert into dashboard_oldgooglepage (date, keyword, seid, jobid,message) values('" + DateTime.Now + "', N'" +
+                 kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "',N'" + message.Replace("'", "''") + "'  )";//09-11-2024
 
             using (SqlConnection con = new SqlConnection(StrConn()))
             {

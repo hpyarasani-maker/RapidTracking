@@ -3725,7 +3725,7 @@ namespace RapidTrackingLibrary
                         return false;
                     else if (node.SelectSingleNode(".//div[contains(@class,'BToiNc')]") == null)//11-07-2023
                         return true;//12-11-2021
-                if (node.SelectSingleNode(".//div[@class='b2Rnsc']|.//div[@id='tads']") != null)//09-12-2024//16-10-2024
+                if (node.SelectSingleNode(".//div[@class='b2Rnsc']|.//div[@id='tads']") != null && node.SelectSingleNode(".//div[contains(@class,'Ww4FFb vt6azd xpd')]") == null)//06-01-2025//09-12-2024//16-10-2024
                     return true;
                 if (nd.InnerText == "More results" || nd.InnerText == "Top results" || nd.InnerText == "Toppresultater" //20-11-2024 //27-10-2021
                      || nd.InnerText == "Fler resultat" || nd.InnerText == "Flere resultater" || nd.InnerText == "Plus de résultats")    // 13-12-2019

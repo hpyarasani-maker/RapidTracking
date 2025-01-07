@@ -2461,7 +2461,7 @@ namespace RapidTrackingSingleThread
         {
             bool bVal = (node.SelectSingleNode(".//h3[@class='zQlLed']") != null  // top stories       
                 || node.SelectSingleNode(".//div[@class='wXlZre B03h3d V14nKc ptcLIOszQJu__wholepage-card wp-msss']") != null//topstories 08-04-2020
-                || node.SelectSingleNode(".//div[contains(@class, 'e2BEnf U7izfe')]|.//div[@class='x7cRLb']") != null //03-06-2024//28-07-2021 images selectors
+                 || node.SelectSingleNode(".//div[contains(@class, 'e2BEnf U7izfe')]|.//div[@class='x7cRLb']|.//div[@class='RYdNQb cakeVe']") != null //07-01-2025//03-06-2024//28-07-2021 images selectors
                 || node.SelectSingleNode(".//table[@class='nrgt']") != null || node.SelectSingleNode(".//table[@class='jmjoTe']") != null      // site links  22-08-2020 included block type selector
                 || node.SelectSingleNode(".//img[@id='lu_map']|.//div[@id='lu_map']") != null //02-11-2-23     // maps
                 || node.SelectSingleNode(".//div[@class='xERobd']") != null //  maps    //changed on 26-06-2019

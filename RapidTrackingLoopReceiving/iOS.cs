@@ -881,7 +881,7 @@ namespace RapidTrackingLoopReceiving
                     nds = node.SelectNodes(".");//14-02-2024//21-09-2023 //02-02-2022 moved from 687 line   // 25-10-2019
                 if (nds == null)//30-09-2024
                     nds = node.SelectNodes(".//div[@class='AGopnf']");//30-09-2024
-                if (nds != null && node.Attributes["class"]?.Value == "Ww4FFb vt6azd" || node.Attributes["class"]?.Value == "g Ww4FFb vt6azd")//21-10-2024
+                if (nds != null && nds.Count == 1 && (node.Attributes["class"]?.Value == "Ww4FFb vt6azd" || node.Attributes["class"]?.Value == "g Ww4FFb vt6azd"))//07-01-2025//21-10-2024
                     nds = node.SelectNodes(".");//21-10-2024
             }
             if (nds != null)
@@ -3669,7 +3669,7 @@ namespace RapidTrackingLoopReceiving
                         return false;
                     else if (node.SelectSingleNode(".//div[contains(@class,'BToiNc')]") == null)//11-07-2023
                         return true;//12-11-2021
-                if (node.SelectSingleNode(".//div[@class='b2Rnsc']|.//div[@id='tads']") != null)//09-12-2024//16-10-2024
+                if (node.SelectSingleNode(".//div[@class='b2Rnsc']|.//div[@id='tads']") != null && node.SelectSingleNode(".//div[contains(@class,'Ww4FFb vt6azd xpd')]") == null)//06-01-2025//09-12-2024//16-10-2024
                     return true;
                 if (nd.InnerText == "More results" || nd.InnerText == "Top results" || nd.InnerText == "Toppresultater" //20-11-2024 //27-10-2021
                      || nd.InnerText == "Fler resultat" || nd.InnerText == "Flere resultater" || nd.InnerText == "Plus de résultats")    // 13-12-2019

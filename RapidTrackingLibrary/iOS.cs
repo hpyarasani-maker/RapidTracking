@@ -931,7 +931,7 @@ namespace RapidTrackingLibrary
                     nds = node.SelectNodes(".");//14-02-2024//21-09-2023 //02-02-2022 moved from 687 line   // 25-10-2019
                 if (nds == null)//30-09-2024
                     nds = node.SelectNodes(".//div[@class='AGopnf']");//30-09-2024
-                if (nds != null && node.Attributes["class"]?.Value == "Ww4FFb vt6azd" || node.Attributes["class"]?.Value == "g Ww4FFb vt6azd")//21-10-2024
+                if (nds != null && nds.Count == 1 && (node.Attributes["class"]?.Value == "Ww4FFb vt6azd" || node.Attributes["class"]?.Value == "g Ww4FFb vt6azd"))//07-01-2025//21-10-2024
                     nds = node.SelectNodes(".");//21-10-2024
             }
             if (nds != null)

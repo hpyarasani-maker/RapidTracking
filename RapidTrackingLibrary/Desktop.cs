@@ -1207,7 +1207,7 @@ namespace RapidTrackingLibrary
         public string GetSitesCarousel(HtmlNode node)//11-10-2024 sitesCarousel //16-10-2024
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='IF221e EXH1Ce']");
+            HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'EXH1Ce')]");//07-01-2025
             if (nds != null)
             {
                 s.Append("<block type=\"sitesCarousel\">");
@@ -1216,6 +1216,8 @@ namespace RapidTrackingLibrary
                     HtmlNode a = nd.SelectSingleNode(".//a");
                     string t1 = nd.SelectSingleNode(".//div[@role='heading']")?.InnerText ?? "";
                     string s1 = nd.SelectSingleNode(".//div[@class='LbKnXb YAG2qc UYJxh']|.//div[@class='cyspcb DH9lqb']")?.InnerText ?? "";
+                    if (string.IsNullOrEmpty(s1))
+                        s1 = nd.SelectSingleNode(".//div[@class='R8BTeb q8U8x LJEGod du278d i0Rdmd']")?.InnerText ?? "";//07-01-2025
                     if (a == null && string.IsNullOrEmpty(t1) && string.IsNullOrEmpty(s1))
                         continue;
                     s.Append("<item url=\"" + SetUrl(a.Attributes["href"].Value) + "\" title=\"" + SetTitle(t1) + "\" source=\"" + SetTitle(s1) + "\" />");
@@ -2291,7 +2293,7 @@ namespace RapidTrackingLibrary
                 nd1 = node.SelectSingleNode(".//div[@class='g']");
             if (nd != null && nd1 == null && node.SelectSingleNode(".//div[@class='fN9oz']|.//div[contains(@class,'tw-res')]" +
                 "|.//div[@class='oj7Mub eVNxY']|.//div[contains(@class,'Kcn6oc')]|.//div[@class='CW4Rtc cTjBsf']|.//div[@class='Lv2Cle']" +
-                "|.//div[@class='Wt5Tfe']|.//div[@class='o8ebK']|.//div[@class='baPFxb g kSMK2']") == null)//31-12-2024//19-12-2024//18-12-2024 videos
+                "|.//div[@class='Wt5Tfe']|.//div[@class='o8ebK']|.//div[@class='baPFxb g kSMK2']|.//div[@class='EDblX HG5ZQb']") == null)//07-01-2025//31-12-2024//19-12-2024//18-12-2024 videos
                 return "videos";
             //end 15-10-2020
             nd = node.SelectSingleNode(".//div[@class='_Zfh']");

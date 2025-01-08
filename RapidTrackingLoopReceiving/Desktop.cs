@@ -2244,9 +2244,9 @@ namespace RapidTrackingLoopReceiving
             HtmlNode nd1 = null;
             if (nd != null)
                 nd1 = node.SelectSingleNode(".//div[@class='g']");
-            if (nd != null && nd1 == null && node.SelectSingleNode(".//div[@class='fN9oz']|.//div[contains(@class,'tw-res')]" +
+            if (nd != null && nd1 == null && node.SelectSingleNode(".//div[@class='X4T0U']") != null && node.SelectSingleNode(".//div[@class='fN9oz']|.//div[contains(@class,'tw-res')]" +//08-01-2025
                 "|.//div[@class='oj7Mub eVNxY']|.//div[contains(@class,'Kcn6oc')]|.//div[@class='CW4Rtc cTjBsf']|.//div[@class='Lv2Cle']" +
-                "|.//div[@class='Wt5Tfe']|.//div[@class='o8ebK']|.//div[@class='baPFxb g kSMK2']|.//div[@class='EDblX HG5ZQb']") == null)//07-01-2025//31-12-2024//19-12-2024//18-12-2024 videos
+                "|.//div[@class='Wt5Tfe']|.//div[@class='o8ebK']|.//div[@class='baPFxb g kSMK2']") == null)//08-01-2025//07-01-2025//31-12-2024//19-12-2024//18-12-2024 videos
                 return "videos";
             //end 15-10-2020
             nd = node.SelectSingleNode(".//div[@class='_Zfh']");

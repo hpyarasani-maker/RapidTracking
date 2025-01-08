@@ -987,13 +987,19 @@ namespace RapidTrackingLibrary
                             s.Append("</block>");
                             continue;
                         }//01-02-2023 images
-                        if (nd.SelectSingleNode(".//div[@class='ouy7Mc']") != null && (node.SelectNodes(".//div[@class='AuVD wHYlTd Ww4FFb vt6azd']") == null || !nd.HasClass("AuVD wHYlTd Ww4FFb vt6azd")))//30-08-2023//24-08-2023//02-04-2023 People also Ask
+                        if (nd.SelectSingleNode(".//div[@class='ouy7Mc']") != null && node.SelectNodes(".//div[@class='Wt5Tfe']") == null
+                            && (node.SelectNodes(".//div[@class='AuVD wHYlTd Ww4FFb vt6azd']") == null || !nd.HasClass("AuVD wHYlTd Ww4FFb vt6azd")))//08-01-2025//30-08-2023//24-08-2023//02-04-2023 People also Ask
                         {
                             s.Append("<block type=\"peopleAlsoAsk\" url=\"\">");
                             s.Append(PeopleAlsoAsk(nd));
                             s.Append("</block>");
                             continue;
                         }//People also ask
+                        if (nd.SelectSingleNode(".//div[@class='Wt5Tfe']") != null)//08-01-2025 PeopleAlsoSearch
+                        {
+                            s.Append(GetPeopleAlsoSearch(nd));
+                            continue;
+                        }//08-01-2025 PeopleAlsoSearch
                         if (nd.HasClass("T98FId"))//PopularProducts //11-07-2023
                         {
                             s.Append("<block type=\"popularProducts\" url=\"\">");

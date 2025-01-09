@@ -131,6 +131,12 @@ namespace Oxylabs_BulkKeywords
             Cursor.Current = Cursors.WaitCursor;
             string myDate = date_picker.Text;
 
+            string strQry = "exec [dbo].[GetBulkMobile_106_ALL] '" + myDate + "'";  // Seid=106
+            //string strQry = "exec [dbo].[GetBulkDesktop_58_ALL] '" + myDate + "'"; // Seid=58
+            //string strQry = "exec [dbo].[GetBulkOtherMobile_ALL] '" + myDate + "'"; // OtherMobile
+            //string strQry = "exec [dbo].[GetBulkOtherDesktop_ALL] '" + myDate + "'"; // OtherDesktop
+            //string strQry = "exec [dbo].[GetBulkMobile_102_ALL] '" + myDate + "'";  // Seid=102
+            //string strQry = "exec [dbo].[GetBulkDesktop_1_ALL] '" + myDate + "'";  // Seid=1
             //string strQry = "exec [dbo].[GetBulk_NewSeids] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkUKDesktop_Temp_1] '" + myDate + "'";    // seid: 503
             //string strQry = "exec [dbo].[GetBulk_All] '" + myDate + "'";
@@ -139,7 +145,7 @@ namespace Oxylabs_BulkKeywords
             //string strQry = "exec [dbo].[GetBulkMobile_102_1] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkDesktop_2] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkMobile_2] '" + myDate + "'";
-            string strQry = "exec [dbo].[GetBulkDesktop_1_2] '" + myDate + "'";
+            //string strQry = "exec [dbo].[GetBulkDesktop_1_2] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkMobile_Hotel] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetCommaKeywords_Hotel] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkMobile_NotHotel] '" + myDate + "'";
@@ -217,6 +223,12 @@ namespace Oxylabs_BulkKeywords
 
             for (int i = 0; i < worklist.Items.Count; i++)
             {
+                mseconds = rd.Next(10, 20) * 1000; // Seid=106 single thread 500 batches
+                //mseconds = rd.Next(10, 30) * 1000; // Seid=58 single thread 500 batches
+                //mseconds = rd.Next(20, 30) * 1000; // OtherMobile single thread 500 batches
+                //mseconds = rd.Next(20, 35) * 1000; // OtherDesktop single thread 500 batches
+                //mseconds = rd.Next(20, 40) * 1000; // Seid=102 single thread 500 batches
+                //mseconds = rd.Next(20, 45) * 1000; // Seid=1 single thread 500 batches
                 //uncomment all for fast sending //22-03-2024
                 //mseconds = rd.Next(30, 50) * 1000; //First Sending app 29-06-2020    //SEID=58-1
                //mseconds = rd.Next(30, 70) * 1000; //First Sending app 29-06-2020    //SEID=58-2
@@ -227,7 +239,7 @@ namespace Oxylabs_BulkKeywords
                 //mseconds = rd.Next(30, 140) * 1000; //Fourth Sending app 29-06-2020 //SEID=OtherMobile-1
                 //mseconds = rd.Next(30, 160) * 1000; //Fourth Sending app 29-06-2020 //SEID=OtherMobile-2
                 //mseconds = rd.Next(30, 170) * 1000; //Fifith Sending app 29-06-2020 //SEID=1-1
-                mseconds = rd.Next(30, 180) * 1000; //Fifith Sending app 29-06-2020 //SEID=1-2
+                //mseconds = rd.Next(30, 180) * 1000; //Fifith Sending app 29-06-2020 //SEID=1-2
                 //mseconds = rd.Next(30, 200) * 1000; //Sixth Sending app 29-06-2020 //SEID=102-1
                 //mseconds = rd.Next(30, 210) * 1000; //Sixth Sending app 29-06-2020 //SEID=102-2
                 resultsString = worklist.Items[i].ToString();

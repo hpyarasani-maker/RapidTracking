@@ -17,6 +17,7 @@ namespace Bing_Sending
     {
         SendingKeywordRequest WOWS = new SendingKeywordRequest();
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+        static Random rd = new Random();
         public Form1()
         {
             InitializeComponent();
@@ -155,9 +156,11 @@ namespace Bing_Sending
             Array resultsArray;
             string seid;
             string kn;
-
+            int mseconds;
             for (int i = 0; i < worklist.Items.Count; i++)
             {
+                mseconds = rd.Next(10, 40) * 1000; // Bing Desktop single thread 100 batches
+                //mseconds = rd.Next(10, 50) * 1000; // Bing Mobile single thread 100 batches
                 // get next Project ID, Search Engine ID, Keyword ID and Keyword from worklist
                 resultsString = worklist.Items[i].ToString();
                 sep = ':';
@@ -186,7 +189,7 @@ namespace Bing_Sending
                     progress_lbl.Refresh();
                     lblIP.Text = ts.TotalSeconds.ToString();
                 });
-                Thread.Sleep(90000);
+                Thread.Sleep(mseconds);
             }
         }
 

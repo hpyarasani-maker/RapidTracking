@@ -32,7 +32,7 @@ namespace RapidTrackingCloudSingleThread
         {
             cs = new SourceService.Service1Client();
             string HTML = cs.GetGoogleSource(seid.ToString(), keyword);
-            //File.WriteAllText(@"c:\inetpub\wwwroot\html\cartyres.html", HTML);
+            File.WriteAllText(@"c:\inetpub\wwwroot\html\keyword"+".html", HTML);
             string[] dr = DesktoppatternTrending(HTML, keyword, seid.ToString());
             return dr;
         }
@@ -41,7 +41,7 @@ namespace RapidTrackingCloudSingleThread
          {
             cs = new SourceService.Service1Client();
             string HTML = cs.GetGoogleSource(seid.ToString(),keyword);
-            File.WriteAllText(@"c:\inetpub\wwwroot\html\hotels in london.html", HTML);
+            //File.WriteAllText(@"c:\inetpub\wwwroot\html\keyword" + ".html", HTML);
             string[] mr = MobilepatternTrending(HTML, keyword, seid.ToString());
                 return mr;
          }

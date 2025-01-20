@@ -3726,7 +3726,7 @@ namespace RapidTrackingLibrary
                         && node.SelectSingleNode(".//div/a[contains(@class,'C8nzq BmP5tf')]|.//div/a[@class='rTyHce jgWGIe']|.//div[contains(@class,'kb0PBd cvP2Ce')]|.//div/a[contains(@class,'cz3goc')]") == null//20-09-2024
                         && node.SelectSingleNode(".//g-card[@id='tscffb']") == null) //19-05-2022//12-11-2021 //25-05-2021 //04-01-2021 video block
                         return true;
-                if (node.SelectSingleNode(".//div[@class='ttfMne']|.//div[@class='N60dNb mfMhoc']|.//h2[@class='OEsCyf mfMhoc']|.//div[@class='kp-blk c2xzTb OJXvsb']|.//div[@class='WpKAof']|.//g-card/div[@class='mnr-c']|.//div[@class='FQrfLd']") != null)//04-11-2022 //23-11-2021 CB //27-10-2021 //01-09-2021 missing AC block//12-07-2021 job block //12-07-2021 carousel block //19-01-2021 missing top stories
+                if (node.SelectSingleNode(".//div[@class='ttfMne']|.//div[@class='N60dNb mfMhoc']|.//h2[@class='OEsCyf mfMhoc']|.//div[@class='kp-blk c2xzTb OJXvsb']|.//div[@class='WpKAof']|.//g-card/div[@class='mnr-c']|.//div[@class='FQrfLd']|.//div[@class='LQCGqc']") != null)//20-01-2025//04-11-2022 //23-11-2021 CB //27-10-2021 //01-09-2021 missing AC block//12-07-2021 job block //12-07-2021 carousel block //19-01-2021 missing top stories
                     if (node.SelectSingleNode(".//div[@class='WvKfwe a3spGf']|.//div[@class='V1nn0e wgFKp']|.//div[@jscontroller='rMVp5e']|.//div[@jscontroller='rQR4vd']|.//div[contains(@class,'P8ujBc')]|.//div[contains(@class,'jqWpsc')]") != null)//16-09-2022//06-05-2022//21-01-2022//13-01-2022//17-12-2021 //12-10-2021
                         return false;
                     else if (node.SelectSingleNode(".//div[contains(@class,'BToiNc')]") == null)//11-07-2023

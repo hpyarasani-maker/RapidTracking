@@ -1421,7 +1421,7 @@ namespace RapidTrackingLibrary
                 }
             }
 
-            HtmlNodeCollection nds = node.SelectNodes(".//table[@class='nrgt']/tr|.//table[@class='jmjoTe']/tr"); //22-08-2020 include selector for sitelinks
+            HtmlNodeCollection nds = node.SelectNodes(".//table[@class='nrgt']/tr|.//table[@class='jmjoTe']/tr|.//table[@class='jmjoTe']/tbody/tr");//20-01-2025 //22-08-2020 include selector for sitelinks
             if (nds != null)
             {
                 s.Append("<block type=\"siteLinks\" url=\"\">");

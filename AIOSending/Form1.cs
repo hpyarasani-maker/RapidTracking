@@ -113,8 +113,11 @@ namespace AIOSending
             Cursor.Current = Cursors.WaitCursor;
             string myDate = date_picker.Text;
 
-            string strQry = "exec [dbo].[GetBulk_AI_Desktop]  '" + myDate + "'";  // AIOverview Desktop keywords
+            //string strQry = "exec [dbo].[GetBulk_AI_Desktop]  '" + myDate + "'";  // AIOverview Desktop keywords
             //string strQry = "exec [dbo].[GetBulk_AI_Mobile]  '" + myDate + "'";  // AIOverview Mobile keywords
+            //string strQry = "exec [dbo].[GetBulk_AI_Mobile_1]  '" + myDate + "'";  // AIOverview Mobile keywords
+            string strQry = "exec [dbo].[GetBulk_AI_Mobile_2]  '" + myDate + "'";  // AIOverview Mobile keywords
+
             SqlConnection objCon = null;
             SqlDataReader objData = null;
 

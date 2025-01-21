@@ -192,6 +192,10 @@ namespace Oxylabs_BulkKeywords
                         await ProcessResults(result, kw, seid, jobid, orgUrls); //06-08-2024
                     OnKeywordDone.Invoke(seid + ":  " + kw + ",  " + orgUrls + "^" + statusCode + "^" + apitime + "^" + dbtime + "^" + totalTime);//08-11-2023 //31-03-2020
                 }
+                else if (status == "faulted")//21-01-2025
+                {
+                    throw new Exception("Status is faulted");
+                }//21-01-2025
             }
             catch (Exception ex)
             {

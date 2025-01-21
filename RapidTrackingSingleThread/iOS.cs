@@ -2932,7 +2932,7 @@ namespace RapidTrackingSingleThread
                         {
                             priceValue = Convertprice(price);
                         }
-                        s.Append("<item airline=\"" + SetTitle(airline) + "\" duration=\"" + SetTitle(hours) + "\" durationValue=\"" + hoursValue + "\" connections=\"" + SetTitle(connecting) + "\" price=\"" + price + "\" priceValue=\"" + priceValue + "\" />");
+                        s.Append("<item airline=\"" + SetTitle(airline) + "\" duration=\"" + SetTitle(hours) + "\" durationValue=\"" + hoursValue + "\" connections=\"" + SetTitle(connecting) + "\" price=\"" + SetTitle(price) + "\" priceValue=\"" + priceValue + "\" />");
                     }
                     catch { }
                 }
@@ -2961,7 +2961,7 @@ namespace RapidTrackingSingleThread
                             {
                                 priceValue = Convertprice(price);
                             }
-                            s.Append("<item airline=\"" + SetTitle(airline) + "\" duration=\"" + SetTitle(hours) + "\" durationValue=\"" + hoursValue + "\" connections=\"" + SetTitle(connecting) + "\" price=\"" + price + "\" priceValue=\"" + priceValue + "\" />");
+                            s.Append("<item airline=\"" + SetTitle(airline) + "\" duration=\"" + SetTitle(hours) + "\" durationValue=\"" + hoursValue + "\" connections=\"" + SetTitle(connecting) + "\" price=\"" + SetTitle(price) + "\" priceValue=\"" + priceValue + "\" />");
                         }
                         catch { }
                     }

@@ -39,7 +39,7 @@ namespace WPFMultiThreadJobIDs
         bool process2 = false;
         bool process3 = false;
 
-        string myDate = DateTime.Now.ToString("yyyy-MM-dd");
+        string myDate = string.Empty;//21-01-2025
         public MainWindow()
         {
             InitializeComponent();
@@ -63,8 +63,8 @@ namespace WPFMultiThreadJobIDs
             this.Title = "RapidTracking_Errorkeywords_(1-2-3)"; //changes
 
             dtPicker1.SelectedDate = DateTime.Today;
-            //myDate = dtPicker1.SelectedDate.ToString("yyyy-MM-dd");
-            myDate = DateTime.Now.ToString("yyyy-MM-dd");
+            myDate = dtPicker1.SelectedDate.Value.Date.ToString("yyyy-MM-dd");//21-01-2025
+            //myDate = DateTime.Now.ToString("yyyy-MM-dd");//21-01-2025 commented
 
             Thread t1 = new Thread(new ThreadStart(StartProcess_1));
             t1.SetApartmentState(ApartmentState.STA);

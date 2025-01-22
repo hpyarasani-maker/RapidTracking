@@ -110,13 +110,15 @@ namespace AIOReceiving
             string jobid = job["id"].Value<string>();
             string seid = "";
             string response = string.Empty; //18-03-2024
+            double totalTime = 0;//22-01-2025
             try
             {
                 //string username = "gpidatametrics";
                 //string password = "sdV5X3fcX6";
                 string username = "piapp-aio";
                 string password = "4gvfnA+aBYpBNs37";
-
+                SearchProperties sp = SearchParams.searches.Where(s => s.locale == hl && s.device == device && s.geo_location == gl).SingleOrDefault();
+                seid = sp.seid.ToString();//22-01-2025
                 if (status == "done")
                 {
                     var startTime = System.Diagnostics.Stopwatch.StartNew();//08-11-2023
@@ -133,7 +135,7 @@ namespace AIOReceiving
                     resStream.Close();
                     res.Close();
                     startTime.Stop();//08-11-2023
-                    var totalTime = Convert.ToDouble(startTime.ElapsedMilliseconds) / 1000;//08-11-2023
+                    totalTime = Convert.ToDouble(startTime.ElapsedMilliseconds) / 1000;//08-11-2023
                     string result = string.Empty;
                     int orgUrls = 0;
                     try
@@ -141,8 +143,8 @@ namespace AIOReceiving
                         JObject obj = JObject.Parse(response);
                         response = obj["results"][0]["content"].Value<string>();
 
-                        SearchProperties sp = SearchParams.searches.Where(s => s.locale == hl && s.device == device && s.geo_location == gl).SingleOrDefault();
-                        seid = sp.seid.ToString();
+                        //SearchProperties sp = SearchParams.searches.Where(s => s.locale == hl && s.device == device && s.geo_location == gl).SingleOrDefault();
+                        //seid = sp.seid.ToString();
 
                         if (device == "desktop_chrome")
                             result = desktop.ProcessDocument(seid, kw, jobid, response, out orgUrls);//30-10-2024
@@ -166,6 +168,11 @@ namespace AIOReceiving
                         await ProcessResults(result, kw, seid, jobid, orgUrls); //06-08-2024
                     OnKeywordDone.Invoke(seid + ":  " + kw + ",  " + orgUrls + "^" + statusCode + "^" + apitime + "^" + dbtime + "^" + totalTime);//08-11-2023 //31-03-2020
                 }
+                else if (status == "faulted")//21-01-2025
+                {
+                    statusCode = status;//22-01-2025
+                    throw new Exception("Status is faulted");
+                }//21-01-2025
             }
             catch (Exception ex)
             {
@@ -181,7 +188,7 @@ namespace AIOReceiving
                     }
                     finally { }
                 }
-                OnKeywordDone.Invoke("Error:  seid: " + seid + ",  keyword: " + kw + ",  jobid: " + jobid + "\r\n\t" + ex.Message + "^" + statusCode + "^" + apitime + "^" + dbtime);    // 31-03-2020                
+                OnKeywordDone.Invoke("Error:  seid: " + seid + ",  keyword: " + kw + ",  jobid: " + jobid + "\r\n\t" + ex.Message + "^" + statusCode + "^" + apitime + "^" + dbtime + "^" + totalTime);//22-01-2025
             }
         }
 

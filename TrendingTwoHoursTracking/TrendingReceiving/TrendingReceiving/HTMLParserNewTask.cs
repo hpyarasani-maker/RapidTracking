@@ -79,6 +79,8 @@ namespace TrendingReceiving
             string domain = job["domain"].Value<string>();
             string jobid = job["id"].Value<string>();
             string seid = "";
+            string response = string.Empty; //18-03-2024
+            double totalTime = 0;//22-01-2025
             try
             {
                 //string username = "gpidatametrics";
@@ -98,10 +100,10 @@ namespace TrendingReceiving
                     HttpWebResponse res = (HttpWebResponse)await httpWebRequest.GetResponseAsync();//14-08-2024
                     Stream resStream = res.GetResponseStream();
                     StreamReader reader = new StreamReader(resStream, Encoding.UTF8);
-                    string response =await reader.ReadToEndAsync();//14-08-2024
+                    response =await reader.ReadToEndAsync();//14-08-2024
                     resStream.Close();
                     res.Close();
-                    var totalTime = Convert.ToDouble(startTime.ElapsedMilliseconds) / 1000;//08-11-2023
+                    totalTime = Convert.ToDouble(startTime.ElapsedMilliseconds) / 1000;//08-11-2023
                     string result = string.Empty;
                     int orgUrls = 0;
 
@@ -132,8 +134,12 @@ namespace TrendingReceiving
 
                     // OnKeywordDone.Invoke(seid + ":  " + kw + ",  " + orgUrls);
                     OnKeywordDone.Invoke(seid + ":  " + kw + ",  " + orgUrls + "^" + statusCode + "^" + apitime + "^" + dbtime + "^" + totalTime);//08-11-2023 //31-03-2020
-
                 }
+                else if (status == "faulted")//21-01-2025
+                {
+                    statusCode = status;//22-01-2025
+                    throw new Exception("Status is faulted");
+                }//21-01-2025
             }
             catch (Exception ex)
             {
@@ -149,8 +155,7 @@ namespace TrendingReceiving
                     }
                     finally { }
                 }
-                OnKeywordDone.Invoke("Error:  seid: " + seid + ",  keyword: " + kw + ",  jobid: " + jobid + "\r\n\t" + ex.Message + "^" + statusCode + "^" + apitime + "^" + dbtime);    // 31-03-2020       
-
+                OnKeywordDone.Invoke("Error:  seid: " + seid + ",  keyword: " + kw + ",  jobid: " + jobid + "\r\n\t" + ex.Message + "^" + statusCode + "^" + apitime + "^" + dbtime + "^" + totalTime);//22-01-2025
             }
         }
 

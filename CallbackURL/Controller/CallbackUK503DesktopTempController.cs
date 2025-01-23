@@ -1,4 +1,5 @@
-﻿using CallbackURL.Models;
+﻿using CallbackURL.Filters;
+using CallbackURL.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -18,6 +19,8 @@ namespace CallbackURL.Controller
 
 
         // GET: api/CallbackUK503DesktopTemp
+        [BasicAuthentication]
+        [HttpGet]
         public OxyCallbackResponse Get()
         {
             lock (obj)

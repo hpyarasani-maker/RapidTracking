@@ -1115,7 +1115,7 @@ namespace RapidTrackingLibrary
                             }
                             if (n != null)
                             {
-                                string u = n.Attributes["href"].Value;
+                                string u = SetUrl(n.Attributes["href"].Value);//23-01-2025
                                 HtmlNode d = n.SelectSingleNode(".//div[@role='heading']");
                                 string t = "";
                                 if (d != null)

@@ -2629,7 +2629,9 @@ namespace RapidTrackingSingleThread
                 nds = node.SelectNodes(".//g-inner-card/div/div/a");    // 13-12-2019
             if (nds == null)
                 nds = node.SelectNodes(".//lazy-load-item/div/a");
-            if (nds != null)
+            if (nds == null)//24-01-2025
+                nds = node.SelectNodes(".//div[@class='ZFio5c']/a");//24-01-2025
+                if (nds != null)
                 foreach (HtmlNode nd in nds)
                 {
                     //changes on 28-06-2019

@@ -2918,7 +2918,7 @@ namespace RapidTrackingLibrary
                 try
                 {//22-09-2023
 
-                    dest = node.SelectSingleNode(".//span[@class='XaP5ee IFnjPb RES9jf']|.//span[@class='mgAbYb OSrXXb RES9jf IFnjPb']|.//h3[@class='IFnjPb RES9jf']");//02-01-2024
+                    dest = node.SelectSingleNode(".//div[@class='wHYlTd C5w57c']|.//span[@class='mgAbYb OSrXXb RES9jf IFnjPb']");//25-01-2025//04-11-2024 //23-04-2024
                     int lenIndex = dest.InnerText.IndexOf(" to ") >= 0 ? dest.InnerText.IndexOf(" to ") :
                         dest.InnerText.IndexOf(" nach ") >= 0 ? dest.InnerText.IndexOf(" nach ") : -1;
                     if (lenIndex == -1)

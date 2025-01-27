@@ -1066,7 +1066,7 @@ namespace WPFMultiThreadJobIDs
                             }
                             if (n != null)
                             {
-                                string u = n.Attributes["href"].Value;
+                                string u = SetUrl(n.Attributes["href"].Value);//23-01-2025
                                 HtmlNode d = n.SelectSingleNode(".//div[@role='heading']");
                                 string t = "";
                                 if (d != null)
@@ -2622,6 +2622,8 @@ namespace WPFMultiThreadJobIDs
                 nds = node.SelectNodes(".//g-inner-card/div/div/a");    // 13-12-2019
             if (nds == null)
                 nds = node.SelectNodes(".//lazy-load-item/div/a");
+            if (nds == null)//24-01-2025
+                nds = node.SelectNodes(".//div[@class='ZFio5c']/a");//24-01-2025
             if (nds != null)
                 foreach (HtmlNode nd in nds)
                 {
@@ -2886,7 +2888,7 @@ namespace WPFMultiThreadJobIDs
                 }//09-08-2023
                 catch
                 {
-                    dest = node.SelectSingleNode(".//div[@class='wHYlTd C5w57c']|.//span[@class='mgAbYb OSrXXb RES9jf IFnjPb']");//04-11-2024 //23-04-2024
+                    dest = node.SelectSingleNode(".//div[@class='wHYlTd C5w57c']|.//span[contains(@class,'mgAbYb RES9jf IFnjPb')]");//25-01-2025//04-11-2024 //23-04-2024
                     int lenIndex = dest.GetDirectInnerText().IndexOf(" da ") >= 0 ? dest.GetDirectInnerText().IndexOf(" da ") + 4 : -1;//23-04-2024
                     origin = lenIndex >= 0 ? dest?.GetDirectInnerText()?.Substring(lenIndex).Trim() : "";//25-05-2024
                     lenIndex = origin.IndexOf("&nbsp;&middot;");//25-05-2025
@@ -4086,7 +4088,10 @@ namespace WPFMultiThreadJobIDs
                 if (url.Contains("&gclid="))
                     url = url.Remove(url.IndexOf("&gclid="));
                 //end 23-09-2020
-
+                if (url.Contains("&amp;sa="))//27-01-2025
+                    url = url.Remove(url.IndexOf("&amp;sa="));
+                if (url.Contains("&sa="))
+                    url = url.Remove(url.IndexOf("&sa="));//27-01-2025
                 if (url.Contains("\0"))
                     url = url.Replace("\0", "%00");
 
@@ -4216,7 +4221,10 @@ namespace WPFMultiThreadJobIDs
                 if (url.Contains("&gclid="))
                     url = url.Remove(url.IndexOf("&gclid="));
                 //end 23-09-2020
-
+                if (url.Contains("&amp;sa="))//27-01-2025
+                    url = url.Remove(url.IndexOf("&amp;sa="));
+                if (url.Contains("&sa="))
+                    url = url.Remove(url.IndexOf("&sa="));//27-01-2025
                 if (url.Contains("\0"))
                     url = url.Replace("\0", "%00");
 

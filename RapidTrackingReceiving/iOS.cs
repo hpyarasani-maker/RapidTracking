@@ -4106,6 +4106,12 @@ namespace Oxylabs_BulkKeywords
                 if (url.Contains("&gclid="))
                     url = url.Remove(url.IndexOf("&gclid="));
                 //end 23-09-2020
+                if (url.Contains("%3Fsrsltid="))//27-01-2025
+                    url = url.Remove(url.IndexOf("%3Fsrsltid"));
+                if (url.Contains("?srsltid="))
+                    url = url.Remove(url.IndexOf("?srsltid="));
+                if (url.Contains("&srsltid="))
+                    url = url.Remove(url.IndexOf("&srsltid="));//27-01-2025
                 if (url.Contains("&amp;sa="))//27-01-2025
                     url = url.Remove(url.IndexOf("&amp;sa="));
                 if (url.Contains("&sa="))
@@ -4239,6 +4245,12 @@ namespace Oxylabs_BulkKeywords
                 if (url.Contains("&gclid="))
                     url = url.Remove(url.IndexOf("&gclid="));
                 //end 23-09-2020
+                if (url.Contains("%3Fsrsltid="))//27-01-2025
+                    url = url.Remove(url.IndexOf("%3Fsrsltid"));
+                if (url.Contains("?srsltid="))
+                    url = url.Remove(url.IndexOf("?srsltid="));
+                if (url.Contains("&srsltid="))
+                    url = url.Remove(url.IndexOf("&srsltid="));//27-01-2025
                 if (url.Contains("&amp;sa="))//27-01-2025
                     url = url.Remove(url.IndexOf("&amp;sa="));
                 if (url.Contains("&sa="))

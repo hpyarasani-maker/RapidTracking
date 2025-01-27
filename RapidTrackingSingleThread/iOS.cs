@@ -4100,9 +4100,8 @@ namespace RapidTrackingSingleThread
                 if (url.Contains("?srsltid="))
                     url = url.Remove(url.IndexOf("?srsltid="));
                 if (url.Contains("&srsltid="))
-                    url = url.Remove(url.IndexOf("&srsltid="));
+                    url = url.Remove(url.IndexOf("&srsltid="));//27-01-2025
                 if (url.Contains("&amp;sa="))//27-01-2025
-                    if (url.Contains("&amp;sa="))//27-01-2025
                     url = url.Remove(url.IndexOf("&amp;sa="));
                 if (url.Contains("&sa="))
                     url = url.Remove(url.IndexOf("&sa="));//27-01-2025
@@ -4240,9 +4239,8 @@ namespace RapidTrackingSingleThread
                 if (url.Contains("?srsltid="))
                     url = url.Remove(url.IndexOf("?srsltid="));
                 if (url.Contains("&srsltid="))
-                    url = url.Remove(url.IndexOf("&srsltid="));
+                    url = url.Remove(url.IndexOf("&srsltid="));//27-01-2025
                 if (url.Contains("&amp;sa="))//27-01-2025
-                    if (url.Contains("&amp;sa="))//27-01-2025
                     url = url.Remove(url.IndexOf("&amp;sa="));
                 if (url.Contains("&sa="))
                     url = url.Remove(url.IndexOf("&sa="));//27-01-2025

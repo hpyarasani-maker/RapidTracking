@@ -599,12 +599,12 @@ namespace RapidTrackingSingleThread
             },
             new SearchProperties()
             {
-                seid =240, domain ="com.co", geo_location="Columbia", locale= "es-419-co", uule = "w+CAIQICIIQ29sb21iaWE=",device="desktop"
+                seid =240, domain ="com.co", geo_location="Colombia", locale= "es-419-co", uule = "w+CAIQICIIQ29sb21iaWE=",device="desktop"
 
             },
             new SearchProperties()
             {
-                seid =241, domain ="com.co", geo_location="Columbia", locale= "es-419-co", uule = "w+CAIQICIIQ29sb21iaWE=",device="mobile_android"
+                seid =241, domain ="com.co", geo_location="Colombia", locale= "es-419-co", uule = "w+CAIQICIIQ29sb21iaWE=",device="mobile_android"
 
             },
             new SearchProperties()

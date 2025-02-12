@@ -302,7 +302,7 @@ namespace RapidTrackingLoopSingleThread
                     HtmlNode node = colpas.SelectSingleNode(".//div[@class='oIk2Cb']");
                     if (node != null)
                     {
-                        if (node.SelectSingleNode(".//div[contains(@class,'T6zPgb')]/div[@role='heading']") != null)
+                        if (node.SelectSingleNode(".//div[contains(@class,'T6zPgb')]/div[@role='heading']|.//div[@class='M6HR1c kfsfbe adDDi']/span[@role='heading']") != null)//29-01-2025
                         {
                             s.Append("<block type=\"peopleAlsoSearch\" >");
                             HtmlNodeCollection nc = node.SelectNodes(".//div[@class='oatEtb']/span|.//div[@class='oatEtb']/div/span");//01-11-2024
@@ -2330,7 +2330,8 @@ namespace RapidTrackingLoopSingleThread
                     || node.SelectSingleNode(".//div[@class='ifM9O']") != null) && node.SelectSingleNode(".//img[contains(@alt, 'Map of')]") == null
                     && node.SelectSingleNode(".//h3[@role='heading']")?.InnerText != "Recipes"
                     && node.SelectSingleNode(".//ul/product-viewer-group|.//div[@class='aJegcc']|.//div[@id='iur']|.//div[contains(@id, 'lu_map')]|.//div[contains(@class, 'lu_map')]") == null //09-11-2023
-                    && node.SelectSingleNode(".//div[@class='knowledge-finance-wholepage-chart__fw-uch']|.//div[@class='fPmcEc']|.//div[contains(@class,'gJBeNe d2F2Td')]") == null)//24-10-2024 //09-11-2023//29-10-2024
+                    && node.SelectSingleNode(".//div[@class='knowledge-finance-wholepage-chart__fw-uch']|.//div[@class='fPmcEc']|.//div[contains(@class,'gJBeNe d2F2Td')]") == null//24-10-2024 //09-11-2023//29-10-2024
+                    && node.SelectSingleNode(".//*[@id='lu_map']|.//img[contains(@alt,'Map of')]|.//a[contains(@data-url,'/maps/')]|.//div[@class='HubS8b']") == null)//10-02-2025
                     return "AnswerCard";//27-12-2021
             }
             //05-10-2020 KP Block selectors updated
@@ -2377,7 +2378,7 @@ namespace RapidTrackingLoopSingleThread
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='xERobd']|.//div[@class='H93uF']|.//div[@class='CH6Bmd']|.//div[@class='vs2hJf']|.//div[@class='o8ebK']");//02-06-2022//27-05-2022//05-03-2022//22-01-2022  //changed on 26-06-2019
             if (nd == null)
-                nd = node.SelectSingleNode(".//a[contains(@data-url,'/maps/')]");//23-08-2021 map selector
+                nd = node.SelectSingleNode(".//a[contains(@data-url,'/maps/')]|.//div[contains(@data-bsrc,'/maps/')]");//10-02-2025//23-08-2021 map selector
             if (nd == null)
                 nd = node.SelectSingleNode(".//img[contains(@alt,'Map of')]|.//div[@jscontroller='TVzfQb']");//21-02-2022//27-12-2021 maps
             if (nd != null && node.SelectSingleNode(".//div[@class='baPFxb g kSMK2']") == null)//26-10-2023
@@ -2605,7 +2606,7 @@ namespace RapidTrackingLoopSingleThread
                         return false;//10-12-2021
                     else //10-12-2021
                         return true;
-                if (node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]|.//div[@class='wYpZje']") != null)//08-07-2024
+                if (node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]|.//div[@class='wYpZje']|.//div[@class='cj1ht QkBAO oYQBg']") != null)//29-01-2025//08-07-2024
                     return true;
                 HtmlNodeCollection nds = node.SelectNodes(".//div");
                 if (nds != null)

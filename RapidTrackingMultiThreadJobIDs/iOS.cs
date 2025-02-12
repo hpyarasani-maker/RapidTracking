@@ -2695,7 +2695,7 @@ namespace RapidTrackingMultiThreadJobIDs
                     "|.//div[@class='KJDcUb']|.//a[@class='ygih0']|.//div[@class='NBoMDb']/a" +
                     "|.//a[@class='dyWXTb']|.//div[@class='MCDgie']/a[@class='BG7Pyb']" +
                     "|.//div[@class='GFu7kc']/a|.//div[@class='iyrWae']/a|.//a[@class='tAAiTd']" +
-                    "|.//div[@class='fLyK8']/a|.//div[@class='IflIfe']");//01-10-2024//12-08-2024//22-07-2024//26-02-2024//21-11-2023//24-08-2023 //17-05-2022 //07-04-2022 videos item urls
+                    "|.//div[@class='fLyK8']/a|.//div[@class='IflIfe']|.//a[@class='QYTJMb']");//12-02-2025//01-10-2024//12-08-2024//22-07-2024//26-02-2024//21-11-2023//24-08-2023 //17-05-2022 //07-04-2022 videos item urls
 
             if (nds != null)   // 16-09-2019
                 foreach (HtmlNode nd in nds)
@@ -2750,7 +2750,7 @@ namespace RapidTrackingMultiThreadJobIDs
                         //end 26-06-2020
                         if (url.Contains("/search?") || url.StartsWith("#")) url = "";//11-04-2022
                         string creator = nd.SelectSingleNode(".//div[contains(@class,'YDQ8Te Fy8FNd OSrXXb')]/span[3]|.//div[@class='pDdfmc YqCW4e OSrXXb']/span[3]" +//19-11-2024
-                            "|.//span[@class='GbZYR OSrXXb']|.//div[contains(@class,'R8BTeb q8U8x')]")?.InnerText.Trim() ?? "";//01-10-2024//12-08-2024//22-07-2024//04-12-2023
+                            "|.//span[@class='GbZYR OSrXXb']|.//div[contains(@class,'R8BTeb q8U8x')]|.//div[@class='SPa6uf Hqu6dd OSrXXb CUQOj']/span[3]")?.InnerText.Trim() ?? "";//12-02-2025//01-10-2024//12-08-2024//22-07-2024//04-12-2023
                         if (!string.IsNullOrEmpty(url.Trim()) || !string.IsNullOrEmpty(title.Trim())) //11-04-2022
                                                                                                       //s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                             s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" creatorName=\"" + SetTitle(creator) + "\" />");//04-12-2023

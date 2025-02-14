@@ -852,7 +852,7 @@ namespace RapidTrackingLibrary
                             s.Append(GetClassicLinkCarousel(nd));
                             continue;
                         }
-                        if (nd.SelectSingleNode(".//div[contains(@class,'HiHjCd')]|.//div[@class='Mwdfte']|.//div[@jsname='BPrWId']|.//div[contains(@class,'JpOecb')]") != null)//20-01-2025//15-10-2024
+                        if (nd.SelectSingleNode(".//div[contains(@class,'HiHjCd')]|.//div[@class='Mwdfte']|.//div[@jsname='BPrWId']|.//div[contains(@class,'JpOecb')]|.//div[@data-snf='gdePb']") != null)//14-02-2025//20-01-2025//15-10-2024
                         {
                             s.Append(GetClassicLinkSiteLinks(nd));
                             continue;
@@ -1181,7 +1181,7 @@ namespace RapidTrackingLibrary
             if (n != null)
             {
                 HtmlNode t = n.SelectSingleNode(".//h3");
-                HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'HiHjCd')]/a|.//div[@class='Mwdfte']/a|.//div[@jsname='BPrWId']/a|.//div[contains(@class,'JpOecb')]/a");//20-01-2025//21-10-2024
+                HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'HiHjCd')]/a|.//div[@class='Mwdfte']/a|.//div[@jsname='BPrWId']/a|.//div[contains(@class,'JpOecb')]/a|.//div[@class='kb0PBd']/a");//14-02-2025//20-01-2025//21-10-2024
                 if (nds != null)
                 {
                     s.Append("<block type=\"classicLinkSiteLinks\" url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(t.InnerText) + "\" >");

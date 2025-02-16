@@ -52,12 +52,15 @@ namespace RapidTrackingSingleThread
             //this.Text = "RapidTracking_SingleThread_P_A_WOC_10-09-2019";
 
 
-            Thread t = new Thread(new ThreadStart(StartProcess));
-            t.SetApartmentState(ApartmentState.STA);
-            t.Start();
+            //Thread t = new Thread(new ThreadStart(StartProcess));//16-02-2025
+            //t.SetApartmentState(ApartmentState.STA);
+            //t.Start();//16-02-2025
+            
+            Task task = Task.Run(() => StartProcess());//16-02-2025
+            task.Wait();//16-02-2025
         }
 
-        private void StartProcess()
+        private async Task StartProcess()//16-02-2025
         {
             while (true)
             {
@@ -130,6 +133,8 @@ namespace RapidTrackingSingleThread
                                         SendToAPI(seid, keyword, res, jobid);
                                         SendToDB(seid, keyword, res, jobid, count);
                                     }
+                                    bool aio = res.Contains("<block type=\"aiOverview\">");//16-02-2025
+                                    await InsertAIO_Keyword(keyword, seid, aio);//16-02-2025
                                 }
                                 //else
                                 //{
@@ -420,26 +425,36 @@ namespace RapidTrackingSingleThread
                     //throw ex;
                 }
             }
-
-
-
-            //string qry = "Insert into KeywordsFailure(date, seid, keyword, status) values('" + DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ") + "', " + seid + ", N'" + kw.Replace("'", "''") + "', '-1')";
-
-            //try
-            //{
-            //    using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
-            //    {
-            //        con.Open();
-            //        using (SqlCommand comm = new SqlCommand(qry, con))
-            //        {
-            //            comm.CommandTimeout = 0;
-            //            comm.CommandType = CommandType.Text;
-            //            comm.ExecuteNonQuery();
-            //        }
-            //    }
-            //}
-            //finally { }
         }
+        private async Task InsertAIO_Keyword(string kw, string seid, bool aio)//16-02-2025
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
+                {
+                    con.Open();
+                    using (SqlCommand comm = con.CreateCommand())
+                    {
+                        comm.CommandTimeout = 0;
+                        comm.CommandType = CommandType.StoredProcedure;
+                        comm.CommandText = "Insert_AIO_Keywords";
+                        comm.Parameters.Add("Seid", SqlDbType.Int).Value = seid;
+                        comm.Parameters.Add("Name", SqlDbType.NVarChar).Value = kw;
+                        comm.Parameters.Add("AIO", SqlDbType.Bit).Value = aio;
+                        await comm.ExecuteNonQueryAsync();
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                string errorMessage = $"Database Error in Insert_AIO_Keywords: \r\n{ex.Message}";
+                throw new Exception(errorMessage);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }//16-02-2025
 
         private void SendToDB(string seid, string keyword, string xml, string jobid, int urlcount)
         {

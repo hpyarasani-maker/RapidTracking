@@ -180,7 +180,11 @@ namespace TrendingReceiving
                     dbtime = 0.0;
 
                     if (!string.IsNullOrEmpty(seid))
-                        await ProcessResults(result, kw, seid, jobid, orgUrls); //06-08-2024
+                    {//16-02-2025
+                        await ProcessResults(result, kw, seid, jobid, orgUrls);
+                        bool aio = result.Contains("<block type=\"aiOverview\">");
+                        await InsertAIO_Keyword(kw, seid, aio);
+                    }//16-02-2025
                     OnKeywordDone.Invoke(seid + ":  " + kw + ",  " + orgUrls + "^" + statusCode + "^" + apitime + "^" + dbtime + "^" + totalTime);//08-11-2023 //31-03-2020
                 }
                 else if (status == "faulted")//21-01-2025
@@ -426,6 +430,35 @@ namespace TrendingReceiving
                 string name = node.InnerText;
 
                 return name;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        private async Task InsertAIO_Keyword(string kw, string seid, bool aio)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(StrConn()))
+                {
+                    con.Open();
+                    using (SqlCommand comm = con.CreateCommand())
+                    {
+                        comm.CommandTimeout = 0;
+                        comm.CommandType = CommandType.StoredProcedure;
+                        comm.CommandText = "Insert_AIO_Keywords";
+                        comm.Parameters.Add("Seid", SqlDbType.Int).Value = seid;
+                        comm.Parameters.Add("Name", SqlDbType.NVarChar).Value = kw;
+                        comm.Parameters.Add("AIO", SqlDbType.Bit).Value = aio;
+                        await comm.ExecuteNonQueryAsync();
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                string errorMessage = $"Database Error in Insert_AIO_Keywords: \r\n{ex.Message}";
+                throw new Exception(errorMessage);
             }
             catch (Exception ex)
             {

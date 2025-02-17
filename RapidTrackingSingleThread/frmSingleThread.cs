@@ -134,7 +134,7 @@ namespace RapidTrackingSingleThread
                                         SendToDB(seid, keyword, res, jobid, count);
                                     }
                                     bool aio = res.Contains("<block type=\"aiOverview\">");//16-02-2025
-                                    if (aio) // inserting true value //16-02-2025
+                                    if (aio && device == "mobile_android") // inserting true value //16-02-2025
                                         await InsertAIO_Keyword(keyword, seid, aio);
                                 }
                                 //else

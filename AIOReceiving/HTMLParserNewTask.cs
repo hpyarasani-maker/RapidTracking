@@ -169,7 +169,7 @@ namespace AIOReceiving
                         await ProcessResults(result, kw, seid, jobid, orgUrls);
                         bool aio = result.Contains("<block type=\"aiOverview\">");
                         if (!aio && device == "mobile_android") // inserting false value//16-02-2025                            
-                            await InsertAIO_Keyword(kw, seid, aio);
+                            await InsertAIO_Keyword_False(kw, seid, aio);
                     }//16-02-2025
                     OnKeywordDone.Invoke(seid + ":  " + kw + ",  " + orgUrls + "^" + statusCode + "^" + apitime + "^" + dbtime + "^" + totalTime);//08-11-2023 //31-03-2020
                 }
@@ -422,7 +422,7 @@ namespace AIOReceiving
                 throw ex;
             }
         }
-        private async Task InsertAIO_Keyword(string kw, string seid, bool aio)//16-02-2025
+        private async Task InsertAIO_Keyword_False(string kw, string seid, bool aio)//16-02-2025
         {
             try
             {
@@ -433,7 +433,7 @@ namespace AIOReceiving
                     {
                         comm.CommandTimeout = 0;
                         comm.CommandType = CommandType.StoredProcedure;
-                        comm.CommandText = "Insert_AIO_Keywords";
+                        comm.CommandText = "Insert_AIO_Keywords_False";
                         comm.Parameters.Add("Seid", SqlDbType.Int).Value = seid;
                         comm.Parameters.Add("Name", SqlDbType.NVarChar).Value = kw;
                         comm.Parameters.Add("AIO", SqlDbType.Bit).Value = aio;

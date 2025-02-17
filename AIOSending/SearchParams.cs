@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AIOReceiving
+namespace AIOSending
 {
     internal class SearchParams
     {

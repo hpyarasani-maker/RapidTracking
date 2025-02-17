@@ -194,7 +194,8 @@ namespace Oxylabs_BulkKeywords
                     {//16-02-2025
                         await ProcessResults(result, kw, seid, jobid, orgUrls);
                         bool aio = result.Contains("<block type=\"aiOverview\">");
-                        await InsertAIO_Keyword(kw, seid, aio);
+                        if (aio) // inserting true value//16-02-2025
+                            await InsertAIO_Keyword(kw, seid, aio);
                     }//16-02-2025
                     OnKeywordDone.Invoke(seid + ":  " + kw + ",  " + orgUrls + "^" + statusCode + "^" + apitime + "^" + dbtime + "^" + totalTime);//08-11-2023 //31-03-2020
                 }

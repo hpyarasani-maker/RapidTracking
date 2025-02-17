@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
-namespace AIOReceiving
-{ 
+namespace AIOSending
+{
     class SearchParams
-    {  
+    {         
         public static IList<SearchProperties> searches = new List<SearchProperties>()
         {
-           
             new SearchProperties()//Seid's for AI overview testing  1026 to 1029
             {
                 seid =1026, domain ="co.uk",geo_location="United Kingdom",locale= "en-gb",uule = "w+CAIQICIOVW5pdGVkIEtpbmdkb20=",device="desktop_chrome"
@@ -25,6 +24,7 @@ namespace AIOReceiving
             },//Seid's for AI overview testing 1026 to 1029
         };
     }
+
     class SearchProperties
     {
         public int seid { get; set; }

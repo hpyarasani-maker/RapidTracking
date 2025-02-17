@@ -55,9 +55,24 @@ namespace RapidTrackingSingleThread
             //Thread t = new Thread(new ThreadStart(StartProcess));//16-02-2025
             //t.SetApartmentState(ApartmentState.STA);
             //t.Start();//16-02-2025
-            
-            Task task = Task.Run(() => StartProcess());//16-02-2025
-            task.Wait();//16-02-2025
+
+            //Task task = Task.Run(() => StartProcess());//16-02-2025
+            //task.Wait();//16-02-2025
+            Task task = Task.Run(() =>
+            {
+                try
+                {
+                    StartProcess();
+                }
+                catch (Exception ex)
+                {
+                    this.Invoke((MethodInvoker)delegate ()
+                    {
+                        txtError.Text = $"Exception: {ex.Message}";
+                    });
+                    
+                }
+            });
         }
 
         private async Task StartProcess()//16-02-2025
@@ -307,7 +322,7 @@ namespace RapidTrackingSingleThread
                 //lstKWs.Items.Add("106:romeo and juliet tickets");
                 //lstKWs.Items.Add("160:malmö ff");
                 //lstKWs.Items.Add("102:terry crews");
-                //lstKWs.Items.Add("102:the uninhabitable earth summary");
+                lstKWs.Items.Add("102:the uninhabitable earth summary");
                 lstKWs.Items.Add("58:london luton flights");
             });
             return;

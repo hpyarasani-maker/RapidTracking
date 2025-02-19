@@ -66,23 +66,67 @@ namespace WPFMultiThreadJobIDs
             myDate = dtPicker1.SelectedDate.Value.Date.ToString("yyyy-MM-dd");//21-01-2025
             //myDate = DateTime.Now.ToString("yyyy-MM-dd");//21-01-2025 commented
 
-            Thread t1 = new Thread(new ThreadStart(StartProcess_1));
-            t1.SetApartmentState(ApartmentState.STA);
-            t1.Priority = ThreadPriority.Lowest;
-            t1.Start();
+            //Thread t1 = new Thread(new ThreadStart(StartProcess_1));
+            //t1.SetApartmentState(ApartmentState.STA);
+            //t1.Priority = ThreadPriority.Lowest;
+            //t1.Start();
+            Task t1 = Task.Run(() => //16-02-2025
+            {
+                try
+                {
+                    StartProcess_1();
+                }
+                catch (Exception ex)
+                {
+                    this.txtError.Dispatcher.Invoke((MethodInvoker)delegate ()
+                    {
+                        txtError.Text = $"Exception: {ex.Message}";
+                    });
 
-            Thread t2 = new Thread(new ThreadStart(StartProcess_2));
-            t2.SetApartmentState(ApartmentState.STA);
-            t2.Priority = ThreadPriority.Lowest;
-            t2.Start();
+                }
+            });
+            //Thread t2 = new Thread(new ThreadStart(StartProcess_2));
+            //t2.SetApartmentState(ApartmentState.STA);
+            //t2.Priority = ThreadPriority.Lowest;
+            //t2.Start();
+            Task t2 = Task.Run(() =>
+            {
+                try
+                {
+                    StartProcess_2();
+                }
+                catch (Exception ex)
+                {
+                    this.txtError.Dispatcher.Invoke((MethodInvoker)delegate ()
+                    {
+                        txtError.Text = $"Exception: {ex.Message}";
+                    });
 
-            Thread t3 = new Thread(new ThreadStart(StartProcess_3));
-            t3.SetApartmentState(ApartmentState.STA);
-            t3.Priority = ThreadPriority.Lowest;
-            t3.Start();
+                }
+            });
+
+            //Thread t3 = new Thread(new ThreadStart(StartProcess_3));
+            //t3.SetApartmentState(ApartmentState.STA);
+            //t3.Priority = ThreadPriority.Lowest;
+            //t3.Start();
+            Task t3 = Task.Run(() =>
+            {
+                try
+                {
+                    StartProcess_3();
+                }
+                catch (Exception ex)
+                {
+                    this.txtError.Dispatcher.Invoke((MethodInvoker)delegate ()
+                    {
+                        txtError.Text = $"Exception: {ex.Message}";
+                    });
+
+                }
+            });//16-02-2025
         }
     
-    private void StartProcess_1()
+    private async Task StartProcess_1() //16-02-2025
     {
         while (true)
         {
@@ -147,6 +191,9 @@ namespace WPFMultiThreadJobIDs
                             {
                                 SendToDB(seid, keyword, res, jobid, count);
                             }
+                                bool aio = res.Contains("<block type=\"aiOverview\">");//16-02-2025
+                                if (aio && device == "mobile_android") // inserting true value //16-02-2025
+                                    await InsertAIO_Keyword(keyword, seid, aio);
                         }
                     }
 
@@ -182,7 +229,7 @@ namespace WPFMultiThreadJobIDs
             Environment.Exit(Environment.ExitCode);
     }
 
-    private void StartProcess_2()
+    private async Task StartProcess_2()//16-02-2025
     {
         while (true)
         {
@@ -247,6 +294,9 @@ namespace WPFMultiThreadJobIDs
                             {
                                 SendToDB(seid, keyword, res, jobid, count);
                             }
+                                bool aio = res.Contains("<block type=\"aiOverview\">");//16-02-2025
+                                if (aio && device == "mobile_android") // inserting true value //16-02-2025
+                                    await InsertAIO_Keyword(keyword, seid, aio);
                         }
                     }
                 }
@@ -293,7 +343,7 @@ namespace WPFMultiThreadJobIDs
 
     }
 
-    private void StartProcess_3()
+    private async Task StartProcess_3()//16-02-2025
     {
         while (true)
         {
@@ -358,6 +408,9 @@ namespace WPFMultiThreadJobIDs
                             {
                                 SendToDB(seid, keyword, res, jobid, count);
                             }
+                                bool aio = res.Contains("<block type=\"aiOverview\">");//16-02-2025
+                                if (aio && device == "mobile_android") // inserting true value //16-02-2025
+                                    await InsertAIO_Keyword(keyword, seid, aio);
                         }
                     }
                 }
@@ -921,7 +974,35 @@ namespace WPFMultiThreadJobIDs
         }
         finally { }
     }
-
+    private async Task InsertAIO_Keyword(string kw, string seid, bool aio)//16-02-2025
+    {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
+                {
+                    con.Open();
+                    using (SqlCommand comm = con.CreateCommand())
+                    {
+                        comm.CommandTimeout = 0;
+                        comm.CommandType = CommandType.StoredProcedure;
+                        comm.CommandText = "Insert_AIO_Keywords";
+                        comm.Parameters.Add("Seid", SqlDbType.Int).Value = seid;
+                        comm.Parameters.Add("Name", SqlDbType.NVarChar).Value = kw;
+                        comm.Parameters.Add("AIO", SqlDbType.Bit).Value = aio;
+                        await comm.ExecuteNonQueryAsync();
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                string errorMessage = $"Database Error in Insert_AIO_Keywords: \r\n{ex.Message}";
+                throw new Exception(errorMessage);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+    }//16-02-2025
     public async Task<ArrayList> GetHTML(string keyword, int seid, string jobid)
     {
         ArrayList alResult = new ArrayList();

@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Net.Http;
 using System.Collections;
+using System.Threading.Tasks;
 
 namespace RapidTrackingLoopReceiving
 {
@@ -42,7 +43,7 @@ namespace RapidTrackingLoopReceiving
             t1.Start();
         }
 
-        private void StartProcess()
+        private async void StartProcess()
         {
             //string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking desktop and all keywords
             //string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking mobile
@@ -101,7 +102,7 @@ namespace RapidTrackingLoopReceiving
                         client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
                         response = client.GetStringAsync(ul).Result;
                         if (response != "null")
-                            DoProcess(response);
+                            await DoProcess(response);
                     }
 
                     catch (Exception ex)
@@ -114,7 +115,7 @@ namespace RapidTrackingLoopReceiving
             }
         }
 
-        private void DoProcess(string resp)
+        private async Task DoProcess(string resp)
         {
             JObject job = JObject.Parse(resp);
             string status = job["status"].Value<string>();
@@ -220,6 +221,9 @@ namespace RapidTrackingLoopReceiving
                         {
                             SendToDB(seid, kw, resx, jobid, count);
                         }
+                        bool aio = result.Contains("<block type=\"aiOverview\">");//16-02-2025
+                        if (aio && device == "mobile_android") // inserting true value//16-02-2025
+                            await InsertAIO_Keyword(kw, seid, aio);//16-02-2025
                     }
                     //if (!string.IsNullOrEmpty(seid))
                     //    for (int i = 0; i < result.Count; i++)
@@ -300,6 +304,35 @@ namespace RapidTrackingLoopReceiving
                 }
             }
         }
+        private async Task InsertAIO_Keyword(string kw, string seid, bool aio)//16-02-2025
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(StrConn()))
+                {
+                    con.Open();
+                    using (SqlCommand comm = con.CreateCommand())
+                    {
+                        comm.CommandTimeout = 0;
+                        comm.CommandType = CommandType.StoredProcedure;
+                        comm.CommandText = "Insert_AIO_Keywords";
+                        comm.Parameters.Add("Seid", SqlDbType.Int).Value = seid;
+                        comm.Parameters.Add("Name", SqlDbType.NVarChar).Value = kw;
+                        comm.Parameters.Add("AIO", SqlDbType.Bit).Value = aio;
+                        await comm.ExecuteNonQueryAsync();
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                string errorMessage = $"Database Error in Insert_AIO_Keywords: \r\n{ex.Message}";
+                throw new Exception(errorMessage);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }//16-02-2025
 
         public string StrConn()
         {

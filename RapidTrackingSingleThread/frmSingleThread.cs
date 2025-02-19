@@ -58,11 +58,11 @@ namespace RapidTrackingSingleThread
 
             //Task task = Task.Run(() => StartProcess());//16-02-2025
             //task.Wait();//16-02-2025
-            Task task = Task.Run(() =>
+            Task task = Task.Run(async () =>
             {
                 try
                 {
-                    StartProcess();
+                    await StartProcess();
                 }
                 catch (Exception ex)
                 {

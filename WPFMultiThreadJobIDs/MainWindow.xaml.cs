@@ -70,11 +70,11 @@ namespace WPFMultiThreadJobIDs
             //t1.SetApartmentState(ApartmentState.STA);
             //t1.Priority = ThreadPriority.Lowest;
             //t1.Start();
-            Task t1 = Task.Run(() => //16-02-2025
+            Task t1 = Task.Run(async () => //16-02-2025
             {
                 try
                 {
-                    StartProcess_1();
+                    await StartProcess_1();
                 }
                 catch (Exception ex)
                 {
@@ -89,11 +89,11 @@ namespace WPFMultiThreadJobIDs
             //t2.SetApartmentState(ApartmentState.STA);
             //t2.Priority = ThreadPriority.Lowest;
             //t2.Start();
-            Task t2 = Task.Run(() =>
+            Task t2 = Task.Run(async () =>
             {
                 try
                 {
-                    StartProcess_2();
+                    await StartProcess_2();
                 }
                 catch (Exception ex)
                 {
@@ -109,11 +109,11 @@ namespace WPFMultiThreadJobIDs
             //t3.SetApartmentState(ApartmentState.STA);
             //t3.Priority = ThreadPriority.Lowest;
             //t3.Start();
-            Task t3 = Task.Run(() =>
+            Task t3 = Task.Run(async () =>
             {
                 try
                 {
-                    StartProcess_3();
+                    await StartProcess_3();
                 }
                 catch (Exception ex)
                 {

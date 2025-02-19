@@ -1677,7 +1677,7 @@ namespace SERPResultsJSON
                 foreach (HtmlNode nd in nds)
                 {
                     string url = nd.SelectSingleNode(".//a")?.Attributes["href"]?.Value ?? "";//22-10-2024
-                    string t1 = nd.SelectSingleNode(".//div[contains(@class,'LJEGod')]")?.InnerText ?? "";
+                    string t1 = (nd.SelectSingleNode(".//span[@class='Yt787']") ?? nd.SelectSingleNode(".//div[contains(@class,'LJEGod')]"))?.InnerText ?? "";//19-02-2025
                     string s1 = (nd.SelectSingleNode(".//div[@class='LbKnXb J0EDnf iKOnjb']/div[2]") ?? nd.SelectSingleNode(".//div[@class='LbKnXb YAG2qc UYJxh']") ?? nd.SelectSingleNode(".//div[@class='cyspcb DH9lqb']"))?.InnerText ?? "";//18-02-2025
                     if (string.IsNullOrEmpty(SetUrl(url)) && string.IsNullOrEmpty(t1) && string.IsNullOrEmpty(s1))//22-10-2024
                         continue;

@@ -726,7 +726,7 @@ namespace TrendingLoopReceiving
                 || node.SelectNodes(".//div[@class='d3zsgb']/div[@class='yuRUbf']|.//div[@class='tF2Cxc']/div[@class='yuRUbf']|.//div[contains(@class,'g Ww4FFb')]|.//div[@class='g eejeod up9jud']|.//div[contains(@class,'Ww4FFb vt6azd')]") != null)//25-04-2024//25-01-2023
                    && (node.SelectSingleNode(".//div[@class='MjjYud']") != null || node.SelectSingleNode(".//div[@id='rhs']") == null))//25-01-2023//10-01-2023//12-10-2022//end of 10-10-2022
             {
-                HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'g tF2Cxc')]|.//div[contains(@class,'g dFd2Tb')]|.//div[contains(@class,'g Ww4FFb')]|.//div[contains(@class,'g wF4fFd')]|.//div[@class='g zXItKe']|.//div[@class='BYM4Nd']|.//div[@class='AuVD cUnQKe']|.//div[@class='cUnQKe']|.//div[@class='cUnQKe vt6azd']|.//div[@class='uVMCKf']|.//g-card[@class='tkfIqc g']|.//div[contains(@class, 'g PmEWq')]|.//g-scrolling-carousel[@class='arDHIe']|.//g-section-with-header[@class='yG4QQe TBC9ub']");//29-09-2023
+                HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'g tF2Cxc')]|.//div[contains(@class,'g dFd2Tb')]|.//div[contains(@class,'g Ww4FFb')]|.//div[contains(@class,'g wF4fFd')]|.//div[@class='g zXItKe']|.//div[@class='BYM4Nd']|.//div[@class='AuVD cUnQKe']|.//div[@class='cUnQKe']|.//div[@class='cUnQKe vt6azd']|.//div[@class='uVMCKf']|.//g-card[@class='tkfIqc g']|.//div[contains(@class, 'g PmEWq')]|.//g-scrolling-carousel[@class='arDHIe']|.//g-section-with-header[contains(@class,'yG4QQe TBC9ub')]");//14-02-2025//29-09-2023
                 if (nds == null && (node.Attributes["class"]?.Value == "g tF2Cxc" || node.Attributes["class"]?.Value == "g Ww4FFb vt6azd tF2Cxc asEBEc") || node.Attributes["class"]?.Value == "g PmEWq")//08-02-2024//17-11-2022//20-04-2022
                     nds = node.SelectNodes(".");//20-04-2022 
                 if (nds == null)
@@ -819,7 +819,7 @@ namespace TrendingLoopReceiving
                             s.Append(GetClassicLinkCarousel(nd));
                             continue;
                         }
-                        if (nd.SelectSingleNode(".//div[contains(@class,'HiHjCd')]|.//div[@class='Mwdfte']|.//div[@jsname='BPrWId']|.//div[contains(@class,'JpOecb')]") != null)//20-01-2025//15-10-2024
+                        if (nd.SelectSingleNode(".//div[contains(@class,'HiHjCd')]|.//div[@class='Mwdfte']|.//div[@jsname='BPrWId']|.//div[contains(@class,'JpOecb')]|.//div[@data-snf='gdePb']") != null)//14-02-2025//20-01-2025//15-10-2024
                         {
                             s.Append(GetClassicLinkSiteLinks(nd));
                             continue;
@@ -1152,7 +1152,7 @@ namespace TrendingLoopReceiving
             if (n != null)
             {
                 HtmlNode t = n.SelectSingleNode(".//h3");
-                HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'HiHjCd')]/a|.//div[@class='Mwdfte']/a|.//div[@jsname='BPrWId']/a|.//div[contains(@class,'JpOecb')]/a");//20-01-2025//21-10-2024
+                HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'HiHjCd')]/a|.//div[@class='Mwdfte']/a|.//div[@jsname='BPrWId']/a|.//div[contains(@class,'JpOecb')]/a|.//div[contains(@class,'kb0PBd')]/a");//18-02-2025//14-02-2025//20-01-2025//21-10-2024
                 if (nds != null)
                 {
                     s.Append("<block type=\"classicLinkSiteLinks\" url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(t.InnerText) + "\" >");
@@ -1888,34 +1888,38 @@ namespace TrendingLoopReceiving
             }
             else
             {
-                dest = node.SelectSingleNode(".//span[contains(@class,'RES9jf')]|.//span[@class='kqEaA']|.//h3[@class='OOTLje']");//29-07-2024
-                int lenIndex = dest.InnerText.IndexOf(" to ") >= 0 ? dest.InnerText.IndexOf(" to ") :
-                        dest.InnerText.IndexOf(" von ") >= 0 ? dest.InnerText.IndexOf(" von ") : //01-12-2023
-                        dest.InnerText.IndexOf(" nach ") >= 0 ? dest.InnerText.IndexOf(" nach ") :
-                        dest.InnerText.IndexOf(" a ") >= 0 ? dest.InnerText.IndexOf(" a ") :
-                        dest.InnerText.IndexOf("Vols ") >= 0 ? dest.InnerText.IndexOf("Vols ") : //23-02-2024
-                        dest.InnerText.IndexOf(" da ") >= 0 ? dest.InnerText.IndexOf(" da ") : //26-04-2024
-                        dest.InnerText.IndexOf(" per ") >= 0 ? dest.InnerText.IndexOf(" per ") : //26-04-2024
-                        dest.InnerText.IndexOf(" à ") >= 0 ? dest.InnerText.IndexOf(" à ") : -1;//18-01-2024
-                if (lenIndex == -1)
-                    lenIndex = dest.InnerText.IndexOf(" from ") >= 0 ? dest.InnerText.IndexOf(" from ") : -1;
-                origin = dest?.InnerText?.Substring(0, lenIndex).Trim(); // dest.InnerText.IndexOf(" to "));
-                if (origin.ToLower().Equals("flights") || origin.Equals("Flüge") || origin.Equals("Vols") || origin.Equals("Voli")) origin = string.Empty;//26-04-2024//18-01-2024
-                int len = dest.InnerText.IndexOf(" to ") >= 0 ? dest.InnerText.IndexOf(" to ") + 4 :
-                    dest.InnerText.IndexOf(" per ") >= 0 ? dest.InnerText.IndexOf(" per ") + 5 : //26-04-2024
-                    dest.InnerText.IndexOf(" a ") >= 0 ? dest.InnerText.IndexOf(" a ") + 3 :
-                   dest.InnerText.IndexOf(" à ") >= 0 ? dest.InnerText.IndexOf(" à ") + 18 : -1;//18-01-2024
-                if (len == -1)
+                try//18-02-2025
                 {
-                    len = dest.InnerText.IndexOf(" from ") >= 0 ? dest.InnerText.IndexOf(" from ") + 6 :
-                        dest.InnerText.IndexOf("Vols ") >= 0 ? dest.InnerText.IndexOf("Vols ") + 4 : //23-02-2024
-                        dest.InnerText.IndexOf(" nach ") >= 0 ? dest.InnerText.IndexOf(" nach ") + 5 ://26-02-2024
-                        dest.InnerText.IndexOf(" da ") >= 0 ? dest.InnerText.IndexOf(" da ") + 4 ://26-04-2024
-                        dest.InnerText.IndexOf(" von ") >= 0 ? dest.InnerText.IndexOf(" von ") + 5 : -1;  //01-12-2023;
-                    origin = dest?.InnerText.Substring(len).Trim();
+                    dest = node.SelectSingleNode(".//span[contains(@class,'RES9jf')]|.//span[@class='kqEaA']|.//h3[@class='OOTLje']");//29-07-2024
+                    int lenIndex = dest.InnerText.IndexOf(" to ") >= 0 ? dest.InnerText.IndexOf(" to ") :
+                            dest.InnerText.IndexOf(" von ") >= 0 ? dest.InnerText.IndexOf(" von ") : //01-12-2023
+                            dest.InnerText.IndexOf(" nach ") >= 0 ? dest.InnerText.IndexOf(" nach ") :
+                            dest.InnerText.IndexOf(" a ") >= 0 ? dest.InnerText.IndexOf(" a ") :
+                            dest.InnerText.IndexOf("Vols ") >= 0 ? dest.InnerText.IndexOf("Vols ") : //23-02-2024
+                            dest.InnerText.IndexOf(" da ") >= 0 ? dest.InnerText.IndexOf(" da ") : //26-04-2024
+                            dest.InnerText.IndexOf(" per ") >= 0 ? dest.InnerText.IndexOf(" per ") : //26-04-2024
+                            dest.InnerText.IndexOf(" à ") >= 0 ? dest.InnerText.IndexOf(" à ") : -1;//18-01-2024
+                    if (lenIndex == -1)
+                        lenIndex = dest.InnerText.IndexOf(" from ") >= 0 ? dest.InnerText.IndexOf(" from ") : -1;
+                    origin = dest?.InnerText?.Substring(0, lenIndex).Trim(); // dest.InnerText.IndexOf(" to "));
+                    if (origin.ToLower().Equals("flights") || origin.Equals("Flüge") || origin.Equals("Vols") || origin.Equals("Voli")) origin = string.Empty;//26-04-2024//18-01-2024
+                    int len = dest.InnerText.IndexOf(" to ") >= 0 ? dest.InnerText.IndexOf(" to ") + 4 :
+                        dest.InnerText.IndexOf(" per ") >= 0 ? dest.InnerText.IndexOf(" per ") + 5 : //26-04-2024
+                        dest.InnerText.IndexOf(" a ") >= 0 ? dest.InnerText.IndexOf(" a ") + 3 :
+                       dest.InnerText.IndexOf(" à ") >= 0 ? dest.InnerText.IndexOf(" à ") + 18 : -1;//18-01-2024
+                    if (len == -1)
+                    {
+                        len = dest.InnerText.IndexOf(" from ") >= 0 ? dest.InnerText.IndexOf(" from ") + 6 :
+                            dest.InnerText.IndexOf("Vols ") >= 0 ? dest.InnerText.IndexOf("Vols ") + 4 : //23-02-2024
+                            dest.InnerText.IndexOf(" nach ") >= 0 ? dest.InnerText.IndexOf(" nach ") + 5 ://26-02-2024
+                            dest.InnerText.IndexOf(" da ") >= 0 ? dest.InnerText.IndexOf(" da ") + 4 ://26-04-2024
+                            dest.InnerText.IndexOf(" von ") >= 0 ? dest.InnerText.IndexOf(" von ") + 5 : -1;  //01-12-2023;
+                        origin = dest?.InnerText.Substring(len).Trim();
+                    }
+                    else
+                        destination = dest?.InnerText.Substring(len).Trim();//31-10-2023
                 }
-                else
-                    destination = dest?.InnerText.Substring(len).Trim();//31-10-2023
+                catch { }//18-02-2025
             }
             s.Append("<block type=\"flightPack\" origin=\"" + SetTitle(origin) + "\" destination=\"" + SetTitle(destination) + "\" >");
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='aieQre']/div/a|.//div[contains(@class,'LQQ1Bd')]/div/a|.//div[@class='qR29te']/div/a");//29-07-2024
@@ -1947,18 +1951,18 @@ namespace TrendingLoopReceiving
             }
             else
             {
-                nds = node.SelectNodes(".//table[@class='QGsTM']/tbody/tr");
+                nds = node.SelectNodes(".//table[@class='QGsTM']/tbody/tr|.//div[@class='p21Z4']/div/a");//18-02-2025
                 if (nds != null)
                 {
                     foreach (var nd in nds)
                     {
                         try
                         {
-                            string airline = "";
+                            string airline = nd.SelectSingleNode(".//div[@class='WMTAoe']").InnerText.Trim() ?? "";//18-02-2025
                             string hours = nd.SelectSingleNode(".//div[@class='BNeawe DwrKqd']/span")?.InnerText.Trim() ?? "0h 0m";
-                            string connecting = nd.SelectSingleNode(".//div[@class='BNeawe']")?.InnerText.Trim() ?? "";
+                            string connecting = nd.SelectSingleNode(".//div[@class='BNeawe']|.//div[@class='vaaCdf']")?.InnerText.Trim() ?? "";//18-02-2025
                             connecting = string.IsNullOrEmpty(connecting) ? "Nonstop" : !connecting.Contains("Connecting") && !connecting.Contains("Nonstop") ? "Connecting" : !connecting.Contains("Nonstop-Flug") ? "Nonstop" : !connecting.Contains("Mit Umsteigen") ? "Nonstop" : connecting;//02-12-2024
-                            string price = nd.SelectSingleNode(".//div[@class='BNeawe DwrKqd']")?.GetDirectInnerText() ?? "0";
+                            string price = nd.SelectSingleNode(".//div[@class='BNeawe DwrKqd']|.//div[@class='g1sBec']/span")?.GetDirectInnerText() ?? "0";//18-02-2025
                             string priceValue = string.Empty;
                             string hoursValue = string.Empty;
                             if (!string.IsNullOrEmpty(hours))
@@ -2223,9 +2227,11 @@ namespace TrendingLoopReceiving
                 nd = node.SelectSingleNode(".//div/a/div[@class='vJOb1e']"); //20-10-2021 top stories block
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='CEMjEf NUnG9d']/g-img"); //06-04-2022 TS
+            if (nd == null)//14-02-2025
+                nd = node.SelectSingleNode(".//g-section-with-header[contains(@class,'yG4QQe TBC9ub')]");//14-02-2025
             if (nd == null)//27-04-2023
                 nd = node.SelectSingleNode(".//div[@class='aUSklf']|.//div[@jsname='K9a4Re']");//25-09-2024
-            if (nd != null && node.SelectSingleNode(".//div[@class='fN9oz']|.//div[contains(@class,'tw-res')]|.//div[@jsname='K9a4Re']") == null)//18-12-2024//21-11-2024//10-10-2024//01-10-2024//18-12-2024//21-11-2024//10-10-2024//01-10-2024
+            if (nd != null && node.SelectSingleNode(".//div[@class='fN9oz']|.//div[contains(@class,'tw-res')]|.//div[@jsname='K9a4Re']|.//div[contains(@class, 'bba2i')]") == null)//17-02-2025//18-12-2024//21-11-2024//10-10-2024//01-10-2024//18-12-2024//21-11-2024//10-10-2024//01-10-2024
                 return "topstories";
             if (nd == null)
                 nd = node.SelectSingleNode(".//span[@class='qB1pae']");
@@ -2263,7 +2269,7 @@ namespace TrendingLoopReceiving
             if (nd != null)
                 return "TopSights";*///23-03-2022//19-01-2023
 
-            nd = node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]|.//div[contains(@class, 'vdQmEd')]|.//div[@class='cj1ht QkBAO oYQBg']");//29-07-2024//29-06-2023//23-03-2022
+            nd = node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]|.//div[contains(@class, 'vdQmEd')]|.//div[@class='cj1ht QkBAO oYQBg']|.//div[@class='p21Z4']");//18-02-2025//29-07-2024//29-06-2023//23-03-2022
             if (nd != null && nd.SelectNodes(".//div[@class='MxQnIc']") == null && node.SelectSingleNode(".//div[@class='XNfAUb']|.//h1[contains(@class, 'bNg8Rb')]") == null)//27-12-2024//19-08-2024//30-06-2023
                 return "Flights";//23-03-2022
 
@@ -2519,7 +2525,7 @@ namespace TrendingLoopReceiving
                     "|.//div[@class='g ZYT4Gf']") != null || (node.Attributes["class"]?.Value?.Contains("g Ww4FFb") ?? false)) return false;//07-08-2023//31-10-2022//11-10-2022
                     if (node.SelectSingleNode(".//div[@class='twQ0Be']|.//div[@jsname='N760b']|.//div[@jsname='wRSfy']|.//div[contains(@class,'e2BEnf U7izfe')]" + //03-11-2023//05-12-2022//26-09-2022//13-08-2022 maps//08-03-2022//07-03-2022//28-12-2021//10-12-2021//09-12-2021 //08-12-2021 PAlsoB   //30-08-2021 video card
                         "|.//div[@jsname='A6RGif']|.//div[@class='P9Jfrb']|.//div[@class='ntKMYc']|.//div[@class='T6zPgb gduDCb']|.//div[@class='M0XuFe mnr-c vk_c']" +
-                        "|.//g-section-with-header[@class='yG4QQe TBC9ub']|.//div[contains(@class,'knowledge-finance')]|.//div[@class='Lv2Cle']") != null) return true;//05-12-2024 //05-12-2023
+                        "|.//g-section-with-header[contains(@class,'yG4QQe TBC9ub')]|.//div[contains(@class,'knowledge-finance')]|.//div[@class='Lv2Cle']") != null) return true;//14-02-2025//05-12-2024 //05-12-2023
                     if (node.SelectSingleNode(".//div[@class='osrp-blk']|.//div[@class='tpa-cc']|.//div[@class='pKv8Zb fm06If']") != null && node.SelectSingleNode(".//div[@class='l44Vof']|.//div[@class='o8ebK']") == null && node.SelectSingleNode(".//div[@class='H93uF']") == null)//25-11-2024//25-04-2024 //17-05-2022//31-12-2021
                         return false; //20-08-2021
                     if (node.Attributes["id"]?.Value == "rhs") return false;//03-03-2022
@@ -2600,7 +2606,7 @@ namespace TrendingLoopReceiving
                         return false;//10-12-2021
                     else //10-12-2021
                         return true;
-                if (node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]|.//div[@class='wYpZje']|.//div[@class='cj1ht QkBAO oYQBg']") != null)//29-01-2025//08-07-2024
+                if (node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]|.//div[@class='wYpZje']|.//div[@class='cj1ht QkBAO oYQBg']|.//div[@class='p21Z4']") != null)//18-02-2025//29-01-2025//08-07-2024
                     return true;
                 HtmlNodeCollection nds = node.SelectNodes(".//div");
                 if (nds != null)

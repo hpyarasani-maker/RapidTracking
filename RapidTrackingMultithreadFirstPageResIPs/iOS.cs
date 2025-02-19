@@ -1673,7 +1673,7 @@ namespace RapidTrackingMultithreadFirstPageResIPs
         private string GetsitesCarousel(HtmlNode node)//11-10-2024 sitesCarousel //16-10-2024
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='IF221e EXH1Ce']");
+            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='IF221e EXH1Ce']|.//div[@class='ZsAbe EXH1Ce']");//18-02-2025
             if (nds != null)
             {
                 s.Append("<block type=\"sitesCarousel\">");
@@ -1681,7 +1681,7 @@ namespace RapidTrackingMultithreadFirstPageResIPs
                 {
                     string url = nd.SelectSingleNode(".//a")?.Attributes["href"]?.Value ?? "";//22-10-2024
                     string t1 = nd.SelectSingleNode(".//div[contains(@class,'LJEGod')]")?.InnerText ?? "";
-                    string s1 = nd.SelectSingleNode(".//div[@class='cyspcb DH9lqb']|.//div[@class='LbKnXb YAG2qc UYJxh']")?.InnerText ?? "";
+                    string s1 = (nd.SelectSingleNode(".//div[@class='LbKnXb J0EDnf iKOnjb']/div[2]") ?? nd.SelectSingleNode(".//div[@class='LbKnXb YAG2qc UYJxh']") ?? nd.SelectSingleNode(".//div[@class='cyspcb DH9lqb']"))?.InnerText ?? "";//18-02-2025
                     if (string.IsNullOrEmpty(SetUrl(url)) && string.IsNullOrEmpty(t1) && string.IsNullOrEmpty(s1))//22-10-2024
                         continue;
                     s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(t1) + "\" source=\"" + SetTitle(s1) + "\" />");//22-10-2024
@@ -1789,7 +1789,7 @@ namespace RapidTrackingMultithreadFirstPageResIPs
                 nd = node.SelectNodes(".//div[@jsname='WUSFrc']/g-link/a|.//div[@jsname='WUSFrc']/div/g-link/a" +
                     "|.//div[@class='v1uiFd']/g-link/a|.//div[@class='bogMee']/g-link/a|.//g-inner-card[@class='VoEfsd']/g-link/a" +
                     "|.//div[@class='SuG7wd']/g-inner-card/g-link/a|.//div[contains(@class,'LAALze')]/g-inner-card/g-link/a" +
-                    "|.//div[contains(@class,'LAALze')]/g-inner-card/div/g-link/a|.//div[@class='bogMee']/div/g-link/a");//30-01-2024//11-12-2023//01-02-2023//14-04-2022 ///23-11-2021/25-10-2021
+                    "|.//div[contains(@class,'LAALze')]/g-inner-card/div/g-link/a|.//div[@class='bogMee']/div/g-link/a|.//div[@class='LJEGod aKoISd']/a");//19-02-2025//30-01-2024//11-12-2023//01-02-2023//14-04-2022 ///23-11-2021/25-10-2021
             string url = "";
             if (nd != null)
             {
@@ -1799,7 +1799,7 @@ namespace RapidTrackingMultithreadFirstPageResIPs
                     HtmlNode hn = nd1.SelectSingleNode(".//div[@class='mB12kf JRhSae nDgy9d']");
                     if (hn == null)
                         //hn = nd1.SelectSingleNode(".//div[@class='hfac6d']"); //22-07-2020 commented
-                        hn = nd1.SelectSingleNode(".//div[contains(@class,'hfac6d')]|.//span[contains(@class,'hfac6d')]");//11-12-2023 //22-07-2020 included selector for carousel title and applied contains class
+                        hn = nd1.SelectSingleNode(".//div[contains(@class,'hfac6d')]|.//span[contains(@class,'hfac6d')]|.//span[@class='Yt787']");//19-02-2025//11-12-2023 //22-07-2020 included selector for carousel title and applied contains class
                     //if (hn == null)
                     //    hn = nd1.SelectSingleNode(".//div[@class='hfac6d oz3cqf vH5Lmd']");  //22-07-2020 commented // 02-06-2020
                     if (hn == null)

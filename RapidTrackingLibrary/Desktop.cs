@@ -2275,7 +2275,7 @@ namespace RapidTrackingLibrary
                 nd = node.SelectSingleNode(".//g-section-with-header[contains(@class,'yG4QQe TBC9ub')]");//14-02-2025
             if (nd == null)//27-04-2023
                 nd = node.SelectSingleNode(".//div[@class='aUSklf']|.//div[@jsname='K9a4Re']");//25-09-2024
-            if (nd != null && node.SelectSingleNode(".//div[@class='fN9oz']|.//div[contains(@class,'tw-res')]|.//div[@jsname='K9a4Re']|.//div[contains(@class, 'bba2i')]") == null)//17-02-2025//18-12-2024//21-11-2024//10-10-2024//01-10-2024//18-12-2024//21-11-2024//10-10-2024//01-10-2024
+            if (nd != null && node.SelectSingleNode(".//div[@class='fN9oz']|.//div[contains(@class,'tw-res')]|.//div[@jsname='K9a4Re']|.//div[contains(@class, 'bba2i')]|.//div[@class='q6PGbe']") == null)//21-02-2025//17-02-2025//18-12-2024//21-11-2024//10-10-2024//01-10-2024//18-12-2024//21-11-2024//10-10-2024//01-10-2024
                 return "topstories";
             if (nd == null)
                 nd = node.SelectSingleNode(".//span[@class='qB1pae']");

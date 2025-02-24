@@ -2180,14 +2180,14 @@ namespace RapidTrackingSingleThread
                 int min = Convert.ToInt32(match.Groups[4].Value);
                 return (days > 0 || hrs > 0 || min > 0) ? ((days * 24) + hrs + (min / 60.0)).ToString("##.##") : "0.0";
             }
-            match = Regex.Match(hours, @"(\d+)[\s]?[d|T|\p{L}][\W]* (\d+)[\s]?(h|\p{L}|Std\.)");//21-02-2025
+            match = Regex.Match(hours, @"(\d+)[\s]?[d|T|시간|일][\W]* (\d+)[\s]?(h|(\d+)분|(\d+)시간 이상|Std\.)");//24-02-2025
             if (match.Success)
             {
                 int days = Convert.ToInt32(match.Groups[1].Value);
                 int hrs = Convert.ToInt32(match.Groups[2].Value);
                 return (days > 0 || hrs > 0) ? ((days * 24) + hrs) + "." + "0" : "0.0";
             }
-            match = Regex.Match(hours, @"(\d+)[\s]?(h|Std|\p{L})[\W]* (\d+)[\s]?(m|\p{L}|[M|m]in)");//21-02-2025
+            match = Regex.Match(hours, @"(\d+)[\s]?(h|Std|시간)[\W]* (\d+)[\s]?(m|분|[M|m]in)");//24-02-2025
             if (match.Success)
             {
                 int hrs = Convert.ToInt32(match.Groups[1].Value);
@@ -2200,7 +2200,7 @@ namespace RapidTrackingSingleThread
                 int days = Convert.ToInt32(match.Groups[1].Value);
                 return (days > 0) ? (days * 24).ToString("##.##") : "0.0";
             }
-            match = Regex.Match(hours, @"(\d+)[\s]?(h|Std|\p{L})");//21-02-2025
+            match = Regex.Match(hours, @"(\d+)[\s]?(h|Std|시간)");//24-02-2025
             if (match.Success)
             {
                 int hrs = Convert.ToInt32(match.Groups[1].Value);

@@ -2174,14 +2174,14 @@ namespace AIOMultiThread
                 int min = Convert.ToInt32(match.Groups[4].Value);
                 return (days > 0 || hrs > 0 || min > 0) ? ((days * 24) + hrs + (min / 60.0)).ToString("##.##") : "0.0";
             }
-            match = Regex.Match(hours, @"(\d+)[\s]?[d|T][\W]* (\d+)[\s]?(h|Std\.)");
+            match = Regex.Match(hours, @"(\d+)[\s]?[d|T|시간|일][\W]* (\d+)[\s]?(h|(\d+)분|(\d+)시간 이상|Std\.)");//24-02-2025
             if (match.Success)
             {
                 int days = Convert.ToInt32(match.Groups[1].Value);
                 int hrs = Convert.ToInt32(match.Groups[2].Value);
                 return (days > 0 || hrs > 0) ? ((days * 24) + hrs) + "." + "0" : "0.0";
             }
-            match = Regex.Match(hours, @"(\d+)[\s]?(h|Std)[\W]* (\d+)[\s]?(m|[M|m]in)");
+            match = Regex.Match(hours, @"(\d+)[\s]?(h|Std|시간)[\W]* (\d+)[\s]?(m|분|[M|m]in)");//24-02-2025
             if (match.Success)
             {
                 int hrs = Convert.ToInt32(match.Groups[1].Value);
@@ -2194,7 +2194,7 @@ namespace AIOMultiThread
                 int days = Convert.ToInt32(match.Groups[1].Value);
                 return (days > 0) ? (days * 24).ToString("##.##") : "0.0";
             }
-            match = Regex.Match(hours, @"(\d+)[\s]?(h|Std)");
+            match = Regex.Match(hours, @"(\d+)[\s]?(h|Std|시간)");//24-02-2025
             if (match.Success)
             {
                 int hrs = Convert.ToInt32(match.Groups[1].Value);
@@ -2232,7 +2232,7 @@ namespace AIOMultiThread
                 nd = node.SelectSingleNode(".//g-section-with-header[contains(@class,'yG4QQe TBC9ub')]");//14-02-2025
             if (nd == null)//27-04-2023
                 nd = node.SelectSingleNode(".//div[@class='aUSklf']|.//div[@jsname='K9a4Re']");//25-09-2024
-            if (nd != null && node.SelectSingleNode(".//div[@class='fN9oz']|.//div[contains(@class,'tw-res')]|.//div[@jsname='K9a4Re']|.//div[contains(@class, 'bba2i')]") == null)//17-02-2025//18-12-2024//21-11-2024//10-10-2024//01-10-2024//18-12-2024//21-11-2024//10-10-2024//01-10-2024
+            if (nd != null && node.SelectSingleNode(".//div[@class='fN9oz']|.//div[contains(@class,'tw-res')]|.//div[@jsname='K9a4Re']|.//div[contains(@class, 'bba2i')]|.//div[@class='q6PGbe']") == null)//21-02-2025//17-02-2025//18-12-2024//21-11-2024//10-10-2024//01-10-2024//18-12-2024//21-11-2024//10-10-2024//01-10-2024
                 return "topstories";
             if (nd == null)
                 nd = node.SelectSingleNode(".//span[@class='qB1pae']");
@@ -2271,7 +2271,7 @@ namespace AIOMultiThread
                 return "TopSights";*///23-03-2022//19-01-2023
 
             nd = node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]|.//div[contains(@class, 'vdQmEd')]|.//div[@class='cj1ht QkBAO oYQBg']|.//div[@class='p21Z4']");//18-02-2025//29-07-2024//29-06-2023//23-03-2022
-            if (nd != null && nd.SelectNodes(".//div[@class='MxQnIc']") == null && node.SelectSingleNode(".//div[@class='XNfAUb']|.//h1[contains(@class, 'bNg8Rb')]") == null)//27-12-2024//19-08-2024//30-06-2023
+            if (nd != null && nd.SelectNodes(".//div[@class='MxQnIc']") == null && node.SelectSingleNode(".//div[@class='XNfAUb']|.//h1[contains(@class, 'bNg8Rb')]|.//div[@class='ad5fcd']") == null)//21-02-2025//27-12-2024//19-08-2024//30-06-2023
                 return "Flights";//23-03-2022
 
             //nd = node.SelectSingleNode(".//div[@class='kp-blk cUnQKe']|.//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']|.//div[@jsname='N760b']");//08-07-2021//04-12-2020 //11-02-2020

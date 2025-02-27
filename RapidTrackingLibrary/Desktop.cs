@@ -1190,7 +1190,7 @@ namespace RapidTrackingLibrary
                     {
                         string url = nd.Attributes["href"]?.Value ?? "";
                         string title = nd?.InnerText ?? "";
-                        if (string.IsNullOrEmpty(url) && string.IsNullOrEmpty(title))
+                        if (string.IsNullOrEmpty(url) || string.IsNullOrEmpty(title))//27-02-2025
                             continue;
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                     }

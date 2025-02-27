@@ -2663,6 +2663,8 @@ namespace RapidTrackingLibrary
             }
 
             nds = node.SelectNodes(".//g-inner-card/a");
+            if (nds == null) //14-09-2022 shifted from 1991 2 lines
+                nds = node.SelectNodes(".//div[contains(@class,'amp_re')]/a|.//div[@class='dbsr']/a|.//div[@class='Fq8eSd']/a|.//div[@class='y1Boce']/div/a|.//div[@data-ved]/a|.//div[contains(@class,'JJJtgd')]/a|.//div[@class='x2PRle DvHpd']/a");//27-02-2025//28-07-2020   // 18-12-2019//27-07-2020
             if (nds == null)
                 nds = node.SelectNodes(".//g-inner-card/div/a|.//div[@class='kno-fb-ctx n49mp']/div/a|.//div[@class='zZ9K7e']/a|.//div[contains(@class,'kno-fb-ctx')]/div/a|.//div[contains(@class,'kno-fb-ctx')]/div/div/a|.//g-inner-card/div/div/a");//10-08-2022 TS Item Urls
             if (nds == null)
@@ -2671,9 +2673,6 @@ namespace RapidTrackingLibrary
                 nds = node.SelectNodes(".//lazy-load-item/div/a");
             if (nds == null)//24-01-2025
                 nds = node.SelectNodes(".//div[@class='ZFio5c']/a");//24-01-2025
-            if (nds == null)
-                //nds = node.SelectNodes(".//div[@class='amp_re dbsr']/a|.//div[@class='dbsr']/a|.//div[@class='Fq8eSd']/a|.//div[@class='y1Boce']/div/a|.//div[@class='amp_re']/a");   // 18-12-2019//27-07-2020 commented
-                nds = node.SelectNodes(".//div[contains(@class,'amp_re')]/a|.//div[@class='dbsr']/a|.//div[@class='Fq8eSd']/a|.//div[@class='y1Boce']/div/a|.//div[@data-ved]/a");//28-07-2020   // 18-12-2019//27-07-2020
             if (nds != null)
                 foreach (HtmlNode nd in nds)
                 {

@@ -1158,7 +1158,7 @@ namespace RapidTrackingMultithread
                     {
                         string url = nd.Attributes["href"]?.Value ?? "";
                         string title = nd?.InnerText ?? "";
-                        if (string.IsNullOrEmpty(url) && string.IsNullOrEmpty(title))
+                        if (string.IsNullOrEmpty(url) || string.IsNullOrEmpty(title))//27-02-2025
                             continue;
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                     }
@@ -2445,7 +2445,7 @@ namespace RapidTrackingMultithread
             if (nd != null)
                 return "PeopleAlsoSearch"; // 11-10-2024 PeopleAlsoSearch
             nd = node.SelectSingleNode(".//div[contains(@class,'Ww4FFb vt6azd')and(.//div[(@class='XNfAUb')])]");//11-10-2024 sitesCarousel
-            if (nd != null && nd.SelectSingleNode(".//div[contains(@class,'Ylm8Fc')]") == null)//10-12-2024
+            if (nd != null && nd.SelectSingleNode(".//div[contains(@class,'Ylm8Fc')]") == null && node.SelectSingleNode(".//div[@class='zxLiic']") == null)//27-02-2025//10-12-2024
                 return "sitesCarousel";//11-10-2024 
             nd = node.SelectSingleNode(".//div[@class='zxLiic']");//17-12-2024 PeopleAlsoBuyFrom
             if (nd != null)//13-11-2024
@@ -2755,17 +2755,17 @@ namespace RapidTrackingMultithread
         private string GetPeopleAlsoBuyFrom(HtmlNode node)//17-12-2024 GetPeopleAlsoBuyFrom Method//17-12-2024
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nodes = node.SelectNodes(".//div[contains(@class, 'MuWMgc')]");
+            HtmlNodeCollection nodes = node.SelectNodes(".//div[contains(@class, 'MuWMgc')]|.//div[@class='VqeGe']");//27-02-2025
             if (nodes != null)
             {
                 s.Append("<block type=\"peopleAlsoBuyFrom\">");
                 foreach (HtmlNode nd in nodes)
                 {
-                    HtmlNode pnd = nd.SelectSingleNode(".//div[contains(@class,'YxfPl')]/a");//18-12-2024
+                    HtmlNode pnd = nd.SelectSingleNode(".//div[contains(@class,'YxfPl')]/a|.//div[@class='vyIZxe']/a");//27-02-2025//18-12-2024
                     if (pnd != null)
                     {
                         string url = pnd.Attributes["href"]?.Value ?? "";
-                        string title = nd.SelectSingleNode(".//div[@class='JVjH2']")?.InnerText ?? "";
+                        string title = nd.SelectSingleNode(".//div[@class='JVjH2']|.//div[@class='HTGyrc KhOT3']")?.InnerText ?? "";//27-02-2025
                         if (!string.IsNullOrEmpty(title) && !string.IsNullOrEmpty(url))
                             s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                     }

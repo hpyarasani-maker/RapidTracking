@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Web;
 
@@ -16,8 +17,17 @@ namespace AIOMultiThread
         int orgLinks;
         string html;
         string seid = string.Empty;//23-06-2023
+        public class ScriptMetaData
+        {
+            public string render { get; set; }
+        }
         public string ProcessDocument(string seid, string keyword, HtmlDocument doc, out int count)
         {
+            var scriptMetadata = new ScriptMetaData
+            {
+                render = "js",
+            };
+            var jsonString = JsonSerializer.Serialize(scriptMetadata);
             this.seid = seid;//23-06-2023
             count = 0;
 
@@ -28,8 +38,8 @@ namespace AIOMultiThread
 
             html = doc.DocumentNode.OuterHtml;
             StringBuilder sb = new StringBuilder();
-            sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" date=\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\" >");
-
+            //sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" date=\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\" >");
+            sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" date=\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\" scrapingMetadata=\"" + WebUtility.HtmlEncode(jsonString.ToString()) + "\" >");
             sb.Append("<section col=\"main\">");
             string topStuff = GetTopStuff(doc);
             ndText = topStuff;

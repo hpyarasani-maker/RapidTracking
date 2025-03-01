@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Web;
 
@@ -17,8 +18,17 @@ namespace AIOReceiving
         string html;
         string seid = string.Empty;//23-06-2023
         public event KeywordDone OnKeywordDone;//30-10-2024
+        public class ScriptMetaData
+        {
+            public string render { get; set; }
+        }
         public string ProcessDocument(string seid, string keyword, string jobid, string htmlsource, out int organicurls)//30-10-2024
         {
+            var scriptMetadata = new ScriptMetaData
+            {
+                render = "js",
+            };
+            var jsonString = JsonSerializer.Serialize(scriptMetadata);
             this.seid = seid;//23-06-2023
             if (string.IsNullOrEmpty(htmlsource))
             {
@@ -32,7 +42,8 @@ namespace AIOReceiving
             orgLinks = 0;
             StringBuilder sb = new StringBuilder();
             //sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" date=\"2019-11-29\" >"); //previous date
-            sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" date=\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\" >");
+            //sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" date=\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\" >");
+            sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" date=\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\" scrapingMetadata=\"" + WebUtility.HtmlEncode(jsonString.ToString()) + "\" >");
             sb.Append("<section col=\"main\">");
             string topStuff = GetTopStuff(doc);
             sb.Append(topStuff);

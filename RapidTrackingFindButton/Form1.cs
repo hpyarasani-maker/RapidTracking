@@ -382,8 +382,18 @@ namespace RapidTrackingFindButton
         async Task<ArrayList> GetOxylabsWebDataSources(SearchProperties sp,string jobid)
         {
             JObject obj = null;//07-02-2022
-            string username = "gpidatametrics";
-            string password = "sdV5X3fcX6";
+            string username = string.Empty;//04-02-2025
+            string password = string.Empty;
+            if (sp.device == "mobile_android")
+            {
+                username = "piapp";
+                password = "b5FCvgkjxx";
+            }
+            else if (sp.device == "desktop_chrome")
+            {
+                username = "piapp-aio";
+                password = "4gvfnA+aBYpBNs37";
+            }//04-03-2025
             string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
             string[] keyword = { sp.query };                 
             string response;        

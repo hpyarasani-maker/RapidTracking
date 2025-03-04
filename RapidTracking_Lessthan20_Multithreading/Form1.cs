@@ -1004,10 +1004,18 @@ namespace TrackingTrending
         ArrayList GetOxylabsWebDataSources(SearchProperties sp)
         {
             Uri queryUri = new Uri("http://data.oxylabs.io/v1/queries/batch"); //29-07-2021 changed https:// to http://
-            //string username = "gpidatametrics";
-            //string password = "sdV5X3fcX6";
-            string username = "piapp";
-            string password = "b5FCvgkjxx";
+            string username = string.Empty;//04-02-2025
+            string password = string.Empty;
+            if (sp.device == "mobile_android")
+            {
+                username = "piapp";
+                password = "b5FCvgkjxx";
+            }
+            else if (sp.device == "desktop_chrome")
+            {
+                username = "piapp-aio";
+                password = "4gvfnA+aBYpBNs37";
+            }//04-03-2025
             string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
             string[] kwd = { sp.query };
 

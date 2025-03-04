@@ -126,7 +126,7 @@ namespace RapidTrackingSingleThread
                             int count = 0;
                             try
                             {
-                                if (device == "desktop")
+                                if (device == "desktop_chrome")
                                 {
                                     Desktop clsDesktop = new Desktop();
                                     res = clsDesktop.ProcessDocument(seid, keyword, doc, out count);
@@ -322,7 +322,7 @@ namespace RapidTrackingSingleThread
                 //lstKWs.Items.Add("106:romeo and juliet tickets");
                 //lstKWs.Items.Add("160:malmö ff");
                 //lstKWs.Items.Add("102:terry crews");
-                lstKWs.Items.Add("102:the uninhabitable earth summary");
+                //lstKWs.Items.Add("102:the uninhabitable earth summary");
                 lstKWs.Items.Add("58:london luton flights");
             });
             return;
@@ -544,6 +544,7 @@ namespace RapidTrackingSingleThread
             Uri queryUri = new Uri("http://data.oxylabs.io/v1/queries/batch");
             //string username = "gpidatametrics";
             //string password = "sdV5X3fcX6";
+            
             string username = "piapp";
             string password = "b5FCvgkjxx";
             string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));

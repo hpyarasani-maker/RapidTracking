@@ -108,7 +108,7 @@ namespace RapidTrackingSingleClassicLinks
                             int count = 0;
                             try
                             {
-                                if (device == "desktop")
+                                if (device == "desktop_chrome")
                                 {
                                     Desktop clsDesktop = new Desktop();
                                     res = clsDesktop.ProcessDocument(seid, keyword, doc, out count);

@@ -128,12 +128,20 @@ namespace TrendingReceiving
             double totalTime = 0;//22-01-2025
             try
             {
-                //string username = "gpidatametrics";
-                //string password = "sdV5X3fcX6";
-                string username = "piapp";
-                string password = "b5FCvgkjxx";
                 SearchProperties sp = SearchParams.searches.Where(s => s.locale == hl && s.device == device && s.geo_location == gl).SingleOrDefault();
                 seid = sp.seid.ToString();//22-01-2025
+                string username = string.Empty;//04-03-2025
+                string password = string.Empty;
+                if (sp.device == "mobile_android")
+                {
+                    username = "piapp";
+                    password = "b5FCvgkjxx";
+                }
+                else if (sp.device == "desktop_chrome")
+                {
+                    username = "piapp-aio";
+                    password = "4gvfnA+aBYpBNs37";
+                }//04-03-2025
                 if (status == "done")
                 {
                     var startTime = System.Diagnostics.Stopwatch.StartNew();//08-11-2023
@@ -157,9 +165,6 @@ namespace TrendingReceiving
                     {
                         JObject obj = JObject.Parse(response);
                         response = obj["results"][0]["content"].Value<string>();
-
-                        //SearchProperties sp = SearchParams.searches.Where(s => s.locale == hl && s.device == device && s.geo_location == gl).SingleOrDefault();
-                        //seid = sp.seid.ToString();
 
                         if (device == "desktop")
                             result = desktop.ProcessDocument(seid, kw, response, out orgUrls);

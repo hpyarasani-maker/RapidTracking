@@ -18,10 +18,18 @@ namespace RapidTrackingLibrary
 
 
             Uri queryUri = new Uri("https://data.oxylabs.io/v1/queries/batch");
-            //string username = "gpidatametrics";
-            //string password = "sdV5X3fcX6";
-            string username = "piapp";
-            string password = "b5FCvgkjxx";
+            string username = string.Empty;
+            string password = string.Empty;
+            if (sp.device == "mobile_android")
+            {
+                username = "piapp";
+                password = "b5FCvgkjxx";
+            }
+            else if (sp.device == "desktop_chrome")
+            {
+                username = "piapp-aio";
+                password = "4gvfnA+aBYpBNs37";
+            }
             string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
             string[] keyword = { sp.query };
 

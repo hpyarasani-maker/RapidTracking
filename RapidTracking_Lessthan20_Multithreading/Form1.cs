@@ -179,7 +179,7 @@ namespace TrackingTrending
                             string res = string.Empty;
                             int count = 0;
 
-                            if (device == "desktop")
+                            if (device == "desktop_chrome")
                             {
                                 Desktop clsDesktop = new Desktop();
                                 res = clsDesktop.ProcessDocument(seid, keyword, doc, out count);
@@ -268,7 +268,7 @@ namespace TrackingTrending
                             string res = string.Empty;
                             int count = 0;
 
-                            if (device == "desktop")
+                            if (device == "desktop_chrome")
                             {
                                 Desktop clsDesktop = new Desktop();
                                 res = clsDesktop.ProcessDocument(seid, keyword, doc, out count);
@@ -357,7 +357,7 @@ namespace TrackingTrending
                             string res = string.Empty;
                             int count = 0;
 
-                            if (device == "desktop")
+                            if (device == "desktop_chrome")
                             {
                                 Desktop clsDesktop = new Desktop();
                                 res = clsDesktop.ProcessDocument(seid, keyword, doc, out count);

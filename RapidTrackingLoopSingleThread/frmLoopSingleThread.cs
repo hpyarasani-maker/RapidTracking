@@ -111,7 +111,7 @@ namespace RapidTrackingLoopSingleThread
                                         doc = new HtmlAgilityPack.HtmlDocument();
                                         doc.LoadHtml(html);
                                         int curCount = 0;
-                                        if (device == "desktop")
+                                        if (device == "desktop_chrome")
                                         {
                                             Desktop clsDesktop = new Desktop();
                                             alXml.Add(clsDesktop.ProcessDocument(seid, keyword, doc, out curCount));

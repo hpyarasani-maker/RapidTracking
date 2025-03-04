@@ -133,10 +133,18 @@ namespace RapidTrackingLoopReceiving
             ArrayList result = new ArrayList();
             try
             {
-                //string username = "gpidatametrics";
-                //string password = "sdV5X3fcX6";
-                string username = "piapp";
-                string password = "b5FCvgkjxx";
+                string username = string.Empty;//04-03-2025
+                string password = string.Empty;
+                if (sp.device == "mobile_android")
+                {
+                    username = "piapp";
+                    password = "b5FCvgkjxx";
+                }
+                else if (sp.device == "desktop_chrome")
+                {
+                    username = "piapp-aio";
+                    password = "4gvfnA+aBYpBNs37";
+                }//04-03-2025
 
                 if (status == "done")
                 {

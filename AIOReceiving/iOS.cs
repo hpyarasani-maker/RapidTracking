@@ -1,4 +1,5 @@
 ﻿using HtmlAgilityPack;
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Globalization;
@@ -28,7 +29,7 @@ namespace AIOReceiving
             {
                 render = "js",
             };
-            var jsonString = JsonSerializer.Serialize(scriptMetadata);
+            var jsonString = JsonConvert.SerializeObject(scriptMetadata);
             this.seid = seid;//23-06-2023
             if (string.IsNullOrEmpty(htmlsource))
             {

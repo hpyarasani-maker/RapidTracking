@@ -51,8 +51,8 @@ namespace AIOReceiving
         private async void StartProcess() //06-08-2024
         {
             //string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
-            string url = "https://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58 AIO Keyword Tracking Desktop and Mobile
-
+            //string url = "https://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 1026,1027,1028,1029 AIO Keyword Tracking Desktop and Mobile
+            string url = "https://seresults.azurewebsites.net/api/callbackuk106mobile/"; //mobile AIO keywords receiving mobile and sending
             Uri ul = new Uri(url);
             string username = "pisoftware";
             string password = "Pi*Soft74UBXi";

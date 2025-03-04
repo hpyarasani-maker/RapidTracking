@@ -127,11 +127,11 @@ namespace AIOSending
             string password = "4gvfnA+aBYpBNs37";
             string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
 
-           
+
 
             //string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
-            string callbackURL = "https://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58 AIO Keyword Tracking Desktop and Mobile
-
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackuk58desktop/";       //1026,1027,1028,1029 AIO Keyword Tracking Desktop and Mobile
+            string callbackURL = "https://seresults.azurewebsites.net/api/callbackuk106mobile/"; //mobile AIO keywords sending desktop and mobile
 
             OxyParams op = new OxyParams()
             {

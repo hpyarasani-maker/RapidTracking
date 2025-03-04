@@ -166,7 +166,7 @@ namespace TrendingReceiving
                         JObject obj = JObject.Parse(response);
                         response = obj["results"][0]["content"].Value<string>();
 
-                        if (device == "desktop")
+                        if (device == "desktop_chrome")
                             result = desktop.ProcessDocument(seid, kw, response, out orgUrls);
                         else
                             result = ios.ProcessDocument(seid, kw, response, out orgUrls);

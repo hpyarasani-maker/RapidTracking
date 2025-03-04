@@ -152,7 +152,7 @@ namespace TrendingLoopReceiving
                             try
                             {
                                 response = contents[x]["content"].Value<string>();
-                                if (device == "desktop")
+                                if (device == "desktop_chrome")
                                     result.Add(desktop.ProcessDocument(seid, kw, response, out orgUrls));
                                 else
                                     result.Add(ios.ProcessDocument(seid, kw, response, out orgUrls));

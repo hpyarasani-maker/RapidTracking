@@ -12,11 +12,11 @@ namespace RapidTrackingMultithreadFirstPageResIPs
         {
             new SearchProperties()
             {
-                seid =1, domain ="com", country="cc-US", locale="en-us", uule="w+CAIQICINVW5pdGVkIFN0YXRlcw==",device="desktop"
+                seid =1, domain ="com", country="cc-US", locale="en-us", uule="w+CAIQICINVW5pdGVkIFN0YXRlcw==",device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid =58, domain ="co.uk", country="cc-UK", locale= "en-gb",uule = "w+CAIQICIOVW5pdGVkIEtpbmdkb20=",device="desktop"
+                seid =58, domain ="co.uk", country="cc-UK", locale= "en-gb",uule = "w+CAIQICIOVW5pdGVkIEtpbmdkb20=",device="desktop_chrome"
             },
             new SearchProperties()
             {

@@ -180,7 +180,7 @@ namespace Oxylabs_BulkKeywords
                         //SearchProperties sp = SearchParams.searches.Where(s => s.locale == hl && s.device == device && s.geo_location == gl).SingleOrDefault();
                         //seid = sp.seid.ToString();
 
-                        if (device == "desktop")
+                        if (device == "desktop_chrome")
                             result = desktop.ProcessDocument(seid, kw, jobid, response, out orgUrls);//30-10-2024
                         else
                             result = ios.ProcessDocument(seid, kw, jobid, response, out orgUrls);//30-10-2024

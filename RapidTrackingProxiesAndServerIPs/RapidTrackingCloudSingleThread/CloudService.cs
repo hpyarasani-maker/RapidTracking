@@ -84,7 +84,7 @@ namespace RapidTrackingCloudSingleThread
             SearchProperties sp = SearchParams.searches.Where(s => s.seid == seid).SingleOrDefault();
             string device = sp.device;
             
-                if (device == "desktop")
+                if (device == "desktop_chrome")
                 {
                     seresults = GetTop100Desktop(keyword, seid);
                 }

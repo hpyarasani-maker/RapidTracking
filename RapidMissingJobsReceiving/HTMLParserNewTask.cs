@@ -153,7 +153,7 @@ namespace RapidMissingJobsReceiving
                         SearchProperties sp = SearchParams.searches.Where(s => s.locale == hl && s.device == device && s.geo_location == gl).SingleOrDefault();
                         seid = sp.seid.ToString();
 
-                        if (device == "desktop")
+                       if ( device == "desktop_chrome")
                             result = desktop.ProcessDocument(seid, kw, resResults, out orgUrls);
                         else
                             result = ios.ProcessDocument(seid, kw, resResults, out orgUrls);

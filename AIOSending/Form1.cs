@@ -117,7 +117,8 @@ namespace AIOSending
             //string strQry = "exec [dbo].[GetBulk_AI_Mobile]  '" + myDate + "'";  // AIOverview Mobile keywords
             //string strQry = "exec [dbo].[GetBulk_AI_Mobile_1]  '" + myDate + "'";  // AIOverview Mobile keywords
             //string strQry = "exec [dbo].[GetBulk_AI_Mobile_2]  '" + myDate + "'";  // AIOverview Mobile keywords
-            string strQry = "exec [dbo].[GetBulk_AIO_Mobile]  '" + myDate + "'";  // AIOverview Mobile keywords for true //17-02-2025
+            //string strQry = "exec [dbo].[GetBulk_AIO_Mobile]  '" + myDate + "'";  // AIOverview Mobile keywords for true //17-02-2025
+            string strQry = "exec [dbo].[GetBulk_AIO_Mobile_ALL]  '" + myDate + "'";  // AIOverview Mobile keywords for true //17-02-2025
 
             SqlConnection objCon = null;
             SqlDataReader objData = null;

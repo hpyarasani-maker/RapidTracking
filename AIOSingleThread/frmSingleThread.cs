@@ -550,8 +550,8 @@ namespace AIOSingleThread
             string password = string.Empty;
             if (sp.device == "mobile_android")
             {
-                username = "piapp";
-                password = "b5FCvgkjxx";
+                username = "piapp-aio";
+                password = "4gvfnA+aBYpBNs37";
             }
             else if (sp.device == "desktop_chrome")
             {
@@ -565,7 +565,7 @@ namespace AIOSingleThread
             {
                 source = "google_search",
                 domain = sp.domain,
-                query = sp.query.Split(','),
+                query = keyword,
                 limit = 100,
                 pages = 1,
                 locale = sp.locale,

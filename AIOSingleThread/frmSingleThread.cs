@@ -564,19 +564,34 @@ namespace AIOSingleThread
             {
                 source = "google_search",
                 domain = sp.domain,
-                //query = sp.query.Split(','),
-                query = keyword,
+                query = sp.query.Split(','),
                 limit = 100,
                 pages = 1,
-                //start_page = 1,
                 locale = sp.locale,
                 geo_location = sp.geo_location,
-                //uule = uule,
                 parse = false, //23-09-2021 changed datatype into "int to bool"
                 user_agent_type = sp.device,
-                context = new List<Context> {
-                    new Context("safe_search", 0)
+                render = "html", //comment for desktop and uncomment for mobile
+                browser_instructions = new List<dynamic>
+                {
+                    new {
+                        type = "click",
+                        selector = new Selector {
+                            type = "xpath",
+                            value = "//div[contains(@class,'zNsLfb Jzkafd')]/div/div"
+                        }
+                    },
+                    new
+                    {
+                        type = "wait",
+                        wait_time_s = 10
                     }
+                }//comment for desktop and uncomment for mobile
+                /*context = new List<Context> { //comment for mobile and uncomment for desktop
+                    new Context("tbm", sp.tbm),
+                    new Context("safe_search", 0)
+                    //,new Context("aomd",1)
+                }*/
             };
 
 

@@ -117,12 +117,12 @@ namespace AIOSending
             //string strQry = "exec [dbo].[GetBulk_AI_Mobile]  '" + myDate + "'";  // AIOverview Mobile keywords//1026,1027,1028,1029
             //string strQry = "exec [dbo].[GetBulk_AI_Mobile_1]  '" + myDate + "'";  // AIOverview Mobile keywords//1026,1027,1028,1029
             //string strQry = "exec [dbo].[GetBulk_AI_Mobile_2]  '" + myDate + "'";  // AIOverview Mobile keywords//1026,1027,1028,1029
-            //string strQry = "exec [dbo].[GetBulk_AIO_Mobile_1]  '" + myDate + "'";// all mobile keywords
-            //string strQry = "exec [dbo].[GetBulk_AIO_Mobile_2]  '" + myDate + "'";// all mobile keywords
-            //string strQry = "exec [dbo].[GetBulk_AIO_Mobile_3]  '" + myDate + "'";// all mobile keywords
-            //string strQry = "exec [dbo].[GetBulk_AIO_Mobile_4]  '" + myDate + "'";// all mobile keywords
-            //string strQry = "exec [dbo].[GetBulk_AIO_Mobile]  '" + myDate + "'";  // AIOverview Mobile keywords for true //17-02-2025
-            string strQry = "exec [dbo].[GetBulk_AIO_Mobile_ALL]  '" + myDate + "'";  // AIOverview Mobile Receive all with 0 condition keywords for true //17-02-2025
+            //string strQry = "exec [dbo].[GetBulk_AIO_Mobile_1]  '" + myDate + "'";// all mobile keywords batch keyword
+            //string strQry = "exec [dbo].[GetBulk_AIO_Mobile_2]  '" + myDate + "'";// all mobile keywords batch keyword
+            //string strQry = "exec [dbo].[GetBulk_AIO_Mobile_3]  '" + myDate + "'";// all mobile keywords batch keyword
+            //string strQry = "exec [dbo].[GetBulk_AIO_Mobile_4]  '" + myDate + "'";// all mobile keywords batch keyword
+            //string strQry = "exec [dbo].[GetBulk_AIO_Mobile]  '" + myDate + "'";  // AIOverview batch Mobile keywords for true //17-02-2025
+            string strQry = "exec [dbo].[GetBulk_AIO_Mobile_ALL]  '" + myDate + "'";  // AIOverview Single keyword Mobile Receive all with 0 condition keywords for true //17-02-2025
 
             SqlConnection objCon = null;
             SqlDataReader objData = null;

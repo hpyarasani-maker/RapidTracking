@@ -1342,7 +1342,9 @@ namespace RapidTrackingSingleThread
                         }
                         catch { title = ""; }
                         string url = nd.Attributes["href"].Value.Trim();
-                        string creator = nd.SelectSingleNode(".//span[@class='Sg4azc']/span")?.GetDirectInnerText().Trim() ?? "";//04-12-2023
+                        string creator = nd.SelectSingleNode(".//span[@class='Sg4azc']/span[2]")?.GetDirectInnerText().Trim();//11-03-2025
+                        if (string.IsNullOrEmpty(creator))//11-03-2025
+                            creator = nd.SelectSingleNode(".//span[@class='Sg4azc']/span[2]/span[2]")?.InnerText.Trim() ?? ""; //11-03-2025
                         if (!string.IsNullOrEmpty(SetUrl(url)))//08-08-2022
                            // s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" creatorName=\"" + SetTitle(creator) + "\" />");//04-12-2023

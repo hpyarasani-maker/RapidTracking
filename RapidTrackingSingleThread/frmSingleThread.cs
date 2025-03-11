@@ -549,8 +549,8 @@ namespace RapidTrackingSingleThread
             string password = string.Empty;
             if (sp.device == "mobile_android")
             {
-                username = "piapp-aio";
-                password = "4gvfnA+aBYpBNs37";
+                username = "piapp";
+                password = "b5FCvgkjxx";
             }
             else if (sp.device == "desktop_chrome")
             {

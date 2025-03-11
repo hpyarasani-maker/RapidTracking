@@ -83,11 +83,12 @@ namespace AIOSingleThread
                 //string myDate = "2019-11-20";
 
 
-                string kwQry = "[Tracking_DB_Keywords_Seid_102] '" + myDate + "'";
+                //string kwQry = "[Tracking_DB_Keywords_Seid_102] '" + myDate + "'";
                 //string kwQry = "[Tracking_DB_Keywords_Seid_103p] '" + myDate + "'";               
                 //string kwQry = "[GetCommaKeywordsP] '" + myDate + "'";               
                 //string kwQry = "[Tracking_DB_Keywords_Seid_102_P] '" + myDate + "'"; //tracking previous date single keywords
                 //string kwQry = "Tracking_DB_Keywords_SEID_102_TGBN '" + myDate + "'";
+                string kwQry = "[Tracking_DB_Keywords_SEID_102_AIO] '" + myDate + "'";
 
                 GetKeywords(kwQry);
 

@@ -930,7 +930,7 @@ namespace RapidTrackingLibrary
                 if (nds == null && (node.Attributes["jsname"]?.Value == "pKB8Bc" || node.Attributes["class"].Value.Contains("Ww4FFb vt6azd")))//31-12-2024//1e-08-2024//14-02-2024
                     nds = node.SelectNodes(".");//14-02-2024//21-09-2023 //02-02-2022 moved from 687 line   // 25-10-2019
                 if (nds == null)//30-09-2024
-                    nds = node.SelectNodes(".//div[@class='AGopnf']");//30-09-2024
+                    nds = node.SelectNodes(".//div[@class='AGopnf']|.//div[@class='ycw3p']");//12-03-2025//30-09-2024
                 if (nds != null && nds.Count == 1 && (node.Attributes["class"]?.Value == "Ww4FFb vt6azd" || node.Attributes["class"]?.Value == "g Ww4FFb vt6azd"))//07-01-2025//21-10-2024
                     nds = node.SelectNodes(".");//21-10-2024
             }
@@ -1000,7 +1000,7 @@ namespace RapidTrackingLibrary
                             s.Append(GetPeopleAlsoSearch(nd));
                             continue;
                         }//08-01-2025 PeopleAlsoSearch
-                        if (nd.HasClass("T98FId"))//PopularProducts //11-07-2023
+                        if (nd.HasClass("T98FId") || nd.SelectSingleNode(".//g-card[contains(@class,'T98FId')]") != null)//12-03-2025//PopularProducts //11-07-2023
                         {
                             s.Append("<block type=\"popularProducts\" url=\"\">");
                             s.Append(GetPopularProducts(node));
@@ -1017,6 +1017,12 @@ namespace RapidTrackingLibrary
                             s.Append(GetClassicLinkSiteLinks(nd));
                             continue;
                         }//14-10-2024 for ClassicLinksCarousel and ClassicLinkSiteLink block
+                        if (nd.SelectSingleNode(".//div[@class='owgUHc']|.//div[@class='wPNfjb']|.//div[@class='zhYvOe']|.//div[@class='YB4h9 ky4hfd']") == null//12-03-2025
+                            && nd.SelectSingleNode(".//div[@class='LbKnXb YAG2qc UYJxh']|.//div[@class='cyspcb DH9lqb']") != null)
+                        {
+                            s.Append(GetsitesCarousel(nd));
+                            continue;
+                        }//12-03-2025
                         if (nd.SelectSingleNode(".//g-inner-card[@class='zf84ud THG0oc VoEfsd']") != null)
                             continue;
                         //end 27-09-2019
@@ -3747,7 +3753,7 @@ namespace RapidTrackingLibrary
                 if (node.SelectSingleNode(".//div[@class='ttfMne']|.//div[@class='N60dNb mfMhoc']|.//h2[@class='OEsCyf mfMhoc']|.//div[@class='kp-blk c2xzTb OJXvsb']|.//div[@class='WpKAof']|.//g-card/div[@class='mnr-c']|.//div[@class='FQrfLd']|.//div[@class='LQCGqc']") != null)//20-01-2025//04-11-2022 //23-11-2021 CB //27-10-2021 //01-09-2021 missing AC block//12-07-2021 job block //12-07-2021 carousel block //19-01-2021 missing top stories
                     if (node.SelectSingleNode(".//div[@class='WvKfwe a3spGf']|.//div[@class='V1nn0e wgFKp']|.//div[@jscontroller='rMVp5e']|.//div[@jscontroller='rQR4vd']|.//div[contains(@class,'P8ujBc')]|.//div[contains(@class,'jqWpsc')]") != null)//16-09-2022//06-05-2022//21-01-2022//13-01-2022//17-12-2021 //12-10-2021
                         return false;
-                    else if (node.SelectSingleNode(".//div[contains(@class,'BToiNc')]") == null)//11-07-2023
+                    else if (node.SelectSingleNode(".//div[contains(@class,'BToiNc')]|.//div[@class='ycw3p']") == null)//12-03-2025//11-07-2023
                         return true;//12-11-2021
                 if (node.SelectSingleNode(".//div[@class='b2Rnsc']|.//div[@id='tads']") != null && node.SelectSingleNode(".//div[contains(@class,'Ww4FFb vt6azd xpd')]") == null)//06-01-2025//09-12-2024//16-10-2024
                     return true;
@@ -3758,7 +3764,7 @@ namespace RapidTrackingLibrary
             nd = node.SelectSingleNode(".//div[contains(@class,'Ww4FFb vt6azd')and(.//div[(@class='XNfAUb')])]");//11-10-2024 sitesCarousel
             if (nd != null && node.SelectSingleNode(".//div[contains(@class,'cvP2Ce')]") == null && node.SelectSingleNode(".//div[@class='LbKnXb YAG2qc UYJxh']|.//div[@class='cyspcb DH9lqb']") != null)//22-10-2024//15-10-2024
                 return true;//11-10-2024 sitesCarousel
-            if (node.SelectSingleNode(".//div[contains(@class, 'Z3ngN')]") != null) //22-03-2021
+            if (node.SelectSingleNode(".//div[contains(@class, 'Z3ngN')]|.//div[@class='ycw3p']") != null)//12-03-2025 //22-03-2021
                 return false;
             if (node.SelectSingleNode(".//video-voyager[@class='LnSx5b']|.//div[@class='lNvPub v5yQqb']" +
                 "|.//div[@class='adXOEf v5yQqb']|.//div[@class='T61Aje v5yQqb']|.//div[contains(@class,'kb0PBd cvP2Ce')]") != null)//13-08-2024//23-08-2023//15-03-2023//16-12-2021

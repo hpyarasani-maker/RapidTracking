@@ -2901,8 +2901,8 @@ namespace RapidTrackingSingleThread
                 }//09-08-2023
                 catch
                 {
-                    dest = node.SelectSingleNode(".//div[@class='wHYlTd C5w57c']|.//span[contains(@class,'mgAbYb RES9jf IFnjPb')]");//25-01-2025//04-11-2024 //23-04-2024
-                    int lenIndex = dest.GetDirectInnerText().IndexOf(" da ") >= 0 ? dest.GetDirectInnerText().IndexOf(" da ") + 4 : -1;//23-04-2024
+                    dest = node.SelectSingleNode(".//div[contains(@class,'wHYlTd C5w57c')]|.//span[contains(@class,'mgAbYb RES9jf IFnjPb')]");//13-03-2025//25-01-2025//04-11-2024 //23-04-2024
+                    int lenIndex = dest.GetDirectInnerText().IndexOf(" da ") >= 0 ? dest.GetDirectInnerText().IndexOf(" da ") + : dest.GetDirectInnerText().IndexOf(" to ") >= 0 ? dest.GetDirectInnerText().IndexOf(" to ") + 4 : -1;//13-03-2025
                     origin = lenIndex >= 0 ? dest?.GetDirectInnerText()?.Substring(lenIndex).Trim() : "";//25-05-2024
                     lenIndex = origin.IndexOf("&nbsp;&middot;");//25-05-2025
                     origin = !string.IsNullOrEmpty(origin) && lenIndex >= 0 ? origin.Substring(0, lenIndex) : origin;//23-04-2024
@@ -2943,7 +2943,7 @@ namespace RapidTrackingSingleThread
                             if (string.IsNullOrEmpty(connecting))
                                 connecting = "";
                         }
-                        connecting = string.IsNullOrEmpty(connecting) ? "Nonstop" : !connecting.Contains("Connecting") && !connecting.Contains("Nonstop") ? "Connecting" : !connecting.Contains("Nonstop-Flug") ? "Nonstop" : !connecting.Contains("Mit Umsteigen") ? "Nonstop" : connecting;//02-12-2024
+                        connecting = string.IsNullOrEmpty(connecting) ? "Nonstop" : (connecting.Contains("Connecting") || !connecting.Contains("Connecting") && !connecting.Contains("Nonstop")) ? "Connecting" : !connecting.Contains("Nonstop-Flug") ? "Nonstop" : !connecting.Contains("Mit Umsteigen") ? "Nonstop" : connecting;//13-03-2025//02-12-2024
                         string price = nd.SelectSingleNode(".//span[@class='xqqLDd']|.//span[@class='cirEce']|.//div[@class='n22NNe']" +
                             "|.//div[@class='rZFLMc']|.//div[@class='g1sBec']|.//div[@class='YK0p7d rZFLMc']")?.InnerText.Trim() ?? "0"; //05-07-2024//23-04-2024
                         //02-01-2024 end
@@ -2964,7 +2964,7 @@ namespace RapidTrackingSingleThread
             }
             else
             {
-                nds = node.SelectNodes(".//table[contains(@class, 'YFsOAd')]/tbody/tr");//22-09-2023
+                nds = node.SelectNodes(".//table[contains(@class, 'YFsOAd')]/tbody/tr|.//div[@class='zhYvOe']/div[@class='qR29te']");//13-03-2025//22-09-2023
                 if (nds != null)
                 {
                     foreach (var nd in nds)
@@ -2972,8 +2972,8 @@ namespace RapidTrackingSingleThread
                         try
                         {
                             string airline = "";
-                            string hours = nd.SelectSingleNode(".//div[@class='BNeawe DwrKqd']/span")?.InnerText.Trim() ?? nd.SelectSingleNode(".//td[1]/div/div[contains(@class,'BNeawe')]/span[2]")?.InnerText.Trim() ?? "0h 0m"; //27-09-2023 //22-09-2023
-                            string connecting = nd.SelectSingleNode(".//div[contains(@class,'BNeawe')]/span[@class='BNeawe']")?.InnerText.Trim() ?? nd.SelectSingleNode(".//div[@class='BNeawe']")?.InnerText.Trim() ?? "";//22-09-2023
+                            string hours = nd.SelectSingleNode(".//div[@class='BNeawe DwrKqd']/span|.//div[@class='YK0p7d rZFLMc']")?.InnerText.Trim() ?? nd.SelectSingleNode(".//td[1]/div/div[contains(@class,'BNeawe')]/span[2]")?.InnerText.Trim() ?? "0h 0m";//13-03-2025 //27-09-2023 //22-09-2023
+                            string connecting = nd.SelectSingleNode(".//div[contains(@class,'BNeawe')]/span[@class='BNeawe']|.//div[@class='oYQBg x8hvt']/span/span")?.InnerText.Trim() ?? nd.SelectSingleNode(".//div[@class='BNeawe']")?.InnerText.Trim() ?? "";//13-03-2025//22-09-2023
                             connecting = string.IsNullOrEmpty(connecting) ? "Nonstop" : !connecting.Contains("Connecting") && !connecting.Contains("Nonstop") ? "Connecting" : !connecting.Contains("Nonstop-Flug") ? "Nonstop" : !connecting.Contains("Mit Umsteigen") ? "Nonstop" : connecting;//02-12-2024
                             string price = nd.SelectSingleNode(".//div[@class='BNeawe DwrKqd']")?.GetDirectInnerText() ?? nd.SelectSingleNode(".//td[2]/div/div[@class='BNeawe']")?.GetDirectInnerText() ?? "0";//22-09-2023
                             string priceValue = string.Empty;

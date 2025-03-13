@@ -2943,7 +2943,7 @@ namespace RapidTrackingLibrary
                 catch
                 {
                     dest = node.SelectSingleNode(".//div[contains(@class,'wHYlTd C5w57c')]|.//span[contains(@class,'mgAbYb RES9jf IFnjPb')]");//13-03-2025//25-01-2025//04-11-2024 //23-04-2024
-                    int lenIndex = dest.GetDirectInnerText().IndexOf(" da ") >= 0 ? dest.GetDirectInnerText().IndexOf(" da ") + : dest.GetDirectInnerText().IndexOf(" to ") >= 0 ? dest.GetDirectInnerText().IndexOf(" to ") + 4 : -1;//13-03-2025
+                    int lenIndex = dest.GetDirectInnerText().IndexOf(" da ") >= 0 ? dest.GetDirectInnerText().IndexOf(" da ") : dest.GetDirectInnerText().IndexOf(" to ") >= 0 ? dest.GetDirectInnerText().IndexOf(" to ") + 4 : -1;//13-03-2025
                     origin = lenIndex >= 0 ? dest?.GetDirectInnerText()?.Substring(lenIndex).Trim() : "";//25-05-2024
                     lenIndex = origin.IndexOf("&nbsp;&middot;");//25-05-2025
                     origin = !string.IsNullOrEmpty(origin) && lenIndex >= 0 ? origin.Substring(0, lenIndex) : origin;//23-04-2024

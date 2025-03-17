@@ -1336,7 +1336,9 @@ namespace RapidTrackingResSingleThread
                         }
                         catch { title = ""; }
                         string url = nd.Attributes["href"].Value.Trim();
-                        string creator = nd.SelectSingleNode(".//span[@class='Sg4azc']/span")?.GetDirectInnerText().Trim() ?? "";//04-12-2023
+                        string creator = nd.SelectSingleNode(".//span[@class='Sg4azc']/span[2]")?.GetDirectInnerText().Trim();//11-03-2025
+                        if (string.IsNullOrEmpty(creator))//11-03-2025
+                            creator = nd.SelectSingleNode(".//span[@class='Sg4azc']/span[2]/span[2]")?.InnerText.Trim() ?? ""; //11-03-2025
                         if (!string.IsNullOrEmpty(SetUrl(url)))//08-08-2022
                                                                // s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                             s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" creatorName=\"" + SetTitle(creator) + "\" />");//04-12-2023
@@ -2261,7 +2263,7 @@ namespace RapidTrackingResSingleThread
                 nd = node.SelectSingleNode(".//div[contains(@class,'tw-res')]");//21-11-2024
             if (nd != null)
             {
-                if (node.SelectSingleNode(".//g-scrolling-carousel[@class='m5t0v QwDjz']") == null)//16-12-2024
+                if (node.SelectSingleNode(".//g-scrolling-carousel[contains(@class,'m5t0v QwDjz')]|.//div[contains(@class,'m5t0v QwDjz')]") == null)//11-03-2025//16-12-2024
                     return "Twitters";
             }
             if (node.SelectSingleNode(".//div[contains(@class, 'RPdfze')]|.//div[contains(@class, 'nJMOzb')]|.//div[contains(@class, 'Qkn3ie')]|.//div[@class='lMMUFc']") != null)//21-07-2023//07-07-2023

@@ -881,7 +881,7 @@ namespace TrendingLoopReceiving
                 if (nds == null && (node.Attributes["jsname"]?.Value == "pKB8Bc" || node.Attributes["class"].Value.Contains("Ww4FFb vt6azd")))//31-12-2024//1e-08-2024//14-02-2024
                     nds = node.SelectNodes(".");//14-02-2024//21-09-2023 //02-02-2022 moved from 687 line   // 25-10-2019
                 if (nds == null)//30-09-2024
-                    nds = node.SelectNodes(".//div[@class='AGopnf']");//30-09-2024
+                    nds = node.SelectNodes(".//div[@class='AGopnf']|.//div[@class='ycw3p']");//12-03-2025//30-09-2024
                 if (nds != null && nds.Count == 1 && (node.Attributes["class"]?.Value == "Ww4FFb vt6azd" || node.Attributes["class"]?.Value == "g Ww4FFb vt6azd"))//07-01-2025//21-10-2024
                     nds = node.SelectNodes(".");//21-10-2024
             }
@@ -950,7 +950,7 @@ namespace TrendingLoopReceiving
                             s.Append(GetPeopleAlsoSearch(nd));
                             continue;
                         }//08-01-2025 PeopleAlsoSearch
-                        if (nd.HasClass("T98FId"))//PopularProducts //11-07-2023
+                        if (nd.HasClass("T98FId") || nd.SelectSingleNode(".//g-card[contains(@class,'T98FId')]") != null)//12-03-2025//PopularProducts //11-07-2023
                         {
                             s.Append("<block type=\"popularProducts\" url=\"\">");
                             s.Append(GetPopularProducts(node));
@@ -967,6 +967,12 @@ namespace TrendingLoopReceiving
                             s.Append(GetClassicLinkSiteLinks(nd));
                             continue;
                         }//14-10-2024 for ClassicLinksCarousel and ClassicLinkSiteLink block
+                        if (nd.SelectSingleNode(".//div[@class='owgUHc']|.//div[@class='wPNfjb']|.//div[@class='zhYvOe']|.//div[@class='YB4h9 ky4hfd']") == null//12-03-2025
+                            && nd.SelectSingleNode(".//div[@class='LbKnXb YAG2qc UYJxh']|.//div[@class='cyspcb DH9lqb']") != null)
+                        {
+                            s.Append(GetsitesCarousel(nd));
+                            continue;
+                        }//12-03-2025
                         if (nd.SelectSingleNode(".//g-inner-card[@class='zf84ud THG0oc VoEfsd']") != null)
                             continue;
                         //end 27-09-2019
@@ -2888,8 +2894,8 @@ namespace TrendingLoopReceiving
                 }//09-08-2023
                 catch
                 {
-                    dest = node.SelectSingleNode(".//div[@class='wHYlTd C5w57c']|.//span[contains(@class,'mgAbYb RES9jf IFnjPb')]");//25-01-2025//04-11-2024 //23-04-2024
-                    int lenIndex = dest.GetDirectInnerText().IndexOf(" da ") >= 0 ? dest.GetDirectInnerText().IndexOf(" da ") + 4 : -1;//23-04-2024
+                    dest = node.SelectSingleNode(".//div[contains(@class,'wHYlTd C5w57c')]|.//span[contains(@class,'mgAbYb RES9jf IFnjPb')]");//13-03-2025//25-01-2025//04-11-2024 //23-04-2024
+                    int lenIndex = dest.GetDirectInnerText().IndexOf(" da ") >= 0 ? dest.GetDirectInnerText().IndexOf(" da ") : dest.GetDirectInnerText().IndexOf(" to ") >= 0 ? dest.GetDirectInnerText().IndexOf(" to ") + 4 : -1;//13-03-2025
                     origin = lenIndex >= 0 ? dest?.GetDirectInnerText()?.Substring(lenIndex).Trim() : "";//25-05-2024
                     lenIndex = origin.IndexOf("&nbsp;&middot;");//25-05-2025
                     origin = !string.IsNullOrEmpty(origin) && lenIndex >= 0 ? origin.Substring(0, lenIndex) : origin;//23-04-2024
@@ -2930,7 +2936,7 @@ namespace TrendingLoopReceiving
                             if (string.IsNullOrEmpty(connecting))
                                 connecting = "";
                         }
-                        connecting = string.IsNullOrEmpty(connecting) ? "Nonstop" : !connecting.Contains("Connecting") && !connecting.Contains("Nonstop") ? "Connecting" : !connecting.Contains("Nonstop-Flug") ? "Nonstop" : !connecting.Contains("Mit Umsteigen") ? "Nonstop" : connecting;//02-12-2024
+                        connecting = string.IsNullOrEmpty(connecting) ? "Nonstop" : (connecting.Contains("Connecting") || !connecting.Contains("Connecting") && !connecting.Contains("Nonstop")) ? "Connecting" : !connecting.Contains("Nonstop-Flug") ? "Nonstop" : !connecting.Contains("Mit Umsteigen") ? "Nonstop" : connecting;//13-03-2025//02-12-2024
                         string price = nd.SelectSingleNode(".//span[@class='xqqLDd']|.//span[@class='cirEce']|.//div[@class='n22NNe']" +
                             "|.//div[@class='rZFLMc']|.//div[@class='g1sBec']|.//div[@class='YK0p7d rZFLMc']")?.InnerText.Trim() ?? "0"; //05-07-2024//23-04-2024
                         //02-01-2024 end
@@ -2951,7 +2957,7 @@ namespace TrendingLoopReceiving
             }
             else
             {
-                nds = node.SelectNodes(".//table[contains(@class, 'YFsOAd')]/tbody/tr");//22-09-2023
+                nds = node.SelectNodes(".//table[contains(@class, 'YFsOAd')]/tbody/tr|.//div[@class='zhYvOe']/div[@class='qR29te']");//13-03-2025//22-09-2023
                 if (nds != null)
                 {
                     foreach (var nd in nds)
@@ -2959,8 +2965,8 @@ namespace TrendingLoopReceiving
                         try
                         {
                             string airline = "";
-                            string hours = nd.SelectSingleNode(".//div[@class='BNeawe DwrKqd']/span")?.InnerText.Trim() ?? nd.SelectSingleNode(".//td[1]/div/div[contains(@class,'BNeawe')]/span[2]")?.InnerText.Trim() ?? "0h 0m"; //27-09-2023 //22-09-2023
-                            string connecting = nd.SelectSingleNode(".//div[contains(@class,'BNeawe')]/span[@class='BNeawe']")?.InnerText.Trim() ?? nd.SelectSingleNode(".//div[@class='BNeawe']")?.InnerText.Trim() ?? "";//22-09-2023
+                            string hours = nd.SelectSingleNode(".//div[@class='BNeawe DwrKqd']/span|.//div[@class='YK0p7d rZFLMc']")?.InnerText.Trim() ?? nd.SelectSingleNode(".//td[1]/div/div[contains(@class,'BNeawe')]/span[2]")?.InnerText.Trim() ?? "0h 0m";//13-03-2025 //27-09-2023 //22-09-2023
+                            string connecting = nd.SelectSingleNode(".//div[contains(@class,'BNeawe')]/span[@class='BNeawe']|.//div[@class='oYQBg x8hvt']/span/span")?.InnerText.Trim() ?? nd.SelectSingleNode(".//div[@class='BNeawe']")?.InnerText.Trim() ?? "";//13-03-2025//22-09-2023
                             connecting = string.IsNullOrEmpty(connecting) ? "Nonstop" : !connecting.Contains("Connecting") && !connecting.Contains("Nonstop") ? "Connecting" : !connecting.Contains("Nonstop-Flug") ? "Nonstop" : !connecting.Contains("Mit Umsteigen") ? "Nonstop" : connecting;//02-12-2024
                             string price = nd.SelectSingleNode(".//div[@class='BNeawe DwrKqd']")?.GetDirectInnerText() ?? nd.SelectSingleNode(".//td[2]/div/div[@class='BNeawe']")?.GetDirectInnerText() ?? "0";//22-09-2023
                             string priceValue = string.Empty;
@@ -3693,7 +3699,7 @@ namespace TrendingLoopReceiving
                 if (node.SelectSingleNode(".//div[@class='ttfMne']|.//div[@class='N60dNb mfMhoc']|.//h2[@class='OEsCyf mfMhoc']|.//div[@class='kp-blk c2xzTb OJXvsb']|.//div[@class='WpKAof']|.//g-card/div[@class='mnr-c']|.//div[@class='FQrfLd']|.//div[@class='LQCGqc']") != null)//20-01-2025//04-11-2022 //23-11-2021 CB //27-10-2021 //01-09-2021 missing AC block//12-07-2021 job block //12-07-2021 carousel block //19-01-2021 missing top stories
                     if (node.SelectSingleNode(".//div[@class='WvKfwe a3spGf']|.//div[@class='V1nn0e wgFKp']|.//div[@jscontroller='rMVp5e']|.//div[@jscontroller='rQR4vd']|.//div[contains(@class,'P8ujBc')]|.//div[@class='v5yQqb jqWpsc']|.//div[contains(@class,'jqWpsc')]") != null && node.SelectSingleNode(".//div[@class='aJegcc']") == null)//09-12-2022//16-09-2022//09-09-2022//06-05-2022//21-01-2022//13-01-2022//17-12-2021 //12-10-2021
                         return false;
-                    else if (node.SelectSingleNode(".//div[contains(@class,'BToiNc')]") == null)//11-07-2023
+                    else if (node.SelectSingleNode(".//div[contains(@class,'BToiNc')]|.//div[@class='ycw3p']") == null)//12-03-2025//11-07-2023
                         return true;//12-11-2021
                 if (node.SelectSingleNode(".//div[@class='b2Rnsc']|.//div[@id='tads']") != null && node.SelectSingleNode(".//div[contains(@class,'Ww4FFb vt6azd xpd')]") == null)//06-01-2025//09-12-2024//16-10-2024
                     return true;
@@ -3704,7 +3710,7 @@ namespace TrendingLoopReceiving
             nd = node.SelectSingleNode(".//div[contains(@class,'Ww4FFb vt6azd')and(.//div[(@class='XNfAUb')])]");//11-10-2024 sitesCarousel
             if (nd != null && node.SelectSingleNode(".//div[contains(@class,'cvP2Ce')]") == null && node.SelectSingleNode(".//div[@class='LbKnXb YAG2qc UYJxh']|.//div[@class='cyspcb DH9lqb']") != null)//22-10-2024//15-10-2024
                 return true;//11-10-2024 sitesCarousel
-            if (node.SelectSingleNode(".//div[contains(@class, 'Z3ngN')]") != null) //22-03-2021
+            if (node.SelectSingleNode(".//div[contains(@class, 'Z3ngN')]|.//div[@class='ycw3p']") != null)//12-03-2025 //22-03-2021
                 return false;
             if (node.SelectSingleNode(".//video-voyager[@class='LnSx5b']|.//div[@class='lNvPub v5yQqb']" +
                 "|.//div[@class='adXOEf v5yQqb']|.//div[@class='T61Aje v5yQqb']|.//div[contains(@class,'kb0PBd cvP2Ce')]") != null)//13-08-2024//23-08-2023//15-03-2023//16-12-2021
@@ -4202,19 +4208,15 @@ namespace TrendingLoopReceiving
                 if (url.StartsWith("http:////") || url.StartsWith("https:////")) //18-09-2020 condition applied if appears http:////
                     url = url.Replace("////", "//"); //18-09-2020
 
-                if (url.Contains("adurl="))//28-03-2024
+                if (url.Contains("adurl="))
                 {
-                    int indx = url.LastIndexOf("http://");
-                    if (indx < 0)
-                    {
-                        indx = url.LastIndexOf("https://");
-                    }
-                    if (indx > 0) //10-04-2024
-                    {
-                        url = url.Remove(0, indx);
-                    }//10-04-2024
-                }//28-03-2024
-
+                    if (url.LastIndexOf("https://") == 0 || url.LastIndexOf("https://") >= 0)
+                        url = url.Remove(0, url.LastIndexOf("https://"));
+                    else if (url.LastIndexOf("http://") == 0 || url.LastIndexOf("http://") >= 0)
+                        url = url.Remove(0, url.LastIndexOf("http://"));
+                }//17-03-2025//28-03-2024
+                if (url.Contains("%26http://utm_source%3Dgoogle%26"))//17-03-2025
+                    url = url.Remove(url.LastIndexOf("%26http://utm_source%3Dgoogle%26"));//17-03-2025
                 if (url.Contains("&amp;grqid="))
                     url = url.Remove(url.IndexOf("&amp;grqid="));
 

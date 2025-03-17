@@ -4215,19 +4215,15 @@ namespace RapidTrackingSingleThread
                 if (url.StartsWith("http:////") || url.StartsWith("https:////")) //18-09-2020 condition applied if appears http:////
                     url = url.Replace("////", "//"); //18-09-2020
 
-                if (url.Contains("adurl="))//28-03-2024
+                if (url.Contains("adurl="))
                 {
-                    int indx = url.LastIndexOf("http://");
-                    if (indx < 0)
-                    {
-                        indx = url.LastIndexOf("https://");
-                    }
-                    if (indx > 0) //10-04-2024
-                    {
-                        url = url.Remove(0, indx);
-                    }//10-04-2024
-                }//28-03-2024
-
+                    if (url.LastIndexOf("https://") == 0 || url.LastIndexOf("https://") >= 0)
+                        url = url.Remove(0, url.LastIndexOf("https://"));
+                    else if (url.LastIndexOf("http://") == 0 || url.LastIndexOf("http://") >= 0)
+                        url = url.Remove(0, url.LastIndexOf("http://"));
+                }//17-03-2025//28-03-2024
+                if (url.Contains("%26http://utm_source%3Dgoogle%26"))//17-03-2025
+                    url = url.Remove(url.LastIndexOf("%26http://utm_source%3Dgoogle%26"));//17-03-2025
                 if (url.Contains("&amp;grqid="))
                     url = url.Remove(url.IndexOf("&amp;grqid="));
 

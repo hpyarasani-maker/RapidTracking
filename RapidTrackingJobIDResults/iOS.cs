@@ -3010,7 +3010,7 @@ namespace RapidTrackingJobIDResults
                     {
                         string price_value = string.Empty;
                         string additional_info = string.Empty;
-                        string title = nd.SelectSingleNode(".//div[contains(@class,'BTPx6e')]|.//div[@class='Yt787 aKoISd']|.//span[@class='Yt787']|.//div[@class='ZhosBf W59sce dctkEf']")?.InnerText.Trim() ?? "";//30-10-2024//20-02-2024 //29-06-2023//01-03-2023
+                        string title = nd.SelectSingleNode(".//div[contains(@class,'BTPx6e')]|.//div[@class='Yt787 aKoISd']|.//span[contains(@class,'Yt787')]|.//div[@class='ZhosBf W59sce dctkEf']")?.InnerText.Trim() ?? "";//20-03-2025//30-10-2024//20-02-2024 //29-06-2023//01-03-2023
                         string rating = nd.SelectSingleNode(".//span[contains(@class,'YrbPuc')]")?.InnerText.Trim() ?? "";
                         string reviews = nd.SelectSingleNode(".//span[@class='RDApEe YrbPuc']")?.InnerText.Trim() ?? "";
                         string price = nd.SelectSingleNode(".//div[contains(@class,'VSZCrf')]/span|.//div[@class='QIeQge']|.//div[@class='Z6yUYe RiJqbb RES9jf']|.//div[@class='rDUZLd JNI6Yb']/span|.//div[@class='wHYlTd RES9jf OSrXXb']/span|.//div[@class='VaiWld']/div/span[@class='JNI6Yb']")?.InnerText.Trim() ?? "";//09-05-2024//27-02-2024//20-02-2024//29-06-2023//02-03-2023//22-02-2023
@@ -3239,7 +3239,7 @@ namespace RapidTrackingJobIDResults
                     }
                 }
                 if (ts && node.SelectSingleNode(".//div[@class='imso-ml-c PZPZlf']|.//div[@class='Bv2VAe']|.//div[@jsname='GDPwke']|.//div[@id='imso-root']" +
-                    "|.//table[@class='vk_tbl Uekwlc']|.//div[@jscontroller='WoVPie']|.//div[@class='j2cNYe']|.//div[@class='agqCtf tw-res']" +
+                    "|.//table[@class='vk_tbl Uekwlc']|.//div[@jscontroller='WoVPie']|.//div[@class='b7hBnb Gp3GQd']|.//div[@class='MBOAae O0UFB']|.//div[@class='j2cNYe']|.//div[@class='agqCtf tw-res']" +//19-03-2025 +
                     "|.//div[contains(@class,'rsmgO')]") == null || node.SelectSingleNode(".//div[@class='Xeztj WIlpZe xuc']") != null)//24-12-2024//18-12-2024//11-09-2024//20-07-2024//07-05-2024//22-04-2024//04-04-2024//02-04-2024
                     return "Topstories";
             }
@@ -3455,7 +3455,8 @@ namespace RapidTrackingJobIDResults
                 || (node.SelectSingleNode(".//div[@class='HOslld dutT5c']|.//div[@class='zJUuqf adDDi']|.//div[@class='IZE3Td']") != null
                 && (node.SelectSingleNode(".//div[@class='RyIFgf']") == null || node.SelectNodes(".//div[contains(@class,'EXH1Ce')]") != null))//09-05-2024//29-04-2024//16-03-2024//27-02-2024
                 && (node.SelectSingleNode(".//div[@class='vDF3Oc jIrdcd']|.//div[contains(@class,'qtOtne')]|.//div[@class='YB4h9 ky4hfd']" +
-               "|.//div[@class='oj7Mub eVNxY']|.//div[@class='aJegcc']|.//div[@class='nC7kNc RrlBtc']|.//div[@class='x2KtK']|.//div[@class='oj7Mub Y6bHod']") == null))//20-12-2024//18-12-2024//25-11-2024//21-11-2024//19-11-2024//26-09-2024//24-09-2024//26-07-2024//04-07-2024//01-05-2024
+               "|.//div[@class='oj7Mub eVNxY']|.//div[@class='aJegcc']|.//div[@class='nC7kNc RrlBtc']|.//div[@class='x2KtK']" +
+               "|.//div[@class='oj7Mub Y6bHod']|.//div[@class='dsxN8b EXH1Ce PZPZlf']|.//div[@class='DuxCpf jXAUzf']") == null))//20-03-2025//19-03-2025//20-12-2024//18-12-2024//25-11-2024//21-11-2024//19-11-2024//26-09-2024//24-09-2024//26-07-2024//04-07-2024//01-05-2024
                     return "Hotel";
             }
             nd = node.SelectSingleNode(".//*[@id='rXuTZe']");

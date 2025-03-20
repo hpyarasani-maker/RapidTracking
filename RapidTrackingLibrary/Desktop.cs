@@ -783,7 +783,7 @@ namespace RapidTrackingLibrary
                     foreach (HtmlNode nd in nds)
                     {
                         // 02-06-2020
-                        if (nd.SelectSingleNode(".//table[@class='nrgt']") != null || node.SelectSingleNode(".//table[@class='jmjoTe']") != null) //22-08-2020 included dor site links
+                        if (nd.SelectSingleNode(".//table[@class='nrgt']") != null || node.SelectSingleNode(".//table[contains(@class,'jmjoTe')]") != null)//20-03-2025 //22-08-2020//20-03-2025 included for site links
                         {
                             s.Append(GetSiteLinks(nd));
                             continue;
@@ -977,7 +977,7 @@ namespace RapidTrackingLibrary
                 }
                 foreach (HtmlNode n in nc)
                 {
-                    if (n.SelectSingleNode(".//table[@class='nrgt']") != null || node.SelectSingleNode(".//table[@class='jmjoTe']") != null)//14-12-2022
+                    if (n.SelectSingleNode(".//table[@class='nrgt']") != null || node.SelectSingleNode(".//table[contains(@class,'jmjoTe')]") != null)//20-03-2025//14-12-2022//20-03-2025//14-12-2022
                     {
                         if (n.SelectSingleNode(".//h2") == null) continue;
                         s.Append(GetSiteLinks(n));
@@ -1424,7 +1424,7 @@ namespace RapidTrackingLibrary
                 }
             }
 
-            HtmlNodeCollection nds = node.SelectNodes(".//table[@class='nrgt']/tr|.//table[@class='jmjoTe']/tr|.//table[@class='jmjoTe']/tbody/tr");//20-01-2025 //22-08-2020 include selector for sitelinks
+            HtmlNodeCollection nds = node.SelectNodes(".//table[@class='nrgt']/tr|.//table[contains(@class,'jmjoTe')]/tr|.//table[contains(@class,'jmjoTe')]/tbody/tr");//20-03-2025//20-01-2025 //22-08-2020 //20-03-2025 include selector for sitelinks//20-01-2025 //22-08-2020 include selector for sitelinks
             if (nds != null)
             {
                 s.Append("<block type=\"siteLinks\" url=\"\">");

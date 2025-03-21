@@ -731,7 +731,7 @@ namespace RapidTrackingSingleThread
                  || node.SelectNodes(".//div[contains(@class,'g card-section')]|.//div[@class='N3nEGc']") != null //14-09-2023
                  || node.SelectNodes(".//div[@class='g tF2Cxc']|.//div[contains(@class,'g dFd2Tb')]|.//div[contains(@class,'g Ww4FFb')]|.//div[@class='g ZYT4Gf']") != null
                 || node.SelectNodes(".//div[@class='d3zsgb']/div[@class='yuRUbf']|.//div[@class='tF2Cxc']/div[@class='yuRUbf']|.//div[contains(@class,'g Ww4FFb')]" +
-                "|.//div[@class='g eejeod up9jud']|.//div[contains(@class,'Ww4FFb vt6azd')]|.//div[contains(@class,'PmEWq wHYlTd')]|.//div[contains(@class,'kb0PBd')]//div[@class='yuRUbf']|.//div[@class='xe8e1b']") != null)//21-03-2025//20-03-2025//25-04-2024//25-01-2023
+                "|.//div[@class='g eejeod up9jud']|.//div[contains(@class,'Ww4FFb vt6azd')]|.//div[contains(@class,'PmEWq wHYlTd')]|.//div[contains(@class,'kb0PBd')]//div[@class='yuRUbf']|.//div[@class='xe8e1b']|.//div[@class='BYM4Nd']") != null)//21-03-2025//20-03-2025//25-04-2024//25-01-2023
                    && (node.SelectSingleNode(".//div[@class='MjjYud']") != null || node.SelectSingleNode(".//div[@id='rhs']") == null))//25-01-2023//10-01-2023//12-10-2022//end of 10-10-2022
             {
                 HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'g tF2Cxc')]|.//div[contains(@class,'g dFd2Tb')]|.//div[contains(@class,'g Ww4FFb')]" +
@@ -2654,7 +2654,7 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@class='M42dy']/g-link/a") != null //02-02-2022 twitter link
                 || node.SelectSingleNode(".//div[contains(@class,'g PmEWq')]|.//div[@class='g zXItKe']") != null //14-09-2023//23-08-2023
                 || node.Attributes["class"]?.Value == "g PmEWq"//08-02-2024
-                || node.Attributes["class"]?.Value == "PmEWq wHYlTd vt6azd Ww4FFb" //21-03-2024 //video block
+                || node.Attributes["class"]?.Value == "PmEWq wHYlTd vt6azd Ww4FFb" //21-03-2025 //video block
                 || node.SelectSingleNode(".//div[contains(@class,'PmEWq wHYlTd')]") != null);//20-03-2025
         }
         private string GetAioverview(HtmlNode node)//18-11-2024//08-11-2024//21-08-2024 AIOverView Method//15-11-2024 updated to full block

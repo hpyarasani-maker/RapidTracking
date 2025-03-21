@@ -3883,13 +3883,13 @@ namespace SERPResultsJSON
             {
                 seid = 1042, domain ="tn", geo_location="Tunisia", locale= "fr-tn", uule = "w+CAIQICIHVHVuaXNpYQ==",device="mobile_android"
             },//19-12-2024
-            new SearchProperties()//21-03-2025
+             new SearchProperties()//21-03-2025
             {
-                seid = 1043, domain ="com", geo_location="San Antonio, Texas,United States", locale= "en-us", uule = "w+CAIQICIgU2FuIEFudG9uaW8sIFRleGFzLFVuaXRlZCBTdGF0ZXM=",device="desktop_chrome"
+                seid = 1043, domain ="com", geo_location="San Antonio,Texas,United States", locale= "en-us", uule = "w+CAIQICIfU2FuIEFudG9uaW8sVGV4YXMsVW5pdGVkIFN0YXRlcw==",device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid = 1044, domain ="com", geo_location="San Antonio, Texas,United States", locale= "en-us", uule = "w+CAIQICIgU2FuIEFudG9uaW8sIFRleGFzLFVuaXRlZCBTdGF0ZXM=",device="mobile_android"
+                seid = 1044, domain ="com", geo_location="San Antonio,Texas,United States", locale= "en-us", uule = "w+CAIQICIfU2FuIEFudG9uaW8sVGV4YXMsVW5pdGVkIFN0YXRlcw==",device="mobile_android"
             },//21-03-2025
         };
     }

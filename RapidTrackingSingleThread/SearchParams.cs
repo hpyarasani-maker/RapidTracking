@@ -87,11 +87,11 @@ namespace RapidTrackingSingleThread
             {
                 seid=77, domain ="ae", geo_location="United Arab Emirates", locale= "ar-ae", uule = "w+CAIQICIUVW5pdGVkIEFyYWIgRW1pcmF0ZXM=",device="desktop_chrome"
             },
-               new SearchProperties()
+            new SearchProperties()
             {
                 seid=79, domain ="com.tr", geo_location="Turkey", locale= "tr-tr", uule ="w+CAIQICIGVHVya2V5",device="desktop_chrome"
             },
-              new SearchProperties()
+            new SearchProperties()
             {
                 seid=80, domain ="co.ma", geo_location="Morocco", locale= "fr-ma", uule = "w+CAIQICIHTW9yb2Njbw==",device="desktop_chrome"
             },
@@ -1002,18 +1002,6 @@ namespace RapidTrackingSingleThread
             {
                 seid=374, domain ="com.om", geo_location="Oman", locale= "en-om", uule = "w+CAIQICIET21hbg",device="mobile_android"
             },
-            // new SearchProperties()
-            //{
-            //    seid=381, domain ="co.uk", geo_location="United Kingdom", locale= "en-gb", uule ="w+CAIQICIOVW5pdGVkIEtpbmdkb20=",device="desktop_chrome"
-            //},
-            // new SearchProperties()
-            //{
-            //    seid=382, domain ="co.uk", geo_location="United Kingdom", locale= "en-gb", uule ="w+CAIQICIOVW5pdGVkIEtpbmdkb20=",device="mobile_android"
-            //},
-            //  new SearchProperties()
-            //{
-            //    seid=383, domain ="co.uk", geo_location="United Kingdom", locale= "en-gb", uule ="w+CAIQICIOVW5pdGVkIEtpbmdkb20=",device="mobile_android"
-            //},
             new SearchProperties()
             {
                 seid=384, domain ="co.uk", geo_location="Hemel Hempstead,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIfSGVtZWwgSGVtcHN0ZWFkLCBVbml0ZWQgS2luZ2RvbQ==",device="desktop_chrome"
@@ -1086,7 +1074,7 @@ namespace RapidTrackingSingleThread
             {
                 seid=403, domain ="ro", geo_location="Romania", locale= "ro-ro", uule = "w+CAIQICIHUm9tYW5pYQ==",device="mobile_android"
             },
-              new SearchProperties()
+            new SearchProperties()
             {
                 seid=404, domain ="ch", geo_location="Switzerland", locale= "en-ch", uule = "w+CAIQICILU3dpdHplcmxhbmQ=",device="desktop_chrome"
             },
@@ -1178,7 +1166,7 @@ namespace RapidTrackingSingleThread
             {
                 seid=426, domain ="co.kr", geo_location="South Korea", locale="ko-kr", uule = "w+CAIQICILU291dGggS29yZWE=",device="mobile_android"
             },
-             new SearchProperties()
+            new SearchProperties()
             {
                 seid=427, domain ="co.kr", geo_location="South Korea", locale="ko-kr", uule = "w+CAIQICILU291dGggS29yZWE=",device="desktop_chrome"
             },
@@ -1886,350 +1874,350 @@ namespace RapidTrackingSingleThread
            {
                seid= 605, domain ="be", geo_location="Belgium", locale= "en-be", uule = "w+CAIQICIHQmVsZ2l1bQ==",device="mobile_android"
            }, // end 23-11-2022
-           new SearchProperties() // 23-12-2022 new seid's from 606 - 691
+           new SearchProperties()//22-03-2025 geo_location space removed // 23-12-2022 new seid's from 606 - 691
            {
-                seid= 606, domain ="com", geo_location="Surprise,Arizona,United States", locale= "en-us", uule = "w+CAIQICIfU3VycHJpc2UsIEFyaXpvbmEsVW5pdGVkIFN0YXRlcw==",device="desktop_chrome"
+               seid= 606, domain ="com", geo_location="Surprise,Arizona,United States", locale= "en-us", uule = "w+CAIQICIeU3VycHJpc2UsQXJpem9uYSxVbml0ZWQgU3RhdGVz",device="desktop_chrome"
            },
            new SearchProperties()
            {
-               seid= 607, domain ="com", geo_location="Surprise,Arizona,United States", locale= "en-us", uule = "w+CAIQICIfU3VycHJpc2UsIEFyaXpvbmEsVW5pdGVkIFN0YXRlcw==",device="mobile_android"
+               seid= 607, domain ="com", geo_location="Surprise,Arizona,United States", locale= "en-us", uule = "w+CAIQICIeU3VycHJpc2UsQXJpem9uYSxVbml0ZWQgU3RhdGVz",device="mobile_android"
            },
            new SearchProperties()
            {
-               seid= 608, domain ="com", geo_location="Austin,Texas,United States", locale= "en-us", uule = "w+CAIQICIbQXVzdGluLCBUZXhhcyxVbml0ZWQgU3RhdGVz",device="desktop_chrome"
+               seid= 608, domain ="com", geo_location="Austin,Texas,United States", locale= "en-us", uule = "w+CAIQICIaQXVzdGluLFRleGFzLFVuaXRlZCBTdGF0ZXM=",device="desktop_chrome"
            },
            new SearchProperties()
            {
-               seid= 609, domain ="com", geo_location="Austin,Texas,United States", locale= "en-us", uule = "w+CAIQICIbQXVzdGluLCBUZXhhcyxVbml0ZWQgU3RhdGVz",device="mobile_android"
+               seid= 609, domain ="com", geo_location="Austin,Texas,United States", locale= "en-us", uule = "w+CAIQICIaQXVzdGluLFRleGFzLFVuaXRlZCBTdGF0ZXM=",device="mobile_android"
            },
            new SearchProperties()
            {
-               seid= 610, domain ="com", geo_location="Berkeley,California,United States", locale= "en-us", uule = "w+CAIQICIiQmVya2VsZXksIENhbGlmb3JuaWEsVW5pdGVkIFN0YXRlcw==",device="desktop_chrome"
+               seid= 610, domain ="com", geo_location="Berkeley,California,United States", locale= "en-us", uule = "w+CAIQICIhQmVya2VsZXksQ2FsaWZvcm5pYSxVbml0ZWQgU3RhdGVz",device="desktop_chrome"
            },
            new SearchProperties()
            {
-               seid= 611, domain ="com", geo_location="Berkeley,California,United States", locale= "en-us", uule = "w+CAIQICIiQmVya2VsZXksIENhbGlmb3JuaWEsVW5pdGVkIFN0YXRlcw==",device="mobile_android"
+               seid= 611, domain ="com", geo_location="Berkeley,California,United States", locale= "en-us", uule = "w+CAIQICIhQmVya2VsZXksQ2FsaWZvcm5pYSxVbml0ZWQgU3RhdGVz",device="mobile_android"
            },
            new SearchProperties()
            {
-                seid= 612, domain ="com", geo_location="Clearwater,Florida,United States", locale= "en-us", uule = "w+CAIQICIhQ2xlYXJ3YXRlciwgRmxvcmlkYSxVbml0ZWQgU3RhdGVz",device="desktop_chrome"
+               seid= 612, domain ="com", geo_location="Clearwater,Florida,United States", locale= "en-us", uule = "w+CAIQICIgQ2xlYXJ3YXRlcixGbG9yaWRhLFVuaXRlZCBTdGF0ZXM=",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 613, domain ="com", geo_location="Clearwater,Florida,United States", locale= "en-us", uule = "w+CAIQICIhQ2xlYXJ3YXRlciwgRmxvcmlkYSxVbml0ZWQgU3RhdGVz",device="mobile_android"
+               seid= 613, domain ="com", geo_location="Clearwater,Florida,United States", locale= "en-us", uule = "w+CAIQICIgQ2xlYXJ3YXRlcixGbG9yaWRhLFVuaXRlZCBTdGF0ZXM=",device="mobile_android"
            },
            new SearchProperties()
            {
-                seid= 614, domain ="com", geo_location="Maspeth,New York,United States", locale= "en-us", uule = "w+CAIQICIfTWFzcGV0aCwgTmV3IFlvcmssVW5pdGVkIFN0YXRlcw==",device="desktop_chrome"
+               seid= 614, domain ="com", geo_location="Maspeth,New York,United States", locale= "en-us", uule = "w+CAIQICIeTWFzcGV0aCxOZXcgWW9yayxVbml0ZWQgU3RhdGVz",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 615, domain ="com", geo_location="Maspeth,New York,United States", locale= "en-us", uule = "w+CAIQICIfTWFzcGV0aCwgTmV3IFlvcmssVW5pdGVkIFN0YXRlcw==",device="mobile_android"
+               seid= 615, domain ="com", geo_location="Maspeth,New York,United States", locale= "en-us", uule = "w+CAIQICIeTWFzcGV0aCxOZXcgWW9yayxVbml0ZWQgU3RhdGVz",device="mobile_android"
            },
            new SearchProperties()
            {
-                seid= 616, domain ="com", geo_location="Milpitas,California,United States", locale= "en-us", uule = "w+CAIQICIiTWlscGl0YXMsIENhbGlmb3JuaWEsVW5pdGVkIFN0YXRlcw==",device="desktop_chrome"
+               seid= 616, domain ="com", geo_location="Milpitas,California,United States", locale= "en-us", uule = "w+CAIQICIhTWlscGl0YXMsQ2FsaWZvcm5pYSxVbml0ZWQgU3RhdGVz",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 617, domain ="com", geo_location="Milpitas,California,United States", locale= "en-us", uule = "w+CAIQICIiTWlscGl0YXMsIENhbGlmb3JuaWEsVW5pdGVkIFN0YXRlcw==",device="mobile_android"
+               seid= 617, domain ="com", geo_location="Milpitas,California,United States", locale= "en-us", uule = "w+CAIQICIhTWlscGl0YXMsQ2FsaWZvcm5pYSxVbml0ZWQgU3RhdGVz",device="mobile_android"
            },
            new SearchProperties()
            {
-                seid= 618, domain ="com", geo_location="Rialto,California,United States", locale= "en-us", uule = "w+CAIQICIgUmlhbHRvLCBDYWxpZm9ybmlhLFVuaXRlZCBTdGF0ZXM=",device="desktop_chrome"
+               seid= 618, domain ="com", geo_location="Rialto,California,United States", locale= "en-us", uule = "w+CAIQICIfUmlhbHRvLENhbGlmb3JuaWEsVW5pdGVkIFN0YXRlcw==",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 619, domain ="com", geo_location="Rialto,California,United States", locale= "en-us", uule = "w+CAIQICIgUmlhbHRvLCBDYWxpZm9ybmlhLFVuaXRlZCBTdGF0ZXM=",device="mobile_android"
+               seid= 619, domain ="com", geo_location="Rialto,California,United States", locale= "en-us", uule = "w+CAIQICIfUmlhbHRvLENhbGlmb3JuaWEsVW5pdGVkIFN0YXRlcw==",device="mobile_android"
            },
            new SearchProperties()
            {
-                seid= 620, domain ="com", geo_location="Richmond,California,United States", locale= "en-us", uule = "w+CAIQICIiUmljaG1vbmQsIENhbGlmb3JuaWEsVW5pdGVkIFN0YXRlcw==",device="desktop_chrome"
+               seid= 620, domain ="com", geo_location="Richmond,California,United States", locale= "en-us", uule = "w+CAIQICIhUmljaG1vbmQsQ2FsaWZvcm5pYSxVbml0ZWQgU3RhdGVz",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 621, domain ="com", geo_location="Richmond,California,United States", locale= "en-us", uule = "w+CAIQICIiUmljaG1vbmQsIENhbGlmb3JuaWEsVW5pdGVkIFN0YXRlcw==",device="mobile_android"
+               seid= 621, domain ="com", geo_location="Richmond,California,United States", locale= "en-us", uule = "w+CAIQICIhUmljaG1vbmQsQ2FsaWZvcm5pYSxVbml0ZWQgU3RhdGVz",device="mobile_android"
            },
            new SearchProperties()
            {
-                seid= 622, domain ="com", geo_location="Riverview,Florida,United States", locale= "en-us", uule = "w+CAIQICIgUml2ZXJ2aWV3LCBGbG9yaWRhLFVuaXRlZCBTdGF0ZXM=",device="desktop_chrome"
+               seid= 622, domain ="com", geo_location="Riverview,Florida,United States", locale= "en-us", uule = "w+CAIQICIfUml2ZXJ2aWV3LEZsb3JpZGEsVW5pdGVkIFN0YXRlcw==",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 623, domain ="com", geo_location="Riverview,Florida,United States", locale= "en-us", uule = "w+CAIQICIgUml2ZXJ2aWV3LCBGbG9yaWRhLFVuaXRlZCBTdGF0ZXM=",device="mobile_android"
+               seid= 623, domain ="com", geo_location="Riverview,Florida,United States", locale= "en-us", uule = "w+CAIQICIfUml2ZXJ2aWV3LEZsb3JpZGEsVW5pdGVkIFN0YXRlcw==",device="mobile_android"
            },
            new SearchProperties()
            {
-                seid= 624, domain ="com", geo_location="San Diego,California,United States", locale= "en-us", uule = "w+CAIQICIjU2FuIERpZWdvLCBDYWxpZm9ybmlhLFVuaXRlZCBTdGF0ZXM=",device="desktop_chrome"
+               seid= 624, domain ="com", geo_location="San Diego,California,United States", locale= "en-us", uule = "w+CAIQICIiU2FuIERpZWdvLENhbGlmb3JuaWEsVW5pdGVkIFN0YXRlcw==",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 625, domain ="com", geo_location="San Diego,California,United States", locale= "en-us", uule = "w+CAIQICIjU2FuIERpZWdvLCBDYWxpZm9ybmlhLFVuaXRlZCBTdGF0ZXM=",device="mobile_android"
+               seid= 625, domain ="com", geo_location="San Diego,California,United States", locale= "en-us", uule = "w+CAIQICIiU2FuIERpZWdvLENhbGlmb3JuaWEsVW5pdGVkIFN0YXRlcw==",device="mobile_android"
            },
            new SearchProperties()
            {
-                seid= 626, domain ="com", geo_location="San Jose,California,United States", locale= "en-us", uule = "w+CAIQICIiU2FuIEpvc2UsIENhbGlmb3JuaWEsVW5pdGVkIFN0YXRlcw==",device="desktop_chrome"
+               seid= 626, domain ="com", geo_location="San Jose,California,United States", locale= "en-us", uule = "w+CAIQICIhU2FuIEpvc2UsQ2FsaWZvcm5pYSxVbml0ZWQgU3RhdGVz",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 627, domain ="com", geo_location="San Jose,California,United States", locale= "en-us", uule = "w+CAIQICIiU2FuIEpvc2UsIENhbGlmb3JuaWEsVW5pdGVkIFN0YXRlcw==",device="mobile_android"
+               seid= 627, domain ="com", geo_location="San Jose,California,United States", locale= "en-us", uule = "w+CAIQICIhU2FuIEpvc2UsQ2FsaWZvcm5pYSxVbml0ZWQgU3RhdGVz",device="mobile_android"
            },
            new SearchProperties()
            {
-                seid= 628, domain ="com", geo_location="San Leandro,California,United States", locale= "en-us", uule = "w+CAIQICIlU2FuIExlYW5kcm8sIENhbGlmb3JuaWEsVW5pdGVkIFN0YXRlcw==",device="desktop_chrome"
+               seid= 628, domain ="com", geo_location="San Leandro,California,United States", locale= "en-us", uule = "w+CAIQICIkU2FuIExlYW5kcm8sQ2FsaWZvcm5pYSxVbml0ZWQgU3RhdGVz",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 629, domain ="com", geo_location="San Leandro,California,United States", locale= "en-us", uule = "w+CAIQICIlU2FuIExlYW5kcm8sIENhbGlmb3JuaWEsVW5pdGVkIFN0YXRlcw==",device="mobile_android"
+               seid= 629, domain ="com", geo_location="San Leandro,California,United States", locale= "en-us", uule = "w+CAIQICIkU2FuIExlYW5kcm8sQ2FsaWZvcm5pYSxVbml0ZWQgU3RhdGVz",device="mobile_android"
            },
            new SearchProperties()
            {
-                seid= 630, domain ="com", geo_location="Seattle,Washington,United States", locale= "en-us", uule = "w+CAIQICIhU2VhdHRsZSwgV2FzaGluZ3RvbixVbml0ZWQgU3RhdGVz",device="desktop_chrome"
+               seid= 630, domain ="com", geo_location="Seattle,Washington,United States", locale= "en-us", uule = "w+CAIQICIgU2VhdHRsZSxXYXNoaW5ndG9uLFVuaXRlZCBTdGF0ZXM=",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 631, domain ="com", geo_location="Seattle,Washington,United States", locale= "en-us", uule = "w+CAIQICIhU2VhdHRsZSwgV2FzaGluZ3RvbixVbml0ZWQgU3RhdGVz",device="mobile_android"
+               seid= 631, domain ="com", geo_location="Seattle,Washington,United States", locale= "en-us", uule = "w+CAIQICIgU2VhdHRsZSxXYXNoaW5ndG9uLFVuaXRlZCBTdGF0ZXM=",device="mobile_android"
            },
            new SearchProperties()
            {
-                seid= 632, domain ="com", geo_location="Spring Valley,California,United States", locale= "en-us", uule = "w+CAIQICInU3ByaW5nIFZhbGxleSwgQ2FsaWZvcm5pYSxVbml0ZWQgU3RhdGVz",device="desktop_chrome"
+               seid= 632, domain ="com", geo_location="Spring Valley,California,United States", locale= "en-us", uule = "w+CAIQICImU3ByaW5nIFZhbGxleSxDYWxpZm9ybmlhLFVuaXRlZCBTdGF0ZXM=",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 633, domain ="com", geo_location="Spring Valley,California,United States", locale= "en-us", uule = "w+CAIQICInU3ByaW5nIFZhbGxleSwgQ2FsaWZvcm5pYSxVbml0ZWQgU3RhdGVz",device="mobile_android"
+               seid= 633, domain ="com", geo_location="Spring Valley,California,United States", locale= "en-us", uule = "w+CAIQICImU3ByaW5nIFZhbGxleSxDYWxpZm9ybmlhLFVuaXRlZCBTdGF0ZXM=",device="mobile_android"
            },
            new SearchProperties()
            {
-                seid= 634, domain ="com", geo_location="Titusville,Florida,United States", locale= "en-us", uule = "w+CAIQICIhVGl0dXN2aWxsZSwgRmxvcmlkYSxVbml0ZWQgU3RhdGVz",device="desktop_chrome"
+               seid= 634, domain ="com", geo_location="Titusville,Florida,United States", locale= "en-us", uule = "w+CAIQICIgVGl0dXN2aWxsZSxGbG9yaWRhLFVuaXRlZCBTdGF0ZXM=",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 635, domain ="com", geo_location="Titusville,Florida,United States", locale= "en-us", uule = "w+CAIQICIhVGl0dXN2aWxsZSwgRmxvcmlkYSxVbml0ZWQgU3RhdGVz",device="mobile_android"
+               seid= 635, domain ="com", geo_location="Titusville,Florida,United States", locale= "en-us", uule = "w+CAIQICIgVGl0dXN2aWxsZSxGbG9yaWRhLFVuaXRlZCBTdGF0ZXM=",device="mobile_android"
            },
            new SearchProperties()
            {
-                seid= 636, domain ="com", geo_location="Van Nuys,California,United States", locale= "en-us", uule = "w+CAIQICIiVmFuIE51eXMsIENhbGlmb3JuaWEsVW5pdGVkIFN0YXRlcw==",device="desktop_chrome"
+               seid= 636, domain ="com", geo_location="Van Nuys,California,United States", locale= "en-us", uule = "w+CAIQICIhVmFuIE51eXMsQ2FsaWZvcm5pYSxVbml0ZWQgU3RhdGVz",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 637, domain ="com", geo_location="Van Nuys,California,United States", locale= "en-us", uule = "w+CAIQICIiVmFuIE51eXMsIENhbGlmb3JuaWEsVW5pdGVkIFN0YXRlcw==",device="mobile_android"
+               seid= 637, domain ="com", geo_location="Van Nuys,California,United States", locale= "en-us", uule = "w+CAIQICIhVmFuIE51eXMsQ2FsaWZvcm5pYSxVbml0ZWQgU3RhdGVz",device="mobile_android"
            },
            new SearchProperties()
            {
-                seid= 638, domain ="com", geo_location="Waipahu,Hawaii,United States", locale= "en-us", uule = "w+CAIQICIdV2FpcGFodSwgSGF3YWlpLFVuaXRlZCBTdGF0ZXM=",device="desktop_chrome"
+               seid= 638, domain ="com", geo_location="Waipahu,Hawaii,United States", locale= "en-us", uule = "w+CAIQICIcV2FpcGFodSxIYXdhaWksVW5pdGVkIFN0YXRlcw==",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 639, domain ="com", geo_location="Waipahu,Hawaii,United States", locale= "en-us", uule = "w+CAIQICIdV2FpcGFodSwgSGF3YWlpLFVuaXRlZCBTdGF0ZXM=",device="mobile_android"
+               seid= 639, domain ="com", geo_location="Waipahu,Hawaii,United States", locale= "en-us", uule = "w+CAIQICIcV2FpcGFodSxIYXdhaWksVW5pdGVkIFN0YXRlcw==",device="mobile_android"
            },
            new SearchProperties()
            {
-                seid= 640, domain ="com", geo_location="Palm Harbor,Florida,United States", locale= "en-us", uule = "w+CAIQICIiUGFsbSBIYXJib3IsIEZsb3JpZGEsVW5pdGVkIFN0YXRlcw==",device="desktop_chrome"
+               seid= 640, domain ="com", geo_location="Palm Harbor,Florida,United States", locale= "en-us", uule = "w+CAIQICIhUGFsbSBIYXJib3IsRmxvcmlkYSxVbml0ZWQgU3RhdGVz",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 641, domain ="com", geo_location="Palm Harbor,Florida,United States", locale= "en-us", uule = "w+CAIQICIiUGFsbSBIYXJib3IsIEZsb3JpZGEsVW5pdGVkIFN0YXRlcw==",device="mobile_android"
+               seid= 641, domain ="com", geo_location="Palm Harbor,Florida,United States", locale= "en-us", uule = "w+CAIQICIhUGFsbSBIYXJib3IsRmxvcmlkYSxVbml0ZWQgU3RhdGVz",device="mobile_android"
            },
            new SearchProperties()
            {
-                seid= 642, domain ="com", geo_location="Antioch,California,United States", locale= "en-us", uule = "w+CAIQICIhQW50aW9jaCwgQ2FsaWZvcm5pYSxVbml0ZWQgU3RhdGVz",device="desktop_chrome"
+               seid= 642, domain ="com", geo_location="Antioch,California,United States", locale= "en-us", uule = "w+CAIQICIgQW50aW9jaCxDYWxpZm9ybmlhLFVuaXRlZCBTdGF0ZXM=",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 643, domain ="com", geo_location="Antioch,California,United States", locale= "en-us", uule = "w+CAIQICIhQW50aW9jaCwgQ2FsaWZvcm5pYSxVbml0ZWQgU3RhdGVz",device="mobile_android"
+               seid= 643, domain ="com", geo_location="Antioch,California,United States", locale= "en-us", uule = "w+CAIQICIgQW50aW9jaCxDYWxpZm9ybmlhLFVuaXRlZCBTdGF0ZXM=",device="mobile_android"
            },
             new SearchProperties()
            {
-                seid= 644, domain ="com", geo_location="Bee Cave,Texas,United States", locale= "en-us", uule = "w+CAIQICIcQmVlIENhdmUsIFRleGFzLFVuaXRlZCBTdGF0ZQ==",device="desktop_chrome"
+               seid= 644, domain ="com", geo_location="Bee Cave,Texas,United States", locale= "en-us", uule = "w+CAIQICIcQmVlIENhdmUsVGV4YXMsVW5pdGVkIFN0YXRlcw==",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 645, domain ="com", geo_location="Bee Cave,Texas,United States", locale= "en-us", uule = "w+CAIQICIcQmVlIENhdmUsIFRleGFzLFVuaXRlZCBTdGF0ZQ==",device="mobile_android"
-           },
-            new SearchProperties()
-           {
-                seid= 646, domain ="com", geo_location="Brea,California,United States", locale= "en-us", uule = "w+CAIQICIeQnJlYSwgQ2FsaWZvcm5pYSxVbml0ZWQgU3RhdGVz",device="desktop_chrome"
+               seid= 645, domain ="com", geo_location="Bee Cave,Texas,United States", locale= "en-us", uule = "w+CAIQICIcQmVlIENhdmUsVGV4YXMsVW5pdGVkIFN0YXRlcw==",device="mobile_android"
            },
            new SearchProperties()
            {
-                seid= 647, domain ="com", geo_location="Brea,California,United States", locale= "en-us", uule = "w+CAIQICIeQnJlYSwgQ2FsaWZvcm5pYSxVbml0ZWQgU3RhdGVz",device="mobile_android"
-           },
-            new SearchProperties()
-           {
-                seid= 648, domain ="com", geo_location="Federal Way,Washington,United States", locale= "en-us", uule = "w+CAIQICIlRmVkZXJhbCBXYXksIFdhc2hpbmd0b24sVW5pdGVkIFN0YXRlcw==",device="desktop_chrome"
+               seid= 646, domain ="com", geo_location="Brea,California,United States", locale= "en-us", uule = "w+CAIQICIdQnJlYSxDYWxpZm9ybmlhLFVuaXRlZCBTdGF0ZXM=",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 649, domain ="com", geo_location="Federal Way,Washington,United States", locale= "en-us", uule = "w+CAIQICIlRmVkZXJhbCBXYXksIFdhc2hpbmd0b24sVW5pdGVkIFN0YXRlcw==",device="mobile_android"
-           },
-            new SearchProperties()
-           {
-                seid= 650, domain ="com", geo_location="Lanham,Maryland,United States", locale= "en-us", uule = "w+CAIQICIeTGFuaGFtLCBNYXJ5bGFuZCxVbml0ZWQgU3RhdGVzCg==",device="desktop_chrome"
+               seid= 647, domain ="com", geo_location="Brea,California,United States", locale= "en-us", uule = "w+CAIQICIdQnJlYSxDYWxpZm9ybmlhLFVuaXRlZCBTdGF0ZXM=",device="mobile_android"
            },
            new SearchProperties()
            {
-                seid= 651, domain ="com", geo_location="Lanham,Maryland,United States", locale= "en-us", uule = "w+CAIQICIeTGFuaGFtLCBNYXJ5bGFuZCxVbml0ZWQgU3RhdGVzCg==",device="mobile_android"
+               seid= 648, domain ="com", geo_location="Federal Way,Washington,United States", locale= "en-us", uule = "w+CAIQICIkRmVkZXJhbCBXYXksV2FzaGluZ3RvbixVbml0ZWQgU3RhdGVz",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 652, domain ="com", geo_location="Livingston,New Jersey,United States", locale= "en-us", uule = "w+CAIQICIkTGl2aW5nc3RvbiwgTmV3IEplcnNleSxVbml0ZWQgU3RhdGVz",device="desktop_chrome"
+               seid= 649, domain ="com", geo_location="Federal Way,Washington,United States", locale= "en-us", uule = "w+CAIQICIkRmVkZXJhbCBXYXksV2FzaGluZ3RvbixVbml0ZWQgU3RhdGVz",device="mobile_android"
            },
            new SearchProperties()
            {
-                seid= 653, domain ="com", geo_location="Livingston,New Jersey,United States", locale= "en-us", uule = "w+CAIQICIkTGl2aW5nc3RvbiwgTmV3IEplcnNleSxVbml0ZWQgU3RhdGVz",device="mobile_android"
+               seid= 650, domain ="com", geo_location="Lanham,Maryland,United States", locale= "en-us", uule = "w+CAIQICIdTGFuaGFtLE1hcnlsYW5kLFVuaXRlZCBTdGF0ZXM=",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 654, domain ="com", geo_location="Denver,Colorado,United States", locale= "en-us", uule = "w+CAIQICIeRGVudmVyLCBDb2xvcmFkbyxVbml0ZWQgU3RhdGVz",device="desktop_chrome"
+               seid= 651, domain ="com", geo_location="Lanham,Maryland,United States", locale= "en-us", uule = "w+CAIQICIdTGFuaGFtLE1hcnlsYW5kLFVuaXRlZCBTdGF0ZXM=",device="mobile_android"
            },
            new SearchProperties()
            {
-                seid= 655, domain ="com", geo_location="Denver,Colorado,United States", locale= "en-us", uule = "w+CAIQICIeRGVudmVyLCBDb2xvcmFkbyxVbml0ZWQgU3RhdGVz",device="mobile_android"
+               seid= 652, domain ="com", geo_location="Livingston,New Jersey,United States", locale= "en-us", uule = "w+CAIQICIjTGl2aW5nc3RvbixOZXcgSmVyc2V5LFVuaXRlZCBTdGF0ZXM=",device="desktop_chrome"
+           },
+           new SearchProperties()
+           {
+               seid= 653, domain ="com", geo_location="Livingston,New Jersey,United States", locale= "en-us", uule = "w+CAIQICIjTGl2aW5nc3RvbixOZXcgSmVyc2V5LFVuaXRlZCBTdGF0ZXM=",device="mobile_android"
+           },
+           new SearchProperties()
+           {
+               seid= 654, domain ="com", geo_location="Denver,Colorado,United States", locale= "en-us", uule = "w+CAIQICIdRGVudmVyLENvbG9yYWRvLFVuaXRlZCBTdGF0ZXM=",device="desktop_chrome"
+           },
+           new SearchProperties()
+           {
+               seid= 655, domain ="com", geo_location="Denver,Colorado,United States", locale= "en-us", uule = "w+CAIQICIdRGVudmVyLENvbG9yYWRvLFVuaXRlZCBTdGF0ZXM=",device="mobile_android"
            },
            /*new SearchProperties()
            {
-                seid= 656, domain ="com", geo_location="Los Angeles,California,United States", locale= "en-us", uule = "w+CAIQICImTG9zIEFuZ2VsZXMsIENhbGlmb3JuaWEsVW5pdGVkIFN0YXRlcwo=",device="desktop_chrome"
+               seid= 656, domain ="com", geo_location="Los Angeles,California,United States", locale= "en-us", uule = "w+CAIQICIkTG9zIEFuZ2VsZXMsQ2FsaWZvcm5pYSxVbml0ZWQgU3RhdGVz",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 657, domain ="com", geo_location="Los Angeles,California,United States", locale= "en-us", uule = "w+CAIQICImTG9zIEFuZ2VsZXMsIENhbGlmb3JuaWEsVW5pdGVkIFN0YXRlcwo=",device="mobile_android"
+               seid= 657, domain ="com", geo_location="Los Angeles,California,United States", locale= "en-us", uule = "w+CAIQICIkTG9zIEFuZ2VsZXMsQ2FsaWZvcm5pYSxVbml0ZWQgU3RhdGVz",device="mobile_android"
            },*/
            new SearchProperties()
            {
-                seid= 658, domain ="com", geo_location="Blue Bell,Pennsylvania,United States", locale= "en-us", uule = "w+CAIQICIlQmx1ZSBCZWxsLCBQZW5uc3lsdmFuaWEsVW5pdGVkIFN0YXRlcw==",device="desktop_chrome"
+               seid= 658, domain ="com", geo_location="Blue Bell,Pennsylvania,United States", locale= "en-us", uule = "w+CAIQICIkQmx1ZSBCZWxsLFBlbm5zeWx2YW5pYSxVbml0ZWQgU3RhdGVz",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 659, domain ="com", geo_location="Blue Bell,Pennsylvania,United States", locale= "en-us", uule = "w+CAIQICIlQmx1ZSBCZWxsLCBQZW5uc3lsdmFuaWEsVW5pdGVkIFN0YXRlcw==",device="mobile_android"
+               seid= 659, domain ="com", geo_location="Blue Bell,Pennsylvania,United States", locale= "en-us", uule = "w+CAIQICIkQmx1ZSBCZWxsLFBlbm5zeWx2YW5pYSxVbml0ZWQgU3RhdGVz",device="mobile_android"
            },
            new SearchProperties()
            {
-                seid= 660, domain ="com", geo_location="Camarillo,California,United States", locale= "en-us", uule = "w+CAIQICIjQ2FtYXJpbGxvLCBDYWxpZm9ybmlhLFVuaXRlZCBTdGF0ZXM=",device="desktop_chrome"
+               seid= 660, domain ="com", geo_location="Camarillo,California,United States", locale= "en-us", uule = "w+CAIQICIiQ2FtYXJpbGxvLENhbGlmb3JuaWEsVW5pdGVkIFN0YXRlcw==",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 661, domain ="com", geo_location="Camarillo,California,United States", locale= "en-us", uule = "w+CAIQICIjQ2FtYXJpbGxvLCBDYWxpZm9ybmlhLFVuaXRlZCBTdGF0ZXM=",device="mobile_android"
+               seid= 661, domain ="com", geo_location="Camarillo,California,United States", locale= "en-us", uule = "w+CAIQICIiQ2FtYXJpbGxvLENhbGlmb3JuaWEsVW5pdGVkIFN0YXRlcw==",device="mobile_android"
            },
            new SearchProperties()
            {
-                seid= 662, domain ="com", geo_location="Torrance,California,United States", locale= "en-us", uule = "w+CAIQICIiVG9ycmFuY2UsIENhbGlmb3JuaWEsVW5pdGVkIFN0YXRlcw==",device="desktop_chrome"
+               seid= 662, domain ="com", geo_location="Torrance,California,United States", locale= "en-us", uule = "w+CAIQICIhVG9ycmFuY2UsQ2FsaWZvcm5pYSxVbml0ZWQgU3RhdGVz",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 663, domain ="com", geo_location="Torrance,California,United States", locale= "en-us", uule = "w+CAIQICIiVG9ycmFuY2UsIENhbGlmb3JuaWEsVW5pdGVkIFN0YXRlcw==",device="mobile_android"
+               seid= 663, domain ="com", geo_location="Torrance,California,United States", locale= "en-us", uule = "w+CAIQICIhVG9ycmFuY2UsQ2FsaWZvcm5pYSxVbml0ZWQgU3RhdGVz",device="mobile_android"
            },
            new SearchProperties()
            {
-                seid= 664, domain ="com", geo_location="Atlantic Beach,Florida,United States", locale= "en-us", uule = "w+CAIQICIlQXRsYW50aWMgQmVhY2gsIEZsb3JpZGEsVW5pdGVkIFN0YXRlcw==",device="desktop_chrome"
+               seid= 664, domain ="com", geo_location="Atlantic Beach,Florida,United States", locale= "en-us", uule = "w+CAIQICIkQXRsYW50aWMgQmVhY2gsRmxvcmlkYSxVbml0ZWQgU3RhdGVz",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 665, domain ="com", geo_location="Atlantic Beach,Florida,United States", locale= "en-us", uule = "w+CAIQICIlQXRsYW50aWMgQmVhY2gsIEZsb3JpZGEsVW5pdGVkIFN0YXRlcw==",device="mobile_android"
+               seid= 665, domain ="com", geo_location="Atlantic Beach,Florida,United States", locale= "en-us", uule = "w+CAIQICIkQXRsYW50aWMgQmVhY2gsRmxvcmlkYSxVbml0ZWQgU3RhdGVz",device="mobile_android"
            },
            new SearchProperties()
            {
-                seid= 666, domain ="com", geo_location="Murray,Utah,United States", locale= "en-us", uule = "w+CAIQICIaTXVycmF5LCBVdGFoLFVuaXRlZCBTdGF0ZXM=",device="desktop_chrome"
+               seid= 666, domain ="com", geo_location="Murray,Utah,United States", locale= "en-us", uule = "w+CAIQICIZTXVycmF5LFV0YWgsVW5pdGVkIFN0YXRlcw==",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 667, domain ="com", geo_location="Murray,Utah,United States", locale= "en-us", uule = "w+CAIQICIaTXVycmF5LCBVdGFoLFVuaXRlZCBTdGF0ZXM=",device="mobile_android"
+               seid= 667, domain ="com", geo_location="Murray,Utah,United States", locale= "en-us", uule = "w+CAIQICIZTXVycmF5LFV0YWgsVW5pdGVkIFN0YXRlcw==",device="mobile_android"
            },
            new SearchProperties()
            {
-                seid= 668, domain ="com", geo_location="Vista,California,United States", locale= "en-us", uule = "w+CAIQICIfVmlzdGEsIENhbGlmb3JuaWEsVW5pdGVkIFN0YXRlcw==",device="desktop_chrome"
+               seid= 668, domain ="com", geo_location="Vista,California,United States", locale= "en-us", uule = "w+CAIQICIeVmlzdGEsQ2FsaWZvcm5pYSxVbml0ZWQgU3RhdGVz",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 669, domain ="com", geo_location="Vista,California,United States", locale= "en-us", uule = "w+CAIQICIfVmlzdGEsIENhbGlmb3JuaWEsVW5pdGVkIFN0YXRlcw==",device="mobile_android"
+               seid= 669, domain ="com", geo_location="Vista,California,United States", locale= "en-us", uule = "w+CAIQICIeVmlzdGEsQ2FsaWZvcm5pYSxVbml0ZWQgU3RhdGVz",device="mobile_android"
            },
            new SearchProperties()
            {
-                seid= 670, domain ="com", geo_location="Brooklyn,New York,United States", locale= "en-us", uule = "w+CAIQICIgQnJvb2tseW4sIE5ldyBZb3JrLFVuaXRlZCBTdGF0ZXM=",device="desktop_chrome"
+               seid= 670, domain ="com", geo_location="Brooklyn,New York,United States", locale= "en-us", uule = "w+CAIQICIfQnJvb2tseW4sTmV3IFlvcmssVW5pdGVkIFN0YXRlcw==",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 671, domain ="com", geo_location="Brooklyn,New York,United States", locale= "en-us", uule = "w+CAIQICIgQnJvb2tseW4sIE5ldyBZb3JrLFVuaXRlZCBTdGF0ZXM=",device="mobile_android"
+               seid= 671, domain ="com", geo_location="Brooklyn,New York,United States", locale= "en-us", uule = "w+CAIQICIfQnJvb2tseW4sTmV3IFlvcmssVW5pdGVkIFN0YXRlcw==",device="mobile_android"
            },
            new SearchProperties()
            {
-                seid= 672, domain ="com", geo_location="North Wales,Pennsylvania,United States", locale= "en-us", uule = "w+CAIQICInTm9ydGggV2FsZXMsIFBlbm5zeWx2YW5pYSxVbml0ZWQgU3RhdGVz",device="desktop_chrome"
+               seid= 672, domain ="com", geo_location="North Wales,Pennsylvania,United States", locale= "en-us", uule = "w+CAIQICImTm9ydGggV2FsZXMsUGVubnN5bHZhbmlhLFVuaXRlZCBTdGF0ZXM=",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 673, domain ="com", geo_location="North Wales,Pennsylvania,United States", locale= "en-us", uule = "w+CAIQICInTm9ydGggV2FsZXMsIFBlbm5zeWx2YW5pYSxVbml0ZWQgU3RhdGVz",device="mobile_android"
+               seid= 673, domain ="com", geo_location="North Wales,Pennsylvania,United States", locale= "en-us", uule = "w+CAIQICImTm9ydGggV2FsZXMsUGVubnN5bHZhbmlhLFVuaXRlZCBTdGF0ZXM=",device="mobile_android"
            },
            new SearchProperties()
            {
-                seid= 674, domain ="com", geo_location="Tacoma,Washington,United States", locale= "en-us", uule = "w+CAIQICIgVGFjb21hLCBXYXNoaW5ndG9uLFVuaXRlZCBTdGF0ZXM=",device="desktop_chrome"
+               seid= 674, domain ="com", geo_location="Tacoma,Washington,United States", locale= "en-us", uule = "w+CAIQICIfVGFjb21hLFdhc2hpbmd0b24sVW5pdGVkIFN0YXRlcw==",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 675, domain ="com", geo_location="Tacoma,Washington,United States", locale= "en-us", uule = "w+CAIQICIgVGFjb21hLCBXYXNoaW5ndG9uLFVuaXRlZCBTdGF0ZXM=",device="mobile_android"
+               seid= 675, domain ="com", geo_location="Tacoma,Washington,United States", locale= "en-us", uule = "w+CAIQICIfVGFjb21hLFdhc2hpbmd0b24sVW5pdGVkIFN0YXRlcw==",device="mobile_android"
            },
            new SearchProperties()
            {
-                seid= 676, domain ="com", geo_location="Piscataway,New Jersey,United States", locale= "en-us", uule = "w+CAIQICIkUGlzY2F0YXdheSwgTmV3IEplcnNleSxVbml0ZWQgU3RhdGVz",device="desktop_chrome"
+               seid= 676, domain ="com", geo_location="Piscataway,New Jersey,United States", locale= "en-us", uule = "w+CAIQICIjUGlzY2F0YXdheSxOZXcgSmVyc2V5LFVuaXRlZCBTdGF0ZXM=",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 677, domain ="com", geo_location="Piscataway,New Jersey,United States", locale= "en-us", uule = "w+CAIQICIkUGlzY2F0YXdheSwgTmV3IEplcnNleSxVbml0ZWQgU3RhdGVz",device="mobile_android"
+               seid= 677, domain ="com", geo_location="Piscataway,New Jersey,United States", locale= "en-us", uule = "w+CAIQICIjUGlzY2F0YXdheSxOZXcgSmVyc2V5LFVuaXRlZCBTdGF0ZXM=",device="mobile_android"
            },
            new SearchProperties()
            {
-                seid= 678, domain ="com", geo_location="Portland,Oregon,United States", locale= "en-us", uule = "w+CAIQICIeUG9ydGxhbmQsIE9yZWdvbixVbml0ZWQgU3RhdGVz",device="desktop_chrome"
+               seid= 678, domain ="com", geo_location="Portland,Oregon,United States", locale= "en-us", uule = "w+CAIQICIdUG9ydGxhbmQsT3JlZ29uLFVuaXRlZCBTdGF0ZXM=",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 679, domain ="com", geo_location="Portland,Oregon,United States", locale= "en-us", uule = "w+CAIQICIeUG9ydGxhbmQsIE9yZWdvbixVbml0ZWQgU3RhdGVz",device="mobile_android"
+               seid= 679, domain ="com", geo_location="Portland,Oregon,United States", locale= "en-us", uule = "w+CAIQICIdUG9ydGxhbmQsT3JlZ29uLFVuaXRlZCBTdGF0ZXM=",device="mobile_android"
            },
            new SearchProperties()
            {
-                seid= 680, domain ="com", geo_location="Homestead,Florida,United States", locale= "en-us", uule = "w+CAIQICIgSG9tZXN0ZWFkLCBGbG9yaWRhLFVuaXRlZCBTdGF0ZXM=",device="desktop_chrome"
+               seid= 680, domain ="com", geo_location="Homestead,Florida,United States", locale= "en-us", uule = "w+CAIQICIfSG9tZXN0ZWFkLEZsb3JpZGEsVW5pdGVkIFN0YXRlcw==",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 681, domain ="com", geo_location="Homestead,Florida,United States", locale= "en-us", uule = "w+CAIQICIgSG9tZXN0ZWFkLCBGbG9yaWRhLFVuaXRlZCBTdGF0ZXM=",device="mobile_android"
+               seid= 681, domain ="com", geo_location="Homestead,Florida,United States", locale= "en-us", uule = "w+CAIQICIfSG9tZXN0ZWFkLEZsb3JpZGEsVW5pdGVkIFN0YXRlcw==",device="mobile_android"
            },
            new SearchProperties()
            {
-                seid= 682, domain ="com", geo_location="Everett,Washington,United States", locale= "en-us", uule = "w+CAIQICIhRXZlcmV0dCwgV2FzaGluZ3RvbixVbml0ZWQgU3RhdGVz",device="desktop_chrome"
+               seid= 682, domain ="com", geo_location="Everett,Washington,United States", locale= "en-us", uule = "w+CAIQICIgRXZlcmV0dCxXYXNoaW5ndG9uLFVuaXRlZCBTdGF0ZXM=",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 683, domain ="com", geo_location="Everett,Washington,United States", locale= "en-us", uule = "w+CAIQICIhRXZlcmV0dCwgV2FzaGluZ3RvbixVbml0ZWQgU3RhdGVz",device="mobile_android"
+               seid= 683, domain ="com", geo_location="Everett,Washington,United States", locale= "en-us", uule = "w+CAIQICIgRXZlcmV0dCxXYXNoaW5ndG9uLFVuaXRlZCBTdGF0ZXM=",device="mobile_android"
            },
            new SearchProperties()
            {
-                seid= 684, domain ="com", geo_location="Flushing,New York,United States", locale= "en-us", uule = "w+CAIQICIgRmx1c2hpbmcsIE5ldyBZb3JrLFVuaXRlZCBTdGF0ZXM=",device="desktop_chrome"
+               seid= 684, domain ="com", geo_location="Flushing,New York,United States", locale= "en-us", uule = "w+CAIQICIfRmx1c2hpbmcsTmV3IFlvcmssVW5pdGVkIFN0YXRlcw==",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 685, domain ="com", geo_location="Flushing,New York,United States", locale= "en-us", uule = "w+CAIQICIgRmx1c2hpbmcsIE5ldyBZb3JrLFVuaXRlZCBTdGF0ZXM=",device="mobile_android"
+               seid= 685, domain ="com", geo_location="Flushing,New York,United States", locale= "en-us", uule = "w+CAIQICIfRmx1c2hpbmcsTmV3IFlvcmssVW5pdGVkIFN0YXRlcw==",device="mobile_android"
            },
            new SearchProperties()
            {
-                seid= 686, domain ="com", geo_location="Lakewood,Washington,United States", locale= "en-us", uule = "w+CAIQICIiTGFrZXdvb2QsIFdhc2hpbmd0b24sVW5pdGVkIFN0YXRlcw==",device="desktop_chrome"
+               seid= 686, domain ="com", geo_location="Lakewood,Washington,United States", locale= "en-us", uule = "w+CAIQICIhTGFrZXdvb2QsV2FzaGluZ3RvbixVbml0ZWQgU3RhdGVz",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 687, domain ="com", geo_location="Lakewood,Washington,United States", locale= "en-us", uule = "w+CAIQICIiTGFrZXdvb2QsIFdhc2hpbmd0b24sVW5pdGVkIFN0YXRlcw==",device="mobile_android"
+               seid= 687, domain ="com", geo_location="Lakewood,Washington,United States", locale= "en-us", uule = "w+CAIQICIhTGFrZXdvb2QsV2FzaGluZ3RvbixVbml0ZWQgU3RhdGVz",device="mobile_android"
            },
            new SearchProperties()
            {
-                seid= 688, domain ="com", geo_location="Los Gatos,California,United States", locale= "en-us", uule = "w+CAIQICIjTG9zIEdhdG9zLCBDYWxpZm9ybmlhLFVuaXRlZCBTdGF0ZXM=",device="desktop_chrome"
+               seid= 688, domain ="com", geo_location="Los Gatos,California,United States", locale= "en-us", uule = "w+CAIQICIiTG9zIEdhdG9zLENhbGlmb3JuaWEsVW5pdGVkIFN0YXRlcw==",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 689, domain ="com", geo_location="Los Gatos,California,United States", locale= "en-us", uule = "w+CAIQICIjTG9zIEdhdG9zLCBDYWxpZm9ybmlhLFVuaXRlZCBTdGF0ZXM=",device="mobile_android"
+               seid= 689, domain ="com", geo_location="Los Gatos,California,United States", locale= "en-us", uule = "w+CAIQICIiTG9zIEdhdG9zLENhbGlmb3JuaWEsVW5pdGVkIFN0YXRlcw==",device="mobile_android"
            },
            new SearchProperties()
            {
-                seid= 690, domain ="com", geo_location="Mililani,Hawaii,United States", locale= "en-us", uule = "w+CAIQICIeTWlsaWxhbmksIEhhd2FpaSxVbml0ZWQgU3RhdGVz",device="desktop_chrome"
+               seid= 690, domain ="com", geo_location="Mililani,Hawaii,United States", locale= "en-us", uule = "w+CAIQICIdTWlsaWxhbmksSGF3YWlpLFVuaXRlZCBTdGF0ZXM=",device="desktop_chrome"
            },
            new SearchProperties()
            {
-                seid= 691, domain ="com", geo_location="Mililani,Hawaii,United States", locale= "en-us", uule = "w+CAIQICIeTWlsaWxhbmksIEhhd2FpaSxVbml0ZWQgU3RhdGVz",device="mobile_android"
-           },// 23-12-2022 new seid's from 606 - 691
+               seid= 691, domain ="com", geo_location="Mililani,Hawaii,United States", locale= "en-us", uule = "w+CAIQICIdTWlsaWxhbmksSGF3YWlpLFVuaXRlZCBTdGF0ZXM=",device="mobile_android"
+           },//22-03-2025 geo_location space removed // 23-12-2022 new seid's from 606 - 691
            new SearchProperties()// 30-12-2022 new seid's from 692- 713
            {
                 seid= 692, domain ="bj", geo_location="Benin", locale= "fr-bj", uule = "w+CAIQICIFQmVuaW4=",device="desktop_chrome"

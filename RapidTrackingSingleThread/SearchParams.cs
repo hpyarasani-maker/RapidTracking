@@ -34,19 +34,19 @@ namespace RapidTrackingSingleThread
             {
                 seid=57, domain ="nl", geo_location="Netherlands", locale= "nl-nl", uule = "w+CAIQICILTmV0aGVybGFuZHM=",device="desktop_chrome"
             },
-              new SearchProperties()
+            new SearchProperties()
             {
                 seid=58, domain ="co.uk",geo_location="United Kingdom",locale= "en-gb",uule = "w+CAIQICIOVW5pdGVkIEtpbmdkb20=",device="desktop_chrome"
             },
-               new SearchProperties()
+            new SearchProperties()
             {
                 seid=59, domain ="es", geo_location="Spain", locale= "es-es", uule = "w+CAIQICIFc3BhaW4=",device="desktop_chrome"
             },
-                new SearchProperties()
+            new SearchProperties()
             {
                 seid=60, domain ="it", geo_location="Italy", locale= "it-it", uule = "w+CAIQICIFSXRhbHk=",device="desktop_chrome"
             },
-                 new SearchProperties()
+            new SearchProperties()
             {
                 seid=61, domain ="se", geo_location="Sweden", locale= "sv-se", uule = "w+CAIQICIGU3dlZGVu",device="desktop_chrome"
             },
@@ -54,20 +54,19 @@ namespace RapidTrackingSingleThread
             {
                 seid=63, domain ="com.hk", geo_location="Hong Kong", locale= "zh-TW-HK", uule = "w+CAIQICIJSG9uZyBLb25n",device="desktop_chrome"
             },
-             new SearchProperties()
+            new SearchProperties()
             {
                 seid=64, domain ="com.sg", geo_location="Singapore", locale= "en-sg", uule = "w+CAIQICIJU2luZ2Fwb3Jl",device="desktop_chrome"
-
             },
-             new SearchProperties()
+            new SearchProperties()
             {
                 seid=65, domain ="co.jp", geo_location="Japan", locale= "ja-jp", uule = "w+CAIQICIFSmFwYW4=",device="desktop_chrome"
             },
-             new SearchProperties()
+            new SearchProperties()
             {
                 seid=66, domain ="com.br", geo_location="Brazil", locale= "pt-br", uule = "w+CAIQICIGQnJhemls",device="desktop_chrome"
             },
-              new SearchProperties()
+            new SearchProperties()
             {
                 seid=67, domain ="de", geo_location="Germany", locale= "de-de", uule = "w+CAIQICIHR2VybWFueQ==",device="desktop_chrome"
             },

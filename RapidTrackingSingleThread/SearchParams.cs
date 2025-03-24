@@ -22,7 +22,7 @@ namespace RapidTrackingSingleThread
             {
                 seid=21, domain ="ru", geo_location="Russia", locale="ru-ru", uule = "w+CAIQICIGUnVzc2lh",device="desktop_chrome"
             },
-                new SearchProperties()
+            new SearchProperties()
             {
                 seid=40, domain ="fr", geo_location="France", locale="fr-fr", uule = "w+CAIQICIGRnJhbmNl",device="desktop_chrome"
             },
@@ -74,11 +74,11 @@ namespace RapidTrackingSingleThread
             {
                 seid=68, domain ="ch", geo_location="Switzerland", locale= "de-ch", uule = "w+CAIQICIMU3dpdHplcmxhbmQK",device="desktop_chrome"
             },
-                new SearchProperties()
+            new SearchProperties()
             {
                 seid=69, domain ="lu", geo_location="Luxembourg", locale= "de-lu", uule = "w+CAIQICIKTHV4ZW1ib3VyZw==",device="desktop_chrome"
             },
-                new SearchProperties()
+            new SearchProperties()
             {
                 seid=70, domain ="at", geo_location="Austria", locale= "de-at", uule = "w+CAIQICIHQXVzdHJpYQ==",device="desktop_chrome"
             },
@@ -149,7 +149,7 @@ namespace RapidTrackingSingleThread
             new SearchProperties()
             {
                 seid=104, domain ="it", geo_location="Italy", locale= "it-IT", uule = "w+CAIQICIFSXRhbHk=",device="mobile_android"
-                },
+            },
             new SearchProperties()
             {
                 seid=105, domain ="ie", geo_location="Ireland", locale= "en-ie", uule = "w+CAIQICIHSXJlbGFuZA==",device="desktop_chrome"
@@ -266,7 +266,7 @@ namespace RapidTrackingSingleThread
             {
                 seid=139, domain ="com.au", geo_location="Australia", locale= "en-au", uule = "w+CAIQICIJQXVzdHJhbGlh",device="mobile_android"
             },
-                new SearchProperties()
+            new SearchProperties()
             {
                 seid=141, domain ="ch", geo_location="Switzerland", locale= "it-ch", uule = "w+CAIQICIMU3dpdHplcmxhbmQK",device="mobile_android"
             },
@@ -422,11 +422,11 @@ namespace RapidTrackingSingleThread
             {
                 seid=189, domain ="com.pk", geo_location="Pakistan", locale= "en-pk", uule = "w+CAIQICIIUGFraXN0YW4=",device="mobile_android"
             },
-                new SearchProperties()
+            new SearchProperties()
             {
                 seid=204, domain ="co.in", geo_location="India", locale= "en-in", uule = "w+CAIQICIFSW5kaWE=",device="mobile_android"
             },
-                new SearchProperties()
+            new SearchProperties()
             {
                 seid=206, domain ="ca", geo_location="Canada", locale= "fr-ca", uule = "w+CAIQICIGQ2FuYWRh",device="mobile_android"
             },
@@ -718,7 +718,7 @@ namespace RapidTrackingSingleThread
             {
                 seid=294, domain ="co.uk", geo_location="Bristol,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIeQnJpc3RvbCxFbmdsYW5kLFVuaXRlZCBLaW5nZG9t",device="mobile_android"
             },
-                new SearchProperties()
+            new SearchProperties()
             {
                 seid=295, domain ="co.uk", geo_location="Newcastle,Northern Ireland,United Kingdom", locale= "en-gb", uule = "w+CAIQICIpTmV3Y2FzdGxlLE5vcnRoZXJuIElyZWxhbmQsVW5pdGVkIEtpbmdkb20=",device="desktop_chrome"
             },
@@ -769,7 +769,6 @@ namespace RapidTrackingSingleThread
             new SearchProperties()
             {
                 seid=307, domain ="co.uk", geo_location="Cambridge,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIgQ2FtYnJpZGdlLEVuZ2xhbmQsVW5pdGVkIEtpbmdkb20=",device="desktop_chrome"
-
             },
             new SearchProperties()
             {
@@ -983,7 +982,7 @@ namespace RapidTrackingSingleThread
             {
                 seid=370, domain ="com", geo_location="Napa,California,United States", locale=  "en-us", uule = "w+CAIQICIfbmFwYSwgY2FsaWZvcm5pYSwgdW5pdGVkIHN0YXRlcw==",device="mobile_android"
             },
-                new SearchProperties()
+            new SearchProperties()
             {
                 seid=371, domain ="com.om", geo_location="Oman", locale= "ar-om", uule = "w+CAIQICIET21hbg",device="desktop_chrome"
             },
@@ -1007,7 +1006,7 @@ namespace RapidTrackingSingleThread
             {
                 seid=385, domain ="co.uk", geo_location="Hemel Hempstead,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIfSGVtZWwgSGVtcHN0ZWFkLCBVbml0ZWQgS2luZ2RvbQ==",device="mobile_android"
             },
-                new SearchProperties()
+            new SearchProperties()
             {
                 seid=386, domain ="co.uk", geo_location="Leicester,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIZTGVpY2VzdGVyLCBVbml0ZWQgS2luZ2RvbQ==",device="desktop_chrome"
             },
@@ -1031,7 +1030,7 @@ namespace RapidTrackingSingleThread
             {
                 seid=391, domain ="co.uk", geo_location="Portsmouth,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIaUG9ydHNtb3V0aCwgVW5pdGVkIEtpbmdkb20=",device="mobile_android"
             },
-                new SearchProperties()
+            new SearchProperties()
             {
                 seid=392, domain ="co.uk", geo_location="Reading,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIXUmVhZGluZywgVW5pdGVkIEtpbmdkb20=",device="desktop_chrome"
             },
@@ -1039,7 +1038,7 @@ namespace RapidTrackingSingleThread
             {
                 seid=393, domain ="co.uk", geo_location="Reading,England,United Kingdom", locale= "en-gb", uule ="w+CAIQICIXUmVhZGluZywgVW5pdGVkIEtpbmdkb20=",device="mobile_android"
             },
-                new SearchProperties()
+            new SearchProperties()
             {
                 seid=394, domain ="co.uk", geo_location="Stoke-on-Trent,England,United Kingdom", locale= "en-gb", uule = "w+CAIQICIeU3Rva2Utb24tVHJlbnQsIFVuaXRlZCBLaW5nZG9t",device="desktop_chrome"
             },
@@ -1087,7 +1086,7 @@ namespace RapidTrackingSingleThread
             {
                 seid=407, domain ="com.eg", geo_location="Egypt", locale= "en-eg", uule = "w+CAIQICIFRWd5cHQ=",device="mobile_android"
             },
-                new SearchProperties()
+            new SearchProperties()
             {
                 seid=408, domain ="jo", geo_location="Jordan", locale= "en-jo", uule = "w+CAIQICIGSm9yZGFu",device="mobile_android"
             },
@@ -1463,7 +1462,7 @@ namespace RapidTrackingSingleThread
             {
                 seid=502, domain ="com", geo_location="Raleigh,North Carolina,United States", locale="en-us", uule="w+CAIQICIkUmFsZWlnaCxOb3J0aCBDYXJvbGluYSxVbml0ZWQgU3RhdGVz", device="mobile_android"
             },
-                new SearchProperties() //11-01-2021
+            new SearchProperties() //11-01-2021
             {
                 seid=504, domain ="fr", geo_location="Monaco", locale="en-mc", uule="w+CAIQICIGTW9uYWNv", device="desktop_chrome"
             },
@@ -1471,7 +1470,7 @@ namespace RapidTrackingSingleThread
             {
                 seid=505, domain ="fr", geo_location="Monaco", locale="en-mc", uule="w+CAIQICIGTW9uYWNv", device="mobile_android"
             },
-                new SearchProperties()
+            new SearchProperties()
             {
                 seid=506, domain ="fr", geo_location="Monaco", locale="fr-mc", uule="w+CAIQICIGTW9uYWNv", device="desktop_chrome"
             },
@@ -1503,7 +1502,7 @@ namespace RapidTrackingSingleThread
             {
                 seid=513, domain ="nl", geo_location="Netherlands", locale= "en-nl", uule = "w+CAIQICILTmV0aGVybGFuZHM=",device="mobile_android"
             }, //end 18-02-2021
-                new SearchProperties() //22-02-2021
+            new SearchProperties() //22-02-2021
             {
                 seid=514, domain ="ee", geo_location="Estonia", locale="ru-ee", uule = "w+CAIQICIHRXN0b25pYQ==",device="desktop_chrome"
             },
@@ -1631,7 +1630,7 @@ namespace RapidTrackingSingleThread
             {
                 seid=545, domain ="co.in", geo_location="Hyderabad,Telangana,India", locale= "en-in", uule = "w+CAIQICIZSHlkZXJhYmFkLFRlbGFuZ2FuYSxJbmRpYQ==",device="mobile_android"
             },
-                new SearchProperties()
+            new SearchProperties()
             {
                 seid=546, domain ="co.in", geo_location="Ahmedabad,Gujarat,India", locale= "en-in", uule ="w+CAIQICIXQWhtZWRhYmFkLEd1amFyYXQsSW5kaWE=",device="desktop_chrome"
             },
@@ -1743,7 +1742,7 @@ namespace RapidTrackingSingleThread
             {
                 seid=573, domain ="com.ec", geo_location="Ecuador", locale= "es-419-ec", uule = "w+CAIQICIHRWN1YWRvcg==",device="mobile_android"
             },//10-08-2021
-                new SearchProperties() //21-10-2021  Google TH(Bangkok)
+            new SearchProperties() //21-10-2021  Google TH(Bangkok)
             {
                 seid=574, domain="co.th", geo_location="Bangkok,Thailand", locale= "th-th", uule = "w+CAIQICIQQmFuZ2tvayxUaGFpbGFuZA==",device="desktop_chrome"
             },
@@ -2267,10 +2266,10 @@ namespace RapidTrackingSingleThread
             {
                 seid= 704, domain ="ne", geo_location="Niger", locale= "fr-ne", uule = "w+CAIQICIFTmlnZXI=",device="desktop_chrome"
             },
-           new SearchProperties()
-           {
+            new SearchProperties()
+            {
                 seid= 705, domain ="ne", geo_location="Niger", locale= "fr-ne", uule = "w+CAIQICIFTmlnZXI=",device="mobile_android"
-           },
+            },
             new SearchProperties()
             {
                 seid= 706, domain ="sn", geo_location="Senegal", locale= "fr-sn", uule = "w+CAIQICIHU2VuZWdhbA==",device="desktop_chrome"

@@ -517,6 +517,8 @@ namespace RapidTrackingSingleThread
             if (crNode != null)
             {
                 HtmlNode carousel = crNode.SelectSingleNode(".//div[@id='kx']|.//g-scrolling-carousel|.//div[@jscontroller='envtD']");//07-12-2023 start
+                if (carousel == null)//25-03-2025
+                    carousel = doc.DocumentNode.SelectSingleNode("//div[@id='Odp5De']")?.SelectSingleNode(".//div[@class='fvRoCd']");//25-03-2025
                 if (carousel == null)
                     carousel = doc.DocumentNode.SelectSingleNode("//div[@id='Odp5De']")?.SelectSingleNode(".//g-scrolling-carousel");
                 if (carousel != null)//07-12-2023 end
@@ -640,7 +642,7 @@ namespace RapidTrackingSingleThread
             }
             ///30-09-2022 start new code for answer carc
             HtmlNode ac = doc.DocumentNode.SelectSingleNode(".//div[@class='ULSxyf a2qDab EyBRub']|.//div[@id='Odp5De']");//03-11-2023
-            if (ac != null && ac.SelectSingleNode(".//div[contains(@class,'NhRr3b')]|.//div[@class='wDYxhc']") != null && (ac.SelectSingleNode(".//g-scrolling-carousel") == null || ac.SelectSingleNode(".//div[@class='setTDc']") != null))//09-07-2024//07-12-2023//09-07-2024//07-12-2023//07-12-2023
+            if (ac != null && ac.SelectSingleNode(".//div[contains(@class,'NhRr3b')]|.//div[@class='wDYxhc']") != null && (ac.SelectSingleNode(".//g-scrolling-carousel") == null && ac.SelectSingleNode(".//div[@class='W3btD bkfOad']") == null || ac.SelectSingleNode(".//div[@class='setTDc']") != null))//25-03-2025//09-07-2024//07-12-2023//09-07-2024//07-12-2023//07-12-2023
             {
                 //s.Append("<block type=\"answerCard\" url=\"\">");
                 s.Append(GetAnswerCard(ac));

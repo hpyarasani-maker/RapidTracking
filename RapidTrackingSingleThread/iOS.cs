@@ -3362,7 +3362,8 @@ namespace RapidTrackingSingleThread
                     "|.//div[@class='knowledge-finance-wholepage-chart__fw-uch']|.//div[@class='WFxqwc']|.//div[@class='KrvXD']|.//div[contains(@class,'dnXCYb')]|.//div[@class='tlibce KXPste']" +//18-12-2024//09-11-2024//24-10-2024//23-07-2024
                     "|.//div[@class='hoJlSb']|.//div[@class='Vo9TVc nG7hRb']|.//div[@jsname='xQjRM']|.//div[@class='x3SAYd']|.//div[@class='XNfAUb']" +
                     "|.//div[@jsname='VMmjWc']|.//div[@class='agqCtf tw-res']|.//div[contains(@class,'gJBeNe d2F2Td')]|.//div[@jsname='dTDiAc']" +
-                    "|.//div[contains(@class,'kpd-ch')]|.//div[@class='ILuMad t6aJGf']") == null || node.SelectSingleNode(".//div[@class='V3FYCf']|.//div[@class='n5o0ed']") != null)//06-11-2024//19-09-2024//29-07-2024//05-07-2024//29-10-2024//20-11-2024
+                    "|.//div[contains(@class,'kpd-ch')]|.//div[@class='ILuMad t6aJGf']") == null || (node.SelectSingleNode(".//div[@class='vRy7rc']") == null 
+                    && node.SelectSingleNode(".//div[@class='V3FYCf']|.//div[@class='n5o0ed']") != null))//25-03-2025//06-11-2024//19-09-2024//29-07-2024//05-07-2024//29-10-2024//20-11-2024
                     return "AnswerCard";
             }
 
@@ -3437,7 +3438,7 @@ namespace RapidTrackingSingleThread
                     HtmlNode nd1 = node.SelectSingleNode(".//div[@class='UDZeY fAgajc']|.//div[@class='rKFBM gsrt CAd2fd wp-ms']|.//div[@class='WFxqwc BGdUVb']");//07-12-2023  //31-03-2020
                     if (nd1 != null)
                     {
-                        if (node.SelectSingleNode(".//div[contains(@class,'yTFeqb wp-ms')]") == null)//09-11-2024
+                        if (node.SelectSingleNode(".//div[contains(@class,'yTFeqb wp-ms')]|.//div[@class='vRy7rc']") == null)//25-03-2025//09-11-2024
                             return "AnswerCard";
                     }
                 }
@@ -3554,7 +3555,7 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@class='wQu7gc']") != null   //08-07-2020 mising answered card
                 || node.SelectSingleNode(".//div[@class='kp-blk OJXvsb']") != null  //26-08-2020 included selector for answered 
                 || (node.SelectSingleNode(".//div[@class='g card-section']") != null) && node.SelectSingleNode(".//div[@class='tF2Cxc']") != null) //22-04-2021 answered card
-                if (node.SelectSingleNode(".//div[@class='kno-rdesc']") == null)//23-09-2023
+                if (node.SelectSingleNode(".//div[@class='kno-rdesc']|.//div[@class='vRy7rc']") == null)//25-03-2025//23-09-2023
                     return "AnswerCard";
 
             nd = node.SelectSingleNode(".//div[@id='kx']|.//div[@class='pXvdUe']");

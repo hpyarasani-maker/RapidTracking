@@ -738,7 +738,7 @@ namespace RapidTrackingSingleThread
                     "|.//div[contains(@class,'g wF4fFd')]|.//div[@class='g zXItKe']|.//div[@class='BYM4Nd']|.//div[@class='AuVD cUnQKe']|.//div[@class='cUnQKe']" +
                     "|.//div[@class='cUnQKe vt6azd']|.//div[@class='uVMCKf']|.//g-card[@class='tkfIqc g']|.//div[contains(@class, 'g PmEWq')]" +
                     "|.//g-scrolling-carousel[@class='arDHIe']|.//g-section-with-header[contains(@class,'yG4QQe TBC9ub')]|.//div[contains(@class,'PmEWq wHYlTd')]");//20-03-2025//14-02-2025//29-09-2023
-                if (nds == null && (node.Attributes["class"]?.Value == "g tF2Cxc" || node.Attributes["class"]?.Value == "wHYlTd Ww4FFb vt6azd tF2Cxc asEBEc" || node.Attributes["class"]?.Value == "PmEWq wHYlTd vt6azd Ww4FFb" || node.Attributes["class"]?.Value == "g Ww4FFb vt6azd tF2Cxc asEBEc") || node.Attributes["class"]?.Value == "g PmEWq")//08-02-2024//17-11-2022//20-04-2022//21-03-2024 //classicLinkSiteLinks and video block
+                if (nds == null && (node.Attributes["class"]?.Value == "g tF2Cxc" || node.Attributes["class"]?.Value == "wHYlTd Ww4FFb vt6azd tF2Cxc asEBEc" || node.Attributes["class"]?.Value == "PmEWq wHYlTd vt6azd Ww4FFb" || node.Attributes["class"]?.Value == "g Ww4FFb vt6azd tF2Cxc asEBEc") || node.Attributes["class"]?.Value == "g PmEWq")//21-03-2025//08-02-2024//17-11-2022//20-04-2022 //classicLinkSiteLinks and video block
                     nds = node.SelectNodes(".");//20-04-2022 
                 if (nds == null)
                     nds = node.SelectNodes(".//div[contains(@class,'tF2Cxc')]");
@@ -2598,7 +2598,8 @@ namespace RapidTrackingSingleThread
                 if (node.SelectSingleNode(".//div[contains(@class, 'RPdfze')]|.//div[contains(@class, 'nJMOzb')]" +
                     "|.//div[contains(@class, 'Qkn3ie')]|.//div[contains(@class, 'vdQmEd')]|.//div[@class='lMMUFc']" +
                     "|.//div[@class='wH6SXe']|.//div[contains(@class,'WlTAzf')]|.//div[@class='cj1ht QkBAO oYQBg']" +
-                    "|.//div[@class='oIk2Cb']|.//div[@jsmodel='Wn3aEc']|.//div[@class='zd2Jbb TEA6Fc']") != null && node.SelectSingleNode(".//div[contains(@class,'g ')]") == null)//01-01-2025//16-12-2024//10-12-2024//09-12-2024//04-12-2024//14-10-2024
+                    "|.//div[@class='oIk2Cb']|.//div[@jsmodel='Wn3aEc']|.//div[@class='zd2Jbb TEA6Fc']|.//div[@id='sports-app']") != null //25-03-2025
+                    && node.SelectSingleNode(".//div[contains(@class,'g ')]") == null)//01-01-2025//16-12-2024//10-12-2024//09-12-2024//04-12-2024//14-10-2024
                     return true;//29-06-2023
                 // changes in map block on 19-06-2019.
                 nd = node.SelectSingleNode(".//g-img/img");

@@ -88,7 +88,7 @@ namespace RapidTrackingSingleThread
             },
             new SearchProperties()
             {
-                seid=79, domain="com.tr", geo_location="Turkey", locale="tr-tr", uule ="w+CAIQICIGVHVya2V5", device="desktop_chrome"
+                seid=79, domain="com.tr", geo_location="Turkey", locale="tr-tr", uule="w+CAIQICIGVHVya2V5", device="desktop_chrome"
             },
             new SearchProperties()
             {
@@ -308,7 +308,7 @@ namespace RapidTrackingSingleThread
             },
             new SearchProperties()
             {
-                seid=152, domain="dk", geo_location="Denmark", locale="da-dk", uule ="w+CAIQICIHRGVubWFyaw==", device="mobile_android"
+                seid=152, domain="dk", geo_location="Denmark", locale="da-dk", uule="w+CAIQICIHRGVubWFyaw==", device="mobile_android"
             },
             new SearchProperties()
             {
@@ -528,7 +528,7 @@ namespace RapidTrackingSingleThread
             },
             new SearchProperties()
             {
-                seid=243, domain="co.id", geo_location="Indonesia", locale="id-id", uule ="w+CAIQICIJSW5kb25lc2lh", device="desktop_chrome"
+                seid=243, domain="co.id", geo_location="Indonesia", locale="id-id", uule="w+CAIQICIJSW5kb25lc2lh", device="desktop_chrome"
             },
             new SearchProperties()
             {
@@ -744,19 +744,19 @@ namespace RapidTrackingSingleThread
             },
             new SearchProperties()
             {
-                seid=301, domain="co.uk", geo_location="Plymouth,England,United Kingdom", locale="en-gb", uule ="w+CAIQICIfUGx5bW91dGgsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==", device="desktop_chrome"
+                seid=301, domain="co.uk", geo_location="Plymouth,England,United Kingdom", locale="en-gb", uule="w+CAIQICIfUGx5bW91dGgsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid=302, domain="co.uk", geo_location="Plymouth,England,United Kingdom", locale="en-gb", uule ="w+CAIQICIfUGx5bW91dGgsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==", device="mobile_android"
+                seid=302, domain="co.uk", geo_location="Plymouth,England,United Kingdom", locale="en-gb", uule="w+CAIQICIfUGx5bW91dGgsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid=303, domain="co.uk", geo_location="Cardiff,Wales,United Kingdom", locale="en-gb", uule ="w+CAIQICIcQ2FyZGlmZixXYWxlcyxVbml0ZWQgS2luZ2RvbQ==", device="desktop_chrome"
+                seid=303, domain="co.uk", geo_location="Cardiff,Wales,United Kingdom", locale="en-gb", uule="w+CAIQICIcQ2FyZGlmZixXYWxlcyxVbml0ZWQgS2luZ2RvbQ==", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid=304, domain="co.uk", geo_location="Cardiff,Wales,United Kingdom", locale="en-gb", uule ="w+CAIQICIcQ2FyZGlmZixXYWxlcyxVbml0ZWQgS2luZ2RvbQ==", device="mobile_android"
+                seid=304, domain="co.uk", geo_location="Cardiff,Wales,United Kingdom", locale="en-gb", uule="w+CAIQICIcQ2FyZGlmZixXYWxlcyxVbml0ZWQgS2luZ2RvbQ==", device="mobile_android"
             },
             new SearchProperties()
             {
@@ -776,7 +776,7 @@ namespace RapidTrackingSingleThread
             },
             new SearchProperties()
             {
-                seid=309, domain="co.uk", geo_location="Belfast,Northern Ireland,United Kingdom", locale="en-gb", uule ="w+CAIQICInQmVsZmFzdCxOb3J0aGVybiBJcmVsYW5kLFVuaXRlZCBLaW5nZG9t", device="desktop_chrome"
+                seid=309, domain="co.uk", geo_location="Belfast,Northern Ireland,United Kingdom", locale="en-gb", uule="w+CAIQICInQmVsZmFzdCxOb3J0aGVybiBJcmVsYW5kLFVuaXRlZCBLaW5nZG9t", device="desktop_chrome"
             },
             new SearchProperties()
             {
@@ -812,7 +812,7 @@ namespace RapidTrackingSingleThread
             },
             new SearchProperties()
             {
-                seid=318, domain="co.uk", geo_location="Hove,England,United Kingdom", locale="en-gb", uule ="w+CAIQICIoQnJpZ2h0b24gYW5kIEhvdmUsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==", device="mobile_android"
+                seid=318, domain="co.uk", geo_location="Hove,England,United Kingdom", locale="en-gb", uule="w+CAIQICIoQnJpZ2h0b24gYW5kIEhvdmUsRW5nbGFuZCxVbml0ZWQgS2luZ2RvbQ==", device="mobile_android"
             },
             new SearchProperties()
             {
@@ -836,7 +836,7 @@ namespace RapidTrackingSingleThread
             },
             new SearchProperties()
             {
-                seid=324, domain="bs", geo_location="Bahamas", locale="en-bs", uule ="w+CAIQICIHQmFoYW1hcw==", device="mobile_android"
+                seid=324, domain="bs", geo_location="Bahamas", locale="en-bs", uule="w+CAIQICIHQmFoYW1hcw==", device="mobile_android"
             },
             new SearchProperties()
             {
@@ -1016,7 +1016,7 @@ namespace RapidTrackingSingleThread
             },
             new SearchProperties()
             {
-                seid=388, domain="co.uk", geo_location="Nottingham,England,United Kingdom", locale="en-gb", uule ="w+CAIQICIaTm90dGluZ2hhbSwgVW5pdGVkIEtpbmdkb20=", device="desktop_chrome"
+                seid=388, domain="co.uk", geo_location="Nottingham,England,United Kingdom", locale="en-gb", uule="w+CAIQICIaTm90dGluZ2hhbSwgVW5pdGVkIEtpbmdkb20=", device="desktop_chrome"
             },
             new SearchProperties()
             {
@@ -1036,7 +1036,7 @@ namespace RapidTrackingSingleThread
             },
             new SearchProperties()
             {
-                seid=393, domain="co.uk", geo_location="Reading,England,United Kingdom", locale="en-gb", uule ="w+CAIQICIXUmVhZGluZywgVW5pdGVkIEtpbmdkb20=", device="mobile_android"
+                seid=393, domain="co.uk", geo_location="Reading,England,United Kingdom", locale="en-gb", uule="w+CAIQICIXUmVhZGluZywgVW5pdGVkIEtpbmdkb20=", device="mobile_android"
             },
             new SearchProperties()
             {
@@ -1064,7 +1064,7 @@ namespace RapidTrackingSingleThread
             },
             new SearchProperties()
             {
-                seid=400, domain="com.mm", geo_location="Myanmar", locale="my-mm", uule ="w+CAIQICIHTXlhbm1hcg==", device="mobile_android"
+                seid=400, domain="com.mm", geo_location="Myanmar", locale="my-mm", uule="w+CAIQICIHTXlhbm1hcg==", device="mobile_android"
             },
             new SearchProperties()
             {
@@ -1592,7 +1592,7 @@ namespace RapidTrackingSingleThread
             }, //end 30-03-2021
             new SearchProperties() //07-04-2021
             {
-                seid=536, domain="co.id", geo_location="Indonesia", locale="en-id", uule ="w+CAIQICIJSW5kb25lc2lh", device="desktop_chrome"
+                seid=536, domain="co.id", geo_location="Indonesia", locale="en-id", uule="w+CAIQICIJSW5kb25lc2lh", device="desktop_chrome"
             },
             new SearchProperties()
             {
@@ -1600,7 +1600,7 @@ namespace RapidTrackingSingleThread
             }, //end 07-04-2021
             new SearchProperties() //13-05-2021
             {
-                seid=538, domain="co.in", geo_location="Mumbai,Maharashtra,India", locale="en-in", uule ="w+CAIQICIYTXVtYmFpLE1haGFyYXNodHJhLEluZGlh", device="desktop_chrome"
+                seid=538, domain="co.in", geo_location="Mumbai,Maharashtra,India", locale="en-in", uule="w+CAIQICIYTXVtYmFpLE1haGFyYXNodHJhLEluZGlh", device="desktop_chrome"
             },
             new SearchProperties()
             {
@@ -1608,7 +1608,7 @@ namespace RapidTrackingSingleThread
             },
             new SearchProperties()
             {
-                seid=540, domain="co.in", geo_location="New Delhi,Delhi,India", locale="en-in", uule =" w+CAIQICIVRGVsaGksTmV3IERlbGhpLEluZGlh", device="desktop_chrome"
+                seid=540, domain="co.in", geo_location="New Delhi,Delhi,India", locale="en-in", uule=" w+CAIQICIVRGVsaGksTmV3IERlbGhpLEluZGlh", device="desktop_chrome"
             },
             new SearchProperties()
             {
@@ -1616,7 +1616,7 @@ namespace RapidTrackingSingleThread
             },
             new SearchProperties()
             {
-                seid=542, domain="co.in", geo_location="Bengaluru,Karnataka,India", locale="en-in", uule ="w+CAIQICIZQmVuZ2FsdXJ1LEthcm5hdGFrYSxJbmRpYQ==", device="desktop_chrome"
+                seid=542, domain="co.in", geo_location="Bengaluru,Karnataka,India", locale="en-in", uule="w+CAIQICIZQmVuZ2FsdXJ1LEthcm5hdGFrYSxJbmRpYQ==", device="desktop_chrome"
             },
             new SearchProperties()
             {
@@ -1624,7 +1624,7 @@ namespace RapidTrackingSingleThread
             },
             new SearchProperties()
             {
-                seid=544, domain="co.in", geo_location="Hyderabad,Telangana,India", locale="en-in", uule ="w+CAIQICIZSHlkZXJhYmFkLFRlbGFuZ2FuYSxJbmRpYQ==", device="desktop_chrome"
+                seid=544, domain="co.in", geo_location="Hyderabad,Telangana,India", locale="en-in", uule="w+CAIQICIZSHlkZXJhYmFkLFRlbGFuZ2FuYSxJbmRpYQ==", device="desktop_chrome"
             },
             new SearchProperties()
             {
@@ -1632,7 +1632,7 @@ namespace RapidTrackingSingleThread
             },
             new SearchProperties()
             {
-                seid=546, domain="co.in", geo_location="Ahmedabad,Gujarat,India", locale="en-in", uule ="w+CAIQICIXQWhtZWRhYmFkLEd1amFyYXQsSW5kaWE=", device="desktop_chrome"
+                seid=546, domain="co.in", geo_location="Ahmedabad,Gujarat,India", locale="en-in", uule="w+CAIQICIXQWhtZWRhYmFkLEd1amFyYXQsSW5kaWE=", device="desktop_chrome"
             },
             new SearchProperties()
             {
@@ -1640,7 +1640,7 @@ namespace RapidTrackingSingleThread
             },
             new SearchProperties()
             {
-                seid=548, domain="co.in", geo_location="Kolkata,West Bengal,India", locale="en-in", uule ="w+CAIQICIYS29sa2F0YSxXZXN0QmVuZ2FsLEluZGlh", device="desktop_chrome"
+                seid=548, domain="co.in", geo_location="Kolkata,West Bengal,India", locale="en-in", uule="w+CAIQICIYS29sa2F0YSxXZXN0QmVuZ2FsLEluZGlh", device="desktop_chrome"
             },
             new SearchProperties()
             {
@@ -1648,7 +1648,7 @@ namespace RapidTrackingSingleThread
             },
             new SearchProperties()
             {
-                seid=550, domain="co.in", geo_location="Chennai,Tamil Nadu,India", locale="en-in", uule ="w+CAIQICIXQ2hlbm5haSxUYW1pbG5hZHUsSW5kaWE=", device="desktop_chrome"
+                seid=550, domain="co.in", geo_location="Chennai,Tamil Nadu,India", locale="en-in", uule="w+CAIQICIXQ2hlbm5haSxUYW1pbG5hZHUsSW5kaWE=", device="desktop_chrome"
             },
             new SearchProperties()
             {
@@ -1656,7 +1656,7 @@ namespace RapidTrackingSingleThread
             },
             new SearchProperties()
             {
-                seid=552, domain="co.in", geo_location="Mumbai,Maharashtra,India", locale="mr-in", uule ="w+CAIQICIYTXVtYmFpLE1haGFyYXNodHJhLEluZGlh", device="desktop_chrome"
+                seid=552, domain="co.in", geo_location="Mumbai,Maharashtra,India", locale="mr-in", uule="w+CAIQICIYTXVtYmFpLE1haGFyYXNodHJhLEluZGlh", device="desktop_chrome"
             },
             new SearchProperties()
             {
@@ -1664,7 +1664,7 @@ namespace RapidTrackingSingleThread
             },
             new SearchProperties()
             {
-                seid=554, domain="co.in", geo_location="New Delhi,Delhi,India", locale="hi-in", uule =" w+CAIQICIVRGVsaGksTmV3IERlbGhpLEluZGlh", device="desktop_chrome"
+                seid=554, domain="co.in", geo_location="New Delhi,Delhi,India", locale="hi-in", uule=" w+CAIQICIVRGVsaGksTmV3IERlbGhpLEluZGlh", device="desktop_chrome"
             },
             new SearchProperties()
             {
@@ -1672,7 +1672,7 @@ namespace RapidTrackingSingleThread
             },
             new SearchProperties()
             {
-                seid=556, domain="co.in", geo_location="Bengaluru,Karnataka,India", locale="kn-in", uule ="w+CAIQICIZQmVuZ2FsdXJ1LEthcm5hdGFrYSxJbmRpYQ==", device="desktop_chrome"
+                seid=556, domain="co.in", geo_location="Bengaluru,Karnataka,India", locale="kn-in", uule="w+CAIQICIZQmVuZ2FsdXJ1LEthcm5hdGFrYSxJbmRpYQ==", device="desktop_chrome"
             },
             new SearchProperties()
             {
@@ -1680,7 +1680,7 @@ namespace RapidTrackingSingleThread
             },
             new SearchProperties()
             {
-                seid=558, domain="co.in", geo_location="Hyderabad,Telangana,India", locale="te-in", uule ="w+CAIQICIZSHlkZXJhYmFkLFRlbGFuZ2FuYSxJbmRpYQ==", device="desktop_chrome"
+                seid=558, domain="co.in", geo_location="Hyderabad,Telangana,India", locale="te-in", uule="w+CAIQICIZSHlkZXJhYmFkLFRlbGFuZ2FuYSxJbmRpYQ==", device="desktop_chrome"
             },
             new SearchProperties()
             {
@@ -1688,7 +1688,7 @@ namespace RapidTrackingSingleThread
             },
             new SearchProperties()
             {
-                seid=560, domain="co.in", geo_location="Ahmedabad,Gujarat,India", locale="gu-in", uule ="w+CAIQICIXQWhtZWRhYmFkLEd1amFyYXQsSW5kaWE=", device="desktop_chrome"
+                seid=560, domain="co.in", geo_location="Ahmedabad,Gujarat,India", locale="gu-in", uule="w+CAIQICIXQWhtZWRhYmFkLEd1amFyYXQsSW5kaWE=", device="desktop_chrome"
             },
             new SearchProperties()
             {
@@ -1696,7 +1696,7 @@ namespace RapidTrackingSingleThread
             },
             new SearchProperties()
             {
-                seid=562, domain="co.in", geo_location="Kolkata,West Bengal,India", locale="bn-in", uule ="w+CAIQICIYS29sa2F0YSxXZXN0QmVuZ2FsLEluZGlh", device="desktop_chrome"
+                seid=562, domain="co.in", geo_location="Kolkata,West Bengal,India", locale="bn-in", uule="w+CAIQICIYS29sa2F0YSxXZXN0QmVuZ2FsLEluZGlh", device="desktop_chrome"
             },
             new SearchProperties()
             {
@@ -1704,7 +1704,7 @@ namespace RapidTrackingSingleThread
             },
             new SearchProperties()
             {
-                seid=564, domain="co.in", geo_location="Chennai,Tamil Nadu,India", locale="ta-in", uule ="w+CAIQICIXQ2hlbm5haSxUYW1pbG5hZHUsSW5kaWE=", device="desktop_chrome"
+                seid=564, domain="co.in", geo_location="Chennai,Tamil Nadu,India", locale="ta-in", uule="w+CAIQICIXQ2hlbm5haSxUYW1pbG5hZHUsSW5kaWE=", device="desktop_chrome"
             },
             new SearchProperties()
             {
@@ -2072,11 +2072,11 @@ namespace RapidTrackingSingleThread
             },
             /*new SearchProperties()
             {
-                seid= 656, domain="com", geo_location="Los Angeles,California,United States", locale="en-us", uule="w+CAIQICIkTG9zIEFuZ2VsZXMsQ2FsaWZvcm5pYSxVbml0ZWQgU3RhdGVz", device="desktop_chrome"
+                seid=656, domain="com", geo_location="Los Angeles,California,United States", locale="en-us", uule="w+CAIQICIkTG9zIEFuZ2VsZXMsQ2FsaWZvcm5pYSxVbml0ZWQgU3RhdGVz", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 657, domain="com", geo_location="Los Angeles,California,United States", locale="en-us", uule="w+CAIQICIkTG9zIEFuZ2VsZXMsQ2FsaWZvcm5pYSxVbml0ZWQgU3RhdGVz", device="mobile_android"
+                seid=657, domain="com", geo_location="Los Angeles,California,United States", locale="en-us", uule="w+CAIQICIkTG9zIEFuZ2VsZXMsQ2FsaWZvcm5pYSxVbml0ZWQgU3RhdGVz", device="mobile_android"
             },*/
             new SearchProperties()
             {
@@ -2224,7 +2224,7 @@ namespace RapidTrackingSingleThread
             },
             new SearchProperties()
             {
-                seid= 694, domain="bf", geo_location="Burkina Faso", locale="fr-bf", uule="w+CAIQICIMQnVya2luYSBGYXNv", device="desktop_chrome"
+                seid=694, domain="bf", geo_location="Burkina Faso", locale="fr-bf", uule="w+CAIQICIMQnVya2luYSBGYXNv", device="desktop_chrome"
             },
             new SearchProperties()
             {
@@ -2236,7 +2236,7 @@ namespace RapidTrackingSingleThread
             },
             new SearchProperties()
             {
-                seid= 697, domain="cv", geo_location="Cape Verde", locale="pt-cv", uule="w+CAIQICIKQ2FwZSBWZXJkZQ==", device="mobile_android"
+                seid=697, domain="cv", geo_location="Cape Verde", locale="pt-cv", uule="w+CAIQICIKQ2FwZSBWZXJkZQ==", device="mobile_android"
             },
             new SearchProperties()
             {
@@ -2316,7 +2316,7 @@ namespace RapidTrackingSingleThread
             },
             new SearchProperties()
             {
-                seid= 717, domain="com", geo_location="Texas,United States", locale="en-us", uule="w+CAIQICITVGV4YXMsVW5pdGVkIFN0YXRlcw==", device="mobile_android"
+                seid=717, domain="com", geo_location="Texas,United States", locale="en-us", uule="w+CAIQICITVGV4YXMsVW5pdGVkIFN0YXRlcw==", device="mobile_android"
             },//14-03-2023 end
             new SearchProperties()//29-08-2023
             {
@@ -2580,11 +2580,11 @@ namespace RapidTrackingSingleThread
             },
             new SearchProperties()
             {
-                seid= 783, domain="rs", geo_location="Serbia", locale="sr-rs", uule="w+CAIQICIGU2VyYmlh", device="mobile_android"
+                seid=783, domain="rs", geo_location="Serbia", locale="sr-rs", uule="w+CAIQICIGU2VyYmlh", device="mobile_android"
             },
             new SearchProperties()
             {
-               seid= 784, domain="sk", geo_location="Slovakia", locale="sk-sk", uule="w+CAIQICIIU2xvdmFraWE=", device="mobile_android"
+               seid=784, domain="sk", geo_location="Slovakia", locale="sk-sk", uule="w+CAIQICIIU2xvdmFraWE=", device="mobile_android"
             },
             new SearchProperties()
             {
@@ -3044,415 +3044,415 @@ namespace RapidTrackingSingleThread
             },//15-05-2024
             new SearchProperties()//03-06-2024
             {
-                seid= 899, domain="com", geo_location="New Jersey,United States", locale="en-us", uule="w+CAIQICIYTmV3IEplcnNleSxVbml0ZWQgU3RhdGVz", device="desktop_chrome"
+                seid=899, domain="com", geo_location="New Jersey,United States", locale="en-us", uule="w+CAIQICIYTmV3IEplcnNleSxVbml0ZWQgU3RhdGVz", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 900, domain="com", geo_location="New Jersey,United States", locale="en-us", uule="w+CAIQICIYTmV3IEplcnNleSxVbml0ZWQgU3RhdGVz", device="mobile_android"
+                seid=900, domain="com", geo_location="New Jersey,United States", locale="en-us", uule="w+CAIQICIYTmV3IEplcnNleSxVbml0ZWQgU3RhdGVz", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 901, domain="com", geo_location="Delaware,United States", locale="en-us", uule="w+CAIQICIWRGVsYXdhcmUsVW5pdGVkIFN0YXRlcw==", device="desktop_chrome"
+                seid=901, domain="com", geo_location="Delaware,United States", locale="en-us", uule="w+CAIQICIWRGVsYXdhcmUsVW5pdGVkIFN0YXRlcw==", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 902, domain="com", geo_location="Delaware,United States", locale="en-us", uule="w+CAIQICIWRGVsYXdhcmUsVW5pdGVkIFN0YXRlcw==", device="mobile_android"
+                seid=902, domain="com", geo_location="Delaware,United States", locale="en-us", uule="w+CAIQICIWRGVsYXdhcmUsVW5pdGVkIFN0YXRlcw==", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 903, domain="com", geo_location="Maryland,United States", locale="en-us", uule="w+CAIQICIWTWFyeWxhbmQsVW5pdGVkIFN0YXRlcw==", device="desktop_chrome"
+                seid=903, domain="com", geo_location="Maryland,United States", locale="en-us", uule="w+CAIQICIWTWFyeWxhbmQsVW5pdGVkIFN0YXRlcw==", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 904, domain="com", geo_location="Maryland,United States", locale="en-us", uule="w+CAIQICIWTWFyeWxhbmQsVW5pdGVkIFN0YXRlcw==", device="mobile_android"
+                seid=904, domain="com", geo_location="Maryland,United States", locale="en-us", uule="w+CAIQICIWTWFyeWxhbmQsVW5pdGVkIFN0YXRlcw==", device="mobile_android"
             },//03-06-2024
             new SearchProperties()//19-06-2024
             {
-                seid= 905, domain="al", geo_location="Albania", locale="en-al", uule="w+CAIQICIHQWxiYW5pYQ==", device="desktop_chrome"
+                seid=905, domain="al", geo_location="Albania", locale="en-al", uule="w+CAIQICIHQWxiYW5pYQ==", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 906, domain="al", geo_location="Albania", locale="en-al", uule="w+CAIQICIHQWxiYW5pYQ==", device="mobile_android"
+                seid=906, domain="al", geo_location="Albania", locale="en-al", uule="w+CAIQICIHQWxiYW5pYQ==", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 907, domain="am", geo_location="Armenia", locale="en-am", uule="w+CAIQICIHQXJtZW5pYQ==", device="desktop_chrome"
+                seid=907, domain="am", geo_location="Armenia", locale="en-am", uule="w+CAIQICIHQXJtZW5pYQ==", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 908, domain="am", geo_location="Armenia", locale="en-am", uule="w+CAIQICIHQXJtZW5pYQ==", device="mobile_android"
+                seid=908, domain="am", geo_location="Armenia", locale="en-am", uule="w+CAIQICIHQXJtZW5pYQ==", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 909, domain="nl", geo_location="Aruba", locale="en-aw", uule="w+CAIQICIFQXJ1YmE=", device="desktop_chrome"
+                seid=909, domain="nl", geo_location="Aruba", locale="en-aw", uule="w+CAIQICIFQXJ1YmE=", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 910, domain="nl", geo_location="Aruba", locale="en-aw", uule="w+CAIQICIFQXJ1YmE=", device="mobile_android"
+                seid=910, domain="nl", geo_location="Aruba", locale="en-aw", uule="w+CAIQICIFQXJ1YmE=", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 911, domain="at", geo_location="Austria", locale="en-at", uule="w+CAIQICIHQXVzdHJpYQ==", device="desktop_chrome"
+                seid=911, domain="at", geo_location="Austria", locale="en-at", uule="w+CAIQICIHQXVzdHJpYQ==", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 912, domain="at", geo_location="Austria", locale="en-at", uule="w+CAIQICIHQXVzdHJpYQ==", device="mobile_android"
+                seid=912, domain="at", geo_location="Austria", locale="en-at", uule="w+CAIQICIHQXVzdHJpYQ==", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 913, domain="ba", geo_location="Bosnia and Herzegovina", locale="en-ba", uule="w+CAIQICIWQm9zbmlhIGFuZCBIZXJ6ZWdvdmluYQ==", device="desktop_chrome"
+                seid=913, domain="ba", geo_location="Bosnia and Herzegovina", locale="en-ba", uule="w+CAIQICIWQm9zbmlhIGFuZCBIZXJ6ZWdvdmluYQ==", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 914, domain="ba", geo_location="Bosnia and Herzegovina", locale="en-ba", uule="w+CAIQICIWQm9zbmlhIGFuZCBIZXJ6ZWdvdmluYQ==", device="mobile_android"
+                seid=914, domain="ba", geo_location="Bosnia and Herzegovina", locale="en-ba", uule="w+CAIQICIWQm9zbmlhIGFuZCBIZXJ6ZWdvdmluYQ==", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 915, domain="com.co", geo_location="Colombia", locale="en-co", uule="w+CAIQICIIQ29sb21iaWE=", device="desktop_chrome"
+                seid=915, domain="com.co", geo_location="Colombia", locale="en-co", uule="w+CAIQICIIQ29sb21iaWE=", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 916, domain="com.co", geo_location="Colombia", locale="en-co", uule="w+CAIQICIIQ29sb21iaWE=", device="mobile_android"
+                seid=916, domain="com.co", geo_location="Colombia", locale="en-co", uule="w+CAIQICIIQ29sb21iaWE=", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 917, domain="co.cr", geo_location="Costa Rica", locale="en-cr", uule="w+CAIQICIKQ29zdGEgUmljYQ==", device="desktop_chrome"
+                seid=917, domain="co.cr", geo_location="Costa Rica", locale="en-cr", uule="w+CAIQICIKQ29zdGEgUmljYQ==", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 918, domain="co.cr", geo_location="Costa Rica", locale="en-cr", uule="w+CAIQICIKQ29zdGEgUmljYQ==", device="mobile_android"
+                seid=918, domain="co.cr", geo_location="Costa Rica", locale="en-cr", uule="w+CAIQICIKQ29zdGEgUmljYQ==", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 919, domain="hr", geo_location="Croatia", locale="en-hr", uule="w+CAIQICIHQ3JvYXRpYQ==", device="desktop_chrome"
+                seid=919, domain="hr", geo_location="Croatia", locale="en-hr", uule="w+CAIQICIHQ3JvYXRpYQ==", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 920, domain="hr", geo_location="Croatia", locale="en-hr", uule="w+CAIQICIHQ3JvYXRpYQ==", device="mobile_android"
+                seid=920, domain="hr", geo_location="Croatia", locale="en-hr", uule="w+CAIQICIHQ3JvYXRpYQ==", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 921, domain="com.cy", geo_location="Cyprus", locale="en-cy", uule="w+CAIQICIGQ3lwcnVz", device="desktop_chrome"
+                seid=921, domain="com.cy", geo_location="Cyprus", locale="en-cy", uule="w+CAIQICIGQ3lwcnVz", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 922, domain="com.cy", geo_location="Cyprus", locale="en-cy", uule="w+CAIQICIGQ3lwcnVz", device="mobile_android"
+                seid=922, domain="com.cy", geo_location="Cyprus", locale="en-cy", uule="w+CAIQICIGQ3lwcnVz", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 923, domain="com.do", geo_location="Dominican Republic", locale="en-do", uule="w+CAIQICISRG9taW5pY2FuIFJlcHVibGlj", device="desktop_chrome"
+                seid=923, domain="com.do", geo_location="Dominican Republic", locale="en-do", uule="w+CAIQICISRG9taW5pY2FuIFJlcHVibGlj", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 924, domain="com.do", geo_location="Dominican Republic", locale="en-do", uule="w+CAIQICISRG9taW5pY2FuIFJlcHVibGlj", device="mobile_android"
+                seid=924, domain="com.do", geo_location="Dominican Republic", locale="en-do", uule="w+CAIQICISRG9taW5pY2FuIFJlcHVibGlj", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 925, domain="com.ec", geo_location="Ecuador", locale="en-ec", uule ="w+CAIQICIHRWN1YWRvcg==", device="desktop_chrome"
+                seid=925, domain="com.ec", geo_location="Ecuador", locale="en-ec", uule="w+CAIQICIHRWN1YWRvcg==", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 926, domain="com.ec", geo_location="Ecuador", locale="en-ec", uule="w+CAIQICIHRWN1YWRvcg==", device="mobile_android"
+                seid=926, domain="com.ec", geo_location="Ecuador", locale="en-ec", uule="w+CAIQICIHRWN1YWRvcg==", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 927, domain="com.sv", geo_location="El Salvador", locale="en-sv", uule ="w+CAIQICILRWwgU2FsdmFkb3I=", device="desktop_chrome"
+                seid=927, domain="com.sv", geo_location="El Salvador", locale="en-sv", uule="w+CAIQICILRWwgU2FsdmFkb3I=", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 928, domain="com.sv", geo_location="El Salvador", locale="en-sv", uule ="w+CAIQICILRWwgU2FsdmFkb3I=", device="mobile_android"
+                seid=928, domain="com.sv", geo_location="El Salvador", locale="en-sv", uule="w+CAIQICILRWwgU2FsdmFkb3I=", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 929, domain="ge", geo_location="Georgia", locale="en-ge", uule ="w+CAIQICIHR2VvcmdpYQ==", device="desktop_chrome"
+                seid=929, domain="ge", geo_location="Georgia", locale="en-ge", uule="w+CAIQICIHR2VvcmdpYQ==", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 930, domain="ge", geo_location="Georgia", locale="en-ge", uule ="w+CAIQICIHR2VvcmdpYQ==", device="mobile_android"
+                seid=930, domain="ge", geo_location="Georgia", locale="en-ge", uule="w+CAIQICIHR2VvcmdpYQ==", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 931, domain="gr", geo_location="Greece", locale="en-gr", uule ="w+CAIQICIGR3JlZWNl", device="desktop_chrome"
+                seid=931, domain="gr", geo_location="Greece", locale="en-gr", uule="w+CAIQICIGR3JlZWNl", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 932, domain="gr", geo_location="Greece", locale="en-gr", uule ="w+CAIQICIGR3JlZWNl", device="mobile_android"
+                seid=932, domain="gr", geo_location="Greece", locale="en-gr", uule="w+CAIQICIGR3JlZWNl", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 933, domain="com.gt", geo_location="Guatemala", locale="en-gt", uule ="w+CAIQICIJR3VhdGVtYWxh", device="desktop_chrome"
+                seid=933, domain="com.gt", geo_location="Guatemala", locale="en-gt", uule="w+CAIQICIJR3VhdGVtYWxh", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 934, domain="com.gt", geo_location="Guatemala", locale="en-gt", uule ="w+CAIQICIJR3VhdGVtYWxh", device="mobile_android"
+                seid=934, domain="com.gt", geo_location="Guatemala", locale="en-gt", uule="w+CAIQICIJR3VhdGVtYWxh", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 935, domain="hu", geo_location="Hungary", locale="en-hu", uule ="w+CAIQICIHSHVuZ2FyeQ==", device="desktop_chrome"
+                seid=935, domain="hu", geo_location="Hungary", locale="en-hu", uule="w+CAIQICIHSHVuZ2FyeQ==", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 936, domain="hu", geo_location="Hungary", locale="en-hu", uule ="w+CAIQICIHSHVuZ2FyeQ==", device="mobile_android"
+                seid=936, domain="hu", geo_location="Hungary", locale="en-hu", uule="w+CAIQICIHSHVuZ2FyeQ==", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 937, domain="kz", geo_location="Kazakhstan", locale="en-kz", uule ="w+CAIQICIKS2F6YWtoc3Rhbg==", device="desktop_chrome"
+                seid=937, domain="kz", geo_location="Kazakhstan", locale="en-kz", uule="w+CAIQICIKS2F6YWtoc3Rhbg==", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 938, domain="kz", geo_location="Kazakhstan", locale="en-kz", uule ="w+CAIQICIKS2F6YWtoc3Rhbg==", device="mobile_android"
+                seid=938, domain="kz", geo_location="Kazakhstan", locale="en-kz", uule="w+CAIQICIKS2F6YWtoc3Rhbg==", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 939, domain="kg", geo_location="Kyrgyzstan", locale="en-kg", uule ="w+CAIQICIKS3lyZ3l6c3Rhbg==", device="desktop_chrome"
+                seid=939, domain="kg", geo_location="Kyrgyzstan", locale="en-kg", uule="w+CAIQICIKS3lyZ3l6c3Rhbg==", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 940, domain="kg", geo_location="Kyrgyzstan", locale="en-kg", uule="w+CAIQICIKS3lyZ3l6c3Rhbg==", device="mobile_android"
+                seid=940, domain="kg", geo_location="Kyrgyzstan", locale="en-kg", uule="w+CAIQICIKS3lyZ3l6c3Rhbg==", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 941, domain="lt", geo_location="Lithuania", locale="en-lt", uule ="w+CAIQICIJTGl0aHVhbmlh", device="desktop_chrome"
+                seid=941, domain="lt", geo_location="Lithuania", locale="en-lt", uule="w+CAIQICIJTGl0aHVhbmlh", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 942, domain="lt", geo_location="Lithuania", locale="en-lt", uule="w+CAIQICIJTGl0aHVhbmlh", device="mobile_android"
+                seid=942, domain="lt", geo_location="Lithuania", locale="en-lt", uule="w+CAIQICIJTGl0aHVhbmlh", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 943, domain="mv", geo_location="Maldives", locale="en-mv", uule="w+CAIQICIITWFsZGl2ZXM=", device="desktop_chrome"
+                seid=943, domain="mv", geo_location="Maldives", locale="en-mv", uule="w+CAIQICIITWFsZGl2ZXM=", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 944, domain="mv", geo_location="Maldives", locale="en-mv", uule="w+CAIQICIITWFsZGl2ZXM=", device="mobile_android"
+                seid=944, domain="mv", geo_location="Maldives", locale="en-mv", uule="w+CAIQICIITWFsZGl2ZXM=", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 945, domain="md", geo_location="Moldova", locale="en-md", uule ="w+CAIQICIHTW9sZG92YQ==", device="desktop_chrome"
+                seid=945, domain="md", geo_location="Moldova", locale="en-md", uule="w+CAIQICIHTW9sZG92YQ==", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 946, domain="md", geo_location="Moldova", locale="en-md", uule="w+CAIQICIHTW9sZG92YQ==", device="mobile_android"
+                seid=946, domain="md", geo_location="Moldova", locale="en-md", uule="w+CAIQICIHTW9sZG92YQ==", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 947, domain="me", geo_location="Montenegro", locale="en-me", uule ="w+CAIQICIKTW9udGVuZWdybw==", device="desktop_chrome"
+                seid=947, domain="me", geo_location="Montenegro", locale="en-me", uule="w+CAIQICIKTW9udGVuZWdybw==", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 948, domain="me", geo_location="Montenegro", locale="en-me", uule="w+CAIQICIKTW9udGVuZWdybw==", device="mobile_android"
+                seid=948, domain="me", geo_location="Montenegro", locale="en-me", uule="w+CAIQICIKTW9udGVuZWdybw==", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 949, domain="co.ma", geo_location="Morocco", locale="en-ma", uule ="w+CAIQICIHTW9yb2Njbw==", device="desktop_chrome"
+                seid=949, domain="co.ma", geo_location="Morocco", locale="en-ma", uule="w+CAIQICIHTW9yb2Njbw==", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 950, domain="co.ma", geo_location="Morocco", locale="en-ma", uule="w+CAIQICIHTW9yb2Njbw==", device="mobile_android"
+                seid=950, domain="co.ma", geo_location="Morocco", locale="en-ma", uule="w+CAIQICIHTW9yb2Njbw==", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 951, domain="mk", geo_location="North Macedonia", locale="en-mk", uule ="w+CAIQICIJTWFjZWRvbmlh", device="desktop_chrome"
+                seid=951, domain="mk", geo_location="North Macedonia", locale="en-mk", uule="w+CAIQICIJTWFjZWRvbmlh", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 952, domain="mk", geo_location="North Macedonia", locale="en-mk", uule="w+CAIQICIJTWFjZWRvbmlh", device="mobile_android"
+                seid=952, domain="mk", geo_location="North Macedonia", locale="en-mk", uule="w+CAIQICIJTWFjZWRvbmlh", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 953, domain="ps", geo_location="Palestine", locale="en-ps", uule ="w+CAIQICIJUGFsZXN0aW5l", device="desktop_chrome"
+                seid=953, domain="ps", geo_location="Palestine", locale="en-ps", uule="w+CAIQICIJUGFsZXN0aW5l", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 954, domain="ps", geo_location="Palestine", locale="en-ps", uule="w+CAIQICIJUGFsZXN0aW5l", device="mobile_android"
+                seid=954, domain="ps", geo_location="Palestine", locale="en-ps", uule="w+CAIQICIJUGFsZXN0aW5l", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 955, domain="pl", geo_location="Poland", locale="en-pl", uule ="w+CAIQICIGUG9sYW5k", device="desktop_chrome"
+                seid=955, domain="pl", geo_location="Poland", locale="en-pl", uule="w+CAIQICIGUG9sYW5k", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 956, domain="pl", geo_location="Poland", locale="en-pl", uule="w+CAIQICIGUG9sYW5k", device="mobile_android"
+                seid=956, domain="pl", geo_location="Poland", locale="en-pl", uule="w+CAIQICIGUG9sYW5k", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 957, domain="pt", geo_location="Portugal", locale="en-pt", uule ="w+CAIQICIIUG9ydHVnYWw=", device="desktop_chrome"
+                seid=957, domain="pt", geo_location="Portugal", locale="en-pt", uule="w+CAIQICIIUG9ydHVnYWw=", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 958, domain="pt", geo_location="Portugal", locale="en-pt", uule="w+CAIQICIIUG9ydHVnYWw=", device="mobile_android"
+                seid=958, domain="pt", geo_location="Portugal", locale="en-pt", uule="w+CAIQICIIUG9ydHVnYWw=", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 959, domain="rs", geo_location="Serbia", locale="en-rs", uule ="w+CAIQICIGU2VyYmlh", device="desktop_chrome"
+                seid=959, domain="rs", geo_location="Serbia", locale="en-rs", uule="w+CAIQICIGU2VyYmlh", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 960, domain="rs", geo_location="Serbia", locale="en-rs", uule="w+CAIQICIGU2VyYmlh", device="mobile_android"
+                seid=960, domain="rs", geo_location="Serbia", locale="en-rs", uule="w+CAIQICIGU2VyYmlh", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 961, domain="es", geo_location="Spain", locale="en-es", uule ="w+CAIQICIFU3BhaW4=", device="desktop_chrome"
+                seid=961, domain="es", geo_location="Spain", locale="en-es", uule="w+CAIQICIFU3BhaW4=", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 962, domain="es", geo_location="Spain", locale="en-es", uule="w+CAIQICIFU3BhaW4=", device="mobile_android"
+                seid=962, domain="es", geo_location="Spain", locale="en-es", uule="w+CAIQICIFU3BhaW4=", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 963, domain="com.ua", geo_location="Ukraine", locale="en-ua", uule ="w+CAIQICIHVWtyYWluZQ==", device="desktop_chrome"
+                seid=963, domain="com.ua", geo_location="Ukraine", locale="en-ua", uule="w+CAIQICIHVWtyYWluZQ==", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 964, domain="com.ua", geo_location="Ukraine", locale="en-ua", uule="w+CAIQICIHVWtyYWluZQ==", device="mobile_android"
+                seid=964, domain="com.ua", geo_location="Ukraine", locale="en-ua", uule="w+CAIQICIHVWtyYWluZQ==", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 965, domain="co.uz", geo_location="Uzbekistan", locale="en-uz", uule ="w+CAIQICIKVXpiZWtpc3Rhbg==", device="desktop_chrome"
+                seid=965, domain="co.uz", geo_location="Uzbekistan", locale="en-uz", uule="w+CAIQICIKVXpiZWtpc3Rhbg==", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 966, domain="co.uz", geo_location="Uzbekistan", locale="en-uz", uule="w+CAIQICIKVXpiZWtpc3Rhbg==", device="mobile_android"
+                seid=966, domain="co.uz", geo_location="Uzbekistan", locale="en-uz", uule="w+CAIQICIKVXpiZWtpc3Rhbg==", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 967, domain="kz", geo_location="Kazakhstan", locale="ru-kz", uule ="w+CAIQICIKS2F6YWtoc3Rhbg==", device="desktop_chrome"
+                seid=967, domain="kz", geo_location="Kazakhstan", locale="ru-kz", uule="w+CAIQICIKS2F6YWtoc3Rhbg==", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 968, domain="kz", geo_location="Kazakhstan", locale="ru-kz", uule="w+CAIQICIKS2F6YWtoc3Rhbg==", device="mobile_android"
+                seid=968, domain="kz", geo_location="Kazakhstan", locale="ru-kz", uule="w+CAIQICIKS2F6YWtoc3Rhbg==", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 969, domain="kg", geo_location="Kyrgyzstan", locale="ru-kg", uule ="w+CAIQICIKS3lyZ3l6c3Rhbg==", device="desktop_chrome"
+                seid=969, domain="kg", geo_location="Kyrgyzstan", locale="ru-kg", uule="w+CAIQICIKS3lyZ3l6c3Rhbg==", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 970, domain="kg", geo_location="Kyrgyzstan", locale="ru-kg", uule="w+CAIQICIKS3lyZ3l6c3Rhbg==", device="mobile_android"
+                seid=970, domain="kg", geo_location="Kyrgyzstan", locale="ru-kg", uule="w+CAIQICIKS3lyZ3l6c3Rhbg==", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 971, domain="md", geo_location="Moldova", locale="ru-md", uule ="w+CAIQICIHTW9sZG92YQ==", device="desktop_chrome"
+                seid=971, domain="md", geo_location="Moldova", locale="ru-md", uule="w+CAIQICIHTW9sZG92YQ==", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 972, domain="md", geo_location="Moldova", locale="ru-md", uule="w+CAIQICIHTW9sZG92YQ==", device="mobile_android"
+                seid=972, domain="md", geo_location="Moldova", locale="ru-md", uule="w+CAIQICIHTW9sZG92YQ==", device="mobile_android"
             },
             new SearchProperties()//20-06-2024
             {
-                seid= 973, domain="tn", geo_location="Tunisia", locale="en-tn", uule="w+CAIQICIHVHVuaXNpYQ==", device="desktop_chrome"
+                seid=973, domain="tn", geo_location="Tunisia", locale="en-tn", uule="w+CAIQICIHVHVuaXNpYQ==", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 974, domain="tn", geo_location="Tunisia", locale="en-tn", uule="w+CAIQICIHVHVuaXNpYQ==", device="mobile_android"
+                seid=974, domain="tn", geo_location="Tunisia", locale="en-tn", uule="w+CAIQICIHVHVuaXNpYQ==", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 975, domain="hn", geo_location="Honduras", locale="en-hn", uule="w+CAIQICIISG9uZHVyYXM=", device="desktop_chrome"
+                seid=975, domain="hn", geo_location="Honduras", locale="en-hn", uule="w+CAIQICIISG9uZHVyYXM=", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 976, domain="hn", geo_location="Honduras", locale="en-hn", uule="w+CAIQICIISG9uZHVyYXM=", device="mobile_android"
+                seid=976, domain="hn", geo_location="Honduras", locale="en-hn", uule="w+CAIQICIISG9uZHVyYXM=", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 977, domain="si", geo_location="Slovenia", locale="en-si", uule="w+CAIQICIIU2xvdmVuaWE=", device="desktop_chrome"
+                seid=977, domain="si", geo_location="Slovenia", locale="en-si", uule="w+CAIQICIIU2xvdmVuaWE=", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 978, domain="si", geo_location="Slovenia", locale="en-si", uule="w+CAIQICIIU2xvdmVuaWE=", device="mobile_android"
+                seid=978, domain="si", geo_location="Slovenia", locale="en-si", uule="w+CAIQICIIU2xvdmVuaWE=", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 979, domain="ro", geo_location="Romania", locale="en-ro", uule="w+CAIQICIHUm9tYW5pYQ==", device="desktop_chrome"
+                seid=979, domain="ro", geo_location="Romania", locale="en-ro", uule="w+CAIQICIHUm9tYW5pYQ==", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 980, domain="ro", geo_location="Romania", locale="en-ro", uule="w+CAIQICIHUm9tYW5pYQ==", device="mobile_android"
+                seid=980, domain="ro", geo_location="Romania", locale="en-ro", uule="w+CAIQICIHUm9tYW5pYQ==", device="mobile_android"
             },//20-06-2024
             new SearchProperties()//21-06-2024
             {
-                seid= 981, domain="fr", geo_location="Saint-Denis", locale="en-re", uule="w+CAIQICILU2FpbnQtRGVuaXM=", device="desktop_chrome"
+                seid=981, domain="fr", geo_location="Saint-Denis", locale="en-re", uule="w+CAIQICILU2FpbnQtRGVuaXM=", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 982, domain="fr", geo_location="Saint-Denis", locale="en-re", uule="w+CAIQICILU2FpbnQtRGVuaXM=", device="mobile_android"
+                seid=982, domain="fr", geo_location="Saint-Denis", locale="en-re", uule="w+CAIQICILU2FpbnQtRGVuaXM=", device="mobile_android"
             },//21-06-2024 
             new SearchProperties()//04-07-2024
             {
-                seid= 983, domain="nl", geo_location="Aruba", locale="es-aw", uule="w+CAIQICIFQXJ1YmE=", device="desktop_chrome"
+                seid=983, domain="nl", geo_location="Aruba", locale="es-aw", uule="w+CAIQICIFQXJ1YmE=", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 984, domain="nl", geo_location="Aruba", locale="es-aw", uule="w+CAIQICIFQXJ1YmE=", device="mobile_android"
+                seid=984, domain="nl", geo_location="Aruba", locale="es-aw", uule="w+CAIQICIFQXJ1YmE=", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 985, domain="am", geo_location="Armenia", locale="ru-am", uule="w+CAIQICIHQXJtZW5pYQ==", device="desktop_chrome"
+                seid=985, domain="am", geo_location="Armenia", locale="ru-am", uule="w+CAIQICIHQXJtZW5pYQ==", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 986, domain="am", geo_location="Armenia", locale="ru-am", uule="w+CAIQICIHQXJtZW5pYQ==", device="mobile_android"
+                seid=986, domain="am", geo_location="Armenia", locale="ru-am", uule="w+CAIQICIHQXJtZW5pYQ==", device="mobile_android"
             },//04-07-2024
             new SearchProperties()//10-07-2024
             {
-                seid= 987, domain="co.il", geo_location="Israel", locale="en-il", uule="w+CAIQICIGSXNyYWVs", device="mobile_android"
+                seid=987, domain="co.il", geo_location="Israel", locale="en-il", uule="w+CAIQICIGSXNyYWVs", device="mobile_android"
             },//10-07-2024
             new SearchProperties()//03-09-2024
             {
-                seid= 988, domain="ad", geo_location="Andorra", locale="ca-ad", uule="w+CAIQICIHQW5kb3JyYQ==", device="desktop_chrome"
+                seid=988, domain="ad", geo_location="Andorra", locale="ca-ad", uule="w+CAIQICIHQW5kb3JyYQ==", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 989, domain="ad", geo_location="Andorra", locale="ca-ad", uule="w+CAIQICIHQW5kb3JyYQ==", device="mobile_android"
+                seid=989, domain="ad", geo_location="Andorra", locale="ca-ad", uule="w+CAIQICIHQW5kb3JyYQ==", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 990, domain="es", geo_location="Canary Islands,Spain", locale="es-es", uule="w+CAIQICIUQ2FuYXJ5IElzbGFuZHMsU3BhaW4=", device="desktop_chrome"
+                seid=990, domain="es", geo_location="Canary Islands,Spain", locale="es-es", uule="w+CAIQICIUQ2FuYXJ5IElzbGFuZHMsU3BhaW4=", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 991, domain="es", geo_location="Canary Islands,Spain", locale="es-es", uule="w+CAIQICIUQ2FuYXJ5IElzbGFuZHMsU3BhaW4=", device="mobile_android"
+                seid=991, domain="es", geo_location="Canary Islands,Spain", locale="es-es", uule="w+CAIQICIUQ2FuYXJ5IElzbGFuZHMsU3BhaW4=", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 992, domain="com.af", geo_location="Afghanistan", locale="ar-af", uule="w+CAIQICILQWZnaGFuaXN0YW4=", device="desktop_chrome"
+                seid=992, domain="com.af", geo_location="Afghanistan", locale="ar-af", uule="w+CAIQICILQWZnaGFuaXN0YW4=", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 993, domain="com.af", geo_location="Afghanistan", locale="ar-af", uule="w+CAIQICILQWZnaGFuaXN0YW4=", device="mobile_android"
+                seid=993, domain="com.af", geo_location="Afghanistan", locale="ar-af", uule="w+CAIQICILQWZnaGFuaXN0YW4=", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 994, domain="iq", geo_location="Iraq", locale="ar-iq", uule="w+CAIQICIESXJhcQ==", device="desktop_chrome"
+                seid=994, domain="iq", geo_location="Iraq", locale="ar-iq", uule="w+CAIQICIESXJhcQ==", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 995, domain="iq", geo_location="Iraq", locale="ar-iq", uule="w+CAIQICIESXJhcQ==", device="mobile_android"
+                seid=995, domain="iq", geo_location="Iraq", locale="ar-iq", uule="w+CAIQICIESXJhcQ==", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 996, domain="az", geo_location="Azerbaijan", locale="az-az", uule="w+CAIQICIKQXplcmJhaWphbg==", device="desktop_chrome"
+                seid=996, domain="az", geo_location="Azerbaijan", locale="az-az", uule="w+CAIQICIKQXplcmJhaWphbg==", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 997, domain="az", geo_location="Azerbaijan", locale="az-az", uule="w+CAIQICIKQXplcmJhaWphbg==", device="mobile_android"
+                seid=997, domain="az", geo_location="Azerbaijan", locale="az-az", uule="w+CAIQICIKQXplcmJhaWphbg==", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 998, domain="az", geo_location="Azerbaijan", locale="ru-az", uule="w+CAIQICIKQXplcmJhaWphbg==", device="desktop_chrome"
+                seid=998, domain="az", geo_location="Azerbaijan", locale="ru-az", uule="w+CAIQICIKQXplcmJhaWphbg==", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 999, domain="az", geo_location="Azerbaijan", locale="ru-az", uule="w+CAIQICIKQXplcmJhaWphbg==", device="mobile_android"
+                seid=999, domain="az", geo_location="Azerbaijan", locale="ru-az", uule="w+CAIQICIKQXplcmJhaWphbg==", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 1000, domain="lu", geo_location="Luxembourg", locale="fr-lu", uule="w+CAIQICIKTHV4ZW1ib3VyZw==", device="desktop_chrome"
+                seid=1000, domain="lu", geo_location="Luxembourg", locale="fr-lu", uule="w+CAIQICIKTHV4ZW1ib3VyZw==", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 1001, domain="lu", geo_location="Luxembourg", locale="fr-lu", uule="w+CAIQICIKTHV4ZW1ib3VyZw==", device="mobile_android"
+                seid=1001, domain="lu", geo_location="Luxembourg", locale="fr-lu", uule="w+CAIQICIKTHV4ZW1ib3VyZw==", device="mobile_android"
             },//03-09-2024
             new SearchProperties()//07-10-2024
             {
@@ -3552,15 +3552,15 @@ namespace RapidTrackingSingleThread
             },//20-11-2024
             new SearchProperties()//19-12-2024
             {
-                seid= 1030, domain="com.af", geo_location="Afghanistan", locale="fa-af", uule="w+CAIQICILQWZnaGFuaXN0YW4=", device="desktop_chrome"
+                seid=1030, domain="com.af", geo_location="Afghanistan", locale="fa-af", uule="w+CAIQICILQWZnaGFuaXN0YW4=", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 1031, domain="com.af", geo_location="Afghanistan", locale="fa-af", uule="w+CAIQICILQWZnaGFuaXN0YW4=", device="mobile_android"
+                seid=1031, domain="com.af", geo_location="Afghanistan", locale="fa-af", uule="w+CAIQICILQWZnaGFuaXN0YW4=", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 1032, domain="dz", geo_location="Algeria", locale="fr-dz", uule="w+CAIQICIHQWxnZXJpYQ==", device="mobile_android"
+                seid=1032, domain="dz", geo_location="Algeria", locale="fr-dz", uule="w+CAIQICIHQWxnZXJpYQ==", device="mobile_android"
             },
             new SearchProperties()
             {
@@ -3572,43 +3572,43 @@ namespace RapidTrackingSingleThread
             },
             new SearchProperties()
             {
-                seid= 1035, domain="com.ly", geo_location="Libya", locale="ar-ly", uule="w+CAIQICIFTGlieWE=", device="mobile_android"
+                seid=1035, domain="com.ly", geo_location="Libya", locale="ar-ly", uule="w+CAIQICIFTGlieWE=", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 1036, domain="lu", geo_location="Luxembourg", locale="de-lu", uule="w+CAIQICIKTHV4ZW1ib3VyZw==", device="mobile_android"
+                seid=1036, domain="lu", geo_location="Luxembourg", locale="de-lu", uule="w+CAIQICIKTHV4ZW1ib3VyZw==", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 1037, domain="com.mt", geo_location="Malta", locale="mt-mt", uule="w+CAIQICIFbWFsdGE=", device="desktop_chrome"
+                seid=1037, domain="com.mt", geo_location="Malta", locale="mt-mt", uule="w+CAIQICIFbWFsdGE=", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 1038, domain="com.mt", geo_location="Malta", locale="mt-mt", uule="w+CAIQICIFbWFsdGE=", device="mobile_android"
+                seid=1038, domain="com.mt", geo_location="Malta", locale="mt-mt", uule="w+CAIQICIFbWFsdGE=", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 1039, domain="com.tj", geo_location="Tajikistan", locale="tg-tj", uule="w+CAIQICIKVGFqaWtpc3Rhbg==", device="desktop_chrome"
+                seid=1039, domain="com.tj", geo_location="Tajikistan", locale="tg-tj", uule="w+CAIQICIKVGFqaWtpc3Rhbg==", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 1040, domain="com.tj", geo_location="Tajikistan", locale="tg-tj", uule="w+CAIQICIKVGFqaWtpc3Rhbg==", device="mobile_android"
+                seid=1040, domain="com.tj", geo_location="Tajikistan", locale="tg-tj", uule="w+CAIQICIKVGFqaWtpc3Rhbg==", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid= 1041, domain="tn", geo_location="Tunisia", locale="fr-tn", uule="w+CAIQICIHVHVuaXNpYQ==", device="desktop_chrome"
+                seid=1041, domain="tn", geo_location="Tunisia", locale="fr-tn", uule="w+CAIQICIHVHVuaXNpYQ==", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 1042, domain="tn", geo_location="Tunisia", locale="fr-tn", uule="w+CAIQICIHVHVuaXNpYQ==", device="mobile_android"
+                seid=1042, domain="tn", geo_location="Tunisia", locale="fr-tn", uule="w+CAIQICIHVHVuaXNpYQ==", device="mobile_android"
             },//19-12-2024
             new SearchProperties()//21-03-2025
             {
-                seid= 1043, domain="com", geo_location="San Antonio,Texas,United States", locale="en-us", uule="w+CAIQICIfU2FuIEFudG9uaW8sVGV4YXMsVW5pdGVkIFN0YXRlcw==", device="desktop_chrome"
+                seid=1043, domain="com", geo_location="San Antonio,Texas,United States", locale="en-us", uule="w+CAIQICIfU2FuIEFudG9uaW8sVGV4YXMsVW5pdGVkIFN0YXRlcw==", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid= 1044, domain="com", geo_location="San Antonio,Texas,United States", locale="en-us", uule="w+CAIQICIfU2FuIEFudG9uaW8sVGV4YXMsVW5pdGVkIFN0YXRlcw==", device="mobile_android"
+                seid=1044, domain="com", geo_location="San Antonio,Texas,United States", locale="en-us", uule="w+CAIQICIfU2FuIEFudG9uaW8sVGV4YXMsVW5pdGVkIFN0YXRlcw==", device="mobile_android"
             },//21-03-2025
         };
     }

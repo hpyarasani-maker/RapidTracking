@@ -9,25 +9,25 @@ namespace Image_Page_Keywords_Sending
             
             new SearchProperties()  //UKDesktopImages_PageURLs Desktop
             {
-                seid = 74,domain ="co.uk",geo_location="United Kingdom", locale="en-gb", uule="w+CAIQICIOVW5pdGVkIEtpbmdkb20=",device="desktop",tbm="isch"
+                seid=74,domain="co.uk",geo_location="United Kingdom", locale="en-gb", uule="w+CAIQICIOVW5pdGVkIEtpbmdkb20=",device="desktop",tbm="isch"
             },
            new SearchProperties()  //UKMobileImages_PageURLs mobile
             {
-                seid = 382,domain ="co.uk",geo_location="United Kingdom", locale="en-gb", uule="w+CAIQICIOVW5pdGVkIEtpbmdkb20=",device="mobile_android",tbm="isch"
+                seid=382,domain="co.uk",geo_location="United Kingdom", locale="en-gb", uule="w+CAIQICIOVW5pdGVkIEtpbmdkb20=",device="mobile_android",tbm="isch"
             },
             new SearchProperties() //News 
             {
-                seid = 140,domain ="co.uk",geo_location="United Kingdom", locale="en-gb", uule="w+CAIQICIOVW5pdGVkIEtpbmdkb20=",device="desktop",tbm="nws"
+                seid=140,domain="co.uk",geo_location="United Kingdom", locale="en-gb", uule="w+CAIQICIOVW5pdGVkIEtpbmdkb20=",device="desktop",tbm="nws"
             },
             
             new SearchProperties() //UKDesktopImages_ImageURLs
             {
-                seid = 401,domain ="co.uk",geo_location="United Kingdom", locale="en-gb", uule="w+CAIQICIOVW5pdGVkIEtpbmdkb20=",device="desktop",tbm="isch"
+                seid=401,domain="co.uk",geo_location="United Kingdom", locale="en-gb", uule="w+CAIQICIOVW5pdGVkIEtpbmdkb20=",device="desktop",tbm="isch"
             },
           
             new SearchProperties()   //UKMobileImages_ImageURLs
             {
-                seid = 402,domain ="co.uk",geo_location="United Kingdom", locale="en-gb", uule="w+CAIQICIOVW5pdGVkIEtpbmdkb20=",device="mobile_android",tbm="isch"
+                seid=402,domain="co.uk",geo_location="United Kingdom", locale="en-gb", uule="w+CAIQICIOVW5pdGVkIEtpbmdkb20=",device="mobile_android",tbm="isch"
             },
             
 

@@ -888,7 +888,7 @@ namespace RapidTrackingSingleThread
             },
             new SearchProperties()
             {
-                seid=337, domain="com.ar", geo_location="Argentina", locale="es-419-ar", uule= "w+CAIQICIJQXJnZW50aW5h", device="mobile_android"
+                seid=337, domain="com.ar", geo_location="Argentina", locale="es-419-ar", uule="w+CAIQICIJQXJnZW50aW5h", device="mobile_android"
             },
             new SearchProperties()
             {
@@ -952,7 +952,7 @@ namespace RapidTrackingSingleThread
             },
             new SearchProperties()
             {
-                seid=363, domain="com.bd", geo_location="Bangladesh", locale="en-bd", uule= "w+CAIQICIKQmFuZ2xhZGVzaA", device="desktop_chrome"
+                seid=363, domain="com.bd", geo_location="Bangladesh", locale="en-bd", uule="w+CAIQICIKQmFuZ2xhZGVzaA", device="desktop_chrome"
             },
             new SearchProperties()
             {
@@ -968,19 +968,19 @@ namespace RapidTrackingSingleThread
             },
             new SearchProperties()
             {
-                seid=367, domain="com", geo_location="Aspen,Colorado,United States", locale= "en-us", uule="w+CAIQICIcQXNwZW4sQ29sb3JhZG8sVW5pdGVkIFN0YXRlcw==", device="desktop_chrome"
+                seid=367, domain="com", geo_location="Aspen,Colorado,United States", locale="en-us", uule="w+CAIQICIcQXNwZW4sQ29sb3JhZG8sVW5pdGVkIFN0YXRlcw==", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid=368, domain="com", geo_location="Aspen,Colorado,United States", locale= "en-us", uule="w+CAIQICIcQXNwZW4sQ29sb3JhZG8sVW5pdGVkIFN0YXRlcw==", device="mobile_android"
+                seid=368, domain="com", geo_location="Aspen,Colorado,United States", locale="en-us", uule="w+CAIQICIcQXNwZW4sQ29sb3JhZG8sVW5pdGVkIFN0YXRlcw==", device="mobile_android"
             },
             new SearchProperties()
             {
-                seid=369, domain="com", geo_location="Napa,California,United States", locale= "en-us", uule="w+CAIQICIfbmFwYSwgY2FsaWZvcm5pYSwgdW5pdGVkIHN0YXRlcw==", device="desktop_chrome"
+                seid=369, domain="com", geo_location="Napa,California,United States", locale="en-us", uule="w+CAIQICIfbmFwYSwgY2FsaWZvcm5pYSwgdW5pdGVkIHN0YXRlcw==", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid=370, domain="com", geo_location="Napa,California,United States", locale= "en-us", uule="w+CAIQICIfbmFwYSwgY2FsaWZvcm5pYSwgdW5pdGVkIHN0YXRlcw==", device="mobile_android"
+                seid=370, domain="com", geo_location="Napa,California,United States", locale="en-us", uule="w+CAIQICIfbmFwYSwgY2FsaWZvcm5pYSwgdW5pdGVkIHN0YXRlcw==", device="mobile_android"
             },
             new SearchProperties()
             {
@@ -1056,7 +1056,7 @@ namespace RapidTrackingSingleThread
             },
             new SearchProperties()
             {
-                seid=398, domain="com.vn", geo_location="Vietnam", locale="vi-vn", uule= "w+CAIQICIHVmlldG5hbQ==", device="mobile_android"
+                seid=398, domain="com.vn", geo_location="Vietnam", locale="vi-vn", uule="w+CAIQICIHVmlldG5hbQ==", device="mobile_android"
             },
             new SearchProperties()
             {

@@ -3712,7 +3712,7 @@ namespace TrendingLoopReceiving
             nd = node.SelectSingleNode(".//div[contains(@class,'Ww4FFb vt6azd')and(.//div[(@class='XNfAUb')])]");//11-10-2024 sitesCarousel
             if (nd != null && node.SelectSingleNode(".//div[contains(@class,'cvP2Ce')]") == null && node.SelectSingleNode(".//div[@class='LbKnXb YAG2qc UYJxh']|.//div[@class='cyspcb DH9lqb']") != null)//22-10-2024//15-10-2024
                 return true;//11-10-2024 sitesCarousel
-            if (node.SelectSingleNode(".//div[contains(@class, 'Z3ngN')]|.//div[@class='ycw3p']") != null)//12-03-2025 //22-03-2021
+            if (node.SelectSingleNode(".//div[contains(@class, 'Z3ngN')]|.//div[@class='ycw3p']") != null && node.SelectSingleNode(".//div[@class='ml-bs-u']") == null)//27-03-2025//12-03-2025 //22-03-2021
                 return false;
             if (node.SelectSingleNode(".//video-voyager[@class='LnSx5b']|.//div[@class='lNvPub v5yQqb']" +
                 "|.//div[@class='adXOEf v5yQqb']|.//div[@class='T61Aje v5yQqb']|.//div[contains(@class,'kb0PBd cvP2Ce')]") != null)//13-08-2024//23-08-2023//15-03-2023//16-12-2021

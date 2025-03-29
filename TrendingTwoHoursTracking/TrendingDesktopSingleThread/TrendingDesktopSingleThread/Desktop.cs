@@ -1806,6 +1806,8 @@ namespace TrendingDesktopSingleThread
                 nd = node.SelectNodes(".//div[@class='x4Oxj']/a");//31-07-2024
             if (nd == null) //21-09-2023
                 nd = node.SelectNodes(".//div[@class='yM0Ysd']/a[@class='OE6E7b']"); //21-09-2023
+            if (nd == null)//28-03-2025
+                nd = node.SelectNodes(".//div[@class='snZxkd']/g-link/a");//28-03-2025
             string url = "";
             if (nd != null)
             {

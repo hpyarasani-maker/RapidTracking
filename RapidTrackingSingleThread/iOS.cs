@@ -3983,7 +3983,7 @@ namespace RapidTrackingSingleThread
                             nd1 = nd.SelectSingleNode(".//div[@class='dsxN8b EXH1Ce PZPZlf']");//11-12-2024
                         if (nd1 != null)
                         {
-                            content = nd1.SelectSingleNode(".//span[@role='heading']|.//div[contains(@class,'y7p1tf')]")?.InnerText ?? "";//04-03-2025//11-12-2024
+                            content = nd1.SelectSingleNode(".//span[@role='heading']|.//div[@class='y7p1tf']|.//div[contains(@class,'cPUhZb')]")?.InnerText ?? "";//04-03-2025//11-12-2024
                             if (string.IsNullOrEmpty(content))
                             {
                                 HtmlNodeCollection spanCol = nd1.SelectNodes(".//span/span|.//div[@class='vM0jzc']/span");

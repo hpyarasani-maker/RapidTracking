@@ -3978,6 +3978,8 @@ namespace AIOReceiving
                                         break;
                                     content += sp.InnerText + " ";
                                 }
+                                if (string.IsNullOrEmpty(content) || content == "&#160; ")//04-04-2025
+                                    content = nd1.SelectSingleNode(".")?.InnerText;//04-04-2025
                                 content = content.TrimEnd();//18-11-2024
                             }
                             HtmlNode urlNode = nd1.SelectSingleNode(".//div[contains(@class,'acn1Z')]");
@@ -4020,6 +4022,8 @@ namespace AIOReceiving
                                             break;
                                         content += sp.InnerText + " ";
                                     }
+                                    if (string.IsNullOrEmpty(content) || content == "&#160; ")//04-04-2025
+                                        content = nd1.SelectSingleNode(".")?.InnerText;//04-04-2025
                                     content = content.TrimEnd();//18-11-2024
                                 }
                             }

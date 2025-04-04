@@ -54,7 +54,8 @@ namespace Oxylabs_BulkKeywords
                 "|//div[contains(@class,'wHYlTd Ww4FFb vt6azd')]|//div[contains(@class,'Lv2Cle Ww4FFb vt6azd')]|//div[contains(@class,'Ww4FFb vt6azd xpd')]" +
                 "|//div[contains(@class,'Ww4FFb vt6azd oGMpge')]|//div[contains(@class,'Ww4FFb vt6azd tRkSqb')]|//div[contains(@class,'Ww4FFb vt6azd F6CFcc')]" +
                 "|//div[@class='lU8tTd']|//g-card[@class='g F6CFcc']|.//div[@class='Ww4FFb vt6azd g']|.//div[@class='vtSz8d Ww4FFb vt6azd']" +
-                "|.//div[@class='AGopnf']|.//div[@class='Ww4FFb vt6azd']|.//div[contains(@class,'WlTAzf Ww4FFb vt6azd')]");//27-03-2025//01-01-2025//28-11-2024//26-09-2024//10-09-2024//09-05-2024//12-03-2024
+                                    "|.//div[@class='AGopnf']|.//div[@class='Ww4FFb vt6azd']|.//div[contains(@class,'WlTAzf Ww4FFb vt6azd')]|.//div[@class='vt6azd Ww4FFb']" +
+                    "|.//div[@class='grvXqb fZ46zc']|.//g-card[@class='XqIXXe']|.//div[@id='knowledge-finance-wholepage__entity-summary']");//04-03-2025//02-04-2025//27-03-2025//01-01-2025//28-11-2024//26-09-2024//10-09-2024//09-05-2024//12-03-2024
             if (nodeCol == null)
                 nodeCol = doc.DocumentNode.SelectNodes("//*[@id='tscffb']");
             if (nodeCol == null)
@@ -900,7 +901,7 @@ namespace Oxylabs_BulkKeywords
                     nds = node.SelectNodes(".");//14-02-2024//21-09-2023 //02-02-2022 moved from 687 line   // 25-10-2019
                 if (nds == null)//30-09-2024
                     nds = node.SelectNodes(".//div[@class='AGopnf']|.//div[@class='ycw3p']");//12-03-2025//30-09-2024
-                if (nds != null && nds.Count == 1 && (node.Attributes["class"]?.Value == "Ww4FFb vt6azd" || node.Attributes["class"]?.Value == "g Ww4FFb vt6azd"))//07-01-2025//21-10-2024
+                if (nds != null && nds.Count == 1 && (node.Attributes["class"]?.Value == "Ww4FFb vt6azd" || node.Attributes["class"]?.Value == "g Ww4FFb vt6azd" || node.Attributes["class"]?.Value == "Ww4FFb vt6azd xpd EtOod pkphOe" || node.Attributes["class"]?.Value == "XqIXXe"))//02-04-2025//07-01-2025//21-10-2024
                     nds = node.SelectNodes(".");//21-10-2024
             }
             if (nds != null)
@@ -2775,7 +2776,7 @@ namespace Oxylabs_BulkKeywords
                         //end 26-06-2020
                         if (url.Contains("/search?") || url.StartsWith("#")) url = "";//11-04-2022
                         string creator = nd.SelectSingleNode(".//div[contains(@class,'YDQ8Te Fy8FNd OSrXXb')]/span[3]|.//div[@class='pDdfmc YqCW4e OSrXXb']/span[3]" +//19-11-2024
-                            "|.//span[@class='GbZYR OSrXXb']|.//div[contains(@class,'R8BTeb q8U8x')]|.//div[@class='SPa6uf Hqu6dd OSrXXb CUQOj']/span[3]")?.InnerText.Trim() ?? "";//12-02-2025//01-10-2024//12-08-2024//22-07-2024//04-12-2023
+                            "|.//span[@class='GbZYR OSrXXb']|.//div[contains(@class,'R8BTeb q8U8x')]|.//div[contains(@class,'SPa6uf Hqu6dd OSrXXb')]/span[3]")?.InnerText.Trim() ?? "";//04-03-2025//12-02-2025//01-10-2024//12-08-2024//22-07-2024//04-12-2023
                         if (!string.IsNullOrEmpty(url.Trim()) || !string.IsNullOrEmpty(title.Trim())) //11-04-2022
                                                                                                       //s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                             s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" creatorName=\"" + SetTitle(creator) + "\" />");//04-12-2023
@@ -3993,7 +3994,7 @@ namespace Oxylabs_BulkKeywords
                             nd1 = nd.SelectSingleNode(".//div[@class='dsxN8b EXH1Ce PZPZlf']");//11-12-2024
                         if (nd1 != null)
                         {
-                            content = nd1.SelectSingleNode(".//span[@role='heading']|.//div[@class='y7p1tf']")?.InnerText ?? "";//11-12-2024
+                            content = nd1.SelectSingleNode(".//span[@role='heading']|.//div[contains(@class,'y7p1tf')]")?.InnerText ?? "";//04-03-2025//11-12-2024
                             if (string.IsNullOrEmpty(content))
                             {
                                 HtmlNodeCollection spanCol = nd1.SelectNodes(".//span/span|.//div[@class='vM0jzc']/span");

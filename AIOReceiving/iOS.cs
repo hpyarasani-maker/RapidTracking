@@ -2788,7 +2788,7 @@ namespace AIOReceiving
                         //end 26-06-2020
                         if (url.Contains("/search?") || url.StartsWith("#")) url = "";//11-04-2022
                         string creator = nd.SelectSingleNode(".//div[contains(@class,'YDQ8Te Fy8FNd OSrXXb')]/span[3]|.//div[@class='pDdfmc YqCW4e OSrXXb']/span[3]" +//19-11-2024
-                            "|.//span[@class='GbZYR OSrXXb']|.//div[contains(@class,'R8BTeb q8U8x')]|.//div[contains(@class,'SPa6uf Hqu6dd OSrXXb')]/span[3]")?.InnerText.Trim() ?? "";//04-03-2025//12-02-2025//01-10-2024//12-08-2024//22-07-2024//04-12-2023
+                            "|.//span[@class='GbZYR OSrXXb']|.//div[contains(@class,'R8BTeb q8U8x')]|.//div[contains(@class,'SPa6uf Hqu6dd OSrXXb')]/span[3]")?.InnerText.Trim() ?? "";//04-04-2025//12-02-2025//01-10-2024//12-08-2024//22-07-2024//04-12-2023
                         if (!string.IsNullOrEmpty(url.Trim()) || !string.IsNullOrEmpty(title.Trim())) //11-04-2022
                                                                                                       //s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                             s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" creatorName=\"" + SetTitle(creator) + "\" />");//04-12-2023
@@ -4006,7 +4006,7 @@ namespace AIOReceiving
                             nd1 = nd.SelectSingleNode(".//div[@class='dsxN8b EXH1Ce PZPZlf']");//11-12-2024
                         if (nd1 != null)
                         {
-                            content = nd1.SelectSingleNode(".//span[@role='heading']|.//div[@class='y7p1tf']|.//div[contains(@class,'cPUhZb')]")?.InnerText ?? "";//04-03-2025//11-12-2024
+                            content = nd1.SelectSingleNode(".//span[@role='heading']|.//div[@class='y7p1tf']|.//div[contains(@class,'cPUhZb')]")?.InnerText ?? "";//04-04-2025//11-12-2024
                             if (string.IsNullOrEmpty(content))
                             {
                                 HtmlNodeCollection spanCol = nd1.SelectNodes(".//span/span|.//div[@class='vM0jzc']/span");

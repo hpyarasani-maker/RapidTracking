@@ -52,7 +52,8 @@ namespace TrendingReceiving
                 "|//div[contains(@class,'wHYlTd Ww4FFb vt6azd')]|//div[contains(@class,'Lv2Cle Ww4FFb vt6azd')]|//div[contains(@class,'Ww4FFb vt6azd xpd')]" +
                 "|//div[contains(@class,'Ww4FFb vt6azd oGMpge')]|//div[contains(@class,'Ww4FFb vt6azd tRkSqb')]|//div[contains(@class,'Ww4FFb vt6azd F6CFcc')]" +
                 "|//div[@class='lU8tTd']|//g-card[@class='g F6CFcc']|.//div[@class='Ww4FFb vt6azd g']|.//div[@class='vtSz8d Ww4FFb vt6azd']" +
-                "|.//div[@class='AGopnf']|.//div[@class='Ww4FFb vt6azd']|.//div[contains(@class,'WlTAzf Ww4FFb vt6azd')]");//27-03-2025//01-01-2025//28-11-2024//26-09-2024//10-09-2024//09-05-2024//12-03-2024
+                "|.//div[@class='AGopnf']|.//div[@class='Ww4FFb vt6azd']|.//div[contains(@class,'WlTAzf Ww4FFb vt6azd')]|.//div[@class='vt6azd Ww4FFb']" +
+                "|.//div[@class='grvXqb fZ46zc']|.//g-card[@class='XqIXXe']|.//div[@id='knowledge-finance-wholepage__entity-summary']");//04-04-2025//02-04-2025//27-03-2025//01-01-2025//28-11-2024//26-09-2024//10-09-2024//09-05-2024//12-03-2024
             if (nodeCol == null)
                 nodeCol = doc.DocumentNode.SelectNodes("//*[@id='tscffb']");
             if (nodeCol == null)

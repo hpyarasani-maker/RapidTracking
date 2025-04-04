@@ -61,7 +61,10 @@ namespace RapidTrackingJobIDResults
                 {
                     continue;
                 }
-                if (node.HasClass("TzHB6b") && node.SelectSingleNode(".//div[contains(@class,'g Ww4FFb')]|.//div[@class='wHYlTd Ww4FFb vt6azd tF2Cxc asEBEc']|.//div[contains(@class,'PmEWq wHYlTd')]|.//div[contains(@class,'g PmEWq')]|.//div[@class='Wt5Tfe']|.//div[@class='g']/div[@class='BYM4Nd']|.//div[@class='Lv2Cle']|.//g-section-with-header[contains(@class,'yG4QQe TBC9ub')]|.//div[@class='uVMCKf']|.//div[@class='vtSz8d']") != null)//21-03-2025//31-12-2024//09-10-2024 //video block and avoid duplicate Topstories
+                if (node.SelectSingleNode(".//div[contains(@class,'g Ww4FFb')]|.//div[@class='wHYlTd Ww4FFb vt6azd tF2Cxc asEBEc']|.//div[contains(@class,'PmEWq wHYlTd')]" +
+                    "|.//div[@class='xfX4Ac JI5uCe qB9BY yWNJXb qzPQNd']|.//div[contains(@class,'g PmEWq')]|.//div[@class='Wt5Tfe']|.//div[@class='g']/div[@class='BYM4Nd']" +
+                    "|.//div[@class='Lv2Cle']|.//g-section-with-header[contains(@class,'yG4QQe TBC9ub')]|.//div[@class='uVMCKf']|.//div[@class='vtSz8d']|.//div[@id='knowledge-finance-wholepage__entity-summary']") != null &&
+                    (node.Attributes["class"]?.Value?.Contains("xfX4Ac JI5uCe qB9BY yWNJXb") ?? true || node.HasClass("TzHB6b")))//03-04-2025//21-03-2025//31-12-2024//09-10-2024
                 {
                     continue;
                 }//09-10-2024

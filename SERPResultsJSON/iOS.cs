@@ -3934,7 +3934,7 @@ namespace SERPResultsJSON
                 {
                     HtmlNodeCollection ls = nd.SelectNodes(".//div[@class='RJPOee EIJn2']/ul/li");
                     if (ls == null)
-                        ls = nd.SelectNodes(".//ol[@jscontroller='M2ABbc']/li|.//ul[@jscontroller='M2ABbc']/li");
+                        ls = nd.SelectNodes(".//ol[@jscontroller='M2ABbc']/li|.//ul[@jscontroller='M2ABbc']/li|.//ul[@jscontroller='M2ABbc']/div");//04-04-2025
                     if (ls == null)
                         ls = nd.SelectNodes(".//ol/li[@class='K3KsMc']|.//ul/li[@class='K3KsMc']|.//ul/li[@class='pWtQDd']");
                     if (ls != null)
@@ -3943,7 +3943,7 @@ namespace SERPResultsJSON
                         {
                             string content = string.Empty;
                             string url = string.Empty;
-                            HtmlNodeCollection spanCol = nd1.SelectNodes(".//span/span|.//div[@class='vM0jzc']/span");
+                            HtmlNodeCollection spanCol = nd1.SelectNodes(".//span/span|.//div[@class='vM0jzc']/span|.//div[@class='vM0jzc']/ul/div|.//div[@class='Gur8Ad']/span");//04-04-2025
                             if (spanCol == null || (spanCol != null && spanCol[0].InnerText.Equals("&nbsp;")))//18-11-2024
                                 spanCol = nd1.SelectNodes(".//span");
                             if (spanCol != null)
@@ -3955,7 +3955,7 @@ namespace SERPResultsJSON
                                     content += sp.InnerText + " ";
                                 }
                                 if (string.IsNullOrEmpty(content) || content == "&#160; ")//04-04-2025
-                                    content = nd1.SelectSingleNode(".")?.InnerText;//04-04-2025
+                                    content = nd1.SelectSingleNode(".")?.InnerText.Trim().Replace("&#160;", "");//04-04-2025
                                 content = content.TrimEnd();//18-11-2024
                             }
                             HtmlNode urlNode = nd1.SelectSingleNode(".//div[contains(@class,'acn1Z')]");
@@ -3999,7 +3999,7 @@ namespace SERPResultsJSON
                                         content += sp.InnerText + " ";
                                     }
                                     if (string.IsNullOrEmpty(content) || content == "&#160; ")//04-04-2025
-                                        content = nd1.SelectSingleNode(".")?.InnerText;//04-04-2025
+                                        content = nd1.SelectSingleNode(".")?.InnerText.Trim().Replace("&#160;", "");//04-04-2025
                                     content = content.TrimEnd();//18-11-2024
                                 }
                             }

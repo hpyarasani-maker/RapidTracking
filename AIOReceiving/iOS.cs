@@ -3956,11 +3956,13 @@ namespace AIOReceiving
             {
                 foreach (HtmlNode nd in nodes)
                 {
-                    HtmlNodeCollection ls = nd.SelectNodes(".//div[@class='RJPOee EIJn2']/ul/li");
+                    HtmlNodeCollection ls = nd.SelectNodes(".//div[@class='RJPOee EIJn2']/ul/li|.//div[@class='RJPOee EIJn2']/div");//05-04-2025
                     if (ls == null)
                         ls = nd.SelectNodes(".//ol[@jscontroller='M2ABbc']/li|.//ul[@jscontroller='M2ABbc']/li|.//ul[@jscontroller='M2ABbc']/div");//04-04-2025
                     if (ls == null)
                         ls = nd.SelectNodes(".//ol/li[@class='K3KsMc']|.//ul/li[@class='K3KsMc']|.//ul/li[@class='pWtQDd']");
+                    if (ls == null)//05-04-2025
+                        ls = nd.SelectNodes(".//div[@jscontroller='JegcYe']");//05-04-2025
                     if (ls != null)
                     {
                         foreach (HtmlNode nd1 in ls)
@@ -3978,7 +3980,7 @@ namespace AIOReceiving
                                         break;
                                     content += sp.InnerText + " ";
                                 }
-                                if (string.IsNullOrEmpty(content) || content == "&#160; ")//04-04-2025
+                                if (string.IsNullOrEmpty(content) || content == "&#160; " || content == " ")//04-04-2025//05-04-2025
                                     content = nd1.SelectSingleNode(".")?.InnerText.Trim().Replace("&#160;", "");//04-04-2025
                                 content = content.TrimEnd();//18-11-2024
                             }
@@ -3993,7 +3995,8 @@ namespace AIOReceiving
                             }
                             if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(content))
                             {
-                                s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" + SetTitle(content.Replace("&nbsp;", "")) + "\" />");
+                                if (content != " &nbsp;" && content != "&nbsp;  &nbsp;")//05-04-2025
+                                    s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" + SetTitle(content.Replace("&nbsp;", "")) + "\" />");
                             }
                         }
                     }
@@ -4041,9 +4044,11 @@ namespace AIOReceiving
                                 }
                             }
                         }
+                        content = content.Replace("&nbsp;", "");//05-04-2025                        
                         if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(content))
                         {
-                            s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" + SetTitle(content.Replace("&nbsp;", "")) + "\" />");
+                            if (content != " &nbsp;" && content != "&nbsp;  &nbsp;")//05-04-2025
+                                s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" + SetTitle(content.Replace("&nbsp;", "")) + "\" />");
                         }
                     }
                 }

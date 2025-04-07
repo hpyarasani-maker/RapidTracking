@@ -3969,7 +3969,7 @@ namespace AIOSingleThread
                                     if (!string.IsNullOrEmpty(sp.InnerText))//07-04-2025
                                         content += sp.InnerText + " ";
                                 }
-                                if (string.IsNullOrEmpty(content) || content == "&#160; " || content == " ")//04-04-2025//05-04-2025
+                                if (string.IsNullOrEmpty(content) || content == "&#160; " || content == "&#65279; " || content == " ")//07-04-2025//04-04-2025
                                     content = nd1.SelectSingleNode(".")?.InnerText.Trim().Replace("&#160;", "");//04-04-2025
                                 content = content.TrimEnd();//18-11-2024
                             }
@@ -4010,10 +4010,10 @@ namespace AIOSingleThread
                                     spanCol = nd1.SelectNodes(".//span");
                                 if (nd1.Attributes["class"]?.Value == "jSqiwc")//07-04-2025
                                 {
-                                    spanCol = nd1.SelectNodes(".//tbody/tr");
+                                    spanCol = nd1.SelectNodes(".//tr");
                                     foreach (HtmlNode sp in spanCol)
                                     {
-                                        HtmlNodeCollection th = sp.SelectNodes(".//th");
+                                        HtmlNodeCollection th = sp.SelectNodes(".//th");//07-04-2025
                                         if (th != null)
                                         {
                                             foreach (HtmlNode header in th)
@@ -4034,7 +4034,7 @@ namespace AIOSingleThread
                                     }
                                     content = content.Remove(content.Length - 1).Trim();
                                 }//07-04-2025
-                                if (spanCol != null && nd1.Attributes["class"]?.Value != "jSqiwc")//07-04-2025                         
+                                if (spanCol != null && nd1.Attributes["class"]?.Value != "jSqiwc")//07-04-2025
                                 {
                                     foreach (HtmlNode sp in spanCol)
                                     {
@@ -4043,7 +4043,7 @@ namespace AIOSingleThread
                                         if (!string.IsNullOrEmpty(sp.InnerText))//07-04-2025
                                             content += sp.InnerText + " ";
                                     }
-                                    if (string.IsNullOrEmpty(content) || content == "&#160; ")//04-04-2025
+                                    if (string.IsNullOrEmpty(content) || content == "&#160; " || content == "&#65279; " || content == " ")//07-04-2025//04-04-2025
                                         content = nd1.SelectSingleNode(".")?.InnerText.Trim().Replace("&#160;", "");//04-04-2025
                                     content = content.TrimEnd();//18-11-2024
                                 }
@@ -4062,7 +4062,7 @@ namespace AIOSingleThread
                                 }
                             }
                         }
-                        content = content.Replace("&nbsp;", "");//05-04-2025                        
+                        content = content.Replace("&nbsp;", "");//05-04-2025
                         if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(content))
                         {
                             if (content != " &nbsp;" && content != "&nbsp;  &nbsp;")//05-04-2025

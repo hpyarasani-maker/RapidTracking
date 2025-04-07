@@ -3959,7 +3959,8 @@ namespace AIOMultiThread
                                 {
                                     if (sp.HasClass("UV3uM"))
                                         break;
-                                    content += sp.InnerText + " ";
+                                    if (!string.IsNullOrEmpty(sp.InnerText))//07-04-2025
+                                        content += sp.InnerText + " ";
                                 }
                                 if (string.IsNullOrEmpty(content) || content == "&#160; " || content == " ")//04-04-2025//05-04-2025
                                     content = nd1.SelectSingleNode(".")?.InnerText.Trim().Replace("&#160;", "");//04-04-2025
@@ -3990,6 +3991,8 @@ namespace AIOMultiThread
                             nd1 = nd.SelectSingleNode(".//div[contains(@class,'rPeykc')]");
                         if (nd1 == null)
                             nd1 = nd.SelectSingleNode(".//div[@class='dsxN8b EXH1Ce PZPZlf']");//11-12-2024
+                        if (nd1 == null)//07-04-2025
+                            nd1 = nd.SelectSingleNode(".//table[@class='jSqiwc']");//07-04-2025
                         if (nd1 != null)
                         {
                             content = nd1.SelectSingleNode(".//span[@role='heading']|.//div[@class='y7p1tf']|.//div[contains(@class,'cPUhZb')]")?.InnerText ?? "";//04-04-2025//11-12-2024
@@ -3998,13 +4001,40 @@ namespace AIOMultiThread
                                 HtmlNodeCollection spanCol = nd1.SelectNodes(".//span/span|.//div[@class='vM0jzc']/span");
                                 if (spanCol == null || (spanCol != null && spanCol[0].InnerText.Equals("&nbsp;")))//18-11-2024
                                     spanCol = nd1.SelectNodes(".//span");
-                                if (spanCol != null)
+                                if (nd1.Attributes["class"]?.Value == "jSqiwc")//07-04-2025
+                                {
+                                    spanCol = nd1.SelectNodes(".//tbody/tr");
+                                    foreach (HtmlNode sp in spanCol)
+                                    {
+                                        HtmlNodeCollection th = sp.SelectNodes(".//th");
+                                        if (th != null)
+                                        {
+                                            foreach (HtmlNode header in th)
+                                            {
+                                                content += header.InnerText + ":";
+                                            }
+                                            content = content.Remove(content.Length - 1) + ", ";
+                                        }
+                                        HtmlNodeCollection td = sp.SelectNodes(".//td");
+                                        if (td != null)
+                                        {
+                                            foreach (HtmlNode data in td)
+                                            {
+                                                content += data.InnerText + ":";
+                                            }
+                                            content = content.Remove(content.Length - 1) + ", ";
+                                        }
+                                    }
+                                    content = content.Trim().Remove(content.Length - 1);
+                                }//07-04-2025
+                                if (spanCol != null && nd1.Attributes["class"]?.Value != "jSqiwc")//07-04-2025                         
                                 {
                                     foreach (HtmlNode sp in spanCol)
                                     {
                                         if (sp.HasClass("UV3uM"))
                                             break;
-                                        content += sp.InnerText + " ";
+                                        if (!string.IsNullOrEmpty(sp.InnerText))//07-04-2025
+                                            content += sp.InnerText + " ";
                                     }
                                     if (string.IsNullOrEmpty(content) || content == "&#160; ")//04-04-2025
                                         content = nd1.SelectSingleNode(".")?.InnerText.Trim().Replace("&#160;", "");//04-04-2025

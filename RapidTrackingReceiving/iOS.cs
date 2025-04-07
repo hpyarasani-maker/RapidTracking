@@ -4032,7 +4032,7 @@ namespace Oxylabs_BulkKeywords
                                             content = content.Remove(content.Length - 1) + ", ";
                                         }
                                     }
-                                    content = content.Trim().Remove(content.Length - 1);
+                                    content = content.Remove(content.Length - 1).Trim();
                                 }//07-04-2025
                                 if (spanCol != null && nd1.Attributes["class"]?.Value != "jSqiwc")//07-04-2025                         
                                 {

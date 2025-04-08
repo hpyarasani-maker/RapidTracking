@@ -3959,7 +3959,7 @@ namespace AIOMultiThread
                                 {
                                     if (sp.HasClass("UV3uM"))
                                         break;
-                                    if (!string.IsNullOrEmpty(sp.InnerText))//07-04-2025
+                                    if (!string.IsNullOrEmpty(sp.InnerText) && sp.InnerText.Length > 2)//08-04-2025
                                         content += sp.InnerText + " ";
                                 }
                                 if (string.IsNullOrEmpty(content) || content == "&#160; " || content == "&#65279; " || content == " ")//07-04-2025//04-04-2025
@@ -4033,7 +4033,7 @@ namespace AIOMultiThread
                                     {
                                         if (sp.HasClass("UV3uM"))
                                             break;
-                                        if (!string.IsNullOrEmpty(sp.InnerText))//07-04-2025
+                                        if (!string.IsNullOrEmpty(sp.InnerText) && sp.InnerText.Length > 2)//08-04-2025
                                             content += sp.InnerText + " ";
                                     }
                                     if (string.IsNullOrEmpty(content) || content == "&#160; " || content == "&#65279; " || content == " ")//07-04-2025//04-04-2025

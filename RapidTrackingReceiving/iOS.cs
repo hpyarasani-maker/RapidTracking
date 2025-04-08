@@ -3957,7 +3957,7 @@ namespace Oxylabs_BulkKeywords
                         {
                             string content = string.Empty;
                             string url = string.Empty;
-                            HtmlNodeCollection spanCol = nd1.SelectNodes(".//span/span|.//div[@class='vM0jzc']/span|.//div[@class='vM0jzc']/ul/div|.//div[@class='Gur8Ad']/span");//04-04-2025
+                            HtmlNodeCollection spanCol = nd1.SelectNodes(".//span/span|.//div[@class='vM0jzc']/span|.//div[@class='vM0jzc']/ul/div|.//div[@class='Gur8Ad']/span|.//div[@class='vM0jzc']/ul/li");//08-04-2025//04-04-2025
                             if (spanCol == null || (spanCol != null && spanCol[0].InnerText.Equals("&nbsp;")))//18-11-2024
                                 spanCol = nd1.SelectNodes(".//span");
                             if (spanCol != null)
@@ -3982,10 +3982,10 @@ namespace Oxylabs_BulkKeywords
                                     url = link.Attributes["href"]?.Value ?? "";
                                 }
                             }
-                            if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(content))
+                            content = content.Replace("&nbsp;", "").Trim();//08-04-2025
+                            if ((!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(content)) && content.Length > 2)//08-04-2025
                             {
-                                if (content != " &nbsp;" && content != "&nbsp;  &nbsp;")//05-04-2025
-                                    s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" + SetTitle(content.Replace("&nbsp;", "")) + "\" />");
+                                s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" + SetTitle(content.Replace("&nbsp;", "")) + "\" />");
                             }
                         }
                     }
@@ -4062,11 +4062,10 @@ namespace Oxylabs_BulkKeywords
                                 }
                             }
                         }
-                        content = content.Replace("&nbsp;", "");//05-04-2025
-                        if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(content))
+                        content = content.Replace("&nbsp;", "").Trim();//08-04-2025
+                        if ((!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(content)) && content.Length > 2)//08-04-2025
                         {
-                            if (content != " &nbsp;" && content != "&nbsp;  &nbsp;")//05-04-2025
-                                s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" + SetTitle(content.Replace("&nbsp;", "")) + "\" />");
+                            s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" + SetTitle(content.Replace("&nbsp;", "")) + "\" />");
                         }
                     }
                 }

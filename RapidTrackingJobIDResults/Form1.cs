@@ -54,10 +54,21 @@ namespace RapidTrackingJobIDResults
             //this.Text = "RapidTracking_NewKeywords_MissingJobIDs_GT0"; //changes //15-04-2021
             //string kwQry = "Tracking_DB_Keywords_SEID_102_TGBN '" + myDate + "'";
 
-            Thread t = new Thread(new ThreadStart(StartProcess));
-            t.SetApartmentState(ApartmentState.STA);
-            t.Priority = ThreadPriority.Lowest;
-            t.Start();
+            Task task = Task.Run(async () =>
+            {
+                try
+                {
+                    await StartProcess();
+                }
+                catch (Exception ex)
+                {
+                    this.Invoke((MethodInvoker)delegate ()
+                    {
+                        txtError.Text = $"Exception: {ex.Message}";
+                    });
+
+                }
+            });
         }
         public enum stats
         {
@@ -67,7 +78,7 @@ namespace RapidTrackingJobIDResults
             statuscode
 
         }
-        private void StartProcess()
+        private async Task StartProcess()
         {
             while (true)
             {
@@ -148,6 +159,9 @@ namespace RapidTrackingJobIDResults
                                     {
                                         SendToDB(seid, keyword, res, jobid, count);
                                     }
+                                    bool aio = res.Contains("<block type=\"aiOverview\">");//16-02-2025
+                                    if (aio && device == "mobile_android") // inserting true value //16-02-2025
+                                        await InsertAIO_Keyword(keyword, seid, aio);
                                 }
                             }
                             catch (Exception ex)
@@ -492,6 +506,35 @@ namespace RapidTrackingJobIDResults
                 throw ex;
             }
         }
+        private async Task InsertAIO_Keyword(string kw, string seid, bool aio)//16-02-2025
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
+                {
+                    con.Open();
+                    using (SqlCommand comm = con.CreateCommand())
+                    {
+                        comm.CommandTimeout = 0;
+                        comm.CommandType = CommandType.StoredProcedure;
+                        comm.CommandText = "Insert_AIO_Keywords";
+                        comm.Parameters.Add("Seid", SqlDbType.Int).Value = seid;
+                        comm.Parameters.Add("Name", SqlDbType.NVarChar).Value = kw;
+                        comm.Parameters.Add("AIO", SqlDbType.Bit).Value = aio;
+                        await comm.ExecuteNonQueryAsync();
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                string errorMessage = $"Database Error in Insert_AIO_Keywords: \r\n{ex.Message}";
+                throw new Exception(errorMessage);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }//16-02-2025
 
         public async Task<ArrayList> GetHTML(string keyword, int seid,string jobid)
         {

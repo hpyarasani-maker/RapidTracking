@@ -2652,7 +2652,7 @@ namespace AIOReceiving
 
             nds = node.SelectNodes(".//g-inner-card/a");
             if (nds == null) //14-09-2022 shifted from 1991 2 lines
-                nds = node.SelectNodes(".//div[contains(@class,'amp_re')]/a|.//div[@class='dbsr']/a|.//div[@class='Fq8eSd']/a|.//div[@class='y1Boce']/div/a|.//div[@data-ved]/a|.//div[contains(@class,'JJJtgd')]/a|.//div[@class='x2PRle DvHpd']/a");//27-02-2025//28-07-2020   // 18-12-2019//27-07-2020
+                nds = node.SelectNodes(".//div[contains(@class,'amp_re')]/a|.//div[@class='dbsr']/a|.//div[@class='Fq8eSd']/a|.//div[@class='y1Boce']/div/a|.//div[@data-ved]/a|.//div[contains(@class,'JJJtgd')]/a|.//div[contains(@class,'JJJtgd')]/div|.//div[@class='x2PRle DvHpd']/a");//08-04-2025//27-02-2025//28-07-2020
             if (nds == null)
                 nds = node.SelectNodes(".//g-inner-card/div/a|.//div[@class='kno-fb-ctx n49mp']/div/a|.//div[@class='zZ9K7e']/a|.//div[contains(@class,'kno-fb-ctx')]/div/a|.//div[contains(@class,'kno-fb-ctx')]/div/div/a|.//g-inner-card/div/div/a");//10-08-2022 TS Item Urls
             if (nds == null)
@@ -2686,8 +2686,10 @@ namespace AIOReceiving
                         title = nd.SelectSingleNode(".//div[contains(@class,'eAaXgc cPUhZb')]");//10-10-2023
                     if (title == null)
                         title = nd.SelectSingleNode(".//div[contains(@class,'eAaXgc RES9jf')]");//16-10-2024
-                    string url = nd.Attributes["href"].Value;
-                    if (!url.Contains("/search?q=")) //09-09-2022 avoid google link
+                    string url = nd.Attributes["href"]?.Value ?? string.Empty;
+                    if (string.IsNullOrEmpty(url))
+                        url = nd.SelectSingleNode(".//a")?.Attributes["href"]?.Value ?? string.Empty;//08-05-2025
+                    if (!url.Contains("/search?q=") && !string.IsNullOrEmpty(url) || !string.IsNullOrEmpty(title?.InnerText))//08-05-2025//09-09-2022 avoid google link
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title.InnerText) + "\" />");
                 }
             else

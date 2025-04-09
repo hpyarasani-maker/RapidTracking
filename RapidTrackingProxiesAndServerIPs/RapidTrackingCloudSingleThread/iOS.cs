@@ -2625,7 +2625,7 @@ namespace RapidTrackingCloudSingleThread
 
             nds = node.SelectNodes(".//g-inner-card/a");
             if (nds == null) //14-09-2022 shifted from 1991 2 lines
-                nds = node.SelectNodes(".//div[contains(@class,'amp_re')]/a|.//div[@class='dbsr']/a|.//div[@class='Fq8eSd']/a|.//div[@class='y1Boce']/div/a|.//div[@data-ved]/a|.//div[contains(@class,'JJJtgd')]/a|.//div[@class='x2PRle DvHpd']/a");//27-02-2025//28-07-2020   // 18-12-2019//27-07-2020
+                nds = node.SelectNodes(".//div[contains(@class,'amp_re')]/a|.//div[@class='dbsr']/a|.//div[@class='Fq8eSd']/a|.//div[@class='y1Boce']/div/a|.//div[@data-ved]/a|.//div[contains(@class,'JJJtgd')]/a|.//div[contains(@class,'JJJtgd')]/div|.//div[@class='x2PRle DvHpd']/a");//08-04-2025//27-02-2025//28-07-2020
             if (nds == null)
                 nds = node.SelectNodes(".//g-inner-card/div/a|.//div[@class='kno-fb-ctx n49mp']/div/a|.//div[@class='zZ9K7e']/a|.//div[contains(@class,'kno-fb-ctx')]/div/a|.//div[contains(@class,'kno-fb-ctx')]/div/div/a|.//g-inner-card/div/div/a");//10-08-2022 TS Item Urls
             if (nds == null)
@@ -2659,8 +2659,10 @@ namespace RapidTrackingCloudSingleThread
                         title = nd.SelectSingleNode(".//div[contains(@class,'eAaXgc cPUhZb')]");//10-10-2023
                     if (title == null)
                         title = nd.SelectSingleNode(".//div[contains(@class,'eAaXgc RES9jf')]");//16-10-2024
-                    string url = nd.Attributes["href"].Value;
-                    if (!url.Contains("/search?q=")) //09-09-2022 avoid google link
+                    string url = nd.Attributes["href"]?.Value ?? string.Empty;
+                    if (string.IsNullOrEmpty(url))
+                        url = nd.SelectSingleNode(".//a")?.Attributes["href"]?.Value ?? string.Empty;//08-05-2025
+                    if (!url.Contains("/search?q=") && !string.IsNullOrEmpty(url) || !string.IsNullOrEmpty(title?.InnerText))//08-05-2025//09-09-2022 avoid google link
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title.InnerText) + "\" />");
                 }
             else
@@ -3929,18 +3931,20 @@ namespace RapidTrackingCloudSingleThread
             {
                 foreach (HtmlNode nd in nodes)
                 {
-                    HtmlNodeCollection ls = nd.SelectNodes(".//div[@class='RJPOee EIJn2']/ul/li");
+                    HtmlNodeCollection ls = nd.SelectNodes(".//div[@class='RJPOee EIJn2']/ul/li|.//div[@class='RJPOee EIJn2']/div");//05-04-2025
                     if (ls == null)
-                        ls = nd.SelectNodes(".//ol[@jscontroller='M2ABbc']/li|.//ul[@jscontroller='M2ABbc']/li");
+                        ls = nd.SelectNodes(".//ol[@jscontroller='M2ABbc']/li|.//ul[@jscontroller='M2ABbc']/li|.//ul[@jscontroller='M2ABbc']/div");//04-04-2025
                     if (ls == null)
                         ls = nd.SelectNodes(".//ol/li[@class='K3KsMc']|.//ul/li[@class='K3KsMc']|.//ul/li[@class='pWtQDd']");
+                    if (ls == null)//05-04-2025
+                        ls = nd.SelectNodes(".//div[@jscontroller='JegcYe']");//05-04-2025
                     if (ls != null)
                     {
                         foreach (HtmlNode nd1 in ls)
                         {
                             string content = string.Empty;
                             string url = string.Empty;
-                            HtmlNodeCollection spanCol = nd1.SelectNodes(".//span/span|.//div[@class='vM0jzc']/span");
+                            HtmlNodeCollection spanCol = nd1.SelectNodes(".//span/span|.//div[@class='vM0jzc']/span|.//div[@class='vM0jzc']/ul/div|.//div[@class='Gur8Ad']/span|.//div[@class='vM0jzc']/ul/li");//08-04-2025//04-04-2025
                             if (spanCol == null || (spanCol != null && spanCol[0].InnerText.Equals("&nbsp;")))//18-11-2024
                                 spanCol = nd1.SelectNodes(".//span");
                             if (spanCol != null)
@@ -3949,10 +3953,11 @@ namespace RapidTrackingCloudSingleThread
                                 {
                                     if (sp.HasClass("UV3uM"))
                                         break;
-                                    content += sp.InnerText + " ";
+                                    if (!string.IsNullOrEmpty(sp.InnerText) && sp.InnerText.Length > 2)//08-04-2025
+                                        content += sp.InnerText + " ";
                                 }
-                                if (string.IsNullOrEmpty(content) || content == "&#160; ")//04-04-2025
-                                    content = nd1.SelectSingleNode(".")?.InnerText;//04-04-2025
+                                if (string.IsNullOrEmpty(content) || content == "&#160; " || content == "&#65279; " || content == " ")//07-04-2025//04-04-2025
+                                    content = nd1.SelectSingleNode(".")?.InnerText.Trim().Replace("&#160;", "");//04-04-2025
                                 content = content.TrimEnd();//18-11-2024
                             }
                             HtmlNode urlNode = nd1.SelectSingleNode(".//div[contains(@class,'acn1Z')]");
@@ -3964,7 +3969,8 @@ namespace RapidTrackingCloudSingleThread
                                     url = link.Attributes["href"]?.Value ?? "";
                                 }
                             }
-                            if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(content))
+                            content = content.Replace("&nbsp;", "").Trim();//08-04-2025
+                            if ((!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(content)) && content.Length > 2)//08-04-2025
                             {
                                 s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" + SetTitle(content.Replace("&nbsp;", "")) + "\" />");
                             }
@@ -3979,6 +3985,8 @@ namespace RapidTrackingCloudSingleThread
                             nd1 = nd.SelectSingleNode(".//div[contains(@class,'rPeykc')]");
                         if (nd1 == null)
                             nd1 = nd.SelectSingleNode(".//div[@class='dsxN8b EXH1Ce PZPZlf']");//11-12-2024
+                        if (nd1 == null)//07-04-2025
+                            nd1 = nd.SelectSingleNode(".//table[@class='jSqiwc']");//07-04-2025
                         if (nd1 != null)
                         {
                             content = nd1.SelectSingleNode(".//span[@role='heading']|.//div[@class='y7p1tf']|.//div[contains(@class,'cPUhZb')]")?.InnerText ?? "";//04-04-2025//11-12-2024
@@ -3987,16 +3995,43 @@ namespace RapidTrackingCloudSingleThread
                                 HtmlNodeCollection spanCol = nd1.SelectNodes(".//span/span|.//div[@class='vM0jzc']/span");
                                 if (spanCol == null || (spanCol != null && spanCol[0].InnerText.Equals("&nbsp;")))//18-11-2024
                                     spanCol = nd1.SelectNodes(".//span");
-                                if (spanCol != null)
+                                if (nd1.Attributes["class"]?.Value == "jSqiwc")//07-04-2025
+                                {
+                                    spanCol = nd1.SelectNodes(".//tr");
+                                    foreach (HtmlNode sp in spanCol)
+                                    {
+                                        HtmlNodeCollection th = sp.SelectNodes(".//th");//07-04-2025
+                                        if (th != null)
+                                        {
+                                            foreach (HtmlNode header in th)
+                                            {
+                                                content += header.InnerText + ":";
+                                            }
+                                            content = content.Remove(content.Length - 1) + ", ";
+                                        }
+                                        HtmlNodeCollection td = sp.SelectNodes(".//td");
+                                        if (td != null)
+                                        {
+                                            foreach (HtmlNode data in td)
+                                            {
+                                                content += data.InnerText + ":";
+                                            }
+                                            content = content.Remove(content.Length - 1) + ", ";
+                                        }
+                                    }
+                                    content = content.Remove(content.Length - 1).Trim();
+                                }//07-04-2025
+                                if (spanCol != null && nd1.Attributes["class"]?.Value != "jSqiwc")//07-04-2025
                                 {
                                     foreach (HtmlNode sp in spanCol)
                                     {
                                         if (sp.HasClass("UV3uM"))
                                             break;
-                                        content += sp.InnerText + " ";
+                                        if (!string.IsNullOrEmpty(sp.InnerText) && sp.InnerText.Length > 2)//08-04-2025
+                                            content += sp.InnerText + " ";
                                     }
-                                    if (string.IsNullOrEmpty(content) || content == "&#160; ")//04-04-2025
-                                        content = nd1.SelectSingleNode(".")?.InnerText;//04-04-2025
+                                    if (string.IsNullOrEmpty(content) || content == "&#160; " || content == "&#65279; " || content == " ")//07-04-2025//04-04-2025
+                                        content = nd1.SelectSingleNode(".")?.InnerText.Trim().Replace("&#160;", "");//04-04-2025
                                     content = content.TrimEnd();//18-11-2024
                                 }
                             }
@@ -4014,7 +4049,8 @@ namespace RapidTrackingCloudSingleThread
                                 }
                             }
                         }
-                        if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(content))
+                        content = content.Replace("&nbsp;", "").Trim();//08-04-2025
+                        if ((!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(content)) && content.Length > 2)//08-04-2025
                         {
                             s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" + SetTitle(content.Replace("&nbsp;", "")) + "\" />");
                         }

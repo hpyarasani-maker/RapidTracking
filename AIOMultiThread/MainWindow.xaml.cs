@@ -122,7 +122,7 @@ namespace AIOMultiThread
                 //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
                 //string kwQry = "GetErrorKeywords_1 '" + myDate + "'";//changes
                 //string kwQry = "GetAllKeywords_1 '" + myDate + "'";     
-                string kwQry = "GetMissingKeywords_AIO '" + myDate + "',1"; //jobids procedure
+                string kwQry = "GetMissingKeywords_AIO_Mobile '" + myDate + "',1"; //jobids procedure
                 //string kwQry = "[GetErrorKeywords] '" + myDate + "',1"; //changes error jobids procedure
                 GetKeywords1(kwQry);
 
@@ -225,7 +225,7 @@ namespace AIOMultiThread
                 //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
                 //string kwQry = "GetErrorKeywords_2 '" + myDate + "'";//changes
                 //string kwQry = "GetAllKeywords_2 '" + myDate + "'";     
-                string kwQry = "GetMissingKeywords_AIO '" + myDate + "',2"; //jobids procedure
+                string kwQry = "GetMissingKeywords_AIO_Mobile '" + myDate + "',2"; //jobids procedure
                 //string kwQry = "[GetErrorKeywords] '" + myDate + "',2"; //changes error jobids procedure
                 GetKeywords2(kwQry);
 
@@ -339,7 +339,7 @@ namespace AIOMultiThread
                 //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
                 //string kwQry = "GetErrorKeywords_3 '" + myDate + "'";//changes
                 //string kwQry = "GetAllKeywords_3 '" + myDate + "'"; 
-                string kwQry = "GetMissingKeywords_AIO '" + myDate + "',3"; //Jobids procedure
+                string kwQry = "GetMissingKeywords_AIO_Mobile '" + myDate + "',3"; //Jobids procedure
                 //string kwQry = "[GetErrorKeywords] '" + myDate + "',3"; //changes error jobids procedure
                 GetKeywords3(kwQry);
 

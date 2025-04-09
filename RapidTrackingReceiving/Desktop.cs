@@ -967,7 +967,7 @@ namespace Oxylabs_BulkKeywords
                 if (node.SelectSingleNode(".//div[@id='rhs']") != null || node.Attributes["id"]?.Value == "rhs")
                 {
                     nc = node.SelectNodes(".//div[@class='g']|.//div[contains(@class,'g Ww4FFb')]|.//div[@class='g eejeod up9jud']|.//div[contains(@class,'g dFd2Tb')]|.//div[@class='wHYlTd Ww4FFb vt6azd tF2Cxc asEBEc']" + //19-03-2025
-                        "|.//div[contains(@class,'g ZYT4Gf')]|.//div[@class='g PmEWq']|.//div[@class='PmEWq wHYlTd vt6azd Ww4FFb']");//02-04-2025//21-11-2023//07-08-2023//26-04-2023//12-10-2022
+                        "|.//div[contains(@class,'g ZYT4Gf')]|.//div[@class='g PmEWq']|.//div[contains(@class,'vt6azd Ww4FFb')]");//07-04-2025//02-04-2025//21-11-2023//07-08-2023//26-04-2023//12-10-2022
                     if (nc == null) return string.Empty;
                 }
                 foreach (HtmlNode n in nc)

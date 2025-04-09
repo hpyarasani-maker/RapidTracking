@@ -285,7 +285,7 @@ namespace RapidTrackingMultithread
             string sip = string.Empty;
             foreach (var value in list)
             {
-                if (value.device == "desktop")
+                if (value.device == "desktop_chrome")
                 {
                     seresults = GetTop100Desktop(keyword, seid, out sip, value.domain, value.locale, value.uule);
                 }

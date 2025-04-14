@@ -240,7 +240,7 @@ namespace RapidTrackingSingleThread
                         comm.Parameters.Add("jobid", SqlDbType.NVarChar).Value = string.Empty;
                         comm.Parameters.Add("count", SqlDbType.Int).Value = urlcount;
                         comm.Parameters.Add("XmlData", SqlDbType.Xml).Value = xml.Replace("'", "''");
-
+                        comm.Parameters.Add("Received", SqlDbType.VarChar).Value = "Normal Oxy Proxes Single"; //14-04-2025
                         comm.ExecuteNonQuery();
                     }
                 }

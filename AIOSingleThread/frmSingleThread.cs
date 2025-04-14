@@ -165,7 +165,7 @@ namespace AIOSingleThread
                                 try
                                 {
                                     bool isOldPage = false;
-                                    if (ex.Message == "Old page found.")
+                                    if (ex.Message == "AIO Old page found")//14-04-2025
                                         isOldPage = true;
                                     SendToDBFailure(kw, seid, jobid, isOldPage);
                                 }
@@ -194,7 +194,7 @@ namespace AIOSingleThread
                             label1.Refresh();
                         }
                         else
-                            textBox1.Text = s + "  -- No result.";
+                            textBox1.Text = s + "  -- AIO No result.";
                         textBox1.Refresh();
                     });
 
@@ -495,7 +495,7 @@ namespace AIOSingleThread
                         comm.Parameters.Add("JobId", SqlDbType.NVarChar).Value = jobid;
                         comm.Parameters.Add("Count", SqlDbType.Int).Value = urlcount;
                         comm.Parameters.Add("XmlData", SqlDbType.Xml).Value = xml.Replace("'", "''");
-
+                        comm.Parameters.Add("Received", SqlDbType.VarChar).Value = "AIO Single"; //14-04-2025
                         comm.ExecuteNonQuery();
                     }
                 }

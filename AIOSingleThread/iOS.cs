@@ -31,7 +31,7 @@ namespace AIOSingleThread
             var jsonString = JsonConvert.SerializeObject(scriptMetadata);
             this.seid = seid;//23-06-2023
             count = 0;
-            if (doc == null) throw new Exception("No source found.");
+            if (doc == null) throw new Exception("AIO No source found.");//14-04-2025
             orgLinks = 0;
             string ndText = "";
 
@@ -69,7 +69,7 @@ namespace AIOSingleThread
                 if (nodeCol == null)
                     nodeCol = doc.DocumentNode.SelectNodes("//*[@id='tscffb']");
 
-                if (nodeCol == null) throw new Exception("No block found.");
+                if (nodeCol == null) throw new Exception("AIO No block found.");//14-04-2025
                 //if (nodeCol == null) return string.Empty; 
                 //if (nodeCol == null) goto BOTTOMSTUFF;             
 

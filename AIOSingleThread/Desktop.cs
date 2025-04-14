@@ -25,7 +25,7 @@ namespace AIOSingleThread
             HtmlNode htmlNode = doc.DocumentNode.SelectSingleNode("//table[@id='mn']");
             if (htmlNode != null)
             {
-                throw new Exception("Old page found.");
+                throw new Exception("AIO Old page found");//14-04-2025
             }
             orgLinks = 0;
             string ndText = "";
@@ -111,7 +111,7 @@ namespace AIOSingleThread
                 // 23-03-2020
 
                 //if (nodeCol == null) throw new Exception("No block found.");
-                if (nodeCol == null & string.IsNullOrEmpty(ndText)) throw new Exception("No block found."); // 03-06-2020
+                if (nodeCol == null & string.IsNullOrEmpty(ndText)) throw new Exception("AIO No block found.");//14-04-2025 // 03-06-2020
                 //if (nodeCol == null) return string.Empty;                      
                 //if (nodeCol == null) goto BOTTOMSTUFF; 
 

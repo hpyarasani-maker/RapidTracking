@@ -176,7 +176,7 @@ namespace AIOReceiving
                 else if (status == "faulted")//21-01-2025
                 {
                     statusCode = status;//22-01-2025
-                    throw new Exception("Status is faulted");
+                    throw new Exception("AIO Status is faulted");//14-04-2025
                 }//21-01-2025
             }
             catch (Exception ex)
@@ -187,7 +187,7 @@ namespace AIOReceiving
                     try
                     {
                         bool isOldPage = false;
-                        if (ex.Message == "Old page found.")
+                        if (ex.Message == "AIO Old page found.")//14-04-2025
                             isOldPage = true;
                         await ProcessError(kw, seid, jobid,ex.Message.ToString(), isOldPage); //09-11-2024//06-08-2024
                     }
@@ -274,7 +274,7 @@ namespace AIOReceiving
         {
             if (string.IsNullOrEmpty(result))
             {
-                throw new Exception("No result.");
+                throw new Exception("AIO No result"); //14-04-2025
             }
 
             try
@@ -490,7 +490,7 @@ namespace AIOReceiving
                         comm.Parameters.Add("JobId", SqlDbType.NVarChar).Value = jobid;
                         comm.Parameters.Add("Count", SqlDbType.Int).Value = urlcount;
                         comm.Parameters.Add("XmlData", SqlDbType.Xml).Value = xml.Replace("'", "''");
-
+                        comm.Parameters.Add("Received", SqlDbType.VarChar).Value = "AIO Receive"; //14-04-2025
                         await comm.ExecuteNonQueryAsync(); //06-08-2024
 
                         //if (urlcount < 20)

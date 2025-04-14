@@ -812,7 +812,7 @@ namespace AIOMultiThread
                     comm.Parameters.Add("JobId", SqlDbType.NVarChar).Value = jobid;
                     comm.Parameters.Add("Count", SqlDbType.Int).Value = urlcount;
                     comm.Parameters.Add("XmlData", SqlDbType.Xml).Value = xml.Replace("'", "''");
-
+                    comm.Parameters.Add("Received", SqlDbType.VarChar).Value = "AIO Multithread"; //14-04-2025
                     comm.ExecuteNonQuery();
                 }
             }
@@ -1088,11 +1088,11 @@ namespace AIOMultiThread
                             status = obj["status"].Value<string>();
                             if (status == "faulted")
                             {
-                                throw new Exception("status is faulted");
+                                throw new Exception("AIO Status is Faulted");//14-04-2025
                             }
                             if (status == "pending") //31-01-2022
                             {
-                                throw new Exception("status is pending");
+                                throw new Exception("AIO Status is Pending");//14-04-2025
                             }
 
                         }//04-01-2022

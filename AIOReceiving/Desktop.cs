@@ -32,7 +32,7 @@ namespace AIOReceiving
             if (htmlNode != null)
             {
                 organicurls = 0;
-                throw new Exception("Old page found.");
+                throw new Exception("AIO Old page found.");//14-04-2025
             }
 
             html = htmlsource;

@@ -1056,13 +1056,13 @@ namespace AIOMultiThread
                         cnt++;
                         if (response == "")//31-01-2022
                         {
-                            throw new Exception("empty");
+                            throw new Exception("AIO empty"); //14-04-2025
                         }//31-01-2022
                         obj = JObject.Parse(response);//07-02-2022
                         string statuscode = obj["results"][0]["status_code"].Value<string>();//07-02-2022
                         if (statuscode != "200")
                         {
-                            throw new Exception("Status code : " + statuscode);
+                            throw new Exception("Status code : " + "AIO" + statuscode);//14-04-2025
                         }//07-02-2022 end
 
                         if (!string.IsNullOrEmpty(response))

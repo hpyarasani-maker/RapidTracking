@@ -481,6 +481,7 @@ namespace RapidTrackingJobIDResults
                         comm.Parameters.Add("Count", SqlDbType.Int).Value = urlcount;
                         comm.Parameters.Add("XmlData", SqlDbType.Xml).Value = xml.Replace("'", "''");
                         comm.Parameters.Add("Received", SqlDbType.VarChar).Value = "Normal Single Jobid"; //14-04-2025
+                        //comm.Parameters.Add("Received", SqlDbType.VarChar).Value = "New Keywords Single Jobid"; //14-04-2025
                         comm.ExecuteNonQuery();
                     }
                 }

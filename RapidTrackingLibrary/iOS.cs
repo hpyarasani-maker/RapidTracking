@@ -3968,7 +3968,7 @@ namespace RapidTrackingLibrary
                 || node.SelectSingleNode(".//div[@class='urrG9 v5yQqb jqWpsc']|.//div[@class='lNvPub cP7qLd v5yQqb']|.//div[@class='adXOEf v5yQqb']" +
                 "|.//div[@class='T61Aje v5yQqb']|.//div[contains(@class, 'WFyfFf')]") != null || node.SelectSingleNode(".//div[contains(@class,'kb0PBd cvP2Ce')]") != null;//13-08-2024//04-06-2024//14-02-2024//23-08-2023 != null//17-05-2023 //31-05-2022
         }
-        public string GetAioverview(HtmlNode node)//11-12-2024//18-11-2024//08-11-2024//21-08-2024 AIOverView Method//15-11-2024 updated to full block
+        public string GetAioverview(HtmlNode node)//18-11-2024//08-11-2024//21-08-2024 AIOverView Method//15-11-2024 updated to full block
         {
             //StringBuilder s = new StringBuilder();
             //s.Append("<block type=\"aiOverview\"/>");
@@ -3980,20 +3980,18 @@ namespace RapidTrackingLibrary
             {
                 foreach (HtmlNode nd in nodes)
                 {
-                    HtmlNodeCollection ls = nd.SelectNodes(".//div[@class='RJPOee EIJn2']/ul/li|.//div[@class='RJPOee EIJn2']/ul/li/ul/li|.//div[@class='RJPOee EIJn2']/div");//15-04-2025//05-04-2025
+                    HtmlNodeCollection ls = nd.SelectNodes(".//div[@class='RJPOee EIJn2']/ul/li");
                     if (ls == null)
-                        ls = nd.SelectNodes(".//ol[@jscontroller='M2ABbc']/li|.//ul[@jscontroller='M2ABbc']/li|.//ul[@jscontroller='M2ABbc']/div");//04-04-2025
+                        ls = nd.SelectNodes(".//ol[@jscontroller='M2ABbc']/li|.//ul[@jscontroller='M2ABbc']/li");
                     if (ls == null)
                         ls = nd.SelectNodes(".//ol/li[@class='K3KsMc']|.//ul/li[@class='K3KsMc']|.//ul/li[@class='pWtQDd']");
-                    if (ls == null)//05-04-2025
-                        ls = nd.SelectNodes(".//div[@jscontroller='JegcYe']");//05-04-2025
                     if (ls != null)
                     {
                         foreach (HtmlNode nd1 in ls)
                         {
                             string content = string.Empty;
                             string url = string.Empty;
-                            HtmlNodeCollection spanCol = nd1.SelectNodes(".//span/span|.//div[@class='vM0jzc']/span|.//div[@class='vM0jzc']/ul/div|.//div[@class='Gur8Ad']/span|.//div[@class='vM0jzc']/ul/li");//08-04-2025//04-04-2025
+                            HtmlNodeCollection spanCol = nd1.SelectNodes(".//span/span|.//div[@class='vM0jzc']/span");
                             if (spanCol == null || (spanCol != null && spanCol[0].InnerText.Equals("&nbsp;")))//18-11-2024
                                 spanCol = nd1.SelectNodes(".//span");
                             if (spanCol != null)
@@ -4002,11 +4000,8 @@ namespace RapidTrackingLibrary
                                 {
                                     if (sp.HasClass("UV3uM"))
                                         break;
-                                    if (!string.IsNullOrEmpty(sp.InnerText) && sp.InnerText.Length > 2)//08-04-2025
-                                        content += sp.InnerText + " ";
+                                    content += sp.InnerText + " ";
                                 }
-                                if (string.IsNullOrEmpty(content) || content == "&#160; " || content == "&#65279; " || content == " ")//07-04-2025//04-04-2025
-                                    content = nd1.SelectSingleNode(".")?.InnerText.Trim().Replace("&#160;", "");//04-04-2025
                                 content = content.TrimEnd();//18-11-2024
                             }
                             HtmlNode urlNode = nd1.SelectSingleNode(".//div[contains(@class,'acn1Z')]");
@@ -4018,8 +4013,7 @@ namespace RapidTrackingLibrary
                                     url = link.Attributes["href"]?.Value ?? "";
                                 }
                             }
-                            content = content.Replace("&nbsp;", "").Trim();//08-04-2025
-                            if ((!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(content)) && content.Length > 2)//08-04-2025
+                            if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(content))
                             {
                                 s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" + SetTitle(content.Replace("&nbsp;", "")) + "\" />");
                             }
@@ -4034,53 +4028,22 @@ namespace RapidTrackingLibrary
                             nd1 = nd.SelectSingleNode(".//div[contains(@class,'rPeykc')]");
                         if (nd1 == null)
                             nd1 = nd.SelectSingleNode(".//div[@class='dsxN8b EXH1Ce PZPZlf']");//11-12-2024
-                        if (nd1 == null)//07-04-2025
-                            nd1 = nd.SelectSingleNode(".//table[@class='jSqiwc']");//07-04-2025
                         if (nd1 != null)
                         {
-                            content = nd1.SelectSingleNode(".//span[@role='heading']|.//div[@class='y7p1tf']|.//div[contains(@class,'cPUhZb')]")?.InnerText ?? "";//04-04-2025//11-12-2024
+                            content = nd1.SelectSingleNode(".//span[@role='heading']|.//div[@class='y7p1tf']|.//div[contains(@class,'cPUhZb')]")?.InnerText ?? "";//04-03-2025//11-12-2024
                             if (string.IsNullOrEmpty(content))
                             {
                                 HtmlNodeCollection spanCol = nd1.SelectNodes(".//span/span|.//div[@class='vM0jzc']/span");
                                 if (spanCol == null || (spanCol != null && spanCol[0].InnerText.Equals("&nbsp;")))//18-11-2024
                                     spanCol = nd1.SelectNodes(".//span");
-                                if (nd1.Attributes["class"]?.Value == "jSqiwc")//07-04-2025
-                                {
-                                    spanCol = nd1.SelectNodes(".//tr");
-                                    foreach (HtmlNode sp in spanCol)
-                                    {
-                                        HtmlNodeCollection th = sp.SelectNodes(".//th");//07-04-2025
-                                        if (th != null)
-                                        {
-                                            foreach (HtmlNode header in th)
-                                            {
-                                                content += header.InnerText + ":";
-                                            }
-                                            content = content.Remove(content.Length - 1) + ", ";
-                                        }
-                                        HtmlNodeCollection td = sp.SelectNodes(".//td");
-                                        if (td != null)
-                                        {
-                                            foreach (HtmlNode data in td)
-                                            {
-                                                content += data.InnerText + ":";
-                                            }
-                                            content = content.Remove(content.Length - 1) + ", ";
-                                        }
-                                    }
-                                    content = content.Remove(content.Length - 1).Trim();
-                                }//07-04-2025
-                                if (spanCol != null && nd1.Attributes["class"]?.Value != "jSqiwc")//07-04-2025
+                                if (spanCol != null)
                                 {
                                     foreach (HtmlNode sp in spanCol)
                                     {
                                         if (sp.HasClass("UV3uM"))
                                             break;
-                                        if (!string.IsNullOrEmpty(sp.InnerText) && sp.InnerText.Length > 2)//08-04-2025
-                                            content += sp.InnerText + " ";
+                                        content += sp.InnerText + " ";
                                     }
-                                    if (string.IsNullOrEmpty(content) || content == "&#160; " || content == "&#65279; " || content == " ")//07-04-2025//04-04-2025
-                                        content = nd1.SelectSingleNode(".")?.InnerText.Trim().Replace("&#160;", "");//04-04-2025
                                     content = content.TrimEnd();//18-11-2024
                                 }
                             }
@@ -4098,8 +4061,7 @@ namespace RapidTrackingLibrary
                                 }
                             }
                         }
-                        content = content.Replace("&nbsp;", "").Trim();//08-04-2025
-                        if ((!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(content)) && content.Length > 2)//08-04-2025
+                        if (!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(content))
                         {
                             s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" + SetTitle(content.Replace("&nbsp;", "")) + "\" />");
                         }

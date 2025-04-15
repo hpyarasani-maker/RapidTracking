@@ -3946,7 +3946,7 @@ namespace AIOSingleThread
             {
                 foreach (HtmlNode nd in nodes)
                 {
-                    HtmlNodeCollection ls = nd.SelectNodes(".//div[@class='RJPOee EIJn2']/ul/li|.//div[@class='RJPOee EIJn2']/div");//05-04-2025
+                    HtmlNodeCollection ls = nd.SelectNodes(".//div[@class='RJPOee EIJn2']/ul/li|.//div[@class='RJPOee EIJn2']/ul/li/ul/li|.//div[@class='RJPOee EIJn2']/div");//15-04-2025//05-04-2025
                     if (ls == null)
                         ls = nd.SelectNodes(".//ol[@jscontroller='M2ABbc']/li|.//ul[@jscontroller='M2ABbc']/li|.//ul[@jscontroller='M2ABbc']/div");//04-04-2025
                     if (ls == null)

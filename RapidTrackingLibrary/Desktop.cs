@@ -2501,7 +2501,7 @@ namespace RapidTrackingLibrary
             nd = node.SelectSingleNode(".//div[contains(@class, 'bba2i')]");//11-06-2024 DataSet Block
             if (nd != null)
                 return "Dataset";//11-06-2024
-            nd = node.SelectSingleNode(".//div[@class='GcKpu']|.//div[contains(@class,'M8OgIe')]");//13-11-2024//03-09-2024//21-08-2024 AIOverview
+            nd = node.SelectSingleNode(".//div[@class='GcKpu']|.//div[contains(@class,'M8OgIe')]|.//div[@class='YzCcne' and (@data-mg-cp='YzCcne')]");//21-04-2025//13-11-2024//03-09-2024//21-08-2024 AIOverview
             if (nd != null && node.SelectSingleNode(".//div[contains(@class,'Fzsovc')]") != null)//13-11-2024
                 return "aiOverview";//21-08-2024 AIOverview
             nd = node.SelectSingleNode(".//div[@class='oIk2Cb']");//14-10-2024 //11-10-2024  peoplealsosearch
@@ -2576,6 +2576,7 @@ namespace RapidTrackingLibrary
              || node.SelectNodes(".//div[@class='xSoq1']") != null//10-10-2023
                 || node.SelectNodes(".//div[@class='udVt6e']") != null//02-11-2023
              || node.SelectNodes(".//div[contains(@class,'suI2B')]") != null//26-08-2024
+             || node.SelectNodes(".//div[@class='YzCcne' and (@data-mg-cp='YzCcne')]") != null//21-04-2025//AIOverview
             || node.SelectNodes(".//div[@class='zxLiic']") != null);//17-12-2024
             if (bVal == true)//2019-09-11
             {

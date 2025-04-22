@@ -2494,7 +2494,7 @@ namespace RapidTrackingSingleThread
                 || node.SelectSingleNode(".//div[@id='kx']") != null      // carousel
                 || node.SelectSingleNode(".//div[@id='fac-ut']|.//div[contains(@class,'knowledge-finance-wholepage')]") != null //01-08-2024      // finance
                 || node.SelectSingleNode(".//div[@class='_Zfh']") != null   // twitters
-                || node.SelectSingleNode(".//div[@class='Brgz0 tw-res']") != null   // twitters                
+                || node.SelectSingleNode(".//div[@class='Brgz0 tw-res']|.//div[@class='bwBN6e tw-res']") != null //22-04-2025  // twitters                
                 || node.SelectSingleNode(".//div[@class='_OKe']") != null   // answer card / people also ask
                 || node.SelectSingleNode(".//div[@class='vkc_np kkww4d']") != null   // 23-03-2020
                 || node.SelectSingleNode(".//div[@class='k9uN1c kfn9hb']") != null//24-10-2019

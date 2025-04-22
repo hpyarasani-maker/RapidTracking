@@ -387,8 +387,8 @@ namespace RapidTrackingLibrary
                                 {
                                     var url = nd.Attributes["href"].Value;
                                     url = GetRedirectedUrl_TextAds(url);//10-04-2024
-                                    if (!string.IsNullOrEmpty(nd.SelectSingleNode(".//h4|.//div[contains(@class,'bXPcId pymv4e')]").InnerText) && !string.IsNullOrEmpty(url.Trim())) //04-11-2022   //13-11-2019
-                                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(nd.SelectSingleNode(".//h4|.//div[contains(@class,'bXPcId pymv4e')]").InnerText) + "\" />"); //05-01-2023
+                                    if (!string.IsNullOrEmpty(nd.SelectSingleNode(".//h4|.//div[contains(@class,'bXPcId')]").InnerText) && !string.IsNullOrEmpty(url.Trim())) //22-04-2025//04-11-2022   //13-11-2019
+                                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(nd.SelectSingleNode(".//h4|.//div[contains(@class,'bXPcId')]").InnerText) + "\" />");//22-04-2025//05-01-2023
                                 }
                             }
                             //09-09-2019

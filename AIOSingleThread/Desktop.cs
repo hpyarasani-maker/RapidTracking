@@ -316,7 +316,8 @@ namespace AIOSingleThread
                                 foreach (HtmlNode n in nc)
                                 {
                                     string title = n.InnerText;
-                                    s.Append("<item title=\"" + SetTitle(title) + "\" />");
+                                    if (!string.IsNullOrEmpty(title))//24-04-2025
+                                        s.Append("<item title=\"" + SetTitle(title) + "\" />");
                                 }
                             s.Append("</block>");
                         }
@@ -1209,7 +1210,8 @@ namespace AIOSingleThread
                         foreach (HtmlNode n in nc)
                         {
                             string title = n.InnerText;
-                            s.Append("<item title=\"" + SetTitle(title) + "\" />");
+                            if (!string.IsNullOrEmpty(title))//24-04-2025
+                                s.Append("<item title=\"" + SetTitle(title) + "\" />");
                         }
                     s.Append("</block>");
                 }
@@ -1328,7 +1330,7 @@ namespace AIOSingleThread
                 nds = node.SelectNodes(".//div[@jsname='ibnC6b']/div/a|.//div[@class='iHxmLe']/a");//05-12-2024   //17-07-2020
             if (nds == null)
                 //nds = node.SelectNodes(".//div[@class='LYyupc']/div/a|.//a[@class='X5OiLe']|.//div[@class='XpiUte']/a"); //30-08-2021 videos item url//07-07-2021 //23-07-2021
-                nds = node.SelectNodes(".//div[@class='LYyupc']/div/a|.//div[@class='XpiUte']/a|.//a[@class='xMqpbd']");//27-10-2023 //08-12-2021 videos item urls //30-08-2021 videos item url//07-07-2021 //23-07-2021
+                nds = node.SelectNodes(".//div[@class='LYyupc']/div/a|.//div[@class='XpiUte']/a|.//a[@class='xMqpbd']|.//div[@class='ObbMBf']/a");//24-04-2025//27-10-2023 //08-12-2021 videos item urls //30-08-2021 videos item url//07-07-2021 //23-07-2021
             if (nds != null)
                 foreach (HtmlNode nd in nds)
                 {
@@ -2294,7 +2296,7 @@ namespace AIOSingleThread
                 return "TopSights";*///23-03-2022//19-01-2023
 
             nd = node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]|.//div[contains(@class, 'vdQmEd')]|.//div[@class='cj1ht QkBAO oYQBg']|.//div[@class='p21Z4']");//18-02-2025//29-07-2024//29-06-2023//23-03-2022
-            if (nd != null && nd.SelectNodes(".//div[@class='MxQnIc']") == null && node.SelectSingleNode(".//div[@class='XNfAUb']|.//h1[contains(@class, 'bNg8Rb')]|.//div[@class='ad5fcd']") == null)//21-02-2025//27-12-2024//19-08-2024//30-06-2023
+            if (nd != null && nd.SelectNodes(".//div[@class='MxQnIc']") == null && node.SelectSingleNode(".//div[@class='XNfAUb']|.//h1[contains(@class, 'bNg8Rb')]|.//div[@class='ad5fcd']|.//div[contains(@class,'vmod')]") == null)//22-04-2025//21-02-2025//27-12-2024//19-08-2024//30-06-2023
                 return "Flights";//23-03-2022
 
             //nd = node.SelectSingleNode(".//div[@class='kp-blk cUnQKe']|.//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']|.//div[@jsname='N760b']");//08-07-2021//04-12-2020 //11-02-2020
@@ -2494,7 +2496,7 @@ namespace AIOSingleThread
                 || node.SelectSingleNode(".//div[@id='kx']") != null      // carousel
                 || node.SelectSingleNode(".//div[@id='fac-ut']|.//div[contains(@class,'knowledge-finance-wholepage')]") != null //01-08-2024      // finance
                 || node.SelectSingleNode(".//div[@class='_Zfh']") != null   // twitters
-                || node.SelectSingleNode(".//div[@class='Brgz0 tw-res']") != null   // twitters                
+                || node.SelectSingleNode(".//div[@class='Brgz0 tw-res']|.//div[@class='bwBN6e tw-res']") != null //22-04-2025  // twitters                
                 || node.SelectSingleNode(".//div[@class='_OKe']") != null   // answer card / people also ask
                 || node.SelectSingleNode(".//div[@class='vkc_np kkww4d']") != null   // 23-03-2020
                 || node.SelectSingleNode(".//div[@class='k9uN1c kfn9hb']") != null//24-10-2019

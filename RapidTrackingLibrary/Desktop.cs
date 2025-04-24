@@ -1384,7 +1384,7 @@ namespace RapidTrackingLibrary
                 nds = node.SelectNodes(".//div[@jsname='ibnC6b']/div/a|.//div[@class='iHxmLe']/a");//05-12-2024   //17-07-2020
             if (nds == null)
                 // nds = node.SelectNodes(".//div[@class='LYyupc']/div/a|.//a[@class='X5OiLe']|.//div[@class='XpiUte']/a"); //30-08-2021 videos item url //07-07-2021 //23-07-2021
-                nds = node.SelectNodes(".//div[@class='LYyupc']/div/a|.//div[@class='XpiUte']/a|.//a[@class='xMqpbd']");//27-10-2023 //08-12-2021 videos item urls //30-08-2021 videos item url//07-07-2021 //23-07-2021
+                nds = node.SelectNodes(".//div[@class='LYyupc']/div/a|.//div[@class='XpiUte']/a|.//a[@class='xMqpbd']|.//div[@class='ObbMBf']/a");//24-04-2025//27-10-2023 //08-12-2021 videos item urls //30-08-2021 videos item url//07-07-2021 //23-07-2021
             if (nds != null)
                 foreach (HtmlNode nd in nds)
                 {

@@ -496,7 +496,8 @@ namespace RapidTrackingLibrary
                             foreach (HtmlNode n in nc)
                             {
                                 string title = n.InnerText;
-                                s.Append("<item title=\"" + SetTitle(title) + "\" />");
+                                if (!string.IsNullOrEmpty(title))//24-04-2025
+                                    s.Append("<item title=\"" + SetTitle(title) + "\" />");
                             }
                         s.Append("</block>");
                     }
@@ -1700,7 +1701,8 @@ namespace RapidTrackingLibrary
                         foreach (HtmlNode n in nc)
                         {
                             string title = n.InnerText;
-                            s.Append("<item title=\"" + SetTitle(title) + "\" />");
+                            if (!string.IsNullOrEmpty(title))//24-04-2025
+                                s.Append("<item title=\"" + SetTitle(title) + "\" />");
                         }
                     s.Append("</block>");
                 }

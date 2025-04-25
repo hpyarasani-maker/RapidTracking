@@ -4031,13 +4031,15 @@ namespace RapidTrackingLibrary
                                     }
                                 }
                             }
-                            else
+                            else //25-04-2025
                             {
-                                spanCol = nd1.SelectNodes(".//div[@class='JlqpRe']/span");
+                                spanCol = nd1.SelectNodes(".//div[@class='JlqpRe']/span|.//div[@class='Gur8Ad']/span|.//div[@class='vM0jzc']/span");
                                 if (spanCol == null)
+                                    spanCol = nd1.SelectNodes(".//span/span");
+                                if (spanCol == null || spanCol[0].InnerText.Equals("&nbsp;"))
                                     spanCol = nd1.SelectNodes(".//span");
                                 s.Append(GetSpanContent(spanCol, nd1, false));
-                            }
+                            }//25-04-2025
                         }
                     }
                     else

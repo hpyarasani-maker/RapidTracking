@@ -95,18 +95,25 @@ namespace TrendingDownload
                     doc.Load(reader);
                     reader.Close();                   
 
-                    XmlNodeList lst = doc.GetElementsByTagName("query");                                                            
-                    
-                    foreach (XmlElement el in lst)
+                    XmlNodeList lst = doc.GetElementsByTagName("query");
+                    if (lst.Count == 0)
                     {
-                        string sid = el.Attributes["search-engine-id"].Value;
-                        string kw = el.Attributes["keyword"].Value;  
-
-                        string qry = "Insert into [dbo].[Keywords1] (seid, keyword) values(" + sid + ", N'" + kw + "'); ";
-                        ExecuteQuery(qry); 
                         string updateQuery = "Exec UpdateKeywords ";
                         ExecuteQuery(updateQuery);
-                    }                 
+                    }
+                    else
+                    {
+                        foreach (XmlElement el in lst)
+                        {
+                            string sid = el.Attributes["search-engine-id"].Value;
+                            string kw = el.Attributes["keyword"].Value;
+
+                            string qry = "Insert into [dbo].[Keywords1] (seid, keyword) values(" + sid + ", N'" + kw + "'); ";
+                            ExecuteQuery(qry);
+                            string updateQuery = "Exec UpdateKeywords ";
+                            ExecuteQuery(updateQuery);
+                        }
+                    }
                     
                 }
                 catch (Exception ex)

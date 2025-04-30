@@ -3166,7 +3166,8 @@ namespace RapidTrackingSingleThread
                 int hrs = Convert.ToInt32(match.Groups[2].Value);
                 return (days > 0 || hrs > 0) ? ((days * 24) + hrs) + "." + "0" : "0.0";
             }
-            match = Regex.Match(hours, @"(\d+)[\s]?(h|Std)[\W]* (\d+)[\s]?(m|[M|m]in)");
+            //match = Regex.Match(hours, @"(\d+)[\s]?(h|Std)[\W]* (\d+)[\s]?(m|[M|m]in)");
+            match = Regex.Match(hours, @"(\d+)[\s]?(h|Std|시간)[\W]* (\d+)[\s]?(m|분|[M|m]in)");//30-04-2025
             if (match.Success)
             {
                 int hrs = Convert.ToInt32(match.Groups[1].Value);

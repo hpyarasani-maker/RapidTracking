@@ -11,16 +11,17 @@ using System.Collections;
 using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
-
-namespace RapidTrackingMultiThreadJobIDs
+namespace RapidTrackingMultiThreadRequests
 {
     public partial class Form1 : Form
     {
 
-        string xmlPath1 = @"C:\inetpub\wwwroot\trackingtrending_Errorkeywords_1.xml";
-        string xmlPath2 = @"C:\inetpub\wwwroot\trackingtrending_Errorkeywords_2.xml";
-        string xmlPath3 = @"C:\inetpub\wwwroot\trackingtrending_Errorkeywords_3.xml";//changes
+        string xmlPath1 = @"C:\inetpub\wwwroot\keywords_1.xml";
+        string xmlPath2 = @"C:\inetpub\wwwroot\keywords_2.xml";
+        string xmlPath3 = @"C:\inetpub\wwwroot\keywords_3.xml";//changes
 
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
@@ -78,7 +79,8 @@ namespace RapidTrackingMultiThreadJobIDs
                 //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
                 //string kwQry = "GetErrorKeywords_1 '" + myDate + "'";//changes
                 //string kwQry = "GetAllKeywords_1 '" + myDate + "'";     
-                string kwQry = "GetMissingKeywords_1 '" + myDate + "'";     
+                //string kwQry = "GetMissingKeywords_1 '" + myDate + "'";     
+                string kwQry = "GetAllKeywords_Remaining '" + myDate + "',1";
 
                 GetKeywords1(kwQry);
 
@@ -96,7 +98,7 @@ namespace RapidTrackingMultiThreadJobIDs
                     try
                     {
                         var doc = new HtmlAgilityPack.HtmlDocument();
-                        Task<ArrayList> alresult = GetHTML(kw, Convert.ToInt32(seid), jobid);
+                        Task<ArrayList> alresult = GetHTML(kw, Convert.ToInt32(seid));
                         if (alresult.Status.ToString() == stats.Faulted.ToString() || alresult.Status.ToString() == stats.Pending.ToString() || alresult.Status.ToString() == stats.Empty.ToString() || alresult.Status.ToString() == stats.statuscode.ToString()) //07-02-2022//31-01-2022//04-01-2022
                             throw alresult.Exception.InnerException;//04-01-2022
                         foreach (string[] src in alresult.Result)
@@ -177,7 +179,7 @@ namespace RapidTrackingMultiThreadJobIDs
                 //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
                 //string kwQry = "GetErrorKeywords_2 '" + myDate + "'";//changes
                 //string kwQry = "GetAllKeywords_2 '" + myDate + "'";     
-                string kwQry = "GetMissingKeywords_2 '" + myDate + "'";
+                string kwQry = "GetAllKeywords_Remaining '" + myDate + "',2";
 
                 GetKeywords2(kwQry);
 
@@ -195,7 +197,7 @@ namespace RapidTrackingMultiThreadJobIDs
                     try
                     {
                         var doc = new HtmlAgilityPack.HtmlDocument();
-                        Task<ArrayList> alresult = GetHTML(kw, Convert.ToInt32(seid), jobid);
+                        Task<ArrayList> alresult = GetHTML(kw, Convert.ToInt32(seid));
                         if (alresult.Status.ToString() == stats.Faulted.ToString() || alresult.Status.ToString() == stats.Pending.ToString() || alresult.Status.ToString() == stats.Empty.ToString() || alresult.Status.ToString() == stats.statuscode.ToString()) //07-02-2022//31-01-2022//04-01-2022
                             throw alresult.Exception.InnerException;//04-01-2022
                         foreach (string[] src in alresult.Result)
@@ -282,7 +284,7 @@ namespace RapidTrackingMultiThreadJobIDs
                 //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
                 //string kwQry = "GetErrorKeywords_3 '" + myDate + "'";//changes
                 //string kwQry = "GetAllKeywords_3 '" + myDate + "'";     
-                string kwQry = "GetMissingKeywords_3 '" + myDate + "'";
+                string kwQry = "GetAllKeywords_Remaining '" + myDate + "',3";
 
                 GetKeywords3(kwQry);
 
@@ -300,7 +302,7 @@ namespace RapidTrackingMultiThreadJobIDs
                     try
                     {
                         var doc = new HtmlAgilityPack.HtmlDocument();
-                        Task<ArrayList> alresult = GetHTML(kw, Convert.ToInt32(seid),jobid);
+                        Task<ArrayList> alresult = GetHTML(kw, Convert.ToInt32(seid));
                         if (alresult.Status.ToString() == stats.Faulted.ToString() || alresult.Status.ToString() == stats.Pending.ToString() || alresult.Status.ToString() == stats.Empty.ToString() || alresult.Status.ToString() == stats.statuscode.ToString()) //07-02-2022//31-01-2022//04-01-2022
                             throw alresult.Exception.InnerException;//04-01-2022
                         foreach (string[] src in alresult.Result)
@@ -901,7 +903,7 @@ namespace RapidTrackingMultiThreadJobIDs
             finally { }
         }
 
-        public async Task<ArrayList> GetHTML(string keyword, int seid, string jobid)
+        public async Task<ArrayList> GetHTML(string keyword, int seid)
         {
             ArrayList alResult = new ArrayList();
             try
@@ -909,7 +911,7 @@ namespace RapidTrackingMultiThreadJobIDs
                 SearchProperties sp = SearchParams.searches.Where(s => s.seid == seid).SingleOrDefault();
                 sp.query = keyword;
                 if (sp != null)
-                    alResult = GetOxylabsWebDataSources(sp, jobid).Result;
+                    alResult = GetOxylabsWebDataSources(sp).Result;
             }
             catch (Exception ex)
             {
@@ -919,9 +921,12 @@ namespace RapidTrackingMultiThreadJobIDs
             return await Task.FromResult(alResult);
         }
 
-        async Task<ArrayList> GetOxylabsWebDataSources(SearchProperties sp, string jobid)
+        async Task<ArrayList> GetOxylabsWebDataSources(SearchProperties sp)
         {
-            JObject obj = null;//07-02-2022
+            Uri queryUri = new Uri("http://data.oxylabs.io/v1/queries/batch");
+            //string username = "gpidatametrics";
+            //string password = "sdV5X3fcX6";
+
             string username = string.Empty;//04-02-2025
             string password = string.Empty;
             if (sp.device == "mobile_android")
@@ -936,14 +941,72 @@ namespace RapidTrackingMultiThreadJobIDs
             }//04-03-2025
             string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
             string[] keyword = { sp.query };
+
+            OxyParams op = new OxyParams()
+            {
+                source = "google_search",
+                domain = sp.domain,
+                //query = sp.query.Split(','),
+                query = keyword,
+                limit = 100,
+                pages = 1,
+                //start_page = 1,
+                locale = sp.locale,
+                geo_location = sp.geo_location,
+                //uule = uule,
+                parse = false, //23-09-2021 changed datatype into "int to bool"
+                user_agent_type = sp.device,
+                context = new List<Context> {
+                    new Context("safe_search", 0)
+                    }
+            };
+
+
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(queryUri);
+            req.Headers.Clear();
+
+            req.Method = "POST";
+            req.ContentType = "application/json";
+            req.Headers.Add(HttpRequestHeader.Authorization, "Basic " + authInfo);
+
+            using (var streamWriter = new StreamWriter(req.GetRequestStream()))
+            {
+                var json = JsonConvert.SerializeObject(op, new JsonSerializerSettings
+                {
+                    Formatting = Newtonsoft.Json.Formatting.Indented,
+                });
+
+                streamWriter.Write(json);
+            }
+
             string response;
+            try
+            {
+                HttpWebResponse res = (HttpWebResponse)await req.GetResponseAsync();
+                using (StreamReader reader = new StreamReader(res.GetResponseStream(), Encoding.UTF8))
+                {
+                    response = reader.ReadToEnd();
+                }
+                res.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            JObject jo = JObject.Parse(response);
+            var links = from p in jo["queries"] select p;
             ArrayList lst = new ArrayList();
-            string kw = sp.query;
-            string href = "";
-            string status = "done";
-            string device = sp.device;
-            string[] s = { kw, href, status, "no", jobid, device };    // keyword, url, status, isdownloaded, jobid, device.
-            lst.Add(s);
+            foreach (JToken link in links)
+            {
+                string kw = link["query"].Value<string>();
+                string href = link["_links"][1]["href"].Value<string>();
+                string status = link["status"].Value<string>();
+                string jobid = link["id"].Value<string>();
+                string device = link["user_agent_type"].Value<string>();
+                string[] s = { kw, href, status, "no", jobid, device };    // keyword, url, status, isdownloaded, jobid, device.
+                lst.Add(s);
+            }
 
             if (lst.Count <= 0) return lst;
             ArrayList alResult = new ArrayList();
@@ -954,11 +1017,14 @@ namespace RapidTrackingMultiThreadJobIDs
                 {
                     string[] reslt = { "", "", "", "" };
                     response = "";
-                    Uri uri = new Uri("http://data.oxylabs.io/v1/queries/" + jobid + "/results");
+
+                    Uri uri = new Uri(cbUrl[1]);
+                    //Uri uri = new Uri("http://data.oxylabs.io/v1/queries/7056828476887683073/results");
                     if (cbUrl[2] == "done" && cbUrl[3] == "no")
                     {
                         try
                         {
+                            var startTime = System.Diagnostics.Stopwatch.StartNew();//08-11-2023
                             HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
                             httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
                             HttpWebResponse res = (HttpWebResponse)await httpWebRequest.GetResponseAsync();
@@ -969,19 +1035,8 @@ namespace RapidTrackingMultiThreadJobIDs
                             response = reader.ReadToEnd();
                             resVal.Close();
                             res.Close();
-
                             cbUrl[3] = "yes";
                             cnt++;
-                            if (response == "")//31-01-2022
-                            {
-                                throw new Exception("empty");
-                            }//31-01-2022
-                            obj = JObject.Parse(response);//07-02-2022
-                            string statuscode = obj["results"][0]["status_code"].Value<string>();//07-02-2022
-                            if (statuscode != "200")
-                            {
-                                throw new Exception("Status code : " + statuscode);
-                            }//07-02-2022 end
 
                             if (!string.IsNullOrEmpty(response))
                             {
@@ -991,45 +1046,46 @@ namespace RapidTrackingMultiThreadJobIDs
                                 reslt[3] = cbUrl[5];
                                 alResult.Add(reslt);
                             }
-                            else//04-01-2022
-                            {
-                                string resURL = "http://data.oxylabs.io/v1/queries/" + jobid;
-                                httpWebRequest = (HttpWebRequest)WebRequest.Create(resURL);
-                                httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
-                                HttpWebResponse res1 = (HttpWebResponse)httpWebRequest.GetResponse();
-                                Stream resStream = res1.GetResponseStream();
-                                reader = new StreamReader(resStream, Encoding.UTF8);
-                                response = reader.ReadToEnd();
-                                resStream.Close();
-                                res1.Close();
-                                obj = JObject.Parse(response);
-                                status = obj["status"].Value<string>();
-                                if (status == "faulted")
-                                {
-                                    throw new Exception("status is faulted");
-                                }
-                                if (status == "pending") //31-01-2022
-                                {
-                                    throw new Exception("status is pending");
-                                }
-
-                            }//04-01-2022
                         }
-
                         catch (Exception ex)
                         {
-                            // Console.WriteLine("Result Request: " + ex.Message);//03-01-2022
-
-                            throw new Exception(ex.Message);//31-01-2022//03-01-2022
+                            Console.WriteLine("Result Request: " + ex.Message);
                         }
                     }
+                    else if (cbUrl[2] == "faulted" && cbUrl[3] == "no")
+                    {
+                        cbUrl[3] = "yes";
+                        cnt++;
+                    }
+                    else if (cbUrl[2] == "pending" && cbUrl[3] == "no")
+                    {
+                        try
+                        {
+                            HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(uri.ToString().Replace("/results", ""));
+                            httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
+                            HttpWebResponse res = (HttpWebResponse)await httpWebRequest.GetResponseAsync();
 
+                            string doneresp = "";
+                            using (StreamReader reader = new StreamReader(res.GetResponseStream(), Encoding.UTF8))
+                            {
+                                doneresp = reader.ReadToEnd();
+                            }
+                            res.Close();
 
+                            JObject job = JObject.Parse(doneresp);
+                            string status = job["status"].Value<string>();
+                            cbUrl[2] = status;
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("Status Request: " + ex.Message);
+                            txtError.Text = ex.Message.ToString();
+                        }
+                    }
                     else
                         cnt++;
                     Task.Delay(200).Wait();
                 }
-
 
                 if (lst.Count == cnt) break;
 

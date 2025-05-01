@@ -9,7 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 
-namespace RapidTrackingMultiThreadJobIDs
+namespace RapidTrackingMultiThreadRequests
 {
     public class Desktop
     {

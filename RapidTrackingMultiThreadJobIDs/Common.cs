@@ -3,7 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Xml;
 
-namespace RapidTrackingMultiThreadJobIDs
+namespace RapidTrackingMultiThreadRequests
 {
     class Common
     {

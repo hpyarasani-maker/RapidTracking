@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace RapidTrackingMultiThreadJobIDs
+namespace RapidTrackingMultiThreadRequests
 {  
     class SearchParams
     {  

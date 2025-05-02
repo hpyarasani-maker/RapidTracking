@@ -1,18 +1,19 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
-using System.Collections;
-using System.Linq;
-using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
-using System.Collections.Generic;
 
 namespace RapidTrackingMultiThreadRequests
 {
@@ -56,23 +57,56 @@ namespace RapidTrackingMultiThreadRequests
             dtPicker1.Value = DateTime.Today;
             myDate = dtPicker1.Value.ToString("yyyy-MM-dd");
 
-            Thread t1 = new Thread(new ThreadStart(StartProcess_1));
-            t1.SetApartmentState(ApartmentState.STA);
-            t1.Priority = ThreadPriority.Lowest;
-            t1.Start();
+            Task t1 = Task.Run(async () => //16-02-2025
+            {
+                try
+                {
+                    await StartProcess_1();
+                }
+                catch (Exception ex)
+                {
+                    this.Invoke((MethodInvoker)delegate ()
+                    {
+                        txtError.Text = $"Exception: {ex.Message}";
+                    });
 
-            Thread t2 = new Thread(new ThreadStart(StartProcess_2));
-            t2.SetApartmentState(ApartmentState.STA);
-            t1.Priority = ThreadPriority.Lowest;
-            t2.Start();
+                }
+            });
+            
+            Task t2 = Task.Run(async () =>
+            {
+                try
+                {
+                    await StartProcess_2();
+                }
+                catch (Exception ex)
+                {
+                    this.Invoke((MethodInvoker)delegate ()
+                    {
+                        txtError.Text = $"Exception: {ex.Message}";
+                    });
 
-            Thread t3 = new Thread(new ThreadStart(StartProcess_3));
-            t3.SetApartmentState(ApartmentState.STA);
-            t1.Priority = ThreadPriority.Lowest;
-            t3.Start();
+                }
+            });
+
+            Task t3 = Task.Run(async () =>
+            {
+                try
+                {
+                    await StartProcess_3();
+                }
+                catch (Exception ex)
+                {
+                    this.Invoke((MethodInvoker)delegate ()
+                    {
+                        txtError.Text = $"Exception: {ex.Message}";
+                    });
+
+                }
+            });//16-02-2025
         }
 
-        private void StartProcess_1()
+        private async Task StartProcess_1()
         {
             while (true)
             {
@@ -137,6 +171,9 @@ namespace RapidTrackingMultiThreadRequests
                                 {
                                     SendToDB(seid, keyword, res, jobid, count);
                                 }
+                                bool aio = res.Contains("<block type=\"aiOverview\">");//16-02-2025
+                                if (aio && device == "mobile_android") // inserting true value //16-02-2025
+                                    await InsertAIO_Keyword(keyword, seid, aio);
                             }
                         }
 
@@ -172,7 +209,7 @@ namespace RapidTrackingMultiThreadRequests
                 Environment.Exit(Environment.ExitCode);
         }
 
-        private void StartProcess_2()
+        private async Task StartProcess_2()
         {
             while (true)
             {
@@ -236,6 +273,9 @@ namespace RapidTrackingMultiThreadRequests
                                 {
                                     SendToDB(seid, keyword, res, jobid, count);
                                 }
+                                bool aio = res.Contains("<block type=\"aiOverview\">");//16-02-2025
+                                if (aio && device == "mobile_android") // inserting true value //16-02-2025
+                                    await InsertAIO_Keyword(keyword, seid, aio);
                             }
                         }
                     }
@@ -277,7 +317,7 @@ namespace RapidTrackingMultiThreadRequests
 
         }
 
-        private void StartProcess_3()
+        private async Task StartProcess_3()
         {
             while (true)
             {
@@ -341,6 +381,9 @@ namespace RapidTrackingMultiThreadRequests
                                 {
                                     SendToDB(seid, keyword, res, jobid, count);
                                 }
+                                bool aio = res.Contains("<block type=\"aiOverview\">");//16-02-2025
+                                if (aio && device == "mobile_android") // inserting true value //16-02-2025
+                                    await InsertAIO_Keyword(keyword, seid, aio);
                             }
                         }
                     }
@@ -439,7 +482,7 @@ namespace RapidTrackingMultiThreadRequests
             {
 
                 ////store into keywordfail table.
-                SendToDBFailure(seid, kw, jobid, false);
+                SendToDBFailure(seid, kw, jobid, false,ex.Message);
 
 
                 string errorMsg = string.Empty;
@@ -530,7 +573,7 @@ namespace RapidTrackingMultiThreadRequests
             {
 
                 ////store into keywordfail table.
-                SendToDBFailure(seid, kw, jobid, false);
+                SendToDBFailure(seid, kw, jobid, false,ex.Message);
 
 
                 string errorMsg = string.Empty;
@@ -621,7 +664,7 @@ namespace RapidTrackingMultiThreadRequests
             {
 
                 ////store into keywordfail table.
-                SendToDBFailure(seid, kw, jobid, false);
+                SendToDBFailure(seid, kw, jobid, false,ex.Message);
 
 
                 string errorMsg = string.Empty;
@@ -678,8 +721,36 @@ namespace RapidTrackingMultiThreadRequests
                 throw ex;
             }
         }
-
-        private void SendToDBFailure(string seid, string kw, string jobid, bool isOldPage, string errMsg = "")
+        private async Task InsertAIO_Keyword(string kw, string seid, bool aio)//16-02-2025
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
+                {
+                    con.Open();
+                    using (SqlCommand comm = con.CreateCommand())
+                    {
+                        comm.CommandTimeout = 0;
+                        comm.CommandType = CommandType.StoredProcedure;
+                        comm.CommandText = "Insert_AIO_Keywords";
+                        comm.Parameters.Add("Seid", SqlDbType.Int).Value = seid;
+                        comm.Parameters.Add("Name", SqlDbType.NVarChar).Value = kw;
+                        comm.Parameters.Add("AIO", SqlDbType.Bit).Value = aio;
+                        await comm.ExecuteNonQueryAsync();
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                string errorMessage = $"Database Error in Insert_AIO_Keywords: \r\n{ex.Message}";
+                throw new Exception(errorMessage);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }//16-02-2025
+        private void SendToDBFailure(string seid, string kw, string jobid, bool isOldPage, string errMsg)
         {
             string myDate = DateTime.Today.ToString("yyyy-MM-dd");
             //string myDate = "2019-10-10";
@@ -750,7 +821,7 @@ namespace RapidTrackingMultiThreadRequests
                         comm.Parameters.Add("JobId", SqlDbType.NVarChar).Value = jobid;
                         comm.Parameters.Add("Count", SqlDbType.Int).Value = urlcount;
                         comm.Parameters.Add("XmlData", SqlDbType.Xml).Value = xml.Replace("'", "''");
-                        comm.Parameters.Add("Received", SqlDbType.VarChar).Value = "Normal Multithread Jobid"; //14-04-2025
+                        comm.Parameters.Add("Received", SqlDbType.VarChar).Value = "Normal Request Oxylabs Multithread Jobid"; //14-04-2025
 
                         comm.ExecuteNonQuery();
                     }
@@ -802,7 +873,7 @@ namespace RapidTrackingMultiThreadRequests
                             {
                                 this.Invoke((MethodInvoker)delegate ()
                                 {
-                                    lstKWs.Items.Add(dr.GetValue(0) + ":" + dr.GetValue(1) + ":" + dr.GetValue(2)); //26-10-2020 applied ":"
+                                    lstKWs.Items.Add(dr.GetValue(0) + ":" + dr.GetValue(1)); //26-10-2020 applied ":"
 
                                 });
                             }
@@ -844,7 +915,7 @@ namespace RapidTrackingMultiThreadRequests
                             {
                                 this.Invoke((MethodInvoker)delegate ()
                                 {
-                                    lstKWs2.Items.Add(dr.GetValue(0) + ":" + dr.GetValue(1) + ":" + dr.GetValue(2)); //26-10-2020 applied ":"
+                                    lstKWs2.Items.Add(dr.GetValue(0) + ":" + dr.GetValue(1)); //26-10-2020 applied ":"
 
                                 });
                             }
@@ -885,7 +956,7 @@ namespace RapidTrackingMultiThreadRequests
                             {
                                 this.Invoke((MethodInvoker)delegate ()
                                 {
-                                    lstKWs3.Items.Add(dr.GetValue(0) + ":" + dr.GetValue(1) + ":" + dr.GetValue(2)); //26-10-2020 applied ":"
+                                    lstKWs3.Items.Add(dr.GetValue(0) + ":" + dr.GetValue(1)); //26-10-2020 applied ":"
 
                                 });
                             }
@@ -1095,6 +1166,10 @@ namespace RapidTrackingMultiThreadRequests
 
         }
 
+        private void txtError_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }

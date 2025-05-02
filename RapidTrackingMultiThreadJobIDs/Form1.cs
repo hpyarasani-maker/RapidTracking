@@ -127,7 +127,7 @@ namespace RapidTrackingMultiThreadRequests
                     //26-10-2020 changed character as ':'
                     string seid = s.Split(':')[0];
                     string kw = s.Split(':')[1];
-                    string jobid = s.Split(':')[2];
+                    string jobid = string.Empty;
                     //end of 26-10-2020 changed character as ':'
                     try
                     {
@@ -141,6 +141,7 @@ namespace RapidTrackingMultiThreadRequests
                             JObject obj = JObject.Parse(src[1]);
                             string html = obj["results"][0]["content"].Value<string>();                            
                             string device = src[3];
+                            jobid = src[2];
                             doc = new HtmlAgilityPack.HtmlDocument();
                             doc.LoadHtml(html);
                             //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
@@ -229,7 +230,7 @@ namespace RapidTrackingMultiThreadRequests
                     //26-10-2020 changed character as ':'
                     string seid = s.Split(':')[0];
                     string kw = s.Split(':')[1];
-                    string jobid = s.Split(':')[2];
+                    string jobid = string.Empty;
                     //end of 26-10-2020 changed character as ':'
                     try
                     {
@@ -243,6 +244,7 @@ namespace RapidTrackingMultiThreadRequests
                             JObject obj = JObject.Parse(src[1]);
                             string html = obj["results"][0]["content"].Value<string>();
                             string device = src[3];
+                            jobid = src[2];
                             doc = new HtmlAgilityPack.HtmlDocument();
                             doc.LoadHtml(html);
                             //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
@@ -337,7 +339,7 @@ namespace RapidTrackingMultiThreadRequests
                     //26-10-2020 changed character as ':'
                     string seid = s.Split(':')[0];
                     string kw = s.Split(':')[1];
-                    string jobid = s.Split(':')[2];
+                    string jobid = string.Empty;
                     //end of 26-10-2020 changed character as ':'
                     try
                     {
@@ -351,6 +353,7 @@ namespace RapidTrackingMultiThreadRequests
                             JObject obj = JObject.Parse(src[1]);
                             string html = obj["results"][0]["content"].Value<string>();
                             string device = src[3];
+                            jobid = src[2];
                             doc = new HtmlAgilityPack.HtmlDocument();
                             doc.LoadHtml(html);
                             //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);

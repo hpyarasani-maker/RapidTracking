@@ -142,6 +142,7 @@ namespace RapidTrackingMultiThreadRequests
                             string html = obj["results"][0]["content"].Value<string>();                            
                             string device = src[3];
                             jobid = src[2];
+                            await SendToSendingTable(kw, seid, jobid);
                             doc = new HtmlAgilityPack.HtmlDocument();
                             doc.LoadHtml(html);
                             //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
@@ -165,12 +166,12 @@ namespace RapidTrackingMultiThreadRequests
                             {
                                 if (count > 20)
                                 {
-                                    SendToAPI1(seid, keyword, res, jobid);
-                                    SendToDB(seid, keyword, res, jobid, count);
+                                    await SendToAPI1(seid, keyword, res, jobid);
+                                    await SendToDB(seid, keyword, res, jobid, count);
                                 }
                                 if (count <= 20)
                                 {
-                                    SendToDB(seid, keyword, res, jobid, count);
+                                    await SendToDB(seid, keyword, res, jobid, count);
                                 }
                                 bool aio = res.Contains("<block type=\"aiOverview\">");//16-02-2025
                                 if (aio && device == "mobile_android") // inserting true value //16-02-2025
@@ -189,7 +190,7 @@ namespace RapidTrackingMultiThreadRequests
                                     Environment.NewLine + Environment.NewLine;
                                 txtError.Refresh();
                             });
-                            SendToDBFailure(seid, kw, jobid, false, ex.Message);
+                            await SendToDBFailure(seid, kw, jobid, false, ex.Message);
                         }
                         finally { }
                     }
@@ -245,6 +246,7 @@ namespace RapidTrackingMultiThreadRequests
                             string html = obj["results"][0]["content"].Value<string>();
                             string device = src[3];
                             jobid = src[2];
+                            await SendToSendingTable(kw, seid, jobid);
                             doc = new HtmlAgilityPack.HtmlDocument();
                             doc.LoadHtml(html);
                             //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
@@ -268,12 +270,12 @@ namespace RapidTrackingMultiThreadRequests
                             {
                                 if (count > 20)
                                 {
-                                    SendToAPI2(seid, keyword, res, jobid);
-                                    SendToDB(seid, keyword, res, jobid, count);
+                                    await SendToAPI2(seid, keyword, res, jobid);
+                                    await SendToDB(seid, keyword, res, jobid, count);
                                 }
                                 if (count <= 20)
                                 {
-                                    SendToDB(seid, keyword, res, jobid, count);
+                                    await SendToDB(seid, keyword, res, jobid, count);
                                 }
                                 bool aio = res.Contains("<block type=\"aiOverview\">");//16-02-2025
                                 if (aio && device == "mobile_android") // inserting true value //16-02-2025
@@ -291,7 +293,7 @@ namespace RapidTrackingMultiThreadRequests
                                     Environment.NewLine + Environment.NewLine;
                                 txtError.Refresh();
                             });
-                            SendToDBFailure(seid, kw, jobid, false, ex.Message);
+                            await SendToDBFailure(seid, kw, jobid, false, ex.Message);
                         }
                         finally { }
                     }
@@ -354,6 +356,7 @@ namespace RapidTrackingMultiThreadRequests
                             string html = obj["results"][0]["content"].Value<string>();
                             string device = src[3];
                             jobid = src[2];
+                            await SendToSendingTable(kw, seid, jobid);
                             doc = new HtmlAgilityPack.HtmlDocument();
                             doc.LoadHtml(html);
                             //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
@@ -377,12 +380,12 @@ namespace RapidTrackingMultiThreadRequests
                             {
                                 if (count > 20)
                                 {
-                                    SendToAPI3(seid, keyword, res, jobid);
-                                    SendToDB(seid, keyword, res, jobid, count);
+                                    await SendToAPI3(seid, keyword, res, jobid);
+                                    await SendToDB(seid, keyword, res, jobid, count);
                                 }
                                 if (count <= 20)
                                 {
-                                    SendToDB(seid, keyword, res, jobid, count);
+                                    await SendToDB(seid, keyword, res, jobid, count);
                                 }
                                 bool aio = res.Contains("<block type=\"aiOverview\">");//16-02-2025
                                 if (aio && device == "mobile_android") // inserting true value //16-02-2025
@@ -400,7 +403,7 @@ namespace RapidTrackingMultiThreadRequests
                                     Environment.NewLine + Environment.NewLine;
                                 txtError.Refresh();
                             });
-                            SendToDBFailure(seid, kw, jobid, false, ex.Message);
+                            await SendToDBFailure(seid, kw, jobid, false, ex.Message);
                         }
                         finally { }
                     }
@@ -420,7 +423,7 @@ namespace RapidTrackingMultiThreadRequests
                 Environment.Exit(Environment.ExitCode);
         }
 
-        private void SendToAPI1(string seid, string kw, string res, string jobid)
+        private async Task SendToAPI1(string seid, string kw, string res, string jobid)
         {
             XmlDocument xd = new XmlDocument();
             res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + res;
@@ -430,7 +433,7 @@ namespace RapidTrackingMultiThreadRequests
             //return;
             //SendToURL
 
-            string submitURL = readAPI();
+            string submitURL = await readAPI();
 
             string user = "pisoftware";
             string pwd = "r00t123456";
@@ -442,7 +445,7 @@ namespace RapidTrackingMultiThreadRequests
                 httpWReq.Credentials = CredentialCache.DefaultCredentials;
 
                 Encoding encoding = new UTF8Encoding();
-                string postData = GetTextFromXMLFile(xmlPath1);
+                string postData = await GetTextFromXMLFile(xmlPath1);
                 byte[] data = encoding.GetBytes(postData);
 
                 httpWReq.ProtocolVersion = HttpVersion.Version11;
@@ -459,11 +462,11 @@ namespace RapidTrackingMultiThreadRequests
                 httpWReq.ContentLength = data.Length;
 
 
-                Stream stream = httpWReq.GetRequestStream();
+                Stream stream = await httpWReq.GetRequestStreamAsync();
                 stream.Write(data, 0, data.Length);
                 stream.Close();
 
-                HttpWebResponse response = (HttpWebResponse)httpWReq.GetResponse();
+                HttpWebResponse response = (HttpWebResponse)await httpWReq.GetResponseAsync();
                 //string s = response.ToString();
                 StreamReader reader = new StreamReader(response.GetResponseStream());
                 if (response.StatusCode != HttpStatusCode.OK)
@@ -485,7 +488,7 @@ namespace RapidTrackingMultiThreadRequests
             {
 
                 ////store into keywordfail table.
-                SendToDBFailure(seid, kw, jobid, false,ex.Message);
+                await SendToDBFailure(seid, kw, jobid, false,ex.Message);
 
 
                 string errorMsg = string.Empty;
@@ -497,7 +500,7 @@ namespace RapidTrackingMultiThreadRequests
                     using (Stream data = response.GetResponseStream())
                     using (var reader = new StreamReader(data))
                     {
-                        errorMsg += "\r\n" + reader.ReadToEnd();
+                        errorMsg += "\r\n" + await reader.ReadToEndAsync();
                     }
                 }
 
@@ -511,7 +514,7 @@ namespace RapidTrackingMultiThreadRequests
 
         }
 
-        private void SendToAPI2(string seid, string kw, string res, string jobid)
+        private async Task SendToAPI2(string seid, string kw, string res, string jobid)
         {
             XmlDocument xd = new XmlDocument();
             res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + res;
@@ -521,7 +524,7 @@ namespace RapidTrackingMultiThreadRequests
             //return;
             //SendToURL
 
-            string submitURL = readAPI();
+            string submitURL = await readAPI();
 
             string user = "pisoftware";
             string pwd = "r00t123456";
@@ -533,7 +536,7 @@ namespace RapidTrackingMultiThreadRequests
                 httpWReq.Credentials = CredentialCache.DefaultCredentials;
 
                 Encoding encoding = new UTF8Encoding();
-                string postData = GetTextFromXMLFile(xmlPath2);
+                string postData = await GetTextFromXMLFile(xmlPath2);
                 byte[] data = encoding.GetBytes(postData);
 
                 httpWReq.ProtocolVersion = HttpVersion.Version11;
@@ -550,11 +553,11 @@ namespace RapidTrackingMultiThreadRequests
                 httpWReq.ContentLength = data.Length;
                 //httpWReq.Timeout = 0;
 
-                Stream stream = httpWReq.GetRequestStream();
+                Stream stream = await httpWReq.GetRequestStreamAsync();
                 stream.Write(data, 0, data.Length);
                 stream.Close();
 
-                HttpWebResponse response = (HttpWebResponse)httpWReq.GetResponse();
+                HttpWebResponse response = (HttpWebResponse)await httpWReq.GetResponseAsync();
                 //string s = response.ToString();
                 StreamReader reader = new StreamReader(response.GetResponseStream());
                 if (response.StatusCode != HttpStatusCode.OK)
@@ -576,7 +579,7 @@ namespace RapidTrackingMultiThreadRequests
             {
 
                 ////store into keywordfail table.
-                SendToDBFailure(seid, kw, jobid, false,ex.Message);
+                await SendToDBFailure(seid, kw, jobid, false,ex.Message);
 
 
                 string errorMsg = string.Empty;
@@ -588,7 +591,7 @@ namespace RapidTrackingMultiThreadRequests
                     using (Stream data = response.GetResponseStream())
                     using (var reader = new StreamReader(data))
                     {
-                        errorMsg += "\r\n" + reader.ReadToEnd();
+                        errorMsg += "\r\n" + await reader.ReadToEndAsync();
                     }
                 }
 
@@ -602,7 +605,7 @@ namespace RapidTrackingMultiThreadRequests
 
         }
 
-        private void SendToAPI3(string seid, string kw, string res, string jobid)
+        private async Task SendToAPI3(string seid, string kw, string res, string jobid)
         {
             XmlDocument xd = new XmlDocument();
             res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + res;
@@ -612,7 +615,7 @@ namespace RapidTrackingMultiThreadRequests
             //return;
             //SendToURL
 
-            string submitURL = readAPI();
+            string submitURL = await readAPI();
 
             string user = "pisoftware";
             string pwd = "r00t123456";
@@ -624,7 +627,7 @@ namespace RapidTrackingMultiThreadRequests
                 httpWReq.Credentials = CredentialCache.DefaultCredentials;
 
                 Encoding encoding = new UTF8Encoding();
-                string postData = GetTextFromXMLFile(xmlPath3);
+                string postData = await GetTextFromXMLFile(xmlPath3);
                 byte[] data = encoding.GetBytes(postData);
 
                 httpWReq.ProtocolVersion = HttpVersion.Version11;
@@ -641,11 +644,11 @@ namespace RapidTrackingMultiThreadRequests
                 httpWReq.ContentLength = data.Length;
                 //httpWReq.Timeout = 0;
 
-                Stream stream = httpWReq.GetRequestStream();
+                Stream stream = await httpWReq.GetRequestStreamAsync();
                 stream.Write(data, 0, data.Length);
                 stream.Close();
 
-                HttpWebResponse response = (HttpWebResponse)httpWReq.GetResponse();
+                HttpWebResponse response = (HttpWebResponse) await httpWReq.GetResponseAsync();
                 //string s = response.ToString();
                 StreamReader reader = new StreamReader(response.GetResponseStream());
                 if (response.StatusCode != HttpStatusCode.OK)
@@ -667,7 +670,7 @@ namespace RapidTrackingMultiThreadRequests
             {
 
                 ////store into keywordfail table.
-                SendToDBFailure(seid, kw, jobid, false,ex.Message);
+                await SendToDBFailure(seid, kw, jobid, false,ex.Message);
 
 
                 string errorMsg = string.Empty;
@@ -679,7 +682,7 @@ namespace RapidTrackingMultiThreadRequests
                     using (Stream data = response.GetResponseStream())
                     using (var reader = new StreamReader(data))
                     {
-                        errorMsg += "\r\n" + reader.ReadToEnd();
+                        errorMsg += "\r\n" + await reader.ReadToEndAsync();
                     }
                 }
 
@@ -693,15 +696,15 @@ namespace RapidTrackingMultiThreadRequests
 
         }
 
-        private string GetTextFromXMLFile(string file)
+        private async Task<string> GetTextFromXMLFile(string file)
         {
             StreamReader reader = new StreamReader(file);
-            string ret = reader.ReadToEnd();
+            string ret = await reader.ReadToEndAsync();
             reader.Close();
             return ret;
         }
 
-        public string readAPI()
+        public async Task<string> readAPI()
         {
             try
             {
@@ -753,7 +756,7 @@ namespace RapidTrackingMultiThreadRequests
                 throw ex;
             }
         }//16-02-2025
-        private void SendToDBFailure(string seid, string kw, string jobid, bool isOldPage, string errMsg)
+        private async Task SendToDBFailure(string seid, string kw, string jobid, bool isOldPage, string errMsg)
         {
             string myDate = DateTime.Today.ToString("yyyy-MM-dd");
             //string myDate = "2019-10-10";
@@ -804,7 +807,7 @@ namespace RapidTrackingMultiThreadRequests
 
         }
 
-        private void SendToDB(string seid, string keyword, string xml, string jobid, int urlcount)
+        private async Task SendToDB(string seid, string keyword, string xml, string jobid, int urlcount)
         {
             try
             {
@@ -851,7 +854,32 @@ namespace RapidTrackingMultiThreadRequests
                 throw ex;
             }
         }
-
+        private async Task SendToSendingTable(string kw, string seid, string jobid)
+        {
+            string date = DateTime.Today.ToString("yyyy-MM-dd");
+            StringBuilder sb = new StringBuilder();
+            string qry = "insert into dashboard_data_sending (date, name, seid, jobid) values('" + date + "', N'" + kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "'); ";
+            sb.Append(qry);
+            try
+            {
+                if (!string.IsNullOrEmpty(sb.ToString()))
+                {
+                    using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
+                    {
+                        con.Open();
+                        using (SqlCommand comm = new SqlCommand(sb.ToString(), con))
+                        {
+                            comm.CommandTimeout = 0;
+                            await comm.ExecuteNonQueryAsync();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
         private void GetKeywords1(string qry)
         {
             this.Invoke((MethodInvoker)delegate ()

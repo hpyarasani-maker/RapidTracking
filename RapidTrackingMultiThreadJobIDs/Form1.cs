@@ -1071,7 +1071,7 @@ namespace RapidTrackingMultiThreadRequests
             req.ContentType = "application/json";
             req.Headers.Add(HttpRequestHeader.Authorization, "Basic " + authInfo);
 
-            using (var streamWriter = new StreamWriter(req.GetRequestStream()))
+            using (var streamWriter = new StreamWriter(await req.GetRequestStreamAsync()))
             {
                 var json = JsonConvert.SerializeObject(op, new JsonSerializerSettings
                 {

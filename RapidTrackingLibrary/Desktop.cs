@@ -893,7 +893,7 @@ namespace RapidTrackingLibrary
                             if ((Regex.IsMatch(nd.OuterHtml, "id=\"vidthumb\\d*\"") && (nd.SelectSingleNode(".//div[@class='ij69rd UHe5G']") != null
                                || nd.SelectSingleNode(".//div[@class='ij69rd TUOsUe UHe5G']") != null)) || nd.SelectSingleNode(".//div[contains(@class,'U1TUId')]" +
                                "|.//div[@class='J1mWY']|.//div[contains(@class,'c8rnLc flgn0c')]|.//div[@class='Ylm8Fc']" +//10-12-2024
-                               "|.//div[@class='Ttm4Le']|.//div[@class='TdIFfc']") != null)//10-12-2024//02-09-2023//23-08-2023//10-06-2023//07-06-2023//02-05-2023//07-04-2022 //18-10-2021 video block selector
+                               "|.//div[@class='Ttm4Le']|.//div[@class='TdIFfc']|.//div[@class='kSFuOd rkqHyd']") != null)//05-05-2025//10-12-2024//02-09-2023//23-08-2023//10-06-2023//07-06-2023//02-05-2023//07-04-2022 //18-10-2021 video block selector
                             {
                                 //24-08-2021 video item urls
                                 var urls = string.Empty;

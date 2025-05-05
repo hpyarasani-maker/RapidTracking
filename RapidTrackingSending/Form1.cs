@@ -61,10 +61,10 @@ namespace Oxylabs_BulkKeywords
                 {
                     await mainLoop();
                     await generateWorklist();
-                    if (await getWorklistSize() > 0)
-                    {
-                        t.Start();
-                    }
+                    //if (await getWorklistSize() > 0)
+                    //{
+                    //    t1.Start();
+                    //}
                 }
                 catch (Exception ex)
                 {

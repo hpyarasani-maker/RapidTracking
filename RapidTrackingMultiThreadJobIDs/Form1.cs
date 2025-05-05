@@ -116,7 +116,7 @@ namespace RapidTrackingMultiThreadRequests
                 //string kwQry = "GetMissingKeywords_1 '" + myDate + "'";     
                 string kwQry = "GetAllKeywords_Remaining '" + myDate + "',1";
 
-                GetKeywords1(kwQry);
+                await GetKeywords1(kwQry);
 
                 if (lstKWs.Items.Count <= 0)
                     break;
@@ -220,7 +220,7 @@ namespace RapidTrackingMultiThreadRequests
                 //string kwQry = "GetAllKeywords_2 '" + myDate + "'";     
                 string kwQry = "GetAllKeywords_Remaining '" + myDate + "',2";
 
-                GetKeywords2(kwQry);
+                await GetKeywords2(kwQry);
 
                 if (lstKWs2.Items.Count <= 0)
                     break;
@@ -330,7 +330,7 @@ namespace RapidTrackingMultiThreadRequests
                 //string kwQry = "GetAllKeywords_3 '" + myDate + "'";     
                 string kwQry = "GetAllKeywords_Remaining '" + myDate + "',3";
 
-                GetKeywords3(kwQry);
+                await GetKeywords3(kwQry);
 
                 if (lstKWs3.Items.Count <= 0)
                     break;
@@ -731,7 +731,7 @@ namespace RapidTrackingMultiThreadRequests
         {
             try
             {
-                using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
+                using (SqlConnection con = new SqlConnection(await Common.ReadConnection()))
                 {
                     con.Open();
                     using (SqlCommand comm = con.CreateCommand())
@@ -767,7 +767,7 @@ namespace RapidTrackingMultiThreadRequests
             string qryOld = "insert into dashboard_oldgooglepage (date, keyword, seid, jobid) values('" + DateTime.Now + "', N'" +
                   kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "')";
 
-            using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
+            using (SqlConnection con = new SqlConnection(await Common.ReadConnection()))
             {
                 try
                 {
@@ -812,7 +812,7 @@ namespace RapidTrackingMultiThreadRequests
             try
             {
                 //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
-                using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
+                using (SqlConnection con = new SqlConnection(await Common.ReadConnection()))
                 {
                     con.Open();
 
@@ -864,7 +864,7 @@ namespace RapidTrackingMultiThreadRequests
             {
                 if (!string.IsNullOrEmpty(sb.ToString()))
                 {
-                    using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
+                    using (SqlConnection con = new SqlConnection(await Common.ReadConnection()))
                     {
                         con.Open();
                         using (SqlCommand comm = new SqlCommand(sb.ToString(), con))
@@ -880,7 +880,7 @@ namespace RapidTrackingMultiThreadRequests
                 throw new Exception(ex.Message.ToString());
             }
         }
-        private void GetKeywords1(string qry)
+        private async Task GetKeywords1(string qry)
         {
             this.Invoke((MethodInvoker)delegate ()
             {
@@ -892,7 +892,7 @@ namespace RapidTrackingMultiThreadRequests
 
             try
             {
-                using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
+                using (SqlConnection con = new SqlConnection(await Common.ReadConnection()))
                 {
                     con.Open();
                     using (SqlCommand comm = new SqlCommand(qry, con))
@@ -922,7 +922,7 @@ namespace RapidTrackingMultiThreadRequests
             finally { }
         }
 
-        private void GetKeywords2(string qry)
+        private async Task GetKeywords2(string qry)
         {
             this.Invoke((MethodInvoker)delegate ()
             {
@@ -934,7 +934,7 @@ namespace RapidTrackingMultiThreadRequests
 
             try
             {
-                using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
+                using (SqlConnection con = new SqlConnection(await Common.ReadConnection()))
                 {
                     con.Open();
                     using (SqlCommand comm = new SqlCommand(qry, con))
@@ -964,7 +964,7 @@ namespace RapidTrackingMultiThreadRequests
             finally { }
         }
 
-        private void GetKeywords3(string qry)
+        private async Task GetKeywords3(string qry)
         {
             this.Invoke((MethodInvoker)delegate ()
             {
@@ -975,7 +975,7 @@ namespace RapidTrackingMultiThreadRequests
 
             try
             {
-                using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
+                using (SqlConnection con = new SqlConnection(await Common.ReadConnection()))
                 {
                     con.Open();
                     using (SqlCommand comm = new SqlCommand(qry, con))

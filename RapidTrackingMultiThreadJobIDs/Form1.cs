@@ -720,7 +720,7 @@ namespace RapidTrackingMultiThreadRequests
                 // Get its value
                 string name = node.InnerText;
 
-                return name;
+                return await Task.FromResult<string>(name);
             }
             catch (Exception ex)
             {

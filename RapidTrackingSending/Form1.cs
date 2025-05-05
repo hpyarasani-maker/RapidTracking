@@ -33,7 +33,7 @@ namespace Oxylabs_BulkKeywords
             Environment.Exit(Environment.ExitCode);
         }
                
-        private void Form1_Load(object sender, EventArgs e)
+        private async void Form1_Load(object sender, EventArgs e)
         {
             //Text = "D_Oxylabs_NewSEIDs";
             //Text = "D_Oxylabs_TrackingTrending_KwdSending_106_1";
@@ -55,31 +55,12 @@ namespace Oxylabs_BulkKeywords
             //Text = "Sending KeywordsP-11-14_CommaKeywords_P";
             //Text = "Sending Previous Date Keywords"; //sending previous date keywords
             date_picker.Value = DateTime.Today;
-            Task t1 = Task.Run(async () => //16-02-2025
-            {
-                try
-                {
-                    await mainLoop();
-                    await generateWorklist();
-                    if (await getWorklistSize() > 0)
-                    {
-                        await Task.Run(() => getWorklistSize());
-                    }
-                }
-                catch (Exception ex)
-                {
-                    this.Invoke((MethodInvoker)delegate ()
-                    {
-                        errorList.Text = $"Exception: {ex.Message}";
-                    });
-
-                }
-            });
+            
 
 
-            /*Thread t = new Thread(new ThreadStart(mainLoop));
-            generateWorklist();
-            if (getWorklistSize() > 0)
+            Thread t = new Thread(new ThreadStart(mainLoop));
+            await generateWorklist();
+            if (await getWorklistSize() > 0)
             {
                 t.Start();                
             }
@@ -87,7 +68,7 @@ namespace Oxylabs_BulkKeywords
             {
                 t.Abort();
                 Close();
-            }*/
+            }
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -95,7 +76,7 @@ namespace Oxylabs_BulkKeywords
             Environment.Exit(Environment.ExitCode);
         }
 
-        public async Task mainLoop()
+        public async void mainLoop()
         {            
             while (await getWorklistSize() > 0)
             {
@@ -135,10 +116,10 @@ namespace Oxylabs_BulkKeywords
             this.Invoke((MethodInvoker)delegate()
             {
                 worklist.Items.Clear();
-                //worklist.Items.Add("102:hotel kungsträdgården tripadvisor");
-                //worklist.Items.Add("1:sex toys, australia, donald trump, narendra modi");
-                //worklist.Items.Add("160:zlatan");
-                //worklist.Items.Add("160:messi");
+                worklist.Items.Add("102:hotel kungsträdgården tripadvisor");
+                worklist.Items.Add("1:sex toys, australia, donald trump, narendra modi");
+                worklist.Items.Add("160:zlatan");
+                worklist.Items.Add("160:messi");
                 //worklist.Items.Add("61:cancervårdsförsäkring");
                 //.Items.Add("106:usd to euro");
                 worklist.Refresh();
@@ -146,7 +127,7 @@ namespace Oxylabs_BulkKeywords
                 date_picker.CustomFormat = "yyyy-MM-dd";
             });
 
-           //return;
+           return;
 
             Cursor.Current = Cursors.WaitCursor;
             string myDate = date_picker.Text;

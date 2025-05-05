@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -53,11 +54,30 @@ namespace Oxylabs_BulkKeywords
             //Text = "D_Oxylabs_RapidTracking_KwdSending_NonHotelKeywordsP";
             //Text = "Sending KeywordsP-11-14_CommaKeywords_P";
             //Text = "Sending Previous Date Keywords"; //sending previous date keywords
-            date_picker.Value = DateTime.Today; 
+            date_picker.Value = DateTime.Today;
+            Task t1 = Task.Run(async () => //16-02-2025
+            {
+                try
+                {
+                    await mainLoop();
+                    await generateWorklist();
+                    if (await getWorklistSize() > 0)
+                    {
+                        t.Start();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    this.Invoke((MethodInvoker)delegate ()
+                    {
+                        errorList.Text = $"Exception: {ex.Message}";
+                    });
 
-            
+                }
+            });
 
-            Thread t = new Thread(new ThreadStart(mainLoop));
+
+            /*Thread t = new Thread(new ThreadStart(mainLoop));
             generateWorklist();
             if (getWorklistSize() > 0)
             {
@@ -67,7 +87,7 @@ namespace Oxylabs_BulkKeywords
             {
                 t.Abort();
                 Close();
-            }
+            }*/
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -75,18 +95,18 @@ namespace Oxylabs_BulkKeywords
             Environment.Exit(Environment.ExitCode);
         }
 
-        public void mainLoop()
+        public async Task mainLoop()
         {            
-            while (getWorklistSize() > 0)
+            while (await getWorklistSize() > 0)
             {
-                processWorklist();
-                generateWorklist();
+                await processWorklist();
+                await generateWorklist();
             }
 
             Environment.Exit(Environment.ExitCode);
         }
 
-        public string strConn()
+        public async Task<string> strConn()
         {
             try
             {
@@ -102,7 +122,7 @@ namespace Oxylabs_BulkKeywords
                 // Get its value
                 string name = node.InnerText;
 
-                return name;
+                return await Task.FromResult<string>(name);
             }
             catch(Exception ex)
             {
@@ -110,7 +130,7 @@ namespace Oxylabs_BulkKeywords
             }
         }
                                                                                    
-        public void generateWorklist()
+        public async Task generateWorklist()
         {
             this.Invoke((MethodInvoker)delegate()
             {
@@ -163,7 +183,7 @@ namespace Oxylabs_BulkKeywords
 
             try
             {               
-                objCon = new SqlConnection(strConn());
+                objCon = new SqlConnection(await strConn());
                 objCon.Open();
                 SqlCommand objCmd = new SqlCommand(strQry, objCon);
                 objCmd.CommandTimeout = 0;
@@ -205,13 +225,13 @@ namespace Oxylabs_BulkKeywords
             }
         }
 
-        public int getWorklistSize()
+        public async Task<int> getWorklistSize()
         {
             int worklistSize = worklist.Items.Count;
-            return worklistSize;
+            return await Task.FromResult<int>(worklistSize);
         }
 
-        public void processWorklist()
+        public async Task processWorklist()
         {
             string resultsString;
             char sep;
@@ -251,7 +271,7 @@ namespace Oxylabs_BulkKeywords
                 DateTime dt = DateTime.Now;
                 try
                 {
-                    processResults(seid, kn);
+                    await processResults(seid, kn);
                 }
                 catch (Exception ex)
                 {
@@ -274,11 +294,11 @@ namespace Oxylabs_BulkKeywords
             }
         }
         
-        public void processResults(string seid, string kn)
+        public async Task processResults(string seid, string kn)
         {
             try
             {
-                WOWS.getTop100(kn, Convert.ToInt32(seid));
+               await WOWS.getTop100(kn, Convert.ToInt32(seid));
             }
             catch(Exception ex)
             {

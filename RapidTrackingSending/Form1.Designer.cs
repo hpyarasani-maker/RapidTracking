@@ -1,4 +1,6 @@
-﻿namespace Oxylabs_BulkKeywords
+﻿using System.Threading.Tasks;
+
+namespace Oxylabs_BulkKeywords
 {
     partial class Form1
     {

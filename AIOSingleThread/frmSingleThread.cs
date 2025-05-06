@@ -90,7 +90,7 @@ namespace AIOSingleThread
                 //string kwQry = "Tracking_DB_Keywords_SEID_102_TGBN '" + myDate + "'";
                 string kwQry = "[Tracking_DB_Keywords_SEID_102_AIO] '" + myDate + "'";
 
-                GetKeywords(kwQry);
+                await GetKeywords(kwQry);
 
                 if (lstKWs.Items.Count <= 0)
                     break;
@@ -118,6 +118,7 @@ namespace AIOSingleThread
                             string html = obj["results"][0]["content"].Value<string>();
                             string jobid = src[2];
                             string device = src[3];
+                            await SendToSendingTable(kw, seid, jobid);
                             File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
                             //File.WriteAllText(@"C:\inetpub\wwwroot\"+jobid+"_withOut filter_"+".html", html, Encoding.UTF8);
                             result = true;
@@ -146,8 +147,8 @@ namespace AIOSingleThread
                                     }));
                                     if (count > 20)
                                     {
-                                        SendToAPI(seid, keyword, res, jobid);
-                                        SendToDB(seid, keyword, res, jobid, count);
+                                        await SendToAPI(seid, keyword, res, jobid);
+                                        await SendToDB(seid, keyword, res, jobid, count);
                                     }
                                     bool aio = res.Contains("<block type=\"aiOverview\">");//16-02-2025
                                     if (!aio && device == "mobile_android") // inserting false value //16-02-2025
@@ -167,7 +168,7 @@ namespace AIOSingleThread
                                     bool isOldPage = false;
                                     if (ex.Message == "AIO Old page found")//14-04-2025
                                         isOldPage = true;
-                                    SendToDBFailure(kw, seid, jobid, isOldPage);
+                                    await SendToDBFailure(kw, seid, jobid, isOldPage);
                                 }
                                 finally { }
                             }
@@ -206,7 +207,7 @@ namespace AIOSingleThread
         }
 
 
-        private void SendToAPI(string seid, string kw, string res, string jobid)
+        private async Task SendToAPI(string seid, string kw, string res, string jobid)
         {
             //string r = "[\x00-\x08\x0B\x0C\x0E-\x1F\x26]";
             //res = Regex.Replace(res, r, "", RegexOptions.Compiled);
@@ -230,7 +231,7 @@ namespace AIOSingleThread
             //SendToURL
 
 
-            string submitURL = ReadAPI();
+            string submitURL = await ReadAPI();
             //return; //03-04-2021
             string user = "pisoftware";
             string pwd = "r00t123456";
@@ -242,7 +243,7 @@ namespace AIOSingleThread
                 httpWReq.Credentials = CredentialCache.DefaultCredentials;
 
                 Encoding encoding = new UTF8Encoding();
-                string postData = GetTextFromXMLFile(xmlPath);
+                string postData = await GetTextFromXMLFile(xmlPath);
                 byte[] data = encoding.GetBytes(postData);
 
                 httpWReq.ProtocolVersion = HttpVersion.Version11;
@@ -286,7 +287,7 @@ namespace AIOSingleThread
             {
 
                 ////store into keywordfail table.
-                SendToDBFailure(seid, kw, jobid, false);
+                await SendToDBFailure(seid, kw, jobid, false);
 
 
                 string errorMsg = string.Empty;
@@ -313,7 +314,33 @@ namespace AIOSingleThread
 
         }
 
-        private void GetKeywords(string qry)
+        private async Task SendToSendingTable(string kw, string seid, string jobid)
+        {
+            string date = DateTime.Today.ToString("yyyy-MM-dd");
+            StringBuilder sb = new StringBuilder();
+            string qry = "insert into dashboard_data_sending (date, name, seid, jobid) values('" + date + "', N'" + kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "'); ";
+            sb.Append(qry);
+            try
+            {
+                if (!string.IsNullOrEmpty(sb.ToString()))
+                {
+                    using (SqlConnection con = new SqlConnection(await Common.ReadConnection()))
+                    {
+                        con.Open();
+                        using (SqlCommand comm = new SqlCommand(sb.ToString(), con))
+                        {
+                            comm.CommandTimeout = 0;
+                            await comm.ExecuteNonQueryAsync();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
+        private async Task GetKeywords(string qry)
         {
             this.Invoke((MethodInvoker)delegate ()
             {
@@ -330,7 +357,7 @@ namespace AIOSingleThread
 
             try
             {
-                using (SqlConnection con = new SqlConnection(Common.ReadConnection()))  // 12-05-2020
+                using (SqlConnection con = new SqlConnection(await Common.ReadConnection()))  // 12-05-2020
                 {
                     con.Open();
                     using (SqlCommand comm = new SqlCommand(qry, con))
@@ -363,15 +390,15 @@ namespace AIOSingleThread
             finally { }
         }
 
-        private string GetTextFromXMLFile(string file)
+        private async Task<string> GetTextFromXMLFile(string file)
         {
             StreamReader reader = new StreamReader(file);
             string ret = reader.ReadToEnd();
             reader.Close();
-            return ret;
+            return await Task.FromResult<string>(ret);
         }
 
-        public string ReadAPI()
+        public async Task<string> ReadAPI()
         {
             try
             {
@@ -387,14 +414,14 @@ namespace AIOSingleThread
                 // Get its value
                 string name = node.InnerText;
 
-                return name;
+                return await Task.FromResult<string>(name);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        private void SendToDBFailure(string seid, string kw, string jobid, bool isOldPage)
+        private async Task SendToDBFailure(string seid, string kw, string jobid, bool isOldPage)
         {
             string myDate = DateTime.Today.ToString("yyyy-MM-dd");
             //string myDate = "2019-10-10";
@@ -405,7 +432,7 @@ namespace AIOSingleThread
             string qryOld = "insert into dashboard_oldgooglepage (date, keyword, seid, jobid) values('" + DateTime.Now + "', N'" +
                  kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "' )";
 
-            using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
+            using (SqlConnection con = new SqlConnection(await Common.ReadConnection()))
             {
                 try
                 {
@@ -447,7 +474,7 @@ namespace AIOSingleThread
         {
             try
             {
-                using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
+                using (SqlConnection con = new SqlConnection(await Common.ReadConnection()))
                 {
                     con.Open();
                     using (SqlCommand comm = con.CreateCommand())
@@ -473,14 +500,14 @@ namespace AIOSingleThread
             }
         }//16-02-2025
 
-        private void SendToDB(string seid, string keyword, string xml, string jobid, int urlcount)
+        private async Task SendToDB(string seid, string keyword, string xml, string jobid, int urlcount)
         {
             try
             {
                 string myDate = DateTime.Today.ToString("yyyy-MM-dd");
                 //string myDate = "2019-11-20";
 
-                using (SqlConnection con = new SqlConnection(Common.ReadConnection()))  // 12-05-2020
+                using (SqlConnection con = new SqlConnection(await Common.ReadConnection()))  // 12-05-2020
                 {
                     con.Open();
 
@@ -496,7 +523,7 @@ namespace AIOSingleThread
                         comm.Parameters.Add("Count", SqlDbType.Int).Value = urlcount;
                         comm.Parameters.Add("XmlData", SqlDbType.Xml).Value = xml.Replace("'", "''");
                         comm.Parameters.Add("Received", SqlDbType.VarChar).Value = "AIO Single"; //14-04-2025
-                        comm.ExecuteNonQuery();
+                        await comm.ExecuteNonQueryAsync();
                     }
                 }
 
@@ -603,7 +630,7 @@ namespace AIOSingleThread
             req.ContentType = "application/json";
             req.Headers.Add(HttpRequestHeader.Authorization, "Basic " + authInfo);
 
-            using (var streamWriter = new StreamWriter(req.GetRequestStream()))
+            using (var streamWriter = new StreamWriter(await req.GetRequestStreamAsync()))
             {
                 var json = JsonConvert.SerializeObject(op, new JsonSerializerSettings
                 {

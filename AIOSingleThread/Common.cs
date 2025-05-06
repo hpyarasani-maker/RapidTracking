@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace AIOSingleThread
 {
     class Common
     {
-      
 
-        internal static string ReadConnection()
+
+        internal static async Task<string> ReadConnection()
         {
-            try 
+            try
             {
                 XmlDocument xml = new XmlDocument();
                 string fileName = @"C:\Inetpub\wwwroot\Callback_TrackingTrending.xml";
@@ -25,7 +26,7 @@ namespace AIOSingleThread
                 // Get its value
                 string name = node.InnerText;
 
-                return name;
+                return await Task.FromResult<string>(name);
             }
             catch (Exception ex)
             {
@@ -34,7 +35,7 @@ namespace AIOSingleThread
         }
 
 
-        internal static string StrConn()
+        internal static async Task<string> StrConn()
         {
             try
             {
@@ -52,14 +53,14 @@ namespace AIOSingleThread
                 // Get its value
                 string name = node.InnerText;
 
-                return name;
+                return await Task.FromResult<string>(name);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        internal static string buffaloConn()
+        internal static async Task<string> buffaloConn()
         {
             try
             {
@@ -77,7 +78,7 @@ namespace AIOSingleThread
                 // Get its value
                 string name = node.InnerText;
 
-                return name;
+                return await Task.FromResult<string>(name);
             }
             catch (Exception ex)
             {
@@ -85,11 +86,11 @@ namespace AIOSingleThread
             }
         }
 
-        internal static int GetOxylabsTime()
+        internal static async Task<int> GetOxylabsTime()
         {
             int time = 0;
             string strQuery = "exec [dbo].[GetOxylabsTime]";
-            SqlConnection objCon = new SqlConnection(ReadConnection());
+            SqlConnection objCon = new SqlConnection(await ReadConnection());
             try
             {
                 objCon.Open();
@@ -114,14 +115,14 @@ namespace AIOSingleThread
                     objCon.Close();
                 }
             }
-            return time;
+            return await Task.FromResult<int>(time);
         }
 
-        internal static int GetOxylabsCount()
+        internal static async Task<int> GetOxylabsCount()
         {
             int count = 0;
             string strQuery = "exec [dbo].[GetOxylabsCount]";
-            SqlConnection objCon = new SqlConnection(ReadConnection());
+            SqlConnection objCon = new SqlConnection(await ReadConnection());
             try
             {
                 objCon.Open();
@@ -146,7 +147,7 @@ namespace AIOSingleThread
                     objCon.Close();
                 }
             }
-            return count;
+            return await Task.FromResult<int>(count);
         }
     }
 }

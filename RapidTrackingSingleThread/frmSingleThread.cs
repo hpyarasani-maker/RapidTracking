@@ -45,7 +45,7 @@ namespace RapidTrackingSingleThread
             Environment.Exit(Environment.ExitCode);
         }
 
-        private async void frmSingleThread_Load(object sender, EventArgs e)
+        private void frmSingleThread_Load(object sender, EventArgs e)
         {
             
             this.Text = "RapidTracking_SingleThread_102_GT20_WC";

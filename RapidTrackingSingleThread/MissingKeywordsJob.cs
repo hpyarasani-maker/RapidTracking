@@ -19,7 +19,7 @@ namespace RapidTrackingSingleThread
             try
             {
                 // Delete keywords
-                ProcessDB("Exec [dbo].[DeletetrackingKeywords5]");
+                await ProcessDB("Exec [dbo].[DeletetrackingKeywords5]");
 
                 // Download keywords
                 await DownloadRemainingKeywords();
@@ -38,7 +38,7 @@ namespace RapidTrackingSingleThread
             await Task.Delay(number);
             try
             {
-                using (SqlConnection DbConn = new SqlConnection(Common.ReadConnection()))
+                using (SqlConnection DbConn = new SqlConnection(await Common.ReadConnection()))
                 {                    
                     SqlCommand ExecJob = new SqlCommand();
                     ExecJob.CommandType = CommandType.StoredProcedure;
@@ -49,7 +49,7 @@ namespace RapidTrackingSingleThread
                     DbConn.Open();
                     using (ExecJob)
                     {
-                        ExecJob.ExecuteNonQuery();
+                        await ExecJob.ExecuteNonQueryAsync();
 
                     }
                     MessageBox.Show("Job is sucessful");
@@ -113,7 +113,7 @@ namespace RapidTrackingSingleThread
                         Console.WriteLine(i.ToString());
                     }
                     if (dt.Rows.Count > 0)
-                        using (var sqlBulk = new SqlBulkCopy(Common.buffaloConn())) //bufflao connection
+                        using (var sqlBulk = new SqlBulkCopy(await Common.buffaloConn())) //bufflao connection
                         {
                             sqlBulk.BulkCopyTimeout = 0;
                             sqlBulk.DestinationTableName = "tracking_keywords5"; 
@@ -141,9 +141,9 @@ namespace RapidTrackingSingleThread
             }
         }
 
-        private static void ProcessDB(string qry)
+        private static async Task ProcessDB(string qry)
         {
-            using (SqlConnection con = new SqlConnection(Common.buffaloConn()))
+            using (SqlConnection con = new SqlConnection(await Common.buffaloConn()))
             {
                 con.Open();
                 using (SqlCommand comm = con.CreateCommand())
@@ -151,7 +151,7 @@ namespace RapidTrackingSingleThread
                     comm.CommandType = CommandType.Text;
                     comm.CommandText = qry;
                     comm.CommandTimeout = 0;
-                    comm.ExecuteNonQuery();
+                    await comm.ExecuteNonQueryAsync();
                 }
             }
         }

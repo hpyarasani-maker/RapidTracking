@@ -612,7 +612,7 @@ namespace AIOSingleThread
                     new
                     {
                         type = "wait",
-                        wait_time_s = 10
+                        wait_time_s = 5
                     }
                 }//comment for desktop and uncomment for mobile
                 /*context = new List<Context> { //comment for mobile and uncomment for desktop

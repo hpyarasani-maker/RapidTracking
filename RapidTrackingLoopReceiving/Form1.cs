@@ -40,7 +40,7 @@ namespace RapidTrackingLoopReceiving
         {
             int ct = 0;
             string strQuery = "exec [dbo].[GetOxyCount]";
-            SqlConnection objCon = new SqlConnection(StrConn());
+            SqlConnection objCon = new SqlConnection(await StrConn());
             try
             {
                 objCon.Open();
@@ -136,7 +136,7 @@ namespace RapidTrackingLoopReceiving
                 // Get its value
                 string name = node.InnerText;
 
-                return await Task.FromResult<string>(name;
+                return await Task.FromResult<string>(name);
             }
             catch (Exception ex)
             {

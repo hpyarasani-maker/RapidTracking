@@ -97,7 +97,7 @@ namespace RapidTrackingLoopSending
         {
             int count = 0;
             string strQuery = "exec [dbo].[GetOxylabsCount]";
-            SqlConnection objCon = new SqlConnection(ReadConnection());
+            SqlConnection objCon = new SqlConnection(await ReadConnection());
             try
             {
                 objCon.Open();

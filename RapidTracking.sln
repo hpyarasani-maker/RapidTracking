@@ -95,6 +95,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIOMultiThread", "AIOMultiT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIOSingleThread", "AIOSingleThread\AIOSingleThread.csproj", "{F67FE05C-CAEB-4129-9972-272B6A72E9D9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIOMultiThreadRequests", "AIOMultiThreadRequests\AIOMultiThreadRequests.csproj", "{E874A8FD-22A2-4A01-86C2-8F4517085F66}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -265,6 +267,10 @@ Global
 		{F67FE05C-CAEB-4129-9972-272B6A72E9D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F67FE05C-CAEB-4129-9972-272B6A72E9D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F67FE05C-CAEB-4129-9972-272B6A72E9D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E874A8FD-22A2-4A01-86C2-8F4517085F66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E874A8FD-22A2-4A01-86C2-8F4517085F66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E874A8FD-22A2-4A01-86C2-8F4517085F66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E874A8FD-22A2-4A01-86C2-8F4517085F66}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -292,6 +298,7 @@ Global
 		{EC9F52D1-2C38-478F-9B03-C2537E3907B3} = {C8849A92-4B18-4D1E-9DAC-2ACAFB68D808}
 		{F69A56D6-33D3-4AAF-BC18-5D046CFE4051} = {C8849A92-4B18-4D1E-9DAC-2ACAFB68D808}
 		{F67FE05C-CAEB-4129-9972-272B6A72E9D9} = {C8849A92-4B18-4D1E-9DAC-2ACAFB68D808}
+		{E874A8FD-22A2-4A01-86C2-8F4517085F66} = {C8849A92-4B18-4D1E-9DAC-2ACAFB68D808}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3CC0E919-BB8B-43E6-8485-F143616171A0}

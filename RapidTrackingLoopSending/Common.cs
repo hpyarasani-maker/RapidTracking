@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace RapidTrackingLoopSending
@@ -9,7 +10,7 @@ namespace RapidTrackingLoopSending
     {
       
 
-        internal static string ReadConnection()
+        internal static async Task<string> ReadConnection()
         {
             try 
             {
@@ -25,7 +26,7 @@ namespace RapidTrackingLoopSending
                 // Get its value
                 string name = node.InnerText;
 
-                return name;
+                return await Task.FromResult<string>(name);
             }
             catch (Exception ex)
             {
@@ -34,7 +35,7 @@ namespace RapidTrackingLoopSending
         }
 
 
-        internal static string StrConn()
+        internal static async Task<string> StrConn()
         {
             try
             {
@@ -52,7 +53,7 @@ namespace RapidTrackingLoopSending
                 // Get its value
                 string name = node.InnerText;
 
-                return name;
+                return await Task.FromResult<string>(name);
             }
             catch (Exception ex)
             {
@@ -60,11 +61,11 @@ namespace RapidTrackingLoopSending
             }
         }
 
-        internal static int GetOxylabsTime()
+        internal static async Task<int> GetOxylabsTime()
         {
             int time = 0;
             string strQuery = "exec [dbo].[GetOxylabsTime]";
-            SqlConnection objCon = new SqlConnection(ReadConnection());
+            SqlConnection objCon = new SqlConnection(await ReadConnection());
             try
             {
                 objCon.Open();
@@ -89,10 +90,10 @@ namespace RapidTrackingLoopSending
                     objCon.Close();
                 }
             }
-            return time;
+            return await Task.FromResult<int>(time);
         }
 
-        internal static int GetOxylabsCount()
+        internal static async Task<int> GetOxylabsCount()
         {
             int count = 0;
             string strQuery = "exec [dbo].[GetOxylabsCount]";
@@ -121,7 +122,7 @@ namespace RapidTrackingLoopSending
                     objCon.Close();
                 }
             }
-            return count;
+            return await Task.FromResult<int>(count);
         }
     }
 }

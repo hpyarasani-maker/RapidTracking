@@ -446,7 +446,7 @@ namespace AIOMultiThread
         //return;
         //SendToURL
 
-        string submitURL = readAPI();
+        string submitURL = await readAPI();
 
         string user = "pisoftware";
         string pwd = "r00t123456";
@@ -458,7 +458,7 @@ namespace AIOMultiThread
             httpWReq.Credentials = CredentialCache.DefaultCredentials;
 
             Encoding encoding = new UTF8Encoding();
-            string postData = GetTextFromXMLFile(xmlPath1);
+            string postData = await GetTextFromXMLFile(xmlPath1);
             byte[] data = encoding.GetBytes(postData);
 
             httpWReq.ProtocolVersion = HttpVersion.Version11;
@@ -537,7 +537,7 @@ namespace AIOMultiThread
         //return;
         //SendToURL
 
-        string submitURL = readAPI();
+        string submitURL = await readAPI();
 
         string user = "pisoftware";
         string pwd = "r00t123456";
@@ -549,7 +549,7 @@ namespace AIOMultiThread
             httpWReq.Credentials = CredentialCache.DefaultCredentials;
 
             Encoding encoding = new UTF8Encoding();
-            string postData = GetTextFromXMLFile(xmlPath2);
+            string postData = await GetTextFromXMLFile(xmlPath2);
             byte[] data = encoding.GetBytes(postData);
 
             httpWReq.ProtocolVersion = HttpVersion.Version11;
@@ -628,7 +628,7 @@ namespace AIOMultiThread
         //return;
         //SendToURL
 
-        string submitURL = readAPI();
+        string submitURL = await readAPI();
 
         string user = "pisoftware";
         string pwd = "r00t123456";

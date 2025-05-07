@@ -37,7 +37,7 @@ namespace RapidTrackingLoopSending
             await Task.Delay(number);
             try
             {
-                using (SqlConnection DbConn = new SqlConnection(Common.ReadConnection()))
+                using (SqlConnection DbConn = new SqlConnection(await Common.ReadConnection()))
                 {                    
                     SqlCommand ExecJob = new SqlCommand();
                     ExecJob.CommandType = CommandType.StoredProcedure;
@@ -110,7 +110,7 @@ namespace RapidTrackingLoopSending
                         Console.WriteLine(i.ToString());
                     }
                     if (dt.Rows.Count > 0)
-                        using (var sqlBulk = new SqlBulkCopy(Common.StrConn())) //bufflao connection
+                        using (var sqlBulk = new SqlBulkCopy(await Common.StrConn())) //bufflao connection
                         {
                             sqlBulk.BulkCopyTimeout = 0;
                             sqlBulk.DestinationTableName = "tracking_keywords5"; 
@@ -135,9 +135,9 @@ namespace RapidTrackingLoopSending
             }
         }
 
-        private static void ProcessDB(string qry)
+        private static async Task ProcessDB(string qry)
         {
-            using (SqlConnection con = new SqlConnection(Common.StrConn()))
+            using (SqlConnection con = new SqlConnection(await Common.StrConn()))
             {
                 con.Open();
                 using (SqlCommand comm = con.CreateCommand())

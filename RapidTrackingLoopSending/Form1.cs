@@ -236,7 +236,7 @@ namespace RapidTrackingLoopSending
                 DateTime dt = DateTime.Now;
                 try
                 {
-                    processResults(seid, kn);
+                   await processResults(seid, kn);
                 }
                 catch (Exception ex)
                 {

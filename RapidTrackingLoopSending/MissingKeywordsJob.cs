@@ -18,7 +18,7 @@ namespace RapidTrackingLoopSending
             try
             {
                 // Delete keywords
-                ProcessDB("Exec [dbo].[DeletetrackingKeywords5]");
+                await ProcessDB("Exec [dbo].[DeletetrackingKeywords5]");
 
                 // Download keywords
                 await DownloadRemainingKeywords();

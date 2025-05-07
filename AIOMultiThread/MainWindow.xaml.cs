@@ -124,7 +124,7 @@ namespace AIOMultiThread
                 //string kwQry = "GetAllKeywords_1 '" + myDate + "'";     
                 string kwQry = "GetMissingKeywords_AIO_Mobile '" + myDate + "',1"; //jobids procedure
                 //string kwQry = "[GetErrorKeywords] '" + myDate + "',1"; //changes error jobids procedure
-                GetKeywords1(kwQry);
+                await GetKeywords1(kwQry);
 
             if (lstKWs.Items.Count <= 0)
                 break;
@@ -173,12 +173,12 @@ namespace AIOMultiThread
                         {
                             if (count > 20)
                             {
-                                SendToAPI1(seid, keyword, res, jobid);
-                                SendToDB(seid, keyword, res, jobid, count);
+                                await SendToAPI1(seid, keyword, res, jobid);
+                                await SendToDB(seid, keyword, res, jobid, count);
                             }
                             if (count < 21 && count==0)
                             {
-                                SendToDB(seid, keyword, res, jobid, count);
+                                await SendToDB(seid, keyword, res, jobid, count);
                             }
                                 bool aio = res.Contains("<block type=\"aiOverview\">");//16-02-2025
                                 if (!aio && device == "mobile_android") // inserting false value //16-02-2025
@@ -196,7 +196,7 @@ namespace AIOMultiThread
                             txtError.Text = txtError.Text + seid + ": " + kw + ": " + jobid + Environment.NewLine + ex.Message.ToString() +
                                 Environment.NewLine + Environment.NewLine;
                         });
-                        SendToDBFailure(seid, kw, jobid, false, ex.Message);
+                        await SendToDBFailure(seid, kw, jobid, false, ex.Message);
                     }
                     finally { }
                 }
@@ -227,7 +227,7 @@ namespace AIOMultiThread
                 //string kwQry = "GetAllKeywords_2 '" + myDate + "'";     
                 string kwQry = "GetMissingKeywords_AIO_Mobile '" + myDate + "',2"; //jobids procedure
                 //string kwQry = "[GetErrorKeywords] '" + myDate + "',2"; //changes error jobids procedure
-                GetKeywords2(kwQry);
+                await GetKeywords2(kwQry);
 
             if (lstKWs2.Items.Count <= 0)
                 break;
@@ -276,12 +276,12 @@ namespace AIOMultiThread
                         {
                             if (count > 20)
                             {
-                                SendToAPI2(seid, keyword, res, jobid);
-                                SendToDB(seid, keyword, res, jobid, count);
+                                await SendToAPI2(seid, keyword, res, jobid);
+                                await SendToDB(seid, keyword, res, jobid, count);
                             }
                             if (count < 21 && count==0)
                             {
-                                SendToDB(seid, keyword, res, jobid, count);
+                                await SendToDB(seid, keyword, res, jobid, count);
                             }
                                 bool aio = res.Contains("<block type=\"aiOverview\">");//16-02-2025
                                 if (!aio && device == "mobile_android") // inserting false value //16-02-2025
@@ -299,7 +299,7 @@ namespace AIOMultiThread
                                 Environment.NewLine + Environment.NewLine;
                             //txtError.Refresh();
                         });
-                        SendToDBFailure(seid, kw, jobid, false, ex.Message);
+                        await SendToDBFailure(seid, kw, jobid, false, ex.Message);
                     }
                     finally { }
                 }
@@ -341,7 +341,7 @@ namespace AIOMultiThread
                 //string kwQry = "GetAllKeywords_3 '" + myDate + "'"; 
                 string kwQry = "GetMissingKeywords_AIO_Mobile '" + myDate + "',3"; //Jobids procedure
                 //string kwQry = "[GetErrorKeywords] '" + myDate + "',3"; //changes error jobids procedure
-                GetKeywords3(kwQry);
+                await GetKeywords3(kwQry);
 
             if (lstKWs3.Items.Count <= 0)
                 break;
@@ -390,12 +390,12 @@ namespace AIOMultiThread
                         {
                             if (count > 20)
                             {
-                                SendToAPI3(seid, keyword, res, jobid);
-                                SendToDB(seid, keyword, res, jobid, count);
+                                await SendToAPI3(seid, keyword, res, jobid);
+                                await SendToDB(seid, keyword, res, jobid, count);
                             }
                             if (count < 21 && count==0)
                             {
-                                SendToDB(seid, keyword, res, jobid, count);
+                                await SendToDB(seid, keyword, res, jobid, count);
                             }
                                 bool aio = res.Contains("<block type=\"aiOverview\">");//16-02-2025
                                 if (!aio && device == "mobile_android") // inserting false value //16-02-2025
@@ -413,7 +413,7 @@ namespace AIOMultiThread
                                 Environment.NewLine + Environment.NewLine;
                             // txtError.Refresh();
                         });
-                        SendToDBFailure(seid, kw, jobid, false, ex.Message);
+                        await SendToDBFailure(seid, kw, jobid, false, ex.Message);
                     }
                     finally { }
                 }
@@ -436,7 +436,7 @@ namespace AIOMultiThread
             Environment.Exit(Environment.ExitCode);
     }
 
-    private void SendToAPI1(string seid, string kw, string res, string jobid)
+    private async Task SendToAPI1(string seid, string kw, string res, string jobid)
     {
         XmlDocument xd = new XmlDocument();
         res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + res;
@@ -475,11 +475,11 @@ namespace AIOMultiThread
             httpWReq.ContentLength = data.Length;
 
 
-            Stream stream = httpWReq.GetRequestStream();
+            Stream stream = await httpWReq.GetRequestStreamAsync();
             stream.Write(data, 0, data.Length);
             stream.Close();
 
-            HttpWebResponse response = (HttpWebResponse)httpWReq.GetResponse();
+            HttpWebResponse response = (HttpWebResponse)await httpWReq.GetResponseAsync();
             //string s = response.ToString();
             StreamReader reader = new StreamReader(response.GetResponseStream());
             if (response.StatusCode != HttpStatusCode.OK)
@@ -501,7 +501,7 @@ namespace AIOMultiThread
         {
 
             ////store into keywordfail table.
-            SendToDBFailure(seid, kw, jobid, false);
+            await SendToDBFailure(seid, kw, jobid, false);
 
 
             string errorMsg = string.Empty;
@@ -527,7 +527,7 @@ namespace AIOMultiThread
 
     }
 
-    private void SendToAPI2(string seid, string kw, string res, string jobid)
+    private async Task SendToAPI2(string seid, string kw, string res, string jobid)
     {
         XmlDocument xd = new XmlDocument();
         res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + res;
@@ -566,11 +566,11 @@ namespace AIOMultiThread
             httpWReq.ContentLength = data.Length;
             //httpWReq.Timeout = 0;
 
-            Stream stream = httpWReq.GetRequestStream();
+            Stream stream = await httpWReq.GetRequestStreamAsync();
             stream.Write(data, 0, data.Length);
             stream.Close();
 
-            HttpWebResponse response = (HttpWebResponse)httpWReq.GetResponse();
+            HttpWebResponse response = (HttpWebResponse)await httpWReq.GetResponseAsync();
             //string s = response.ToString();
             StreamReader reader = new StreamReader(response.GetResponseStream());
             if (response.StatusCode != HttpStatusCode.OK)
@@ -592,7 +592,7 @@ namespace AIOMultiThread
         {
 
             ////store into keywordfail table.
-            SendToDBFailure(seid, kw, jobid, false);
+            await SendToDBFailure(seid, kw, jobid, false);
 
 
             string errorMsg = string.Empty;
@@ -618,7 +618,7 @@ namespace AIOMultiThread
 
     }
 
-    private void SendToAPI3(string seid, string kw, string res, string jobid)
+    private async Task SendToAPI3(string seid, string kw, string res, string jobid)
     {
         XmlDocument xd = new XmlDocument();
         res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + res;
@@ -640,7 +640,7 @@ namespace AIOMultiThread
             httpWReq.Credentials = CredentialCache.DefaultCredentials;
 
             Encoding encoding = new UTF8Encoding();
-            string postData = GetTextFromXMLFile(xmlPath3);
+            string postData = await GetTextFromXMLFile(xmlPath3);
             byte[] data = encoding.GetBytes(postData);
 
             httpWReq.ProtocolVersion = HttpVersion.Version11;
@@ -657,11 +657,11 @@ namespace AIOMultiThread
             httpWReq.ContentLength = data.Length;
             //httpWReq.Timeout = 0;
 
-            Stream stream = httpWReq.GetRequestStream();
+            Stream stream = await httpWReq.GetRequestStreamAsync();
             stream.Write(data, 0, data.Length);
             stream.Close();
 
-            HttpWebResponse response = (HttpWebResponse)httpWReq.GetResponse();
+            HttpWebResponse response = (HttpWebResponse)await httpWReq.GetResponseAsync();
             //string s = response.ToString();
             StreamReader reader = new StreamReader(response.GetResponseStream());
             if (response.StatusCode != HttpStatusCode.OK)
@@ -683,7 +683,7 @@ namespace AIOMultiThread
         {
 
             ////store into keywordfail table.
-            SendToDBFailure(seid, kw, jobid, false);
+            await SendToDBFailure(seid, kw, jobid, false);
 
 
             string errorMsg = string.Empty;
@@ -709,15 +709,15 @@ namespace AIOMultiThread
 
     }
 
-    private string GetTextFromXMLFile(string file)
+    private async Task<string> GetTextFromXMLFile(string file)
     {
         StreamReader reader = new StreamReader(file);
         string ret = reader.ReadToEnd();
         reader.Close();
-        return ret;
+        return await Task.FromResult<string>(ret);
     }
 
-    public string readAPI()
+    public async Task<string> readAPI()
     {
         try
         {
@@ -733,15 +733,15 @@ namespace AIOMultiThread
             // Get its value
             string name = node.InnerText;
 
-            return name;
-        }
+                return await Task.FromResult<string>(name);
+            }
         catch (Exception ex)
         {
             throw ex;
         }
     }
 
-    private void SendToDBFailure(string seid, string kw, string jobid, bool isOldPage, string errMsg = "")
+    private async Task SendToDBFailure(string seid, string kw, string jobid, bool isOldPage, string errMsg = "")
     {
         string myDate = DateTime.Today.ToString("yyyy-MM-dd");
         //string myDate = "2019-10-10";
@@ -752,7 +752,7 @@ namespace AIOMultiThread
         string qryOld = "insert into dashboard_oldgooglepage (date, keyword, seid, jobid) values('" + DateTime.Now + "', N'" +
               kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "')";
 
-        using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
+        using (SqlConnection con = new SqlConnection(await Common.ReadConnection()))
         {
             try
             {
@@ -792,12 +792,12 @@ namespace AIOMultiThread
 
     }
 
-    private void SendToDB(string seid, string keyword, string xml, string jobid, int urlcount)
+    private async Task SendToDB(string seid, string keyword, string xml, string jobid, int urlcount)
     {
         try
         {
             //string myDate = DateTime.Today.ToString("yyyy-MM-dd");
-            using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
+            using (SqlConnection con = new SqlConnection(await Common.ReadConnection()))
             {
                 con.Open();
 
@@ -839,7 +839,7 @@ namespace AIOMultiThread
         }
     }
 
-    private void GetKeywords1(string qry)
+    private async Task GetKeywords1(string qry)
     {
         this.lstKWs.Dispatcher.Invoke((MethodInvoker)delegate ()
         {
@@ -851,7 +851,7 @@ namespace AIOMultiThread
 
         try
         {
-            using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
+            using (SqlConnection con = new SqlConnection(await Common.ReadConnection()))
             {
                 con.Open();
                 using (SqlCommand comm = new SqlCommand(qry, con))
@@ -881,7 +881,7 @@ namespace AIOMultiThread
         finally { }
     }
 
-    private void GetKeywords2(string qry)
+    private async Task GetKeywords2(string qry)
     {
         this.lstKWs2.Dispatcher.Invoke((MethodInvoker)delegate ()
         {
@@ -893,7 +893,7 @@ namespace AIOMultiThread
 
         try
         {
-            using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
+            using (SqlConnection con = new SqlConnection(await Common.ReadConnection()))
             {
                 con.Open();
                 using (SqlCommand comm = new SqlCommand(qry, con))
@@ -923,7 +923,7 @@ namespace AIOMultiThread
         finally { }
     }
 
-    private void GetKeywords3(string qry)
+    private async Task GetKeywords3(string qry)
     {
         this.lstKWs3.Dispatcher.Invoke((MethodInvoker)delegate ()
         {
@@ -934,7 +934,7 @@ namespace AIOMultiThread
 
         try
         {
-            using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
+            using (SqlConnection con = new SqlConnection(await Common.ReadConnection()))
             {
                 con.Open();
                 using (SqlCommand comm = new SqlCommand(qry, con))
@@ -967,7 +967,7 @@ namespace AIOMultiThread
         {
             try
             {
-                using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
+                using (SqlConnection con = new SqlConnection(await Common.ReadConnection()))
                 {
                     con.Open();
                     using (SqlCommand comm = con.CreateCommand())

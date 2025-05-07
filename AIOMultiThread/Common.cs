@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace AIOMultiThread
@@ -14,7 +15,7 @@ namespace AIOMultiThread
         //public const string DbConazure = "Server=tcp:googlefirstpage.database.windows.net,1433;Initial Catalog=TrendingLive;User ID=hemachander@googlefirstpage;Password=Brisbane007;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30";
 
 
-        internal static string ReadConnection()
+        internal static async Task<string> ReadConnection()
         {
             try 
             {
@@ -30,7 +31,7 @@ namespace AIOMultiThread
                 // Get its value
                 string name = node.InnerText;
 
-                return name;
+                return await Task.FromResult<string>(name);
             }
             catch (Exception ex)
             {
@@ -39,7 +40,7 @@ namespace AIOMultiThread
         }
 
 
-        internal static string StrConn()
+        internal static async Task<string> StrConn()
         {
             try
             {
@@ -57,7 +58,7 @@ namespace AIOMultiThread
                 // Get its value
                 string name = node.InnerText;
 
-                return name;
+                return await Task.FromResult<string>(name);
             }
             catch (Exception ex)
             {
@@ -65,11 +66,11 @@ namespace AIOMultiThread
             }
         }
 
-        internal static int GetOxylabsTime()
+        internal static async Task<int> GetOxylabsTime()
         {
             int time = 0;
             string strQuery = "exec [dbo].[GetOxylabsTime]";
-            SqlConnection objCon = new SqlConnection(ReadConnection());
+            SqlConnection objCon = new SqlConnection(await ReadConnection());
             try
             {
                 objCon.Open();
@@ -94,14 +95,14 @@ namespace AIOMultiThread
                     objCon.Close();
                 }
             }
-            return time;
+            return await Task.FromResult<int>(time);
         }
 
-        internal static int GetOxylabsCount()
+        internal static async Task<int> GetOxylabsCount()
         {
             int count = 0;
             string strQuery = "exec [dbo].[GetOxylabsCount]";
-            SqlConnection objCon = new SqlConnection(ReadConnection());
+            SqlConnection objCon = new SqlConnection(await ReadConnection());
             try
             {
                 objCon.Open();
@@ -126,7 +127,7 @@ namespace AIOMultiThread
                     objCon.Close();
                 }
             }
-            return count;
+            return await Task.FromResult<int>(count);
         }
     }
 }

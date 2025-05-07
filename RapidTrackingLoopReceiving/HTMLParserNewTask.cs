@@ -223,11 +223,11 @@ namespace RapidTrackingLoopReceiving
                        
                         if (count > 20)
                         {
-                            ProcessResults(resx, kw, seid, jobid, count);
+                            await ProcessResults(resx, kw, seid, jobid, count);
                         }
                         if(count <= 20)
                         {
-                            SendToDB(seid, kw, resx, jobid, count);
+                            await SendToDB(seid, kw, resx, jobid, count);
                         }
                         bool aio = result.Contains("<block type=\"aiOverview\">");//16-02-2025
                         if (aio && device == "mobile_android") // inserting true value//16-02-2025
@@ -258,7 +258,7 @@ namespace RapidTrackingLoopReceiving
                             isOldPage = true;
                         if (ex.Message == "faulted")
                             isOldPage = false;
-                        ProcessError(kw, seid, jobid,ex.Message, isOldPage);
+                        await ProcessError(kw, seid, jobid,ex.Message, isOldPage);
                     }
                     finally { }
                 }
@@ -266,7 +266,7 @@ namespace RapidTrackingLoopReceiving
             }
         }
 
-        private void ProcessError(string kw, string seid, string jobid, string message,bool isOldPage)
+        private async Task ProcessError(string kw, string seid, string jobid, string message,bool isOldPage)
         {
             string qry = "insert into dashboard_dataerrors (date, name, seid, jobid,message) values(Convert(varchar(10),'" + myDate + "',103), N'" +
                   kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "',N'" + message.Replace("'", "''") + "' )";//09-11-2024
@@ -274,7 +274,7 @@ namespace RapidTrackingLoopReceiving
             string qryOld = "insert into dashboard_oldgooglepage (date, keyword, seid, jobid,message) values('" + DateTime.Now + "', N'" +
                  kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "',N'" + message.Replace("'", "''") + "'  )";//09-11-2024
 
-            using (SqlConnection con = new SqlConnection(StrConn()))
+            using (SqlConnection con = new SqlConnection(await StrConn()))
             {
                 try
                 {
@@ -316,7 +316,7 @@ namespace RapidTrackingLoopReceiving
         {
             try
             {
-                using (SqlConnection con = new SqlConnection(StrConn()))
+                using (SqlConnection con = new SqlConnection(await StrConn()))
                 {
                     con.Open();
                     using (SqlCommand comm = con.CreateCommand())
@@ -342,7 +342,7 @@ namespace RapidTrackingLoopReceiving
             }
         }//16-02-2025
 
-        public string StrConn()
+        public async Task<string> StrConn()
         {
             try
             {
@@ -360,7 +360,7 @@ namespace RapidTrackingLoopReceiving
                 // Get its value
                 string name = node.InnerText;
 
-                return name;
+                return await Task.FromResult<string>(name);
             }
             catch (Exception ex)
             {
@@ -368,7 +368,7 @@ namespace RapidTrackingLoopReceiving
             }
         }
 
-        private void ProcessResults(string result, string kw, string seid, string jobid, int urlcount)
+        private async Task ProcessResults(string result, string kw, string seid, string jobid, int urlcount)
         {
             if (string.IsNullOrEmpty(result))
             {
@@ -397,7 +397,7 @@ namespace RapidTrackingLoopReceiving
             }
         }
 
-        private void SendXmlToAPI(string seid, string kw, string res)
+        private async Task SendXmlToAPI(string seid, string kw, string res)
         {
             string tname = Thread.CurrentThread.Name;
             string path = @"C:\Inetpub\wwwroot\rapidtracking_" + tname + ".xml";
@@ -408,7 +408,7 @@ namespace RapidTrackingLoopReceiving
             xd.Save(path);
 
 
-            string submitURL = ReadAPI();
+            string submitURL = await ReadAPI();
 
             string user = "pisoftware";
             string pwd = "r00t123456";
@@ -422,7 +422,7 @@ namespace RapidTrackingLoopReceiving
                 httpWReq.CookieContainer = new CookieContainer();
 
                 Encoding encoding = new UTF8Encoding();
-                string postData = GetTextFromXMLFile(path);
+                string postData = await GetTextFromXMLFile(path);
                 byte[] data = encoding.GetBytes(postData);
 
                 httpWReq.ProtocolVersion = HttpVersion.Version11;
@@ -439,11 +439,11 @@ namespace RapidTrackingLoopReceiving
                 httpWReq.ContentLength = data.Length;
                 //httpWReq.Timeout = 0;
 
-                Stream stream = httpWReq.GetRequestStream();
+                Stream stream = await httpWReq.GetRequestStreamAsync();
                 stream.Write(data, 0, data.Length);
                 stream.Close();
 
-                HttpWebResponse response = (HttpWebResponse)httpWReq.GetResponse();
+                HttpWebResponse response = (HttpWebResponse)await httpWReq.GetResponseAsync();
                 //statusCode = response.StatusCode.ToString();
                 StreamReader reader = new StreamReader(response.GetResponseStream());
                 if (response.StatusCode != HttpStatusCode.OK)
@@ -486,15 +486,15 @@ namespace RapidTrackingLoopReceiving
             }
         }
 
-        private string GetTextFromXMLFile(string file)
+        private async Task<string> GetTextFromXMLFile(string file)
         {
             StreamReader reader = new StreamReader(file);
             string ret = reader.ReadToEnd();
             reader.Close();
-            return ret;
+            return await Task.FromResult<string>(ret);
         }
 
-        public string ReadAPI()
+        public async Task<string> ReadAPI()
         {
             try
             {
@@ -511,7 +511,7 @@ namespace RapidTrackingLoopReceiving
                 // Get its value
                 string name = node.InnerText;
 
-                return name;
+                return await Task.FromResult<string>(name);
             }
             catch (Exception ex)
             {
@@ -519,11 +519,11 @@ namespace RapidTrackingLoopReceiving
             }
         }
 
-        private void SendToDB(string seid, string keyword, string xml, string jobid, int urlcount)
+        private async Task SendToDB(string seid, string keyword, string xml, string jobid, int urlcount)
         {
             try
             {
-                using (SqlConnection con = new SqlConnection(StrConn()))
+                using (SqlConnection con = new SqlConnection(await StrConn()))
                 {
                     con.Open();
 

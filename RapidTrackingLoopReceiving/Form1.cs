@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -35,7 +36,7 @@ namespace RapidTrackingLoopReceiving
             Environment.Exit(Environment.ExitCode);
         }
 
-        public int GetOxyCount()
+        public async Task<int> GetOxyCount()
         {
             int ct = 0;
             string strQuery = "exec [dbo].[GetOxyCount]";
@@ -64,7 +65,7 @@ namespace RapidTrackingLoopReceiving
                     objCon.Close();
                 }
             }
-            return ct;
+            return await Task.FromResult<int>(ct);
         }
 
         int cntr = 1;
@@ -121,7 +122,7 @@ namespace RapidTrackingLoopReceiving
             Environment.Exit(Environment.ExitCode);
         }
 
-        public string StrConn()
+        public async Task<string> StrConn()
         {
             try
             {
@@ -135,7 +136,7 @@ namespace RapidTrackingLoopReceiving
                 // Get its value
                 string name = node.InnerText;
 
-                return name;
+                return await Task.FromResult<string>(name;
             }
             catch (Exception ex)
             {

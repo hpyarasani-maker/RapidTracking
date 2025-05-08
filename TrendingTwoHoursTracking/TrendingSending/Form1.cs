@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -32,7 +33,7 @@ namespace TrendingSending
             Environment.Exit(Environment.ExitCode);
         }
                
-        private void Form1_Load(object sender, EventArgs e)
+        private async void Form1_Load(object sender, EventArgs e)
         {
             Text = "D_Oxylabs_CallbackTrendingDesktopSending_1";
             //Text = "D_Oxylabs_CallbackTrendingMobileSending_1";            
@@ -40,8 +41,8 @@ namespace TrendingSending
             date_picker.Value = DateTime.Today; //.AddDays(-1);
 
             Thread t = new Thread(new ThreadStart(mainLoop));
-            generateWorklist();
-            if (getWorklistSize() > 0)
+            await generateWorklist();
+            if (await getWorklistSize() > 0)
             {
                 t.Start();                
             }
@@ -57,18 +58,18 @@ namespace TrendingSending
             Environment.Exit(Environment.ExitCode);
         }
 
-        public void mainLoop()
+        public async void mainLoop()
         {            
-            while (getWorklistSize() > 0)
+            while (await getWorklistSize() > 0)
             {
-                processWorklist();
-                generateWorklist();
+                await processWorklist();
+                await generateWorklist();
             }
 
             Environment.Exit(Environment.ExitCode);
         }
 
-        public string strConn()
+        public async Task<string> strConn()
         {
             try
             {
@@ -85,7 +86,7 @@ namespace TrendingSending
                 // Get its value
                 string name = node.InnerText;
 
-                return name;
+                return await Task.FromResult<string>(name);
             }
             catch(Exception ex)
             {
@@ -93,7 +94,7 @@ namespace TrendingSending
             }
         }
                                                                                    
-        public void generateWorklist()
+        public async Task generateWorklist()
         {
             this.Invoke((MethodInvoker)delegate()
             {
@@ -121,11 +122,11 @@ namespace TrendingSending
 
             try
             {               
-                objCon = new SqlConnection(strConn());
+                objCon = new SqlConnection(await strConn());
                 objCon.Open();
                 SqlCommand objCmd = new SqlCommand(strQry, objCon);
                 objCmd.CommandTimeout = 0;
-                objData = objCmd.ExecuteReader(CommandBehavior.CloseConnection);
+                objData = await objCmd.ExecuteReaderAsync(CommandBehavior.CloseConnection);
                 while (objData.Read())
                 {
                     this.Invoke((MethodInvoker)delegate()
@@ -162,13 +163,13 @@ namespace TrendingSending
             }
         }
 
-        public int getWorklistSize()
+        public async Task<int> getWorklistSize()
         {
             int worklistSize = worklist.Items.Count;
-            return worklistSize;
+            return await Task.FromResult<int>(worklistSize);
         }
 
-        public void processWorklist()
+        public async Task processWorklist()
         {
             string resultsString;
             char sep;
@@ -188,7 +189,7 @@ namespace TrendingSending
                 DateTime dt = DateTime.Now;
                 try
                 {
-                    processResults(seid, kn);
+                   await processResults(seid, kn);
                 }
                 catch (Exception ex)
                 {
@@ -210,11 +211,11 @@ namespace TrendingSending
             }
         }
         
-        public void processResults(string seid, string kn)
+        public async Task processResults(string seid, string kn)
         {
             try
             {
-                WOWS.getTop100(kn, Convert.ToInt32(seid));
+                await WOWS.getTop100(kn, Convert.ToInt32(seid));
             }
             catch(Exception ex)
             {

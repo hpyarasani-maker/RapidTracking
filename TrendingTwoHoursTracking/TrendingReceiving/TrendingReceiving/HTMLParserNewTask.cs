@@ -175,7 +175,7 @@ namespace TrendingReceiving
             string qryOld = "insert into dashboard_oldgooglepage (date, keyword, seid, jobid) values('" + DateTime.Now + "', N'" +
                 kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "' )";
 
-            using (SqlConnection con = new SqlConnection(strConn()))
+            using (SqlConnection con = new SqlConnection(await strConn()))
             {
                 try
                 {
@@ -213,7 +213,7 @@ namespace TrendingReceiving
             }
         }
 
-        public string strConn()
+        public async Task<string> strConn()
         {
             try
             {
@@ -229,7 +229,7 @@ namespace TrendingReceiving
                 // Get its value
                 string name = node.InnerText;
 
-                return name;
+                return await Task.FromResult<string>(name);
             }
             catch (Exception ex)
             {
@@ -277,7 +277,7 @@ namespace TrendingReceiving
             xd.Save(path);
                  
 
-            string submitURL = readAPI();
+            string submitURL = await readAPI();
 
             string user = "pisoftware";
             string pwd = "r00t123456";
@@ -357,10 +357,10 @@ namespace TrendingReceiving
             StreamReader reader = new StreamReader(file);
             string ret = await reader.ReadToEndAsync();//14-08-2024
             reader.Close();
-            return ret;
+            return await Task.FromResult<string>(ret);
         }
 
-        public string readAPI()
+        public async Task<string> readAPI()
         {
             try
             {
@@ -375,7 +375,7 @@ namespace TrendingReceiving
                 // Get its value
                 string name = node.InnerText;
 
-                return name;
+                return await Task.FromResult<string>(name);
             }
             catch (Exception ex)
             {
@@ -390,7 +390,7 @@ namespace TrendingReceiving
 
             try
             {
-                using (SqlConnection con = new SqlConnection(strConn()))
+                using (SqlConnection con = new SqlConnection(await strConn()))
                 {
                     con.Open();
 

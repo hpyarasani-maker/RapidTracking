@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -34,11 +35,11 @@ namespace TrendingReceiving
             Environment.Exit(Environment.ExitCode);
         }
 
-        public int GetOxyCount()
+        public async Task<int> GetOxyCount()
         {
             int ct = 0;
             string strQuery = "exec [dbo].[GetOxyCount]";
-            SqlConnection objCon = new SqlConnection(strConn());
+            SqlConnection objCon = new SqlConnection(await strConn());
             try
             {
                 objCon.Open();
@@ -63,7 +64,7 @@ namespace TrendingReceiving
                     objCon.Close();
                 }
             }
-            return ct;
+            return await Task.FromResult<int>(ct);
         }
 
         int cntr = 1;
@@ -107,7 +108,7 @@ namespace TrendingReceiving
             Environment.Exit(Environment.ExitCode);
         }
                 
-        public string strConn()
+        public async Task<string> strConn()
         {
             try
             {
@@ -121,7 +122,7 @@ namespace TrendingReceiving
                 // Get its value
                 string name = node.InnerText;
 
-                return name;
+                return await Task.FromResult<string>(name);
             }
             catch(Exception ex)
             {

@@ -351,7 +351,7 @@ namespace AIOSingleThread
                 //lstKWs.Items.Add("160:malmö ff");
                 //lstKWs.Items.Add("102:terry crews");
                 //lstKWs.Items.Add("102:the uninhabitable earth summary");
-                lstKWs.Items.Add("58:london luton flights");
+                lstKWs.Items.Add("247:ranking web of universities");
             });
             return;
 
@@ -612,7 +612,7 @@ namespace AIOSingleThread
                     new
                     {
                         type = "wait",
-                        wait_time_s = 5
+                        wait_time_s = 0
                     }
                 }//comment for desktop and uncomment for mobile
                 /*context = new List<Context> { //comment for mobile and uncomment for desktop

@@ -95,7 +95,7 @@ namespace RapidTrackingJobIDResults
                 //string kwQry = "[GetCommaKeywordsP] '" + myDate + "'";               
                 //string kwQry = "[GetAllNewKeywords] '" + myDate + "'"; // 15-04-2021
 
-                GetKeywords(kwQry);
+                await GetKeywords(kwQry);
 
                 if (lstKws.Items.Count <= 0)
                     break;
@@ -134,13 +134,13 @@ namespace RapidTrackingJobIDResults
                                 if (device == "desktop_chrome")
                                 {
                                     Desktop clsDesktop = new Desktop();
-                                    res = clsDesktop.ProcessDocument(seid, keyword, doc, out count);
+                                    (res, count) = await clsDesktop.ProcessDocument(seid, keyword, doc);//08-05-2025
 
                                 }
                                 else
                                 {
                                     iOS clsiOS = new iOS();
-                                    res = clsiOS.ProcessDocument(seid, keyword, doc, out count);
+                                    (res, count) = await clsiOS.ProcessDocument(seid, keyword, doc);//08-05-2025
                                 }
                                 
                                 if (!string.IsNullOrEmpty(res))
@@ -152,12 +152,12 @@ namespace RapidTrackingJobIDResults
 
                                     if (count > 20)
                                     {
-                                        SendToAPI(seid, keyword, res, jobid);
-                                        SendToDB(seid, keyword, res, jobid, count);
+                                        await SendToAPI(seid, keyword, res, jobid);
+                                        await SendToDB(seid, keyword, res, jobid, count);
                                     }
                                     if (count < 21 && count == 0)
                                     {
-                                        SendToDB(seid, keyword, res, jobid, count);
+                                        await SendToDB(seid, keyword, res, jobid, count);
                                     }
                                     bool aio = res.Contains("<block type=\"aiOverview\">");//16-02-2025
                                     if (aio && device == "mobile_android") // inserting true value //16-02-2025
@@ -177,7 +177,7 @@ namespace RapidTrackingJobIDResults
                                             Environment.NewLine + Environment.NewLine;
                                         txtError.Refresh();
                                     });
-                                    SendToDBFailure(seid, kw, jobid, isOldPage, ex.Message);
+                                    await SendToDBFailure(seid, kw, jobid, isOldPage, ex.Message);
                                 }
                                 finally { }//end 03-01-2022
                             }
@@ -192,7 +192,7 @@ namespace RapidTrackingJobIDResults
                                 Environment.NewLine + Environment.NewLine;
                             txtError.Refresh();
                         });
-                        SendToDBFailure(seid, kw, jobid, false, ex.Message); //end 03-01-2022
+                        await SendToDBFailure(seid, kw, jobid, false, ex.Message); //end 03-01-2022
                     }
                     finally { }
                     this.Invoke((MethodInvoker)delegate ()
@@ -217,7 +217,7 @@ namespace RapidTrackingJobIDResults
         }
 
 
-        private void SendToAPI(string seid, string kw, string res, string jobid)
+        private async Task SendToAPI(string seid, string kw, string res, string jobid)
         {
             //if (res == string.Empty)
             //{
@@ -239,7 +239,7 @@ namespace RapidTrackingJobIDResults
             //SendToURL
             //return;
 
-            string submitURL = ReadAPI();
+            string submitURL = await ReadAPI();
 
             string user = "pisoftware";
             string pwd = "r00t123456";
@@ -251,7 +251,7 @@ namespace RapidTrackingJobIDResults
                 httpWReq.Credentials = CredentialCache.DefaultCredentials;
 
                 Encoding encoding = new UTF8Encoding();
-                string postData = GetTextFromXMLFile(xmlPath);
+                string postData = await GetTextFromXMLFile(xmlPath);
                 byte[] data = encoding.GetBytes(postData);
 
                 httpWReq.ProtocolVersion = HttpVersion.Version11;
@@ -268,11 +268,11 @@ namespace RapidTrackingJobIDResults
                 httpWReq.ContentLength = data.Length;
                 //httpWReq.Timeout = 0;
 
-                Stream stream = httpWReq.GetRequestStream();
+                Stream stream = await httpWReq.GetRequestStreamAsync();
                 stream.Write(data, 0, data.Length);
                 stream.Close();
 
-                HttpWebResponse response = (HttpWebResponse)httpWReq.GetResponse();
+                HttpWebResponse response = (HttpWebResponse)await httpWReq.GetResponseAsync();
                 //string s = response.ToString();
                 StreamReader reader = new StreamReader(response.GetResponseStream());
 
@@ -295,7 +295,7 @@ namespace RapidTrackingJobIDResults
             {
 
                 ////store into keywordfail table.
-                SendToDBFailure(seid, kw, jobid, false);
+                await SendToDBFailure(seid, kw, jobid, false);
 
 
                 string errorMsg = string.Empty;
@@ -322,7 +322,7 @@ namespace RapidTrackingJobIDResults
 
         }
 
-        private void GetKeywords(string qry)
+        private async Task GetKeywords(string qry)
         {
             this.Invoke((MethodInvoker)delegate ()
             {
@@ -342,7 +342,7 @@ namespace RapidTrackingJobIDResults
 
             try
             {
-                using (SqlConnection con = new SqlConnection(Common.ReadConnection()))  // 12-05-2020
+                using (SqlConnection con = new SqlConnection(await Common.ReadConnection()))  // 12-05-2020
                 {
                     con.Open();
                     using (SqlCommand comm = new SqlCommand(qry, con))
@@ -376,15 +376,15 @@ namespace RapidTrackingJobIDResults
 
         }
 
-        private string GetTextFromXMLFile(string file)
+        private async Task<string> GetTextFromXMLFile(string file)
         {
             StreamReader reader = new StreamReader(file);
             string ret = reader.ReadToEnd();
             reader.Close();
-            return ret;
+            return await Task.FromResult<string>(ret);
         }
 
-        public string ReadAPI()
+        public async Task<string> ReadAPI()
         {
             try
             {
@@ -400,14 +400,14 @@ namespace RapidTrackingJobIDResults
                 // Get its value
                 string name = node.InnerText;
 
-                return name;
+                return await Task.FromResult<string>(name);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        private void SendToDBFailure(string seid, string kw, string jobid, bool isOldPage, string errMsg = "")
+        private async Task SendToDBFailure(string seid, string kw, string jobid, bool isOldPage, string errMsg = "")
         {
             string myDate = DateTime.Today.ToString("yyyy-MM-dd");
             //string myDate = "2019-10-10";
@@ -418,7 +418,7 @@ namespace RapidTrackingJobIDResults
             string qryOld = "insert into dashboard_oldgooglepage (date, keyword, seid, jobid) values('" + DateTime.Now + "', N'" +
                   kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "')"; 
 
-            using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
+            using (SqlConnection con = new SqlConnection(await Common.ReadConnection()))
             {
                 try
                 {
@@ -460,13 +460,13 @@ namespace RapidTrackingJobIDResults
             
         }
 
-        private void SendToDB(string seid, string keyword, string xml, string jobid, int urlcount)
+        private async Task SendToDB(string seid, string keyword, string xml, string jobid, int urlcount)
         {
             try
             {
                 string myDate = DateTime.Today.ToString("yyyy-MM-dd");               
 
-                using (SqlConnection con = new SqlConnection(Common.ReadConnection()))  // 12-05-2020
+                using (SqlConnection con = new SqlConnection(await Common.ReadConnection()))  // 12-05-2020
                 {
                     con.Open();
                     using (SqlCommand comm = con.CreateCommand())
@@ -511,7 +511,7 @@ namespace RapidTrackingJobIDResults
         {
             try
             {
-                using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
+                using (SqlConnection con = new SqlConnection(await Common.ReadConnection()))
                 {
                     con.Open();
                     using (SqlCommand comm = con.CreateCommand())
@@ -632,7 +632,7 @@ namespace RapidTrackingJobIDResults
                                 string resURL = "http://data.oxylabs.io/v1/queries/" + jobid;
                                 httpWebRequest = (HttpWebRequest)WebRequest.Create(resURL);
                                 httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
-                                HttpWebResponse res1 = (HttpWebResponse)httpWebRequest.GetResponse();
+                                HttpWebResponse res1 = (HttpWebResponse)await httpWebRequest.GetResponseAsync();
                                 Stream resStream = res1.GetResponseStream();
                                 reader = new StreamReader(resStream, Encoding.UTF8);
                                 response = reader.ReadToEnd();

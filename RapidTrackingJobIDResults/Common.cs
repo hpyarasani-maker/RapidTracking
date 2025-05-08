@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace RapidTrackingJobIDResults
@@ -9,7 +10,7 @@ namespace RapidTrackingJobIDResults
     {
       
 
-        internal static string ReadConnection()
+        internal static async Task<string> ReadConnection()
         {
             try 
             {
@@ -25,7 +26,7 @@ namespace RapidTrackingJobIDResults
                 // Get its value
                 string name = node.InnerText;
 
-                return name;
+                return await Task.FromResult<string>(name);
             }
             catch (Exception ex)
             {
@@ -33,7 +34,7 @@ namespace RapidTrackingJobIDResults
             }
         }
 
-        internal static string StrConn()
+        internal static async Task<string> StrConn()
         {
             try
             {
@@ -51,7 +52,7 @@ namespace RapidTrackingJobIDResults
                 // Get its value
                 string name = node.InnerText;
 
-                return name;
+                return await Task.FromResult<string>(name);
             }
             catch (Exception ex)
             {
@@ -75,11 +76,11 @@ namespace RapidTrackingJobIDResults
         //    return name;
         //}
 
-        internal static int GetOxylabsTime()
+        internal static async Task<int> GetOxylabsTime()
         {
             int time = 0;
             string strQuery = "exec [dbo].[GetOxylabsTime]";
-            SqlConnection objCon = new SqlConnection(ReadConnection());
+            SqlConnection objCon = new SqlConnection(await ReadConnection());
             try
             {
                 objCon.Open();
@@ -104,14 +105,14 @@ namespace RapidTrackingJobIDResults
                     objCon.Close();
                 }
             }
-            return time;
+            return await Task.FromResult<int>(time);
         }
 
-        internal static int GetOxylabsCount()
+        internal static async Task<int> GetOxylabsCount()
         {
             int count = 0;
             string strQuery = "exec [dbo].[GetOxylabsCount]";
-            SqlConnection objCon = new SqlConnection(ReadConnection());
+            SqlConnection objCon = new SqlConnection(await ReadConnection());
             try
             {
                 objCon.Open();
@@ -136,7 +137,7 @@ namespace RapidTrackingJobIDResults
                     objCon.Close();
                 }
             }
-            return count;
+            return await Task.FromResult<int>(count);
         }
     }
 }

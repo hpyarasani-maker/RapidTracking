@@ -169,16 +169,16 @@ namespace WPFMultiThreadJobIDs
                         if (device == "desktop_chrome")
                         {
                             Desktop clsDesktop = new Desktop();
-                            res = clsDesktop.ProcessDocument(seid, keyword, doc, out count);
+                           (res, count) = await clsDesktop.ProcessDocument(seid, keyword, doc);//08-05-2025
                         }
                         else
                         {
                             iOS clsiOS = new iOS();
-                            res = clsiOS.ProcessDocument(seid, keyword, doc, out count);
+                            (res, count) = await clsiOS.ProcessDocument(seid, keyword, doc);//08-05-2025
                         }
-                            doc = null;
+                        doc = null;
                         this.lblcount1.Dispatcher.Invoke((MethodInvoker)delegate () {
-                            lblcount1.Content = "Count: " + count;
+                        lblcount1.Content = "Count: " + count;
                         });
                         if (!string.IsNullOrEmpty(res))
                         {
@@ -272,12 +272,12 @@ namespace WPFMultiThreadJobIDs
                         if (device == "desktop_chrome")
                         {
                             Desktop clsDesktop = new Desktop();
-                            res = clsDesktop.ProcessDocument(seid, keyword, doc, out count);
+                            (res, count) = await clsDesktop.ProcessDocument(seid, keyword, doc);//08-05-2025
                         }
                         else
                         {
                             iOS clsiOS = new iOS();
-                            res = clsiOS.ProcessDocument(seid, keyword, doc, out count);
+                            (res, count) = await clsiOS.ProcessDocument(seid, keyword, doc);//08-05-2025
                         }
                             doc = null;
                             this.lblcount2.Dispatcher.Invoke((MethodInvoker)delegate () {
@@ -386,12 +386,12 @@ namespace WPFMultiThreadJobIDs
                         if (device == "desktop_chrome")
                         {
                             Desktop clsDesktop = new Desktop();
-                            res = clsDesktop.ProcessDocument(seid, keyword, doc, out count);
+                            (res, count) = await clsDesktop.ProcessDocument(seid, keyword, doc);//08-05-2025
                         }
                         else
                         {
                             iOS clsiOS = new iOS();
-                            res = clsiOS.ProcessDocument(seid, keyword, doc, out count);
+                            (res, count) = await clsiOS.ProcessDocument(seid, keyword, doc);//08-05-2025
                         }
                             doc = null;
                             this.lblcount3.Dispatcher.Invoke((MethodInvoker)delegate () {

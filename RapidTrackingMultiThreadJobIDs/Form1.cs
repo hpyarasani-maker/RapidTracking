@@ -152,15 +152,15 @@ namespace RapidTrackingMultiThreadRequests
                             if (device == "desktop_chrome")
                             {
                                 Desktop clsDesktop = new Desktop();
-                                res = clsDesktop.ProcessDocument(seid, keyword, doc, out count);
+                                (res, count) = await clsDesktop.ProcessDocument(seid, keyword, doc);//08-05-2025
                             }
                             else
                             {
                                 iOS clsiOS = new iOS();
-                                res = clsiOS.ProcessDocument(seid, keyword, doc, out count);
+                                (res, count) = await clsiOS.ProcessDocument(seid, keyword, doc);//08-05-2025
                             }
                             this.Invoke((MethodInvoker)delegate () {
-                                lblcount1.Text = "Count: " + count;
+                            lblcount1.Text = "Count: " + count;
                             });
                             if (!string.IsNullOrEmpty(res))
                             {
@@ -256,12 +256,12 @@ namespace RapidTrackingMultiThreadRequests
                             if (device == "desktop_chrome")
                             {
                                 Desktop clsDesktop = new Desktop();
-                                res = clsDesktop.ProcessDocument(seid, keyword, doc, out count);
+                                (res, count) = await clsDesktop.ProcessDocument(seid, keyword, doc);//08-05-2025
                             }
                             else
                             {
                                 iOS clsiOS = new iOS();
-                                res = clsiOS.ProcessDocument(seid, keyword, doc, out count);
+                                (res, count) = await clsiOS.ProcessDocument(seid, keyword, doc);//08-05-2025
                             }
                             this.Invoke((MethodInvoker)delegate () {
                                 lblcount2.Text = "Count: " + count;
@@ -366,12 +366,12 @@ namespace RapidTrackingMultiThreadRequests
                             if (device == "desktop_chrome")
                             {
                                 Desktop clsDesktop = new Desktop();
-                                res = clsDesktop.ProcessDocument(seid, keyword, doc, out count);
+                                (res, count) = await clsDesktop.ProcessDocument(seid, keyword, doc);//08-05-2025
                             }
                             else
                             {
                                 iOS clsiOS = new iOS();
-                                res = clsiOS.ProcessDocument(seid, keyword, doc, out count);
+                                (res, count) = await clsiOS.ProcessDocument(seid, keyword, doc);//08-05-2025
                             }
                             this.Invoke((MethodInvoker)delegate () {
                                 lblcount3.Text = "Count: " + count;

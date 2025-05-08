@@ -131,12 +131,12 @@ namespace AIOSingleThread
                                 if (device == "desktop_chrome")
                                 {
                                     Desktop clsDesktop = new Desktop();
-                                    res = clsDesktop.ProcessDocument(seid, keyword, doc, out count);
+                                    (res, count) = await clsDesktop.ProcessDocument(seid, keyword, doc);//08-05-2025
                                 }
                                 else
                                 {
                                     iOS clsiOS = new iOS();
-                                    res = clsiOS.ProcessDocument(seid, keyword, doc, out count);
+                                    (res, count) = await clsiOS.ProcessDocument(seid, keyword, doc);//08-05-2025
                                 }
 
                                 if (!string.IsNullOrEmpty(res))

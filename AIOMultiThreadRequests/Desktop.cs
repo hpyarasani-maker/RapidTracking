@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace AIOMultiThreadRequests
@@ -15,10 +16,9 @@ namespace AIOMultiThreadRequests
     {
         int orgLinks;
         string html; string seid = string.Empty;//23-06-2023
-        public string ProcessDocument(string seid, string keyword, HtmlDocument doc, out int count)
+        public async Task<(string, int)> ProcessDocument(string seid, string keyword, HtmlDocument doc)//08-05-2025
         {
             this.seid = seid;//23-06-2023
-            count = 0;
             if (doc == null) throw new Exception("No source found.");
             HtmlNode htmlNode = doc.DocumentNode.SelectSingleNode("//table[@id='mn']");
             if (htmlNode != null)
@@ -132,12 +132,9 @@ namespace AIOMultiThreadRequests
 
             if (ndText.Length > 0)
             {
-                count = orgLinks;
-                return sb.ToString();
+                return await Task.FromResult<(string, int)>((sb.ToString(), orgLinks));//08-05-2025
             }
-
-            return string.Empty;
-
+            return await Task.FromResult<(string, int)>((string.Empty, 0));//08-05-2025
         }
 
 

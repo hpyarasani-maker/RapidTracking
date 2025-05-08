@@ -276,7 +276,6 @@ namespace RapidTrackingSingleThread
                 throw ex;
             }
             return await Task.FromResult<(string, int)>((string.Empty, 0));//08-05-2025
-
         }
 
         private string GetRightStuff(HtmlDocument doc)

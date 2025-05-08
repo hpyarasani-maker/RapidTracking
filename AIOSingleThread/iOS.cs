@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using System.Web;
 using System.Linq;
 using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace AIOSingleThread
 {
@@ -22,7 +23,7 @@ namespace AIOSingleThread
         {
             public string render { get; set; }
         }
-        public string ProcessDocument(string seid, string keyword, HtmlDocument doc, out int count)
+        public async Task<(string, int)> ProcessDocument(string seid, string keyword, HtmlDocument doc)//08-05-2025
         {
             var scriptMetadata = new ScriptMetaData
             {
@@ -30,7 +31,6 @@ namespace AIOSingleThread
             };
             var jsonString = JsonConvert.SerializeObject(scriptMetadata);
             this.seid = seid;//23-06-2023
-            count = 0;
             if (doc == null) throw new Exception("AIO No source found.");//14-04-2025
             orgLinks = 0;
             string ndText = "";
@@ -279,16 +279,14 @@ namespace AIOSingleThread
 
                 if (ndText.Length > 0)
                 {
-                    count = orgLinks;
-                    return sb.ToString();
+                    return await Task.FromResult<(string, int)>((sb.ToString(), orgLinks));//08-05-2025
                 }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            return string.Empty;
-
+            return await Task.FromResult<(string, int)>((string.Empty, 0));//08-05-2025
         }
 
         private string GetRightStuff(HtmlDocument doc)

@@ -205,7 +205,7 @@ namespace AIOReceiving
             string qryOld = "insert into dashboard_oldgooglepage (date, keyword, seid, jobid,message) values('" + DateTime.Now + "', N'" +
                  kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "',N'" + message.Replace("'", "''") + "'  )";//09-11-2024
 
-            using (SqlConnection con = new SqlConnection(StrConn()))
+            using (SqlConnection con = new SqlConnection(await StrConn()))
             {
                 try
                 {
@@ -244,7 +244,7 @@ namespace AIOReceiving
             }
         }
 
-        public string StrConn()
+        public async Task<string> StrConn()
         {
             try
             {
@@ -262,7 +262,7 @@ namespace AIOReceiving
                 // Get its value
                 string name = node.InnerText;
 
-                return name;
+                return await Task.FromResult<string>(name);
             }
             catch (Exception ex)
             {
@@ -311,7 +311,7 @@ namespace AIOReceiving
             xd.Save(path);
 
 
-            string submitURL = ReadAPI();
+            string submitURL = await ReadAPI();
 
             string user = "pisoftware";
             string pwd = "r00t123456";
@@ -395,10 +395,10 @@ namespace AIOReceiving
             StreamReader reader = new StreamReader(file);
             string ret = await reader.ReadToEndAsync(); //06-08-2024
             reader.Close();
-            return ret;
+            return await Task.FromResult<string>(ret);
         }
 
-        public string ReadAPI()
+        public async Task<string> ReadAPI()
         {
             try
             {
@@ -415,7 +415,7 @@ namespace AIOReceiving
                 // Get its value
                 string name = node.InnerText;
 
-                return name;
+                return await Task.FromResult<string>(name);
             }
             catch (Exception ex)
             {
@@ -426,7 +426,7 @@ namespace AIOReceiving
         {
             try
             {
-                using (SqlConnection con = new SqlConnection(StrConn()))
+                using (SqlConnection con = new SqlConnection(await StrConn()))
                 {
                     con.Open();
                     using (SqlCommand comm = con.CreateCommand())
@@ -474,7 +474,7 @@ namespace AIOReceiving
         {
             try
             {
-                using (SqlConnection con = new SqlConnection(StrConn()))
+                using (SqlConnection con = new SqlConnection(await StrConn()))
                 {
                     con.Open();
 

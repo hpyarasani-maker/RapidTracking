@@ -34,7 +34,7 @@ namespace RapidTrackingMultiThreadRequests
         public Form1()
         {
             InitializeComponent();
-            timerExit();
+            //timerExit();
         }
 
         void timerExit()
@@ -829,7 +829,7 @@ namespace RapidTrackingMultiThreadRequests
                         comm.Parameters.Add("XmlData", SqlDbType.Xml).Value = xml.Replace("'", "''");
                         comm.Parameters.Add("Received", SqlDbType.VarChar).Value = "Normal Request Oxylabs Multithread Jobid"; //14-04-2025
 
-                        comm.ExecuteNonQuery();
+                        await comm.ExecuteNonQueryAsync();
                     }
                 }
 

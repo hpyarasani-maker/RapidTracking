@@ -1,4 +1,5 @@
 ﻿using HtmlAgilityPack;
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Globalization;
@@ -17,8 +18,17 @@ namespace AIOMultiThreadRequests
         int orgLinks;
         string html;
         string seid = string.Empty;//23-06-2023
+        public class ScriptMetaData
+        {
+            public string render { get; set; }
+        }
         public async Task<(string, int)> ProcessDocument(string seid, string keyword, HtmlDocument doc)//08-05-2025
         {
+            var scriptMetadata = new ScriptMetaData
+            {
+                render = "js",
+            };
+            var jsonString = JsonConvert.SerializeObject(scriptMetadata);
             this.seid = seid;//23-06-2023
             if (doc == null) throw new Exception("No source found.");
 
@@ -27,8 +37,8 @@ namespace AIOMultiThreadRequests
 
             html = doc.DocumentNode.OuterHtml;
             StringBuilder sb = new StringBuilder();
-            sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" date=\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\" >");
-
+            //sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" date=\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\" >");
+            sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" date=\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\" scrapingMetadata=\"" + WebUtility.HtmlEncode(jsonString.ToString()) + "\" >");
             sb.Append("<section col=\"main\">");
             string topStuff = GetTopStuff(doc);
             ndText = topStuff;

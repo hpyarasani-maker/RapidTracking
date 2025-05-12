@@ -135,9 +135,9 @@ namespace TrendingReceiving
                         response = obj["results"][0]["content"].Value<string>();
 
                         if (device == "desktop_chrome")
-                            result = desktop.ProcessDocument(seid, kw, response, out orgUrls);
+                            (result, orgUrls) = await desktop.ProcessDocument(seid, kw, jobid, response);//12-05-2025//30-10-2024
                         else
-                            result = ios.ProcessDocument(seid, kw, response, out orgUrls);
+                            (result, orgUrls) = await ios.ProcessDocument(seid, kw, jobid, response);//12-05-2025//30-10-2024
                     }
                     catch (Exception ex )
                     {

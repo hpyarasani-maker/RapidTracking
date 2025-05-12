@@ -286,7 +286,6 @@ namespace Oxylabs_BulkKeywords
             return await Task.FromResult<(string, int)>((sb.ToString(), orgLinks));//12-05-2025
         }
 
-
         private string GetRightStuff(HtmlDocument doc)
         {
             StringBuilder s = new StringBuilder();

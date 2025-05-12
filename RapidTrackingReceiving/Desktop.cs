@@ -22,7 +22,7 @@ namespace Oxylabs_BulkKeywords
             this.seid = seid;//23-06-2023
             if (string.IsNullOrEmpty(htmlsource))
             {
-                return await Task.FromResult<(string, int)>((string.Empty, 0));
+                return await Task.FromResult<(string, int)>((string.Empty, 0));//12-05-2025
             }
 
             var doc = new HtmlDocument();

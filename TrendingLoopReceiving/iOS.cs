@@ -2624,7 +2624,10 @@ namespace TrendingLoopReceiving
 
             nds = node.SelectNodes(".//g-inner-card/a");
             if (nds == null) //14-09-2022 shifted from 1991 2 lines
-                nds = node.SelectNodes(".//div[contains(@class,'amp_re')]/a|.//div[@class='dbsr']/a|.//div[@class='Fq8eSd']/a|.//div[@class='y1Boce']/div/a|.//div[@data-ved]/a|.//div[contains(@class,'JJJtgd')]/a|.//div[contains(@class,'JJJtgd')]/div|.//div[@class='x2PRle DvHpd']/a");//08-04-2025//27-02-2025//28-07-2020
+                nds = node.SelectNodes(".//div[contains(@class,'amp_re')]/a|.//div[@class='dbsr']/a|.//div[@class='Fq8eSd']/a|.//div[@class='y1Boce']/div/a" +
+                    "|.//div[@data-ved]/a|.//div[contains(@class,'JJJtgd')]/a|.//div[contains(@class,'JJJtgd')]/div");//09-05-2025 //08-04-2025//27-02-2025//28-07-2020
+            if (nds == null)//09-05-2025
+                nds = node.SelectNodes(".//div[@class='x2PRle DvHpd']/a");//09-05-2025
             if (nds == null)
                 nds = node.SelectNodes(".//g-inner-card/div/a|.//div[@class='kno-fb-ctx n49mp']/div/a|.//div[@class='zZ9K7e']/a|.//div[contains(@class,'kno-fb-ctx')]/div/a|.//div[contains(@class,'kno-fb-ctx')]/div/div/a|.//g-inner-card/div/div/a");//10-08-2022 TS Item Urls
             if (nds == null)
@@ -3159,6 +3162,7 @@ namespace TrendingLoopReceiving
                 int hrs = Convert.ToInt32(match.Groups[2].Value);
                 return (days > 0 || hrs > 0) ? ((days * 24) + hrs) + "." + "0" : "0.0";
             }
+            //match = Regex.Match(hours, @"(\d+)[\s]?(h|Std)[\W]* (\d+)[\s]?(m|[M|m]in)");
             match = Regex.Match(hours, @"(\d+)[\s]?(h|Std|시간)[\W]* (\d+)[\s]?(m|분|[M|m]in)");//30-04-2025
             if (match.Success)
             {
@@ -3939,6 +3943,8 @@ namespace TrendingLoopReceiving
                         ls = nd.SelectNodes(".//div[@jscontroller='JegcYe']");//05-04-2025
                     if (ls == null)//23-04-2025
                         ls = nd.SelectNodes(".//ol[@jscontroller='M2ABbc']/div");//23-04-2025
+                    if (ls != null && string.IsNullOrEmpty(ls[0].InnerText))//01-05-2025
+                        ls = nd.SelectNodes(".//ol[@jscontroller='M2ABbc']/li|.//ul[@jscontroller='M2ABbc']/li");//01-05-2025
                     if (ls != null)
                     {
                         foreach (HtmlNode nd1 in ls)

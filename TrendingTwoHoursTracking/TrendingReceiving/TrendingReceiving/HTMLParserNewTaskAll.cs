@@ -40,7 +40,14 @@ namespace TrendingReceiving
             };
             t1.Start();
         }
-
+        private void Ios_OnKeywordDone(string value)//30-10-2024
+        {
+            OnKeywordDone.Invoke(value);
+        }
+        private void Desktop_OnKeywordDone(string value)//30-10-2024
+        {
+            OnKeywordDone.Invoke(value);
+        }
         private async void StartProcess() //06-08-2024
         {
             string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking desktop and all keywords

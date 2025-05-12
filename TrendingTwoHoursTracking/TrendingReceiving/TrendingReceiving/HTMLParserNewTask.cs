@@ -33,6 +33,14 @@ namespace TrendingReceiving
             };
             t1.Start();
         }
+        private void Ios_OnKeywordDone(string value)//30-10-2024
+        {
+            OnKeywordDone.Invoke(value);
+        }
+        private void Desktop_OnKeywordDone(string value)//30-10-2024
+        {
+            OnKeywordDone.Invoke(value);
+        }
 
         private async void StartProcess()//14-08-2024
         {

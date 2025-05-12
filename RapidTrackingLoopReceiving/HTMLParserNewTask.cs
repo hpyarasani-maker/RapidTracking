@@ -160,7 +160,7 @@ namespace RapidTrackingLoopReceiving
                     string response = reader.ReadToEnd();
                     resStream.Close();
                     res.Close();
-                    string result = string.Empty;
+                    string rest = string.Empty;//12-05-2025
                     int orgUrls = 0;
                     try
                     {
@@ -177,10 +177,11 @@ namespace RapidTrackingLoopReceiving
                             {
                                 response = contents[x]["content"].Value<string>();
                                 if (device == "desktop_chrome")
-                                    (result, orgUrls) = await desktop.ProcessDocument(seid, kw, jobid, response);//12-05-2025//30-10-2024
+                                    (rest, orgUrls) = await desktop.ProcessDocument(seid, kw, jobid, response);//12-05-2025//30-10-2024
                                 else
-                                    (result, orgUrls) = await ios.ProcessDocument(seid, kw, jobid, response);//12-05-2025//30-10-2024
+                                    (rest, orgUrls) = await ios.ProcessDocument(seid, kw, jobid, response);//12-05-2025//30-10-2024
                                 count += orgUrls;
+                                result.Add(rest);//12-05-2025
                             }
                             catch { }
                         }

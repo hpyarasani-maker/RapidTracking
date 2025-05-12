@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace Oxylabs_BulkKeywords
@@ -17,13 +18,12 @@ namespace Oxylabs_BulkKeywords
         string html;
         string seid = string.Empty;//23-06-2023
         public event KeywordDone OnKeywordDone;//30-10-2024
-        public string ProcessDocument(string seid, string keyword, string jobid, string htmlsource, out int organicurls)//30-10-2024
+        public async Task<(string, int)> ProcessDocument(string seid, string keyword, string jobid, string htmlsource)//12-05-2025//30-10-2024
         {
             this.seid = seid;//23-06-2023
             if (string.IsNullOrEmpty(htmlsource))
             {
-                organicurls = 0;
-                return string.Empty;
+                return await Task.FromResult<(string, int)>((string.Empty, 0));//12-05-2025
             }
 
             var doc = new HtmlDocument();
@@ -60,8 +60,7 @@ namespace Oxylabs_BulkKeywords
                 nodeCol = doc.DocumentNode.SelectNodes("//*[@id='tscffb']");
             if (nodeCol == null)
             {
-                organicurls = 0;
-                return string.Empty;
+                return await Task.FromResult<(string, int)>((string.Empty, 0));//12-05-2025
             }
 
             string ndText = "";
@@ -282,12 +281,9 @@ namespace Oxylabs_BulkKeywords
 
             if (ndText.Length <= 0)
             {
-                organicurls = 0;
-                return string.Empty;
+                return await Task.FromResult<(string, int)>((string.Empty, 0));//12-05-2025
             }
-            organicurls = orgLinks;
-            return sb.ToString();
-
+            return await Task.FromResult<(string, int)>((sb.ToString(), orgLinks));//12-05-2025
         }
 
 

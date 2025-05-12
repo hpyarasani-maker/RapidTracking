@@ -181,9 +181,9 @@ namespace Oxylabs_BulkKeywords
                         //seid = sp.seid.ToString();
 
                         if (device == "desktop_chrome")
-                            result = desktop.ProcessDocument(seid, kw, jobid, response, out orgUrls);//30-10-2024
+                            (result, orgUrls) = await desktop.ProcessDocument(seid, kw, jobid, response);//12-05-2025//30-10-2024
                         else
-                            result = ios.ProcessDocument(seid, kw, jobid, response, out orgUrls);//30-10-2024
+                            (result, orgUrls) = await ios.ProcessDocument(seid, kw, jobid, response);//12-05-2025//30-10-2024
                     }
                     catch (Exception ex)
                     {

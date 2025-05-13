@@ -1168,7 +1168,7 @@ namespace AIOMultiThreadRequests
                         }
                         catch (Exception ex)
                         {
-                            Console.WriteLine("Result Request: " + ex.Message);
+                            txtError.Text = "Result Request: " + ex.Message;
                         }
                     }
                     else if (cbUrl[2] == "faulted" && cbUrl[3] == "no")
@@ -1197,7 +1197,7 @@ namespace AIOMultiThreadRequests
                         }
                         catch (Exception ex)
                         {
-                            Console.WriteLine("Status Request: " + ex.Message);
+                            txtError.Text= "Status Request: " + ex.Message;
                             txtError.Text = ex.Message.ToString();
                         }
                     }

@@ -1114,13 +1114,12 @@ namespace AIOMultiThreadRequests
             JObject jo = JObject.Parse(response);
             var links = from p in jo["queries"] select p;
             ArrayList lst = new ArrayList();
-            string jobid = string.Empty;
             foreach (JToken link in links)
             {
                 string kw = link["query"].Value<string>();
                 string href = link["_links"][1]["href"].Value<string>();
                 string status = link["status"].Value<string>();
-                jobid = link["id"].Value<string>();
+                string jobid = link["id"].Value<string>();
                 string device = link["user_agent_type"].Value<string>();
                 string[] s = { kw, href, status, "no", jobid, device };    // keyword, url, status, isdownloaded, jobid, device.
                 lst.Add(s);
@@ -1156,7 +1155,7 @@ namespace AIOMultiThreadRequests
                             startTime.Stop();
                             var totalTime = Convert.ToDouble(startTime.ElapsedMilliseconds) / 1000;//08-11-2023
                             cbUrl[3] = "yes";
-                            cnt++;
+                            //cnt++;
 
                             if (!string.IsNullOrEmpty(response))
                             {
@@ -1180,9 +1179,11 @@ namespace AIOMultiThreadRequests
                         {
                             this.Invoke((MethodInvoker)delegate ()//13-05-2025
                             {
-                                txtError.Text = "AIO Multithread Request Status is faulted";
+                                txtError.Text = txtError.Text + sp.seid.ToString() + ": " + sp.query + ": " + cbUrl[4] + Environment.NewLine + "AIO Multithread Request Status is faulted" +
+                                    Environment.NewLine + Environment.NewLine;
+                                txtError.Refresh();
                             });//13-05-2025
-                            await SendToDBFailure(sp.seid.ToString(), sp.query, jobid, false, "AIO Multithread Request Status is faulted");
+                            await SendToDBFailure(sp.seid.ToString(), sp.query, cbUrl[4], false, "AIO Multithread Request Status is faulted");
                         }//13-05-2025
                     }
                     else if (cbUrl[2] == "pending" && cbUrl[3] == "no")

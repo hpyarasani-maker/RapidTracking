@@ -1114,12 +1114,13 @@ namespace AIOMultiThreadRequests
             JObject jo = JObject.Parse(response);
             var links = from p in jo["queries"] select p;
             ArrayList lst = new ArrayList();
+            string jobid = string.Empty;
             foreach (JToken link in links)
             {
                 string kw = link["query"].Value<string>();
                 string href = link["_links"][1]["href"].Value<string>();
                 string status = link["status"].Value<string>();
-                string jobid = link["id"].Value<string>();
+                jobid = link["id"].Value<string>();
                 string device = link["user_agent_type"].Value<string>();
                 string[] s = { kw, href, status, "no", jobid, device };    // keyword, url, status, isdownloaded, jobid, device.
                 lst.Add(s);
@@ -1175,6 +1176,14 @@ namespace AIOMultiThreadRequests
                     {
                         cbUrl[3] = "yes";
                         cnt++;
+                        if (cbUrl[2] == "faulted")//13-05-2025
+                        {
+                            this.Invoke((MethodInvoker)delegate ()//13-05-2025
+                            {
+                                txtError.Text = "AIO Multithread Request Status is faulted";
+                            });//13-05-2025
+                            await SendToDBFailure(sp.seid.ToString(), sp.query, jobid, false, "AIO Multithread Request Status is faulted");
+                        }//13-05-2025
                     }
                     else if (cbUrl[2] == "pending" && cbUrl[3] == "no")
                     {
@@ -1197,8 +1206,11 @@ namespace AIOMultiThreadRequests
                         }
                         catch (Exception ex)
                         {
-                            txtError.Text= "Status Request: " + ex.Message;
-                            txtError.Text = ex.Message.ToString();
+                            this.Invoke((MethodInvoker)delegate ()
+                            {
+                                txtError.Text = "Status Request: " + ex.Message;
+                                txtError.Text = ex.Message.ToString();
+                            });
                         }
                     }
                     else

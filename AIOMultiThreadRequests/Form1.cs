@@ -1174,45 +1174,39 @@ namespace AIOMultiThreadRequests
                     else if (cbUrl[2] == "faulted" && cbUrl[3] == "no")
                     {
                         cbUrl[3] = "yes";
-                        //cnt++;
-                        break;
+                        cnt++;
                     }
                     else if (cbUrl[2] == "pending" && cbUrl[3] == "no")
                     {
-                        //try
-                        //{
-                        //    HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(uri.ToString().Replace("/results", ""));
-                        //    httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
-                        //    HttpWebResponse res = (HttpWebResponse)await httpWebRequest.GetResponseAsync();
+                        try
+                        {
+                            HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(uri.ToString().Replace("/results", ""));
+                            httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
+                            HttpWebResponse res = (HttpWebResponse)await httpWebRequest.GetResponseAsync();
 
-                        //    string doneresp = "";
-                        //    using (StreamReader reader = new StreamReader(res.GetResponseStream(), Encoding.UTF8))
-                        //    {
-                        //        doneresp = reader.ReadToEnd();
-                        //    }
-                        //    res.Close();
+                            string doneresp = "";
+                            using (StreamReader reader = new StreamReader(res.GetResponseStream(), Encoding.UTF8))
+                            {
+                                doneresp = reader.ReadToEnd();
+                            }
+                            res.Close();
 
-                        //    JObject job = JObject.Parse(doneresp);
-                        //    string status = job["status"].Value<string>();
-                        //    cbUrl[2] = status;
-                        //}
-                        //catch (Exception ex)
-                        //{
-                        //    txtError.Text = "Status Request: " + ex.Message;
-                        //    txtError.Text = ex.Message.ToString();
-                        //}
-                        txtError.Text = "Pending";
-                        break;
+                            JObject job = JObject.Parse(doneresp);
+                            string status = job["status"].Value<string>();
+                            cbUrl[2] = status;
+                        }
+                        catch (Exception ex)
+                        {
+                            txtError.Text= "Status Request: " + ex.Message;
+                            txtError.Text = ex.Message.ToString();
+                        }
                     }
                     else
-                        //cnt++;
-                        txtError.Text = "Faulted";
-                        break;
-
-                    //Task.Delay(200).Wait();
+                        cnt++;
+                    Task.Delay(200).Wait();
                 }
 
-                //if (lst.Count == cnt) break;
+                if (lst.Count == cnt) break;
 
             } while (true);
 

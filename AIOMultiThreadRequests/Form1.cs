@@ -1212,10 +1212,12 @@ namespace AIOMultiThreadRequests
                     //Task.Delay(200).Wait();
                 }
 
-                //if (lst.Count == cnt) 
-                break;
+                //if (lst.Count == cnt) break;
+
             } while (true);
+
             return await Task.FromResult<ArrayList>(alResult);
+
         }
         private void txtError_TextChanged(object sender, EventArgs e)
         {

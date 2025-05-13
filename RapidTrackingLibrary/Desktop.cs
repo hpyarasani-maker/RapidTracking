@@ -589,6 +589,8 @@ namespace RapidTrackingLibrary
                             cl = pla.SelectNodes(".//div[@class='mnr-c pla-unit']/a[2]");
                         if (cl == null)
                             cl = pla.SelectNodes(".//div[@class='pla-unit-title']/a");
+                        if (cl == null)
+                            cl = pla.SelectNodes(".//a[@class='plantl tkXAec']");//13-05-2025
                         if (cl != null)
                         {
                             foreach (HtmlNode nd in cl)

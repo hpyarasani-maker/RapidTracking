@@ -1106,7 +1106,7 @@ namespace RapidTrackingMultiThreadRequests
                 string status = link["status"].Value<string>();
                 string jobid = link["id"].Value<string>();
                 string device = link["user_agent_type"].Value<string>();
-                string[] s = { kw, href, status, "no", jobid, device };    // keyword, url, status, isdownloaded, jobid, device.
+                string[] s = { kw, href, status, "no", jobid, device, sp.seid.ToString() }; //13/05/2025   // keyword, url, status, isdownloaded, jobid, device.
                 lst.Add(s);
             }
 
@@ -1158,6 +1158,16 @@ namespace RapidTrackingMultiThreadRequests
                     {
                         cbUrl[3] = "yes";
                         cnt++;
+                        if (cbUrl[2] == "faulted")//13-05-2025
+                        {
+                            this.Invoke((MethodInvoker)delegate ()//13-05-2025
+                            {
+                                txtError.Text = txtError.Text + cbUrl[6] + ": " + cbUrl[0] + ": " + cbUrl[4] + Environment.NewLine + "AIO Multithread Request Status is faulted" +
+                                    Environment.NewLine + Environment.NewLine;
+                                txtError.Refresh();
+                            });//13-05-2025
+                            await SendToDBFailure(cbUrl[6], cbUrl[0], cbUrl[4], false, "RapidTrackingMultithread Request Status is faulted");
+                        }//13-05-2025
                     }
                     else if (cbUrl[2] == "pending" && cbUrl[3] == "no")
                     {

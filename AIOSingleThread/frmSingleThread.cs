@@ -168,7 +168,7 @@ namespace AIOSingleThread
                                     bool isOldPage = false;
                                     if (ex.Message == "AIO Old page found")//14-04-2025
                                         isOldPage = true;
-                                    await SendToDBFailure(kw, seid, jobid, isOldPage);
+                                    await SendToDBFailure(kw, seid, jobid, isOldPage, "AIO SingleThread Request Status is faulted");
                                 }
                                 finally { }
                             }
@@ -287,7 +287,7 @@ namespace AIOSingleThread
             {
 
                 ////store into keywordfail table.
-                await SendToDBFailure(seid, kw, jobid, false);
+                await SendToDBFailure(seid, kw, jobid, false, "AIO SingleThread Request Status is faulted");
 
 
                 string errorMsg = string.Empty;
@@ -421,16 +421,16 @@ namespace AIOSingleThread
                 throw ex;
             }
         }
-        private async Task SendToDBFailure(string seid, string kw, string jobid, bool isOldPage)
+        private async Task SendToDBFailure(string seid, string kw, string jobid, bool isOldPage, string errMsg)
         {
             string myDate = DateTime.Today.ToString("yyyy-MM-dd");
             //string myDate = "2019-10-10";
 
-            string qry = "insert into dashboard_dataerrors (date, name, seid, jobid) values(Convert(varchar(10),'" + myDate + "',103), N'" +
-                  kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "' )";
+            string qry = "insert into dashboard_dataerrors (date, name, seid, jobid,message) values(Convert(varchar(10),'" + myDate + "',103), N'" +
+                    kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "', N'" + errMsg + "')"; //03-01-2022
 
             string qryOld = "insert into dashboard_oldgooglepage (date, keyword, seid, jobid) values('" + DateTime.Now + "', N'" +
-                 kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "' )";
+                  kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "')";
 
             using (SqlConnection con = new SqlConnection(await Common.ReadConnection()))
             {
@@ -469,6 +469,7 @@ namespace AIOSingleThread
                     //throw ex;
                 }
             }
+
         }
         private async Task InsertAIO_Keyword_False(string kw, string seid, bool aio)//16-02-2025
         {
@@ -665,7 +666,7 @@ namespace AIOSingleThread
                 string status = link["status"].Value<string>();
                 string jobid = link["id"].Value<string>();
                 string device = link["user_agent_type"].Value<string>();
-                string[] s = { kw, href, status, "no", jobid, device };    // keyword, url, status, isdownloaded, jobid, device.
+                string[] s = { kw, href, status, "no", jobid, device, sp.seid.ToString() }; //13/05/2025   // keyword, url, status, isdownloaded, jobid, device.
                 lst.Add(s);
             }
 
@@ -723,6 +724,16 @@ namespace AIOSingleThread
                     {
                         cbUrl[3] = "yes";
                         cnt++;
+                        if (cbUrl[2] == "faulted")//13-05-2025
+                        {
+                            this.Invoke((MethodInvoker)delegate ()//13-05-2025
+                            {
+                                txtError.Text = txtError.Text + cbUrl[6] + ": " + cbUrl[0] + ": " + cbUrl[4] + Environment.NewLine + "AIO Multithread Request Status is faulted" +
+                                    Environment.NewLine + Environment.NewLine;
+                                txtError.Refresh();
+                            });//13-05-2025
+                            await SendToDBFailure(cbUrl[6], cbUrl[0], cbUrl[4], false, "AIO SingleThread Request Status is faulted");
+                        }//13-05-2025
                     }
                     else if (cbUrl[2] == "pending" && cbUrl[3] == "no")
                     {

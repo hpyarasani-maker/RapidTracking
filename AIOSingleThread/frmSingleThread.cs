@@ -19,7 +19,7 @@ namespace AIOSingleThread
 {
     public partial class frmSingleThread : Form
     {
-        string xmlPath = "C:\\inetpub\\wwwroot\\rapidtracking_singlethread_102_GT20_WC.xml";
+        string xmlPath = "C:\\inetpub\\wwwroot\\rapidtracking_singlethread_102_AIO_Arab_GT0_WC.xml";
 
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         
@@ -48,7 +48,7 @@ namespace AIOSingleThread
         private void frmSingleThread_Load(object sender, EventArgs e)
         {
             
-            this.Text = "RapidTracking_SingleThread_102_GT20_WC";
+            this.Text = "RapidTracking_SingleThread_102_AIO_Arab_GT0_WC";
             //this.Text = "RapidTracking_SingleThread_P_A_WOC_10-09-2019";
 
 
@@ -88,8 +88,8 @@ namespace AIOSingleThread
                 //string kwQry = "[GetCommaKeywordsP] '" + myDate + "'";               
                 //string kwQry = "[Tracking_DB_Keywords_Seid_102_P] '" + myDate + "'"; //tracking previous date single keywords
                 //string kwQry = "Tracking_DB_Keywords_SEID_102_TGBN '" + myDate + "'";
-                string kwQry = "[Tracking_DB_Keywords_SEID_102_AIO] '" + myDate + "'";
-
+                //string kwQry = "[Tracking_DB_Keywords_SEID_102_AIO] '" + myDate + "'";
+                string kwQry = "[Tracking_DB_Keywords_SEID_102_AIO_Arab] '" + myDate + "'";
                 await GetKeywords(kwQry);
 
                 if (lstKWs.Items.Count <= 0)
@@ -119,7 +119,7 @@ namespace AIOSingleThread
                             string jobid = src[2];
                             string device = src[3];
                             await SendToSendingTable(kw, seid, jobid);
-                            File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
+                            //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
                             //File.WriteAllText(@"C:\inetpub\wwwroot\"+jobid+"_withOut filter_"+".html", html, Encoding.UTF8);
                             result = true;
                             doc = new HtmlAgilityPack.HtmlDocument();
@@ -145,7 +145,7 @@ namespace AIOSingleThread
                                     {
                                         lblCount.Text = "No. of Urls : " + count;
                                     }));
-                                    if (count > 20)
+                                    if (count > 0)
                                     {
                                         await SendToAPI(seid, keyword, res, jobid);
                                         await SendToDB(seid, keyword, res, jobid, count);
@@ -351,9 +351,9 @@ namespace AIOSingleThread
                 //lstKWs.Items.Add("160:malmö ff");
                 //lstKWs.Items.Add("102:terry crews");
                 //lstKWs.Items.Add("102:the uninhabitable earth summary");
-                lstKWs.Items.Add("247:ranking web of universities");
+                //lstKWs.Items.Add("145:dieselpreis nordmazedonien");
             });
-            return;
+            //return;
 
             try
             {

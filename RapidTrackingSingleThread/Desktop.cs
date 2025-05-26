@@ -1171,7 +1171,8 @@ namespace RapidTrackingSingleThread
             if (n != null)
             {
                 HtmlNode t = n.SelectSingleNode(".//h3");
-                HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'HiHjCd')]/a|.//div[@class='Mwdfte']/a|.//div[@jsname='BPrWId']/a|.//div[contains(@class,'JpOecb')]/a|.//div[contains(@class,'kb0PBd')]/a");//18-02-2025//14-02-2025//20-01-2025//21-10-2024
+                HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'HiHjCd')]/a|.//div[@class='Mwdfte']/a|.//div[@jsname='BPrWId']/a" +
+                    "|.//div[contains(@class,'JpOecb')]/a|.//div[contains(@class,'kb0PBd')]/a|.//div[contains(@class,'kb0PBd')]/div/a");//26-05-2025//18-02-2025//14-02-2025//20-01-2025//21-10-2024
                 if (nds != null)
                 {
                     s.Append("<block type=\"classicLinkSiteLinks\" url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(t.InnerText) + "\" >");

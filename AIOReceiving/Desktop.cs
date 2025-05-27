@@ -560,6 +560,8 @@ namespace AIOReceiving
                             cl = pla.SelectNodes(".//div[@class='mnr-c pla-unit']/a[2]");
                         if (cl == null)
                             cl = pla.SelectNodes(".//div[@class='pla-unit-title']/a");
+                        if (cl == null)
+                            cl = pla.SelectNodes(".//a[@class='plantl tkXAec']");//13-05-2025
                         if (cl != null)
                         {
                             foreach (HtmlNode nd in cl)
@@ -1172,7 +1174,8 @@ namespace AIOReceiving
             if (n != null)
             {
                 HtmlNode t = n.SelectSingleNode(".//h3");
-                HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'HiHjCd')]/a|.//div[@class='Mwdfte']/a|.//div[@jsname='BPrWId']/a|.//div[contains(@class,'JpOecb')]/a|.//div[contains(@class,'kb0PBd')]/a");//18-02-2025//14-02-2025//20-01-2025//21-10-2024
+                HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'HiHjCd')]/a|.//div[@class='Mwdfte']/a|.//div[@jsname='BPrWId']/a" +
+                     "|.//div[contains(@class,'JpOecb')]/a|.//div[contains(@class,'kb0PBd')]/a|.//div[contains(@class,'kb0PBd')]/div/a|.//div[@class='Mwdfte']/div/a");//27-05-2025//26-05-2025//18-02-2025//14-02-2025//20-01-2025//21-10-2024
                 if (nds != null)
                 {
                     s.Append("<block type=\"classicLinkSiteLinks\" url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(t.InnerText) + "\" >");
@@ -2298,7 +2301,7 @@ namespace AIOReceiving
 
             nd = node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]|.//div[contains(@class, 'vdQmEd')]|.//div[@class='cj1ht QkBAO oYQBg']|.//div[@class='p21Z4']");//18-02-2025//29-07-2024//29-06-2023//23-03-2022
             if (nd != null && nd.SelectNodes(".//div[@class='MxQnIc']") == null && node.SelectSingleNode(".//div[@class='XNfAUb']|.//h1[contains(@class, 'bNg8Rb')]" +
-                "|.//div[@class='ad5fcd']|.//div[contains(@class,'vmod')]|.//div[@class='HJSKzf']") == null)//05-05-2025//22-04-2025//21-02-2025//27-12-2024//19-08-2024//30-06-2023
+                "|.//div[@class='ad5fcd']|.//div[contains(@class,'vmod')]|.//div[@class='HJSKzf']|.//div[contains(@class,'wDYxhc')]") == null)//13-05-2025//05-05-2025//22-04-2025//21-02-2025//27-12-2024//19-08-2024//30-06-2023
                 return "Flights";//23-03-2022
 
             //nd = node.SelectSingleNode(".//div[@class='kp-blk cUnQKe']|.//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']|.//div[@jsname='N760b']");//08-07-2021//04-12-2020 //11-02-2020
@@ -2395,7 +2398,7 @@ namespace AIOReceiving
                 node.SelectSingleNode(".//div[@class='q6PGbe']|.//div[@class='l44Vof']|.//div[@class='P9Jfrb']|.//div[@class='o8ebK']" +
                 "|.//div[@class='ntKMYc']|.//img[starts-with(@alt,'Map of')]|.//div[@class='aJegcc']|.//div[contains(@class,'knowledge-finance-wholepage')]|.//div[@class='KYLHhb Ww4FFb vt6azd']") == null)))//15-11-2024//01-08-2024//26-04-2024//01-02-2024//03-11-2023//06-12-2022//13-08-2022 maps //02-06-2022
             {
-                if (node.SelectSingleNode(".//div[contains(@class,'EyBRub')]") == null || node.SelectSingleNode(".//div[@id='iur']") != null)//09-12-2024//05-12-2024
+                if (node.SelectSingleNode(".//div[contains(@class,'EyBRub')]|.//div[@id='jOAHU']") == null || node.SelectSingleNode(".//div[@id='iur']") != null)//21-05-2025//09-12-2024//05-12-2024
                     return "Images";
             }
             nd = node.SelectSingleNode(".//div[@class='kuRgBc']|.//div[@class='ZVAQpe']|.//div[@class='fPmcEc']");//22-10-2024//27-02-2023 hotel pack
@@ -2689,7 +2692,7 @@ namespace AIOReceiving
                 {
                     HtmlNodeCollection ls = nd.SelectNodes(".//div[@class='RJPOee EIJn2']/ul/li");
                     if (ls == null)
-                        ls = nd.SelectNodes(".//ol[@jscontroller='M2ABbc']/li|.//ul[@jscontroller='M2ABbc']/li");
+                        ls = nd.SelectNodes(".//ol[@jscontroller='M2ABbc']/li|.//ul[@jscontroller='M2ABbc']/li|.//div[@class='bsmXxe']/li");//26-05-2025
                     if (ls == null)
                         ls = nd.SelectNodes(".//ol/li[@class='K3KsMc']|.//ul/li[@class='K3KsMc']|.//ul/li[@class='pWtQDd']");
                     if (ls != null)

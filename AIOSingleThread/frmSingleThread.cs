@@ -19,7 +19,7 @@ namespace AIOSingleThread
 {
     public partial class frmSingleThread : Form
     {
-        string xmlPath = "C:\\inetpub\\wwwroot\\rapidtracking_singlethread_102_AIO_Arab_GT0_WC.xml";
+        string xmlPath = "C:\\inetpub\\wwwroot\\rapidtracking_singlethread_102_AIO_LastKeywords_GT0_WC.xml";
 
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         
@@ -48,7 +48,7 @@ namespace AIOSingleThread
         private void frmSingleThread_Load(object sender, EventArgs e)
         {
             
-            this.Text = "RapidTracking_SingleThread_102_AIO_Arab_GT0_WC";
+            this.Text = "RapidTracking_SingleThread_102_AIO_LastKeywords_GT0_WC";
             //this.Text = "RapidTracking_SingleThread_P_A_WOC_10-09-2019";
 
 
@@ -88,9 +88,9 @@ namespace AIOSingleThread
                 //string kwQry = "[GetCommaKeywordsP] '" + myDate + "'";               
                 //string kwQry = "[Tracking_DB_Keywords_Seid_102_P] '" + myDate + "'"; //tracking previous date single keywords
                 //string kwQry = "Tracking_DB_Keywords_SEID_102_TGBN '" + myDate + "'";
-                string kwQry = "[Tracking_DB_Keywords_SEID_102_AIO] '" + myDate + "'";
+                //string kwQry = "[Tracking_DB_Keywords_SEID_102_AIO] '" + myDate + "'";
                 //string kwQry = "[Tracking_DB_Keywords_SEID_102_AIO_Arab] '" + myDate + "'";
-                //string kwQry = "[Tracking_DB_Keywords_SEID_102_AIO_S] '" + myDate + "'";
+                string kwQry = "[Tracking_DB_Keywords_SEID_102_AIO_LastKeywords] '" + myDate + "'";
 
                 await GetKeywords(kwQry);
 

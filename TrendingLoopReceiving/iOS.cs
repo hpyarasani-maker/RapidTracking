@@ -660,7 +660,7 @@ namespace TrendingLoopReceiving
                 }//end of change //11-01-2022
                 else //19-11-2024
                 {
-                    HtmlNode node = doc.DocumentNode.SelectSingleNode("//div[@id='tads']/div[contains(@class,'z7KNEc')]");
+                    HtmlNode node = doc.DocumentNode.SelectSingleNode("//div[@id='tads']/div[contains(@class,'z7KNEc')]|//div[@id='tads']/div[@class='GUyUUb']");//16-05-2025
                     if (node != null)
                     {
                         s.Append("<block type=\"productListedAds\" url=\"\">");

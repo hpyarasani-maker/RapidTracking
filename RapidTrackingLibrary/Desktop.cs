@@ -578,7 +578,7 @@ namespace RapidTrackingLibrary
                 if (h3 != null)
                 {
                     if (pla.SelectSingleNode(".//div[contains(@class, 'commercial-unit-desktop-top')]") != null
-                        || pla.SelectSingleNode(".//div[contains(@class, 'top-pla-group-inner')]") != null)  // 13-02-2020 
+                         || pla.SelectSingleNode(".//div[contains(@class, 'top-pla-group-inner')]") != null || pla.SelectSingleNode(".//div[contains(@class, 'pla-unit')]") != null)//06-06-2025  // 13-02-2020 
                     {
                         s.Append("<block type=\"productListedAds\" url=\"\">");
 

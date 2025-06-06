@@ -659,9 +659,13 @@ namespace RapidTrackingMultiThreadRequests
                     HtmlNode node = doc.DocumentNode.SelectSingleNode("//div[@id='tads']/div[contains(@class,'z7KNEc')]|//div[@id='tads']/div[@class='GUyUUb']");//16-05-2025
                     if (node != null)
                     {
-                        s.Append("<block type=\"productListedAds\" url=\"\">");
-                        s.Append(ProductListedAds(node));
-                        s.Append("</block>");
+                        string pl = ProductListedAds(node);//05-06-2025
+                        if (!string.IsNullOrEmpty(pl))
+                        {
+                            s.Append("<block type=\"productListedAds\" url=\"\">");
+                            s.Append(pl);
+                            s.Append("</block>");
+                        }//05-06-2025
                     }
                 }//19-11-2024
                 HtmlNodeCollection col = crNode.SelectNodes(".//div[contains(@id,'tads')]/ol/li");

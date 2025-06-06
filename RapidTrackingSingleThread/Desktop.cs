@@ -572,7 +572,33 @@ namespace RapidTrackingSingleThread
                     }
                 }
             }
-
+            else//06-06-2025
+            {
+                pla = doc.DocumentNode.SelectSingleNode("//div[@id='atvcap']");
+                if (pla != null)
+                {
+                    if (pla.SelectSingleNode(".//div[contains(@class,'z7KNEc')]") != null)
+                    {
+                        HtmlNode h3 = pla.SelectSingleNode(".//div[@class='gYOdbf']");
+                        if (h3 != null)
+                        {
+                            s.Append("<block type=\"productListedAds\" url=\"\">");
+                            HtmlNodeCollection pNodes = pla.SelectNodes(".//div[@class='ZPze1e']/a|.//g-inner-card[contains(@class,'B5kg8b')]/a|.//div[@class='VqeGe']/a");
+                            if (pNodes != null)
+                            {
+                                foreach (var nd in pNodes)
+                                {
+                                    var url = nd?.Attributes["href"]?.Value ?? "";
+                                    url = GetRedirectedUrl(url);
+                                    var title = nd.SelectSingleNode(".//div[@class='e7SMre']|.//div[@class='gCv54b']|.//div[@class='WqhEtf UkEzBc']")?.InnerText ?? "";
+                                    s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
+                                }
+                            }
+                            s.Append("</block>");
+                        }
+                    }
+                }
+            }//06-06-2025
             // text ads
             colt = doc.DocumentNode.SelectSingleNode("//div[@id='tvcap']");  //20-01-2020//18-11-2024
             if (colt != null)

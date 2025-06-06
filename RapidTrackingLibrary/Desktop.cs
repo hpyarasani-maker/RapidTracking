@@ -998,7 +998,7 @@ namespace RapidTrackingLibrary
                         s.Append(GetSiteLinks(n));
                         continue;
                     }//14-12-2022
-                    if (n.SelectSingleNode(".//div[contains(@class,'HiHjCd')]|.//div[@class='Mwdfte']") != null)//23-10-2024
+                    if (n.SelectSingleNode(".//div[contains(@class,'HiHjCd')]|.//div[@class='Mwdfte']|.//div[@data-snf='gdePb']") != null)//06-06-2025//23-10-2024
                     {
                         s.Append(GetClassicLinkSiteLinks(n));
                         continue;

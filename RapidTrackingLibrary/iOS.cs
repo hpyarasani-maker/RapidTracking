@@ -2499,6 +2499,8 @@ namespace RapidTrackingLibrary
                     nds = node.SelectNodes(".//div[@class='agqCtf tw-res']/g-card-section/a|.//a[@class='WlydOe eR6uYd']");//11-09-2024//24-04-2024
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='agqCtf tw-res']/g-image-section/a");//03-04-2024
+                if (nds == null)//09-06-2025
+                    nds = node.SelectNodes(".//div[@class='hRcGbc']/a");//09-06-2025
                 if (nds != null)
                     foreach (HtmlNode nd in nds)
                     {

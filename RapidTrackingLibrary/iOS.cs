@@ -3739,7 +3739,7 @@ namespace RapidTrackingLibrary
             if (nd != null && (nd.InnerText.Contains("Ads") || nd.InnerText.Contains("Sponsored")))
                 return "Adwords";//12-08-2024 multiple Adwords in top, middle & bootom
             nd = node.SelectSingleNode(".//div[@class='GcKpu']|.//div[contains(@class,'Fzsovc')]");//28-08-2024
-            if (nd != null)//21-08-2024
+            if (nd != null && node.SelectSingleNode(".//div[@class='EyBRub']") == null)//10-06-2025//21-08-2024
                 return "aiOverview";//21-08-2024 AIOverview
             nd = node.SelectSingleNode(".//div[@class='Wt5Tfe']");//11-10-2024 peoplealsosearch
             if (nd != null)

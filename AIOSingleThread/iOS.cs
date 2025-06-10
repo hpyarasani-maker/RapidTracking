@@ -4033,7 +4033,7 @@ namespace AIOSingleThread
                             if (string.IsNullOrEmpty(content))
                             {
                                 HtmlNodeCollection spanCol = nd1.SelectNodes(".//span/span|.//div[@class='vM0jzc']/span");
-                                if (spanCol == null || (spanCol != null && spanCol[0].InnerText.Equals("&nbsp;")))//18-11-2024
+                                if (spanCol == null || (spanCol != null && spanCol[0].InnerText.Equals("&nbsp;") || nd1.Attributes["class"]?.Value == "rPeykc"))//10-06-2025//18-11-2024
                                     spanCol = nd1.SelectNodes(".//span");
                                 if (nd1.Attributes["class"]?.Value == "jSqiwc")//07-04-2025
                                 {

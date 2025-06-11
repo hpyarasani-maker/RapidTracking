@@ -571,6 +571,7 @@ namespace RapidTrackingLibrary
             }//21-08-2024 AIOverview
 
             // product listed ads
+            bool plaExisted = false;//11-06-2025
             HtmlNode pla = doc.DocumentNode.SelectSingleNode("//div[contains(@class,'cu-container')]"); //25-09-2020 included contains for existing selector
             if (pla != null)
             {
@@ -599,9 +600,11 @@ namespace RapidTrackingLibrary
                                 url = GetRedirectedUrl(url);
                                 s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(nd.InnerText) + "\" />");
                             }
+                            plaExisted = true;//11-06-2025
                         }
                         s.Append("</block>");
                     }
+                    if (!plaExisted) pla = null;//11-06-2025
                 }
             }
             else//06-06-2025

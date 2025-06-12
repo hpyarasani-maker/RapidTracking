@@ -532,7 +532,8 @@ namespace AIOMultiThreadRequests
             {
                 s.Append(GetAioverview(colt));
             }//21-08-2024 AIOverview
-            // product listed ads
+             // product listed ads
+            bool plaExisted = false;//11-06-2025
             HtmlNode pla = doc.DocumentNode.SelectSingleNode("//div[contains(@class,'cu-container')]"); //25-09-2020 included contains for existing selector
             if (pla != null)
             {
@@ -587,10 +588,12 @@ namespace AIOMultiThreadRequests
                                     var title = nd.SelectSingleNode(".//div[@class='e7SMre']|.//div[@class='gCv54b']|.//div[@class='WqhEtf UkEzBc']")?.InnerText ?? "";
                                     s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");
                                 }
+                                plaExisted = true;//11-06-2025
                             }
                             s.Append("</block>");
                         }
                     }
+                    if (!plaExisted) pla = null;//11-06-2025
                 }
             }//06-06-2025
             // text ads

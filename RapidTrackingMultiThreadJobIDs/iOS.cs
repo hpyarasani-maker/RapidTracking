@@ -2435,6 +2435,8 @@ namespace RapidTrackingMultiThreadRequests
                     nds = node.SelectNodes(".//div[@class='agqCtf tw-res']/g-card-section/a|.//a[@class='WlydOe eR6uYd']");//11-09-2024//24-04-2024
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='agqCtf tw-res']/g-image-section/a");//03-04-2024
+                if (nds == null)//09-06-2025
+                    nds = node.SelectNodes(".//div[@class='hRcGbc']/a");//09-06-2025
                 if (nds != null)
                     foreach (HtmlNode nd in nds)
                     {
@@ -3679,7 +3681,7 @@ namespace RapidTrackingMultiThreadRequests
             if (nd != null && (nd.InnerText.Contains("Ads") || nd.InnerText.Contains("Sponsored")))
                 return "Adwords";//12-08-2024 multiple Adwords in top, middle & bootom
             nd = node.SelectSingleNode(".//div[@class='GcKpu']|.//div[contains(@class,'Fzsovc')]");//28-08-2024
-            if (nd != null)//21-08-2024
+            if (nd != null && node.SelectSingleNode(".//div[@class='EyBRub']") == null)//10-06-2025//21-08-2024
                 return "aiOverview";//21-08-2024 AIOverview
             nd = node.SelectSingleNode(".//div[@class='Wt5Tfe']");//11-10-2024 peoplealsosearch
             if (nd != null)
@@ -4013,7 +4015,7 @@ namespace RapidTrackingMultiThreadRequests
                             if (string.IsNullOrEmpty(content))
                             {
                                 HtmlNodeCollection spanCol = nd1.SelectNodes(".//span/span|.//div[@class='vM0jzc']/span");
-                                if (spanCol == null || (spanCol != null && spanCol[0].InnerText.Equals("&nbsp;")))//18-11-2024
+                                if (spanCol == null || (spanCol != null && spanCol[0].InnerText.Equals("&nbsp;") || nd1.Attributes["class"]?.Value == "rPeykc"))//10-06-2025//18-11-2024
                                     spanCol = nd1.SelectNodes(".//span");
                                 if (nd1.Attributes["class"]?.Value == "jSqiwc")//07-04-2025
                                 {

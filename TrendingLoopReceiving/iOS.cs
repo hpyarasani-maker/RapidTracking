@@ -4019,8 +4019,13 @@ namespace TrendingLoopReceiving
                             if (string.IsNullOrEmpty(content))
                             {
                                 HtmlNodeCollection spanCol = nd1.SelectNodes(".//span/span|.//div[@class='vM0jzc']/span");
-                                if (spanCol == null || (spanCol != null && spanCol[0].InnerText.Equals("&nbsp;") || nd1.Attributes["class"]?.Value == "rPeykc"))//10-06-2025//18-11-2024
+                                if (spanCol == null || (spanCol != null && spanCol[0].InnerText.Equals("&nbsp;")))//13-06-2025//10-06-2025//18-11-2024
                                     spanCol = nd1.SelectNodes(".//span");
+                                if (spanCol != null && nd1.Attributes["class"]?.Value == "rPeykc")//13-06-2025
+                                {
+                                    content = nd1.SelectSingleNode(".")?.InnerText.Trim().Replace("&#160;", "");
+                                    if (!string.IsNullOrEmpty(content.Trim())) spanCol = null;
+                                }//13-06-2025
                                 if (nd1.Attributes["class"]?.Value == "jSqiwc")//07-04-2025
                                 {
                                     spanCol = nd1.SelectNodes(".//tr");

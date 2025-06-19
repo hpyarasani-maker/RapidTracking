@@ -4049,6 +4049,11 @@ namespace RapidTrackingLibrary
                                     spanCol = nd1.SelectNodes(".//span/span");
                                 if (spanCol == null || spanCol[0].InnerText.Equals("&nbsp;"))
                                     spanCol = nd1.SelectNodes(".//span");
+                                if (spanCol != null && nd1.Attributes["class"]?.Value == "rPeykc")//19-06-2025
+                                {
+                                    if (!string.IsNullOrEmpty(nd1.SelectSingleNode(".")?.InnerText.Trim().Replace("&#160;", "")))
+                                        spanCol = null;
+                                }//19-06-2025
                                 s.Append(GetSpanContent(spanCol, nd1, false));
                             }//25-04-2025
                         }
@@ -4064,6 +4069,10 @@ namespace RapidTrackingLibrary
                             nd1 = nd.SelectSingleNode(".//div[@class='dsxN8b EXH1Ce PZPZlf']");//11-12-2024
                         if (nd1 == null)//07-04-2025
                             nd1 = nd.SelectSingleNode(".//table[@class='jSqiwc']");//07-04-2025
+                        else if (nd.Attributes["class"]?.Value == "rPeykc")//19-06-2025
+                        {
+                            content = nd.SelectSingleNode(".")?.InnerText.Trim().Replace("&#160;", "");
+                        }//19-06-2025
                         if (nd1 != null)
                         {
                             content = nd1.SelectSingleNode(".//span[@role='heading']|.//div[@class='y7p1tf']|.//div[contains(@class,'cPUhZb')]")?.InnerText ?? "";//04-04-2025//11-12-2024

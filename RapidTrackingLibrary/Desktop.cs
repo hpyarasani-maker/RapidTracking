@@ -1576,7 +1576,20 @@ namespace RapidTrackingLibrary
                     if (x < titles.Length)
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");
                 }
-            }//08-09-2023
+            }//08-09-2023//19-06-2025
+            string pattern2 = @"div class\\x3d\\x22yuRUbf\\x22\\x3e\\x3cdiv\\x3e\\x3cspan jscontroller\\x3d\\x22msmzHf\\x22 jsaction\\x3d\\x22rcuQ6b:npT2md;PYDNKe:bLV6Bd;mLt3mc\\x22\\x3e\\x3ca jsname\\x3d\\x22UWckNb\\x22 href\\x3d\\x22(.*?)\\x22";
+            re = new Regex(pattern2, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+            mc = re.Matches(html);
+            foreach (Match m in mc)
+            {
+                string url = HttpUtility.HtmlDecode(HttpUtility.HtmlEncode(m.Groups[1].Value));
+                if (url.StartsWith("http") || url.StartsWith("https"))
+                {
+                    url = SetYTUrl(url, yt);
+                    if (x < titles.Length)
+                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");
+                }
+            }//19-06-2025
             for (; x < titles.Length; x++)//18-02-2022
                 s.Append("<item url=\"\" title=\"" + SetTitle(titles[x]) + "\" />");//18-02-2022
             return s.ToString();

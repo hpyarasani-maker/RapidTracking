@@ -202,7 +202,7 @@ namespace AIOReceiving
             string qry = "insert into dashboard_dataerrors (date, name, seid, jobid,message) values(Convert(varchar(10),'" + myDate + "',103), N'" +
                   kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "',N'"+message.Replace("'", "''") + "' )";//09-11-2024
 
-            string qryOld = "insert into dashboard_oldgooglepage (date, keyword, seid, jobid,message) values('" + DateTime.Now + "', N'" +
+            string qryOld = "insert into dashboard_oldgooglepage (date, keyword, seid, jobid,message) values('" + myDate + "', N'" +
                  kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "',N'" + message.Replace("'", "''") + "'  )";//09-11-2024
 
             using (SqlConnection con = new SqlConnection(await StrConn()))
@@ -364,6 +364,10 @@ namespace AIOReceiving
                 }
                 reader.Close();
                 response.Close();
+                if (xmlResponse.Contains("Search Not Requested"))//20-06-2025
+                {
+                    throw new Exception("Search Not Requested");
+                }//20-06-2025
             }
             catch (WebException ex)
             {
@@ -386,8 +390,14 @@ namespace AIOReceiving
             }
             catch (Exception ex)
             {
+                if (ex.Message == "Search Not Requested")
+                {
+                    await ProcessError(kw, seid, "", ex.Message, false);
+                }
+                
                 throw new Exception("Error: " + ex.Message);
             }
+            
         }
 
         private async Task<string> GetTextFromXMLFile(string file) //06-08-2024

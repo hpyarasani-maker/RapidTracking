@@ -1197,7 +1197,7 @@ namespace TrackingTrending
             {
                 HtmlNode t = n.SelectSingleNode(".//h3");
                 HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'HiHjCd')]/a|.//div[@class='Mwdfte']/a|.//div[@jsname='BPrWId']/a" +
-                     "|.//div[contains(@class,'JpOecb')]/a|.//div[contains(@class,'kb0PBd')]/a|.//div[contains(@class,'kb0PBd')]/div/a|.//div[@class='Mwdfte']/div/a");//27-05-2025//26-05-2025//18-02-2025//14-02-2025//20-01-2025//21-10-2024
+                     "|.//div[contains(@class,'JpOecb')]/a|.//div[contains(@class,'kb0PBd')]/a|.//div[contains(@class,'kb0PBd')]/div/a|.//div[@class='Mwdfte']/div/a|.//div[contains(@class,'kb0PBd')]/div/li/a");//20-06-2025//27-05-2025//26-05-2025//18-02-2025//14-02-2025//20-01-2025//21-10-2024
                 if (nds != null)
                 {
                     s.Append("<block type=\"classicLinkSiteLinks\" url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(t.InnerText) + "\" >");
@@ -1494,7 +1494,20 @@ namespace TrackingTrending
                     if (x < titles.Length)
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");
                 }
-            }//08-09-2023
+            }//08-09-2023//19-06-2025
+            string pattern2 = @"div class\\x3d\\x22yuRUbf\\x22\\x3e\\x3cdiv\\x3e\\x3cspan jscontroller\\x3d\\x22msmzHf\\x22 jsaction\\x3d\\x22rcuQ6b:npT2md;PYDNKe:bLV6Bd;mLt3mc\\x22\\x3e\\x3ca jsname\\x3d\\x22UWckNb\\x22 href\\x3d\\x22(.*?)\\x22";
+            re = new Regex(pattern2, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+            mc = re.Matches(html);
+            foreach (Match m in mc)
+            {
+                string url = HttpUtility.HtmlDecode(HttpUtility.HtmlEncode(m.Groups[1].Value));
+                if (url.StartsWith("http") || url.StartsWith("https"))
+                {
+                    url = SetYTUrl(url, yt);
+                    if (x < titles.Length)
+                        s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");
+                }
+            }//19-06-2025
             for (; x < titles.Length; x++)//18-02-2022
                 s.Append("<item url=\"\" title=\"" + SetTitle(titles[x]) + "\" />");//18-02-2022
             return s.ToString();
@@ -2323,7 +2336,7 @@ namespace TrackingTrending
 
             nd = node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]|.//div[contains(@class, 'vdQmEd')]|.//div[@class='cj1ht QkBAO oYQBg']|.//div[@class='p21Z4']");//18-02-2025//29-07-2024//29-06-2023//23-03-2022
             if (nd != null && nd.SelectNodes(".//div[@class='MxQnIc']") == null && node.SelectSingleNode(".//div[@class='XNfAUb']|.//h1[contains(@class, 'bNg8Rb')]" +
-                "|.//div[@class='ad5fcd']|.//div[contains(@class,'vmod')]|.//div[@class='HJSKzf']|.//div[contains(@class,'wDYxhc')]|.//div[@class='OcpZAb']/w-answer") == null)//06-06-2025//13-05-2025//05-05-2025//22-04-2025//21-02-2025//27-12-2024//19-08-2024//30-06-2023
+                "|.//div[@class='ad5fcd']|.//div[contains(@class,'vmod')]|.//div[@class='HJSKzf']|.//div[contains(@class,'wDYxhc')]|.//div[@class='OcpZAb']/w-answer|.//div[@class='e2BEnf q8U8x']|.//miniapps-card-header") == null)//19-06-2025//06-06-2025//13-05-2025//05-05-2025//22-04-2025//21-02-2025//27-12-2024//19-08-2024//30-06-2023
                 return "Flights";//23-03-2022
 
             //nd = node.SelectSingleNode(".//div[@class='kp-blk cUnQKe']|.//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']|.//div[@jsname='N760b']");//08-07-2021//04-12-2020 //11-02-2020

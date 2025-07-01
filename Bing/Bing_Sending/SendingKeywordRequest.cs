@@ -99,7 +99,7 @@ namespace Bing_Sending
                 //limit = 10,
                 pages = 10,
                 start_page = 1,
-                locale = sp.language,
+                locale = sp.locale,
                 callback_url = callbackURL,  
                 geo_location = sp.geo_location,
                 parse = false, 

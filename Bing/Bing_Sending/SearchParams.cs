@@ -84,7 +84,7 @@ namespace Bing_Sending
             },
             new SearchProperties()
             {
-                seid = 1056, domain ="gr", geo_location="Greece", locale="el-gr" , device="mobile"
+                seid = 1056, domain ="gr", geo_location="Greece", locale="en-gr" , device="mobile"
             },
             new SearchProperties()
             {

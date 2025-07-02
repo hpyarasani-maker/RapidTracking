@@ -488,7 +488,7 @@ namespace RapidTrackingLibrary
                 HtmlNode node = colpas.SelectSingleNode(".//div[@class='AuVD wHYlTd Ww4FFb vt6azd']");
                 if (node != null)
                 {
-                    if (node.SelectSingleNode(".//div[@class='T6zPgb']/div[@role='heading']|.//div[@class='M6HR1c ouy7Mc adDDi']/span[@role='heading']") != null) //21-01-2025
+                    if (node.SelectSingleNode(".//div[@class='T6zPgb']/div[@role='heading']|.//div[contains(@class,'ouy7Mc adDDi')]/span[@role='heading']") != null)//02-07-2025 //21-01-2025
                     {
                         s.Append("<block type=\"peopleAlsoSearch\" >");
                         HtmlNodeCollection nc = node.SelectNodes(".//div[@class='oatEtb']/span|.//div[@class='oatEtb']/div/span");//01-11-2024
@@ -1697,7 +1697,7 @@ namespace RapidTrackingLibrary
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='Wt5Tfe']");
             if (node != null)
             {
-                if (node.SelectSingleNode(".//div[@class='T6zPgb']/div[@role='heading']|.//div[@class='HnYYW DFkChc']/div[@role='heading']|.//div[@class='M6HR1c ouy7Mc adDDi']/span[@role='heading']") != null || node.Attributes["class"]?.Value == "AuVD wHYlTd Ww4FFb vt6azd")//22-04-2025//21-01-2025//14-10-2024
+                if (node.SelectSingleNode(".//div[@class='T6zPgb']/div[@role='heading']|.//div[@class='HnYYW DFkChc']/div[@role='heading']|.//div[contains(@class,'ouy7Mc adDDi')]/span[@role='heading']") != null || node.Attributes["class"]?.Value == "AuVD wHYlTd Ww4FFb vt6azd")//02-07-2025//22-04-2025//21-01-2025//14-10-2024
                 {
                     s.Append("<block type=\"peopleAlsoSearch\" >");
                     HtmlNodeCollection nc = node.SelectNodes(".//div[@class='oatEtb']/span|.//div[@class='LJEGod aKoISd']|.//div[@class='oatEtb']/div/span");//01-11-2024//15-10-2024

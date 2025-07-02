@@ -300,32 +300,32 @@ namespace RapidTrackingSingleThread
                     }
                     s.Append("</block>");
                 }//related searches //21-11-2022 disable it without 
-                HtmlNode colpas = doc.DocumentNode.SelectSingleNode("//div[@id='botstuff']");//11-10-2024  PeopleAlsoSearch  block
-                if (colpas != null)
-                {
-                    HtmlNode node = colpas.SelectSingleNode(".//div[@class='oIk2Cb']");
-                    if (node != null)
-                    {
-                        if (node.SelectSingleNode(".//div[contains(@class,'T6zPgb')]/div[@role='heading']|.//div[@class='M6HR1c kfsfbe adDDi']/span[@role='heading']") != null)//29-01-2025
-                        {
-                            s.Append("<block type=\"peopleAlsoSearch\" >");
-                            HtmlNodeCollection nc = node.SelectNodes(".//div[@class='oatEtb']/span|.//div[@class='oatEtb']/div/span");//01-11-2024
-                            if (nc != null)
-                                foreach (HtmlNode n in nc)
-                                {
-                                    string title = n.InnerText;
-                                    if (!string.IsNullOrEmpty(title))//24-04-2025
-                                        s.Append("<item title=\"" + SetTitle(title) + "\" />");
-                                }
-                            s.Append("</block>");
-                        }
-                        if (!s.ToString().Contains("<item title="))//16-10-2024
-                        {
-                            s.Clear();
-                        }
-                    }
-                } //11-10-2024  PeopleAlsoSearch  block
             }
+            HtmlNode colpas = doc.DocumentNode.SelectSingleNode("//div[@id='botstuff']");//02-07-2025//11-10-2024  PeopleAlsoSearch  block
+            if (colpas != null)
+            {
+                HtmlNode node = colpas.SelectSingleNode(".//div[@class='oIk2Cb']");
+                if (node != null)
+                {
+                    if (node.SelectSingleNode(".//div[contains(@class,'T6zPgb')]/div[@role='heading']|.//div[@class='M6HR1c kfsfbe adDDi']/span[@role='heading']") != null)//29-01-2025
+                    {
+                        s.Append("<block type=\"peopleAlsoSearch\" >");
+                        HtmlNodeCollection nc = node.SelectNodes(".//div[@class='oatEtb']/span|.//div[@class='oatEtb']/div/span");//01-11-2024
+                        if (nc != null)
+                            foreach (HtmlNode n in nc)
+                            {
+                                string title = n.InnerText;
+                                if (!string.IsNullOrEmpty(title))//24-04-2025
+                                    s.Append("<item title=\"" + SetTitle(title) + "\" />");
+                            }
+                        s.Append("</block>");
+                    }
+                    if (!s.ToString().Contains("<item title="))//16-10-2024
+                    {
+                        s.Clear();
+                    }
+                }
+            } //02-07-2025//11-10-2024  PeopleAlsoSearch  block
             /*colb = doc.DocumentNode.SelectSingleNode("//div[@id='botstuff']");//related searches //21-11-2022
             if (colb != null)
             {

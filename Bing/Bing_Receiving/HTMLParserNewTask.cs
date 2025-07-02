@@ -1,4 +1,4 @@
-﻿using HtmlAgilityPack;
+using HtmlAgilityPack;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
@@ -26,64 +26,46 @@ namespace Bing_Receiving
         {
             Thread t1 = new Thread(new ThreadStart(StartProcess))
             {
-                Name = "Bing_Mobile_GT20_2"
+                Name = "Bing_M_1"
+                //Name = "Bing_D_1"
             };
             t1.Start();
         }
 
-        private void StartProcess()
+        private async void StartProcess()
         {
 
-            //string url = "http://previous.azurewebsites.net/api/callbackbingcomma/";
-            //string url = "http://previous.azurewebsites.net/api/callbackbingdesktop/";  // bing desktop
-            string url = "http://previous.azurewebsites.net/api/callbackbingmobile/"; //Bing mobile
+            //string url = "https://seresults.azurewebsites.net/api/callbackotherdesktop/"; //Bing desktop
+            string url = "https://seresults.azurewebsites.net/api/callbackothermobile/"; //Bing mobile
 
-            // WebClient client = new WebClient();
-            Uri uri = new Uri(url);
+            Uri ul = new Uri(url);
+            string username = "pisoftware";
+            string password = "Pi*Soft74UBXi";
             using (var client = new HttpClient())
             {
+                client.BaseAddress = ul;//12-05-2024
                 while (true)
                 {
-                    /* try
-                     {
-                         string response="";
-                         client.Encoding = Encoding.UTF8;
-                         response = client.DownloadString(url);
-                         if (response != "null")
-                             DoProcess(response);
-                     }
-                     catch (Exception ex)
-                         {
-                             Console.WriteLine("# EXCEPTION #  " + ex.Message);
-                         }*/
-
-                    //client.BaseAddress = new Uri(url);
                     try
                     {
                         string response = "";
                         client.DefaultRequestHeaders.Clear();
+                        string credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{username}:{password}"));//12-05-2024
+                        client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", credentials);//12-05-2024
                         client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-                        response = client.GetStringAsync(uri).Result;
+                        response = await client.GetStringAsync(ul); //06-08-2024  //.Result;
                         if (response != "null")
-                            DoProcess(response);
+                            await DoProcess(response); 
                     }
-
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-
-                        //throw new ArgumentException(message: ex.Message.ToString(), paramName: "response");
-                        //OnKeywordDone.Invoke("Error:" + ex.Message.ToString());
+                        Console.WriteLine("# EXCEPTION #  " + ex.Message);
                     }
-                        
-                    finally {
-                       
-                    }
-
                 }
             }
         }
 
-        private void DoProcess(string resp)
+        private async Task DoProcess(string resp)
         {         
             JObject job = JObject.Parse(resp);
             string status = job["status"].Value<string>();
@@ -99,8 +81,7 @@ namespace Bing_Receiving
 
             try
             {
-                //string username = "gpidatametrics";
-                //string password = "sdV5X3fcX6";
+                
                 string username = "piapp";
                 string password = "b5FCvgkjxx";
 
@@ -119,7 +100,7 @@ namespace Bing_Receiving
                     ArrayList arRes = new ArrayList();
                     try
                     {
-                        SearchProperties sp = SearchParams.searches.Where(s => s.domain == domain && s.device == device && s.geo_location == gl).SingleOrDefault();
+                        SearchProperties sp = SearchParams.searches.Where(s => s.locale == hl && s.device == device && s.geo_location == gl).SingleOrDefault();
                         seid = sp.seid;
                         JObject obj = JObject.Parse(response);
                         var cont = obj["results"];//[0]["content"];
@@ -146,7 +127,6 @@ namespace Bing_Receiving
                         if (device == "desktop")
                         {
                             //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + kw + ".html", sb.ToString(), Encoding.UTF8);
-
                             arRes = DesktopPattern(sb.ToString()); 
                         }
                         else
@@ -154,7 +134,6 @@ namespace Bing_Receiving
                             //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + kw + ".html", sb.ToString(), Encoding.UTF8);
                             arRes = MobilePattern(sb.ToString()); 
                         }
-
                     }
                     catch (Exception ex)
                     {
@@ -164,7 +143,7 @@ namespace Bing_Receiving
                         arRes.RemoveRange(100, arRes.Count - 100);
                     
                     if (seid > 0)                        
-                        ProcessResults(arRes, kw, seid, jobid );
+                       await ProcessResults(arRes, kw, seid, jobid );
 
                     OnKeywordDone.Invoke(seid + ": " + kw + ": " + arRes.Count);
                 }                
@@ -176,7 +155,7 @@ namespace Bing_Receiving
                 {
                     try
                     {
-                        ProcessError(kw, seid, jobid);
+                       await  ProcessError(kw, seid, jobid);
                     }
                     finally { }
                 }
@@ -184,13 +163,12 @@ namespace Bing_Receiving
             }
         }
 
-        private void ProcessError(string kw, int seid, string jobid)
+        private async Task ProcessError(string kw, int seid, string jobid)
         {
-            //string qry = "update dashboard_data set status = 'Error' where name='" + kw.Replace("'", "''") + "' and seid = " + seid + " and jobid='" + jobid + "'";
             string qry = "insert into dashboard_dataerrors (date, name, seid, jobid) values(Convert(varchar(10),'" + myDate + "',103), N'" + 
                 kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "' )";
 
-            using (SqlConnection con = new SqlConnection(strConn()))
+            using (SqlConnection con = new SqlConnection(strConn().Result))
             {
                 try
                 {
@@ -198,7 +176,7 @@ namespace Bing_Receiving
                     using (SqlCommand comm = new SqlCommand(qry, con))
                     {
                         comm.CommandTimeout = 0;
-                        comm.ExecuteNonQuery();
+                       await comm.ExecuteNonQueryAsync();
                     }
                 }
                 catch (SqlException ex)
@@ -223,7 +201,7 @@ namespace Bing_Receiving
             }
         }
 
-       public string strConn()
+       public async Task<string> strConn()
         {
             try
             {
@@ -237,16 +215,16 @@ namespace Bing_Receiving
                 // Get its value
                 string name = node.InnerText;
 
-                return name;
+                return await Task.FromResult<string>(name);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        private void ProcessResults(ArrayList alRes, string kw, int seid, string jobid)
+        private async Task ProcessResults(ArrayList alRes, string kw, int seid, string jobid)
         {          
-            //string qry = "";
+            string qry = "";
 
             if (alRes.Count < 1)
             {
@@ -296,7 +274,7 @@ namespace Bing_Receiving
                             writer.WriteString(dURL);
                             writer.WriteEndElement();
                             //Insert100DashBoardData(myDate, kw, seid.ToString(),k, alRes[i].ToString());
-                            //qry += "insert into dashboard_yandex(date,name,seid,position,url)values(Convert(varchar(10),'" + myDate + "',103),N'" + kw.Replace("'", "''") + "'," + seid + ",'" + c + "',N'" + dURL.ToString().Replace("'", "''") + "')";
+                            qry += "insert into dashboard_bing(date, name, seid, position, url)values(Convert(varchar(10),'" + myDate + "',103),N'" + kw.Replace("'", "''") + "'," + seid + ",'" + c + "',N'" + dURL.ToString().Replace("'", "''") + "')";
                         }
                         writer.WriteEndElement();
                         writer.WriteEndElement();
@@ -320,16 +298,12 @@ namespace Bing_Receiving
                     {
                         try
                         {
-                            if (alRes.Count > 50)
+                            if (alRes.Count > 20)
                             {
-                                SendXmlToAPI(path);
-                                //Insert100DashBoardData(qry); //storing 100 URLs
-                                InsertDashBoardData_Callback(kw, seid, alRes.Count, alRes[0].ToString(), jobid);
+                                await SendXmlToAPI(path);
+                                await Insert100DashBoardData(qry); //storing 100 URLs
+                                await InsertDashBoardData(kw, seid, alRes.Count, alRes[0].ToString(), jobid);
                             }
-                            //else
-                            //{
-                            //   InsertDashBoardData_Callback( kw, seid, alRes, jobid, true);
-                            //}
                         }
                         catch (Exception ex)
                         {
@@ -344,12 +318,9 @@ namespace Bing_Receiving
             }
         }
 
-        private void SendXmlToAPI(string path)
+        private async Task SendXmlToAPI(string path)
         {             
             string submitURL = readAPI();
-
-            //string user = "pi-tracking";
-            //string pwd = "ipseo2001";
 
             string user = "pisoftware";
             string pwd = "r00t123456";
@@ -384,10 +355,14 @@ namespace Bing_Receiving
                 stream.Write(data, 0, data.Length);
                 stream.Close();
 
-                HttpWebResponse response = (HttpWebResponse)httpWReq.GetResponse();
-                string s = response.ToString();
+                HttpWebResponse response = (HttpWebResponse)await httpWReq.GetResponseAsync(); //06-08-2024
                 StreamReader reader = new StreamReader(response.GetResponseStream());
-
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    reader.Close();
+                    response.Close();
+                    throw new Exception(response.StatusCode + ": " + response.StatusDescription);
+                }
                 String xmlResponse = "";
                 String temp = null;
                 while ((temp = reader.ReadLine()) != null)
@@ -445,20 +420,17 @@ namespace Bing_Receiving
             }
         }
 
-        void Insert100DashBoardData(string qry)
+        public async Task Insert100DashBoardData(string qry)
         {
-            //string strInsert = "insert into dashboard_yandex(date,name,seid,position,url)values(Convert(varchar(10),'" + ddate + "',103),N'" + kwd.Replace("'", "''") + "'," + seid + ",'"+ position +"',N'" + url.Replace("'", "''") + "')";
-
             try
             {
-                using (SqlConnection con = new SqlConnection(strConn()))
+                using (SqlConnection con = new SqlConnection(strConn().Result))
                 {
                     con.Open();
                     using (SqlCommand comm = new SqlCommand(qry, con))
                     {
                         comm.CommandTimeout = 0;
-                        comm.ExecuteNonQuery();
-
+                       await comm.ExecuteNonQueryAsync();
                     }
                 }
             }
@@ -474,41 +446,28 @@ namespace Bing_Receiving
                                      "Procedure: " + ex.Errors[i].Procedure + "\n" +
                                      "Server: " + ex.Errors[i].Server + "\n";
                 }
-
                 throw new Exception(errorMessage);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-
         }
 
-        private void InsertDashBoardData_Callback( string kw, int seid, int cnt, string alRes, string jobid)
+        private async Task InsertDashBoardData( string kw, int seid, int cnt, string alRes, string jobid)
         {
             string qry = "insert into dashboard_data(date, name, seid, jobid, count, url) " +
                     "values(Convert(varchar(10),'" + myDate + "',103),N'" + kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "', " + cnt + ", N'" + alRes.Replace("'", "''") + "')";
 
             try
             {
-                using (SqlConnection con = new SqlConnection(strConn()))
+                using (SqlConnection con = new SqlConnection(strConn().Result))
                 {
                     con.Open();
                     using (SqlCommand comm = new SqlCommand(qry, con))
                     {
                         comm.CommandTimeout = 0;
-                        comm.ExecuteNonQuery();
-
-                        
-
-                        //if (lt20)
-                        //{
-                        //    string url = alRes.Count > 0 ? alRes[0].ToString() : "";
-                        //    qry = "exec [InsertLessthan20] '" + myDate + "',N'" + kw.Replace("'", "''") + "'," + seid + ",N'" + url.Replace("'", "''") + "'," + alRes.Count + ",'" + jobid + "'";
-                        //    comm.CommandText = qry;
-                        //    comm.CommandType = CommandType.Text;
-                        //    comm.ExecuteNonQuery();
-                        //}
+                        await comm.ExecuteNonQueryAsync();
                     }
                 }
             }
@@ -534,8 +493,6 @@ namespace Bing_Receiving
         }
 
 
-
-        
         private ArrayList MobilePattern(string htmlsource)
         {
             ArrayList googleList = new ArrayList();
@@ -545,47 +502,41 @@ namespace Bing_Receiving
                 doc.LoadHtml(htmlsource);
                 ArrayList alDup = new ArrayList();
 
-                //HtmlNodeCollection node = doc.DocumentNode.SelectNodes("//ol[@id='b_results']/li[@class='b_algo']");
                 HtmlNodeCollection node = doc.DocumentNode.SelectNodes(".//ol[@id='b_results']/li[@class='b_algo']/div[@class='b_algoheader']|//ol[@id='b_results']/li[@class='b_algo']|//div[@class='b_algoheader']|//div[@class='b_algoheader b_removeline12px']|//div[@class='b_algoheader b_removeline8px']");
-
-                foreach (HtmlNode links in node)
+                if(node != null)
                 {
-                    try
+                    foreach (HtmlNode links in node)
                     {
-                        HtmlNode a = links.SelectSingleNode(".//a");
-                        string urls = a.Attributes["href"].Value;
-                        if (urls.StartsWith("http") || urls.StartsWith("https"))
+                        try
                         {
-                            int indx = urls.LastIndexOf("http://");
-                            if (indx < 0)
+                            HtmlNode a = links.SelectSingleNode(".//a");
+                            string urls = a.Attributes["href"].Value;
+                            if (urls.StartsWith("http") || urls.StartsWith("https"))
                             {
-                                indx = urls.LastIndexOf("https://");
+                                int indx = urls.LastIndexOf("http://");
+                                if (indx < 0)
+                                {
+                                    indx = urls.LastIndexOf("https://");
+                                }
+                                urls = urls.Remove(0, indx);
+                                alDup.Add(HttpUtility.HtmlDecode(urls));
                             }
-                            urls = urls.Remove(0, indx);
-                            if (urls.Contains("www.bing.com/ck/a"))
-                            {
-                                alDup.Add(redirecturls(new Uri(urls)).Result);
-                            }
-                            alDup.Add(HttpUtility.HtmlDecode(urls));
                         }
+                        catch { continue; }
                     }
-                    catch { continue; }
-                }
-                foreach (string s in alDup)
-                {
-                    if (googleList.Contains(s) || string.IsNullOrEmpty(s)) continue;
-                    googleList.Add(s);
-                }
+                    foreach (string s in alDup)
+                    {
+                        if (googleList.Contains(s) || string.IsNullOrEmpty(s)) continue;
+                        googleList.Add(s);
+                    }
 
-                if (googleList.Count > 100)
-                {
-                    googleList.RemoveRange(100, googleList.Count - 100);
+                    if (googleList.Count > 100)
+                    {
+                        googleList.RemoveRange(100, googleList.Count - 100);
+                    }
                 }
             }
-            catch (Exception ex)
-            {
-                throw new Exception("No pattern match,  " + ex.Message);
-            }
+            catch { }
             return googleList;
         }  
 
@@ -598,48 +549,43 @@ namespace Bing_Receiving
                 doc.LoadHtml(htmlsource);
                 ArrayList alDup = new ArrayList();
 
-                //HtmlNodeCollection node = doc.DocumentNode.SelectNodes("//ol[@id='b_results']/li[@class='b_algo']");
                 HtmlNodeCollection node = doc.DocumentNode.SelectNodes("//ol[@id='b_results']/li[@class='b_algo']|//ol[@id='b_results']/li[@class='b_algo']/h2|//div[@class='b_algoheader']|//ol[@id='b_results']//li[@class='b_algo']/div[@class='b_title']/h2|//li[@class='b_algo']/h2"); //seid = 5
 
-                foreach (HtmlNode links in node)
+                if(node != null)
                 {
-                    try
+                    foreach (HtmlNode links in node)
                     {
-                        HtmlNode a = links.SelectSingleNode(".//a");
-                        string urls = a.Attributes["href"].Value;
-                        if (urls.StartsWith("http") || urls.StartsWith("https"))
+                        try
                         {
-                            int indx = urls.LastIndexOf("http://");
-                            if (indx < 0)
+                            HtmlNode a = links.SelectSingleNode(".//a");
+                            string urls = a.Attributes["href"].Value;
+                            if (urls.StartsWith("http") || urls.StartsWith("https"))
                             {
-                                indx = urls.LastIndexOf("https://");
+                                int indx = urls.LastIndexOf("http://");
+                                if (indx < 0)
+                                {
+                                    indx = urls.LastIndexOf("https://");
+                                }
+                                urls = urls.Remove(0, indx);
+                                alDup.Add(HttpUtility.HtmlDecode(urls));
                             }
-                            urls = urls.Remove(0, indx);
-                            if (urls.Contains("www.bing.com/ck/a"))
-                            {
-                                alDup.Add(redirecturls(new Uri(urls)).Result);
-                            }
-                            alDup.Add(HttpUtility.HtmlDecode(urls));
                         }
+                        catch { continue; }
                     }
-                    catch { continue; }
-                }
 
-                foreach (string s in alDup)
-                {
-                    if (googleList.Contains(s)|| string.IsNullOrEmpty(s)) continue;
-                    googleList.Add(s);
-                }
+                    foreach (string s in alDup)
+                    {
+                        if (googleList.Contains(s) || string.IsNullOrEmpty(s)) continue;
+                        googleList.Add(s);
+                    }
 
-                if (googleList.Count > 100)
-                {
-                    googleList.RemoveRange(100, googleList.Count - 100);
+                    if (googleList.Count > 100)
+                    {
+                        googleList.RemoveRange(100, googleList.Count - 100);
+                    }
                 }
             }
-            catch (Exception ex)
-            {
-                throw new Exception("No pattern match,  " + ex.Message);
-            }
+            catch { }
             return googleList;
         }
         public async Task<string> redirecturls(Uri url)

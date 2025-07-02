@@ -83,9 +83,8 @@ namespace Bing_Sending
             string password = "b5FCvgkjxx";
             string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
 
-            //string callbackURL = "http://previous.azurewebsites.net/api/callbackbingcomma/";
-            //string callbackURL = "http://previous.azurewebsites.net/api/callbackbingdesktop/";
-            string callbackURL = "http://previous.azurewebsites.net/api/callbackbingmobile/";// previous other mobile  
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackotherdesktop/"; //Bing desktop
+            string callbackURL = "https://seresults.azurewebsites.net/api/callbackothermobile/"; //Bing mobile
 
 
 

@@ -294,32 +294,32 @@ namespace TrendingReceiving
                     }
                     s.Append("</block>");
                 }//related searches //21-11-2022 disable it without 
-                HtmlNode colpas = doc.DocumentNode.SelectSingleNode("//div[@id='botstuff']");//11-10-2024  PeopleAlsoSearch  block
-                if (colpas != null)
-                {
-                    HtmlNode node = colpas.SelectSingleNode(".//div[@class='oIk2Cb']");
-                    if (node != null)
-                    {
-                        if (node.SelectSingleNode(".//div[contains(@class,'T6zPgb')]/div[@role='heading']|.//div[@class='M6HR1c kfsfbe adDDi']/span[@role='heading']") != null)//29-01-2025
-                        {
-                            s.Append("<block type=\"peopleAlsoSearch\" >");
-                            HtmlNodeCollection nc = node.SelectNodes(".//div[@class='oatEtb']/span|.//div[@class='oatEtb']/div/span");//01-11-2024
-                            if (nc != null)
-                                foreach (HtmlNode n in nc)
-                                {
-                                    string title = n.InnerText;
-                                    if (!string.IsNullOrEmpty(title))//24-04-2025
-                                        s.Append("<item title=\"" + SetTitle(title) + "\" />");
-                                }
-                            s.Append("</block>");
-                        }
-                        if (!s.ToString().Contains("<item title="))//16-10-2024
-                        {
-                            s.Clear();
-                        }
-                    }
-                } //11-10-2024  PeopleAlsoSearch  block
             }
+            HtmlNode colpas = doc.DocumentNode.SelectSingleNode("//div[@id='botstuff']");//02-07-2025//11-10-2024  PeopleAlsoSearch  block
+            if (colpas != null)
+            {
+                HtmlNode node = colpas.SelectSingleNode(".//div[@class='oIk2Cb']");
+                if (node != null)
+                {
+                    if (node.SelectSingleNode(".//div[contains(@class,'T6zPgb')]/div[@role='heading']|.//div[contains(@class,'M6HR1c')]/span[@role='heading']") != null)//02-07-2025//29-01-2025
+                    {
+                        s.Append("<block type=\"peopleAlsoSearch\" >");
+                        HtmlNodeCollection nc = node.SelectNodes(".//div[@class='oatEtb']/span|.//div[@class='oatEtb']/div/span");//01-11-2024
+                        if (nc != null)
+                            foreach (HtmlNode n in nc)
+                            {
+                                string title = n.InnerText;
+                                if (!string.IsNullOrEmpty(title))//24-04-2025
+                                    s.Append("<item title=\"" + SetTitle(title) + "\" />");
+                            }
+                        s.Append("</block>");
+                    }
+                    if (!s.ToString().Contains("<item title="))//16-10-2024
+                    {
+                        s.Clear();
+                    }
+                }
+            } //02-07-2025//11-10-2024  PeopleAlsoSearch  block
             /*colb = doc.DocumentNode.SelectSingleNode("//div[@id='botstuff']");//related searches //21-11-2022
             if (colb != null)
             {
@@ -453,7 +453,7 @@ namespace TrendingReceiving
                         {
                             url = link.Attributes["href"]?.Value ?? ""; //24-01-2023
                             title = link.SelectSingleNode(".//div[@class='vuR1ld']|.//div[@class='wEN0R']|.//div[contains(@class,'vYe7gd')]|.//div[contains(@class,'SsM98d')]")?.InnerText ?? "";//21-04-2023
-                            price = link.SelectSingleNode(".//div[@class='ldGAMe']|.//div[@class='z235y jAPStb']|.//div[@class='s1bFpb']|.//div[contains(@class, 'VQgkpe')]/span[1]|.//div[@class='FG68Ac']")?.InnerText ?? "";//21-04-2023
+                            price = link.SelectSingleNode(".//div[@class='ldGAMe']|.//div[@class='z235y jAPStb']|.//div[@class='s1bFpb']|.//div[contains(@class, 'VQgkpe')]/span[1]|.//div[@class='FG68Ac']|.//div[contains(@class,'zxVpA')]/span[1]")?.InnerText ?? "";//02-07-2025//21-04-2023
                             name = link.SelectSingleNode(".//div[@class='DNnNed nbhTP']/span[@class='Dt4hCc']|.//div[@class='ix5OZc']|.//div[@class='pMiHCf']|.//div[contains(@class,'n7emVc')]")?.InnerText ?? "";//23-06-2023//06-04-2023
                             if (price != "")//28-11-2023
                             {
@@ -1953,15 +1953,17 @@ namespace TrendingReceiving
             {
                 try//18-02-2025
                 {
-                    dest = node.SelectSingleNode(".//span[contains(@class,'RES9jf')]|.//span[@class='kqEaA']|.//h3[@class='OOTLje']");//29-07-2024
+                    dest = node.SelectSingleNode(".//div[@class='cj1ht QkBAO oYQBg']");//02-07-2025
+                    if (dest == null)//02-07-2025
+                        dest = node.SelectSingleNode(".//span[contains(@class,'RES9jf')]|.//span[@class='kqEaA']|.//h3[@class='OOTLje']");//29-07-2024
                     int lenIndex = dest.InnerText.IndexOf(" to ") >= 0 ? dest.InnerText.IndexOf(" to ") :
-                            dest.InnerText.IndexOf(" von ") >= 0 ? dest.InnerText.IndexOf(" von ") : //01-12-2023
-                            dest.InnerText.IndexOf(" nach ") >= 0 ? dest.InnerText.IndexOf(" nach ") :
-                            dest.InnerText.IndexOf(" a ") >= 0 ? dest.InnerText.IndexOf(" a ") :
-                            dest.InnerText.IndexOf("Vols ") >= 0 ? dest.InnerText.IndexOf("Vols ") : //23-02-2024
-                            dest.InnerText.IndexOf(" da ") >= 0 ? dest.InnerText.IndexOf(" da ") : //26-04-2024
-                            dest.InnerText.IndexOf(" per ") >= 0 ? dest.InnerText.IndexOf(" per ") : //26-04-2024
-                            dest.InnerText.IndexOf(" à ") >= 0 ? dest.InnerText.IndexOf(" à ") : -1;//18-01-2024
+                    dest.InnerText.IndexOf(" von ") >= 0 ? dest.InnerText.IndexOf(" von ") : //01-12-2023
+                    dest.InnerText.IndexOf(" nach ") >= 0 ? dest.InnerText.IndexOf(" nach ") :
+                    dest.InnerText.IndexOf(" a ") >= 0 ? dest.InnerText.IndexOf(" a ") :
+                    dest.InnerText.IndexOf("Vols ") >= 0 ? dest.InnerText.IndexOf("Vols ") : //23-02-2024
+                    dest.InnerText.IndexOf(" da ") >= 0 ? dest.InnerText.IndexOf(" da ") : //26-04-2024
+                    dest.InnerText.IndexOf(" per ") >= 0 ? dest.InnerText.IndexOf(" per ") : //26-04-2024
+                    dest.InnerText.IndexOf(" à ") >= 0 ? dest.InnerText.IndexOf(" à ") : -1;//18-01-2024
                     if (lenIndex == -1)
                         lenIndex = dest.InnerText.IndexOf(" from ") >= 0 ? dest.InnerText.IndexOf(" from ") : -1;
                     origin = dest?.InnerText?.Substring(0, lenIndex).Trim(); // dest.InnerText.IndexOf(" to "));
@@ -1986,17 +1988,19 @@ namespace TrendingReceiving
             }
             s.Append("<block type=\"flightPack\" origin=\"" + SetTitle(origin) + "\" destination=\"" + SetTitle(destination) + "\" >");
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='aieQre']/div/a|.//div[contains(@class,'LQQ1Bd')]/div/a|.//div[@class='qR29te']/div/a");//29-07-2024
+            if (nds == null)//02-07-2025
+                nds = node.SelectNodes(".//div[@class='qR29te']/div");//02-07-2025
             if (nds != null)
             {
                 foreach (HtmlNode nd in nds)
                 {
                     try
                     {
-                        string airline = nd.SelectSingleNode(".//span[@class='ps0VMc']|.//div[@class='A4fsl']|.//div[@class='ZhosBf MBI8Pd dctkEf']|.//div[@class='eqdsgd']")?.InnerText.Trim() ?? "";//15-11-2024//29-07-2024
-                        string hours = nd.SelectSingleNode(".//span[@class='sRcB8']|.//div[@class='QTPlac']/span[3]|.//div[@class='TM2JYd']")?.InnerText.Trim() ?? "0h 0m";//29-07-2024
-                        string connecting = nd.SelectSingleNode(".//span[@class='u85UCd']|.//div[@class='QTPlac']/span[1]|.//div[@class='GfzIoc']")?.InnerText.Trim() ?? "";//29-07-2024
+                        string airline = nd.SelectSingleNode(".//span[@class='ps0VMc']|.//div[@class='A4fsl']|.//div[contains(@class,'ZhosBf') and contains(@class,'dctkEf')]|.//div[@class='eqdsgd']")?.InnerText.Trim() ?? "";//02-07-2025//15-11-2024//29-07-2024
+                        string hours = nd.SelectSingleNode(".//span[@class='sRcB8']|.//div[@class='QTPlac']/span[3]|.//div[@class='TM2JYd']|.//div[contains(@class,'YK0p7d rZFLMc')]")?.InnerText.Trim() ?? "0h 0m";//02-07-2025//29-07-2024
+                        string connecting = nd.SelectSingleNode(".//span[@class='u85UCd']|.//div[@class='QTPlac']/span[1]|.//div[@class='GfzIoc']|.//div[@class='oYQBg x8hvt']/span")?.InnerText.Trim() ?? "";//02-07-2025//29-07-2024
                         connecting = string.IsNullOrEmpty(connecting) ? "Nonstop" : !connecting.Contains("Connecting") && !connecting.Contains("Nonstop") ? "Connecting" : !connecting.Contains("Nonstop-Flug") ? "Nonstop" : !connecting.Contains("Mit Umsteigen") ? "Nonstop" : connecting;//02-12-2024
-                        string price = nd.SelectSingleNode(".//span[@class='xqqLDd']|.//span[@class='cirEce']|.//div[@class='n22NNe']|.//div[@class='YK0p7d rZFLMc']")?.InnerText.Trim() ?? "0";//29-07-2024
+                        string price = nd.SelectSingleNode(".//span[@class='xqqLDd']|.//span[@class='cirEce']|.//div[@class='n22NNe']")?.InnerText.Trim() ?? "0";//02-07-2025//29-07-2024
                         string priceValue = string.Empty;
                         string hoursValue = string.Empty;
                         if (!string.IsNullOrEmpty(hours))

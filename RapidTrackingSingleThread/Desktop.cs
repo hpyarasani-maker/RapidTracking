@@ -1959,8 +1959,10 @@ namespace RapidTrackingSingleThread
             {
                 try//18-02-2025
                 {
-                    dest = node.SelectSingleNode(".//span[contains(@class,'RES9jf')]|.//span[@class='kqEaA']|.//h3[@class='OOTLje']");//29-07-2024
-                int lenIndex = dest.InnerText.IndexOf(" to ") >= 0 ? dest.InnerText.IndexOf(" to ") :
+                    dest = node.SelectSingleNode(".//div[@class='cj1ht QkBAO oYQBg']");//02-07-2025
+                    if (dest == null)//02-07-2025
+                        dest = node.SelectSingleNode(".//span[contains(@class,'RES9jf')]|.//span[@class='kqEaA']|.//h3[@class='OOTLje']");//29-07-2024
+                        int lenIndex = dest.InnerText.IndexOf(" to ") >= 0 ? dest.InnerText.IndexOf(" to ") :
                         dest.InnerText.IndexOf(" von ") >= 0 ? dest.InnerText.IndexOf(" von "): //01-12-2023
                         dest.InnerText.IndexOf(" nach ") >= 0 ? dest.InnerText.IndexOf(" nach ") :
                         dest.InnerText.IndexOf(" a ") >= 0 ? dest.InnerText.IndexOf(" a ") :
@@ -1992,17 +1994,19 @@ namespace RapidTrackingSingleThread
         }
             s.Append("<block type=\"flightPack\" origin=\"" + SetTitle(origin) + "\" destination=\"" + SetTitle(destination) + "\" >");
             HtmlNodeCollection nds = node.SelectNodes(".//div[@class='aieQre']/div/a|.//div[contains(@class,'LQQ1Bd')]/div/a|.//div[@class='qR29te']/div/a");//29-07-2024
+            if (nds == null)//02-07-2025
+                nds = node.SelectNodes(".//div[@class='qR29te']/div");//02-07-2025
             if (nds != null)
             {
                 foreach (HtmlNode nd in nds)
                 {
                     try
                     {
-                        string airline = nd.SelectSingleNode(".//span[@class='ps0VMc']|.//div[@class='A4fsl']|.//div[@class='ZhosBf MBI8Pd dctkEf']|.//div[@class='eqdsgd']")?.InnerText.Trim() ?? "";//15-11-2024//29-07-2024
-                        string hours = nd.SelectSingleNode(".//span[@class='sRcB8']|.//div[@class='QTPlac']/span[3]|.//div[@class='TM2JYd']")?.InnerText.Trim() ?? "0h 0m";//29-07-2024
-                        string connecting = nd.SelectSingleNode(".//span[@class='u85UCd']|.//div[@class='QTPlac']/span[1]|.//div[@class='GfzIoc']")?.InnerText.Trim() ?? "";//29-07-2024
+                        string airline = nd.SelectSingleNode(".//span[@class='ps0VMc']|.//div[@class='A4fsl']|.//div[contains(@class,'ZhosBf') and contains(@class,'dctkEf')]|.//div[@class='eqdsgd']")?.InnerText.Trim() ?? "";//02-07-2025//15-11-2024//29-07-2024
+                        string hours = nd.SelectSingleNode(".//span[@class='sRcB8']|.//div[@class='QTPlac']/span[3]|.//div[@class='TM2JYd']|.//div[contains(@class,'YK0p7d rZFLMc')]")?.InnerText.Trim() ?? "0h 0m";//02-07-2025//29-07-2024
+                        string connecting = nd.SelectSingleNode(".//span[@class='u85UCd']|.//div[@class='QTPlac']/span[1]|.//div[@class='GfzIoc']|.//div[@class='oYQBg x8hvt']/span")?.InnerText.Trim() ?? "";//02-07-2025//29-07-2024
                         connecting = string.IsNullOrEmpty(connecting) ? "Nonstop" : !connecting.Contains("Connecting") && !connecting.Contains("Nonstop") ? "Connecting" : !connecting.Contains("Nonstop-Flug") ? "Nonstop" : !connecting.Contains("Mit Umsteigen") ? "Nonstop" : connecting;//02-12-2024
-                        string price = nd.SelectSingleNode(".//span[@class='xqqLDd']|.//span[@class='cirEce']|.//div[@class='n22NNe']|.//div[@class='YK0p7d rZFLMc']")?.InnerText.Trim() ?? "0";//29-07-2024
+                        string price = nd.SelectSingleNode(".//span[@class='xqqLDd']|.//span[@class='cirEce']|.//div[@class='n22NNe']")?.InnerText.Trim() ?? "0";//02-07-2025//29-07-2024
                         string priceValue = string.Empty;
                         string hoursValue = string.Empty;
                         if (!string.IsNullOrEmpty(hours))

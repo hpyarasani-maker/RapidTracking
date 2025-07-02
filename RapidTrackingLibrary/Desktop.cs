@@ -338,7 +338,7 @@ namespace RapidTrackingLibrary
                 HtmlNode node = colpas.SelectSingleNode(".//div[@class='oIk2Cb']");
                 if (node != null)
                 {
-                    if (node.SelectSingleNode(".//div[contains(@class,'T6zPgb')]/div[@role='heading']|.//div[@class='M6HR1c kfsfbe adDDi']/span[@role='heading']") != null)//29-01-2025
+                    if (node.SelectSingleNode(".//div[contains(@class,'T6zPgb')]/div[@role='heading']|.//div[contains(@class,'M6HR1c')]/span[@role='heading']") != null)//02-07-2025//29-01-2025
                     {
                         s.Append("<block type=\"peopleAlsoSearch\" >");
                         HtmlNodeCollection nc = node.SelectNodes(".//div[@class='oatEtb']/span|.//div[@class='oatEtb']/div/span");//01-11-2024

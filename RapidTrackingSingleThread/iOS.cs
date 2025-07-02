@@ -2957,7 +2957,7 @@ namespace RapidTrackingSingleThread
                         }
                         connecting = string.IsNullOrEmpty(connecting) ? "Nonstop" : (connecting.Contains("Connecting") || !connecting.Contains("Connecting") && !connecting.Contains("Nonstop")) ? "Connecting" : !connecting.Contains("Nonstop-Flug") ? "Nonstop" : !connecting.Contains("Mit Umsteigen") ? "Nonstop" : connecting;//13-03-2025//02-12-2024
                         string price = nd.SelectSingleNode(".//span[@class='xqqLDd']|.//span[@class='cirEce']|.//div[@class='n22NNe']" +
-                            "|.//div[@class='rZFLMc']|.//div[@class='g1sBec']|.//div[@class='YK0p7d rZFLMc']")?.InnerText.Trim() ?? "0"; //05-07-2024//23-04-2024
+                            "|.//div[@class='rZFLMc']|.//div[@class='g1sBec']|.//div[contains(@class,'YK0p7d rZFLMc')]")?.InnerText.Trim() ?? "0";//02-07-2025//05-07-2024//23-04-2024
                         //02-01-2024 end
                         string priceValue = string.Empty;
                         string hoursValue = string.Empty;

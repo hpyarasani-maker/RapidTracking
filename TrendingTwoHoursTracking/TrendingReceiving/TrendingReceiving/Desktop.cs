@@ -2000,7 +2000,7 @@ namespace TrendingReceiving
                         string hours = nd.SelectSingleNode(".//span[@class='sRcB8']|.//div[@class='QTPlac']/span[3]|.//div[@class='TM2JYd']|.//div[contains(@class,'YK0p7d rZFLMc')]")?.InnerText.Trim() ?? "0h 0m";//02-07-2025//29-07-2024
                         string connecting = nd.SelectSingleNode(".//span[@class='u85UCd']|.//div[@class='QTPlac']/span[1]|.//div[@class='GfzIoc']|.//div[@class='oYQBg x8hvt']/span")?.InnerText.Trim() ?? "";//02-07-2025//29-07-2024
                         connecting = string.IsNullOrEmpty(connecting) ? "Nonstop" : !connecting.Contains("Connecting") && !connecting.Contains("Nonstop") ? "Connecting" : !connecting.Contains("Nonstop-Flug") ? "Nonstop" : !connecting.Contains("Mit Umsteigen") ? "Nonstop" : connecting;//02-12-2024
-                        string price = nd.SelectSingleNode(".//span[@class='xqqLDd']|.//span[@class='cirEce']|.//div[@class='n22NNe']|.//div[@class='kJ3fh']")?.InnerText.Trim() ?? "0";//03-07-2025//02-07-2025//29-07-2024
+                        string price = nd.SelectSingleNode(".//span[@class='xqqLDd']|.//span[@class='cirEce']|.//div[@class='n22NNe']|.//div[@class='kJ3fh']/div[contains(@class,'YK0p7d rZFLMc')]")?.InnerText.Trim() ?? "0";//04-07-2025//02-07-2025//29-07-2024
                         string priceValue = string.Empty;
                         string hoursValue = string.Empty;
                         if (!string.IsNullOrEmpty(hours))
@@ -2200,7 +2200,7 @@ namespace TrendingReceiving
         private string Convertprice(string price)
         {
             string patternprice = "[\\d]+";
-            string p = price.Contains("€") ? price.Replace(" ", "").Replace(".", "") : price.Replace(",", "").Replace("٬", "");//01-01-2024
+            string p = price.Contains("€") ? price.Replace(" ", "").Replace(".", "").Replace(",", "") : price.Replace(",", "").Replace("٬", "");//04-07-2025//01-01-2024
             Match mc = Regex.Match(p, patternprice, RegexOptions.IgnoreCase);
             if (mc.Success)
                 price = mc.Value;
@@ -2247,7 +2247,7 @@ namespace TrendingReceiving
                 int hrs = Convert.ToInt32(match.Groups[2].Value);
                 return (days > 0 || hrs > 0) ? ((days * 24) + hrs) + "." + "0" : "0.0";
             }
-            match = Regex.Match(hours, @"(\d+)[\s]?(h|Std|시간)[\W]* (\d+)[\s]?(m|분|[M|m]in)");//24-02-2025
+            match = Regex.Match(hours, @"(\d+)[\s]?(h|Std|시간)[\W]*[\s]?(\d+)[\s]?(m|분|[M|m]in)");//04-07-2025//24-02-2025
             if (match.Success)
             {
                 int hrs = Convert.ToInt32(match.Groups[1].Value);

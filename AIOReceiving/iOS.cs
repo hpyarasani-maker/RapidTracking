@@ -3976,7 +3976,7 @@ namespace AIOReceiving
                         ls = nd.SelectNodes(".//ol[@jscontroller='M2ABbc']/div");//23-04-2025
                     if (ls != null && string.IsNullOrEmpty(ls[0].InnerText))//01-05-2025
                         ls = nd.SelectNodes(".//ol[@jscontroller='M2ABbc']/li|.//ul[@jscontroller='M2ABbc']/li");//01-05-2025
-                    if (ls == null)//07-07-2025
+                    if (ls != null)
                     {
                         foreach (HtmlNode nd1 in ls)
                         {

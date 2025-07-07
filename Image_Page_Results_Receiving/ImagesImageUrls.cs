@@ -4,16 +4,15 @@ namespace Image_Page_Results_Receiving
 {
     class SearchParamsImageUrls 
     {
-
         public static IList<SearchProperties> searches = new List<SearchProperties>()
         {
-            new SearchProperties() //News
+            new SearchProperties() //Google News
             {
-                seid = 140,domain ="co.uk",geo_location="United Kingdom", locale="en-gb", uule="w+CAIQICIOVW5pdGVkIEtpbmdkb20=",device="desktop",tbm="nws"
+                seid = 140,domain ="co.uk",geo_location="United Kingdom", locale="en-gb", uule="w+CAIQICIOVW5pdGVkIEtpbmdkb20=",device="desktop_chrome",tbm="nws"
             },
             new SearchProperties() //UKDesktopImages_ImageURLs
             {
-                seid = 401,domain ="co.uk",geo_location="United Kingdom", locale="en-gb", uule="w+CAIQICIOVW5pdGVkIEtpbmdkb20=",device="desktop",tbm="isch"
+                seid = 401,domain ="co.uk",geo_location="United Kingdom", locale="en-gb", uule="w+CAIQICIOVW5pdGVkIEtpbmdkb20=",device="desktop_chrome",tbm="isch"
             },
             new SearchProperties()   //UKMobileImages_ImageURLs
             {

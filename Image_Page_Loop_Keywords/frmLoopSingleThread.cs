@@ -9,7 +9,6 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -63,21 +62,15 @@ namespace Image_Page_Loop_Keywords
                 //string myDate = "2019-11-20";
 
 
-                string kwQry = "[Tracking_DB_Keywords_SEID_102_last] '" + myDate + "'";
-                //string kwQry = "[Tracking_DB_Keywords_Seid_103p] '" + myDate + "'";               
-                //string kwQry = "[GetCommaKeywordsP] '" + myDate + "'";               
-                //string kwQry = "[Tracking_DB_Keywords_Seid_102_P] '" + myDate + "'"; //tracking previous date single keywords
+                string kwQry = "[Tracking_DB_Keywords_SEID_102] '" + myDate + "'";
+
                 GetKeywords(kwQry);
 
                 if (lstKWs.Items.Count <= 0)
                     break;
 
                 int cnt = 0;
-                //this.Invoke((MethodInvoker)delegate ()
-                //{
-                //    label1.Text = cnt + " of " + itmCount1 + " Completed";
-                //    label1.Refresh();
-                //});
+                
                 foreach (string s in lstKWs.Items)
                 {
                     string seid = s.Split(':')[0];
@@ -105,29 +98,19 @@ namespace Image_Page_Loop_Keywords
                                         string html = obj["results"][0]["content"].Value<string>();
                                         jobid = src[2];
                                         string device = src[3];
-                                        File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
-                                        //File.WriteAllText(@"C:\inetpub\wwwroot\"+jobid+"_withOut filter_"+".html", html, Encoding.UTF8);
+                                        //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
                                         result = true;
                                         doc = new HtmlAgilityPack.HtmlDocument();
                                         doc.LoadHtml(html);
                                         int curCount = 0;
-                                        //if (device == "desktop")
-                                        //{
-                                        //    HTMLParserNewTask desktop = new HTMLParserNewTask();
-                                        //    alXml.Add(des.ProcessDocument(seid, keyword, doc, out curCount));
-                                        //}
-                                        //else
-                                        //{
-                                        //    iOS clsiOS = new iOS();
-                                        //    alXml.Add(clsiOS.ProcessDocument(seid, keyword, doc, out curCount));
-                                        //}
-                                        //Page Links
                                         HTMLParserNewTask desktop = new HTMLParserNewTask();
-                                        
-                                        if (device == "desktop")
-                                            alXml.Add(desktop.ImagesPatternDesktop(seid, keyword, doc, "PageLinks", out curCount));
+
+                                        if (device == "desktop_chrome")
+                                            alXml.Add(desktop.ImagesPatternDesktop74(seid, keyword, doc, "PageLinks", out curCount)); // Seid=74
+                                            //alXml.Add(desktop.ImagesPatternDesktop401(seid, keyword, doc, "PageLinks", out curCount)); // Seid=401
                                         else
-                                            alXml.Add(desktop.ImagesPatternMobile(seid, keyword, doc, "ImageLinks", out curCount));
+                                            alXml.Add(desktop.ImagesPatternMobile382(seid, keyword, doc, "ImageLinks", out curCount));  // Seid=382
+                                            //alXml.Add(desktop.ImagesPatternMobile402(seid, keyword, doc, "ImageLinks", out curCount));  // Seid=402
                                         count += curCount;
                                     }
                                     catch { }//05-02-2022
@@ -188,9 +171,6 @@ namespace Image_Page_Loop_Keywords
                             }
                             finally { }
                         }
-
-
-
                     }
                     catch (Exception ex)
                     {
@@ -320,15 +300,12 @@ namespace Image_Page_Loop_Keywords
                         txtError.Text = errorMsg;
                     }
                 }
-
                 throw new Exception(errorMsg);
-
             }
             catch (Exception ex)
             {
                 throw new Exception("Error: " + ex.Message);
             }
-
         }
 
         private void GetKeywords(string qry)
@@ -350,9 +327,9 @@ namespace Image_Page_Loop_Keywords
                 //lstKWs.Items.Add("312:kia sportage");
                 //lstKWs.Items.Add("102:note 8 specs");
                 //lstKWs.Items.Add("102:iphone 11 camera specs");
-                lstKWs.Items.Add("74:dvd");
+                //lstKWs.Items.Add("382:balmain dress");
             });
-            return;
+            //return;
 
             try
             {
@@ -545,8 +522,8 @@ namespace Image_Page_Loop_Keywords
             {
                 SearchProperties sp = SearchParams.searches.Where(s => s.seid == seid).SingleOrDefault();
                 sp.query = keyword;
-                
-                for (int i=1;i<=5;i++)
+
+                for (int i = 1; i <= 5; i++)
                 {
                     i = i + 20;
                     if (sp != null)
@@ -561,7 +538,7 @@ namespace Image_Page_Loop_Keywords
             return await Task.FromResult(alResult);
         }
 
-        async Task<ArrayList> GetOxylabsWebDataSources(SearchProperties sp,int i)
+        async Task<ArrayList> GetOxylabsWebDataSources(SearchProperties sp, int i)
         {
             Uri queryUri = new Uri("http://data.oxylabs.io/v1/queries/batch");
             //string username = "gpidatametrics";

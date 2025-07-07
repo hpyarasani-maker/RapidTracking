@@ -14,8 +14,7 @@ namespace Image_Page_Keywords_Sending
         
         SendingKeywordRequest WOWS = new SendingKeywordRequest();
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
-       
-
+        static Random rd = new Random();//29-06-2020
         public Form1()
         {
             InitializeComponent();
@@ -38,19 +37,11 @@ namespace Image_Page_Keywords_Sending
                
         private void Form1_Load(object sender, EventArgs e)
         {
-
-            //Text = "D_Oxylabs_CallbackKwdSending_106_2";
-            //Text = "D_Oxylabs_CallbackKwdSending_OtherMobile_1";
-            //Text = "D_Oxylabs_CallbackKwdSending_74_1";
-            //Text = "D_Oxylabs_CallbackKwdSending_140_1";
-            //Text = "D_Oxylabs_CallbackKwdSending_Images";
-            //Text = "D_Oxylabs_CallbackKwdSending_74_SingleKeyword";
+            Text = "D_Oxylabs_CallbackKwdSending_74_SingleKeyword";
             //Text = "D_Oxylabs_CallbackKwdSending_401_SingleKeyword";
             //Text = "D_Oxylabs_CallbackKwdSending_402_Mobile_SingleKeyword";
-            Text = "D_Oxylabs_CallbackKwdSending_382_Mobile_SingleKeyword";
-
-
-
+            //Text = "D_Oxylabs_CallbackKwdSending_382_Mobile_SingleKeyword";
+            //Text = "D_Oxylabs_CallbackKwdSending_140_1";            
 
             date_picker.Value = DateTime.Today;  
 
@@ -122,15 +113,10 @@ namespace Image_Page_Keywords_Sending
             Cursor.Current = Cursors.WaitCursor;
             string myDate = date_picker.Text;
 
-            //string strQry = "exec [dbo].[GetBulkDesktop_1_1] '" + myDate + "'";
-            //string strQry = "exec [dbo].[GetBulkMobile_106_2] '" + myDate + "'";
-            //string strQry = "exec [dbo].[GetBulkDesktop_2] '" + myDate + "'";
-            //string strQry = "exec [dbo].[GetBulkMobile_2] '" + myDate + "'";
-            //string strQry = "exec [dbo].[GetBulk_74_1] '" + myDate + "'";
-            //string strQry = "exec [dbo].[GetKeywords_74] '" + myDate + "'"; //24-06-2022
-            //string strQry = "exec [dbo].[GetKeywords_401] '" + myDate + "'"; //25-06-2022
-            //string strQry = "exec [dbo].[GetKeywords_402] '" + myDate + "'"; //25-06-2022
-            string strQry = "exec [dbo].[GetKeywords_382] '" + myDate + "'"; //25-06-2022
+            string strQry = "exec [dbo].[GetKeywords_74] '" + myDate + "'"; 
+            //string strQry = "exec [dbo].[GetKeywords_401] '" + myDate + "'";
+            //string strQry = "exec [dbo].[GetKeywords_402] '" + myDate + "'"; 
+            //string strQry = "exec [dbo].[GetKeywords_382] '" + myDate + "'"; 
             //string strQry = "exec [dbo].[GetBulk_140] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulk_Images] '" + myDate + "'";
 
@@ -195,9 +181,11 @@ namespace Image_Page_Keywords_Sending
             Array resultsArray;
             string seid;
             string kn;
-            
+            int mseconds;
+
             for (int i = 0; i < worklist.Items.Count; i++)
             {
+                mseconds = rd.Next(10, 20) * 1000;
                 // get next Project ID, Search Engine ID, Keyword ID and Keyword from worklist
                 resultsString = worklist.Items[i].ToString();
                 sep = ':';
@@ -221,11 +209,12 @@ namespace Image_Page_Keywords_Sending
 
                 this.Invoke((MethodInvoker)delegate()
                 {
-                    progress_lbl.Text = "Completed : " + (i + 1) + " of " + worklist.Items.Count;                    
+                    progress_lbl.Text = "Completed : " + (i + 1) + " of " + worklist.Items.Count;
                     progress_lbl.Refresh();
                     lblIP.Text = ts.TotalSeconds.ToString();
+                    rd_lbl.Text = (mseconds / 1000).ToString() + " " + "seconds";                    
                 });
-                Thread.Sleep(30000);
+                Thread.Sleep(mseconds);
             }
         }
         

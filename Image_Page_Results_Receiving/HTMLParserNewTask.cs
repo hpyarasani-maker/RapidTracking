@@ -12,59 +12,62 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace Image_Page_Results_Receiving
 {
     class HTMLParserNewTask
     {
         string myDate = DateTime.Today.ToString("yyyy-MM-dd");
-        public event KeywordDone OnKeywordDone;
+        public event KeywordDone OnKeywordDone;        
+        public delegate void KeywordDone(string value);
 
         public HTMLParserNewTask()
         {
             Thread t1 = new Thread(new ThreadStart(StartProcess))
             {
-                Name = "M_images_PL"
-                //Name = "pages"
+                Name = "74_1"                
             };
             t1.Start();
         }
 
-        private void StartProcess()
+        private async void StartProcess()
         {
-            //string url = "https://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58
-            //string url = "https://seresults.azurewebsites.net/api/callbackuk106mobile/";      // 106
-            //string url = "https://seresults.azurewebsites.net/api/callbackus1desktop/";     // 1
-            //string url = "https://seresults.azurewebsites.net/api/callbackus102mobile/";      // 102
-            //string url = "https://seresults.azurewebsites.net/api/callbackotherdesktop/";  // other desktop
-            //string url = "https://seresults.azurewebsites.net/api/callbackothermobile/";   // other mobiles
-
+            string url = "https://seresults.azurewebsites.net/api/callback74images/"; // 74 desktop page urls 
             //string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingimagedesktop/"; // image urls //402 mobile images links
-            //string url = "https://seresults.azurewebsites.net/api/callback74images/"; // 74 desktop page urls 
             //string url = "https://seresults.azurewebsites.net/api/callbackimages/"; //401 desktop image links
-            string url = "https://seresults.azurewebsites.net/api/callbacknews/";      // news 140 and 382 Mobile Image Page Links
+            //string url = "https://seresults.azurewebsites.net/api/callbacknews/";      // news 140 and 382 Mobile Image Page Links
 
 
-
-            WebClient client = new WebClient();
-            while (true)
+            Uri ul = new Uri(url);
+            string username = "pisoftware";
+            string password = "Pi*Soft74UBXi";
+            using (var client = new HttpClient())
             {
-                try
+                client.BaseAddress = ul;//12-05-2024
+                while (true)
                 {
-                    string response = "";
-                    client.Encoding = Encoding.UTF8;
-                    response = client.DownloadString(url);
-                    if (response != "null")
-                        DoProcess(response);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("# EXCEPTION #  " + ex.Message);
+                    try
+                    {
+                        string response = "";
+                        client.DefaultRequestHeaders.Clear();
+                        string credentials = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{username}:{password}"));//12-05-2024
+                        client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", credentials);//12-05-2024
+                        client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                        response = await client.GetStringAsync(ul); //06-08-2024  //.Result;
+                        if (response != "null")
+                            await DoProcess(response);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("# EXCEPTION #  " + ex.Message);
+                    }
                 }
             }
         }
 
-        private void DoProcess(string resp)
+        private async Task DoProcess(string resp)
         {
             JObject job = JObject.Parse(resp);
             string status = job["status"].Value<string>();
@@ -97,43 +100,45 @@ namespace Image_Page_Results_Receiving
                     ArrayList arRes = new ArrayList();
 
                     try
-                    {
-                        //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + kw + ".html", response, Encoding.UTF8);
-                        //// Image Links 401 Desktop and 402 Mobile image links
+                    {                        
+                        // Image Links 401 Desktop and 402 Mobile image links
                         //SearchProperties sp = SearchParamsImageUrls.searches.Where(s => s.locale == hl && s.device == device && s.geo_location == gl && s.tbm == "isch").SingleOrDefault();
 
                         // Page Links 74 Desktop PageLinks and 382 Mobile Page Links
                         SearchProperties sp = SearchParamsPageUrls.searches.Where(s => s.locale == hl && s.device == device && s.geo_location == gl && s.tbm == "isch").SingleOrDefault();
 
-                        //// News
+                        // Google News
                         //SearchProperties sp = SearchParamsImageUrls.searches.Where(s => s.locale == hl && s.device == device && s.geo_location == gl && s.tbm == "nws").SingleOrDefault();
 
                         seid = sp.seid;
                     
                         JObject obj = JObject.Parse(response);
-                        var contents = obj["results"];
+                        StringBuilder sb = new StringBuilder();
 
-                        for (int x = 0; x < contents.Count(); x++)
+                        var cont = obj["results"];
+                        foreach (JObject jo in cont)
                         {
-                            response = contents[x]["content"].Value<string>();
-
-                            //// Image Links 401 and 402
-                            //if (device == "desktop") //401 Desktop Image Links
-                            //    arRes = ImagesPatternDesktop(response, "ImageLinks", arRes);
-                            //else //402 Mobile Image Links
-                            //    arRes = ImagesPatternMobile(response, "ImageLinks", arRes);
-
-
-                            //Page Links 74 and 382
-                            if (device == "desktop") //74 Desktop Page Links
-                                arRes = ImagesPatternDesktop(response, "PageLinks", arRes);
-                            else //74 Mobile Page Links
-                                arRes = ImagesPatternMobile(response, "PageLinks", arRes);
+                            sb.Append(jo["content"].Value<string>());
                         }
+                        //File.WriteAllText(@"c:\inetpub\wwwroot\html\" + jobid + "_" + HttpUtility.UrlDecode(kw) + ".html", sb.ToString(), Encoding.UTF8);
 
-                        // News
-                        //if (device == "desktop")
-                        //arRes = NewsPattern(response);
+                        //Un Comment for Image Links 401 and 402
+                        //if (device == "desktop_chrome") //401 Desktop Image Links
+                        //    arRes = ImagesPatternDesktop401(sb.ToString(), "ImageLinks");
+                        //else //402 Mobile Image Links
+                        //    arRes = ImagesPatternMobile402(sb.ToString(), "ImageLinks");
+
+
+                        //Un comment for Page Links Seid 74 and 382
+                        if (device == "desktop_chrome") //74 Desktop Page Links
+                            arRes = ImagesPatternDesktop74(sb.ToString(), "PageLinks");
+                        else //382 Mobile Page Links
+                            arRes = ImagesPatternMobile382(sb.ToString(), "PageLinks");
+
+
+                        // Google News
+                        //if (device == "desktop_chrome")
+                        //    arRes = NewsPattern(sb.ToString());
 
                     }
                     catch (Exception ex)
@@ -142,7 +147,7 @@ namespace Image_Page_Results_Receiving
                     }
 
                     if (seid > 0)
-                        ProcessResults(arRes, kw, seid, jobid);
+                      await ProcessResults(arRes, kw, seid, jobid);
 
                     OnKeywordDone.Invoke(seid + ": " + kw + ": " + arRes.Count);
                 }
@@ -154,7 +159,7 @@ namespace Image_Page_Results_Receiving
                 {
                     try
                     {
-                        ProcessError(kw, seid, jobid);
+                       await ProcessError(kw, seid, jobid);
                     }
                     finally { }
                 }
@@ -162,13 +167,12 @@ namespace Image_Page_Results_Receiving
             }
         }
 
-        private void ProcessError(string kw, int seid, string jobid)
+        private async Task ProcessError(string kw, int seid, string jobid)
         {
-            //string qry = "update dashboard_data set status = 'Error' where name='" + kw.Replace("'", "''") + "' and seid = " + seid + " and jobid='" + jobid + "'";
             string qry = "insert into dashboard_dataerrors (date, name, seid, jobid) values(Convert(varchar(10),'" + myDate + "',103), N'" +
                 kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "' )";
 
-            using (SqlConnection con = new SqlConnection(strConn()))
+            using (SqlConnection con = new SqlConnection(strConn().Result))
             {
                 try
                 {
@@ -176,7 +180,7 @@ namespace Image_Page_Results_Receiving
                     using (SqlCommand comm = new SqlCommand(qry, con))
                     {
                         comm.CommandTimeout = 0;
-                        comm.ExecuteNonQuery();
+                         await comm.ExecuteNonQueryAsync();
                     }
                 }
                 catch (SqlException ex)
@@ -201,7 +205,7 @@ namespace Image_Page_Results_Receiving
             }
         }
 
-        public string strConn()
+        public async Task<string> strConn()
         {
             try
             {
@@ -215,7 +219,7 @@ namespace Image_Page_Results_Receiving
                 // Get its value
                 string name = node.InnerText;
 
-                return name;
+                return await Task.FromResult<string>(name);
             }
             catch (Exception ex)
             {
@@ -223,7 +227,7 @@ namespace Image_Page_Results_Receiving
             }
         }
 
-        private void ProcessResults(ArrayList alRes, string kw, int seid, string jobid)
+        private async Task ProcessResults(ArrayList alRes, string kw, int seid, string jobid)
         {
             if (alRes.Count < 1)
             {
@@ -301,12 +305,8 @@ namespace Image_Page_Results_Receiving
                     {
                         if (alRes.Count > 20)
                         {
-                            SendXmlToAPI(path);
-                            InsertDashBoardData_Callback(kw, seid, alRes, jobid);
-                        }
-                        else
-                        {
-                            InsertDashBoardData_Callback(kw, seid, alRes, jobid, true);
+                           await SendXmlToAPI(path);
+                           await InsertDashBoardData_Callback(kw, seid, alRes, jobid);
                         }
                     }
                     catch (Exception ex)
@@ -317,12 +317,9 @@ namespace Image_Page_Results_Receiving
             }
         }
 
-        private void SendXmlToAPI(string path)
+        private async Task SendXmlToAPI(string path)
         {
             string submitURL = readAPI();
-
-            //string user = "pi-tracking";
-            //string pwd = "ipseo2001";
 
             string user = "pisoftware";
             string pwd = "r00t123456";
@@ -357,7 +354,7 @@ namespace Image_Page_Results_Receiving
                 stream.Write(data, 0, data.Length);
                 stream.Close();
 
-                HttpWebResponse response = (HttpWebResponse)httpWReq.GetResponse();
+                HttpWebResponse response = (HttpWebResponse)await httpWReq.GetResponseAsync(); //06-08-2024
                 string s = response.ToString();
                 StreamReader reader = new StreamReader(response.GetResponseStream());
 
@@ -418,29 +415,20 @@ namespace Image_Page_Results_Receiving
             }
         }
 
-        private void InsertDashBoardData_Callback(string kw, int seid, ArrayList alRes, string jobid, bool lt20 = false)
+        private async Task InsertDashBoardData_Callback(string kw, int seid, ArrayList alRes, string jobid, bool lt20 = false)
         {
             string qry = "insert into dashboard_data(date, name, seid, jobid, count, url) " +
                     "values(Convert(varchar(10),'" + myDate + "',103),N'" + kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "', " + alRes.Count + ", N'" + alRes[0].ToString().Replace("'", "''") + "')";
 
             try
             {
-                using (SqlConnection con = new SqlConnection(strConn()))
+                using (SqlConnection con = new SqlConnection(strConn().Result))
                 {
                     con.Open();
                     using (SqlCommand comm = new SqlCommand(qry, con))
                     {
                         comm.CommandTimeout = 0;
-                        comm.ExecuteNonQuery();
-
-                        if (lt20)
-                        {
-                            string url = alRes.Count > 0 ? alRes[0].ToString() : "";
-                            qry = "exec [InsertLessthan20] '" + myDate + "',N'" + kw.Replace("'", "''") + "'," + seid + ",N'" + url.Replace("'", "''") + "'," + alRes.Count + ",'" + jobid + "'";
-                            comm.CommandText = qry;
-                            comm.CommandType = CommandType.Text;
-                            comm.ExecuteNonQuery();
-                        }
+                        await comm.ExecuteNonQueryAsync();
                     }
                 }
             }
@@ -470,451 +458,253 @@ namespace Image_Page_Results_Receiving
             ArrayList googleList = new ArrayList();
             try
             {
-                var doc = new HtmlDocument();
-                htmlsource = htmlsource.Replace(@"\", "");
+                var doc = new HtmlAgilityPack.HtmlDocument();
                 doc.LoadHtml(htmlsource);
                 ArrayList alDup = new ArrayList();
 
-                HtmlNodeCollection node = doc.DocumentNode.SelectNodes("//a[@class='top NQHJEb dfhHve']");
-
-                foreach (HtmlNode links in node)
-                {
-                    try
-                    {
-                        string urls = links.Attributes["href"].Value;
-                        if (urls.StartsWith("http") || urls.StartsWith("https"))
-                        {
-                            int indx = urls.LastIndexOf("http://");
-                            if (indx < 0)
-                            {
-                                indx = urls.LastIndexOf("https://");
-                            }
-                            urls = urls.Remove(0, indx);
-
-                            //string links1 = HttpUtility.UrlDecode(urls);
-
-                            alDup.Add(HttpUtility.HtmlDecode(urls.Replace("|", "%7C").Replace("^", "%5E")));
-                        }
-
-                    }
-                    catch { continue; }
-                }
-                foreach (string s in alDup)
-                {
-                    if (googleList.Contains(s) || string.IsNullOrEmpty(s)) continue;
-                    googleList.Add(s);
-                }
-
-                if (googleList.Count > 100)
-                {
-                    googleList.RemoveRange(100, googleList.Count - 100);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("No pattern match,  " + ex.Message);
-            }
-            return googleList;
-        }
-
-        private ArrayList ImagesPatternDesktop(string htmlsource, string urlType, ArrayList googleList)
-        {
-            //ArrayList googleList = new ArrayList();
-            try
-            {
-                htmlsource = htmlsource.Replace(@"\", "");
-                var doc = new HtmlDocument();
-                doc.LoadHtml(htmlsource);
-                ArrayList alDup = new ArrayList();
-
-                //HtmlNodeCollection node = doc.DocumentNode.SelectNodes("//*[@id=\"rg_s\"]/div/div");//Mw2I7 UkaFJe
-                HtmlNodeCollection node = doc.DocumentNode.SelectNodes("//div[@class=\"rg_meta notranslate\"]");
-                //HtmlNodeCollection node = doc.DocumentNode.SelectNodes("//div[@class=\"Mw2I7 UkaFJe\"]");
-
-                if (node != null)
+                HtmlNodeCollection node = doc.DocumentNode.SelectNodes("//a[@class='top NQHJEb dfhHve']|.//div[@class='dbsr']/a|.//div[@class='ZINbbc xpd O9g5cc uUPGi']/div[@class='kCrYT'][1]/a|.//div[@class='CC9D1e']/a|.//div[@class='mCCq8b dbsr']/a|.//a[@class='WlydOe']");
+                if(node != null)
                 {
                     foreach (HtmlNode links in node)
                     {
                         try
                         {
-                            string url = "";
-
-                            if (urlType == "ImageLinks")
-
-                                url = JObject.Parse(links.InnerText)["ou"].Value<string>();
-                            else
-                                url = JObject.Parse(links.InnerText)["ru"].Value<string>();
-
-                            if (url.StartsWith("http") || url.StartsWith("https"))
+                            //HtmlNode a = links.SelectSingleNode(".//a");
+                            string urls = links.Attributes["href"].Value.Replace("/url?q=", ""); ///url?esrc=s&amp;q=&amp;rct=j&amp;sa=U&amp;url=
+                            if (urls.StartsWith("http") || urls.StartsWith("https"))
                             {
-                                int indx = url.LastIndexOf("http://");
+                                int indx = urls.LastIndexOf("http://");
                                 if (indx < 0)
                                 {
-                                    indx = url.LastIndexOf("https://");
+                                    indx = urls.LastIndexOf("https://");
                                 }
-                                url = url.Remove(0, indx);
-                                alDup.Add(HttpUtility.HtmlDecode(url));
+                                urls = urls.Remove(0, indx);
+                                if (!urls.Contains("jobalert.ie"))
+                                    alDup.Add(HttpUtility.HtmlDecode(urls));
                             }
                         }
-                        catch (Exception ex)
-                        {
-                            throw ex;
-                        }
+                        catch { continue; }
+                    }
+                    foreach (string s in alDup)
+                    {
+                        string s1 = s;
+                        int index = s1.IndexOf("&sa=U");
+                        if (googleList.Contains(s1) || string.IsNullOrEmpty(s1)) continue;
+                        googleList.Add(s1);
+                    }
+
+                    if (googleList.Count > 100)
+                    {
+                        googleList.RemoveRange(100, googleList.Count - 100);
                     }
                 }
-                else
+            }
+            catch { }
+            return googleList;
+        }
+
+        private ArrayList ImagesPatternDesktop401(string htmlsource, string urlType)
+        {
+            ArrayList googleList = new ArrayList();
+            try
+            {
+                var doc = new HtmlAgilityPack.HtmlDocument();
+                doc.LoadHtml(htmlsource);
+                ArrayList alDup = new ArrayList();
+
+                string pattern1 = @"\],\[""(.*?).jpg"",";
+
+                Regex rx = new Regex(pattern1, RegexOptions.IgnoreCase);
+                MatchCollection mc = rx.Matches(htmlsource);
+
+                foreach (Match m in mc)
                 {
-                    if (urlType == "PageLinks") //SEID=74 Desktop PageLinks //24-06-2022
+                    string url = "http" + m.Groups[1].Value;
+                    int indx = url.LastIndexOf("http://");
+                    if (indx < 0)
                     {
-                        string pattern1 = "<table class=\\WIkMU6e\\W><tr><td><a href=(.*?)&";
-                        //string pattern = @"\]n,\[""http(.*?)\"",";
-                        Regex rx = new Regex(pattern1, RegexOptions.IgnoreCase);
-                        MatchCollection mc = rx.Matches(htmlsource);
-
-                        foreach (Match m in mc)
-                        {
-                            string url = "http" + m.Groups[1].Value;
-                            int indx = url.LastIndexOf("http://");
-                            if (indx < 0)
-                            {
-                                indx = url.LastIndexOf("https://");
-                            }
-                            url = url.Remove(0, indx);
-                            alDup.Add(HttpUtility.HtmlDecode(url));
-                        }
+                        indx = url.LastIndexOf("https://");
                     }
-
-                    else  // 74
+                    url = url.Remove(0, indx);
+                    if (url.StartsWith("http") || url.StartsWith("https"))
                     {
-                        //string pattern = "x22 targetx3dx22_blankx22 hrefx3dx22(.*?)x22 ";
-                        string pattern = "<table class=\\WIkMU6e\\W><tr><td><a href=(.*?)&";
-                        Regex rx = new Regex(pattern, RegexOptions.IgnoreCase);
-                        MatchCollection mc = rx.Matches(htmlsource);
-                        foreach (Match m in mc)
-                        {
-                            string url = m.Groups[1].Value;
-
-                            if (url.StartsWith("http") || url.StartsWith("https"))
+                        if (!url.Contains("htm") || !url.Contains(",null"))
+                            if (!url.Contains("jpg"))
                             {
-                                int indx = url.LastIndexOf("http://");
-                                if (indx < 0)
-                                {
-                                    indx = url.LastIndexOf("https://");
-                                }
-                                url = url.Remove(0, indx);
-                                alDup.Add(HttpUtility.HtmlDecode(url));
+                                url += ".jpg";
                             }
-                        }
-                    }
-                }
-                if (urlType == "ImageLinks") //401 Desktop Image links //25-06-2022
-                {
-                    string pattern1 = "<div class=\\WNZWO1b\\W><img class=\\WyWs4tf\\W alt=\"\" src=(.*?)&amp;s";
-                    Regex rx = new Regex(pattern1, RegexOptions.IgnoreCase);
-                    MatchCollection mc = rx.Matches(htmlsource);
-                    foreach (Match m in mc)
-                    {
-                        string url = "http" + m.Groups[1].Value;
-                        int indx = url.LastIndexOf("http://");
-                        if (indx < 0)
-                        {
-                            indx = url.LastIndexOf("https://");
-                        }
-                        url = url.Remove(0, indx);
                         alDup.Add(HttpUtility.HtmlDecode(url));
                     }
                 }
-
                 foreach (string s in alDup)
                 {
                     if (googleList.Contains(s) || string.IsNullOrEmpty(s)) continue;
+                    if (s.Contains(",null")) continue;
                     googleList.Add(s);
                 }
-
                 if (googleList.Count > 100)
                 {
                     googleList.RemoveRange(100, googleList.Count - 100);
                 }
             }
-            catch (Exception ex)
-            {
-                throw new Exception("No pattern match,  " + ex.Message);
-            }
-
+            catch { }
             return googleList;
         }
 
-        private ArrayList ImagesPatternMobile(string htmlsource, string urlType, ArrayList googleList)
+        private ArrayList ImagesPatternMobile402(string htmlsource, string urlType)
         {
-            //ArrayList googleList = new ArrayList();
+            ArrayList googleList = new ArrayList();
             try
             {
-                htmlsource = htmlsource.Replace(@"\", "");
-                var doc = new HtmlDocument();
+                var doc = new HtmlAgilityPack.HtmlDocument();
                 doc.LoadHtml(htmlsource);
                 ArrayList alDup = new ArrayList();
 
-                HtmlNodeCollection node;
-                if (urlType == "ImageLinks")
-                {
-                    node = doc.DocumentNode.SelectNodes("//a[@jsname=\"m8x3S\"]/img");
-                    if (node == null)
-                        node = doc.DocumentNode.SelectNodes("//div[@class=\"rg_meta notranslate\"]");
-                }
-                else
-                {
-                    node = doc.DocumentNode.SelectNodes("//a[@class=\"VFACy kGQAp\"]");
-                    if (node == null)
-                        node = doc.DocumentNode.SelectNodes("//a[@class=\"VFACy\"]");
-                    //*03-04-2020
-                    if (node == null)
-                        node = doc.DocumentNode.SelectNodes("//div[@class=\"rg_meta notranslate\"]");//*03-04-2020  
+                string pattern1 = @"\],\[""(.*?).jpg"",";
 
+                Regex rx = new Regex(pattern1, RegexOptions.IgnoreCase);
+                MatchCollection mc = rx.Matches(htmlsource);
+
+                foreach (Match m in mc)
+                {
+                    string url = "http" + m.Groups[1].Value;
+                    int indx = url.LastIndexOf("http://");
+                    if (indx < 0)
+                    {
+                        indx = url.LastIndexOf("https://");
+                    }
+                    url = url.Remove(0, indx);
+                    if (url.StartsWith("http") || url.StartsWith("https"))
+                    {
+                        if (!url.Contains("htm") || !url.Contains(",null"))
+                            if (!url.Contains("jpg"))
+                            {
+                                url += ".jpg";
+                            }
+                        alDup.Add(HttpUtility.HtmlDecode(url));
+                    }
                 }
+                foreach (string s in alDup)
+                {
+                    if (googleList.Contains(s) || string.IsNullOrEmpty(s)) continue;
+                    if (s.Contains(",null")) continue;
+                    googleList.Add(s);
+                }
+                if (googleList.Count > 100)
+                {
+                    googleList.RemoveRange(100, googleList.Count - 100);
+                }
+            }
+            catch { }
+            return googleList;
+        }
+
+        private ArrayList ImagesPatternDesktop74(string htmlsource, string urlType)
+        {
+            ArrayList googleList = new ArrayList();
+            try
+            {
+                var doc = new HtmlAgilityPack.HtmlDocument();
+                doc.LoadHtml(htmlsource);
+                ArrayList alDup = new ArrayList();
+
+                HtmlNodeCollection node = doc.DocumentNode.SelectNodes(".//div[@class='juwGPd BwPElf OCzgxd']/a[@class='EZAeBe']");
+
                 if (node != null)
                 {
-                    foreach (HtmlNode links in node)
+                    if (urlType == "PageLinks") 
                     {
-                        try
+                        foreach (HtmlNode links in node)
                         {
-                            string url = "";
-
-                            if (urlType == "ImageLinks")
+                            try
                             {
-                                try
-                                {
-                                    url = links.Attributes["data-iurl"].Value;
-                                }
-                                catch
-                                {
-                                    try
-                                    {
-                                        url = links.Attributes["data-src"].Value;
-                                    }
-                                    catch
-                                    {
-                                        url = JObject.Parse(links.InnerText)["ou"].Value<string>();
-                                    }
+                                string url = links.Attributes["href"].Value.Replace("/url?q=", "");
 
+                                if (url.StartsWith("http") || url.StartsWith("https"))
+                                {
+                                    int indx = url.LastIndexOf("http://");
+                                    if (indx < 0)
+                                    {
+                                        indx = url.LastIndexOf("https://");
+                                    }
+                                    url = url.Remove(0, indx);
+                                    if (url.Contains("&amp;sa="))
+                                        url = url.Remove(url.IndexOf("&amp;sa="));
+                                    if (url.Contains("&sa="))
+                                        url = url.Remove(url.IndexOf("&sa="));
+                                    alDup.Add(HttpUtility.HtmlDecode(url));
                                 }
                             }
-                            //*03-04-2020
-                            else if (urlType == "PageLinks")
-                            {
-                                try
-                                {
-                                    url = JObject.Parse(links.InnerText)["ru"].Value<string>();
-                                }
-                                catch
-                                {
-                                    url = links.Attributes["href"].Value;
-                                }
-                            }//*03-04-2020
-                            else
-                                url = links.Attributes["href"].Value;
-
-                            if (url.StartsWith("http") || url.StartsWith("https"))
-                            {
-                                int indx = url.LastIndexOf("http://");
-                                if (indx < 0)
-                                {
-                                    indx = url.LastIndexOf("https://");
-                                }
-                                url = url.Remove(0, indx);
-                                alDup.Add(HttpUtility.HtmlDecode(url));
-                            }
-                        }
-                        catch
-                        {
-                            continue;
+                            catch { continue; }
                         }
                     }
                 }
-                else
-                {
-                    if (urlType == "PageLinks") //SEID=382 mobile image page links //25-06-2022
-                    {
-                        string pattern = "imgrefurl=(.*?)&amp;"; //25-06-2022
-                        Regex rx = new Regex(pattern, RegexOptions.IgnoreCase);
-                        MatchCollection mc = rx.Matches(htmlsource);
-                        foreach (Match m in mc)
-                        {
-                            string url = "http" + m.Groups[1].Value;
-                            int indx = url.LastIndexOf("http://");
-                            if (indx < 0)
-                            {
-                                indx = url.LastIndexOf("https://");
-                            }
-                            url = url.Remove(0, indx);
-                            alDup.Add(HttpUtility.HtmlDecode(url));
-                        }
-                    }
-                    if (urlType == "ImageLinks") //SEID=402 Mobile Image Links //25-06-2022
-                    {
-                        //string pattern = @"\]n,\[""http(.*?)\"",";
-                        string pattern1 = "imgurl=(.*?)&amp;"; //25-06-2022
-                        Regex rx = new Regex(pattern1, RegexOptions.IgnoreCase);
-                        MatchCollection mc = rx.Matches(htmlsource);
-
-                        foreach (Match m in mc)
-                        {
-                            string url = "http" + m.Groups[1].Value;
-                            int indx = url.LastIndexOf("http://");
-                            if (indx < 0)
-                            {
-                                indx = url.LastIndexOf("https://");
-                            }
-                            url = url.Remove(0, indx);
-                            alDup.Add(HttpUtility.HtmlDecode(url));
-                        }
-                    }
-
-                    else
-                    {
-                        string pattern = "x22 targetx3dx22_blankx22 hrefx3dx22(.*?)x22 ";
-                        Regex rx = new Regex(pattern, RegexOptions.IgnoreCase);
-                        MatchCollection mc = rx.Matches(htmlsource);
-                        foreach (Match m in mc)
-                        {
-                            string url = m.Groups[1].Value;
-
-                            if (url.StartsWith("http") || url.StartsWith("https"))
-                            {
-                                int indx = url.LastIndexOf("http://");
-                                if (indx < 0)
-                                {
-                                    indx = url.LastIndexOf("https://");
-                                }
-                                url = url.Remove(0, indx);
-                                alDup.Add(HttpUtility.HtmlDecode(url));
-                            }
-                        }
-                    }
-                }
-
                 foreach (string s in alDup)
                 {
                     if (googleList.Contains(s) || string.IsNullOrEmpty(s)) continue;
                     googleList.Add(s);
                 }
-
                 if (googleList.Count > 100)
                 {
                     googleList.RemoveRange(100, googleList.Count - 100);
                 }
             }
-            catch (Exception ex)
-            {
-                throw new Exception("No pattern match,  " + ex.Message);
-            }
-
+            catch { }
             return googleList;
         }
 
-        private ArrayList MobilePattern(string htmlsource)
+        private ArrayList ImagesPatternMobile382(string htmlsource, string urlType)
         {
             ArrayList googleList = new ArrayList();
             try
             {
-                var doc = new HtmlDocument();
-                htmlsource = htmlsource.Replace(@"\", "");
+                var doc = new HtmlAgilityPack.HtmlDocument();
                 doc.LoadHtml(htmlsource);
                 ArrayList alDup = new ArrayList();
 
-                HtmlNodeCollection node = doc.DocumentNode.SelectNodes("//a[@class='C8nzq']|//a[@class='Rk4fgb']|//div[@id='rso']/div/div/div/a[1]|//a[@class='JTuIPc']|//a[@class='C8nzq BmP5tf']|//a[@class='BmP5tf']|//a[@class='sXtWJb']|//a[@class='C8nzq BmP5tf amp_r']|//div[@jsl='$t t-4cfX2GiP_Fk;$x 0;']/a|//g-link[not(contains(@class,'fl'))]/a");
+                HtmlNodeCollection node = doc.DocumentNode.SelectNodes(".//div[@class='kb0PBd cvP2Ce']/a[@class='LBcIee']");
 
-                foreach (HtmlNode links in node)
+                if (node != null)
                 {
-                    try
+                    if (urlType == "PageLinks") 
                     {
-                        var urls = links.Attributes["href"].Value;
-                        if (urls.StartsWith("http") || urls.StartsWith("https"))
+                        foreach (HtmlNode links in node)
                         {
-                            int indx = urls.LastIndexOf("http://");
-                            if (indx < 0)
+                            try
                             {
-                                indx = urls.LastIndexOf("https://");
+                                string url = links.Attributes["href"].Value.Replace("/url?q=", "");
+                                if (url.StartsWith("http") || url.StartsWith("https"))
+                                {
+                                    int indx = url.LastIndexOf("http://");
+                                    if (indx < 0)
+                                    {
+                                        indx = url.LastIndexOf("https://");
+                                    }
+                                    url = url.Remove(0, indx);
+                                    if (url.Contains("&amp;sa="))
+                                        url = url.Remove(url.IndexOf("&amp;sa="));
+                                    if (url.Contains("&sa="))
+                                        url = url.Remove(url.IndexOf("&sa="));
+                                    alDup.Add(HttpUtility.HtmlDecode(url));
+                                }
                             }
-                            urls = urls.Remove(0, indx);
-                            //string links1 = HttpUtility.UrlDecode(urls);
-                            alDup.Add(HttpUtility.HtmlDecode(urls.Replace("|", "%7C").Replace("^", "%5E")));
+                            catch { continue; }
                         }
                     }
-                    catch { continue; }
-                }
-
-                foreach (string s in alDup)
-                {
-                    if (googleList.Contains(s) || string.IsNullOrEmpty(s)) continue;
-                    googleList.Add(s);
-                }
-
-                if (googleList.Count > 100)
-                {
-                    googleList.RemoveRange(100, googleList.Count - 100);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("No pattern match,   " + ex.Message);
-            }
-
-            return googleList;
-        }   //MobilePattern
-
-        private ArrayList DesktopPattern(string htmlsource)
-        {
-            ArrayList googleList = new ArrayList();
-            try
-            {
-                var doc = new HtmlDocument();
-                htmlsource = htmlsource.Replace(@"\", "");
-                doc.LoadHtml(htmlsource);
-                ArrayList alDup = new ArrayList();
-
-                HtmlNodeCollection node = doc.DocumentNode.SelectNodes("//div[@class='srg']//div[@class='r']/a[1]|//div[@class='bkWMgd']/div[@class='g']//div[@class='r']/a[1]|//div[1]/div/h3/div/g-link/a|//div[1]/div/h3/g-link/a");
-
-                foreach (HtmlNode links in node)
-                {
-                    try
-                    {
-                        string urls = links.Attributes["href"].Value;
-                        if (urls.StartsWith("http") || urls.StartsWith("https"))
-                        {
-                            int indx = urls.LastIndexOf("http://");
-                            if (indx < 0)
-                            {
-                                indx = urls.LastIndexOf("https://");
-                            }
-                            urls = urls.Remove(0, indx);
-
-                            //string links1 = HttpUtility.UrlDecode(urls);
-
-                            alDup.Add(HttpUtility.HtmlDecode(urls.Replace("|", "%7C").Replace("^", "%5E")));
-                        }
-
-                    }
-                    catch { continue; }
                 }
                 foreach (string s in alDup)
                 {
                     if (googleList.Contains(s) || string.IsNullOrEmpty(s)) continue;
                     googleList.Add(s);
                 }
-
                 if (googleList.Count > 100)
                 {
                     googleList.RemoveRange(100, googleList.Count - 100);
                 }
             }
-            catch (Exception ex)
-            {
-                throw new Exception("No pattern match,  " + ex.Message);
-            }
+            catch { }
             return googleList;
-        }  //DesktopPattern
-
-
+        }
     }
 }
 

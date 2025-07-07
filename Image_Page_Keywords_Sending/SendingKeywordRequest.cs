@@ -83,17 +83,12 @@ namespace Image_Page_Keywords_Sending
             string password = "b5FCvgkjxx";
             string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
 
-            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58
-            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackuk106mobile/";       // 106
-            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackus1desktop/";     // 1            
-            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackus102mobile/";     // 102
-            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackotherdesktop/";  // other desktop
-            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackothermobile/";  // other mobile
-
-            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidtrackingimagedesktop/"; //402 Mobile Image links
-            //string callbackURL = "https://seresults.azurewebsites.net/api/callback74images/"; // 74 desktop page urls 
+            string callbackURL = "https://seresults.azurewebsites.net/api/callback74images/"; // 74 desktop page urls 
             //string callbackURL = "https://seresults.azurewebsites.net/api/callbackimages/"; //401 desktop image links
-            string callbackURL = "https://seresults.azurewebsites.net/api/callbacknews/"; // news 140 and 382 Mobile Image Page Links
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidtrackingimagedesktop/"; //402 Mobile Image links
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbacknews/"; // news 140 and 382 Mobile Image Page Links
+
+
             string[] keyword = { sp.query };
             OxyParams op = new OxyParams()
             {
@@ -115,7 +110,6 @@ namespace Image_Page_Keywords_Sending
                 }
             };
                   
-            
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(queryUri);
             req.Headers.Clear();
 
@@ -132,9 +126,7 @@ namespace Image_Page_Keywords_Sending
                
                 streamWriter.Write(json);
             }
-
             string response;
-
             try
             {
                 HttpWebResponse res = (HttpWebResponse)req.GetResponse();
@@ -151,138 +143,6 @@ namespace Image_Page_Keywords_Sending
                 throw ex;
             }              
         }
-
-       
-        public void GetOxylabsWebDataSources_Nws_Images(string kwds, string domain, string location, string lang, string uule, string value, int seid = 0)
-        {
-            Uri queryUri = new Uri("https://data.oxylabs.io/v1/queries/batch");
-            string username = "gpidatametrics";
-            string password = "sdV5X3fcX6";
-            string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
-
-            OxyParams op = new OxyParams()
-            {
-                source = "google_images",
-                domain = domain,
-                query = kwds.Split(','),
-                limit = 100,
-                pages = 1,
-                start_page=1,
-                locale = lang,
-                callback_url = "",
-                geo_location = location,
-               // uule = uule,
-                parse = false, //23-09-2021 changed datatype into "int to bool"
-                user_agent_type = "desktop",
-                context = new List<Context> {
-                    new Context("tbm", value),
-                    new Context("safe_search", 0)
-                }
-            };
-
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(queryUri);
-            req.Headers.Clear();
-
-            req.Method = "POST";
-            req.ContentType = "application/json";
-
-            req.Headers.Add(HttpRequestHeader.Authorization, "Basic " + authInfo);
-
-            using (var streamWriter = new StreamWriter(req.GetRequestStream()))
-            {
-                var json = JsonConvert.SerializeObject(op, new JsonSerializerSettings
-                {
-                    Formatting = Newtonsoft.Json.Formatting.Indented,
-                });
-
-                streamWriter.Write(json);
-            }
-
-            string response;
-            try
-            {
-                HttpWebResponse res = (HttpWebResponse)req.GetResponse();
-                using (StreamReader reader = new StreamReader(res.GetResponseStream()))
-                {
-                    response = reader.ReadToEnd();
-                }
-                res.Close();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            SendToDb(seid, response);
-
-            //return await Task.FromResult<ArrayList>(null);
-        }
-
-        public void GetOxylabsWebDataSources_Nws_Images_Mobile(string kwds, string domain, string location, string lang, string uule, string value, int seid = 0)
-        {
-            Uri queryUri = new Uri("https://data.oxylabs.io/v1/queries/batch");
-            string username = "gpidatametrics";
-            string password = "sdV5X3fcX6";
-            string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
-
-            OxyParams op = new OxyParams()
-            {
-                source = "google_source",
-                domain = domain,
-                query = kwds.Split(','),
-                limit = 100,
-                pages = 1,
-                locale = lang,
-                start_page = 1,
-                callback_url = "",
-                geo_location = location,
-                //uule = uule,
-                parse = false,
-                user_agent_type = "mobile_ios",
-                context = new List<Context> {
-                    new Context("tbm", value),
-                    new Context("safe_search", 0)
-                }
-            };
-
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(queryUri);
-            req.Headers.Clear();
-
-            req.Method = "POST";
-            req.ContentType = "application/json";
-
-            req.Headers.Add(HttpRequestHeader.Authorization, "Basic " + authInfo);
-
-            using (var streamWriter = new StreamWriter(req.GetRequestStream()))
-            {
-                var json = JsonConvert.SerializeObject(op, new JsonSerializerSettings
-                {
-                    Formatting = Newtonsoft.Json.Formatting.Indented,
-                });
-
-                streamWriter.Write(json);
-            }
-
-            string response;
-            try
-            {
-                HttpWebResponse res = (HttpWebResponse)req.GetResponse();
-                using (StreamReader reader = new StreamReader(res.GetResponseStream()))
-                {
-                    response = reader.ReadToEnd();
-                }
-                res.Close();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            SendToDb(seid, response);
-
-            //return await Task.FromResult<ArrayList>(null);
-        }
-        
         public void getTop100(string keyword, int seid)
         {
             try
@@ -297,7 +157,6 @@ namespace Image_Page_Keywords_Sending
                 throw ex;
             }
         }
-
     }
 }
 

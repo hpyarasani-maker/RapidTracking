@@ -2003,10 +2003,10 @@ namespace RapidTrackingSingleThread
                     try
                     {
                         string airline = nd.SelectSingleNode(".//span[@class='ps0VMc']|.//div[@class='A4fsl']|.//div[contains(@class,'ZhosBf') and contains(@class,'dctkEf')]|.//div[@class='eqdsgd']")?.InnerText.Trim() ?? "";//02-07-2025//15-11-2024//29-07-2024
-                        string hours = nd.SelectSingleNode(".//span[@class='sRcB8']|.//div[@class='QTPlac']/span[3]|.//div[@class='TM2JYd']|.//div[contains(@class,'YK0p7d rZFLMc')]")?.InnerText.Trim() ?? "0h 0m";//02-07-2025//29-07-2024
+                        string hours = nd.SelectSingleNode(".//span[@class='sRcB8']|.//div[@class='QTPlac']/span[3]|.//div[@class='TM2JYd']")?.InnerText.Trim() ?? nd.SelectSingleNode(".//div[contains(@class,'YK0p7d rZFLMc')]")?.InnerText.Trim() ?? "0h 0m";//07-07-2025//02-07-2025//29-07-2024
                         string connecting = nd.SelectSingleNode(".//span[@class='u85UCd']|.//div[@class='QTPlac']/span[1]|.//div[@class='GfzIoc']|.//div[@class='oYQBg x8hvt']/span")?.InnerText.Trim() ?? "";//02-07-2025//29-07-2024
                         connecting = string.IsNullOrEmpty(connecting) ? "Nonstop" : !connecting.Contains("Connecting") && !connecting.Contains("Nonstop") ? "Connecting" : !connecting.Contains("Nonstop-Flug") ? "Nonstop" : !connecting.Contains("Mit Umsteigen") ? "Nonstop" : connecting;//02-12-2024
-                        string price = nd.SelectSingleNode(".//span[@class='xqqLDd']|.//span[@class='cirEce']|.//div[@class='n22NNe']|.//div[@class='kJ3fh']/div[contains(@class,'YK0p7d rZFLMc')]")?.InnerText.Trim() ?? "0";//04-07-2025//02-07-2025//29-07-2024
+                        string price = nd.SelectSingleNode(".//span[@class='xqqLDd']|.//span[@class='cirEce']|.//div[@class='n22NNe']")?.InnerText.Trim() ?? nd.SelectSingleNode(".//div[contains(@class,'YK0p7d rZFLMc')]")?.InnerText.Trim() ?? "0";//07-07-2025//04-07-2025//02-07-2025//29-07-2024
                         string priceValue = string.Empty;
                         string hoursValue = string.Empty;
                         if (!string.IsNullOrEmpty(hours))
@@ -2342,7 +2342,7 @@ namespace RapidTrackingSingleThread
             if (nd != null)
                 return "TopSights";*///23-03-2022//19-01-2023
 
-            nd = node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]|.//div[contains(@class, 'vdQmEd')]|.//div[@class='cj1ht QkBAO oYQBg']|.//div[@class='p21Z4']");//18-02-2025//29-07-2024//29-06-2023//23-03-2022
+            nd = node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]|.//div[contains(@class, 'vdQmEd')]|.//div[contains(@class,'QkBAO')]|.//div[@class='p21Z4']");//07-07-2025//18-02-2025//29-07-2024//29-06-2023//23-03-2022
             if (nd != null && nd.SelectNodes(".//div[@class='MxQnIc']") == null && node.SelectSingleNode(".//div[@class='XNfAUb']|.//h1[contains(@class, 'bNg8Rb')]" +
                 "|.//div[@class='ad5fcd']|.//div[contains(@class,'vmod')]|.//div[@class='HJSKzf']|.//div[contains(@class,'wDYxhc')]|.//div[@class='OcpZAb']/w-answer|.//div[@class='e2BEnf q8U8x']|.//miniapps-card-header") == null)//19-06-2025//06-06-2025//13-05-2025//05-05-2025//22-04-2025//21-02-2025//27-12-2024//19-08-2024//30-06-2023
                 return "Flights";//23-03-2022
@@ -2660,7 +2660,7 @@ namespace RapidTrackingSingleThread
                         return true;
                 if ((node.SelectSingleNode(".//div[contains(@class, 'RPdfze')]|.//div[contains(@class, 'nJMOzb')]" +
                     "|.//div[contains(@class, 'Qkn3ie')]|.//div[contains(@class, 'vdQmEd')]|.//div[@class='lMMUFc']" +
-                    "|.//div[@class='wH6SXe']|.//div[contains(@class,'WlTAzf')]|.//div[@class='cj1ht QkBAO oYQBg']" +
+                    "|.//div[@class='wH6SXe']|.//div[contains(@class,'WlTAzf')]|.//div[contains(@class,'QkBAO')]" +//07-07-2025
                     "|.//div[@class='oIk2Cb']|.//div[@jsmodel='Wn3aEc']|.//div[@class='zd2Jbb TEA6Fc']|.//div[@id='sports-app']") != null
                     || node.Attributes["class"]?.Value == "oIk2Cb") && node.SelectSingleNode(".//div[contains(@class,'g ')]") == null)//03-04-2025//01-01-2025//16-12-2024//10-12-2024//09-12-2024//04-12-2024//14-10-2024
                     return true;//29-06-2023
@@ -2683,7 +2683,7 @@ namespace RapidTrackingSingleThread
                         return false;//10-12-2021
                     else //10-12-2021
                         return true;
-                if (node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]|.//div[@class='wYpZje']|.//div[@class='cj1ht QkBAO oYQBg']|.//div[@class='p21Z4']") != null)//18-02-2025//29-01-2025//08-07-2024
+                if (node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]|.//div[@class='wYpZje']|.//div[contains(@class,'QkBAO')]|.//div[@class='p21Z4']") != null)//07-07-2025//18-02-2025//29-01-2025//08-07-2024
                     return true;
                 HtmlNodeCollection nds = node.SelectNodes(".//div");
                 if (nds != null)

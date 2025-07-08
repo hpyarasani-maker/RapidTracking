@@ -3391,7 +3391,7 @@ namespace RapidTrackingResSingleThread
                 nd = node.SelectSingleNode(".//div[@class='ki5rnd']|.//div[@class='UyqAp']");//27-07-2022 //23-01-2020   //21-02-2020 included selector for App block
             if (nd != null)
             {
-                if (node.SelectSingleNode(".//g-img[@class='o8ebK']") == null)//27-07-2022
+                if (node.SelectSingleNode(".//g-img[@class='o8ebK']|.//div[@jsname='Ypkwb']") == null)//08-07-2025//27-07-2022
                     return "Apps";
             }
             //16-08-2019
@@ -3762,7 +3762,7 @@ namespace RapidTrackingResSingleThread
 
             //22-11-2019
             //nd = node.SelectSingleNode(".//div[@class='g kno-result rQUFld mnr-c g-blk']|.//w-answer/div[@class='MUxGbd t51gnb lyLwlc lEBKkf']|.//div[@class='ifM9O']|.//div[@class='Q9mvUc']|.//div[contains(@class,'tkQJMd')]|.//div[contains(@class, 'RPdfze')]|.//div[contains(@class, 'Qkn3ie')]");//22-09-2023//07-07-2023 FindResultsOn block //03-07-2023//08-07-2022//16-02-2022 //01-10-2020 Answered Card selector included
-            nd = node.SelectSingleNode(".//div[@class='g kno-result rQUFld mnr-c g-blk']|.//w-answer/div[@class='MUxGbd t51gnb lyLwlc lEBKkf']|.//div[@class='ifM9O']|.//div[@class='Q9mvUc']|.//div[contains(@class,'tkQJMd')]|.//div[contains(@class, 'RPdfze')]|.//div[contains(@class, 'Qkn3ie')]|.//div/span[@class='kL6Fzb']");//11-0-2024 DataSet Block or uncomment above line
+            nd = node.SelectSingleNode(".//div[@class='g kno-result rQUFld mnr-c g-blk']|.//w-answer/div[@class='MUxGbd t51gnb lyLwlc lEBKkf']|.//div[@class='ifM9O']|.//div[@class='Q9mvUc']|.//div[contains(@class,'tkQJMd')]|.//div[contains(@class, 'RPdfze')]|.//div[contains(@class, 'Qkn3ie')]|.//div/span[@class='kL6Fzb']|.//div[@class='LQCGqc']");//03-07-2025//11-0-2024 DataSet Block or uncomment above line
             if (nd != null)
             {
                 return true;
@@ -3960,6 +3960,8 @@ namespace RapidTrackingResSingleThread
                         ls = nd.SelectNodes(".//ol[@jscontroller='M2ABbc']/div");//23-04-2025
                     if (ls != null && string.IsNullOrEmpty(ls[0].InnerText))//01-05-2025
                         ls = nd.SelectNodes(".//ol[@jscontroller='M2ABbc']/li|.//ul[@jscontroller='M2ABbc']/li");//01-05-2025
+                    if (ls == null)//07-07-2025
+                        ls = nd.SelectNodes(".//ul[@jscontroller='M2ABbc']/li");//07-07-2025
                     if (ls != null)
                     {
                         foreach (HtmlNode nd1 in ls)

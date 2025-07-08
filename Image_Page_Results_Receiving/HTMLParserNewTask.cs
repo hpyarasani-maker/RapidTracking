@@ -21,11 +21,11 @@ namespace Image_Page_Results_Receiving
     {
         string myDate = DateTime.Today.ToString("yyyy-MM-dd");
         public event KeywordDone OnKeywordDone;        
-        public delegate void KeywordDone(string value);
-
+        //public delegate void KeywordDone(string value);
+        Thread t1;
         public HTMLParserNewTask()
         {
-            Thread t1 = new Thread(new ThreadStart(StartProcess))
+            t1 = new Thread(new ThreadStart(StartProcess))
             {
                 Name = "74_1"                
             };
@@ -238,7 +238,7 @@ namespace Image_Page_Results_Receiving
             {
                 Console.WriteLine("Processing the keyword: " + kw);
 
-                string tname = Thread.CurrentThread.Name;
+                string tname = t1.Name;
 
                 string path = @"C:\Inetpub\wwwroot\oxycallback_" + tname + ".xml";
 

@@ -24,13 +24,13 @@ namespace RapidTrackingLoopReceiving
 
         public event KeywordDone OnKeywordDone;
         double apitime, dbtime;    // 31-03-2020
-
+        Thread t1;
         public HTMLParserNewTask()
         {
             desktop = new Desktop();
             ios = new iOS();
 
-            Thread t1 = new Thread(new ThreadStart(StartProcess))
+            t1 = new Thread(new ThreadStart(StartProcess))
             {
                 //Name = "All_1"
                 Name = "NewSEIDs_2"
@@ -400,7 +400,7 @@ namespace RapidTrackingLoopReceiving
 
         private async Task SendXmlToAPI(string seid, string kw, string res)
         {
-            string tname = Thread.CurrentThread.Name;
+            string tname = t1.Name;
             string path = @"C:\Inetpub\wwwroot\rapidtracking_" + tname + ".xml";
 
             XmlDocument xd = new XmlDocument();

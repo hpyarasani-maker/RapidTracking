@@ -35,6 +35,7 @@
             this.progress_lbl = new System.Windows.Forms.Label();
             this.worklist = new System.Windows.Forms.ListBox();
             this.lblCount = new System.Windows.Forms.Label();
+            this.rd_lbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblIP
@@ -48,7 +49,7 @@
             // 
             // results
             // 
-            this.results.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.results.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.results.Location = new System.Drawing.Point(257, 36);
             this.results.Multiline = true;
@@ -67,8 +68,8 @@
             // 
             // errorList
             // 
-            this.errorList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.errorList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.errorList.Location = new System.Drawing.Point(257, 210);
             this.errorList.Name = "errorList";
@@ -84,7 +85,7 @@
             // 
             // worklist
             // 
-            this.worklist.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.worklist.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.worklist.HorizontalScrollbar = true;
             this.worklist.Location = new System.Drawing.Point(12, 36);
@@ -101,11 +102,21 @@
             this.lblCount.TabIndex = 16;
             this.lblCount.Text = "#";
             // 
+            // rd_lbl
+            // 
+            this.rd_lbl.AutoSize = true;
+            this.rd_lbl.Location = new System.Drawing.Point(358, 116);
+            this.rd_lbl.Name = "rd_lbl";
+            this.rd_lbl.Size = new System.Drawing.Size(70, 13);
+            this.rd_lbl.TabIndex = 18;
+            this.rd_lbl.Text = "RandomTime";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(929, 599);
+            this.Controls.Add(this.rd_lbl);
             this.Controls.Add(this.lblCount);
             this.Controls.Add(this.lblIP);
             this.Controls.Add(this.results);
@@ -131,6 +142,7 @@
         private System.Windows.Forms.Label progress_lbl;
         private System.Windows.Forms.ListBox worklist;
         private System.Windows.Forms.Label lblCount;
+        private System.Windows.Forms.Label rd_lbl;
     }
 }
 

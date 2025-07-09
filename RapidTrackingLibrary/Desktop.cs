@@ -1313,7 +1313,7 @@ namespace RapidTrackingLibrary
                 nd = node.SelectSingleNode(".");//03-04-2025
             if (nd != null)
             {
-                if (nd.SelectSingleNode(".//div[contains(@class,'T6zPgb')]/div[@role='heading']") != null)
+                if (nd.SelectSingleNode(".//div[contains(@class,'T6zPgb')]/div[@role='heading']|.//div[contains(@class,'PJI6ge')]/span[@role='heading']") != null)//09-07-2025
                 {
                     s.Append("<block type=\"peopleAlsoSearch\" >");
                     HtmlNodeCollection nc = node.SelectNodes(".//div[@class='oatEtb']/span|.//div[@class='oatEtb']/div/span");//01-11-2024

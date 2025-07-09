@@ -45,7 +45,7 @@ namespace TrendingDesktopSingleThread
             sb.Append(topStuff);
 
             HtmlNode rso = doc.DocumentNode.SelectSingleNode("//div[@id='rso']");
-            HtmlNodeCollection nodeCol = rso.SelectNodes(".//div[contains(@class,'MjjYud')]");//09-12-2024
+            HtmlNodeCollection nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'MjjYud')]");//09-07-2025//09-12-2024
             if (nodeCol == null || (nodeCol.Count <= 1))
                 nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'TzHB6b cLjAic')]|.//div[contains(@id, 'arc-srp')]/div/div[@class='MjjYud']|.//div[contains(@id, 'arc-srp')]/div/div/div[@class='MjjYud']");
             if (nodeCol == null || nodeCol.Count <= 4)

@@ -39,7 +39,7 @@ namespace RapidTrackingMultiThreadRequests
             HtmlNode rso = doc.DocumentNode.SelectSingleNode("//div[@id='rso']");
             HtmlNodeCollection nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'MjjYud')]");//09-07-2025//09-12-2024
             if (nodeCol == null || (nodeCol.Count <= 1))
-                nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'TzHB6b cLjAic')]|.//div[contains(@id, 'arc-srp')]/div/div[@class='MjjYud']|.//div[contains(@id, 'arc-srp')]/div/div/div[@class='MjjYud']");
+                nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'TzHB6b cLjAic')]|.//div[contains(@id, 'arc-srp')]/div/div[@class='MjjYud']|.//div[contains(@id, 'arc-srp')]/div/div/div[@class='MjjYud']|.//div[@class='JCZQSb']|.//g-section-with-header[contains(@class,'yG4QQe TBC9ub')]");//08-07-2025
             if (nodeCol == null || nodeCol.Count <= 4)
                 nodeCol = rso.SelectNodes(".//div[contains(@class,'TzHB6b cLjAic')]");//02-11-2023
             //if (nodeCol == null || nodeCol.Count <= 3)//02-11-2023

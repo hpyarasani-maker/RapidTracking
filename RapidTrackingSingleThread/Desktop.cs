@@ -2604,7 +2604,7 @@ namespace RapidTrackingSingleThread
                         "|.//g-section-with-header[contains(@class,'yG4QQe TBC9ub')]|.//div[contains(@class,'knowledge-finance')]|.//div[@class='Lv2Cle']") != null) return true;//14-02-2025//05-12-2024 //05-12-2023
                     if (node.SelectSingleNode(".//div[@class='osrp-blk']|.//div[@class='tpa-cc']|.//div[@class='pKv8Zb fm06If']") != null && node.SelectSingleNode(".//div[@class='l44Vof']|.//div[@class='o8ebK']") == null && node.SelectSingleNode(".//div[@class='H93uF']") == null)//25-11-2024//25-04-2024 //17-05-2022//31-12-2021
                         return false; //20-08-2021
-                    if (node.Attributes["id"]?.Value == "rhs") return false;//03-03-2022
+                    if (node.Attributes["id"]?.Value == "rhs" || node.SelectSingleNode(".//div[@id='rhs']") != null) return false;//10-07-2025//03-03-2022
                     //02-12-2020
                     HtmlNode nd = node.SelectSingleNode(".//div[@role='heading']|.//div[@class='UDZeY OTFaAf']"); //02-07-2021
                     

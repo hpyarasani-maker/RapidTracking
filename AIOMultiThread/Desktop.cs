@@ -298,7 +298,7 @@ namespace AIOMultiThread
             if (colpas != null)
             {
                 HtmlNode node = colpas.SelectSingleNode(".//div[@class='oIk2Cb']");
-                if (node != null)
+                if (node != null && !node.Ancestors("div").Any(n => n.HasClass("MjjYud")))//10-07-2025
                 {
                     if (node.SelectSingleNode(".//div[contains(@class,'T6zPgb')]/div[@role='heading']|.//div[contains(@class,'M6HR1c')]/span[@role='heading']") != null)//02-07-2025//29-01-2025
                     {
@@ -1225,7 +1225,7 @@ namespace AIOMultiThread
                 nd = node.SelectSingleNode(".");//03-04-2025
             if (nd != null)
             {
-                if (nd.SelectSingleNode(".//div[contains(@class,'T6zPgb')]/div[@role='heading']") != null)
+                if (nd.SelectSingleNode(".//div[contains(@class,'T6zPgb')]/div[@role='heading']|.//div[contains(@class,'PJI6ge')]/span[@role='heading']") != null)//09-07-2025
                 {
                     s.Append("<block type=\"peopleAlsoSearch\" >");
                     HtmlNodeCollection nc = node.SelectNodes(".//div[@class='oatEtb']/span|.//div[@class='oatEtb']/div/span");//01-11-2024
@@ -1996,10 +1996,10 @@ namespace AIOMultiThread
                     try
                     {
                         string airline = nd.SelectSingleNode(".//span[@class='ps0VMc']|.//div[@class='A4fsl']|.//div[contains(@class,'ZhosBf') and contains(@class,'dctkEf')]|.//div[@class='eqdsgd']")?.InnerText.Trim() ?? "";//02-07-2025//15-11-2024//29-07-2024
-                        string hours = nd.SelectSingleNode(".//span[@class='sRcB8']|.//div[@class='QTPlac']/span[3]|.//div[@class='TM2JYd']|.//div[contains(@class,'YK0p7d rZFLMc')]")?.InnerText.Trim() ?? "0h 0m";//02-07-2025//29-07-2024
+                        string hours = nd.SelectSingleNode(".//span[@class='sRcB8']|.//div[@class='QTPlac']/span[3]|.//div[@class='TM2JYd']")?.InnerText.Trim() ?? nd.SelectSingleNode(".//div[contains(@class,'YK0p7d rZFLMc')]")?.InnerText.Trim() ?? "0h 0m";//07-07-2025//02-07-2025//29-07-2024
                         string connecting = nd.SelectSingleNode(".//span[@class='u85UCd']|.//div[@class='QTPlac']/span[1]|.//div[@class='GfzIoc']|.//div[@class='oYQBg x8hvt']/span")?.InnerText.Trim() ?? "";//02-07-2025//29-07-2024
                         connecting = string.IsNullOrEmpty(connecting) ? "Nonstop" : !connecting.Contains("Connecting") && !connecting.Contains("Nonstop") ? "Connecting" : !connecting.Contains("Nonstop-Flug") ? "Nonstop" : !connecting.Contains("Mit Umsteigen") ? "Nonstop" : connecting;//02-12-2024
-                        string price = nd.SelectSingleNode(".//span[@class='xqqLDd']|.//span[@class='cirEce']|.//div[@class='n22NNe']")?.InnerText.Trim() ?? "0";//02-07-2025//29-07-2024
+                        string price = nd.SelectSingleNode(".//span[@class='xqqLDd']|.//span[@class='cirEce']|.//div[@class='n22NNe']")?.InnerText.Trim() ?? nd.SelectSingleNode(".//div[contains(@class,'YK0p7d rZFLMc')]")?.InnerText.Trim() ?? "0";//07-07-2025//04-07-2025//02-07-2025//29-07-2024
                         string priceValue = string.Empty;
                         string hoursValue = string.Empty;
                         if (!string.IsNullOrEmpty(hours))
@@ -2199,7 +2199,7 @@ namespace AIOMultiThread
         private string Convertprice(string price)
         {
             string patternprice = "[\\d]+";
-            string p = price.Contains("€") ? price.Replace(" ", "").Replace(".", "") : price.Replace(",", "").Replace("٬", "");//01-01-2024
+            string p = price.Contains("€") ? price.Replace(" ", "").Replace(".", "").Replace(",", "") : price.Replace(",", "").Replace("٬", "");//04-07-2025//01-01-2024
             Match mc = Regex.Match(p, patternprice, RegexOptions.IgnoreCase);
             if (mc.Success)
                 price = mc.Value;
@@ -2246,7 +2246,7 @@ namespace AIOMultiThread
                 int hrs = Convert.ToInt32(match.Groups[2].Value);
                 return (days > 0 || hrs > 0) ? ((days * 24) + hrs) + "." + "0" : "0.0";
             }
-            match = Regex.Match(hours, @"(\d+)[\s]?(h|Std|시간)[\W]* (\d+)[\s]?(m|분|[M|m]in)");//24-02-2025
+            match = Regex.Match(hours, @"(\d+)[\s]?(h|Std|시간)[\W]*[\s]?(\d+)[\s]?(m|분|[M|m]in)");//04-07-2025//24-02-2025
             if (match.Success)
             {
                 int hrs = Convert.ToInt32(match.Groups[1].Value);
@@ -2335,7 +2335,7 @@ namespace AIOMultiThread
             if (nd != null)
                 return "TopSights";*///23-03-2022//19-01-2023
 
-            nd = node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]|.//div[contains(@class, 'vdQmEd')]|.//div[@class='cj1ht QkBAO oYQBg']|.//div[@class='p21Z4']");//18-02-2025//29-07-2024//29-06-2023//23-03-2022
+            nd = node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]|.//div[contains(@class, 'vdQmEd')]|.//div[contains(@class,'QkBAO')]|.//div[@class='p21Z4']");//07-07-2025//18-02-2025//29-07-2024//29-06-2023//23-03-2022
             if (nd != null && nd.SelectNodes(".//div[@class='MxQnIc']") == null && node.SelectSingleNode(".//div[@class='XNfAUb']|.//h1[contains(@class, 'bNg8Rb')]" +
                 "|.//div[@class='ad5fcd']|.//div[contains(@class,'vmod')]|.//div[@class='HJSKzf']|.//div[contains(@class,'wDYxhc')]|.//div[@class='OcpZAb']/w-answer|.//div[@class='e2BEnf q8U8x']|.//miniapps-card-header") == null)//19-06-2025//06-06-2025//13-05-2025//05-05-2025//22-04-2025//21-02-2025//27-12-2024//19-08-2024//30-06-2023
                 return "Flights";//23-03-2022
@@ -2597,7 +2597,7 @@ namespace AIOMultiThread
                         "|.//g-section-with-header[contains(@class,'yG4QQe TBC9ub')]|.//div[contains(@class,'knowledge-finance')]|.//div[@class='Lv2Cle']") != null) return true;//14-02-2025//05-12-2024 //05-12-2023
                     if (node.SelectSingleNode(".//div[@class='osrp-blk']|.//div[@class='tpa-cc']|.//div[@class='pKv8Zb fm06If']") != null && node.SelectSingleNode(".//div[@class='l44Vof']|.//div[@class='o8ebK']") == null && node.SelectSingleNode(".//div[@class='H93uF']") == null)//25-11-2024//25-04-2024 //17-05-2022//31-12-2021
                         return false; //20-08-2021
-                    if (node.Attributes["id"]?.Value == "rhs") return false;//03-03-2022
+                    if (node.Attributes["id"]?.Value == "rhs" || node.SelectSingleNode(".//div[@id='rhs']") != null) return false;//10-07-2025//03-03-2022
                     //02-12-2020
                     HtmlNode nd = node.SelectSingleNode(".//div[@role='heading']|.//div[@class='UDZeY OTFaAf']"); //02-07-2021
 
@@ -2653,7 +2653,7 @@ namespace AIOMultiThread
                         return true;
                 if ((node.SelectSingleNode(".//div[contains(@class, 'RPdfze')]|.//div[contains(@class, 'nJMOzb')]" +
                     "|.//div[contains(@class, 'Qkn3ie')]|.//div[contains(@class, 'vdQmEd')]|.//div[@class='lMMUFc']" +
-                    "|.//div[@class='wH6SXe']|.//div[contains(@class,'WlTAzf')]|.//div[@class='cj1ht QkBAO oYQBg']" +
+                    "|.//div[@class='wH6SXe']|.//div[contains(@class,'WlTAzf')]|.//div[contains(@class,'QkBAO')]" +//07-07-2025
                     "|.//div[@class='oIk2Cb']|.//div[@jsmodel='Wn3aEc']|.//div[@class='zd2Jbb TEA6Fc']|.//div[@id='sports-app']") != null
                     || node.Attributes["class"]?.Value == "oIk2Cb") && node.SelectSingleNode(".//div[contains(@class,'g ')]") == null)//03-04-2025//01-01-2025//16-12-2024//10-12-2024//09-12-2024//04-12-2024//14-10-2024
                     return true;//29-06-2023
@@ -2676,7 +2676,7 @@ namespace AIOMultiThread
                         return false;//10-12-2021
                     else //10-12-2021
                         return true;
-                if (node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]|.//div[@class='wYpZje']|.//div[@class='cj1ht QkBAO oYQBg']|.//div[@class='p21Z4']") != null)//18-02-2025//29-01-2025//08-07-2024
+                if (node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]|.//div[@class='wYpZje']|.//div[contains(@class,'QkBAO')]|.//div[@class='p21Z4']") != null)//07-07-2025//18-02-2025//29-01-2025//08-07-2024
                     return true;
                 HtmlNodeCollection nds = node.SelectNodes(".//div");
                 if (nds != null)

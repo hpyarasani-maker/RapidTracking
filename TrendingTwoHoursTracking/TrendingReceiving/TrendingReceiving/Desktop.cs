@@ -299,7 +299,7 @@ namespace TrendingReceiving
             if (colpas != null)
             {
                 HtmlNode node = colpas.SelectSingleNode(".//div[@class='oIk2Cb']");
-                if (node != null)
+                if (node != null && !node.Ancestors("div").Any(n => n.HasClass("MjjYud")))//10-07-2025
                 {
                     if (node.SelectSingleNode(".//div[contains(@class,'T6zPgb')]/div[@role='heading']|.//div[contains(@class,'M6HR1c')]/span[@role='heading']") != null)//02-07-2025//29-01-2025
                     {
@@ -1226,7 +1226,7 @@ namespace TrendingReceiving
                 nd = node.SelectSingleNode(".");//03-04-2025
             if (nd != null)
             {
-                if (nd.SelectSingleNode(".//div[contains(@class,'T6zPgb')]/div[@role='heading']") != null)
+                if (nd.SelectSingleNode(".//div[contains(@class,'T6zPgb')]/div[@role='heading']|.//div[contains(@class,'PJI6ge')]/span[@role='heading']") != null)//09-07-2025
                 {
                     s.Append("<block type=\"peopleAlsoSearch\" >");
                     HtmlNodeCollection nc = node.SelectNodes(".//div[@class='oatEtb']/span|.//div[@class='oatEtb']/div/span");//01-11-2024
@@ -2598,7 +2598,7 @@ namespace TrendingReceiving
                         "|.//g-section-with-header[contains(@class,'yG4QQe TBC9ub')]|.//div[contains(@class,'knowledge-finance')]|.//div[@class='Lv2Cle']") != null) return true;//14-02-2025//05-12-2024 //05-12-2023
                     if (node.SelectSingleNode(".//div[@class='osrp-blk']|.//div[@class='tpa-cc']|.//div[@class='pKv8Zb fm06If']") != null && node.SelectSingleNode(".//div[@class='l44Vof']|.//div[@class='o8ebK']") == null && node.SelectSingleNode(".//div[@class='H93uF']") == null)//25-11-2024//25-04-2024 //17-05-2022//31-12-2021
                         return false; //20-08-2021
-                    if (node.Attributes["id"]?.Value == "rhs") return false;//03-03-2022
+                    if (node.Attributes["id"]?.Value == "rhs" || node.SelectSingleNode(".//div[@id='rhs']") != null) return false;//10-07-2025//03-03-2022
                     //02-12-2020
                     HtmlNode nd = node.SelectSingleNode(".//div[@role='heading']|.//div[@class='UDZeY OTFaAf']"); //02-07-2021
 

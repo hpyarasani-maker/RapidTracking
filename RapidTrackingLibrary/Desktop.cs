@@ -2557,7 +2557,7 @@ namespace RapidTrackingLibrary
             if (nd != null && node.SelectSingleNode(".//div[contains(@class,'Fzsovc')]") != null)//13-11-2024
                 return "aiOverview";//21-08-2024 AIOverview
             nd = node.SelectSingleNode(".//div[@class='oIk2Cb']");//14-10-2024 //11-10-2024  peoplealsosearch
-            if ((nd != null || node.Attributes["class"]?.Value == "oIk2Cb") && node.Attributes["class"]?.Value != "MjjYud" && node.ParentNode?.SelectNodes(".//div[@id='bres']") == null)//09-07-2025//03-04-2025
+            if ((nd != null || node.Attributes["class"]?.Value == "oIk2Cb") && node.Attributes["class"]?.Value != "MjjYud" && node.ParentNode?.SelectNodes(".//div[@id='bres']") != null)//09-07-2025//03-04-2025
                 return "PeopleAlsoSearch"; // 11-10-2024 PeopleAlsoSearch
             nd = node.SelectSingleNode(".//div[contains(@class,'Ww4FFb vt6azd')and(.//div[(@class='XNfAUb')])]");//11-10-2024 sitesCarousel
             if (nd != null && nd.SelectSingleNode(".//div[contains(@class,'Ylm8Fc')]") == null && node.SelectSingleNode(".//div[@class='zxLiic']") == null)//27-02-2025//10-12-2024

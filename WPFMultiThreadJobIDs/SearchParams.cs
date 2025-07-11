@@ -2408,11 +2408,11 @@ namespace WPFMultiThreadJobIDs
             },
             new SearchProperties()
             {
-                seid=740, domain="kg", geo_location="Kurgyzstan", locale="ky-kg", uule="w+CAIQICIKS3lyZ3l6c3Rhbg==", device="desktop_chrome"
+                seid=740, domain="kg", geo_location="Kyrgyzstan", locale="ky-kg", uule="w+CAIQICIKS3lyZ3l6c3Rhbg==", device="desktop_chrome"
             },
             new SearchProperties()
             {
-                seid=741, domain="kg", geo_location="Kurgyzstan", locale="ky-kg", uule="w+CAIQICIKS3lyZ3l6c3Rhbg==", device="mobile_android"
+                seid=741, domain="kg", geo_location="Kyrgyzstan", locale="ky-kg", uule="w+CAIQICIKS3lyZ3l6c3Rhbg==", device="mobile_android"
             },
             new SearchProperties()
             {

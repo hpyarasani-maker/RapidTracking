@@ -147,6 +147,7 @@ namespace Oxylabs_BulkKeywords
             //string strQry = "exec [dbo].[GetBulk_P] '" + myDate + "'";  //sending procedure previous date keywords
             //string strQry = "exec [dbo].[Tracking_DB_Keywords_SEID_102_S] '" + myDate + "'";  //Without Condition WOC Single Keyword Desktop and Mobile Last keywords
             //string strQry = "exec [dbo].[Tracking_DB_Keywords_SEID_102_SS] '" + myDate + "'";  //Without Condition WOC Single Keyword for special Characters Desktop and Mobile Last keywords
+            //string strQry = "exec [dbo].[GetKeywords_746] '" + myDate + "'";  //For seid's 746,747,770,771 single Keyword Desktop and Mobile keywords
             //string strQry = "exec [dbo].[GetBulk_All] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulk_Desktop] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulk_Mobile] '" + myDate + "'";
@@ -230,9 +231,10 @@ namespace Oxylabs_BulkKeywords
                 //mseconds = rd.Next(20, 35) * 1000; // OtherDesktop single thread 500 batches And 20 Condition Sending
                 //mseconds = rd.Next(20, 40) * 1000; // Seid=102 single thread 500 batches
                 //mseconds = rd.Next(20, 45) * 1000; // Seid=1 single thread 500 batches
+                //mseconds = rd.Next(10, 20) * 1000;//For seid's 746,747,770,771 single Keyword Desktop and Mobile keywords
                 //uncomment all for fast sending //22-03-2024
                 //mseconds = rd.Next(30, 50) * 1000; //First Sending app 29-06-2020    //SEID=58-1
-               //mseconds = rd.Next(30, 70) * 1000; //First Sending app 29-06-2020    //SEID=58-2
+                //mseconds = rd.Next(30, 70) * 1000; //First Sending app 29-06-2020    //SEID=58-2
                 //mseconds = rd.Next(30, 80) * 1000; //Second Sending app 29-06-2020 //SEID=106-1
                 //mseconds = rd.Next(30, 100) * 1000; //Second Sending app 29-06-2020 //SEID=106-2
                 //mseconds = rd.Next(30, 110) * 1000; //Third Sending app 29-06-2020 //SEID=OtherDesktop-1

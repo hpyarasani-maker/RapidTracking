@@ -137,7 +137,7 @@ namespace Oxylabs_BulkKeywords
             string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
 
             string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking other desktop
-            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking other mobile
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  //For seid's 746,747,770,771 single Keyword Desktop and Mobile keywords
             //string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
             //string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidtrackingmobilehotel/";
             //string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidTrackingnewdesktop/"; //Desktop new keywords

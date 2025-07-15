@@ -55,7 +55,7 @@ namespace Oxylabs_BulkKeywords
         private async void StartProcess() //06-08-2024
         {
             string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking desktop and all keywords
-            //string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking mobile
+            //string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  //For seid's 746,747,770,771 single Keyword Desktop and Mobile keywords
             // string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
             //string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingmobilehotel/";  // rapid tracking mobile
             //string url = "https://seresults.azurewebsites.net/api/callbackrapidTrackingnewdesktop/"; //Desktop new keywords

@@ -116,10 +116,10 @@ namespace Oxylabs_BulkKeywords
             this.Invoke((MethodInvoker)delegate()
             {
                 worklist.Items.Clear();
-                worklist.Items.Add("102:hotel kungsträdgården tripadvisor");
-                worklist.Items.Add("1:sex toys, australia, donald trump, narendra modi");
-                worklist.Items.Add("160:zlatan");
-                worklist.Items.Add("160:messi");
+                //worklist.Items.Add("102:hotel kungsträdgården tripadvisor");
+                //worklist.Items.Add("1:sex toys, australia, donald trump, narendra modi");
+                //worklist.Items.Add("160:zlatan");
+                //worklist.Items.Add("160:messi");
                 //worklist.Items.Add("61:cancervårdsförsäkring");
                 //.Items.Add("106:usd to euro");
                 worklist.Refresh();
@@ -127,21 +127,30 @@ namespace Oxylabs_BulkKeywords
                 date_picker.CustomFormat = "yyyy-MM-dd";
             });
 
-           return;
+           //return;
 
             Cursor.Current = Cursors.WaitCursor;
             string myDate = date_picker.Text;
 
-            string strQry = "exec [dbo].[GetBulkMobile_106_ALL] '" + myDate + "'";  // Seid=106
-            //string strQry = "exec [dbo].[GetBulkDesktop_58_ALL] '" + myDate + "'"; // Seid=58
-            //string strQry = "exec [dbo].[GetBulkOtherMobile_ALL] '" + myDate + "'"; // OtherMobile
-            //string strQry = "exec [dbo].[GetBulkOtherDesktop_ALL] '" + myDate + "'"; // OtherDesktop
-            //string strQry = "exec [dbo].[GetBulkMobile_102_ALL] '" + myDate + "'";  // Seid=102
-            //string strQry = "exec [dbo].[GetBulkDesktop_1_ALL] '" + myDate + "'";  // Seid=1
-            //string strQry = "exec [dbo].[GetBulk_NewSeids] '" + myDate + "'";
-            //string strQry = "exec [dbo].[GetBulkUKDesktop_Temp_1] '" + myDate + "'";    // seid: 503
+            string strQry = "exec [dbo].[GetBulkMobile_106_ALL] '" + myDate + "'";  // Seid=106 Normal Sending 
+            //string strQry = "exec [dbo].[GetBulkDesktop_58_ALL] '" + myDate + "'"; // Seid=58 Normal Sending
+            //string strQry = "exec [dbo].[GetBulkOtherMobile_ALL] '" + myDate + "'"; // OtherMobile Normal Sending
+            //string strQry = "exec [dbo].[GetBulkOtherDesktop_ALL] '" + myDate + "'"; // OtherDesktop Normal Sending
+            //string strQry = "exec [dbo].[GetBulkMobile_102_ALL] '" + myDate + "'";  // Seid=102 Normal Sending
+            //string strQry = "exec [dbo].[GetBulkDesktop_1_ALL] '" + myDate + "'";  // Seid=1 Normal Sending
+            //string strQry = "exec [dbo].[GetBulk_All_Desktop] '" + myDate + "'"; //Receive All Desktop Normal Sending
+            //string strQry = "exec [dbo].[GetBulk_All_Mobile] '" + myDate + "'"; //Receive All Mobile Normal Sending
+            //string strQry = "exec [dbo].[GetBulkDesktop_NewKeywords] '" + myDate + "'"; //New Keywords All Desktop Normal Sending
+            //string strQry = "exec [dbo].[GetBulkMobile_NewKeywords] '" + myDate + "'"; //New Keywords All Mobile Normal Sending
+            //string strQry = "exec [dbo].[GetCommaKeywords] '" + myDate + "'"; // CommaKeywords for Desktop and Mobile Normal Sending
+            //string strQry = "exec [dbo].[GetCommaKeywords_New] '" + myDate + "'"; // New CommaKeywords for Desktop and Mobile Normal Sending
+            //string strQry = "exec [dbo].[GetBulk_P] '" + myDate + "'";  //sending procedure previous date keywords
+            //string strQry = "exec [dbo].[Tracking_DB_Keywords_SEID_102_S] '" + myDate + "'";  //Without Condition WOC Single Keyword Desktop and Mobile Last keywords
+            //string strQry = "exec [dbo].[Tracking_DB_Keywords_SEID_102_SS] '" + myDate + "'";  //Without Condition WOC Single Keyword for special Characters Desktop and Mobile Last keywords
             //string strQry = "exec [dbo].[GetBulk_All] '" + myDate + "'";
-            //string strQry = "exec [dbo]. [GetBulkDesktop_NewKeywords] '" + myDate + "'";
+            //string strQry = "exec [dbo].[GetBulk_Desktop] '" + myDate + "'";
+            //string strQry = "exec [dbo].[GetBulk_Mobile] '" + myDate + "'";
+            //string strQry = "exec [dbo].[GetBulkMobile_106_1] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkDesktop_58_2] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkMobile_102_1] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkDesktop_2] '" + myDate + "'";
@@ -150,15 +159,6 @@ namespace Oxylabs_BulkKeywords
             //string strQry = "exec [dbo].[GetBulkMobile_Hotel] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetCommaKeywords_Hotel] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkMobile_NotHotel] '" + myDate + "'";
-            //string strQry = "exec [dbo].[GetCommaKeywords] '" + myDate + "'";
-            //string strQry = "exec [dbo].[GetBulk_All] '" + myDate + "'";
-            //string strQry = "exec [dbo].[GetBulk_P] '" + myDate + "'";  //sending procedure previous date keywords
-            //string strQry = "exec [dbo].[GetBulk_Desktop] '" + myDate + "'";
-            //string strQry = "exec [dbo].[GetBulk_Mobile] '" + myDate + "'";
-            //string strQry = "exec [dbo]. [GetBulkMobile_NewKeywords] '" + myDate + "'";
-            //string strQry = "exec [dbo]. [GetBulk_All_Mobile] '" + myDate + "'";  //Mobile Receive all keywords
-            //string strQry = "exec [dbo].[GetBulkMobile_106_1] '" + myDate + "'";
-            //string strQry = "exec [dbo].[Tracking_DB_Keywords_SEID_102_S] '" + myDate + "'";  // Last keywords
             SqlConnection objCon = null;
             SqlDataReader objData = null;
 
@@ -226,8 +226,8 @@ namespace Oxylabs_BulkKeywords
             {
                 mseconds = rd.Next(10, 20) * 1000; // Seid=106 single thread 500 batches
                 //mseconds = rd.Next(10, 30) * 1000; // Seid=58 single thread 500 batches
-                //mseconds = rd.Next(20, 30) * 1000; // OtherMobile single thread 500 batches
-                //mseconds = rd.Next(20, 35) * 1000; // OtherDesktop single thread 500 batches
+                //mseconds = rd.Next(20, 30) * 1000; // OtherMobile single thread 500 batches And 20 Condition Sending
+                //mseconds = rd.Next(20, 35) * 1000; // OtherDesktop single thread 500 batches And 20 Condition Sending
                 //mseconds = rd.Next(20, 40) * 1000; // Seid=102 single thread 500 batches
                 //mseconds = rd.Next(20, 45) * 1000; // Seid=1 single thread 500 batches
                 //uncomment all for fast sending //22-03-2024

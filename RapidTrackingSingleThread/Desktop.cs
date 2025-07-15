@@ -251,7 +251,7 @@ namespace RapidTrackingSingleThread
                 if (col == null)
                     col = colb.SelectNodes(".//div[@id='tadsb']/div/ol/li");   //16-04-2020
                 //if (col == null) return s.ToString();   //20-01-2020 enable without related searches or comment it if related search required
-                if (col != null) //enable for related searches
+                if (col != null && !col[0].Ancestors("div").Any(n => n.HasClass("MjjYud")))//15-07-2025 //enable for related searches
                 {
                     s.Append("<block type=\"adwords\" url=\"\">");
                     foreach (HtmlNode nd in col)

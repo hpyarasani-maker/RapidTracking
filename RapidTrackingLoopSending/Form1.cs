@@ -133,11 +133,13 @@ namespace RapidTrackingLoopSending
 
             Cursor.Current = Cursors.WaitCursor;
             string myDate = date_picker.Text;
-
+            //Two Sending Apps for Loop SP_1 and SP_2
+            string strQry = "exec [Tracking_DB_Keywords_SEID_102_SP_1] '" + myDate + "'"; //Loop Sending 1st Thread Desktop and Mobile Normal Sending
+            //string strQry = "exec [Tracking_DB_Keywords_SEID_102_SP_2] '" + myDate + "'"; //Loop Sending 2st Thread Desktop and Mobile Normal Sending
             //string strQry = "exec [dbo].[GetBulk_NewSeids] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkUKDesktop_Temp_1] '" + myDate + "'";    // seid: 503
             //string strQry = "exec [dbo].[GetBulk_All] '" + myDate + "'";
-            //string strQry = "exec [dbo]. [GetBulkDesktop_NewKeywords] '" + myDate + "'";
+            //string strQry = "exec [dbo].[GetBulkDesktop_NewKeywords] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkDesktop_58_2] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkMobile_102_1] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkDesktop_2] '" + myDate + "'";
@@ -149,7 +151,7 @@ namespace RapidTrackingLoopSending
             //string strQry = "exec [dbo].[GetCommaKeywords] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulk_All] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulk_P] '" + myDate + "'";  //sending procedure previous date keywords
-            string strQry = "exec [Tracking_DB_Keywords_SEID_102_SeeMore] '" + myDate + "'"; //30-06-2022
+            //string strQry = "exec [Tracking_DB_Keywords_SEID_102_SeeMore] '" + myDate + "'"; //30-06-2022
             //string strQry = "exec [Tracking_DB_Keywords_SEID_102_TGBN] '" + myDate + "'"; //28-06-2022
             SqlConnection objCon = null;
             SqlDataReader objData = null;
@@ -215,8 +217,10 @@ namespace RapidTrackingLoopSending
 
             for (int i = 0; i < worklist.Items.Count; i++)
             {
-                //mseconds = rd.Next(30, 50) * 1000; //First Sending app 29-06-2020    //SEID=58-1
-               //mseconds = rd.Next(30, 70) * 1000; //First Sending app 29-06-2020    //SEID=58-2
+                //mseconds = rd.Next(30, 50) * 1000; //First Sending app 29-06-2020    //Loop Sending 1st Thread
+                //mseconds = rd.Next(30, 70) * 1000; //First Sending app 29-06-2020    //Loop Sending 2nd Thread
+                //mseconds = rd.Next(30, 50) * 1000; //First Sending app 29-06-2020    //SEID=58-1 
+                //mseconds = rd.Next(30, 70) * 1000; //First Sending app 29-06-2020    //SEID=58-2
                 //mseconds = rd.Next(30, 80) * 1000; //Second Sending app 29-06-2020 //SEID=106-1
                 //mseconds = rd.Next(30, 100) * 1000; //Second Sending app 29-06-2020 //SEID=106-2
                 //mseconds = rd.Next(30, 110) * 1000; //Third Sending app 29-06-2020 //SEID=OtherDesktop-1
@@ -257,7 +261,7 @@ namespace RapidTrackingLoopSending
                 {
                     rnd_lbl.Text = (mseconds / 1000).ToString() + " " + "seconds";
                 });
-                //Thread.Sleep(mseconds); //if you want to send fast comment this line...
+                Thread.Sleep(mseconds); //if you want to send fast comment this line...
             }
         }
         

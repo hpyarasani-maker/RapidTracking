@@ -53,13 +53,13 @@ namespace RapidTrackingLoopReceiving
             //string url = "https://seresults.azurewebsites.net/api/callbackrapidTrackingnewmobile/"; //mobile new keywords
             // string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingnewcommakeywords/";  // new comma keywords
 
-            string url = "https://seresults.azurewebsites.net/api/callbackuk503desktoptemp/"; //receiving New SEIDs
+            //string url = "https://seresults.azurewebsites.net/api/callbackuk503desktoptemp/"; //receiving New SEIDs
             //string url = "https://seresults.azurewebsites.net/api/trackingtrending/";
             //string url = "https://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58
             //string url = "https://seresults.azurewebsites.net/api/callbackuk106mobile/";      // 106
             //string url = "https://seresults.azurewebsites.net/api/callbackus1desktop/";     // 1
             //string url = "https://seresults.azurewebsites.net/api/callbackus102mobile/";      // 102
-            //string url = "https://seresults.azurewebsites.net/api/callbackotherdesktop/";  // other desktop
+            string url = "https://seresults.azurewebsites.net/api/callbackotherdesktop/";  // Loop Receiving other desktop
             //string url = "https://seresults.azurewebsites.net/api/callbackothermobile/";   // other mobiles
 
             //string url = "https://seresults.azurewebsites.net/api/callbackimagesdesktop/";       // images desktop

@@ -144,14 +144,14 @@ namespace RapidTrackingLoopSending
             //string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidTrackingnewmobile/"; //mobile new keywords
             // string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidtrackingnewcommakeywords/";  // new comma keywords
 
-            string callbackURL = "https://seresults.azurewebsites.net/api/callbackuk503desktoptemp"; //sending new SEIDs
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackuk503desktoptemp"; //sending new SEIDs
             //string callbackURL = "https://seresults.azurewebsites.net/api/trackingtrending/";
 
             //string callbackURL = "https://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58
             //string callbackURL = "https://seresults.azurewebsites.net/api/callbackuk106mobile/";       // 106
             //string callbackURL = "https://seresults.azurewebsites.net/api/callbackus1desktop/";     // 1            
             //string callbackURL = "https://seresults.azurewebsites.net/api/callbackus102mobile/";     // 102
-            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackotherdesktop/";  // other desktop
+            string callbackURL = "https://seresults.azurewebsites.net/api/callbackotherdesktop/";  // Loop other desktop
             //string callbackURL = "https://seresults.azurewebsites.net/api/callbackothermobile/";  // other mobile
 
             //string callbackURL = "https://seresults.azurewebsites.net/api/callbackimages/"; // images

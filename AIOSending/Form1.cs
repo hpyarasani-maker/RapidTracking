@@ -113,17 +113,18 @@ namespace AIOSending
 
             Cursor.Current = Cursors.WaitCursor;
             string myDate = date_picker.Text;
-
+            //First Four Apps for Sending AIO Mobile Keywords
+            string strQry = "exec [dbo].[GetBulk_AIO_Mobile_1]  '" + myDate + "'";// Normal Sending all mobile keywords batch keyword
+            //string strQry = "exec [dbo].[GetBulk_AIO_Mobile_2]  '" + myDate + "'";// Normal Sending all mobile keywords batch keyword
+            //string strQry = "exec [dbo].[GetBulk_AIO_Mobile_3]  '" + myDate + "'";// Normal Sending all mobile keywords batch keyword
+            //string strQry = "exec [dbo].[GetBulk_AIO_Mobile_4]  '" + myDate + "'";// Normal Sending all mobile keywords batch keyword
+            //string strQry = "exec [dbo].[GetBulk_AIO_Mobile_ALL]  '" + myDate + "'";  // AIOverview Single keyword Mobile Receive all with 0 condition keywords for true //17-02-2025
+            //string strQry = "exec [dbo].[Tracking_DB_Keywords_SEID_102_AIO]  '" + myDate + "'";// AIOverview Single keyword Mobile WOC condition keywords for true //17-02-2025
             //string strQry = "exec [dbo].[GetBulk_AI_Desktop]  '" + myDate + "'";  // AIOverview Desktop keywords //1026,1027,1028,1029
             //string strQry = "exec [dbo].[GetBulk_AI_Mobile]  '" + myDate + "'";  // AIOverview Mobile keywords//1026,1027,1028,1029
             //string strQry = "exec [dbo].[GetBulk_AI_Mobile_1]  '" + myDate + "'";  // AIOverview Mobile keywords//1026,1027,1028,1029
             //string strQry = "exec [dbo].[GetBulk_AI_Mobile_2]  '" + myDate + "'";  // AIOverview Mobile keywords//1026,1027,1028,1029
-            //string strQry = "exec [dbo].[GetBulk_AIO_Mobile_1]  '" + myDate + "'";// all mobile keywords batch keyword
-            //string strQry = "exec [dbo].[GetBulk_AIO_Mobile_2]  '" + myDate + "'";// all mobile keywords batch keyword
-            //string strQry = "exec [dbo].[GetBulk_AIO_Mobile_3]  '" + myDate + "'";// all mobile keywords batch keyword
-            //string strQry = "exec [dbo].[GetBulk_AIO_Mobile_4]  '" + myDate + "'";// all mobile keywords batch keyword
             //string strQry = "exec [dbo].[GetBulk_AIO_Mobile]  '" + myDate + "'";  // AIOverview batch Mobile keywords for true //17-02-2025
-            string strQry = "exec [dbo].[GetBulk_AIO_Mobile_ALL]  '" + myDate + "'";  // AIOverview Single keyword Mobile Receive all with 0 condition keywords for true //17-02-2025
             //string strQry = "exec [dbo].[GetCommaKeywords_AIO_Mobile]  '" + myDate + "'";  // AIOverview Single comma keyword Mobile Receive all with 0 condition keywords for true //17-02-2025
 
             SqlConnection objCon = null;
@@ -192,6 +193,7 @@ namespace AIOSending
             for (int i = 0; i < worklist.Items.Count; i++)
             {
                 //uncomment all for fast sending //22-03-2024
+                mseconds = 5000; //Normal Same Time for AIO Sending 4 Apps and Receive all And WOC Sending
                 //mseconds = rd.Next(30, 50) * 1000; //First Sending app 29-06-2020    //SEID=58-1
                //mseconds = rd.Next(30, 70) * 1000; //First Sending app 29-06-2020    //SEID=58-2
                 //mseconds = rd.Next(30, 80) * 1000; //Second Sending app 29-06-2020 //SEID=106-1
@@ -201,9 +203,10 @@ namespace AIOSending
                 //mseconds = rd.Next(30, 140) * 1000; //Fourth Sending app 29-06-2020 //SEID=OtherMobile-1
                 //mseconds = rd.Next(30, 160) * 1000; //Fourth Sending app 29-06-2020 //SEID=OtherMobile-2
                 //mseconds = rd.Next(30, 170) * 1000; //Fifith Sending app 29-06-2020 //SEID=1-1
-                mseconds = rd.Next(30, 180) * 1000; //Fifith Sending app 29-06-2020 //SEID=1-2
+                //mseconds = rd.Next(30, 180) * 1000; //Fifith Sending app 29-06-2020 //SEID=1-2
                 //mseconds = rd.Next(30, 200) * 1000; //Sixth Sending app 29-06-2020 //SEID=102-1
                 //mseconds = rd.Next(30, 210) * 1000; //Sixth Sending app 29-06-2020 //SEID=102-2
+
                 resultsString = worklist.Items[i].ToString();
                 sep = ':';
                 resultsArray = resultsString.Split(sep);

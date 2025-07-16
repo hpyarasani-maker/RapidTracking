@@ -708,6 +708,11 @@ namespace RapidTrackingLibrary
                     s.Append("</block>");
                 }
             }
+            HtmlNode fb = doc.DocumentNode.SelectSingleNode(".//div[@id='knowledge-finance-wholepage__entity-summary']");//16-07-2025
+            if (fb != null && !fb.Ancestors("div").Any(n => n.Id.Equals("rso")))
+            {
+                s.Append("<block type=\"finance\" url=\"\"></block>");
+            }//16-07-2025
             ///30-09-2022 start new code for answer carc
             HtmlNode ac = doc.DocumentNode.SelectSingleNode(".//div[@class='ULSxyf a2qDab EyBRub']|.//div[@id='Odp5De']");//03-11-2023
             if (ac != null && ac.SelectSingleNode(".//div[contains(@class,'NhRr3b')]|.//div[@class='wDYxhc']") != null && (ac.SelectSingleNode(".//g-scrolling-carousel") == null && ac.SelectSingleNode(".//div[@class='W3btD bkfOad']") == null || ac.SelectSingleNode(".//div[@class='setTDc']") != null))//25-03-2025//09-07-2024//07-12-2023//09-07-2024//07-12-2023//07-12-2023

@@ -245,7 +245,7 @@ namespace AIOMultiThreadRequests
                 if (col == null)
                     col = colb.SelectNodes(".//div[@id='tadsb']/div/ol/li");   //16-04-2020
                 //if (col == null) return s.ToString();   //20-01-2020 enable without related searches or comment it if related search required
-                if (col != null) //enable for related searches
+                if (col != null && !col[0].Ancestors("div").Any(n => n.HasClass("MjjYud")))//15-07-2025 //enable for related searches
                 {
                     s.Append("<block type=\"adwords\" url=\"\">");
                     foreach (HtmlNode nd in col)
@@ -669,6 +669,11 @@ namespace AIOMultiThreadRequests
                     s.Append("</block>");
                 }
             }
+            HtmlNode fb = doc.DocumentNode.SelectSingleNode(".//div[@id='knowledge-finance-wholepage__entity-summary']");//16-07-2025
+            if (fb != null && !fb.Ancestors("div").Any(n => n.Id.Equals("rso")))
+            {
+                s.Append("<block type=\"finance\" url=\"\"></block>");
+            }//16-07-2025
             ///30-09-2022 start new code for answer carc
             HtmlNode ac = doc.DocumentNode.SelectSingleNode(".//div[@class='ULSxyf a2qDab EyBRub']|.//div[@id='Odp5De']");//03-11-2023
             if (ac != null && ac.SelectSingleNode(".//div[contains(@class,'NhRr3b')]|.//div[@class='wDYxhc']") != null && (ac.SelectSingleNode(".//g-scrolling-carousel") == null && ac.SelectSingleNode(".//div[@class='W3btD bkfOad']") == null || ac.SelectSingleNode(".//div[@class='setTDc']") != null))//25-03-2025//09-07-2024//07-12-2023//09-07-2024//07-12-2023//07-12-2023
@@ -1480,7 +1485,7 @@ namespace AIOMultiThreadRequests
                         s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(titles[x++]) + "\" />");//22-02-2022
                 }
             }
-            string pattern1 = @"\\x22\\x3e\\x3ca jsname\\x3d\\x22UWckNb\\x22 class\\x3d\\x22[wlgmHc ]*[zReHs ]*[VfSr4c]*\\x22 href\\x3d\\x22(.*?)\\x22*[ data-jsarwt\\x3d\\x221\\x22]";//05-06-2025//25-03-2025//16-12-2024//26-11-2024//08-09-2023
+            string pattern1 = @"\\x22\\x3e\\x3ca [jsname\\x3d\\x22UWckNb\\x22 [class\\x3d\\x22[wlgmHc ]*[zReHs ]*[VfSr4c]*\\x22]* href\\x3d\\x22(.*?)\\x22]*[ data-jsarwt\\x3d\\x221\\x22]";//15-07-2025//05-06-2025//25-03-2025//16-12-2024//26-11-2024//08-09-2023
             re = new Regex(pattern1, RegexOptions.IgnoreCase | RegexOptions.Singleline);
             mc = re.Matches(html);
             foreach (Match m in mc)

@@ -45,7 +45,7 @@ namespace AIOReceiving
 
             HtmlNode rso = doc.DocumentNode.SelectSingleNode("//div[@id='rso']");
             HtmlNodeCollection nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'MjjYud')]");//09-07-2025//09-12-2024
-            if (nodeCol == null || (nodeCol.Count <= 1) || doc.DocumentNode.SelectNodes(".//div[@class='JCZQSb']") != null)//16-07-2025
+            if (nodeCol == null || (nodeCol.Count <= 1) || rso.SelectNodes(".//div[@class='JCZQSb']") != null)//16-07-2025
                 nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'TzHB6b cLjAic')]|.//div[contains(@id, 'arc-srp')]/div/div[@class='MjjYud']|.//div[contains(@id, 'arc-srp')]/div/div/div[@class='MjjYud']|.//div[@class='JCZQSb']|.//g-section-with-header[contains(@class,'yG4QQe TBC9ub')]");//08-07-2025
             if (nodeCol == null || nodeCol.Count <= 4)
                 nodeCol = rso.SelectNodes(".//div[contains(@class,'TzHB6b cLjAic')]");//02-11-2023

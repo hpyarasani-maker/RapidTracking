@@ -126,7 +126,7 @@ namespace RapidTrackingSingleThread
 
                         if (n != null)//25-09-2023
                         {
-                            if (node.SelectSingleNode(".//div[contains(@class,'WlTAzf ')]|.//div[@jsname='dTDiAc']") == null || node.SelectSingleNode(".//div[contains(@class,'XbtRGb qxsd')]") != null)//23-10-2023//25-09-2023//22-09-2023
+                            if (node.SelectSingleNode(".//div[contains(@class,'WlTAzf ')]|.//div[@jsname='dTDiAc']|.//div[@class='vRy7rc']") == null || (node.SelectSingleNode(".//div[contains(@class,'XbtRGb qxsd')]") != null && node.SelectSingleNode(".//div[@class='vRy7rc']") == null))//22-07-2025//23-10-2023//25-09-2023//22-09-2023
                             {
                                 string heading = n.InnerText;
                                 sb.Append("<block type=\"knowledgeGraph\" url=\"\" title=\"" + SetTitle(heading) + "\" />");
@@ -3438,7 +3438,7 @@ namespace RapidTrackingSingleThread
                 if (nd == null)//26-02-2024
                     nd = node.SelectSingleNode(".//div[contains(@class, 'QlyiV')]");//26-02-2024
                 if (nd == null)//09-05-2024
-                    nd = node.SelectSingleNode(".//div[@role='heading']/span/span[@class='sOq4Gc']");//09-05-2024
+                    nd = node.SelectSingleNode(".//div[@role='heading']/span/span[@class='sOq4Gc']|.//div/span[@role='heading']/span");//22-07-2025//09-05-2024
                 if (nd != null)
                 {
                     if (nd.InnerHtml.ToLower().StartsWith("video") || nd.InnerHtml.ToLower().StartsWith("vídeo")) //07-02-2020 included title for video block for different language

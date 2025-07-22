@@ -2481,9 +2481,11 @@ namespace RapidTrackingLibrary
             HtmlNode hn = node.SelectSingleNode(".//div[@class='JVrfPc']/a");
             if (hn == null)
                 hn = node.SelectSingleNode(".//g-link//a"); //included on 2019-06-24
+            if (hn == null)
+                hn = node.SelectSingleNode(".//div[@class='PZPZlf JlqpRe']/span|.//span[contains(@class,'JGD2rd')]");//22-07-2025
             if (hn != null)
             {
-                s.Append("<block type=\"twitterCards\" url=\"" + SetUrl(hn.Attributes["href"].Value) + "\">");
+                s.Append("<block type=\"twitterCards\" url=\"" + SetUrl(hn.Attributes["href"]?.Value) + "\">");//22-07-2025
 
                 HtmlNodeCollection nds = node.SelectNodes(".//div[@class='uR34qf oIY2kd JTuIPc']/a");
 

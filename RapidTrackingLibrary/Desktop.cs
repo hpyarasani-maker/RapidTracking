@@ -658,7 +658,7 @@ namespace RapidTrackingLibrary
                 }//30-06-2023
                 HtmlNodeCollection col = colt.SelectNodes(".//div[@id='tads']/ol/li|.//div[@id='tads']/div/ol/li|.//div[@id='tadsb']/ol/li|.//div[@id='tads']/div[@class='uEierd']"); //21-09-2020 adwords selector//20-01-2020 //08-04-2020
 
-                if (col != null) //return s.ToString();  //20-01-2020
+                if (col != null && !col[0].Ancestors("div").Any(n => n.Id.Equals("rso")))//23-07-2025 //return s.ToString();  //20-01-2020
                 {
                     s.Append("<block type=\"adwords\" url=\"\">");
                     foreach (HtmlNode nd in col)

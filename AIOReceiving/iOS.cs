@@ -2446,9 +2446,11 @@ namespace AIOReceiving
             HtmlNode hn = node.SelectSingleNode(".//div[@class='JVrfPc']/a");
             if (hn == null)
                 hn = node.SelectSingleNode(".//g-link//a"); //included on 2019-06-24
+            if (hn == null)
+                hn = node.SelectSingleNode(".//div[@class='PZPZlf JlqpRe']/span|.//span[contains(@class,'JGD2rd')]");//22-07-2025
             if (hn != null)
             {
-                s.Append("<block type=\"twitterCards\" url=\"" + SetUrl(hn.Attributes["href"].Value) + "\">");
+                s.Append("<block type=\"twitterCards\" url=\"" + SetUrl(hn.Attributes["href"]?.Value) + "\">");//22-07-2025
 
                 HtmlNodeCollection nds = node.SelectNodes(".//div[@class='uR34qf oIY2kd JTuIPc']/a");
 
@@ -3458,7 +3460,7 @@ namespace AIOReceiving
                 if (nd == null)//26-02-2024
                     nd = node.SelectSingleNode(".//div[contains(@class, 'QlyiV')]");//26-02-2024
                 if (nd == null)//09-05-2024
-                    nd = node.SelectSingleNode(".//div[@role='heading']/span/span[@class='sOq4Gc']");//09-05-2024
+                    nd = node.SelectSingleNode(".//div[@role='heading']/span/span[@class='sOq4Gc']|.//div/span[@role='heading']/span");//22-07-2025//09-05-2024
                 if (nd != null)
                 {
                     if (nd.InnerHtml.ToLower().StartsWith("video") || nd.InnerHtml.ToLower().StartsWith("vídeo")) //07-02-2020 included title for video block for different language
@@ -3969,12 +3971,14 @@ namespace AIOReceiving
                     if (ls == null)
                         ls = nd.SelectNodes(".//div[@class='RJPOee EIJn2']/ul/li|.//div[@class='RJPOee EIJn2']/div");
                     if (ls == null)
+                        ls = nd.SelectNodes(".//div[@jsname='tJHJj']|.//div[@jsname='NnMq2d']|.//div[@class='gvXIc']");//24-07-2025
+                    if (ls == null)
                         ls = nd.SelectNodes(".//ol/li[@class='K3KsMc']|.//ul/li[@class='K3KsMc']|.//ul/li[@class='pWtQDd']");
                     if (ls == null)//05-04-2025
                         ls = nd.SelectNodes(".//div[@jscontroller='JegcYe']");//05-04-2025
                     if (ls == null)//23-04-2025
                         ls = nd.SelectNodes(".//ol[@jscontroller='M2ABbc']/div");//23-04-2025
-                    if (ls != null && string.IsNullOrEmpty(ls[0].InnerText))//01-05-2025
+                    if (ls == null)//24-07-2025//01-05-2025
                         ls = nd.SelectNodes(".//ol[@jscontroller='M2ABbc']/li|.//ul[@jscontroller='M2ABbc']/li");//01-05-2025
                     if (ls == null)//07-07-2025
                         ls = nd.SelectNodes(".//ul[@jscontroller='M2ABbc']/li");//07-07-2025
@@ -4020,7 +4024,7 @@ namespace AIOReceiving
                             }
                             else //25-04-2025
                             {
-                                spanCol = nd1.SelectNodes(".//div[@class='JlqpRe']/span|.//div[@class='Gur8Ad']/span|.//div[@class='vM0jzc']/span");
+                                spanCol = nd1.SelectNodes(".//div[@class='JlqpRe']/span|.//div[@class='Gur8Ad']/span|.//div[@class='vM0jzc']/span|.//div[@class='rPeykc']/span|.//div[@class='hvExhd DmdoNb']/span");//24-07-2025
                                 if (spanCol == null)
                                     spanCol = nd1.SelectNodes(".//span/span");
                                 if (spanCol == null || spanCol[0].InnerText.Equals("&nbsp;"))
@@ -4036,6 +4040,18 @@ namespace AIOReceiving
                                     }
                                     continue;
                                 }//20-06-2025
+                                if (nd1.SelectSingleNode(".//div[@jsname='jNocCc']") != null)//24-07-2025
+                                {
+                                    HtmlNode a = nd1.SelectSingleNode(".//a[@class='C3aAvf']");
+                                    url = a.Attributes["href"]?.Value;
+                                    content = a.SelectSingleNode(".//div[@class='OSrXXb wAebkf']")?.InnerText.Trim().Replace("&#160;", "") ?? "";
+                                    content = content.Replace("&nbsp;", "").Trim();
+                                    if ((!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(content)) && content.Length > 2)
+                                    {
+                                        s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" + SetTitle(content.Replace("&nbsp;", "")) + "\" />");
+                                    }
+                                    spanCol = nd1.SelectNodes(".//div[@class='rPeykc']/span");
+                                }//24-07-2025
                                 s.Append(GetSpanContent(spanCol, nd1, false));
                             }//25-04-2025
                         }

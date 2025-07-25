@@ -2437,9 +2437,11 @@ namespace AIOSingleThread
             HtmlNode hn = node.SelectSingleNode(".//div[@class='JVrfPc']/a");
             if (hn == null)
                 hn = node.SelectSingleNode(".//g-link//a"); //included on 2019-06-24
+            if (hn == null)
+                hn = node.SelectSingleNode(".//div[@class='PZPZlf JlqpRe']/span|.//span[contains(@class,'JGD2rd')]");//22-07-2025
             if (hn != null)
             {
-                s.Append("<block type=\"twitterCards\" url=\"" + SetUrl(hn.Attributes["href"].Value) + "\">");
+                s.Append("<block type=\"twitterCards\" url=\"" + SetUrl(hn.Attributes["href"]?.Value) + "\">");//22-07-2025
 
                 HtmlNodeCollection nds = node.SelectNodes(".//div[@class='uR34qf oIY2kd JTuIPc']/a");
 
@@ -3449,7 +3451,7 @@ namespace AIOSingleThread
                 if (nd == null)//26-02-2024
                     nd = node.SelectSingleNode(".//div[contains(@class, 'QlyiV')]");//26-02-2024
                 if (nd == null)//09-05-2024
-                    nd = node.SelectSingleNode(".//div[@role='heading']/span/span[@class='sOq4Gc']");//09-05-2024
+                    nd = node.SelectSingleNode(".//div[@role='heading']/span/span[@class='sOq4Gc']|.//div/span[@role='heading']/span");//22-07-2025//09-05-2024
                 if (nd != null)
                 {
                     if (nd.InnerHtml.ToLower().StartsWith("video") || nd.InnerHtml.ToLower().StartsWith("vídeo")) //07-02-2020 included title for video block for different language

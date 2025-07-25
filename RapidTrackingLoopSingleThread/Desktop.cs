@@ -627,7 +627,7 @@ namespace RapidTrackingLoopSingleThread
                 }//30-06-2023
                 HtmlNodeCollection col = colt.SelectNodes(".//div[@id='tads']/ol/li|.//div[@id='tads']/div/ol/li|.//div[@id='tadsb']/ol/li|.//div[@id='tads']/div[@class='uEierd']|.//div[@id='tads']/div/div[@class='uEierd']");//28-03-2022 "/div/"included //21-09-2020 adwords selector//20-01-2020 //08-04-2020
 
-                if (col != null) //return s.ToString();  //20-01-2020
+                if (col != null && !col[0].Ancestors("div").Any(n => n.Id.Equals("rso")))//23-07-2025 //return s.ToString();  //20-01-2020
                 {
                     s.Append("<block type=\"adwords\" url=\"\">");
                     foreach (HtmlNode nd in col)
@@ -1208,7 +1208,7 @@ namespace RapidTrackingLoopSingleThread
             {
                 HtmlNode t = n.SelectSingleNode(".//h3");
                 HtmlNodeCollection nds = node.SelectNodes(".//div[contains(@class,'HiHjCd')]/a|.//div[@class='Mwdfte']/a|.//div[@jsname='BPrWId']/a" +
-                     "|.//div[contains(@class,'JpOecb')]/a|.//div[contains(@class,'kb0PBd')]/a|.//div[contains(@class,'kb0PBd')]/div/a|.//div[@class='Mwdfte']/div/a|.//div[contains(@class,'kb0PBd')]/div/li/a");//20-06-2025//27-05-2025//26-05-2025//18-02-2025//14-02-2025//20-01-2025//21-10-2024
+                     "|.//div[contains(@class,'JpOecb')]/a|.//div[contains(@class,'kb0PBd')]/a|.//div[contains(@class,'kb0PBd')]/div/a|.//div[@class='Mwdfte']/div/a|.//div[contains(@class,'kb0PBd')]/div/li/a|.//div[@class='Mwdfte']/div/li/a");//21-07-2025//20-06-2025//27-05-2025//26-05-2025//18-02-2025//14-02-2025//20-01-2025//21-10-2024
                 if (nds != null)
                 {
                     s.Append("<block type=\"classicLinkSiteLinks\" url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(t.InnerText) + "\" >");

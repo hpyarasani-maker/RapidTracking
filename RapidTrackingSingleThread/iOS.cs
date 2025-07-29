@@ -3033,7 +3033,7 @@ namespace RapidTrackingSingleThread
                     {
                         string price_value = string.Empty;
                         string additional_info = string.Empty;
-                        string title = nd.SelectSingleNode(".//div[contains(@class,'BTPx6e')]|.//div[@class='Yt787 aKoISd']|.//span[contains(@class,'Yt787')]|.//div[@class='ZhosBf W59sce dctkEf']|.//div[@class='jTmVZe oIv3Hf']/span")?.InnerText.Trim() ?? "";//29-07-2025
+                        string title = nd.SelectSingleNode(".//div[contains(@class,'BTPx6e')]|.//div[@class='Yt787 aKoISd']|.//span[contains(@class,'Yt787')]|.//div[@class='ZhosBf W59sce dctkEf']|.//div[contains(@class,'jTmVZe')]/span")?.InnerText.Trim() ?? "";//29-07-2025
                         string rating = nd.SelectSingleNode(".//span[contains(@class,'YrbPuc')]|.//div[@class='rGaJuf']")?.InnerText.Trim() ?? "";//29-07-2025
                         string reviews = nd.SelectSingleNode(".//span[@class='RDApEe YrbPuc']|.//div[@class='l96Yje leIgTe']")?.InnerText.Trim() ?? "";//29-07-2025
                         string price = nd.SelectSingleNode(".//div[contains(@class,'VSZCrf')]/span|.//div[@class='QIeQge']|.//div[@class='Z6yUYe RiJqbb RES9jf']|.//div[@class='rDUZLd JNI6Yb']/span|.//div[@class='wHYlTd RES9jf OSrXXb']/span|.//div[@class='VaiWld']/div/span[@class='JNI6Yb']|.//div[@class='jTmVZe oIv3Hf']/div")?.InnerText.Trim() ?? "";//29-07-2025

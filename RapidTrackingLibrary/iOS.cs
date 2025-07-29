@@ -3493,7 +3493,7 @@ namespace RapidTrackingLibrary
                 {
                     if (nd.InnerHtml.ToLower().StartsWith("video") || nd.InnerHtml.ToLower().StartsWith("vídeo")) //07-02-2020 included title for video block for different language
                     {//19-02-2024
-                        if (node.SelectSingleNode(".//div[@class='vbbrJ']|.//div[contains(@class, 'CGCvRb')]|.//div[@class='uZ6Jn I0QQHd']|.//div[@class='EDblX HG5ZQb']") == null)
+                        if (node.SelectSingleNode(".//div[@class='vbbrJ']|.//div[contains(@class, 'CGCvRb')]|.//div[@class='uZ6Jn I0QQHd']|.//div[@class='EDblX HG5ZQb']|.//div[@jsname='ibnC6b']") == null)//29-07-2025
                             return "Videos";
                     }//19-02-2024
                     else if (nd.InnerText.ToLower().StartsWith("top stories") || nd.InnerText.Contains("Interesting finds") || nd.InnerText.Contains("Noticias "))//13-03-2024

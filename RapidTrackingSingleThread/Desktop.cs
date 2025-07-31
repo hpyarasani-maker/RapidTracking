@@ -2349,7 +2349,7 @@ namespace RapidTrackingSingleThread
 
             nd = node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]|.//div[contains(@class, 'vdQmEd')]|.//div[contains(@class,'QkBAO')]|.//div[@class='p21Z4']");//07-07-2025//18-02-2025//29-07-2024//29-06-2023//23-03-2022
             if (nd != null && nd.SelectNodes(".//div[@class='MxQnIc']") == null && node.SelectSingleNode(".//div[@class='XNfAUb']|.//h1[contains(@class, 'bNg8Rb')]" +
-                "|.//div[@class='ad5fcd']|.//div[contains(@class,'vmod')]|.//div[@class='HJSKzf']|.//div[contains(@class,'wDYxhc')]|.//div[@class='OcpZAb']/w-answer|.//div[@class='e2BEnf q8U8x']|.//miniapps-card-header") == null)//19-06-2025//06-06-2025//13-05-2025//05-05-2025//22-04-2025//21-02-2025//27-12-2024//19-08-2024//30-06-2023
+                "|.//div[@class='ad5fcd']|.//div[contains(@class,'vmod')]|.//div[@class='HJSKzf']|.//div[contains(@class,'wDYxhc')]|.//div[@class='OcpZAb']/w-answer|.//div[@class='e2BEnf q8U8x']|.//miniapps-card-header|.//g-expandable-container[@class='LHMFHf BbXTb']") == null)//31-07-2025//19-06-2025//06-06-2025//13-05-2025//05-05-2025//22-04-2025//21-02-2025//27-12-2024//19-08-2024//30-06-2023
                 return "Flights";//23-03-2022
 
             //nd = node.SelectSingleNode(".//div[@class='kp-blk cUnQKe']|.//div[@class='kp-blk cUnQKe Wnoohf OJXvsb']|.//div[@jsname='N760b']");//08-07-2021//04-12-2020 //11-02-2020

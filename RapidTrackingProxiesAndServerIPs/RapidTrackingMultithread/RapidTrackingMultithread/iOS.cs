@@ -1810,7 +1810,7 @@ namespace RapidTrackingMultithread
                     //    hn = nd1.SelectSingleNode(".//div[@class='hfac6d oz3cqf vH5Lmd']");  //22-07-2020 commented // 02-06-2020
                     if (hn == null)
                         hn = nd1.SelectSingleNode(".//div[contains(@class,'iORXPe')]");//23-05-2022//25-10-2021
-                    string title = hn.InnerText;
+                    string title = hn?.InnerText ?? nd1.InnerText;//31-07-2025
                     al.Add("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");  //25-06-2020
                     //s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />"); //25-06-2020
                 }
@@ -3959,8 +3959,8 @@ namespace RapidTrackingMultithread
                         ls = nd.SelectNodes(".//ol[@jscontroller='M2ABbc']/div");//23-04-2025
                     if (ls == null)//24-07-2025//01-05-2025
                         ls = nd.SelectNodes(".//ol[@jscontroller='M2ABbc']/li|.//ul[@jscontroller='M2ABbc']/li");//01-05-2025
-                    if (ls == null)//07-07-2025
-                        ls = nd.SelectNodes(".//ul[@jscontroller='M2ABbc']/li");//07-07-2025
+                    if (ls == null || ls.Count <= 1)//31-07-2025
+                        ls = nd.SelectNodes(".//ul[@jscontroller='M2ABbc']/li|.//ul[@jscontroller='M2ABbc']/div");//31-07-2025
                     if (ls != null)
                     {
                         foreach (HtmlNode nd1 in ls)
@@ -4019,18 +4019,25 @@ namespace RapidTrackingMultithread
                                     }
                                     continue;
                                 }//20-06-2025
-                                if (nd1.SelectSingleNode(".//div[@jsname='jNocCc']") != null)//24-07-2025
+                                if (nd1.SelectSingleNode(".//div[@jsname='jNocCc']|.//div[contains(@class,'xFTqob')]") != null)//31-07-2025
                                 {
-                                    HtmlNode a = nd1.SelectSingleNode(".//a[@class='C3aAvf']");
-                                    url = a.Attributes["href"]?.Value;
-                                    content = a.SelectSingleNode(".//div[@class='OSrXXb wAebkf']")?.InnerText.Trim().Replace("&#160;", "") ?? "";
+                                    HtmlNode a = nd1.SelectSingleNode(".//a[@class='C3aAvf']|.//a[@class='DTlJ6d']");
+                                    if (a == null)
+                                        a = nd1.SelectSingleNode(".//a[@class='H62xKc']");
+                                    if (a != null)
+                                    {
+                                        url = a.Attributes["href"]?.Value;
+                                        content = a.SelectSingleNode(".//div[@class='OSrXXb wAebkf']")?.InnerText.Trim().Replace("&#160;", "") ?? a?.InnerText.Trim().Replace("&#160;", "") ?? "";
+                                    }
+                                    else
+                                        content = nd1.SelectSingleNode(".//div[@class='Gur8Ad']/span")?.InnerText.Trim().Replace("&#160;", "") ?? "";
                                     content = content.Replace("&nbsp;", "").Trim();
-                                    if ((!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(content)) && content.Length > 2)
+                                    if (!string.IsNullOrEmpty(content) && content.Length > 2)
                                     {
                                         s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" + SetTitle(content.Replace("&nbsp;", "")) + "\" />");
                                     }
-                                    spanCol = nd1.SelectNodes(".//div[@class='rPeykc']/span");
-                                }//24-07-2025
+                                    spanCol = nd1.SelectNodes(".//div[@class='vM0jzc']/span|.//div[@class='vM0jzc']/span");
+                                }//31-07-2025//24-07-2025
                                 s.Append(GetSpanContent(spanCol, nd1, false));
                             }//25-04-2025
                         }

@@ -1813,7 +1813,7 @@ namespace RapidTrackingSingleThread
                     //    hn = nd1.SelectSingleNode(".//div[@class='hfac6d oz3cqf vH5Lmd']");  //22-07-2020 commented // 02-06-2020
                     if (hn == null)
                         hn = nd1.SelectSingleNode(".//div[contains(@class,'iORXPe')]");//23-05-2022//25-10-2021
-                    string title = hn.InnerText;
+                    string title = hn?.InnerText ?? nd1.InnerText;//31-07-2025
                     al.Add("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />");  //25-06-2020
                     //s.Append("<item url=\"" + SetUrl(url) + "\" title=\"" + SetTitle(title) + "\" />"); //25-06-2020
                 }

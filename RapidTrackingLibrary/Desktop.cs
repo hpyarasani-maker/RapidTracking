@@ -58,7 +58,7 @@ namespace RapidTrackingLibrary
                 if (nodeCol != null)  //11-08-2022 //end 01-11-2023
                 foreach (HtmlNode node in nodeCol)
                 {
-                    if (node.HasClass("kp-wholepage"))
+                    if (node.HasClass("kp-wholepage") || (node.HasClass("JCZQSb") && node.SelectSingleNode(".//g-section-with-header[contains(@class,'yG4QQe TBC9ub')]") != null))//12-08-2025
                     {
                         continue;
                     }
@@ -2692,7 +2692,7 @@ namespace RapidTrackingLibrary
                     if ((nd.InnerText == "Top stories" || nd.InnerText == "Huvudnyheter" || nd.InnerText == "Videos" || nd.InnerText == "Video"
                         || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws" || nd.InnerText == "Vertaalresultaat"
                         || nd.InnerText == "Recipes" || nd.InnerText == "Vidéos")
-                        && node.SelectSingleNode(".//div[contains(@class,'g Ww4FFb')]|.//div[@class='g PmEWq']") == null)//19-12-2024//30-10-2023//02-12-2020 videos
+                        && node.SelectSingleNode(".//div[contains(@class,'g Ww4FFb')]|.//div[@class='g PmEWq']|.//div[@class='yuRUbf']") == null)//12-08-2025//19-12-2024//30-10-2023//02-12-2020 videos
                         return true;
                 nd = node.SelectSingleNode(".//div[contains(@class,'Ww4FFb vt6azd')and(.//div[(@class='XNfAUb')])]");//11-10-2024 sitesCarousel
                 if (nd != null && node.SelectSingleNode(".//div[@class='LbKnXb YAG2qc UYJxh']|.//div[@class='cyspcb DH9lqb']") != null) //15-10-2024

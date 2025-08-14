@@ -2377,7 +2377,7 @@ namespace RapidTrackingMultiThreadRequests
                 || node.SelectSingleNode(".//div[@class='HaXvv kfn9hb']") != null || node.SelectSingleNode(".//div[@class='tsp-view']") != null //24-11-2020 selector for eventresults block//07-02-2020
                 || node.SelectSingleNode(".//div[@class='AxJnmb Wdsnue']") != null || node.SelectSingleNode(".//div[@class='tsp-fvcfc']") != null //05-01-2023 //02-08-2021 event block selector
                 || node.SelectSingleNode(".//g-expandable-content[@jscontroller='Ah7cLd']|.//div[@class='wYpZje']|.//div[@jscontroller='s0j7C']") != null)//31-07-2025//08-07-2024
-                if (node.SelectSingleNode(".//div[@class='aeayCf mnr-c']|.//div/product-viewer-group|.//div[@class='aJegcc']" +
+                if (node.SelectSingleNode(".//div[@class='aeayCf mnr-c']|.//div/product-viewer-group|.//div[@class='aJegcc']|.//div[@class='oIk2Cb']|.//div[@class='XNfAUb']" +//04-08-2025
                     "|.//div[@id='iur']|.//div[@class='zxLiic']|.//div[@class='LwV4sf']|.//div[@class='Kcn6oc adDDi']|.//g-expandable-container[@class='LHMFHf BbXTb']") == null)//31-07-2025//25-03-2025//17-12-2024//20-08-2024//29-07-2024//20-07-2024//event and PeopleAlsoBuyFrom
                     return "Event";
 
@@ -2647,7 +2647,7 @@ namespace RapidTrackingMultiThreadRequests
                     if ((nd.InnerText == "Top stories" || nd.InnerText == "Huvudnyheter" || nd.InnerText == "Videos" || nd.InnerText == "Video"
                         || nd.InnerText == "Tin bài hàng đầu" || nd.InnerText == "Voorpaginanieuws" || nd.InnerText == "Vertaalresultaat"
                         || nd.InnerText == "Recipes" || nd.InnerText == "Vidéos")
-                        && node.SelectSingleNode(".//div[contains(@class,'g Ww4FFb')]|.//div[@class='g PmEWq']") == null)//19-12-2024//30-10-2023//02-12-2020 videos
+                        && node.SelectSingleNode(".//div[contains(@class,'g Ww4FFb')]|.//div[@class='g PmEWq']|.//div[@class='yuRUbf']") == null)//12-08-2025//19-12-2024//30-10-2023//02-12-2020 videos
                         return true;
                 nd = node.SelectSingleNode(".//div[contains(@class,'Ww4FFb vt6azd')and(.//div[(@class='XNfAUb')])]");//11-10-2024 sitesCarousel
                 if (nd != null && node.SelectSingleNode(".//div[@class='LbKnXb YAG2qc UYJxh']|.//div[@class='cyspcb DH9lqb']") != null) //15-10-2024

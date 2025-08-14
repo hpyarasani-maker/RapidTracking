@@ -56,7 +56,7 @@ namespace AIOMultiThread
             }//08-02-2024
             foreach (HtmlNode node in nodeCol)
             {
-                if (node.HasClass("kp-wholepage"))
+                if (node.HasClass("kp-wholepage") || (node.HasClass("JCZQSb") && node.SelectSingleNode(".//g-section-with-header[contains(@class,'yG4QQe TBC9ub')]") != null))//12-08-2025
                 {
                     continue;
                 }

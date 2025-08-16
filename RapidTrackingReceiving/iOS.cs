@@ -3482,7 +3482,7 @@ namespace Oxylabs_BulkKeywords
             }
             nd = node.SelectSingleNode(".//div[contains(@class,'HOslld dutT5c')and(.//div[contains(@class,'sPLMud')or(.//div[contains(@class,'hNKF2b m9orme')])])]|.//div[contains(@class, 'XNfAUb')]|.//div[@class='gR8gCb']");//29-07-2025//18-10-2024//10-10-2024//20-02-2024
             if (nd != null && node.SelectSingleNode(".//div[contains(@class, 'MRtunc')]|.//div[@class='Wt5Tfe']|.//div[@class='RyIFgf']") == null
-                || (node.SelectSingleNode(".//div[@class='VqeGe']") != null && node.SelectSingleNode(".//div[@class='NYidgb']|.//div[@class='xKf9F']|.//div[@class='ptUfXb XuQ7g']|.//div[@class='vRy7rc']") == null))//01-04-2025//02-12-2024//27-02-2024//26-02-2024//20-02-2024
+                || (node.SelectSingleNode(".//div[@class='VqeGe']") != null && node.SelectSingleNode(".//div[@class='NYidgb']|.//div[@class='xKf9F']|.//div[@class='ptUfXb XuQ7g']|.//div[@class='vRy7rc']|.//div[contains(@class,'sjVJQd dya7x')]") == null))//16-08-2025//01-04-2025//02-12-2024//27-02-2024//26-02-2024//20-02-2024
             {
                 if (((node.SelectSingleNode(".//div[@class='Gqsa8d']") != null && node.SelectSingleNode(".//div[@class='EDblX HG5ZQb']") != null)//29-07-2025//27-02-2024
                 || (node.SelectSingleNode(".//div[@class='HOslld dutT5c']|.//div[@class='zJUuqf adDDi']|.//div[@class='IZE3Td']") != null

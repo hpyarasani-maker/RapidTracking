@@ -534,7 +534,7 @@ namespace RapidTrackingSingleThread
             }
             //AIOverview block //18-11-2024
             HtmlNode colt = doc.DocumentNode.SelectSingleNode(".//div[contains(@class,'M8OgIe')]|.//div[@class='GcKpu']");//12-12-2024//13-11-2024//08-11-2024//03-09-2024//21-08-2024 AIOverview
-            if (colt != null && doc.DocumentNode.SelectSingleNode(".//div[contains(@class,'Fzsovc')]") != null)//13-11-2024
+            if (colt != null && colt.SelectSingleNode(".//div[contains(@class,'Fzsovc')]") != null)//19-08-2025//13-11-2024
             {
                 s.Append(GetAioverview(colt));
             }//21-08-2024 AIOverview

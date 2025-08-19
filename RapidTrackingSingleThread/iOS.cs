@@ -2404,7 +2404,7 @@ namespace RapidTrackingSingleThread
             }
             else if (string.IsNullOrEmpty(desc))
             {
-                desc = node.SelectSingleNode(".//span[contains(@class,'ILfuVd')]")?.InnerText ?? "";
+                desc = node.SelectSingleNode(".//span[contains(@class,'ILfuVd')]|.//span[@class='OcSIF']")?.InnerText ?? "";//19-08-2025
             }
             if (!multi)
             {

@@ -3278,7 +3278,7 @@ namespace RapidTrackingLibrary
                 nd = node.SelectSingleNode(".//div[@class='CXo9G']"); //08-01-2021
             if (nd == null)
                 nd = node.SelectSingleNode(".//g-card[@class='I7zR5']");//21-09-2022 top stories
-            if (nd != null && node.SelectSingleNode(".//div[contains(@class,'knowledge-panel')]") == null) //26-08-2020 included KP selector
+            if (nd != null && node.SelectSingleNode(".//div[contains(@class,'knowledge-panel')]|.//div[@class='lU8tTd']") == null)//19-08-2025//26-08-2020 included KP selector
             {
                 bool ts = true;
                 //start07-08-2020 //map selector

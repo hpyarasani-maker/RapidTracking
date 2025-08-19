@@ -3391,7 +3391,7 @@ namespace RapidTrackingSingleThread
                 nd = node.SelectSingleNode(".//div[@class='ki5rnd']|.//div[@class='UyqAp']");//27-07-2022 //23-01-2020   //21-02-2020 included selector for App block
             if (nd != null)
             {
-                if (node.SelectSingleNode(".//g-img[@class='o8ebK']|.//div[@jsname='Ypkwb']") == null)//08-07-2025//27-07-2022
+                if (node.SelectSingleNode(".//g-img[@class='o8ebK']|.//div[@jsname='Ypkwb']") == null || node.SelectSingleNode(".//div[@class='IZE3Td']") != null)//19-08-2025//08-07-2025//27-07-2022
                     return "Apps";
             }
             //16-08-2019

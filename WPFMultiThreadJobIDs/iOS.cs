@@ -3471,7 +3471,7 @@ namespace WPFMultiThreadJobIDs
                 && (node.SelectSingleNode(".//div[@class='RyIFgf']") == null || node.SelectNodes(".//div[contains(@class,'EXH1Ce')]") != null))//09-05-2024//29-04-2024//16-03-2024//27-02-2024
                 && (node.SelectSingleNode(".//div[@class='vDF3Oc jIrdcd']|.//div[contains(@class,'qtOtne')]|.//div[@class='YB4h9 ky4hfd']" +
                "|.//div[@class='oj7Mub eVNxY']|.//div[@class='aJegcc']|.//div[@class='nC7kNc RrlBtc']|.//div[@class='x2KtK']" +
-               "|.//div[@class='oj7Mub Y6bHod']|.//div[@class='dsxN8b EXH1Ce PZPZlf']|.//div[contains(@class,'DuxCpf')]|.//div[@jsname='N760b']") == null)) || node.SelectSingleNode(".//div[@class='gR8gCb']") != null)//29-05-2025
+               "|.//div[@class='oj7Mub Y6bHod']|.//div[@class='dsxN8b EXH1Ce PZPZlf']|.//div[contains(@class,'DuxCpf')]|.//div[@jsname='N760b']") == null)) || node.SelectSingleNode(".//div[@class='gR8gCb']|.//div[contains(@class,'HOslld dutT5c')]") != null)//20-08-2025//29-05-202
                     return "Hotel";
             }
             nd = node.SelectSingleNode(".//*[@id='rXuTZe']");
@@ -4121,6 +4121,40 @@ namespace WPFMultiThreadJobIDs
                     }
                 }
             }
+            nodes = node.SelectNodes(".//div[@class='otQkpb']|.//div[@class='Y3BBE']|.//li[@jscontroller='vsuOFb']|.//div[@class='Knsxdf PmZFeb']");//20-08-2025
+            if (nodes != null)
+            {
+                string content = string.Empty;
+                string url = string.Empty;
+                foreach (HtmlNode nd in nodes)
+                {
+                    content = nd.SelectSingleNode(".")?.InnerText.Trim().Replace("&#160;", "");
+                    HtmlNode urlNode = nd.SelectSingleNode(".//div[@class='b8PhZd dsYsnb']");
+                    if (urlNode != null)
+                    {
+                        content = string.Empty;
+                        url = string.Empty;
+                        HtmlNode link = urlNode.SelectSingleNode(".//a[@class='Zbfntb']");
+                        if (link != null)
+                        {
+                            url = link.Attributes["href"]?.Value ?? "";
+                        }
+                        else
+                        {
+                            url = urlNode.Attributes["href"]?.Value ?? "";
+                        }
+                        content = nd.SelectSingleNode(".//div[@class='ULBRwc']")?.InnerText ?? "";
+                    }
+                    if (!string.IsNullOrEmpty(content))
+                    {
+                        content = content.Replace("&nbsp;", "").Trim();
+                        if ((!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(content)) && content.Length > 2)
+                        {
+                            s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" + SetTitle(content.Replace("&nbsp;", "")) + "\" />");
+                        }
+                    }
+                }
+            }//end 20-08-2025
             s.Append("</block>");
             return s.ToString();
         }

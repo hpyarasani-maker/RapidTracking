@@ -4131,6 +4131,40 @@ namespace RapidTrackingSingleThread
                     }
                 }
             }
+            nodes = node.SelectNodes(".//div[@class='otQkpb']|.//div[@class='Y3BBE']|.//li[@jscontroller='vsuOFb']|.//div[@class='Knsxdf PmZFeb']");//20-08-2025
+            if (nodes != null)
+            {
+                string content = string.Empty;
+                string url = string.Empty;
+                foreach (HtmlNode nd in nodes)
+                {
+                    content = nd.SelectSingleNode(".")?.InnerText.Trim().Replace("&#160;", "");
+                    HtmlNode urlNode = nd.SelectSingleNode(".//div[@class='b8PhZd dsYsnb']");
+                    if (urlNode != null)
+                    {
+                        content = string.Empty;
+                        url = string.Empty;
+                        HtmlNode link = urlNode.SelectSingleNode(".//a[@class='Zbfntb']");
+                        if (link != null)
+                        {
+                            url = link.Attributes["href"]?.Value ?? "";
+                        }
+                        else
+                        {
+                            url = urlNode.Attributes["href"]?.Value ?? "";
+                        }
+                        content = nd.SelectSingleNode(".//div[@class='ULBRwc']")?.InnerText ?? "";
+                    }
+                    if (!string.IsNullOrEmpty(content))
+                    {
+                        content = content.Replace("&nbsp;", "").Trim();
+                        if ((!string.IsNullOrEmpty(SetUrl(url)) || !string.IsNullOrEmpty(content)) && content.Length > 2)
+                        {
+                            s.Append("<item url=\"" + SetUrl(url).Replace("&nbsp;", "") + "\" content=\"" + SetTitle(content.Replace("&nbsp;", "")) + "\" />");
+                        }
+                    }
+                }
+            }//end 20-08-2025
             s.Append("</block>");
             return s.ToString();
         }

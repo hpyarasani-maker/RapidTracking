@@ -21,6 +21,7 @@ namespace TrendingDesktopSingleThread
     {
         int orgLinks;
         string html; string seid = string.Empty;//23-06-2023
+        bool isRso = false;//21-08-2025
         public string ProcessDocument(string seid, string keyword, HtmlDocument doc, out int organicurls)
         {
             this.seid = seid;//23-06-2023

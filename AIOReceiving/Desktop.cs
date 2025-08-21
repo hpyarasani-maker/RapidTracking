@@ -17,6 +17,7 @@ namespace AIOReceiving
         int orgLinks;
         string html; string seid = string.Empty;//23-06-2023
         public event KeywordDone OnKeywordDone; //30-10-2024
+        bool isRso = false;//21-08-2025
         public async Task<(string, int)> ProcessDocument(string seid, string keyword, string jobid, string htmlsource)//12-05-2025//30-10-2024
         {
             this.seid = seid;//23-06-2023

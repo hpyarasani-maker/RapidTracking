@@ -16,6 +16,7 @@ namespace RapidTrackingCloudSingleThread
         public int orgLinks;
         string html;
         public int count; string seid = string.Empty;//23-06-2023
+        bool isRso = false;//21-08-2025
         public string ProcessDocument(string seid, string keyword, HtmlDocument doc)
         {
             this.seid = seid;//23-06-2023

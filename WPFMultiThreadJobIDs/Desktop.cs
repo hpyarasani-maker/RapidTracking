@@ -17,6 +17,7 @@ namespace WPFMultiThreadJobIDs
         int orgLinks;
         string html;
         string seid = string.Empty;//23-06-2023
+        bool isRso = false;//21-08-2025
         public async Task<(string, int)> ProcessDocument(string seid, string keyword, HtmlDocument doc)//08-05-2025
         {
             this.seid = seid;//23-06-2023
@@ -53,6 +54,7 @@ namespace WPFMultiThreadJobIDs
                         "|.//div[@class='wHYlTd Ww4FFb vt6azd tF2Cxc asEBEc']|.//div[contains(@class,'PmEWq wHYlTd')]|.//div[@id='knowledge-finance-wholepage__entity-summary']|.//div[@jscontroller='hKbgK']");//24-07-2025
                 else
                     nodeCol = rso.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div|.//div[@class='MjjYud']|.//div[contains(@class,'g Ww4FFb')]");
+                isRso = true;//21-08-2025
             }//08-02-2024
             if (nodeCol != null)  //11-08-2022 //end 01-11-2023
                 foreach (HtmlNode node in nodeCol)

@@ -17,6 +17,7 @@ namespace AIOMultiThread
         int orgLinks;
         string html;
         string seid = string.Empty;//23-06-2023
+        bool isRso = false;//21-08-2025
         public async Task<(string, int)> ProcessDocument(string seid, string keyword, HtmlDocument doc)//08-05-2025
         {
             this.seid = seid;//23-06-2023

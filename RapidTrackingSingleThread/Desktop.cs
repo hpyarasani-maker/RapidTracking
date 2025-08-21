@@ -18,6 +18,7 @@ namespace RapidTrackingSingleThread
         int orgLinks;
         string html;
         string seid = string.Empty;//23-06-2023
+        bool isRso = false;//21-08-2025
         public async Task<(string, int)> ProcessDocument(string seid, string keyword, HtmlDocument doc)//08-05-2025
         {
             this.seid = seid;//23-06-2023
@@ -55,7 +56,8 @@ namespace RapidTrackingSingleThread
                             "|.//div[@class='g']/div[@class='BYM4Nd']|.//div[@class='Lv2Cle']|.//g-section-with-header[contains(@class,'yG4QQe TBC9ub')]|.//div[@class='uVMCKf']|.//div[@class='vtSz8d']" +
                             "|.//div[@class='wHYlTd Ww4FFb vt6azd tF2Cxc asEBEc']|.//div[contains(@class,'PmEWq wHYlTd')]|.//div[@id='knowledge-finance-wholepage__entity-summary']|.//div[@jscontroller='hKbgK']");//24-07-2025
                     else
-                        nodeCol = rso.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div|.//div[@class='MjjYud']|.//div[contains(@class,'g Ww4FFb')]");
+                    nodeCol = rso.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div|.//div[@class='MjjYud']|.//div[contains(@class,'g Ww4FFb')]");
+                    isRso = true;//21-08-2025
                 }//08-02-2024
                 if (nodeCol != null)  //11-08-2022 //end 01-11-2023
                 foreach (HtmlNode node in nodeCol)
@@ -305,7 +307,7 @@ namespace RapidTrackingSingleThread
             if (colpas != null)
             {
                 HtmlNode node = colpas.SelectSingleNode(".//div[@class='oIk2Cb']");
-                if (node != null && !node.Ancestors("div").Any(n => n.HasClass("MjjYud")))//10-07-2025
+                if (node != null && (!node.Ancestors("div").Any(n => n.HasClass("MjjYud")) || isRso))//21-08-2025//10-07-2025
                 {
                     if (node.SelectSingleNode(".//div[contains(@class,'T6zPgb')]/div[@role='heading']|.//div[contains(@class,'M6HR1c')]/span[@role='heading']") != null)//02-07-2025//29-01-2025
                     {

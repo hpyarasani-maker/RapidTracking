@@ -298,7 +298,7 @@ namespace RapidTrackingLoopReceiving
             if (colpas != null)
             {
                 HtmlNode node = colpas.SelectSingleNode(".//div[@class='oIk2Cb']");
-                if (node != null && !node.Ancestors("div").Any(n => n.HasClass("MjjYud")))//10-07-2025
+                if (node != null && (!node.Ancestors("div").Any(n => n.HasClass("MjjYud")) || isRso))//21-08-2025//10-07-2025
                 {
                     if (node.SelectSingleNode(".//div[contains(@class,'T6zPgb')]/div[@role='heading']|.//div[contains(@class,'M6HR1c')]/span[@role='heading']") != null)//02-07-2025//29-01-2025
                     {
@@ -527,7 +527,7 @@ namespace RapidTrackingLoopReceiving
             }
             //AIOverview block //18-11-2024
             HtmlNode colt = doc.DocumentNode.SelectSingleNode(".//div[contains(@class,'M8OgIe')]|.//div[@class='GcKpu']");//12-12-2024//13-11-2024//08-11-2024//03-09-2024//21-08-2024 AIOverview
-            if (colt != null && doc.DocumentNode.SelectSingleNode(".//div[contains(@class,'Fzsovc')]") != null)//13-11-2024
+            if (colt != null && colt.SelectSingleNode(".//div[contains(@class,'Fzsovc')]") != null)//19-08-2025//13-11-2024
             {
                 s.Append(GetAioverview(colt));
             }//21-08-2024 AIOverview
@@ -2376,8 +2376,8 @@ namespace RapidTrackingLoopReceiving
                 || node.SelectSingleNode(".//div[@class='HaXvv kfn9hb']") != null || node.SelectSingleNode(".//div[@class='tsp-view']") != null //24-11-2020 selector for eventresults block//07-02-2020
                 || node.SelectSingleNode(".//div[@class='AxJnmb Wdsnue']") != null || node.SelectSingleNode(".//div[@class='tsp-fvcfc']") != null //05-01-2023 //02-08-2021 event block selector
                 || node.SelectSingleNode(".//g-expandable-content[@jscontroller='Ah7cLd']|.//div[@class='wYpZje']|.//div[@jscontroller='s0j7C']") != null)//31-07-2025//08-07-2024
-                if (node.SelectSingleNode(".//div[@class='aeayCf mnr-c']|.//div/product-viewer-group|.//div[@class='aJegcc']|.//div[@class='oIk2Cb']|.//div[@class='XNfAUb']" +//04-08-2025
-                    "|.//div[@id='iur']|.//div[@class='zxLiic']|.//div[@class='LwV4sf']|.//div[@class='Kcn6oc adDDi']|.//g-expandable-container[@class='LHMFHf BbXTb']") == null)//31-07-2025//25-03-2025//17-12-2024//20-08-2024//29-07-2024//20-07-2024//event and PeopleAlsoBuyFrom
+                if (node.SelectSingleNode(".//div[@class='aeayCf mnr-c']|.//div/product-viewer-group|.//div[@class='aJegcc']|.//div[@class='oIk2Cb']|.//div[@class='XNfAUb']|.//div[contains(@class,'Fzsovc')]" +//21-08-2025//04-08-2025
+                     "|.//div[@id='iur']|.//div[@class='zxLiic']|.//div[@class='LwV4sf']|.//div[contains(@class,'Kcn6oc')]|.//g-expandable-container[@class='LHMFHf BbXTb']|.//g-expandable-container[@jscontroller='QE1bwd']") == null)//19-08-2025//18-08-2025//31-07-2025//25-03-2025//17-12-2024//20-08-2024//29-07-2024//20-07-2024//event and PeopleAlsoBuyFrom
                     return "Event";
 
             if (node.SelectSingleNode(".//div[@id='cwmcwd']|.//div[@class='wDYxhc']") != null || node.SelectSingleNode(".//div[@class='ifM9O']") != null //21-04-2023

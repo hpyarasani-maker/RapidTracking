@@ -4022,7 +4022,7 @@ namespace AIOSingleThread
                                     spanCol = nd1.SelectNodes(".//span/span");
                                 if (spanCol == null || spanCol[0].InnerText.Equals("&nbsp;"))
                                     spanCol = nd1.SelectNodes(".//span");
-                                if (spanCol != null && nd1.Attributes["class"]?.Value == "rPeykc")//20-06-2025
+                                if (spanCol != null && (nd1.Attributes["class"]?.Value == "rPeykc" || nd1.SelectNodes(".//a[@class='DTlJ6d']") != null))//25-08-2025//20-06-2025
                                 {
                                     content = nd1.SelectSingleNode(".")?.InnerText.Trim().Replace("&#160;", "");
                                     if (!string.IsNullOrEmpty(content.Trim())) spanCol = null;

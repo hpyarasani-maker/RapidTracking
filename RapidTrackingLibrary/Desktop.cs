@@ -1880,6 +1880,8 @@ namespace RapidTrackingLibrary
                 nds = node.SelectNodes(".//g-inner-card/div/div/a");//03-11-2021 TS item urlsS
             if (nds == null)
                 nds = node.SelectNodes(".//div[@class='HCUNre dbsr']/a"); //21-09-2020 Top Stories block item urls selector updated
+            if (nds == null)
+                nds = node.SelectNodes(".//div[@class='m7jPZ']/a");//25-08-2025
             //if (nds == null && node.SelectNodes(".//div/a/div[@class='TIh7vf']|.//div/a[@class='WlydOe']") != null) //15-09-2021 selector missing TS item urls
             //{    //07-12-2021                                                                   
             //    nds = node.SelectNodes(".//div/a[@class='WlydOe']");

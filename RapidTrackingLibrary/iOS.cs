@@ -2682,7 +2682,7 @@ namespace RapidTrackingLibrary
             nds = node.SelectNodes(".//g-inner-card/a");
             if (nds == null) //14-09-2022 shifted from 1991 2 lines
                 nds = node.SelectNodes(".//div[contains(@class,'amp_re')]/a|.//div[@class='dbsr']/a|.//div[@class='Fq8eSd']/a|.//div[@class='y1Boce']/div/a" +
-                "|.//div[@data-ved]/a|.//div[contains(@class,'JJJtgd')]/a|.//div[contains(@class,'JJJtgd')]/div");//09-05-2025 //08-04-2025//27-02-2025//28-07-2020
+                "|.//div[@data-ved]/a|.//div[contains(@class,'JJJtgd')]/a") ?? node.SelectNodes(".//div[contains(@class,'JJJtgd')]/div");//26-08-2025//09-05-2025 //08-04-2025//27-02-2025//28-07-2020
             if (nds == null)//09-05-2025
                 nds = node.SelectNodes(".//div[@class='x2PRle DvHpd']/a");//09-05-2025
             if (nds == null)

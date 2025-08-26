@@ -2711,13 +2711,7 @@ namespace RapidTrackingLibrary
                     if (title == null)
                         title = nd.SelectSingleNode(".//div[contains(@class,'tNxQIb ynAwRc nDgy9d')]|.//div[contains(@class,'ynAwRc tNxQIb nDgy9d')]");//08-05-2023//01-02-2023//11-01-2023//11-01-2023
                     if (title == null)//18-08-2023
-                        title = nd.SelectSingleNode(".//div[contains(@class,'eAaXgc aKoISd')]");//18-08-2023
-                    if (title == null)//20-09-2023
-                        title = nd.SelectSingleNode(".//div[contains(@class,'eAaXgc WZaQJf')]");//20-09-2023
-                    if (title == null)
-                        title = nd.SelectSingleNode(".//div[contains(@class,'eAaXgc cPUhZb')]");//10-10-2023
-                    if (title == null)
-                        title = nd.SelectSingleNode(".//div[contains(@class,'eAaXgc RES9jf')]");//16-10-2024
+                        title = nd.SelectSingleNode(".//div[contains(@class,'eAaXgc')]");//26-08-2025//18-08-2023
                     string url = nd.Attributes["href"]?.Value ?? string.Empty;
                     if (string.IsNullOrEmpty(url))
                         url = nd.SelectSingleNode(".//a")?.Attributes["href"]?.Value ?? string.Empty;//08-05-2025

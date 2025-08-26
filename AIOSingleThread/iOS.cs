@@ -3960,7 +3960,12 @@ namespace AIOSingleThread
             {
                 foreach (HtmlNode nd in nodes)
                 {
-                    HtmlNodeCollection ls = nd.SelectNodes(".//div[@class='RJPOee EIJn2']/ol[@jscontroller='M2ABbc']/li|.//div[@class='RJPOee EIJn2']/ul[@jscontroller='M2ABbc']/li|.//ul[@jscontroller='M2ABbc']/div");
+                    HtmlNodeCollection ls = nd.SelectNodes(".//div[@class='RJPOee EIJn2']/ol[@jscontroller='M2ABbc']/li" +
+                        "|.//div[@class='RJPOee EIJn2']/ul[@jscontroller='M2ABbc']/li|.//ol[@jscontroller='M2ABbc']/div" +
+                        "|.//ul[@jscontroller='M2ABbc']/div");//26-08-2025
+                    if (ls != null && ((nd.SelectNodes(".//div[@class='RJPOee EIJn2']/ul[@jscontroller='M2ABbc']/li") == null && nd.SelectNodes(".//ul[@jscontroller='M2ABbc']/li") != null)
+                        || (nd.SelectNodes(".//div[@class='RJPOee EIJn2']/ol[@jscontroller='M2ABbc']/li") == null && nd.SelectNodes(".//ol[@jscontroller='M2ABbc']/li") != null)))
+                        ls = null;//26-08-2025
                     if (ls == null)
                         ls = nd.SelectNodes(".//div[@class='RJPOee EIJn2']/ul/li|.//div[@class='RJPOee EIJn2']/div");
                     if (ls == null)
@@ -4043,8 +4048,12 @@ namespace AIOSingleThread
                                         url = a.Attributes["href"]?.Value;
                                         content = a.SelectSingleNode(".//div[@class='OSrXXb wAebkf']")?.InnerText.Trim().Replace("&#160;", "") ?? a?.InnerText.Trim().Replace("&#160;", "") ?? "";
                                     }
-                                    else
+                                    else//26-08-2025
+                                    {
                                         content = nd1.SelectSingleNode(".//div[@class='Gur8Ad']/span")?.InnerText.Trim().Replace("&#160;", "") ?? "";
+                                        if (!string.IsNullOrEmpty(content) && content.Length <= 2)
+                                            content = nd1.SelectSingleNode(".//div[@class='Gur8Ad']")?.InnerText.Trim().Replace("&#160;", "") ?? "";
+                                    }//26-08-2025
                                     content = content.Replace("&nbsp;", "").Trim();
                                     if (!string.IsNullOrEmpty(content) && content.Length > 2)
                                     {

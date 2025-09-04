@@ -17,7 +17,6 @@ namespace WPFMultiThreadJobIDs
         int orgLinks;
         string html;
         string seid = string.Empty;//23-06-2023
-        bool isRso = false;//21-08-2025
         public async Task<(string, int)> ProcessDocument(string seid, string keyword, HtmlDocument doc)//08-05-2025
         {
             this.seid = seid;//23-06-2023
@@ -27,6 +26,7 @@ namespace WPFMultiThreadJobIDs
             {
                 throw new Exception("Old page found.");
             }
+            bool isRso = false;//01-09-2025
             orgLinks = 0;
             string ndText = "";
 
@@ -120,7 +120,7 @@ namespace WPFMultiThreadJobIDs
             //    return string.Empty;
 
             //BOTTOMSTUFF:
-            string bottomStuff = GetBottomStuff(doc);
+            string bottomStuff = GetBottomStuff(doc, isRso);//01-09-2025
             ndText += bottomStuff;
             sb.Append(bottomStuff);
             sb.Append("</section>");
@@ -235,7 +235,7 @@ namespace WPFMultiThreadJobIDs
             return s.ToString();
         }
 
-        private string GetBottomStuff(HtmlDocument doc)
+        private string GetBottomStuff(HtmlDocument doc, bool isRso)//01-09-2025
         {
             StringBuilder s = new StringBuilder();
 

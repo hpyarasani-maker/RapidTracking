@@ -15,7 +15,6 @@ namespace RapidTrackingLibrary
     {
         int orgLinks;
         public string html; string seid = string.Empty;//23-06-2023
-        bool isRso = false;//21-08-2025
         public string ProcessDocument(string seid, string keyword, HtmlDocument doc, out int count)
         {
             this.seid = seid;//23-06-2023
@@ -26,6 +25,7 @@ namespace RapidTrackingLibrary
             {
                 throw new Exception("Old page found.");
             }
+            bool isRso = false;//01-09-2025
             orgLinks = 0;
             string ndText = "";
             try //28-09-2020  try catch.
@@ -122,7 +122,7 @@ namespace RapidTrackingLibrary
                 //    return string.Empty;
 
                 //BOTTOMSTUFF:
-                string bottomStuff = GetBottomStuff(doc);
+                string bottomStuff = GetBottomStuff(doc, isRso);//01-09-2025
                 ndText += bottomStuff;
                 sb.Append(bottomStuff);
                 sb.Append("</section>");
@@ -274,7 +274,7 @@ namespace RapidTrackingLibrary
             return s.ToString();
         }
 
-        public string GetBottomStuff(HtmlDocument doc)
+        public string GetBottomStuff(HtmlDocument doc, bool isRso)//01-09-2025
         {
             StringBuilder s = new StringBuilder();
 

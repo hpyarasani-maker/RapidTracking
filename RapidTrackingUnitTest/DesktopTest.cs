@@ -13,6 +13,7 @@ namespace RapidTrackingUnitTest
         readonly static string seid = "58";
         readonly static string keyword = "joe biden";
         string startupPath = Directory.GetCurrentDirectory();
+        bool isRso = false;//01-09-2025
         [TestMethod]
         public void TestDektopTopStoriesBlockExisted()
         {
@@ -386,7 +387,7 @@ namespace RapidTrackingUnitTest
             HtmlDocument doc = new HtmlDocument();
             string path =startupPath + @"\test\desktop\BottomStuffAdwords1.txt";
             doc.Load(path);
-            var result = desktop.GetBottomStuff(doc);
+            var result = desktop.GetBottomStuff(doc, isRso);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
         }
         [TestMethod]
@@ -396,7 +397,7 @@ namespace RapidTrackingUnitTest
             HtmlDocument doc = new HtmlDocument();
             string path =startupPath + @"\test\desktop\BottomStuffAdwords2.txt";
             doc.Load(path);
-            var result = desktop.GetBottomStuff(doc);
+            var result = desktop.GetBottomStuff(doc, isRso);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
         }
         [TestMethod]
@@ -406,7 +407,7 @@ namespace RapidTrackingUnitTest
             HtmlDocument doc = new HtmlDocument();
             string path =startupPath + @"\test\desktop\BottomStuffAdwords3.txt";
             doc.Load(path);
-            var result = desktop.GetBottomStuff(doc);
+            var result = desktop.GetBottomStuff(doc, isRso);
             Assert.AreEqual(!string.IsNullOrEmpty(result), true);
         }
         //end 13-08-2021

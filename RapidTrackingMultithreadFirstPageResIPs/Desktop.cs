@@ -16,7 +16,6 @@ namespace RapidTrackingMultithreadFirstPageResIPs
         public int orgLinks;
         string html;
         public int count; string seid = string.Empty;//23-06-2023
-        bool isRso = false;//21-08-2025
         public string ProcessDocument(string seid, string keyword, HtmlDocument doc)
         {
             this.seid = seid;//23-06-2023
@@ -28,6 +27,7 @@ namespace RapidTrackingMultithreadFirstPageResIPs
             {
                 throw new Exception("Old page found.");
             }
+            bool isRso = false;//21-08-2025
             orgLinks = 0;
             string ndText = "";
 
@@ -120,7 +120,7 @@ namespace RapidTrackingMultithreadFirstPageResIPs
             //    return string.Empty;
 
             //BOTTOMSTUFF:
-            string bottomStuff = GetBottomStuff(doc);
+            string bottomStuff = GetBottomStuff(doc, isRso);//01-09-2025
             ndText += bottomStuff;
             sb.Append(bottomStuff);
             sb.Append("</section>");
@@ -237,7 +237,7 @@ namespace RapidTrackingMultithreadFirstPageResIPs
             return s.ToString();
         }
 
-        private string GetBottomStuff(HtmlDocument doc)
+        private string GetBottomStuff(HtmlDocument doc, bool isRso)//01-09-2025
         {
             StringBuilder s = new StringBuilder();
 

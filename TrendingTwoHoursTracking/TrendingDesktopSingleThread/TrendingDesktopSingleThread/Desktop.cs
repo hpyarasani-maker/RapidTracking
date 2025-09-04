@@ -21,7 +21,6 @@ namespace TrendingDesktopSingleThread
     {
         int orgLinks;
         string html; string seid = string.Empty;//23-06-2023
-        bool isRso = false;//21-08-2025
         public string ProcessDocument(string seid, string keyword, HtmlDocument doc, out int organicurls)
         {
             this.seid = seid;//23-06-2023
@@ -36,6 +35,7 @@ namespace TrendingDesktopSingleThread
                 organicurls = 0;
                 throw new Exception("Old page found.");
             }
+            bool isRso = false;//21-08-2025
             orgLinks = 0;
             html = doc.DocumentNode.OuterHtml;
             StringBuilder sb = new StringBuilder();
@@ -117,7 +117,7 @@ namespace TrendingDesktopSingleThread
             }
             // 23-03-2020
 
-            string bottomStuff = GetBottomStuff(doc);
+            string bottomStuff = GetBottomStuff(doc, isRso);//01-09-2025
             sb.Append(bottomStuff);
             sb.Append("</section>");
 

@@ -17,7 +17,6 @@ namespace TrendingReceiving
         int orgLinks;
         string html; string seid = string.Empty;//23-06-2023
         public event KeywordDone OnKeywordDone; //30-10-2024
-        bool isRso = false;//21-08-2025
         public async Task<(string, int)> ProcessDocument(string seid, string keyword, string jobid, string htmlsource)//12-05-2025//30-10-2024
         {
             this.seid = seid;//23-06-2023
@@ -33,6 +32,7 @@ namespace TrendingReceiving
             {
                 throw new Exception("Old page found.");
             }
+            bool isRso = false;//21-08-2025
             html = htmlsource;
             orgLinks = 0;
             StringBuilder sb = new StringBuilder();
@@ -123,7 +123,7 @@ namespace TrendingReceiving
             //if (orgLinks < count)
             //    return string.Empty;
 
-            string bottomStuff = GetBottomStuff(doc);
+            string bottomStuff = GetBottomStuff(doc, isRso);//01-09-2025
             sb.Append(bottomStuff);
             sb.Append("</section>");
 
@@ -235,7 +235,7 @@ namespace TrendingReceiving
             return s.ToString();
         }
 
-        private string GetBottomStuff(HtmlDocument doc)
+        private string GetBottomStuff(HtmlDocument doc,bool isRso)//01-09-2025
         {
             StringBuilder s = new StringBuilder();
 

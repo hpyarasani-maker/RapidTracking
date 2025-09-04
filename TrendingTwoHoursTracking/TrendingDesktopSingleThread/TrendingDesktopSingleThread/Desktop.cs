@@ -233,7 +233,7 @@ namespace TrendingDesktopSingleThread
             return s.ToString();
         }
 
-        private string GetBottomStuff(HtmlDocument doc)
+        private string GetBottomStuff(HtmlDocument doc, bool isRso)
         {
             StringBuilder s = new StringBuilder();
 

@@ -2639,7 +2639,7 @@ namespace SERPResultsJSON
             nds = node.SelectNodes(".//g-inner-card/a");
             if (nds == null) //14-09-2022 shifted from 1991 2 lines
                 nds = node.SelectNodes(".//div[contains(@class,'amp_re')]/a|.//div[@class='dbsr']/a|.//div[@class='Fq8eSd']/a|.//div[@class='y1Boce']/div/a" +
-                    "|.//div[@data-ved]/a|.//div[contains(@class,'JJJtgd')]/a|.//div[contains(@class,'JJJtgd')]/div");//09-05-2025 //08-04-2025//27-02-2025//28-07-2020
+                    "|.//div[@data-ved]/a|.//div[contains(@class,'JJJtgd')]/a") ?? node.SelectNodes(".//div[contains(@class,'JJJtgd')]/div");//26-08-2025//09-05-2025 //08-04-2025//27-02-2025//28-07-2020
             if (nds == null)//09-05-2025
                 nds = node.SelectNodes(".//div[@class='x2PRle DvHpd']/a");//09-05-2025
             if (nds == null)
@@ -2668,13 +2668,7 @@ namespace SERPResultsJSON
                     if (title == null)
                         title = nd.SelectSingleNode(".//div[contains(@class,'tNxQIb ynAwRc nDgy9d')]|.//div[contains(@class,'ynAwRc tNxQIb nDgy9d')]");//08-05-2023//01-02-2023//11-01-2023
                     if (title == null)//18-08-2023
-                        title = nd.SelectSingleNode(".//div[contains(@class,'eAaXgc aKoISd')]");//18-08-2023
-                    if (title == null)//20-09-2023
-                        title = nd.SelectSingleNode(".//div[contains(@class,'eAaXgc WZaQJf')]");//20-09-2023
-                    if (title == null)
-                        title = nd.SelectSingleNode(".//div[contains(@class,'eAaXgc cPUhZb')]");//10-10-2023
-                    if (title == null)
-                        title = nd.SelectSingleNode(".//div[contains(@class,'eAaXgc RES9jf')]");//16-10-2024
+                        title = nd.SelectSingleNode(".//div[contains(@class,'eAaXgc')]");//26-08-2025//18-08-2023
                     string url = nd.Attributes["href"]?.Value ?? string.Empty;
                     if (string.IsNullOrEmpty(url))
                         url = nd.SelectSingleNode(".//a")?.Attributes["href"]?.Value ?? string.Empty;//08-05-2025
@@ -3229,7 +3223,7 @@ namespace SERPResultsJSON
                 nd = node.SelectSingleNode(".//div[@class='CXo9G']"); //08-01-2021
             if (nd == null)
                 nd = node.SelectSingleNode(".//g-card[@class='I7zR5']");//21-09-2022 top stories
-            if (nd != null && node.SelectSingleNode(".//div[contains(@class,'knowledge-panel')]|.//div[contains(@class,'rbYSKb LfVVr')]") == null)//20-08-2025//19-08-2025//26-08-2020 included KP selector
+            if (nd != null && node.SelectSingleNode(".//div[contains(@class,'knowledge-panel')]|.//div[contains(@class,'rbYSKb LfVVr')]|.//div[@class='YoZiHf']") == null)//02-09-2025//20-08-2025//19-08-2025//26-08-2020 included KP selector
             {
                 bool ts = true;
                 //start07-08-2020 //map selector
@@ -3701,7 +3695,7 @@ namespace SERPResultsJSON
             if (nd != null)
                 return "PeopleAlsoSearch"; // 11-10-2024 PeopleAlsoSearch
             nd = node.SelectSingleNode(".//div[contains(@class,'Ww4FFb vt6azd') or (.//div[@class='zJUuqf adDDi']) and (.//div[(@class='XNfAUb')])]");//11-10-2024 sitesCarousel
-            if (nd != null && node.SelectSingleNode(".//div[@class='owgUHc']|.//div[@class='wPNfjb']|.//div[@class='zhYvOe']|.//div[@class='YB4h9 ky4hfd']") == null && node.SelectSingleNode(".//div[@class='LbKnXb YAG2qc UYJxh']|.//div[@class='cyspcb DH9lqb']") != null)//21-10-2024
+            if (nd != null && node.SelectSingleNode(".//div[@class='owgUHc']|.//div[@class='wPNfjb']|.//div[@class='zhYvOe']|.//div[@class='YB4h9 ky4hfd']|.//div[@class='QkBAO wHYlTd']") == null && node.SelectSingleNode(".//div[@class='LbKnXb YAG2qc UYJxh']|.//div[@class='cyspcb DH9lqb']") != null)//04-09-2025//21-10-2024
                 return "sitesCarousel";//11-10-2024
             nd = node.SelectSingleNode(".//div[@class='zxLiic']");//17-12-2024 PeopleAlsoBuyFrom
             if (nd != null)//17-12-2024
@@ -3950,7 +3944,12 @@ namespace SERPResultsJSON
             {
                 foreach (HtmlNode nd in nodes)
                 {
-                    HtmlNodeCollection ls = nd.SelectNodes(".//div[@class='RJPOee EIJn2']/ol[@jscontroller='M2ABbc']/li|.//div[@class='RJPOee EIJn2']/ul[@jscontroller='M2ABbc']/li|.//ul[@jscontroller='M2ABbc']/div");
+                    HtmlNodeCollection ls = nd.SelectNodes(".//div[@class='RJPOee EIJn2']/ol[@jscontroller='M2ABbc']/li" +
+                            "|.//div[@class='RJPOee EIJn2']/ul[@jscontroller='M2ABbc']/li|.//ol[@jscontroller='M2ABbc']/div" +
+                            "|.//ul[@jscontroller='M2ABbc']/div");//26-08-2025
+                    if (ls != null && ((nd.SelectNodes(".//div[@class='RJPOee EIJn2']/ul[@jscontroller='M2ABbc']/li") == null && nd.SelectNodes(".//ul[@jscontroller='M2ABbc']/li") != null)
+                        || (nd.SelectNodes(".//div[@class='RJPOee EIJn2']/ol[@jscontroller='M2ABbc']/li") == null && nd.SelectNodes(".//ol[@jscontroller='M2ABbc']/li") != null)))
+                        ls = null;//26-08-2025
                     if (ls == null)
                         ls = nd.SelectNodes(".//div[@class='RJPOee EIJn2']/ul/li|.//div[@class='RJPOee EIJn2']/div");
                     if (ls == null)
@@ -4012,7 +4011,7 @@ namespace SERPResultsJSON
                                     spanCol = nd1.SelectNodes(".//span/span");
                                 if (spanCol == null || spanCol[0].InnerText.Equals("&nbsp;"))
                                     spanCol = nd1.SelectNodes(".//span");
-                                if (spanCol != null && nd1.Attributes["class"]?.Value == "rPeykc")//20-06-2025
+                                if (spanCol != null && (nd1.Attributes["class"]?.Value == "rPeykc" || nd1.SelectNodes(".//a[@class='DTlJ6d']") != null))//25-08-2025//20-06-2025
                                 {
                                     content = nd1.SelectSingleNode(".")?.InnerText.Trim().Replace("&#160;", "");
                                     if (!string.IsNullOrEmpty(content.Trim())) spanCol = null;
@@ -4033,8 +4032,12 @@ namespace SERPResultsJSON
                                         url = a.Attributes["href"]?.Value;
                                         content = a.SelectSingleNode(".//div[@class='OSrXXb wAebkf']")?.InnerText.Trim().Replace("&#160;", "") ?? a?.InnerText.Trim().Replace("&#160;", "") ?? "";
                                     }
-                                    else
+                                    else//26-08-2025
+                                    {
                                         content = nd1.SelectSingleNode(".//div[@class='Gur8Ad']/span")?.InnerText.Trim().Replace("&#160;", "") ?? "";
+                                        if (!string.IsNullOrEmpty(content) && content.Length <= 2)
+                                            content = nd1.SelectSingleNode(".//div[@class='Gur8Ad']")?.InnerText.Trim().Replace("&#160;", "") ?? "";
+                                    }//26-08-2025
                                     content = content.Replace("&nbsp;", "").Trim();
                                     if (!string.IsNullOrEmpty(content) && content.Length > 2)
                                     {

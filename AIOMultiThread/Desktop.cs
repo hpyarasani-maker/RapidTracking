@@ -1809,6 +1809,8 @@ namespace AIOMultiThread
                 nds = node.SelectNodes(".//g-inner-card/div/div/a");//03-11-2021 TS item urls
             if (nds == null)
                 nds = node.SelectNodes(".//div[@class='HCUNre dbsr']/a"); //21-09-2020 Top Stories block item urls selector updated
+            if (nds == null)
+                nds = node.SelectNodes(".//div[@class='m7jPZ']/a");//25-08-2025
             //if (nds == null && node.SelectNodes(".//div/a/div[@class='TIh7vf']|.//div/a[@class='WlydOe']") != null) //15-09-2021 selector missing TS item urls
             //{    //07-12-2021                                                                                                    //nds = node.SelectNodes(".//div/a"); //10-12-2020 
             //    nds = node.SelectNodes(".//div/a[@class='WlydOe']");
@@ -2381,7 +2383,7 @@ namespace AIOMultiThread
                 || node.SelectSingleNode(".//div[@class='AxJnmb Wdsnue']") != null || node.SelectSingleNode(".//div[@class='tsp-fvcfc']") != null //05-01-2023 //02-08-2021 event block selector
                 || node.SelectSingleNode(".//g-expandable-content[@jscontroller='Ah7cLd']|.//div[@class='wYpZje']|.//div[@jscontroller='s0j7C']") != null)//31-07-2025//08-07-2024
                 if (node.SelectSingleNode(".//div[@class='aeayCf mnr-c']|.//div/product-viewer-group|.//div[@class='aJegcc']|.//div[@class='oIk2Cb']|.//div[@class='XNfAUb']|.//div[contains(@class,'Fzsovc')]" +//21-08-2025//04-08-2025
-                     "|.//div[@id='iur']|.//div[@class='zxLiic']|.//div[@class='LwV4sf']|.//div[contains(@class,'Kcn6oc')]|.//g-expandable-container[@class='LHMFHf BbXTb']|.//g-expandable-container[@jscontroller='QE1bwd']") == null)//19-08-2025//18-08-2025//31-07-2025//25-03-2025//17-12-2024//20-08-2024//29-07-2024//20-07-2024//event and PeopleAlsoBuyFrom
+                     "|.//div[@id='iur']|.//div[@id='tadsb']|.//div[@class='zxLiic']|.//div[@class='LwV4sf']|.//div[contains(@class,'Kcn6oc')]|.//g-expandable-container[@class='LHMFHf BbXTb']|.//g-expandable-container[@jscontroller='QE1bwd']") == null)//03-09-2025//19-08-2025//18-08-2025//31-07-2025//25-03-2025//17-12-2024//20-08-2024//29-07-2024//20-07-2024//event and PeopleAlsoBuyFrom
                     return "Event";
 
             if (node.SelectSingleNode(".//div[@id='cwmcwd']|.//div[@class='wDYxhc']") != null || node.SelectSingleNode(".//div[@class='ifM9O']") != null //21-04-2023

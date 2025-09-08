@@ -3959,7 +3959,7 @@ namespace AIOSingleThread
                             "|.//ul[@jscontroller='M2ABbc']/div");//26-08-2025
                     if (ls != null && ((nd.SelectNodes(".//div[@class='RJPOee EIJn2']/ul[@jscontroller='M2ABbc']/li") == null && nd.SelectNodes(".//ul[@jscontroller='M2ABbc']/li") != null)
                         || (nd.SelectNodes(".//div[@class='RJPOee EIJn2']/ol[@jscontroller='M2ABbc']/li") == null && nd.SelectNodes(".//ol[@jscontroller='M2ABbc']/li") != null)))
-                        ls = null;//26-08-2025
+                        ls = nd.SelectNodes(".//ul[@jscontroller='M2ABbc']/li|.//ul[@jscontroller='M2ABbc']/div|.//ol[@jscontroller='M2ABbc']/li|.//ol[@jscontroller='M2ABbc']/div");//09-09-2025//26-08-2025
                     if (ls == null)
                         ls = nd.SelectNodes(".//div[@class='RJPOee EIJn2']/ul/li|.//div[@class='RJPOee EIJn2']/div");
                     if (ls == null)
@@ -3972,8 +3972,8 @@ namespace AIOSingleThread
                         ls = nd.SelectNodes(".//ol[@jscontroller='M2ABbc']/div");//23-04-2025
                     if (ls == null)//24-07-2025//01-05-2025
                         ls = nd.SelectNodes(".//ol[@jscontroller='M2ABbc']/li|.//ul[@jscontroller='M2ABbc']/li");//01-05-2025
-                    if (ls == null || ls.Count <= 1)//31-07-2025
-                        ls = nd.SelectNodes(".//ul[@jscontroller='M2ABbc']/li|.//ul[@jscontroller='M2ABbc']/div");//31-07-2025
+                    //if (ls == null || ls.Count <= 1)//31-07-2025
+                    //    ls = nd.SelectNodes(".//ul[@jscontroller='M2ABbc']/li|.//ul[@jscontroller='M2ABbc']/div");//31-07-2025
                     if (ls != null)
                     {
                         foreach (HtmlNode nd1 in ls)

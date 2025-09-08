@@ -3,14 +3,12 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
@@ -21,7 +19,9 @@ namespace BingSingleThread
 {
     public partial class frmSingleThread : Form
     {
-        string xmlPath = "C:\\inetpub\\wwwroot\\rapidtracking_singlethread_102_GT20_WC.xml";
+        string xmlPath = "C:\\inetpub\\wwwroot\\bingdesktop_5.xml";
+
+        string myDate = DateTime.Today.ToString("yyyy-MM-dd");
 
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         
@@ -50,9 +50,9 @@ namespace BingSingleThread
         private void frmSingleThread_Load(object sender, EventArgs e)
         {
             
-            this.Text = "RapidTracking_SingleThread_102_GT20_WC";
-            //this.Text = "RapidTracking_SingleThread_P_A_WOC_10-09-2019";
-
+            this.Text = "Bing_SingleThread_Desktop_5";
+            //this.Text = "Bing_SingleThread_Mobile";
+            
 
             //Thread t = new Thread(new ThreadStart(StartProcess));//16-02-2025
             //t.SetApartmentState(ApartmentState.STA);
@@ -85,11 +85,11 @@ namespace BingSingleThread
                 //string myDate = "2019-11-20";
 
 
-                string kwQry = "[Tracking_DB_Keywords_Seid_102] '" + myDate + "'";
-                //string kwQry = "[Tracking_DB_Keywords_Seid_103p] '" + myDate + "'";               
-                //string kwQry = "[GetCommaKeywordsP] '" + myDate + "'";               
-                //string kwQry = "[Tracking_DB_Keywords_Seid_102_P] '" + myDate + "'"; //tracking previous date single keywords
-                //string kwQry = "Tracking_DB_Keywords_SEID_102_TGBN '" + myDate + "'";
+                //string kwQry = "[GetKeywords_bing_Desktop] '" + myDate + "'";  GetKeywords_bing_5
+                //string kwQry = "[GetKeywords_bing_Mobile] '" + myDate + "'";
+                string kwQry = "[GetKeywords_bing_5] '" + myDate + "'";
+
+
 
                 await GetKeywords(kwQry);
 
@@ -97,11 +97,6 @@ namespace BingSingleThread
                     break;
 
                 int cnt = 0;
-                //this.Invoke((MethodInvoker)delegate ()
-                //{
-                //    label1.Text = cnt + " of " + itmCount1 + " Completed";
-                //    label1.Refresh();
-                //});
                 foreach (string s in lstKWs.Items)
                 {
                     string seid = s.Split(':')[0];
@@ -111,56 +106,44 @@ namespace BingSingleThread
                     {
                         var doc = new HtmlAgilityPack.HtmlDocument();
                         Task<ArrayList> alresult = GetHTML(kw, Convert.ToInt32(seid));
-
+                        StringBuilder sb = new StringBuilder();
                         foreach (string[] src in alresult.Result)
                         {
                             string keyword = src[0];
                             JObject obj = JObject.Parse(src[1]);
-                            string html = obj["results"][0]["content"].Value<string>();
-                            string jobid = src[2];
-                            string device = src[3];
-                            await SendToSendingTable(kw, seid, jobid);
-                            File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
-                            //File.WriteAllText(@"C:\inetpub\wwwroot\"+jobid+"_withOut filter_"+".html", html, Encoding.UTF8);
-                            result = true;
-                            doc = new HtmlAgilityPack.HtmlDocument();
-                            doc.LoadHtml(html);
-                            string res = string.Empty;
-                            int count = 0;
+                            //string html = obj["results"][0]["content"].Value<string>();
                             try
                             {
-                                if (device == "desktop_chrome")
+                                var cont = obj["results"];
+                                foreach (JObject jo in cont)
                                 {
-                                    Desktop clsDesktop = new Desktop();
-                                    (res, count) = await clsDesktop.ProcessDocument(seid, keyword, doc);//08-05-2025
+                                    sb.Append(jo["content"].Value<string>());
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                throw ex;
+                            }
+                            string jobid = src[2];
+                            string device = src[3];
+                            //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", sb.ToString(), Encoding.UTF8);
+                            result = true;
+                            doc = new HtmlAgilityPack.HtmlDocument();
+                            //doc.LoadHtml(html);
+                            string res = string.Empty;                            
+                            ArrayList arRes = new ArrayList();
+
+                            try
+                            {
+                                if (device == "desktop")
+                                {
+                                    arRes = DesktopPattern(sb.ToString());
                                 }
                                 else
                                 {
-                                    iOS clsiOS = new iOS();
-                                    (res, count) = await clsiOS.ProcessDocument(seid, keyword, doc);//08-05-2025
+                                    arRes = MobilePattern(sb.ToString());
                                 }
-
-                                if (!string.IsNullOrEmpty(res))
-                                {
-                                    lblCount.Invoke((MethodInvoker)(delegate ()
-                                    {
-                                        lblCount.Text = "No. of Urls : " + count;
-                                    }));
-                                    if (count > 20)
-                                    {
-                                        await SendToAPI(seid, keyword, res, jobid);
-                                        await SendToDB(seid, keyword, res, jobid, count);
-                                    }
-                                    bool aio = res.Contains("<block type=\"aiOverview\">");//16-02-2025
-                                    if (aio && device == "mobile_android") // inserting true value //16-02-2025
-                                        await InsertAIO_Keyword(keyword, seid, aio);
-                                }
-                                //else
-                                //{
-                                //    await SendToAPI(seid, keyword, res, jobid);
-                                //    await SendToDB(seid, keyword, res, jobid, count);
-                                //}
-
+                                await ProcessResults(arRes, kw, int.Parse(seid), jobid);
                             }
                             catch (Exception ex)
                             {
@@ -207,38 +190,250 @@ namespace BingSingleThread
             Environment.Exit(Environment.ExitCode);
         }
 
-
-        private async Task SendToAPI(string seid, string kw, string res, string jobid)
+        public async Task ProcessResults(ArrayList alRes, string kw, int seid, string jobid)
         {
-            //string r = "[\x00-\x08\x0B\x0C\x0E-\x1F\x26]";
-            //res = Regex.Replace(res, r, "", RegexOptions.Compiled);
-            //if (res == string.Empty)
-            //{
-            //    XmlDocument xd = new XmlDocument();
-            //    res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
-            //    res += "<searchResult searchEngine =\"" + seid + "\" keyword=\"" + kw + "\" date =\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\">";
-            //    res += "<section col = \"main\" /> <section col=\"right\" /> </searchResult> ";
-            //    xd.LoadXml(res);
-            //    xd.Save(xmlPath);
-            //}
-            //else
-            //{
-            XmlDocument xd = new XmlDocument();
-            res = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + res;
-            xd.LoadXml(res);
-            xd.Save(xmlPath);
+            string qry = "";
 
-            //}
-            //SendToURL
+            if (alRes.Count < 1)
+            {
+              
+
+                /*XmlTextWriter writer = new XmlTextWriter(xmlPath, Encoding.UTF8);
+
+                writer.Formatting = System.Xml.Formatting.Indented;
+                writer.Indentation = 2;
+
+                writer.WriteStartDocument();
+
+                writer.WriteStartElement("", "searchResults", "");
+                writer.WriteStartElement("", "searchResult", "");
+                writer.WriteStartAttribute("searchEngineId");
+                writer.WriteString(seid.ToString());
+                writer.WriteStartAttribute("keyword");
+                writer.WriteString(kw);
+                writer.WriteStartAttribute("date");
+                writer.WriteString(myDate);
+
+                writer.WriteEndElement();
+
+                writer.WriteEndDocument();
+
+                writer.Close();
+
+               await SendXmlToAPI(xmlPath);
+               await InsertDashBoardData(kw, seid.ToString(), 0, string.Empty, jobid);*/
+
+            }
+            else
+            {
+                Console.WriteLine("Processing the keyword: " + kw);
+
+                string tname = Thread.CurrentThread.Name;
+
+                string result = string.Empty;
+
+                //lblcount.Invoke((MethodInvoker)(delegate ()
+                //{
+                //    lblcount.Text = "No. of Urls : " + alRes.Count;
+                //}));
+
+                try
+                {
+                    MemoryStream stream = new MemoryStream();
+                    using (XmlTextWriter writer = new XmlTextWriter(stream, Encoding.UTF8))
+                    {
+                        writer.Formatting = System.Xml.Formatting.Indented;
+                        writer.Indentation = 2;
+                        writer.WriteStartDocument();
+
+                        writer.WriteStartElement("", "searchResults", "");
+
+                        writer.WriteStartElement("", "searchResult", "");
+                        writer.WriteStartAttribute("searchEngineId");
+                        writer.WriteString(seid.ToString());
+                        writer.WriteStartAttribute("keyword");
+                        writer.WriteString(kw);
+                        writer.WriteStartAttribute("date");
+                        writer.WriteString(myDate);
+                        string c = string.Empty;
+                        int k;
+
+                        for (int i = 0; i < alRes.Count; i++)
+                        {
+                            k = i + 1;
+                            c = k.ToString();
+
+                            writer.WriteStartElement("", "url", "");
+                            writer.WriteStartAttribute("position");
+                            writer.WriteString(c);
+                            writer.WriteEndAttribute();
+                            string dURL = alRes[i].ToString();
+                            //string dURL = CleanInvalidXmlChars(alRes[i].ToString());
+                            writer.WriteString(dURL);
+                            writer.WriteEndElement();
+
+                            qry += "insert into dashboard_bing(date, name, seid, position, url) values(Convert(varchar(10), '" + myDate + "',103), N'" + kw.Replace("'", "''") + "', " + seid + ", " + k + ", N'" + dURL.ToString().Replace("'", "''") + "')";
+
+                        }
+                        writer.WriteEndElement();
+                        writer.WriteEndElement();
+                        writer.WriteEndDocument();
+
+                        writer.Flush();
+                        writer.Flush();
+                        //writer.Close();
+                        Encoding utf = Encoding.UTF8;
+                        result = utf.GetString(stream.GetBuffer(), 0, (int)stream.Length);
+                        stream.Close();
+                    }
+
+                    if (!string.IsNullOrEmpty(result))
+                    {
+                        StreamWriter sw = new StreamWriter(xmlPath, false);
+                        sw.Write(result);
+                        sw.Close();
+                    }
+
+                    if (!string.IsNullOrEmpty(result))
+                    {
+                        lblCount.Invoke((MethodInvoker)(delegate ()
+                        {
+                            lblCount.Text = "No. of Urls : " + alRes.Count;
+                        }));
+                        try
+                        {
+                            if (alRes.Count > 0)
+                            {
+                               await SendXmlToAPI(xmlPath);
+                               await Insert100DashBoardData(qry);
+                               await InsertDashBoardData(kw, seid.ToString(), alRes.Count, alRes[0].ToString(), jobid);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            throw ex;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        public string strConn()
+        {
+            try
+            {
+                XmlDocument xml = new XmlDocument();
+                string fileName = @"C:\Inetpub\wwwroot\ServerIP_Callback.xml";
+                // You'll need to put the correct path to your xml file here
+                xml.Load(fileName);
+
+                // Select a specific node
+                XmlNode node = xml.SelectSingleNode("ConnectionString/con");
+                // Get its value
+                string name = node.InnerText;
+
+                return name;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+       private async Task Insert100DashBoardData(string qry)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(strConn()))
+                {
+                    con.Open();
+                    using (SqlCommand comm = new SqlCommand(qry, con))
+                    {
+                        comm.CommandTimeout = 0;
+                        await comm.ExecuteNonQueryAsync();
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                string errorMessage = "Database Error: \r\n";
+                for (int i = 0; i < ex.Errors.Count; i++)
+                {
+                    errorMessage += "Index #" + i + "\n" +
+                                     "Message: " + ex.Errors[i].Message + "\n" +
+                                     "LineNumber: " + ex.Errors[i].LineNumber + "\n" +
+                                     "Source: " + ex.Errors[i].Source + "\n" +
+                                     "Procedure: " + ex.Errors[i].Procedure + "\n" +
+                                     "Server: " + ex.Errors[i].Server + "\n";
+                }
+
+                throw new Exception(errorMessage);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        private async Task InsertDashBoardData(string kw, string seid, int cnt, string alRes, string jobid)
+        {
+
+            string qry = "insert into dashboard_data(date, name, seid, jobid, count, url) " +
+                    "values(Convert(varchar(10),'" + myDate + "',103),N'" + kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "', " + cnt + ", N'" + alRes.Replace("'", "''") + "')";
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(await Common.ReadConnection()))
+                {
+                    con.Open();
+                    using (SqlCommand comm = new SqlCommand(qry, con))
+                    {
+                        comm.CommandTimeout = 0;
+                        comm.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                string errorMessage = "Database Error: \r\n";
+                for (int i = 0; i < ex.Errors.Count; i++)
+                {
+                    errorMessage += "Index #" + i + "\n" +
+                                     "Message: " + ex.Errors[i].Message + "\n" +
+                                     "LineNumber: " + ex.Errors[i].LineNumber + "\n" +
+                                     "Source: " + ex.Errors[i].Source + "\n" +
+                                     "Procedure: " + ex.Errors[i].Procedure + "\n" +
+                                     "Server: " + ex.Errors[i].Server + "\n";
+                }
+
+                throw new Exception(errorMessage);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
 
-            string submitURL = await ReadAPI();
-            //return; //03-04-2021
+       
+        private async Task SendXmlToAPI(string path)
+        {
+            string submitURL = Common.readAPI();
+
+            //string user = "pi-tracking";
+            //string pwd = "ipseo2001";
+
             string user = "pisoftware";
             string pwd = "r00t123456";
+
             try
             {
                 HttpWebRequest httpWReq = (HttpWebRequest)WebRequest.Create(submitURL);
+                //httpWReq = (HttpWebRequest)WebRequest.Create(submitURL);
                 httpWReq.UseDefaultCredentials = true;
                 httpWReq.PreAuthenticate = true;
                 httpWReq.Credentials = CredentialCache.DefaultCredentials;
@@ -249,7 +444,7 @@ namespace BingSingleThread
 
                 httpWReq.ProtocolVersion = HttpVersion.Version11;
                 httpWReq.Method = "POST";
-                httpWReq.ContentType = "application/x-www-form-urlencoded";
+                httpWReq.ContentType = "application/x-www-form-urlencoded"; //charset=UTF-8";  
 
 
                 string auth = string.Format("{0}:{1}", user, pwd);
@@ -259,22 +454,16 @@ namespace BingSingleThread
 
                 httpWReq.Headers[HttpRequestHeader.Authorization] = cred;
                 httpWReq.ContentLength = data.Length;
-                //httpWReq.Timeout = 0;
 
-                Stream stream = await httpWReq.GetRequestStreamAsync();
+
+                Stream stream = httpWReq.GetRequestStream();
                 stream.Write(data, 0, data.Length);
                 stream.Close();
 
-                HttpWebResponse response = (HttpWebResponse)await httpWReq.GetResponseAsync();
-                //string s = response.ToString();
+                HttpWebResponse response = (HttpWebResponse)httpWReq.GetResponse();
+                string s = response.ToString();
                 StreamReader reader = new StreamReader(response.GetResponseStream());
 
-                if (response.StatusCode != HttpStatusCode.OK)
-                {
-                    reader.Close();
-                    response.Close();
-                    throw new Exception(response.StatusCode + ": " + response.StatusDescription);
-                }
                 String xmlResponse = "";
                 String temp = null;
                 while ((temp = reader.ReadLine()) != null)
@@ -286,11 +475,6 @@ namespace BingSingleThread
             }
             catch (WebException ex)
             {
-
-                ////store into keywordfail table.
-                await SendToDBFailure(seid, kw, jobid, false, "RapidTrackingSingleThread Request Status is faulted");
-
-
                 string errorMsg = string.Empty;
                 using (WebResponse response = ex.Response)
                 {
@@ -301,18 +485,10 @@ namespace BingSingleThread
                     using (var reader = new StreamReader(data))
                     {
                         errorMsg += "\r\n" + reader.ReadToEnd();
-                        txtError.Text = errorMsg;
                     }
                 }
-
                 throw new Exception(errorMsg);
-
             }
-            catch (Exception ex)
-            {
-                throw new Exception("Error: " + ex.Message);
-            }
-
         }
 
         private async Task GetKeywords(string qry)
@@ -320,15 +496,9 @@ namespace BingSingleThread
             this.Invoke((MethodInvoker)delegate ()
             {
                 lstKWs.Items.Clear();
-                //lstKWs.Items.Add("58:praivat medicashe insh");
-                //lstKWs.Items.Add("106:st.vincent discography");
-                //lstKWs.Items.Add("106:romeo and juliet tickets");
-                //lstKWs.Items.Add("160:malmö ff");
-                //lstKWs.Items.Add("102:terry crews");
-                //lstKWs.Items.Add("102:the uninhabitable earth summary");
-                lstKWs.Items.Add("58:london luton flights");
+                //lstKWs.Items.Add("5:wifi in warehouse");
             });
-            return;
+            //return;
 
             try
             {
@@ -446,36 +616,7 @@ namespace BingSingleThread
             }
 
         }
-        private async Task InsertAIO_Keyword(string kw, string seid, bool aio)//16-02-2025
-        {
-            try
-            {
-                using (SqlConnection con = new SqlConnection(await Common.ReadConnection()))
-                {
-                    con.Open();
-                    using (SqlCommand comm = con.CreateCommand())
-                    {
-                        comm.CommandTimeout = 0;
-                        comm.CommandType = CommandType.StoredProcedure;
-                        comm.CommandText = "Insert_AIO_Keywords";
-                        comm.Parameters.Add("Seid", SqlDbType.Int).Value = seid;
-                        comm.Parameters.Add("Name", SqlDbType.NVarChar).Value = kw;
-                        comm.Parameters.Add("AIO", SqlDbType.Bit).Value = aio;
-                        await comm.ExecuteNonQueryAsync();
-                    }
-                }
-            }
-            catch (SqlException ex)
-            {
-                string errorMessage = $"Database Error in Insert_AIO_Keywords: \r\n{ex.Message}";
-                throw new Exception(errorMessage);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }//16-02-2025
-
+       
         private async Task SendToDB(string seid, string keyword, string xml, string jobid, int urlcount)
         {
             try
@@ -572,11 +713,12 @@ namespace BingSingleThread
             ArrayList googleList = new ArrayList();
             try
             {
-                var doc = new HtmlDocument();
+                var doc = new HtmlAgilityPack.HtmlDocument();
                 doc.LoadHtml(htmlsource);
                 ArrayList alDup = new ArrayList();
 
                 HtmlNodeCollection node = doc.DocumentNode.SelectNodes(".//ol[@id='b_results']/li[@class='b_algo']/div[@class='b_algoheader']|//ol[@id='b_results']/li[@class='b_algo']|//div[@class='b_algoheader']|//div[@class='b_algoheader b_removeline12px']|//div[@class='b_algoheader b_removeline8px']");
+
                 if (node != null)
                 {
                     foreach (HtmlNode links in node)
@@ -593,7 +735,8 @@ namespace BingSingleThread
                                     indx = urls.LastIndexOf("https://");
                                 }
                                 urls = urls.Remove(0, indx);
-                                alDup.Add(HttpUtility.HtmlDecode(urls));
+                                if (!urls.Contains("www.bing.com/ck/a"))
+                                alDup.Add(HttpUtility.HtmlDecode(urls.Trim()));
                             }
                         }
                         catch { continue; }
@@ -603,7 +746,6 @@ namespace BingSingleThread
                         if (googleList.Contains(s) || string.IsNullOrEmpty(s)) continue;
                         googleList.Add(s);
                     }
-
                     if (googleList.Count > 100)
                     {
                         googleList.RemoveRange(100, googleList.Count - 100);
@@ -619,11 +761,13 @@ namespace BingSingleThread
             ArrayList googleList = new ArrayList();
             try
             {
-                var doc = new HtmlDocument();
+                var doc = new HtmlAgilityPack.HtmlDocument();
                 doc.LoadHtml(htmlsource);
                 ArrayList alDup = new ArrayList();
 
-                HtmlNodeCollection node = doc.DocumentNode.SelectNodes("//ol[@id='b_results']/li[@class='b_algo']|//ol[@id='b_results']/li[@class='b_algo']/h2|//div[@class='b_algoheader']|//ol[@id='b_results']//li[@class='b_algo']/div[@class='b_title']/h2|//li[@class='b_algo']/h2"); //seid = 5
+                //HtmlNodeCollection node = doc.DocumentNode.SelectNodes("//ol[@id='b_results']/li[@class='b_algo']|//ol[@id='b_results']/li[@class='b_algo']/h2|//div[@class='b_algoheader']|//ol[@id='b_results']//li[@class='b_algo']/div[@class='b_title']/h2|//li[@class='b_algo']/h2"); //seid = 5
+                HtmlNodeCollection node = doc.DocumentNode.SelectNodes(".//div[@class='b_attribution']/cite|.//div[@class='b_adurl']/cite");
+                //HtmlNodeCollection node = doc.DocumentNode.SelectNodes(".//ol[@id='b_results']/li[@class='b_algo']/div[@class='b_algoheader']|//ol[@id='b_results']/li[@class='b_algo']|//div[@class='b_algoheader']|//div[@class='b_algoheader b_removeline12px']|//div[@class='b_algoheader b_removeline8px']");
 
                 if (node != null)
                 {
@@ -641,18 +785,17 @@ namespace BingSingleThread
                                     indx = urls.LastIndexOf("https://");
                                 }
                                 urls = urls.Remove(0, indx);
-                                alDup.Add(HttpUtility.HtmlDecode(urls));
+                                if (!urls.Contains("www.bing.com/ck/a"))
+                                    alDup.Add(HttpUtility.HtmlDecode(urls.Trim()));
                             }
                         }
                         catch { continue; }
                     }
-
                     foreach (string s in alDup)
                     {
                         if (googleList.Contains(s) || string.IsNullOrEmpty(s)) continue;
                         googleList.Add(s);
                     }
-
                     if (googleList.Count > 100)
                     {
                         googleList.RemoveRange(100, googleList.Count - 100);
@@ -674,20 +817,20 @@ namespace BingSingleThread
             string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
 
             //string callbackURL = "https://seresults.azurewebsites.net/api/callbackotherdesktop/"; //Bing desktop
-            string callbackURL = "https://seresults.azurewebsites.net/api/callbackothermobile/"; //Bing mobile
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackothermobile/"; //Bing mobile
 
 
 
-            //string[] keyword = { sp.query };
+            string[] keyword = { sp.query };
             OxyParams op = new OxyParams()
             {
                 source = "bing_search",
                 domain = sp.domain,
-                query = sp.query.Split(','),
+                query = keyword,
                 pages = 10,
                 start_page = 1,
                 locale = sp.locale,
-                callback_url = callbackURL,
+                //callback_url = callbackURL,
                 geo_location = sp.geo_location,
                 parse = false,
                 user_agent_type = sp.device,
@@ -798,11 +941,11 @@ namespace BingSingleThread
                         {
                             this.Invoke((MethodInvoker)delegate ()//13-05-2025
                             {
-                                txtError.Text = txtError.Text + cbUrl[6] + ": " + cbUrl[0] + ": " + cbUrl[4] + Environment.NewLine + "AIO Multithread Request Status is faulted" +
+                                txtError.Text = txtError.Text + cbUrl[6] + ": " + cbUrl[0] + ": " + cbUrl[4] + Environment.NewLine + "Bing Status is faulted" +
                                     Environment.NewLine + Environment.NewLine;
                                 txtError.Refresh();
                             });//13-05-2025
-                            await SendToDBFailure(cbUrl[6], cbUrl[0], cbUrl[4], false, "RapidTrackingSingleThread Request Status is faulted");
+                            //await SendToDBFailure(cbUrl[6], cbUrl[0], cbUrl[4], false, "BingSingleThread Request Status is faulted");
                         }//13-05-2025
                     }
                     else if (cbUrl[2] == "pending" && cbUrl[3] == "no")
@@ -839,7 +982,7 @@ namespace BingSingleThread
 
             } while (true);
 
-            return await Task.FromResult<ArrayList>(alResult);
+           return await Task.FromResult<ArrayList>(alResult);
 
         }
 

@@ -118,6 +118,27 @@ namespace BingSingleThread
             return await Task.FromResult<int>(time);
         }
 
+        internal static string readAPI()
+        {
+            try
+            {
+                XmlDocument xml = new XmlDocument();
+                string fileName = @"C:\Inetpub\wwwroot\Callback_TrackingTrending.xml";
+                // You'll need to put the correct path to your xml file here
+                xml.Load(fileName);
+
+                // Select a specific node
+                XmlNode node = xml.SelectSingleNode("ConnectionString/apiSubmit");
+                // Get its value
+                string name = node.InnerText;
+
+                return name;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         internal static async Task<int> GetOxylabsCount()
         {
             int count = 0;

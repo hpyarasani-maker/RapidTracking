@@ -99,6 +99,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIOMultiThreadRequests", "A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingSingleThread", "Bing\BingSingleThread\BingSingleThread.csproj", "{89852439-C5D2-477B-A814-808A2C9EFBF1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingMultiThreadRequest", "Bing\BingMultiThreadRequest\BingMultiThreadRequest.csproj", "{2F2E8DF5-3B98-4455-99AB-C78C7F1D602B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -277,6 +279,10 @@ Global
 		{89852439-C5D2-477B-A814-808A2C9EFBF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89852439-C5D2-477B-A814-808A2C9EFBF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89852439-C5D2-477B-A814-808A2C9EFBF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F2E8DF5-3B98-4455-99AB-C78C7F1D602B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F2E8DF5-3B98-4455-99AB-C78C7F1D602B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F2E8DF5-3B98-4455-99AB-C78C7F1D602B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F2E8DF5-3B98-4455-99AB-C78C7F1D602B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -306,6 +312,7 @@ Global
 		{F67FE05C-CAEB-4129-9972-272B6A72E9D9} = {C8849A92-4B18-4D1E-9DAC-2ACAFB68D808}
 		{E874A8FD-22A2-4A01-86C2-8F4517085F66} = {C8849A92-4B18-4D1E-9DAC-2ACAFB68D808}
 		{89852439-C5D2-477B-A814-808A2C9EFBF1} = {43FDC851-9700-4C4B-997A-B4A9BC905A77}
+		{2F2E8DF5-3B98-4455-99AB-C78C7F1D602B} = {43FDC851-9700-4C4B-997A-B4A9BC905A77}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3CC0E919-BB8B-43E6-8485-F143616171A0}

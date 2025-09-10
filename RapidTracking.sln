@@ -101,6 +101,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingSingleThread", "Bing\Bi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingMultiThreadRequest", "Bing\BingMultiThreadRequest\BingMultiThreadRequest.csproj", "{2F2E8DF5-3B98-4455-99AB-C78C7F1D602B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RapidTrackingFromDatabase", "RapidTrackingFromDatabase\RapidTrackingFromDatabase.csproj", "{A14BC301-6D98-4343-874D-B64469DD6ADD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -283,6 +285,10 @@ Global
 		{2F2E8DF5-3B98-4455-99AB-C78C7F1D602B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F2E8DF5-3B98-4455-99AB-C78C7F1D602B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F2E8DF5-3B98-4455-99AB-C78C7F1D602B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A14BC301-6D98-4343-874D-B64469DD6ADD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A14BC301-6D98-4343-874D-B64469DD6ADD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A14BC301-6D98-4343-874D-B64469DD6ADD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A14BC301-6D98-4343-874D-B64469DD6ADD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

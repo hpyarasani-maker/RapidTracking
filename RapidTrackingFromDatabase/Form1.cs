@@ -171,7 +171,10 @@ namespace RapidTrackingFromDatabase
                     string keyword = s.Split(':')[1];
                     string jobid = s.Split(':')[2];
                     int count = int.Parse(s.Split(':')[3]);
-                    Task<string> x1= GetXMLDataOneThread(s.Split(':')[0], s.Split(':')[1]);                    
+                    Task<string> x1 = GetXMLDataOneThread(s.Split(':')[0], s.Split(':')[1]);
+                    this.Invoke((MethodInvoker)delegate () {
+                        lblcount1.Text = "Count: " + count;
+                    });
                     //string res = x1.Result;                 
                     await SendToAPI1(seid, keyword, SanitizeXmlString(x1.Result), jobid);
                     await SendToDB(seid, keyword, SanitizeXmlString(x1.Result), jobid, count);
@@ -251,6 +254,9 @@ namespace RapidTrackingFromDatabase
                     string jobid = s.Split(':')[2];
                     int count = int.Parse(s.Split(':')[3]);
                     Task<string> x2 = GetXMLDataTwoThread(s.Split(':')[0], s.Split(':')[1]);
+                    this.Invoke((MethodInvoker)delegate () {
+                        lblcount2.Text = "Count: " + count;
+                    });
                     await SendToAPI2(seid, keyword, SanitizeXmlString(x2.Result), jobid);
                     await SendToDB(seid, keyword, SanitizeXmlString(x2.Result), jobid, count);
                     this.Invoke((MethodInvoker)delegate ()
@@ -330,7 +336,10 @@ namespace RapidTrackingFromDatabase
                     string jobid = s.Split(':')[2];
                     int count = int.Parse(s.Split(':')[3]);
                     Task<string> x3 = GetXMLDataThreeThread(s.Split(':')[0], s.Split(':')[1]);
-                    await SendToAPI2(seid, keyword, SanitizeXmlString(x3.Result), jobid);
+                    this.Invoke((MethodInvoker)delegate () {
+                        lblcount3.Text = "Count: " + count;
+                    });
+                    await SendToAPI3(seid, keyword, SanitizeXmlString(x3.Result), jobid);
                     await SendToDB(seid, keyword, SanitizeXmlString(x3.Result), jobid, count);
                     this.Invoke((MethodInvoker)delegate ()
                     {

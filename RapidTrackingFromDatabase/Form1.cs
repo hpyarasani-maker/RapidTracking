@@ -412,7 +412,7 @@ namespace RapidTrackingFromDatabase
                 throw ex;
             }
         }
-        public Task<string> GetXMLDataOneThread(string seid, string kn)
+        public async Task<string> GetXMLDataOneThread(string seid, string kn)
         {
             string xmlString = "";
             string strSql = "select xmldata from dashboard_data2 where seid = '" + seid + "' and name = N'" + kn.Replace("'", "''") + "'";
@@ -463,9 +463,9 @@ namespace RapidTrackingFromDatabase
                 textBox1.Text = xmlString;
             }));
             File.WriteAllText(xmlPath1, xmlString);
-            return Task.FromResult(xmlString);
+            return await Task.FromResult(xmlString);
         }
-        public Task<string> GetXMLDataTwoThread(string seid, string kn)
+        public async Task<string> GetXMLDataTwoThread(string seid, string kn)
         {
             string xmlString = "";
             string strSql = "select xmldata from dashboard_data2 where seid = '" + seid + "' and name = N'" + kn.Replace("'", "''") + "'";
@@ -516,9 +516,9 @@ namespace RapidTrackingFromDatabase
                 textBox2.Text = xmlString;
             }));
             File.WriteAllText(xmlPath2, xmlString);
-            return Task.FromResult(xmlString);
+            return await Task.FromResult(xmlString);
         }
-        public Task<string> GetXMLDataThreeThread(string seid, string kn)
+        public async Task<string> GetXMLDataThreeThread(string seid, string kn)
         {
             string xmlString = "";
             string strSql = "select xmldata from dashboard_data2 where seid = '" + seid + "' and name = N'" + kn.Replace("'", "''") + "'";
@@ -569,14 +569,14 @@ namespace RapidTrackingFromDatabase
                 textBox3.Text = xmlString;
             }));
             File.WriteAllText(xmlPath3, xmlString);
-            return Task.FromResult(xmlString);
+            return await Task.FromResult(xmlString);
         }
-        private string GetTextFromXMLFile(string file)
+        private async Task<string> GetTextFromXMLFile(string file)
         {
             StreamReader reader = new StreamReader(file);
             string ret = reader.ReadToEnd();
             reader.Close();
-            return ret;
+            return await Task.FromResult(ret);
         }
         private async Task SendToAPI1(string seid, string kw, string res, string jobid)
         {
@@ -600,7 +600,7 @@ namespace RapidTrackingFromDatabase
                 httpWReq.Credentials = CredentialCache.DefaultCredentials;
 
                 Encoding encoding = new UTF8Encoding();
-                string postData =  GetTextFromXMLFile(xmlPath1);
+                string postData =  await GetTextFromXMLFile(xmlPath1);
                 byte[] data = encoding.GetBytes(postData);
 
                 httpWReq.ProtocolVersion = HttpVersion.Version11;
@@ -691,7 +691,7 @@ namespace RapidTrackingFromDatabase
                 httpWReq.Credentials = CredentialCache.DefaultCredentials;
 
                 Encoding encoding = new UTF8Encoding();
-                string postData =  GetTextFromXMLFile(xmlPath2);
+                string postData =  await GetTextFromXMLFile(xmlPath2);
                 byte[] data = encoding.GetBytes(postData);
 
                 httpWReq.ProtocolVersion = HttpVersion.Version11;
@@ -782,7 +782,7 @@ namespace RapidTrackingFromDatabase
                 httpWReq.Credentials = CredentialCache.DefaultCredentials;
 
                 Encoding encoding = new UTF8Encoding();
-                string postData =  GetTextFromXMLFile(xmlPath3);
+                string postData =  await GetTextFromXMLFile(xmlPath3);
                 byte[] data = encoding.GetBytes(postData);
 
                 httpWReq.ProtocolVersion = HttpVersion.Version11;

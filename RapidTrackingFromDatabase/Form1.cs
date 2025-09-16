@@ -134,7 +134,8 @@ namespace RapidTrackingFromDatabase
         {
             lstKWs.Invoke((MethodInvoker)(delegate ()
             {
-                lstKWs.Items.Clear();
+                lstKWs.Items.Clear();                
+
             }));
             Cursor.Current = System.Windows.Forms.Cursors.WaitCursor;
             dtPicker1.Format = DateTimePickerFormat.Custom;
@@ -166,7 +167,7 @@ namespace RapidTrackingFromDatabase
                 objData.Close();
                 int cnt = 0;
                 foreach (string s in lstKWs.Items)
-                {
+                {                                       
                     string seid = s.Split(':')[0];
                     string keyword = s.Split(':')[1];
                     string jobid = s.Split(':')[2];
@@ -175,9 +176,20 @@ namespace RapidTrackingFromDatabase
                     this.Invoke((MethodInvoker)delegate () {
                         lblcount1.Text = "Count: " + count;
                     });
-                    //string res = x1.Result;                 
-                    await SendToAPI1(seid, keyword, SanitizeXmlString(x1.Result), jobid);
-                    await SendToDB(seid, keyword, SanitizeXmlString(x1.Result), jobid, count);
+                    //string res = x1.Result;  
+                    try
+                    {
+                        await SendToAPI1(seid, keyword, SanitizeXmlString(x1.Result), jobid);
+                        await SendToDB(seid, keyword, SanitizeXmlString(x1.Result), jobid, count);
+                    }
+                    catch (Exception ex)
+                    {
+                        errorList.Invoke((MethodInvoker)(delegate ()
+                        {
+                            errorList.Items.Add(ex.ToString());
+                        }));
+                    }
+                    finally { }
                     this.Invoke((MethodInvoker)delegate ()
                     {
                         textBox1.Text = s;
@@ -185,6 +197,7 @@ namespace RapidTrackingFromDatabase
                         label1.Text = ++cnt + " of " + lstKWs.Items.Count + " Completed";
                         label1.Refresh();
                     });
+                    
                 }
                 }
             catch (SqlException e)
@@ -257,8 +270,19 @@ namespace RapidTrackingFromDatabase
                     this.Invoke((MethodInvoker)delegate () {
                         lblcount2.Text = "Count: " + count;
                     });
-                    await SendToAPI2(seid, keyword, SanitizeXmlString(x2.Result), jobid);
-                    await SendToDB(seid, keyword, SanitizeXmlString(x2.Result), jobid, count);
+                    try
+                    {
+                        await SendToAPI2(seid, keyword, SanitizeXmlString(x2.Result), jobid);
+                        await SendToDB(seid, keyword, SanitizeXmlString(x2.Result), jobid, count);
+                    }
+                    catch (Exception ex)
+                    {
+                        errorList.Invoke((MethodInvoker)(delegate ()
+                        {
+                            errorList.Items.Add(ex.ToString());
+                        }));
+                    }
+                    finally { }
                     this.Invoke((MethodInvoker)delegate ()
                     {
                         textBox2.Text = s;
@@ -339,8 +363,19 @@ namespace RapidTrackingFromDatabase
                     this.Invoke((MethodInvoker)delegate () {
                         lblcount3.Text = "Count: " + count;
                     });
-                    await SendToAPI3(seid, keyword, SanitizeXmlString(x3.Result), jobid);
-                    await SendToDB(seid, keyword, SanitizeXmlString(x3.Result), jobid, count);
+                    try
+                    {                    
+                        await SendToAPI3(seid, keyword, SanitizeXmlString(x3.Result), jobid);
+                        await SendToDB(seid, keyword, SanitizeXmlString(x3.Result), jobid, count);
+                    }
+                    catch (Exception ex)
+                    {
+                        errorList.Invoke((MethodInvoker)(delegate ()
+                        {
+                            errorList.Items.Add(ex.ToString());
+                        }));
+                    }
+                    finally { }
                     this.Invoke((MethodInvoker)delegate ()
                     {
                         textBox3.Text = s;

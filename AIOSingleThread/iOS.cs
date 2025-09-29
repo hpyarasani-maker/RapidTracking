@@ -53,6 +53,8 @@ namespace AIOSingleThread
                 if (nodeCol == null)//29-09-2025
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@class='MjjYud']/div");//29-09-2025
                 if (nodeCol == null || nodeCol.Count <= 1)//29-09-2025//20-09-2023
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='MjjYud']/div");//29-09-2025
+                if (nodeCol == null || nodeCol.Count <= 1)//29-09-2025//20-09-2023
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div[@class='MjjYud']/div|//div[@id='rso']/div[@class='MjjYud']/block-component|//div[@id='rso']/div[@class='MjjYud']/c-wiz|.//div[contains(@class,'TzHB6b')]|.//div[@class='EyBRub']/div/div[@class='Ww4FFb vt6azd']");//23-07-2024//22-07-2024
                 if ((nodeCol == null || doc.DocumentNode.SelectNodes("//div[@class='WtZO4e']/div|//div[@classname='WtZO4e']/div")?.Count > 1) && doc.DocumentNode.SelectNodes(".//div[@id='jobWhd']") == null)//25-04-2025//25-09-2023
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div|//div[@id='rso']/g-card|//div[@id='taw']/div[@class='med']/div[2]/div" +

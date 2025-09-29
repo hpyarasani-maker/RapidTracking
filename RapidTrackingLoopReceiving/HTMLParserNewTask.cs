@@ -135,7 +135,7 @@ namespace RapidTrackingLoopReceiving
             {
                 string username = string.Empty;//04-03-2025
                 string password = string.Empty;
-                if (sp.device == "mobile_android")
+                if (sp.device == "mobile")
                 {
                     username = "piapp";
                     password = "b5FCvgkjxx";
@@ -231,7 +231,7 @@ namespace RapidTrackingLoopReceiving
                             await SendToDB(seid, kw, resx, jobid, count);
                         }
                         bool aio = result.Contains("<block type=\"aiOverview\">");//16-02-2025
-                        if (aio && device == "mobile_android") // inserting true value//16-02-2025
+                        if (aio && device == "mobile") // inserting true value//16-02-2025
                             await InsertAIO_Keyword(kw, seid, aio);//16-02-2025
                     }
                     //if (!string.IsNullOrEmpty(seid))

@@ -179,7 +179,7 @@ namespace RapidTrackingSingleThread
                 {
                     seresults = GetTop100Desktop(keyword, seid, value.domain, value.locale, value.uule);
                 }
-                else if (value.device == "mobile_android")
+                else if (value.device == "mobile")
                 {
                     seresults = GetTop100Mobile(keyword, seid, value.domain, value.locale, value.uule);
                 }

@@ -1006,7 +1006,7 @@ namespace TrackingTrending
             Uri queryUri = new Uri("http://data.oxylabs.io/v1/queries/batch"); //29-07-2021 changed https:// to http://
             string username = string.Empty;//04-02-2025
             string password = string.Empty;
-            if (sp.device == "mobile_android")
+            if (sp.device == "mobile")
             {
                 username = "piapp";
                 password = "b5FCvgkjxx";

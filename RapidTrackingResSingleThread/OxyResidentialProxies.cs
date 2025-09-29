@@ -275,7 +275,7 @@ namespace RapidTrackingResSingleThread
                 {
                     seresults = GetTop100DesktopAsync(keyword, value.country, seid, value.domain, value.locale, value.uule);
                 }
-                else if (value.device == "mobile_android")
+                else if (value.device == "mobile")
                 {
                     seresults = GetTop100Mobile(keyword, value.country, seid, value.domain, value.locale, value.uule);
                 }

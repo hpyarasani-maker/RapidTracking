@@ -125,7 +125,7 @@ namespace TrendingLoopSending
             //string password = "sdV5X3fcX6";
             string username = string.Empty;//04-02-2025
             string password = string.Empty;
-            if (sp.device == "mobile_android")
+            if (sp.device == "mobile")
             {
                 username = "piapp";
                 password = "b5FCvgkjxx";

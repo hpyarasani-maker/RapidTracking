@@ -143,7 +143,7 @@ namespace Oxylabs_BulkKeywords
                 seid = sp.seid.ToString();//22-01-2025
                 string username = string.Empty;//04-03-2025
                 string password = string.Empty;
-                if (sp.device == "mobile_android")
+                if (sp.device == "mobile")
                 {
                     username = "piapp";
                     password = "b5FCvgkjxx";
@@ -202,7 +202,7 @@ namespace Oxylabs_BulkKeywords
                     {//16-02-2025
                         await ProcessResults(result, kw, seid, jobid, orgUrls);
                         bool aio = result.Contains("<block type=\"aiOverview\">");
-                        if (aio && device == "mobile_android") // inserting true value//16-02-2025
+                        if (aio && device == "mobile") // inserting true value//16-02-2025
                             await InsertAIO_Keyword(kw, seid, aio);
                     }//16-02-2025
                     OnKeywordDone.Invoke(seid + ":  " + kw + ",  " + orgUrls + "^" + statusCode + "^" + apitime + "^" + dbtime + "^" + totalTime);//08-11-2023 //31-03-2020

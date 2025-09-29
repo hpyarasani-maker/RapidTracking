@@ -266,7 +266,7 @@ namespace RapidTrackingMultithreadFirstPageResIPs
                 {
                     seresults = GetTop100Desktop(keyword, value.country, seid, out sip, value.domain, value.locale, value.uule);
                 }
-                else if (value.device == "mobile_android")
+                else if (value.device == "mobile")
                 {
                     seresults = GetTop100Mobile(keyword, value.country, seid, out sip, value.domain, value.locale, value.uule);
                 }

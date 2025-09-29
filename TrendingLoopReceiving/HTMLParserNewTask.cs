@@ -107,7 +107,7 @@ namespace TrendingLoopReceiving
                 seid = sp.seid.ToString();//22-01-2025
                 string username = string.Empty;//04-03-2025
                 string password = string.Empty;
-                if (sp.device == "mobile_android")
+                if (sp.device == "mobile")
                 {
                     username = "piapp";
                     password = "b5FCvgkjxx";

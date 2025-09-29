@@ -20,7 +20,7 @@ namespace RapidTrackingLibrary
             Uri queryUri = new Uri("https://data.oxylabs.io/v1/queries/batch");
             string username = string.Empty;
             string password = string.Empty;
-            if (sp.device == "mobile_android")
+            if (sp.device == "mobile")
             {
                 username = "piapp";
                 password = "b5FCvgkjxx";

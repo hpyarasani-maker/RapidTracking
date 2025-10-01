@@ -51,7 +51,7 @@ namespace AIOSingleThread
                 if (nodeCol != null)
                     nodeCol = nodeCol[nodeCol.Count - 1].SelectNodes("a/div");  //28-04-2020
                 if (nodeCol == null)//29-09-2025
-                    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='MjjYud']/div");//29-09-2025
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='MjjYud']/div|//div[@class='MjjYud']/block-component");//01-01-2025//29-09-2025
                 if (nodeCol == null || nodeCol.Count <= 1)//29-09-2025//20-09-2023
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@class='MjjYud']/div");//29-09-2025
                 if (nodeCol == null || nodeCol.Count <= 1)//29-09-2025//20-09-2023

@@ -1672,7 +1672,7 @@ namespace RapidTrackingResSingleThread
                     if (nc != null)
                         foreach (HtmlNode n in nc)
                         {
-                            string title = n.InnerText;
+                            string title = Regex.Replace(n.InnerText.IndexOf('\0') > 0 ? n.InnerText.Remove(n.InnerText.IndexOf('\0')) : n.InnerText, @"[\x00-\x1F]+", "");//01-10-2025
                             if (!string.IsNullOrEmpty(title))//24-04-2025
                                 s.Append("<item title=\"" + SetTitle(title) + "\" />");
                         }

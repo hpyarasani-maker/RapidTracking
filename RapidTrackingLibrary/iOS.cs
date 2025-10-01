@@ -38,7 +38,7 @@ namespace RapidTrackingLibrary
                 if (nodeCol != null)
                     nodeCol = nodeCol[nodeCol.Count - 1].SelectNodes("a/div");  //28-04-2020
                 if (nodeCol == null)//29-09-2025
-                    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='MjjYud']/div");//29-09-2025
+                    nodeCol = doc.DocumentNode.SelectNodes("//div[@class='MjjYud']/div|//div[@class='MjjYud']/block-component");//01-01-2025//29-09-2025
                 if (nodeCol == null || nodeCol.Count <= 1)//29-09-2025//20-09-2023
                     nodeCol = doc.DocumentNode.SelectNodes("//div[@id='rso']/div[@class='MjjYud']/div|//div[@id='rso']/div[@class='MjjYud']/block-component|//div[@id='rso']/div[@class='MjjYud']/c-wiz|.//div[contains(@class,'TzHB6b')]|.//div[@class='EyBRub']/div/div[@class='Ww4FFb vt6azd']");//23-07-2024//22-07-2024
                 if ((nodeCol == null || doc.DocumentNode.SelectNodes("//div[@class='WtZO4e']/div|//div[@classname='WtZO4e']/div")?.Count > 1) && doc.DocumentNode.SelectNodes(".//div[@id='jobWhd']") == null)//25-04-2025//25-09-2023
@@ -1706,7 +1706,7 @@ namespace RapidTrackingLibrary
                     if (nc != null)
                         foreach (HtmlNode n in nc)
                         {
-                            string title = n.InnerText;
+                            string title = Regex.Replace(n.InnerText.IndexOf('\0') > 0 ? n.InnerText.Remove(n.InnerText.IndexOf('\0')) : n.InnerText, @"[\x00-\x1F]+", "");//01-10-2025
                             if (!string.IsNullOrEmpty(title))//24-04-2025
                                 s.Append("<item title=\"" + SetTitle(title) + "\" />");
                         }

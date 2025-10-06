@@ -558,7 +558,7 @@ namespace RapidTrackingLoopSingleThread
             Uri queryUri = new Uri("http://data.oxylabs.io/v1/queries/batch");
             string username = string.Empty;//04-02-2025
             string password = string.Empty;
-            if (sp.device == "mobile")
+            if (sp.device == "mobile_android")
             {
                 username = "piapp";
                 password = "b5FCvgkjxx";

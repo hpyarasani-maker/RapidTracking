@@ -174,7 +174,7 @@ namespace AIOMultiThreadRequests
                                     await SendToDB(seid, keyword, res, jobid, count);
                                 }
                                 bool aio = res.Contains("<block type=\"aiOverview\">");//16-02-2025
-                                if (!aio && device == "mobile") // inserting false value //16-02-2025
+                                if (!aio && device == "mobile_android") // inserting false value //16-02-2025
                                     await InsertAIO_Keyword_False(keyword, seid, aio);
                             }
                         }
@@ -278,7 +278,7 @@ namespace AIOMultiThreadRequests
                                     await SendToDB(seid, keyword, res, jobid, count);
                                 }
                                 bool aio = res.Contains("<block type=\"aiOverview\">");//16-02-2025
-                                if (!aio && device == "mobile") // inserting false value //16-02-2025
+                                if (!aio && device == "mobile_android") // inserting false value //16-02-2025
                                     await InsertAIO_Keyword_False(keyword, seid, aio);
                             }
                         }
@@ -388,7 +388,7 @@ namespace AIOMultiThreadRequests
                                     await SendToDB(seid, keyword, res, jobid, count);
                                 }
                                 bool aio = res.Contains("<block type=\"aiOverview\">");//16-02-2025
-                                if (!aio && device == "mobile") // inserting false value //16-02-2025
+                                if (!aio && device == "mobile_android") // inserting false value //16-02-2025
                                     await InsertAIO_Keyword_False(keyword, seid, aio);
                             }
                         }
@@ -1031,7 +1031,7 @@ namespace AIOMultiThreadRequests
 
             string username = string.Empty;//04-02-2025
             string password = string.Empty;
-            if (sp.device == "mobile")
+            if (sp.device == "mobile_android")
             {
                 username = "piapp-aio";
                 password = "4gvfnA+aBYpBNs37";

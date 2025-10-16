@@ -3954,9 +3954,12 @@ namespace TrendingMobileSingleThread
                             "|.//ul[@jscontroller='M2ABbc']/div");//26-08-2025
                     if (ls != null && ((nd.SelectNodes(".//div[@class='RJPOee EIJn2']/ul[@jscontroller='M2ABbc']/li") == null && nd.SelectNodes(".//ul[@jscontroller='M2ABbc']/li") != null)
                         || (nd.SelectNodes(".//div[@class='RJPOee EIJn2']/ol[@jscontroller='M2ABbc']/li") == null && nd.SelectNodes(".//ol[@jscontroller='M2ABbc']/li") != null)))
-                        ls = null;//26-08-2025
+                        ls = nd.SelectNodes(".//ul[@jscontroller='M2ABbc']/li|.//ul[@jscontroller='M2ABbc']/div|.//ol[@jscontroller='M2ABbc']/li|.//ol[@jscontroller='M2ABbc']/div");//09-09-2025//26-08-2025
                     if (ls == null)
+                    {//13-10-2025
                         ls = nd.SelectNodes(".//div[@class='RJPOee EIJn2']/ul/li|.//div[@class='RJPOee EIJn2']/div");
+                        if (ls != null && nd.SelectSingleNode(".//table[@class='jSqiwc']") != null) ls = null;
+                    }//13-10-2025
                     if (ls == null)
                         ls = nd.SelectNodes(".//div[@jsname='tJHJj']|.//div[@jsname='NnMq2d']|.//div[@class='gvXIc']");//24-07-2025
                     if (ls == null)
@@ -3967,8 +3970,8 @@ namespace TrendingMobileSingleThread
                         ls = nd.SelectNodes(".//ol[@jscontroller='M2ABbc']/div");//23-04-2025
                     if (ls == null)//24-07-2025//01-05-2025
                         ls = nd.SelectNodes(".//ol[@jscontroller='M2ABbc']/li|.//ul[@jscontroller='M2ABbc']/li");//01-05-2025
-                    if (ls == null || ls.Count <= 1)//31-07-2025
-                        ls = nd.SelectNodes(".//ul[@jscontroller='M2ABbc']/li|.//ul[@jscontroller='M2ABbc']/div");//31-07-2025
+                    //if (ls == null || ls.Count <= 1)//31-07-2025
+                    //    ls = nd.SelectNodes(".//ul[@jscontroller='M2ABbc']/li|.//ul[@jscontroller='M2ABbc']/div");//31-07-2025
                     if (ls != null)
                     {
                         foreach (HtmlNode nd1 in ls)
@@ -4014,9 +4017,9 @@ namespace TrendingMobileSingleThread
                                 spanCol = nd1.SelectNodes(".//div[@class='JlqpRe']/span|.//div[@class='Gur8Ad']/span|.//div[@class='vM0jzc']/span|.//div[@class='rPeykc']/span|.//div[@class='hvExhd DmdoNb']/span");//24-07-2025
                                 if (spanCol == null)
                                     spanCol = nd1.SelectNodes(".//span/span");
-                                if (spanCol == null || spanCol[0].InnerText.Equals("&nbsp;"))
+                                if (spanCol == null || spanCol[0].InnerText.Equals("&nbsp;") || !string.IsNullOrEmpty(nd1.SelectNodes(".//span")[0].InnerText) && !nd1.SelectNodes(".//span")[0].InnerText.Equals("&nbsp;"))//13-10-2025
                                     spanCol = nd1.SelectNodes(".//span");
-                                if (spanCol != null && (nd1.Attributes["class"]?.Value == "rPeykc" || nd1.SelectNodes(".//a[@class='DTlJ6d']") != null))//25-08-2025//20-06-2025
+                                if (spanCol != null && ((nd1.Attributes["class"] != null && nd1.Attributes["class"].Value.Contains("rPeykc")) || nd1.SelectNodes(".//a[@class='DTlJ6d']") != null))//13-10-2025//25-08-2025//20-06-2025
                                 {
                                     content = nd1.SelectSingleNode(".")?.InnerText.Trim().Replace("&#160;", "");
                                     if (!string.IsNullOrEmpty(content.Trim())) spanCol = null;
@@ -4073,12 +4076,12 @@ namespace TrendingMobileSingleThread
                                 HtmlNodeCollection spanCol = nd1.SelectNodes(".//span/span|.//div[@class='vM0jzc']/span");
                                 if (spanCol == null || (spanCol != null && spanCol[0].InnerText.Equals("&nbsp;")))//13-06-2025//10-06-2025//18-11-2024
                                     spanCol = nd1.SelectNodes(".//span");
-                                if (spanCol != null && nd1.Attributes["class"]?.Value == "rPeykc")//13-06-2025
+                                if (spanCol != null && nd1.Attributes["class"] != null && nd1.Attributes["class"].Value.Contains("rPeykc"))//13-10-2024//13-06-2025
                                 {
                                     content = nd1.SelectSingleNode(".")?.InnerText.Trim().Replace("&#160;", "");
                                     if (!string.IsNullOrEmpty(content.Trim())) spanCol = null;
                                 }//13-06-2025
-                                if (nd1.Attributes["class"]?.Value == "jSqiwc")//07-04-2025
+                                if (nd1.Attributes["class"]?.Value == "jSqiwc" || nd1.SelectSingleNode(".//table[@class='jSqiwc']") != null)//13-10-2025//07-04-2025
                                 {
                                     spanCol = nd1.SelectNodes(".//tr");
                                     foreach (HtmlNode sp in spanCol)

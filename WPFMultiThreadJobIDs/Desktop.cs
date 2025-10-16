@@ -51,10 +51,10 @@ namespace WPFMultiThreadJobIDs
                     nodeCol = rso.SelectNodes(".//div[contains(@class,'TzHB6b cLjAic')]|.//div[contains(@class,'TzHB6b j8lBAb p7kDMc')]|.//div[contains(@class,'g Ww4FFb')]|.//div[@class='g PmEWq']" +
                         "|.//div[@class='Wt5Tfe']|.//div[@class='vt6azd Ww4FFb']|.//div[contains(@class,'xfX4Ac JI5uCe qB9BY yWNJXb qzPQNd')]|.//div[@class='oIk2Cb']|.//div[@class='yi8zHf']/div[@id='tadsb']|.//div[@jscontroller='uMC5pc']" +//13-06-2025//03-04-2025
                         "|.//div[@class='g']/div[@class='BYM4Nd']|.//div[@class='Lv2Cle']|.//g-section-with-header[contains(@class,'yG4QQe TBC9ub')]|.//div[@class='uVMCKf']|.//div[@class='vtSz8d']" +
-                        "|.//div[@class='wHYlTd Ww4FFb vt6azd tF2Cxc asEBEc']|.//div[contains(@class,'PmEWq wHYlTd')]|.//div[@id='knowledge-finance-wholepage__entity-summary']|.//div[@jscontroller='hKbgK']");//24-07-2025
+                        "|.//div[contains(@class,'wHYlTd Ww4FFb')]|.//div[contains(@class,'PmEWq wHYlTd')]|.//div[@id='knowledge-finance-wholepage__entity-summary']|.//div[@jscontroller='hKbgK']");//16-10-2025//24-07-2025
                 else
                     nodeCol = rso.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div|.//div[@class='MjjYud']|.//div[contains(@class,'g Ww4FFb')]");
-                isRso = true;//21-08-2025
+                    isRso = true;//21-08-2025
             }//08-02-2024
             if (nodeCol != null)  //11-08-2022 //end 01-11-2023
                 foreach (HtmlNode node in nodeCol)
@@ -63,7 +63,7 @@ namespace WPFMultiThreadJobIDs
                     {
                         continue;
                     }
-                    if (node.SelectSingleNode(".//div[contains(@class,'g Ww4FFb')]|.//div[@class='wHYlTd Ww4FFb vt6azd tF2Cxc asEBEc']|.//div[contains(@class,'PmEWq wHYlTd')]" +
+                    if (node.SelectSingleNode(".//div[contains(@class,'g Ww4FFb')]|.//div[contains(@class,'wHYlTd Ww4FFb')]|.//div[contains(@class,'PmEWq wHYlTd')]" +//16-10-2025
                         "|.//div[@class='xfX4Ac JI5uCe qB9BY yWNJXb qzPQNd']|.//div[contains(@class,'g PmEWq')]|.//div[@class='Wt5Tfe']|.//div[@class='g']/div[@class='BYM4Nd']" +
                         "|.//div[@class='Lv2Cle']|.//g-section-with-header[contains(@class,'yG4QQe TBC9ub')]|.//div[@class='uVMCKf']|.//div[@class='vtSz8d']|.//div[@id='knowledge-finance-wholepage__entity-summary']|.//div[@jscontroller='hKbgK']|.//div[@jscontroller='uMC5pc']") != null &&//24-07-2025
                         (node.Attributes["class"]?.Value?.Contains("xfX4Ac JI5uCe qB9BY yWNJXb") ?? true || node.HasClass("TzHB6b")))//03-04-2025//21-03-2025//31-12-2024//09-10-2024

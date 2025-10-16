@@ -42,7 +42,7 @@ namespace RapidTrackingSingleThread
                 //01-11-2023
                 HtmlNode rso = doc.DocumentNode.SelectSingleNode("//div[@id='rso']");
                 HtmlNodeCollection nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'MjjYud')]");//09-07-2025//09-12-2024
-                if (nodeCol == null || (nodeCol.Count <= 1) || (rso.SelectNodes(".//div[@class='JCZQSb']") != null && rso.SelectNodes(".//div[@class='JCZQSb']").Count >= 12 && !rso.SelectNodes(".//div[@class='JCZQSb']")[0].Ancestors("div").Any(n => n.Id == "rhs")))//16-10-2025//29-07-2025//16-07-2025
+                if (nodeCol == null || (nodeCol.Count <= 1) || (rso.SelectNodes(".//div[@class='JCZQSb']") != null && !rso.SelectNodes(".//div[@class='JCZQSb']")[0].Ancestors("div").Any(n => n.Id == "rhs")))//29-07-2025//16-07-2025
                     nodeCol = doc.DocumentNode.SelectNodes(".//div[contains(@class,'TzHB6b cLjAic')]|.//div[contains(@id, 'arc-srp')]/div/div[@class='MjjYud']|.//div[contains(@id, 'arc-srp')]/div/div/div[@class='MjjYud']|.//div[@class='JCZQSb']|.//g-section-with-header[contains(@class,'yG4QQe TBC9ub')]");//08-07-2025
                 if (nodeCol == null || nodeCol.Count <= 4)
                     nodeCol = rso.SelectNodes(".//div[contains(@class,'TzHB6b cLjAic')]");//02-11-2023
@@ -2608,12 +2608,11 @@ namespace RapidTrackingSingleThread
                     //"|.//div[@class='g Ww4FFb tF2Cxc']") != null) return false; //21-07-2022//15-02-2022//02-02-2022//31-12-2021 missing CLinks
                     "|.//div[contains(@class,'g Ww4FFb')]|.//div[@class='BYM4Nd']|.//div[@class='rULfzc']|.//div[@class='g PmEWq']" +//07-12-2023
                     "|.//div[@class='g ZYT4Gf']") != null || (node.Attributes["class"]?.Value?.Contains("g Ww4FFb") ?? false)) return false;//07-08-2023//31-10-2022//11-10-2022
-                    if (node.SelectSingleNode(".//div[@class='osrp-blk']|.//div[@class='tpa-cc']|.//div[@class='pKv8Zb fm06If']") != null && node.SelectSingleNode(".//div[@class='l44Vof']|.//div[@class='o8ebK']") == null && node.SelectSingleNode(".//div[@class='H93uF']") == null)//25-11-2024//25-04-2024 //17-05-2022//31-12-2021
-                        return false; //20-08-2021
                     if (node.SelectSingleNode(".//div[@class='twQ0Be']|.//div[@jsname='N760b']|.//div[@jsname='wRSfy']|.//div[contains(@class,'e2BEnf U7izfe')]" + //03-11-2023//05-12-2022//26-09-2022//13-08-2022 maps//08-03-2022//07-03-2022//28-12-2021//10-12-2021//09-12-2021 //08-12-2021 PAlsoB   //30-08-2021 video card
                         "|.//div[@jsname='A6RGif']|.//div[@class='P9Jfrb']|.//div[@class='ntKMYc']|.//div[@class='T6zPgb gduDCb']|.//div[@class='M0XuFe mnr-c vk_c']" +
                         "|.//g-section-with-header[contains(@class,'yG4QQe TBC9ub')]|.//div[contains(@class,'knowledge-finance')]|.//div[@class='Lv2Cle']|.//div[@class='o8ebK']|.//g-card[@class='T98FId']") != null) return true;//30-07-2025
-                    //moved if condition on above 2611 from 2614 and 2515 //16-10-2025
+                    if (node.SelectSingleNode(".//div[@class='osrp-blk']|.//div[@class='tpa-cc']|.//div[@class='pKv8Zb fm06If']") != null && node.SelectSingleNode(".//div[@class='l44Vof']|.//div[@class='o8ebK']") == null && node.SelectSingleNode(".//div[@class='H93uF']") == null)//25-11-2024//25-04-2024 //17-05-2022//31-12-2021
+                        return false; //20-08-2021
                     if (node.Attributes["id"]?.Value == "rhs" || node.SelectSingleNode(".//div[@id='rhs']") != null) return false;//10-07-2025//03-03-2022
                     //02-12-2020
                     HtmlNode nd = node.SelectSingleNode(".//div[@role='heading']|.//div[@class='UDZeY OTFaAf']"); //02-07-2021

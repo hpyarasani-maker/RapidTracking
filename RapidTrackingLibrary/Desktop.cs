@@ -2097,7 +2097,7 @@ namespace RapidTrackingLibrary
             }
             else
             {
-                nds = node.SelectNodes(".//table[@class='QGsTM']/tbody/tr|.//div[@class='p21Z4']/div/a");//18-02-2025
+                nds = node.SelectNodes(".//table[@class='QGsTM']/tbody/tr|.//div[@class='p21Z4']/div/a|.//div[@jsname='VMmjWc']/div/a");//24-10-2025//18-02-2025
                 if (nds != null)
                 {
                     foreach (var nd in nds)

@@ -2026,7 +2026,7 @@ namespace RapidTrackingMultithread
             }
             else
             {
-                nds = node.SelectNodes(".//table[@class='QGsTM']/tbody/tr|.//div[@class='p21Z4']/div/a");//18-02-2025
+                nds = node.SelectNodes(".//table[@class='QGsTM']/tbody/tr|.//div[@class='p21Z4']/div/a|.//div[@jsname='VMmjWc']/div/a");//24-10-2025//18-02-2025
                 if (nds != null)
                 {
                     foreach (var nd in nds)
@@ -2208,7 +2208,7 @@ namespace RapidTrackingMultithread
         private string Convertprice(string price)
         {
             string patternprice = "[\\d]+";
-            string p = price.Contains("€") ? price.Replace(" ", "").Replace(".", "").Replace(",", "") : price.Replace(",", "").Replace("٬", "");//04-07-2025//01-01-2024
+            string p = price.Contains("€") ? price.Replace(" ", "").Replace(".", "").Replace(",", "") : price.Replace(",", "").Replace("٬", "").Replace("&#8364;", "");//28-10-2025//04-07-2025//01-01-2024
             Match mc = Regex.Match(p, patternprice, RegexOptions.IgnoreCase);
             if (mc.Success)
                 price = mc.Value;

@@ -1672,6 +1672,8 @@ namespace RapidTrackingLibrary
                 HtmlNodeCollection nds = node.SelectNodes(".//a[@class='dM1Yyd']|.//div[@class='HiHjCd']/a");
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='EDblX JpOecb']/a");
+                if (nds == null)//28-10-2025 Missing ClassicLinkSiteLinks
+                    nds = node.SelectNodes(".//li[@class='KTAFWb']/a");//28-10-2025
                 if (nds != null)
                 {
                     s.Append("<block type=\"classicLinkSiteLinks\" url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(t.InnerText) + "\" >");

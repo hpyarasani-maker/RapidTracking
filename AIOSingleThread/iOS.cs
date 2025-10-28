@@ -120,7 +120,7 @@ namespace AIOSingleThread
                         sb.Append("<block type=\"finance\" url=\"\"></block>");
                     }
 
-                    if (node.HasClass("kp-wholepage") || node.SelectNodes(".//div[contains(@class, 'kp-wholepage')]") != null)
+                    if ((node.HasClass("kp-wholepage") || node.SelectNodes(".//div[contains(@class, 'kp-wholepage')]") != null) && node.SelectNodes(".//div[contains(@id, 'kp-wp-tab-')]") == null)//28-10-2025
                     {
                         // changed on 05-07-2019
                         HtmlNode n = node.SelectSingleNode(".//div[@class='PyJv1b kno-fb-ctx gsmt PZPZlf']/span[@role='heading']");
@@ -923,6 +923,11 @@ namespace AIOSingleThread
                             if (nd.SelectSingleNode(".//div[@class='" + nd.Attributes["class"].Value + "']") != null)
                                 continue;
                         }//12-11-2021
+                        if (nd.SelectSingleNode(".//div[@class='rWBqlb']") != null)//28-10-2025
+                        {
+                            s.Append(GetFlights(nd));
+                            continue;
+                        }//28-10-2025
                         if (nd.SelectSingleNode(".//div[@jscontroller='i5z2Rc']") != null
                             || nd.SelectSingleNode(".//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']") != null //13-12-2019
                              || nd.SelectSingleNode(".//div[@class='MUxGbd v0nnCb lyLwlc']") != null   //16-12-

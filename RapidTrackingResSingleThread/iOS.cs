@@ -115,7 +115,7 @@ namespace RapidTrackingResSingleThread
 
                     }
 
-                    if (node.HasClass("kp-wholepage") || node.SelectNodes(".//div[contains(@class, 'kp-wholepage')]") != null)
+                    if ((node.HasClass("kp-wholepage") || node.SelectNodes(".//div[contains(@class, 'kp-wholepage')]") != null) && node.SelectNodes(".//div[contains(@id, 'kp-wp-tab-')]") == null)//28-10-2025
                     {
                         // changed on 05-07-2019
                         HtmlNode n = node.SelectSingleNode(".//div[@class='PyJv1b kno-fb-ctx gsmt PZPZlf']/span[@role='heading']");

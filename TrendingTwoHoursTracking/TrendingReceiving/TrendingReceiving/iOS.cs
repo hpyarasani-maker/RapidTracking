@@ -109,7 +109,7 @@ namespace TrendingReceiving
 
                 }
 
-                if (node.HasClass("kp-wholepage") || node.SelectNodes(".//div[contains(@class, 'kp-wholepage')]") != null)
+                if ((node.HasClass("kp-wholepage") || node.SelectNodes(".//div[contains(@class, 'kp-wholepage')]") != null) && node.SelectNodes(".//div[contains(@id, 'kp-wp-tab-')]") == null)//28-10-2025
                 {
                     // changed on 05-07-2019
                     HtmlNode n = node.SelectSingleNode(".//div[@class='PyJv1b kno-fb-ctx gsmt PZPZlf']/span[@role='heading']");
@@ -901,6 +901,11 @@ namespace TrendingReceiving
                             if (nd.SelectSingleNode(".//div[@class='" + nd.Attributes["class"].Value + "']") != null)
                                 continue;
                         }//12-11-2021
+                        if (nd.SelectSingleNode(".//div[@class='rWBqlb']") != null)//28-10-2025
+                        {
+                            s.Append(GetFlights(nd));
+                            continue;
+                        }//28-10-2025
                         if (nd.SelectSingleNode(".//div[@jscontroller='i5z2Rc']") != null
                             || nd.SelectSingleNode(".//div[@class='Lgnr0e J88qA vgnU9e BmP5tf']") != null //13-12-2019
                              || nd.SelectSingleNode(".//div[@class='MUxGbd v0nnCb lyLwlc']") != null   //16-12-
@@ -1625,6 +1630,8 @@ namespace TrendingReceiving
                 HtmlNodeCollection nds = node.SelectNodes(".//a[@class='dM1Yyd']|.//div[@class='HiHjCd']/a");
                 if (nds == null)
                     nds = node.SelectNodes(".//div[@class='EDblX JpOecb']/a");
+                if (nds == null)//28-10-2025 Missing ClassicLinkSiteLinks
+                    nds = node.SelectNodes(".//li[@class='KTAFWb']/a");//28-10-2025
                 if (nds != null)
                 {
                     s.Append("<block type=\"classicLinkSiteLinks\" url=\"" + SetUrl(n.Attributes["href"].Value) + "\" title=\"" + SetTitle(t.InnerText) + "\" >");

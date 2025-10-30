@@ -864,7 +864,7 @@ namespace TrendingLoopReceiving
                          "|.//div[@jsname='wRSfy']|.//g-card[@class='g F6CFcc']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='urrG9 v5yQqb jqWpsc']|.//g-card[@class='T98FId']" + //11-07-2023 //31-05-2022
                         "|.//div[@class='mnr-c']/div/div[@class='P8ujBc v5yQqb jqWpsc']|.//div[@class='mnr-c']/div/div[@class='P8ujBc jqWpsc']" + //removed selector 06-11-2024
                         //"|.//div[@class='fhQnRd']|.//div[@id='iur']|.//div[contains(@class,'cUnQKe wHYlTd Ww4FFb vt6azd')]|.//div[@class='uVMCKf Ww4FFb vt6azd']|.//div[@class='Ww4FFb vt6azd tRkSqb']|.//div[@class='xLjnU']");//28-08-2023 //18-08-2023
-                        "|.//div[@class='fhQnRd']|.//div[@id='iur']|.//div[contains(@class,'Ww4FFb vt6azd')]");//01-09-2023//30-08-2023
+                        "|.//div[@class='fhQnRd']|.//div[@id='iur']|.//div[contains(@class,'Ww4FFb vt6azd')]|.//div[@class='Ww4FFb tRkSqb vt6azd']");//29-10-2025//01-09-2023//30-08-2023
                 if (nds == null) //24-11-2022
                     nds = (node.SelectNodes(".//div[@class='P8ujBc v5yQqb jqWpsc']") != null && node.SelectNodes(".//div[@class='nMqco Gcxb4e']") != null) ? nds = node.SelectNodes(".//div[@class='N54PNb BToiNc cvP2Ce']|.//div[contains(@class,'Ww4FFb vt6azd')]") : nds = null;//22-10-2024
                 if (nds == null)
@@ -1660,10 +1660,10 @@ namespace TrendingLoopReceiving
         private string GetPeopleAlsoSearch(HtmlNode node) //11-10-2024
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='Wt5Tfe']");
+            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='Wt5Tfe']|.//div[contains(@class,'zJUuqf adDDi')]");//30-10-2025
             if (node != null)
             {
-                if (node.SelectSingleNode(".//div[@class='T6zPgb']/div[@role='heading']|.//div[@class='HnYYW DFkChc']/div[@role='heading']|.//div[contains(@class,'ouy7Mc adDDi')]/span[@role='heading']") != null || node.Attributes["class"]?.Value == "AuVD wHYlTd Ww4FFb vt6azd")//02-07-2025//22-04-2025//21-01-2025//14-10-2024
+                if (node.SelectSingleNode(".//div[@class='T6zPgb']/div[@role='heading']|.//div[@class='HnYYW DFkChc']/div[@role='heading']|.//div[contains(@class,'ouy7Mc adDDi')]/span[@role='heading']|.//div[contains(@class,'zJUuqf adDDi')]/span[@role='heading']") != null || node.Attributes["class"]?.Value == "AuVD wHYlTd Ww4FFb vt6azd")//30-10-2025//02-07-2025//22-04-2025//21-01-2025//14-10-2024
                 {
                     s.Append("<block type=\"peopleAlsoSearch\" >");
                     HtmlNodeCollection nc = node.SelectNodes(".//div[@class='oatEtb']/span|.//div[@class='LJEGod aKoISd']|.//div[@class='oatEtb']/div/span");//01-11-2024//15-10-2024
@@ -3127,6 +3127,7 @@ namespace TrendingLoopReceiving
         }//23-06-2023
         private string Convertprice(string price)
         {
+            price = price.Contains("&#") ? WebUtility.HtmlDecode(price) : price;//30-10-2025
             string patternprice = "[\\d]+";
             string p = price.Contains("€") ? price.Replace(" ", "").Replace(".", "") : price.Replace(",", "").Replace("٬", "");//01-01-2024
             Match mc = Regex.Match(p, patternprice, RegexOptions.IgnoreCase);
@@ -3160,6 +3161,7 @@ namespace TrendingLoopReceiving
         }
         private string ConvertHours(string hours) //05-07-2023
         {
+            hours = hours.Contains("&#") ? WebUtility.HtmlDecode(hours) : hours;//30-10-2025
             Match match = Regex.Match(hours, @"(\d+)[\s]?[d|T][\W]* (\d+)[\s]?(h|Std)[\W]* (\d+)[\s]?(m|[M|m]in)");
             if (match.Success)
             {
@@ -3480,7 +3482,8 @@ namespace TrendingLoopReceiving
                 && (node.SelectSingleNode(".//div[@class='vDF3Oc jIrdcd']|.//div[contains(@class,'qtOtne')]|.//div[@class='YB4h9 ky4hfd']" +
                "|.//div[@class='oj7Mub eVNxY']|.//div[@class='aJegcc']|.//div[@class='nC7kNc RrlBtc']|.//div[@class='x2KtK']" +
                "|.//div[@class='oj7Mub Y6bHod']|.//div[@class='dsxN8b EXH1Ce PZPZlf']|.//div[contains(@class,'DuxCpf')]|.//div[@jsname='N760b']") == null)) || node.SelectSingleNode(".//div[@class='gR8gCb']|.//div[contains(@class,'HOslld dutT5c')]") != null)//20-08-2025//29-05-202
-                    return "Hotel";
+                    if (node.SelectSingleNode(".//span[@class='mgAbYb RES9jf IFnjPb JGD2rd']") == null)//30-10-2025
+                        return "Hotel";
             }
             nd = node.SelectSingleNode(".//*[@id='rXuTZe']");
             if (nd == null)
@@ -3694,7 +3697,7 @@ namespace TrendingLoopReceiving
             nd = node.SelectSingleNode(".//div[@class='GcKpu']|.//div[contains(@class,'Fzsovc')]");//28-08-2024
             if (nd != null && node.SelectSingleNode(".//div[@class='EyBRub']") == null)//10-06-2025//21-08-2024
                 return "aiOverview";//21-08-2024 AIOverview
-            nd = node.SelectSingleNode(".//div[@class='Wt5Tfe']");//11-10-2024 peoplealsosearch
+            nd = node.SelectSingleNode(".//div[@class='Wt5Tfe']|.//div[contains(@class,'zJUuqf adDDi')]/span[@role='heading']");//30-10-2025//11-10-2024 peoplealsosearch
             if (nd != null)
                 return "PeopleAlsoSearch"; // 11-10-2024 PeopleAlsoSearch
             nd = node.SelectSingleNode(".//div[contains(@class,'Ww4FFb vt6azd') or (.//div[@class='zJUuqf adDDi']) and (.//div[(@class='XNfAUb')])]");//11-10-2024 sitesCarousel

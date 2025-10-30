@@ -1665,10 +1665,10 @@ namespace RapidTrackingSingleThread
         private string GetPeopleAlsoSearch(HtmlNode node) //11-10-2024
         {
             StringBuilder s = new StringBuilder();
-            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='Wt5Tfe']");
+            HtmlNodeCollection nds = node.SelectNodes(".//div[@class='Wt5Tfe']|.//div[contains(@class,'zJUuqf adDDi')]");//30-10-2025
             if (node != null)
             {
-                if (node.SelectSingleNode(".//div[@class='T6zPgb']/div[@role='heading']|.//div[@class='HnYYW DFkChc']/div[@role='heading']|.//div[contains(@class,'ouy7Mc adDDi')]/span[@role='heading']") != null || node.Attributes["class"]?.Value == "AuVD wHYlTd Ww4FFb vt6azd")//02-07-2025//22-04-2025//21-01-2025//14-10-2024
+                if (node.SelectSingleNode(".//div[@class='T6zPgb']/div[@role='heading']|.//div[@class='HnYYW DFkChc']/div[@role='heading']|.//div[contains(@class,'ouy7Mc adDDi')]/span[@role='heading']|.//div[contains(@class,'zJUuqf adDDi')]/span[@role='heading']") != null || node.Attributes["class"]?.Value == "AuVD wHYlTd Ww4FFb vt6azd")//30-10-2025//02-07-2025//22-04-2025//21-01-2025//14-10-2024
                 {
                     s.Append("<block type=\"peopleAlsoSearch\" >");
                     HtmlNodeCollection nc = node.SelectNodes(".//div[@class='oatEtb']/span|.//div[@class='LJEGod aKoISd']|.//div[@class='oatEtb']/div/span");//01-11-2024//15-10-2024
@@ -3485,7 +3485,8 @@ namespace RapidTrackingSingleThread
                 && (node.SelectSingleNode(".//div[@class='vDF3Oc jIrdcd']|.//div[contains(@class,'qtOtne')]|.//div[@class='YB4h9 ky4hfd']" +
                "|.//div[@class='oj7Mub eVNxY']|.//div[@class='aJegcc']|.//div[@class='nC7kNc RrlBtc']|.//div[@class='x2KtK']" +
                "|.//div[@class='oj7Mub Y6bHod']|.//div[@class='dsxN8b EXH1Ce PZPZlf']|.//div[contains(@class,'DuxCpf')]|.//div[@jsname='N760b']") == null)) || node.SelectSingleNode(".//div[@class='gR8gCb']|.//div[contains(@class,'HOslld dutT5c')]") != null)//20-08-2025//29-05-202
-                    return "Hotel";
+                if (node.SelectSingleNode(".//span[@class='mgAbYb RES9jf IFnjPb JGD2rd']") == null)//30-10-2025
+                 return "Hotel";
             }
             nd = node.SelectSingleNode(".//*[@id='rXuTZe']");
             if (nd == null)
@@ -3699,7 +3700,7 @@ namespace RapidTrackingSingleThread
             nd = node.SelectSingleNode(".//div[@class='GcKpu']|.//div[contains(@class,'Fzsovc')]");//28-08-2024
             if (nd != null && node.SelectSingleNode(".//div[@class='EyBRub']") == null)//10-06-2025//21-08-2024
                 return "aiOverview";//21-08-2024 AIOverview
-            nd = node.SelectSingleNode(".//div[@class='Wt5Tfe']");//11-10-2024 peoplealsosearch
+            nd = node.SelectSingleNode(".//div[@class='Wt5Tfe']|.//div[contains(@class,'zJUuqf adDDi')]/span[@role='heading']");//30-10-2025//11-10-2024 peoplealsosearch
             if (nd != null)
                 return "PeopleAlsoSearch"; // 11-10-2024 PeopleAlsoSearch
             nd = node.SelectSingleNode(".//div[contains(@class,'Ww4FFb vt6azd') or (.//div[@class='zJUuqf adDDi']) and (.//div[(@class='XNfAUb')])]");//11-10-2024 sitesCarousel

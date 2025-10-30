@@ -2216,6 +2216,7 @@ namespace SERPResultsJSON
         }//23-06-2023
         private string Convertprice(string price)
         {
+            price = price.Contains("&#") ? WebUtility.HtmlDecode(price) : price;//30-10-2025
             string patternprice = "[\\d]+";
             string p = price.Contains("€") ? price.Replace(" ", "").Replace(".", "").Replace(",", "") : price.Replace(",", "").Replace("٬", "").Replace("&#8364;", "");//28-10-2025//04-07-2025//01-01-2024
             Match mc = Regex.Match(p, patternprice, RegexOptions.IgnoreCase);
@@ -2249,6 +2250,7 @@ namespace SERPResultsJSON
         }
         private string ConvertHours(string hours) //05-07-2023
         {
+            hours = hours.Contains("&#") ? WebUtility.HtmlDecode(hours) : hours;//30-10-2025
             Match match = Regex.Match(hours, @"(\d+)[\s]?[d|T][\W]* (\d+)[\s]?(h|Std)[\W]* (\d+)[\s]?(m|[M|m]in)");
             if (match.Success)
             {

@@ -3183,6 +3183,7 @@ namespace RapidTrackingLibrary
         }//23-06-2023
         public string Convertprice(string price)
         {
+            price = price.Contains("&#") ? WebUtility.HtmlDecode(price) : price;//30-10-2025
             string patternprice = "[\\d]+";
             string p = price.Contains("€") ? price.Replace(" ", "").Replace(".", "") : price.Replace(",", "").Replace("٬", "");//01-01-2024
             Match mc = Regex.Match(p, patternprice, RegexOptions.IgnoreCase);
@@ -3216,6 +3217,7 @@ namespace RapidTrackingLibrary
         }
         public string ConvertHours(string hours) //05-07-2023
         {
+            hours = hours.Contains("&#") ? WebUtility.HtmlDecode(hours) : hours;//30-10-2025
             Match match = Regex.Match(hours, @"(\d+)[\s]?[d|T][\W]* (\d+)[\s]?(h|Std)[\W]* (\d+)[\s]?(m|[M|m]in)");
             if (match.Success)
             {

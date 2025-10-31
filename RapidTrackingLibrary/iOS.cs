@@ -3184,6 +3184,7 @@ namespace RapidTrackingLibrary
         public string Convertprice(string price)
         {
             price = price.Contains("&#") ? WebUtility.HtmlDecode(price) : price;//30-10-2025
+            price = ConvertNumber(price);//31-10-2025
             string patternprice = "[\\d]+";
             string p = price.Contains("€") ? price.Replace(" ", "").Replace(".", "") : price.Replace(",", "").Replace("٬", "");//01-01-2024
             Match mc = Regex.Match(p, patternprice, RegexOptions.IgnoreCase);

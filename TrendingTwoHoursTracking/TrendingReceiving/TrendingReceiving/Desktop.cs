@@ -2209,6 +2209,7 @@ namespace TrendingReceiving
         private string Convertprice(string price)
         {
             price = price.Contains("&#") ? WebUtility.HtmlDecode(price) : price;//30-10-2025
+            price = ConvertNumber(price);//31-10-2025
             string patternprice = "[\\d]+";
             string p = price.Contains("€") ? price.Replace(" ", "").Replace(".", "").Replace(",", "") : price.Replace(",", "").Replace("٬", "").Replace("&#8364;", "");//28-10-2025//04-07-2025//01-01-2024
             Match mc = Regex.Match(p, patternprice, RegexOptions.IgnoreCase);
@@ -2238,6 +2239,8 @@ namespace TrendingReceiving
                 price = "0";
             if (price.Equals("免費"))
                 price = "0";//26-02-2024
+            if (price.Equals("Kontakta butiken för pris"))//31-10-2025
+                price = "0";
             return price;
         }
         private string ConvertHours(string hours) //05-07-2023

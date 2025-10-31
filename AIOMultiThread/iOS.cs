@@ -116,7 +116,7 @@ namespace AIOMultiThread
                     sb.Append("<block type=\"finance\" url=\"\"></block>");
                 }
 
-                if ((node.HasClass("kp-wholepage") || node.SelectNodes(".//div[contains(@class, 'kp-wholepage')]") != null) && node.SelectNodes(".//div[contains(@id, 'kp-wp-tab-')]") == null)//28-10-2025
+                if ((node.HasClass("kp-wholepage") || node.SelectNodes(".//div[contains(@class, 'kp-wholepage')]") != null) && node.SelectSingleNode(".//div[contains(@id,'kp-wp-tab-')]|.//div[@class='vRy7rc']") == null)//31-10-2025//28-10-2025
                 {
                     // changed on 05-07-2019
                     HtmlNode n = node.SelectSingleNode(".//div[@class='PyJv1b kno-fb-ctx gsmt PZPZlf']/span[@role='heading']");

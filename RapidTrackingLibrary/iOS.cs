@@ -3213,6 +3213,8 @@ namespace RapidTrackingLibrary
                 price = "0";
             if (price.Equals("免費"))
                 price = "0";//26-02-2024
+            if (price.Equals("Kontakta butiken för pris"))//31-10-2025
+                price = "0";
             return price;
         }
         public string ConvertHours(string hours) //05-07-2023

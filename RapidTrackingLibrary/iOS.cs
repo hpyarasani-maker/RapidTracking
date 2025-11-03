@@ -1006,6 +1006,8 @@ namespace RapidTrackingLibrary
                             s.Append("<block type=\"peopleAlsoAsk\" url=\"\">");
                             s.Append(PeopleAlsoAsk(nd));
                             s.Append("</block>");
+                            if (!s.ToString().Contains("<item "))//03-11-2025
+                                s.Clear();//03-11-2025
                             continue;
                         }//People also ask
                         if (nd.SelectSingleNode(".//div[@class='Wt5Tfe']") != null)//08-01-2025 PeopleAlsoSearch
@@ -1550,6 +1552,8 @@ namespace RapidTrackingLibrary
                 case "peoplealsoask":
                     s.Append("<block type=\"peopleAlsoAsk\" url=\"\">");
                     //get people also ask urls;
+                    if (!s.ToString().Contains("<item "))//03-11-2025
+                        s.Clear();//03-11-2025
                     s.Append(PeopleAlsoAsk(node));
                     s.Append("</block>");
                     break;

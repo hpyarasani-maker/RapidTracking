@@ -2258,7 +2258,7 @@ namespace RapidTrackingLibrary
             price = price.Contains("&#") ? WebUtility.HtmlDecode(price) : price;//30-10-2025
             price = ConvertNumber(price);//31-10-2025
             string patternprice = "[\\d]+";
-            string p = price.Contains("€") ? price.Replace(" ", "").Replace(".", "").Replace(",", "") : price.Replace(",", "").Replace("٬", "").Replace("&#8364;", "");//28-10-2025//04-07-2025//01-01-2024
+            string p = price.Contains("€") ? price.Replace(" ", "").Replace(".", "").Replace(",", "") : price.Replace(",", "").Replace("٬", "").Replace("&#8364;", "").Replace(" ", "");//03-11-2025//28-10-2025//04-07-2025//01-01-2024
             Match mc = Regex.Match(p, patternprice, RegexOptions.IgnoreCase);
             if (mc.Success)
                 price = mc.Value;

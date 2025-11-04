@@ -2188,7 +2188,7 @@ namespace RapidTrackingSingleThread
             }
             return s.ToString();
         }//30-09-2024 ClassicLinkCarousel //16-10-2024
-        private string ConvertNumber(string value)//23-06-2023
+        /*private string ConvertNumber(string value)//23-06-2023
         {
             if (string.IsNullOrEmpty(value))
                 return null;
@@ -2202,7 +2202,7 @@ namespace RapidTrackingSingleThread
                     sb.Append((int)d);
             }
             return sb.ToString();
-        }//23-06-2023
+        }//23-06-2023*/
         private string ConvertCurrency(string value, int seid)//23-06-2023
         {
             var val = ConvertNumber(value);
@@ -2212,7 +2212,7 @@ namespace RapidTrackingSingleThread
             var cs = new RegionInfo(locale).ISOCurrencySymbol;
             return string.Join(" ", cs, res);
         }//23-06-2023
-        private string Convertprice(string price)
+        /*private string Convertprice(string price)
         {
             price = price.Contains("&#") ? WebUtility.HtmlDecode(price) : price;//30-10-2025
             price = ConvertNumber(price);//31-10-2025
@@ -2249,6 +2249,48 @@ namespace RapidTrackingSingleThread
             if (price.Equals("Kontakta butiken för pris"))//31-10-2025
                 price = "0";
             return price;
+        }*/
+        private string ConvertNumber(string value)
+        {
+            if (string.IsNullOrEmpty(value)) return null;
+
+            var sb = new StringBuilder(value.Length);
+            foreach (char c in value)
+            {
+                double numeric = char.GetNumericValue(c);
+                sb.Append(numeric < 0 || numeric % 1 != 0 ? c : (int)numeric);
+            }
+            return sb.ToString();
+        }
+
+        private string Convertprice(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input)) return "0";
+
+            input = WebUtility.HtmlDecode(input);
+            input = ConvertNumber(input);
+
+            // Normalize formatting
+            string normalized = input.Contains("€")
+                ? input.Replace(".", "").Replace(",", "")
+                : input.Replace(",", "").Replace("٬", "").Replace("&#8364;", "");
+
+            normalized = Regex.Replace(normalized, @"\s+", "");
+
+            // Extract numeric portion
+            var match = Regex.Match(normalized, @"\d+");
+            if (match.Success)
+                input = match.Value;
+
+            // Known non-numeric price indicators
+            var zeroIndicators = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+            {
+                "unknown", "check price", "vérifier le prix", "Preis prüfen", "controlla il prezzo",
+                "Consulta el precio", "Consulta el precio.", "–", "Free", "ฟรี", "Gratis", "免費",
+                "Kontakta butiken för pris"
+            };
+
+            return zeroIndicators.Contains(input) ? "0" : input;
         }
         private string ConvertHours(string hours) //05-07-2023
         {

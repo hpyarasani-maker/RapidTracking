@@ -941,7 +941,7 @@ namespace RapidTrackingSingleThread
                                 continue;
                             }
                         }
-                        if (!nd.HasClass("T98FId") && (nd.HasClass("fhQnRd") || nd.SelectSingleNode(".//div[contains(@class,'kno-fb-ctx')]") != null))//11-07-2023//02-04-2023//01-02-2023 top stories
+                        if (!nd.HasClass("T98FId") && (nd.HasClass("fhQnRd") || nd.SelectSingleNode(".//div[contains(@class,'kno-fb-ctx')]") != null) && nd.SelectSingleNode(".//div[@class='lEorAf']") == null)//04-11-2025//11-07-2023//02-04-2023//01-02-2023 top stories
                         {
                             s.Append("<block type=\"topStories\" url=\"\">");
                             s.Append(GetTopStories(nd)); //02-04-2023 changed param node to nd

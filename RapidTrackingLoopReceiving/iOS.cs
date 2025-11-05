@@ -1,6 +1,7 @@
 ﻿using HtmlAgilityPack;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -860,7 +861,7 @@ namespace RapidTrackingLoopReceiving
                          "|.//div[@jsname='wRSfy']|.//g-card[@class='g F6CFcc']|.//div[@class='mnr-c xpd O9g5cc uUPGi']|.//div[@class='urrG9 v5yQqb jqWpsc']|.//g-card[@class='T98FId']" + //11-07-2023 //31-05-2022
                         "|.//div[@class='mnr-c']/div/div[@class='P8ujBc v5yQqb jqWpsc']|.//div[@class='mnr-c']/div/div[@class='P8ujBc jqWpsc']" + //removed selector 06-11-2024
                         //"|.//div[@class='fhQnRd']|.//div[@id='iur']|.//div[contains(@class,'cUnQKe wHYlTd Ww4FFb vt6azd')]|.//div[@class='uVMCKf Ww4FFb vt6azd']|.//div[@class='Ww4FFb vt6azd tRkSqb']|.//div[@class='xLjnU']");//28-08-2023 //18-08-2023
-                        "|.//div[@class='fhQnRd']|.//div[@id='iur']|.//div[contains(@class,'Ww4FFb vt6azd')]|.//div[@class='Ww4FFb tRkSqb vt6azd']");//29-10-2025//01-09-2023//30-08-2023
+                        "|.//div[@class='fhQnRd']|.//div[@id='iur']|.//div[contains(@class,'Ww4FFb vt6azd')]|.//div[@class='Ww4FFb tRkSqb vt6azd']|.//div[@class='WlTAzf Ww4FFb vk_c vt6azd']");//03-11-2025//29-10-2025//01-09-2023//30-08-2023
                 if (nds == null) //24-11-2022
                     nds = (node.SelectNodes(".//div[@class='P8ujBc v5yQqb jqWpsc']") != null && node.SelectNodes(".//div[@class='nMqco Gcxb4e']") != null) ? nds = node.SelectNodes(".//div[@class='N54PNb BToiNc cvP2Ce']|.//div[contains(@class,'Ww4FFb vt6azd')]") : nds = null;//22-10-2024
                 if (nds == null)
@@ -932,7 +933,7 @@ namespace RapidTrackingLoopReceiving
                                 continue;
                             }
                         }
-                        if (!nd.HasClass("T98FId") && (nd.HasClass("fhQnRd") || nd.SelectSingleNode(".//div[contains(@class,'kno-fb-ctx')]") != null))//11-07-2023//02-04-2023//01-02-2023 top stories
+                        if (!nd.HasClass("T98FId") && (nd.HasClass("fhQnRd") || nd.SelectSingleNode(".//div[contains(@class,'kno-fb-ctx')]") != null) && nd.SelectSingleNode(".//div[@class='lEorAf']") == null)//04-11-2025//11-07-2023//02-04-2023//01-02-2023 top stories
                         {
                             s.Append("<block type=\"topStories\" url=\"\">");
                             s.Append(GetTopStories(nd)); //02-04-2023 changed param node to nd
@@ -946,12 +947,14 @@ namespace RapidTrackingLoopReceiving
                             s.Append("</block>");
                             continue;
                         }//01-02-2023 images
-                        if (nd.SelectSingleNode(".//div[@class='ouy7Mc']") != null && node.SelectNodes(".//div[@class='Wt5Tfe']") == null
-                            && (node.SelectNodes(".//div[@class='AuVD wHYlTd Ww4FFb vt6azd']") == null || !nd.HasClass("AuVD wHYlTd Ww4FFb vt6azd")))//08-01-2025//30-08-2023//24-08-2023//02-04-2023 People also Ask
+                        if (nd.SelectSingleNode(".//div[contains(@class,'ouy7Mc')]") != null && node.SelectNodes(".//div[@class='Wt5Tfe']") == null || nd.SelectNodes(".//div[@class='iiMFW RzlvC xuc']") != null //05-11-2025
+                            && (node.SelectNodes(".//div[@class='AuVD wHYlTd Ww4FFb vt6azd']") == null || !nd.HasClass("AuVD wHYlTd Ww4FFb vt6azd")))//05-11-2025//08-01-2025//30-08-2023//24-08-2023//02-04-2023 People also Ask
                         {
                             s.Append("<block type=\"peopleAlsoAsk\" url=\"\">");
                             s.Append(PeopleAlsoAsk(nd));
                             s.Append("</block>");
+                            if (!s.ToString().Contains("<item "))//03-11-2025
+                                s.Clear();//03-11-2025
                             continue;
                         }//People also ask
                         if (nd.SelectSingleNode(".//div[@class='Wt5Tfe']") != null)//08-01-2025 PeopleAlsoSearch
@@ -1505,6 +1508,8 @@ namespace RapidTrackingLoopReceiving
                     //get people also ask urls;
                     s.Append(PeopleAlsoAsk(node));
                     s.Append("</block>");
+                    if (!s.ToString().Contains("<item "))//03-11-2025
+                        s.Clear();//03-11-2025
                     break;
                 case "productlistedads"://start 13-08-2019
                     s.Append("<block type=\"productListedAds\" url=\"\">");
@@ -2640,7 +2645,7 @@ namespace RapidTrackingLoopReceiving
             nds = node.SelectNodes(".//g-inner-card/a");
             if (nds == null) //14-09-2022 shifted from 1991 2 lines
                 nds = node.SelectNodes(".//div[contains(@class,'amp_re')]/a|.//div[@class='dbsr']/a|.//div[@class='Fq8eSd']/a|.//div[@class='y1Boce']/div/a" +
-                    "|.//div[@data-ved]/a|.//div[contains(@class,'JJJtgd')]/a") ?? node.SelectNodes(".//div[contains(@class,'JJJtgd')]/div");//26-08-2025//09-05-2025 //08-04-2025//27-02-2025//28-07-2020
+                    "|.//div[@data-ved]/a|.//a[@class='gJ13']|.//div[contains(@class,'JJJtgd')]/a") ?? node.SelectNodes(".//div[contains(@class,'JJJtgd')]/div");//05-11-2025//26-08-2025//09-05-2025 //08-04-2025//27-02-2025//28-07-2020
             if (nds == null)//09-05-2025
                 nds = node.SelectNodes(".//div[@class='x2PRle DvHpd']/a");//09-05-2025
             if (nds == null)
@@ -3099,21 +3104,6 @@ namespace RapidTrackingLoopReceiving
             return s.ToString();
         }//09-08-2023//07-07-2023 FindResultsOn Block
 
-        private string ConvertNumber(string value)//23-06-2023
-        {
-            if (string.IsNullOrEmpty(value))
-                return null;
-            StringBuilder sb = new StringBuilder(value.Length);
-            foreach (char c in value)
-            {
-                double d = char.GetNumericValue(c);
-                if (d < 0 || d % 1 != 0)
-                    sb.Append(c);
-                else
-                    sb.Append((int)d);
-            }
-            return sb.ToString();
-        }//23-06-2023
         private string ConvertCurrency(string value, int seid)//23-06-2023
         {
             var val = ConvertNumber(value);
@@ -3123,43 +3113,51 @@ namespace RapidTrackingLoopReceiving
             var cs = new RegionInfo(locale).ISOCurrencySymbol;
             return string.Join(" ", cs, res);
         }//23-06-2023
-        private string Convertprice(string price)
+
+        private string ConvertNumber(string value)
         {
-            price = price.Contains("&#") ? WebUtility.HtmlDecode(price) : price;//30-10-2025
-            price = ConvertNumber(price);//31-10-2025
-            string patternprice = "[\\d]+";
-            string p = price.Contains("€") ? price.Replace(" ", "").Replace(".", "") : price.Replace(",", "").Replace("٬", "");//01-01-2024
-            Match mc = Regex.Match(p, patternprice, RegexOptions.IgnoreCase);
-            if (mc.Success)
-                price = mc.Value;
-            if (price.Equals("unknown"))
-                price = "0";
-            if (price.Equals("check price"))//01-06-2023
-                price = "0";//01-06-2023
-            if (price.Equals("vérifier le prix"))//01-06-2023
-                price = "0";//01-06-2023
-            if (price.Equals("Preis prüfen"))
-                price = "0";
-            if (price.Equals("controlla il prezzo"))
-                price = "0";
-            if (price.Equals("Consulta el precio"))//26-02-2024
-                price = "0";
-            if (price.Equals("Consulta el precio."))
-                price = "0";
-            if (price.Equals("–"))
-                price = "0";
-            if (price.Equals("Free"))
-                price = "0";
-            if (price.Equals("ฟรี"))
-                price = "0";
-            if (price.Equals("Gratis"))
-                price = "0";
-            if (price.Equals("免費"))
-                price = "0";//26-02-2024
-            if (price.Equals("Kontakta butiken för pris"))//31-10-2025
-                price = "0";
-            return price;
+            if (string.IsNullOrEmpty(value)) return null;
+
+            var sb = new StringBuilder(value.Length);
+            foreach (char c in value)
+            {
+                double numeric = char.GetNumericValue(c);
+                sb.Append(numeric < 0 || numeric % 1 != 0 ? c.ToString() : ((int)numeric).ToString());//05-11-2025
+            }
+            return sb.ToString();
         }
+
+        private string Convertprice(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input)) return "0";
+
+            input = WebUtility.HtmlDecode(input);
+            input = ConvertNumber(input);
+
+            // Normalize formatting
+            string normalized = input.Contains("€")
+                ? input.Replace(".", "").Replace(",", "")
+                : input.Replace(",", "").Replace("٬", "").Replace("&#8364;", "");
+
+            normalized = Regex.Replace(normalized, @"\s+", "");
+
+            // Extract numeric portion
+            var match = Regex.Match(normalized, @"\d+");
+            if (match.Success)
+                input = match.Value;
+
+            // Known non-numeric price indicators
+            var zeroIndicators = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+            {
+                "unknown", "check price", "vérifier le prix", "Preis prüfen", "controlla il prezzo",
+                "Consulta el precio", "Consulta el precio.", "–", "Free", "ฟรี", "Gratis", "免費",
+                "Kontakta butiken för pris"
+            };
+
+            return zeroIndicators.Contains(input) ? "0" : input;
+        }
+
+
         private string ConvertHours(string hours) //05-07-2023
         {
             hours = hours.Contains("&#") ? WebUtility.HtmlDecode(hours) : hours;//30-10-2025
@@ -3278,7 +3276,7 @@ namespace RapidTrackingLoopReceiving
             if (nd != null)
                 return "TopSights";*/ //23-03-2022//19-01-2023
             if ((node.SelectSingleNode(".//div[contains(@class,'WlTAzf')]|.//div[contains(@class, 'tkQJMd')]|.//div[@class='zhYvOe']|.//div[@class='p21Z4']") != null //23-04-2024//03-01-2024
-                || node.Attributes["class"]?.Value == "WlTAzf mnr-c vk_c" || node.Attributes["class"]?.Value == "WlTAzf Ww4FFb vt6azd vk_c")
+                || node.Attributes["class"]?.Value == "WlTAzf mnr-c vk_c" || node.Attributes["class"]?.Value == "WlTAzf Ww4FFb vt6azd vk_c" || node.Attributes["class"]?.Value == "WlTAzf Ww4FFb vk_c vt6azd")//03-11-2025
                 && node.SelectSingleNode(".//div[@jscontroller='UjNCHf']|.//div[@class='RRXMad']|.//div[@jsname='GDPwke']") == null)//14-10-2024//19-01-2024//02-01-2024//22-09-2023//21-09-2023//03-07-2023 //23-03-2022
                 return "Flights";//23-03-2022
 
@@ -3483,7 +3481,7 @@ namespace RapidTrackingLoopReceiving
                 && (node.SelectSingleNode(".//div[@class='vDF3Oc jIrdcd']|.//div[contains(@class,'qtOtne')]|.//div[@class='YB4h9 ky4hfd']" +
                "|.//div[@class='oj7Mub eVNxY']|.//div[@class='aJegcc']|.//div[@class='nC7kNc RrlBtc']|.//div[@class='x2KtK']" +
                "|.//div[@class='oj7Mub Y6bHod']|.//div[@class='dsxN8b EXH1Ce PZPZlf']|.//div[contains(@class,'DuxCpf')]|.//div[@jsname='N760b']") == null)) || node.SelectSingleNode(".//div[@class='gR8gCb']|.//div[contains(@class,'HOslld dutT5c')]") != null)//20-08-2025//29-05-202
-                    if (node.SelectSingleNode(".//span[@class='mgAbYb RES9jf IFnjPb JGD2rd']") == null)//30-10-2025
+                    if (node.SelectSingleNode(".//span[@class='mgAbYb RES9jf IFnjPb JGD2rd']") == null || node.SelectSingleNode(".//div[@class='gR8gCb']") != null)//03-11-2025//30-10-2025
                         return "Hotel";
             }
             nd = node.SelectSingleNode(".//*[@id='rXuTZe']");
@@ -3517,7 +3515,7 @@ namespace RapidTrackingLoopReceiving
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='bUNBRd mnr-c']|.//div[@class='HnYYW i8lZMc']|.//div[@class='HnYYW mfMhoc']|.//div[@class='HnYYW']/div|.//div[@class='HnYYW DFkChc']");//04-07-2023//20-11-2020 twiter classic links//26-06-2020 //13-03-2020 //include on 2019-06-24
             if (nd == null)
-                nd = node.SelectSingleNode(".//g-card[contains(@class,'F6CFcc')]|.//g-inner-card[contains(@class,'Bf5NPb')]|.//div[@class='Bv2VAe']|.//div/span[@class='Bv2VAe']");//23-04-2025//28-11-2024//23-10-2023//14-08-2023//26-06-2023//03-06-2021 twitter block
+                nd = node.SelectSingleNode(".//g-card[contains(@class,'F6CFcc')]|.//g-inner-card[contains(@class,'Bf5NPb')]|.//div[@class='Bv2VAe']|.//div/span[@class='Bv2VAe']|.//div[@class='BI6f6d']");//04-11-2025//23-04-2025//28-11-2024//23-10-2023//14-08-2023//26-06-2023//03-06-2021 twitter block
             if (nd != null)
             {
                 if (nd.InnerText.Contains("Twitter") || nd.SelectSingleNode(".//g-link") != null || nd.SelectSingleNode(".//div[@class='agqCtf tw-res']") != null)//28-08-2024//07-01-2021 twitter link
@@ -3593,13 +3591,15 @@ namespace RapidTrackingLoopReceiving
                 nd = node.SelectSingleNode(".//div[@class='sPeCJd']"); //21-12-2020 selector for carousel
             if (nd == null)
                 nd = node.SelectSingleNode(".//div[@class='R37eoe ibYmtf']");//28-10-2022
+            if (nd == null)//04-11-2025
+                nd = node.SelectSingleNode(".//div[@class='Ww4FFb vt6azd iiLOrc']");//04-11-2025
             if (nd != null)
             {
                 if (node.SelectSingleNode(".//g-scrolling-carousel|.//div[@class='xKf9F']") != null)//26-02-2024
                     // 04-11-2019
                     if (nd.InnerText.StartsWith("Movies") || nd.InnerText.StartsWith("Mga Pelikula")
                         || nd.InnerText.StartsWith("Film") || nd.InnerText.StartsWith("Filme")
-                        || nd.InnerText.StartsWith("Books") || nd.InnerText.StartsWith("Películas") || nd.InnerText.StartsWith("Pel&#237;culas"))//26-02-2024 //29-07-2020 // 09-06-2020
+                        || nd.InnerText.StartsWith("Books") || nd.InnerText.StartsWith("Películas") || nd.InnerText.StartsWith("Pel&#237;culas") || nd.InnerText.StartsWith("TV shows"))//04-11-2025//26-02-2024 //29-07-2020 // 09-06-2020
                     {
                         return "Carousel";
                     }

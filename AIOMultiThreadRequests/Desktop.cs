@@ -1,6 +1,7 @@
 ﻿using HtmlAgilityPack;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -2182,21 +2183,6 @@ namespace AIOMultiThreadRequests
             }
             return s.ToString();
         }//30-09-2024 ClassicLinkCarousel //16-10-2024
-        private string ConvertNumber(string value)//23-06-2023
-        {
-            if (string.IsNullOrEmpty(value))
-                return null;
-            StringBuilder sb = new StringBuilder(value.Length);
-            foreach (char c in value)
-            {
-                double d = char.GetNumericValue(c);
-                if (d < 0 || d % 1 != 0)
-                    sb.Append(c);
-                else
-                    sb.Append((int)d);
-            }
-            return sb.ToString();
-        }//23-06-2023
         private string ConvertCurrency(string value, int seid)//23-06-2023
         {
             var val = ConvertNumber(value);
@@ -2206,42 +2192,48 @@ namespace AIOMultiThreadRequests
             var cs = new RegionInfo(locale).ISOCurrencySymbol;
             return string.Join(" ", cs, res);
         }//23-06-2023
-        private string Convertprice(string price)
+
+        private string ConvertNumber(string value)
         {
-            price = price.Contains("&#") ? WebUtility.HtmlDecode(price) : price;//30-10-2025
-            price = ConvertNumber(price);//31-10-2025
-            string patternprice = "[\\d]+";
-            string p = price.Contains("€") ? price.Replace(" ", "").Replace(".", "").Replace(",", "") : price.Replace(",", "").Replace("٬", "").Replace("&#8364;", "");//28-10-2025//04-07-2025//01-01-2024
-            Match mc = Regex.Match(p, patternprice, RegexOptions.IgnoreCase);
-            if (mc.Success)
-                price = mc.Value;
-            if (price.Equals("unknown"))
-                price = "0";
-            if (price.Equals("check price"))//01-06-2023
-                price = "0";//01-06-2023
-            if (price.Equals("vérifier le prix"))//01-06-2023
-                price = "0";//01-06-2023
-            if (price.Equals("Preis prüfen"))//26-02-2024
-                price = "0";
-            if (price.Equals("controlla il prezzo"))
-                price = "0";
-            if (price.Equals("Consulta el precio"))
-                price = "0";
-            if (price.Equals("Consulta el precio."))
-                price = "0";
-            if (price.Equals("–"))
-                price = "0";
-            if (price.Equals("Free"))
-                price = "0";
-            if (price.Equals("ฟรี"))
-                price = "0";
-            if (price.Equals("Gratis"))
-                price = "0";
-            if (price.Equals("免費"))
-                price = "0";//26-02-2024
-            if (price.Equals("Kontakta butiken för pris"))//31-10-2025
-                price = "0";
-            return price;
+            if (string.IsNullOrEmpty(value)) return null;
+
+            var sb = new StringBuilder(value.Length);
+            foreach (char c in value)
+            {
+                double numeric = char.GetNumericValue(c);
+                sb.Append(numeric < 0 || numeric % 1 != 0 ? c.ToString() : ((int)numeric).ToString());//05-11-2025
+            }
+            return sb.ToString();
+        }
+
+        private string Convertprice(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input)) return "0";
+
+            input = WebUtility.HtmlDecode(input);
+            input = ConvertNumber(input);
+
+            // Normalize formatting
+            string normalized = input.Contains("€")
+                ? input.Replace(".", "").Replace(",", "")
+                : input.Replace(",", "").Replace("٬", "").Replace("&#8364;", "");
+
+            normalized = Regex.Replace(normalized, @"\s+", "");
+
+            // Extract numeric portion
+            var match = Regex.Match(normalized, @"\d+");
+            if (match.Success)
+                input = match.Value;
+
+            // Known non-numeric price indicators
+            var zeroIndicators = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+            {
+                "unknown", "check price", "vérifier le prix", "Preis prüfen", "controlla il prezzo",
+                "Consulta el precio", "Consulta el precio.", "–", "Free", "ฟรี", "Gratis", "免費",
+                "Kontakta butiken för pris"
+            };
+
+            return zeroIndicators.Contains(input) ? "0" : input;
         }
         private string ConvertHours(string hours) //05-07-2023
         {

@@ -953,7 +953,7 @@ namespace RapidTrackingMultithread
                             s.Append("</block>");
                             continue;
                         }//01-02-2023 images
-                        if (nd.SelectSingleNode(".//div[contains(@class,'ouy7Mc')]") != null && node.SelectNodes(".//div[@class='Wt5Tfe']") == null || nd.SelectNodes(".//div[@class='iiMFW RzlvC xuc']") != null //05-11-2025
+                        if (nd.SelectSingleNode(".//div[@class='ouy7Mc']") != null && node.SelectNodes(".//div[@class='Wt5Tfe']") == null || nd.SelectNodes(".//div[@class='iiMFW RzlvC xuc']") != null//06-11-2025 //05-11-2025
                             && (node.SelectNodes(".//div[@class='AuVD wHYlTd Ww4FFb vt6azd']") == null || !nd.HasClass("AuVD wHYlTd Ww4FFb vt6azd")))//05-11-2025//08-01-2025//30-08-2023//24-08-2023//02-04-2023 People also Ask
                         {
                             s.Append("<block type=\"peopleAlsoAsk\" url=\"\">");

@@ -445,7 +445,7 @@ namespace RapidTrackingSingleThread
             if (colpas != null)
             {
                 HtmlNode node = colpas.SelectSingleNode(".//div[@class='AuVD wHYlTd Ww4FFb vt6azd']");
-                if (node != null)
+                if (node != null && (!node.Ancestors("div").Any(n => n.HasClass("MjjYud"))))//07-11-2025
                 {
                     if (node.SelectSingleNode(".//div[@class='T6zPgb']/div[@role='heading']|.//div[contains(@class,'ouy7Mc adDDi')]/span[@role='heading']") != null)//02-07-2025 //21-01-2025
                     {

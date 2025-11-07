@@ -82,12 +82,13 @@ namespace TrendingMobileSingleThread
                 foreach (string s in lstKWs.Items)
                 {
                     string seid = s.Split(':')[0];
-                    string kw = s.Split(':')[1];                   
+                    string kw = s.Split(':')[1];
+                    bool result = false;
+
                     try
                     {
                         string res = string.Empty;
                         iOS clsIOS = new iOS();
-                        bool result = false;
                         var doc = new HtmlAgilityPack.HtmlDocument();
                         // HtmlAgilityPack.HtmlDocument doc = GetiOSDocument(seid, kw);
                         Task<ArrayList> alResult = GetHTML(kw, Convert.ToInt32(seid));                       
@@ -98,7 +99,8 @@ namespace TrendingMobileSingleThread
                             string html = obj["results"][0]["content"].Value<string>();
                             string jobid = src[2];
                             string device = src[3];
-                            result = !result;
+                            //result = !result;
+                            result = true;
                             doc = new HtmlAgilityPack.HtmlDocument();
                             doc.LoadHtml(html);
                             
@@ -111,6 +113,10 @@ namespace TrendingMobileSingleThread
 
                             if (!string.IsNullOrEmpty(res))
                             {
+                                lblCount.Invoke((MethodInvoker)(delegate ()
+                                {
+                                    lblCount.Text = "No. of Urls : " + count;
+                                }));
                                 if (count > 0)
                                 {
                                     SendiOSToAPI(seid, keyword, res);
@@ -132,10 +138,16 @@ namespace TrendingMobileSingleThread
                     finally { }
                     this.Invoke((MethodInvoker)delegate ()
                     {
-                        textBox1.Text = s;
+                        if (result)
+                        {
+                            textBox1.Text = s;
+                            //textBox1.Refresh();
+                            label1.Text = ++cnt + " of " + lstKWs.Items.Count + " Completed";
+                            label1.Refresh();
+                        }
+                        else
+                            textBox1.Text = s + "  -- No result.";
                         textBox1.Refresh();
-                        label1.Text = ++cnt + " of " + lstKWs.Items.Count + " Completed";
-                        label1.Refresh();
                     });
                 }
             }
@@ -200,8 +212,9 @@ namespace TrendingMobileSingleThread
             catch (WebException ex)
             {
                 ////store into keywordfail table.
-                SendToDBFailure(seid, kw);
-                                
+                 SendToDBFailure(seid, kw,  false, "TrendingSingleThread Request Status is faulted");
+
+
                 string errorMsg = string.Empty;
                 using (WebResponse response = ex.Response)
                 {
@@ -488,9 +501,9 @@ namespace TrendingMobileSingleThread
             return name;
         }
 
-        private void SendToDBFailure(string seid, string kw)
+        private void SendToDBFailure(string seid, string kw, bool status, string errMsg)
         {
-            string qry = "Insert into KeywordsFailure(date, seid, keyword, status) values('" + DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ") + "', " + seid + ", N'" + kw.Replace("'", "''") + "', '-1')";
+            string qry = "Insert into KeywordsFailure(date, seid, keyword, status, message) values('" + DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ") + "', " + seid + ", N'" + kw.Replace("'", "''") + "', '-1',)";
 
             try
             {
@@ -507,7 +520,6 @@ namespace TrendingMobileSingleThread
             }
             finally { }
         }
-
         private void SendToDB(string seid, string keyword, string xml)
         {
             //string qry = "Insert into TrendingXmlResults(date, seid, keyword, xmldata) values('" + DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ") + "', " + seid + ", N'" + keyword.Replace("'", "''") + "', N'" + xml.Replace("'", "''") + "') ";

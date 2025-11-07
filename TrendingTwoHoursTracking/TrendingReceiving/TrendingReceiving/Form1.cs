@@ -24,7 +24,7 @@ namespace TrendingReceiving
 
         void timerExit()
         {
-            timer.Interval = 30 * 60000; // before it was 15 minutes //21-10-2024
+            timer.Interval = 15 * 60000; 
             timer.Tick += new EventHandler(timer_Tick);
             timer.Start();
         }

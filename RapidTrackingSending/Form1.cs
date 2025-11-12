@@ -131,7 +131,6 @@ namespace Oxylabs_BulkKeywords
 
             Cursor.Current = Cursors.WaitCursor;
             string myDate = date_picker.Text;
-
             string strQry = "exec [dbo].[GetBulkMobile_106_ALL] '" + myDate + "'";  // Seid=106 Normal Sending 
             //string strQry = "exec [dbo].[GetBulkDesktop_58_ALL] '" + myDate + "'"; // Seid=58 Normal Sending
             //string strQry = "exec [dbo].[GetBulkOtherMobile_ALL] '" + myDate + "'"; // OtherMobile Normal Sending
@@ -144,6 +143,7 @@ namespace Oxylabs_BulkKeywords
             //string strQry = "exec [dbo].[GetBulkMobile_NewKeywords] '" + myDate + "'"; //New Keywords All Mobile Normal Sending
             //string strQry = "exec [dbo].[GetCommaKeywords] '" + myDate + "'"; // CommaKeywords for Desktop and Mobile Normal Sending
             //string strQry = "exec [dbo].[GetCommaKeywords_New] '" + myDate + "'"; // New CommaKeywords for Desktop and Mobile Normal Sending
+            //string strQry = "exec [dbo].[GetCommaKeywords_With_And_Without] '" + myDate + "'";  // Seid=106 Normal Sending 
             //string strQry = "exec [dbo].[GetBulk_P] '" + myDate + "'";  //sending procedure previous date keywords
             //string strQry = "exec [dbo].[Tracking_DB_Keywords_SEID_102_S] '" + myDate + "'";  //Without Condition WOC Single Keyword Desktop and Mobile Last keywords
             //string strQry = "exec [dbo].[Tracking_DB_Keywords_SEID_102_SS] '" + myDate + "'";  //Without Condition WOC Single Keyword for special Characters Desktop and Mobile Last keywords

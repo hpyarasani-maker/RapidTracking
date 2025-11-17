@@ -956,7 +956,7 @@ namespace RapidTrackingLibrary
                                 continue;
                         }//12-11-2021
                         //14-11-2019
-                        if (nd.SelectSingleNode(".//div[@class='rWBqlb']") != null)//28-10-2025
+                        if (nd.SelectSingleNode(".//div[@class='rWBqlb']|.//div[@jsname='VMmjWc']") != null)//17-11-2025//28-10-2025
                         {
                             s.Append(GetFlights(nd));
                             continue;

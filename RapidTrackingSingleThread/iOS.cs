@@ -910,7 +910,7 @@ namespace RapidTrackingSingleThread
                             if (nd.SelectSingleNode(".//div[@class='" + nd.Attributes["class"].Value + "']") != null)
                                 continue;
                         }//12-11-2021
-                        if (nd.SelectSingleNode(".//div[@class='rWBqlb']") != null)//28-10-2025
+                        if (nd.SelectSingleNode(".//div[@class='rWBqlb']|.//div[@jsname='VMmjWc']") != null)//17-11-2025//28-10-2025
                         {
                             s.Append(GetFlights(nd));
                             continue;

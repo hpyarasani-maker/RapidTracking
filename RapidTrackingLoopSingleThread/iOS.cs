@@ -449,7 +449,7 @@ namespace RapidTrackingLoopSingleThread
             if (colpas != null)
             {
                 HtmlNode node = colpas.SelectSingleNode(".//div[@class='AuVD wHYlTd Ww4FFb vt6azd']");
-                if (node != null)
+                if (node != null && (!node.Ancestors("div").Any(n => n.HasClass("MjjYud"))))//07-11-2025
                 {
                     if (node.SelectSingleNode(".//div[@class='T6zPgb']/div[@role='heading']|.//div[contains(@class,'ouy7Mc adDDi')]/span[@role='heading']") != null)//02-07-2025 //21-01-2025
                     {
@@ -914,7 +914,7 @@ namespace RapidTrackingLoopSingleThread
                             if (nd.SelectSingleNode(".//div[@class='" + nd.Attributes["class"].Value + "']") != null)
                                 continue;
                         }//12-11-2021
-                        if (nd.SelectSingleNode(".//div[@class='rWBqlb']") != null)//28-10-2025
+                        if (nd.SelectSingleNode(".//div[@class='rWBqlb']|.//div[@jsname='VMmjWc']") != null)//17-11-2025//28-10-2025
                         {
                             s.Append(GetFlights(nd));
                             continue;
@@ -3275,7 +3275,7 @@ namespace RapidTrackingLoopSingleThread
                 }
                 if (ts && node.SelectSingleNode(".//div[@class='imso-ml-c PZPZlf']|.//div[@class='Bv2VAe']|.//div[@jsname='GDPwke']|.//div[@id='imso-root']" +
                     "|.//table[@class='vk_tbl Uekwlc']|.//div[@jscontroller='WoVPie']|.//div[@class='b7hBnb Gp3GQd']|.//div[@class='MBOAae O0UFB']|.//div[@class='j2cNYe']|.//div[@class='agqCtf tw-res']" +//19-03-2025 +
-                    "|.//div[contains(@class,'rsmgO')]") == null || node.SelectSingleNode(".//div[@class='Xeztj WIlpZe xuc']") != null)//24-12-2024//18-12-2024//11-09-2024//20-07-2024//07-05-2024//22-04-2024//04-04-2024//02-04-2024
+                    "|.//div[contains(@class,'rsmgO')]|.//div[@class='A2pSt']") == null || node.SelectSingleNode(".//div[@class='Xeztj WIlpZe xuc']") != null)//10-11-2025//24-12-2024//18-12-2024//11-09-2024//20-07-2024//07-05-2024//22-04-2024//04-04-2024//02-04-2024
                     return "Topstories";
             }
             if (node.SelectSingleNode(".//div[contains(@class, 'RPdfze')]") != null || (node.SelectSingleNode(".//div[contains(@class, 'Qkn3ie')]" +//26-04-2024//23-04-2024
@@ -3483,7 +3483,7 @@ namespace RapidTrackingLoopSingleThread
             {
                 return "Videos";
             }
-            nd = node.SelectSingleNode(".//div[contains(@class,'HOslld dutT5c')and(.//div[contains(@class,'sPLMud')or(.//div[contains(@class,'hNKF2b m9orme')])])]|.//div[contains(@class, 'XNfAUb')]|.//div[@class='gR8gCb']");//29-07-2025//18-10-2024//10-10-2024//20-02-2024
+            nd = node.SelectSingleNode(".//div[contains(@class,'HOslld dutT5c')and(.//div[contains(@class,'sPLMud')or(.//div[contains(@class,'hNKF2b m9orme')])])]|.//div[contains(@class,'hNKF2b m9orme')]|.//div[contains(@class, 'XNfAUb')]|.//div[@class='gR8gCb']");//17-11-2025//29-07-2025//18-10-2024//10-10-2024//20-02-2024
             if (nd != null && node.SelectSingleNode(".//div[contains(@class, 'MRtunc')]|.//div[@class='Wt5Tfe']|.//div[@class='RyIFgf']") == null
                 || (node.SelectSingleNode(".//div[@class='VqeGe']") != null && node.SelectSingleNode(".//div[@class='NYidgb']|.//div[@class='xKf9F']|.//div[@class='ptUfXb XuQ7g']|.//div[@class='vRy7rc']|.//div[contains(@class,'sjVJQd dya7x')]") == null))//16-08-2025//01-04-2025//02-12-2024//27-02-2024//26-02-2024//20-02-2024
             {
@@ -3492,7 +3492,7 @@ namespace RapidTrackingLoopSingleThread
                 && (node.SelectSingleNode(".//div[@class='RyIFgf']") == null || node.SelectNodes(".//div[contains(@class,'EXH1Ce')]") != null))//09-05-2024//29-04-2024//16-03-2024//27-02-2024
                 && (node.SelectSingleNode(".//div[@class='vDF3Oc jIrdcd']|.//div[contains(@class,'qtOtne')]|.//div[@class='YB4h9 ky4hfd']" +
                "|.//div[@class='oj7Mub eVNxY']|.//div[@class='aJegcc']|.//div[@class='nC7kNc RrlBtc']|.//div[@class='x2KtK']" +
-               "|.//div[@class='oj7Mub Y6bHod']|.//div[@class='dsxN8b EXH1Ce PZPZlf']|.//div[contains(@class,'DuxCpf')]|.//div[@jsname='N760b']") == null)) || node.SelectSingleNode(".//div[@class='gR8gCb']|.//div[contains(@class,'HOslld dutT5c')]") != null)//20-08-2025//29-05-202
+               "|.//div[@class='oj7Mub Y6bHod']|.//div[@class='dsxN8b EXH1Ce PZPZlf']|.//div[contains(@class,'DuxCpf')]|.//div[@jsname='N760b']") == null)) || node.SelectSingleNode(".//div[@class='gR8gCb']|.//div[contains(@class,'HOslld dutT5c')]|.//div[@class='eIE7ad']") != null)//17-11-2025//20-08-2025//29-05-202
                     if (node.SelectSingleNode(".//span[@class='mgAbYb RES9jf IFnjPb JGD2rd']") == null || node.SelectSingleNode(".//div[@class='gR8gCb']") != null)//03-11-2025//30-10-2025
                         return "Hotel";
             }

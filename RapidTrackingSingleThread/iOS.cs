@@ -3479,7 +3479,7 @@ namespace RapidTrackingSingleThread
             {
                 return "Videos";
             }
-            nd = node.SelectSingleNode(".//div[contains(@class,'HOslld dutT5c')and(.//div[contains(@class,'sPLMud')or(.//div[contains(@class,'hNKF2b m9orme')])])]|.//div[contains(@class, 'XNfAUb')]|.//div[@class='gR8gCb']");//29-07-2025//18-10-2024//10-10-2024//20-02-2024
+            nd = node.SelectSingleNode(".//div[contains(@class,'HOslld dutT5c')and(.//div[contains(@class,'sPLMud')or(.//div[contains(@class,'hNKF2b m9orme')])])]|.//div[contains(@class,'hNKF2b m9orme')]|.//div[contains(@class, 'XNfAUb')]|.//div[@class='gR8gCb']");//17-11-2025//29-07-2025//18-10-2024//10-10-2024//20-02-2024
             if (nd != null && node.SelectSingleNode(".//div[contains(@class, 'MRtunc')]|.//div[@class='Wt5Tfe']|.//div[@class='RyIFgf']") == null
                 || (node.SelectSingleNode(".//div[@class='VqeGe']") != null && node.SelectSingleNode(".//div[@class='NYidgb']|.//div[@class='xKf9F']|.//div[@class='ptUfXb XuQ7g']|.//div[@class='vRy7rc']|.//div[contains(@class,'sjVJQd dya7x')]") == null))//16-08-2025//01-04-2025//02-12-2024//27-02-2024//26-02-2024//20-02-2024
             {
@@ -3488,7 +3488,7 @@ namespace RapidTrackingSingleThread
                 && (node.SelectSingleNode(".//div[@class='RyIFgf']") == null || node.SelectNodes(".//div[contains(@class,'EXH1Ce')]") != null))//09-05-2024//29-04-2024//16-03-2024//27-02-2024
                 && (node.SelectSingleNode(".//div[@class='vDF3Oc jIrdcd']|.//div[contains(@class,'qtOtne')]|.//div[@class='YB4h9 ky4hfd']" +
                "|.//div[@class='oj7Mub eVNxY']|.//div[@class='aJegcc']|.//div[@class='nC7kNc RrlBtc']|.//div[@class='x2KtK']" +
-               "|.//div[@class='oj7Mub Y6bHod']|.//div[@class='dsxN8b EXH1Ce PZPZlf']|.//div[contains(@class,'DuxCpf')]|.//div[@jsname='N760b']") == null)) || node.SelectSingleNode(".//div[@class='gR8gCb']|.//div[contains(@class,'HOslld dutT5c')]") != null)//20-08-2025//29-05-202
+               "|.//div[@class='oj7Mub Y6bHod']|.//div[@class='dsxN8b EXH1Ce PZPZlf']|.//div[contains(@class,'DuxCpf')]|.//div[@jsname='N760b']") == null)) || node.SelectSingleNode(".//div[@class='gR8gCb']|.//div[contains(@class,'HOslld dutT5c')]|.//div[@class='eIE7ad']") != null)//17-11-2025//20-08-2025//29-05-202
                     if (node.SelectSingleNode(".//span[@class='mgAbYb RES9jf IFnjPb JGD2rd']") == null || node.SelectSingleNode(".//div[@class='gR8gCb']") != null)//03-11-2025//30-10-2025
                         return "Hotel";
             }

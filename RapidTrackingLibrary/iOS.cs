@@ -2057,6 +2057,8 @@ namespace RapidTrackingLibrary
                 n = node.SelectSingleNode(".//a[contains(@class,'sXtWJb')]");//16-12-2020 //15-12-2020
             if (n == null)//13-08-2024
                 n = node.SelectSingleNode(".//a[@class='rTyHce jgWGIe']");//13-08-2024
+            if (n == null)//20-11-2025
+                n = node.SelectSingleNode(".//div[contains(@class,'OhZyZc')]/a");//20-11-2025
             if (n != null)
             {
                 if (orgLinks < 100)

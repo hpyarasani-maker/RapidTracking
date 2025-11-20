@@ -1602,7 +1602,7 @@ namespace RapidTrackingSingleThread
             StringBuilder s = new StringBuilder();
             HtmlNode n = node.SelectSingleNode(".//div[contains(@class,'P8ujBc v5yQqb')]/a");
             if (n == null)
-                n = node.SelectSingleNode(".//div[@class='OhZyZc']/a|.//div[@class='v5yQqb jqWpsc']/a");//15-11-2024
+                n = node.SelectSingleNode(".//div[contains(@class,'OhZyZc')]/a|.//div[@class='v5yQqb jqWpsc']/a");//20-11-2025//15-11-2024
             if (n != null)
             {
                 HtmlNode t = n.SelectSingleNode(".//div[@role='heading']");

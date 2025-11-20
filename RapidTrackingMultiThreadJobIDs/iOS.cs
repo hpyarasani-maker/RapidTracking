@@ -1594,7 +1594,7 @@ namespace RapidTrackingMultiThreadRequests
             StringBuilder s = new StringBuilder();
             HtmlNode n = node.SelectSingleNode(".//div[contains(@class,'P8ujBc v5yQqb')]/a");
             if (n == null)
-                n = node.SelectSingleNode(".//div[@class='OhZyZc']/a|.//div[@class='v5yQqb jqWpsc']/a");//15-11-2024
+                n = node.SelectSingleNode(".//div[contains(@class,'OhZyZc')]/a|.//div[@class='v5yQqb jqWpsc']/a");//20-11-2025//15-11-2024
             if (n != null)
             {
                 HtmlNode t = n.SelectSingleNode(".//div[@role='heading']");
@@ -1628,7 +1628,7 @@ namespace RapidTrackingMultiThreadRequests
             StringBuilder s = new StringBuilder();
             HtmlNode n = node.SelectSingleNode(".//div[@class='P8ujBc v5yQqb jqWpsc']/a");
             if (n == null)
-                n = node.SelectSingleNode(".//div[@class='OhZyZc']/a");
+                n = node.SelectSingleNode(".//div[contains(@class,'OhZyZc')]/a");//20-11-2025
             if (n != null)
             {
                 HtmlNode t = n.SelectSingleNode(".//div[@role='heading']");
@@ -2009,7 +2009,7 @@ namespace RapidTrackingMultiThreadRequests
             if (n == null)//20-09-2024
                 n = node.SelectSingleNode(".//a[@class='cz3goc OcpZAb']");//20-09-2024
             if (n == null)//13-08-2024
-                n = node.SelectSingleNode(".//a[@class='rTyHce jgWGIe']");//13-08-2024
+                n = node.SelectSingleNode(".//a[contains(@class,'rTyHce')]");//20-11-2025//13-08-2024
             if (n == null)//19-09-2024
                 n = node.SelectSingleNode(".//a[contains(@class,'cz3goc OcpZAb')]");//19-09-2024
             if (n != null)

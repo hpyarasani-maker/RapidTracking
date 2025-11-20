@@ -2017,11 +2017,9 @@ namespace RapidTrackingSingleThread
             if (n == null)//20-09-2024
                 n = node.SelectSingleNode(".//a[@class='cz3goc OcpZAb']");//20-09-2024
             if (n == null)//13-08-2024
-                n = node.SelectSingleNode(".//a[@class='rTyHce jgWGIe']");//13-08-2024
+                n = node.SelectSingleNode(".//a[contains(@class,'rTyHce')]");//20-11-2025//13-08-2024
             if (n == null)//19-09-2024
                 n = node.SelectSingleNode(".//a[contains(@class,'cz3goc OcpZAb')]");//19-09-2024
-            if (n == null)//20-11-2025
-                n = node.SelectSingleNode(".//div[contains(@class,'OhZyZc')]/a");//20-11-2025
             if (n != null)
             {
                 if (orgLinks < 100)

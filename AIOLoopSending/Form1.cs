@@ -35,7 +35,7 @@ namespace AIOLoopSending
                
         private async void Form1_Load(object sender, EventArgs e)
         {
-            Text = "Sending AIO Keywords"; //sending previous date keywords
+            Text = "Sending AIO Loop Keywords"; //sending previous date keywords
             date_picker.Value = DateTime.Today; 
 
             

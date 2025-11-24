@@ -7,7 +7,7 @@ namespace RapidTrackingLoopSending
         public string source { get; set; }
         public string domain { get; set; }
         public string[] query { get; set; }
-        public int limit { get; set; }
+        //public int limit { get; set; }
         public int pages { get; set; }
         public int start_page { get; set; }
         public string locale { get; set; }

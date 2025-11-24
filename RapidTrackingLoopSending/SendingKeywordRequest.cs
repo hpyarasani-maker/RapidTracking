@@ -117,7 +117,7 @@ namespace RapidTrackingLoopSending
         }
         ////03-08-2021 storing error messages end
 
-        private async Task GetOxylabsWebDataSources(SearchProperties sp)
+        private async Task GetOxylabsWebDataSources(SearchProperties sp,int i)
         {
             //ServicePointManager.Expect100Continue = true;
             //ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
@@ -164,15 +164,15 @@ namespace RapidTrackingLoopSending
             //string callbackURL = "https://previous.azurewebsites.net/api/callbackrapidtrackingdesktop/";
             // string callbackURL = "https://previous.azurewebsites.net/api/callbackus1desktop/";     // 1 2019-10-10
             //string callbackURL = "https://previous.azurewebsites.net/api/callbackuk58desktop/";       // 58 sending for previous date
-            string[] keyword = { sp.query };
+            //string[] keyword = { sp.query };
             OxyParams op = new OxyParams()
             {
                 source = "google_search",
                 domain = sp.domain,
-                query = keyword,
-                limit = 10,
+                query = sp.query.Split(','),
+                //limit = 10,
                 pages = 10,
-                start_page=1,
+                start_page=i,
                 locale = sp.locale,
                 callback_url = callbackURL,  
                 geo_location = sp.geo_location,
@@ -227,8 +227,13 @@ namespace RapidTrackingLoopSending
             {
                 SearchProperties sp = SearchParams.searches.Where(s => s.seid == seid).SingleOrDefault();
                 sp.query = keyword;
-                if(sp != null)
-                    await GetOxylabsWebDataSources(sp);
+
+
+                for (int i = 1; i <= 10; i++)
+                {
+                    if (sp != null)
+                        await GetOxylabsWebDataSources(sp,i);
+                }
             }
             catch (Exception ex)
             {

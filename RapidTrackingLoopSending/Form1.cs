@@ -134,7 +134,7 @@ namespace RapidTrackingLoopSending
             Cursor.Current = Cursors.WaitCursor;
             string myDate = date_picker.Text;
             //Two Sending Apps for Loop SP_1 and SP_2
-            string strQry = "exec [Tracking_DB_Keywords_SEID_102_SP_1] '" + myDate + "'"; //Loop Sending 1st Thread Desktop and Mobile Normal Sending
+            //string strQry = "exec [Tracking_DB_Keywords_SEID_102_SP_1] '" + myDate + "'"; //Loop Sending 1st Thread Desktop and Mobile Normal Sending
             //string strQry = "exec [Tracking_DB_Keywords_SEID_102_SP_2] '" + myDate + "'"; //Loop Sending 2st Thread Desktop and Mobile Normal Sending
             //string strQry = "exec [dbo].[GetBulk_NewSeids] '" + myDate + "'";
             //string strQry = "exec [dbo].[GetBulkUKDesktop_Temp_1] '" + myDate + "'";    // seid: 503
@@ -153,6 +153,8 @@ namespace RapidTrackingLoopSending
             //string strQry = "exec [dbo].[GetBulk_P] '" + myDate + "'";  //sending procedure previous date keywords
             //string strQry = "exec [Tracking_DB_Keywords_SEID_102_SeeMore] '" + myDate + "'"; //30-06-2022
             //string strQry = "exec [Tracking_DB_Keywords_SEID_102_TGBN] '" + myDate + "'"; //28-06-2022
+            string strQry = "exec [dbo].[GetCommaKeywords_With_And_Without] '" + myDate + "'";  // Seid=106 Normal Sending 
+
             SqlConnection objCon = null;
             SqlDataReader objData = null;
 

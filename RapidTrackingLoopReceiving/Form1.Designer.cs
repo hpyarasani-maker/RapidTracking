@@ -41,16 +41,17 @@
             this.label7 = new System.Windows.Forms.Label();
             this.lblAPITime = new System.Windows.Forms.Label();
             this.lblDBTime = new System.Windows.Forms.Label();
+            this.lblDownloadedTime = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblCompletedKw
             // 
             this.lblCompletedKw.AutoSize = true;
             this.lblCompletedKw.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCompletedKw.Location = new System.Drawing.Point(196, 75);
-            this.lblCompletedKw.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCompletedKw.Location = new System.Drawing.Point(131, 49);
             this.lblCompletedKw.Name = "lblCompletedKw";
-            this.lblCompletedKw.Size = new System.Drawing.Size(23, 25);
+            this.lblCompletedKw.Size = new System.Drawing.Size(16, 17);
             this.lblCompletedKw.TabIndex = 11;
             this.lblCompletedKw.Text = "#";
             // 
@@ -58,10 +59,9 @@
             // 
             this.lblCount.AutoSize = true;
             this.lblCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCount.Location = new System.Drawing.Point(196, 31);
-            this.lblCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCount.Location = new System.Drawing.Point(131, 20);
             this.lblCount.Name = "lblCount";
-            this.lblCount.Size = new System.Drawing.Size(23, 25);
+            this.lblCount.Size = new System.Drawing.Size(16, 17);
             this.lblCount.TabIndex = 12;
             this.lblCount.Text = "0";
             // 
@@ -69,10 +69,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(18, 123);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(12, 80);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(156, 25);
+            this.label1.Size = new System.Drawing.Size(113, 17);
             this.label1.TabIndex = 13;
             this.label1.Text = "Captured Errors:";
             // 
@@ -81,22 +80,20 @@
             this.txtErrors.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtErrors.Location = new System.Drawing.Point(18, 160);
-            this.txtErrors.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtErrors.Location = new System.Drawing.Point(12, 104);
             this.txtErrors.Multiline = true;
             this.txtErrors.Name = "txtErrors";
             this.txtErrors.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtErrors.Size = new System.Drawing.Size(1219, 564);
+            this.txtErrors.Size = new System.Drawing.Size(814, 368);
             this.txtErrors.TabIndex = 14;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(18, 31);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(12, 20);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(118, 25);
+            this.label2.Size = new System.Drawing.Size(83, 17);
             this.label2.TabIndex = 15;
             this.label2.Text = "Completed: ";
             // 
@@ -104,10 +101,9 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(18, 75);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(12, 49);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(100, 25);
+            this.label3.Size = new System.Drawing.Size(70, 17);
             this.label3.TabIndex = 16;
             this.label3.Text = "Keyword: ";
             // 
@@ -115,10 +111,9 @@
             // 
             this.lblErrors.AutoSize = true;
             this.lblErrors.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblErrors.Location = new System.Drawing.Point(196, 123);
-            this.lblErrors.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblErrors.Location = new System.Drawing.Point(131, 80);
             this.lblErrors.Name = "lblErrors";
-            this.lblErrors.Size = new System.Drawing.Size(23, 25);
+            this.lblErrors.Size = new System.Drawing.Size(16, 17);
             this.lblErrors.TabIndex = 17;
             this.lblErrors.Text = "0";
             // 
@@ -126,10 +121,9 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(908, 31);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(605, 9);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(127, 25);
+            this.label4.Size = new System.Drawing.Size(89, 17);
             this.label4.TabIndex = 19;
             this.label4.Text = "Status Code:";
             // 
@@ -137,10 +131,9 @@
             // 
             this.lblStatusCode.AutoSize = true;
             this.lblStatusCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatusCode.Location = new System.Drawing.Point(1060, 31);
-            this.lblStatusCode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblStatusCode.Location = new System.Drawing.Point(707, 9);
             this.lblStatusCode.Name = "lblStatusCode";
-            this.lblStatusCode.Size = new System.Drawing.Size(23, 25);
+            this.lblStatusCode.Size = new System.Drawing.Size(16, 17);
             this.lblStatusCode.TabIndex = 18;
             this.lblStatusCode.Text = "0";
             // 
@@ -148,10 +141,9 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(918, 123);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(605, 52);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(94, 25);
+            this.label8.Size = new System.Drawing.Size(66, 17);
             this.label8.TabIndex = 23;
             this.label8.Text = "DB Time:";
             // 
@@ -159,21 +151,19 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(913, 75);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(605, 31);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(99, 25);
+            this.label7.Size = new System.Drawing.Size(83, 17);
             this.label7.TabIndex = 22;
-            this.label7.Text = "API Time:";
+            this.label7.Text = "Pi Api Time:";
             // 
             // lblAPITime
             // 
             this.lblAPITime.AutoSize = true;
             this.lblAPITime.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAPITime.Location = new System.Drawing.Point(1060, 75);
-            this.lblAPITime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblAPITime.Location = new System.Drawing.Point(707, 32);
             this.lblAPITime.Name = "lblAPITime";
-            this.lblAPITime.Size = new System.Drawing.Size(23, 25);
+            this.lblAPITime.Size = new System.Drawing.Size(16, 17);
             this.lblAPITime.TabIndex = 21;
             this.lblAPITime.Text = "0";
             // 
@@ -181,18 +171,40 @@
             // 
             this.lblDBTime.AutoSize = true;
             this.lblDBTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDBTime.Location = new System.Drawing.Point(1060, 120);
-            this.lblDBTime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDBTime.Location = new System.Drawing.Point(707, 53);
             this.lblDBTime.Name = "lblDBTime";
-            this.lblDBTime.Size = new System.Drawing.Size(23, 25);
+            this.lblDBTime.Size = new System.Drawing.Size(16, 17);
             this.lblDBTime.TabIndex = 20;
             this.lblDBTime.Text = "0";
             // 
+            // lblDownloadedTime
+            // 
+            this.lblDownloadedTime.AutoSize = true;
+            this.lblDownloadedTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDownloadedTime.Location = new System.Drawing.Point(766, 77);
+            this.lblDownloadedTime.Name = "lblDownloadedTime";
+            this.lblDownloadedTime.Size = new System.Drawing.Size(15, 16);
+            this.lblDownloadedTime.TabIndex = 27;
+            this.lblDownloadedTime.Text = "0";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(604, 75);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(152, 16);
+            this.label5.TabIndex = 26;
+            this.label5.Text = "Download Source Time:";
+            this.label5.UseMnemonic = false;
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1257, 745);
+            this.ClientSize = new System.Drawing.Size(838, 484);
+            this.Controls.Add(this.lblDownloadedTime);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.lblAPITime);
@@ -206,7 +218,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblCount);
             this.Controls.Add(this.lblCompletedKw);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
@@ -231,6 +242,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblAPITime;
         private System.Windows.Forms.Label lblDBTime;
+        private System.Windows.Forms.Label lblDownloadedTime;
+        private System.Windows.Forms.Label label5;
     }
 }
 

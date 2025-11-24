@@ -123,7 +123,7 @@ namespace RapidTrackingLoopSending
                 //worklist.Items.Add("160:zlatan");
                 //worklist.Items.Add("160:messi");
                 //worklist.Items.Add("61:cancervårdsförsäkring");
-                //worklist.Items.Add("145:kia sportage");
+                //worklist.Items.Add("106:iphone,laptop");
                 worklist.Refresh();
                 date_picker.Format = DateTimePickerFormat.Custom;
                 date_picker.CustomFormat = "yyyy-MM-dd";

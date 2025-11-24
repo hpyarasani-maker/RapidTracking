@@ -125,6 +125,7 @@ namespace RapidTrackingLoopReceiving
             string gl = job["geo_location"].Value<string>();
             string domain = job["domain"].Value<string>();
             string jobid = job["id"].Value<string>();
+            double totalTime = 0;//22-01-2025
             string seid = "";
             SearchProperties sp = SearchParams.searches.Where(s => s.locale == hl && s.device == device && s.geo_location == gl).SingleOrDefault();
             seid = sp.seid.ToString();
@@ -150,6 +151,7 @@ namespace RapidTrackingLoopReceiving
                 {
                     //ServicePointManager.Expect100Continue = true;
                     //ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                    var startTime = System.Diagnostics.Stopwatch.StartNew();//08-11-2023
                     string resURL = job["results_url"].Value<string>();
                     HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(resURL);
                     string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
@@ -160,6 +162,8 @@ namespace RapidTrackingLoopReceiving
                     string response = reader.ReadToEnd();
                     resStream.Close();
                     res.Close();
+                    startTime.Stop();//08-11-2023
+                    totalTime = Convert.ToDouble(startTime.ElapsedMilliseconds) / 1000;//08-11-2023
                     string rest = string.Empty;//12-05-2025
                     int orgUrls = 0;
                     try
@@ -240,11 +244,12 @@ namespace RapidTrackingLoopReceiving
                     //        ProcessResults(result[i].ToString(), kw, seid, jobid, orgUrls);
                     //    }
 
-                    OnKeywordDone.Invoke(seid + ":  " + kw + ",  " + count + "^" + statusCode + "^" + apitime + "^" + dbtime);    // 31-03-2020
+                    OnKeywordDone.Invoke(seid + ":  " + kw + ",  " + count + "^" + statusCode + "^" + apitime + "^" + dbtime + "^" + totalTime);    // 31-03-2020
                 }
                 if (status == "faulted")
                 {
-                    throw new Exception("faulted");
+                    statusCode = status;//22-01-2025
+                    throw new Exception("Status is faulted");
                 }
             }
             catch (Exception ex)

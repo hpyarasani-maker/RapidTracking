@@ -117,7 +117,7 @@ namespace RapidTrackingLoopSending
         }
         ////03-08-2021 storing error messages end
 
-        private async Task GetOxylabsWebDataSources(SearchProperties sp,int i)
+        private async Task GetOxylabsWebDataSources(SearchProperties sp)
         {
             //ServicePointManager.Expect100Continue = true;
             //ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
@@ -172,14 +172,14 @@ namespace RapidTrackingLoopSending
                 query = sp.query.Split(','),
                 //limit = 10,
                 pages = 10,
-                start_page=i,
+                //start_page=i,
                 locale = sp.locale,
                 callback_url = callbackURL,  
                 geo_location = sp.geo_location,
                 parse = false, //23-09-2021 changed datatype into "int to bool"
                 user_agent_type = sp.device,   
                 context = new List<Context> {
-                    new Context("safe_search", 0)     
+                    new Context("safe_search", 1)     
                 }
             };                  
             
@@ -229,11 +229,11 @@ namespace RapidTrackingLoopSending
                 sp.query = keyword;
 
 
-                for (int i = 1; i <= 10; i++)
-                {
+                //for (int i = 1; i <= 10; i++)
+                //{
                     if (sp != null)
-                        await GetOxylabsWebDataSources(sp,i);
-                }
+                        await GetOxylabsWebDataSources(sp);
+                //}
             }
             catch (Exception ex)
             {

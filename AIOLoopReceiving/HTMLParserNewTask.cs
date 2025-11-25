@@ -219,7 +219,7 @@ namespace AIOLoopReceiving
                     }
                     finally { }
                 }
-                OnKeywordDone.Invoke("Error:  seid: " + seid + ",  keyword: " + kw + ",  jobid: " + jobid + "\r\n\t" + ex.Message + "^" + statusCode + "^" + apitime + "^" + dbtime);    // 31-03-2020                
+                OnKeywordDone.Invoke("Error:  seid: " + seid + ",  keyword: " + kw + ",  jobid: " + jobid + "\r\n\t" + ex.Message + "^" + statusCode + "^" + apitime + "^" + dbtime + "^" + totalTime);    // 31-03-2020                
             }
         }
 

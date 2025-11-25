@@ -1,4 +1,5 @@
 ﻿using HtmlAgilityPack;
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,14 +13,24 @@ using System.Threading.Tasks;
 using System.Web;
 
 namespace AIOLoopReceiving
-{ 
+{
     class iOS
     {
         int orgLinks;
         string html;
         string seid = string.Empty;//23-06-2023
+        public event KeywordDone OnKeywordDone;//30-10-2024
+        public class ScriptMetaData
+        {
+            public string render { get; set; }
+        }
         public async Task<(string, int)> ProcessDocument(string seid, string keyword, string jobid, string htmlsource)//12-05-2025//30-10-2024
         {
+            var scriptMetadata = new ScriptMetaData
+            {
+                render = "js",
+            };
+            var jsonString = JsonConvert.SerializeObject(scriptMetadata);
             this.seid = seid;//23-06-2023
             if (string.IsNullOrEmpty(htmlsource))
             {
@@ -32,7 +43,8 @@ namespace AIOLoopReceiving
             orgLinks = 0;
             StringBuilder sb = new StringBuilder();
             //sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" date=\"2019-11-29\" >"); //previous date
-            sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" date=\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\" >");
+            //sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" date=\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\" >");
+            sb.Append("<searchResult searchEngine=\"" + seid + "\" keyword=\"" + WebUtility.HtmlEncode(keyword) + "\" date=\"" + DateTime.Today.ToString("yyyy-MM-dd") + "\" scrapingMetadata=\"" + WebUtility.HtmlEncode(jsonString.ToString()) + "\" >");
             sb.Append("<section col=\"main\">");
             string topStuff = GetTopStuff(doc);
             sb.Append(topStuff);
@@ -100,7 +112,13 @@ namespace AIOLoopReceiving
                             break;
                         }
                     }
-                    catch  { }
+                    catch (Exception ex)//30-10-2024
+                    {
+                        if (ex.Message.Contains("answercard"))//05-11-2024
+                        {
+                            OnKeywordDone.Invoke("Error:  seid: " + seid + ",  keyword: " + keyword + ",  jobid: " + jobid + "\r\n\t" + ex.Message + "^0^0.0^0.0^0");
+                        }//05-11-2024   
+                    }
 
                 }
 
@@ -195,7 +213,13 @@ namespace AIOLoopReceiving
                             sb.Append(s);
                     }
                 }
-                catch { }
+                catch (Exception ex)//30-10-2024
+                {
+                    if (ex.Message.Contains("answercard"))//05-11-2024
+                    {
+                        OnKeywordDone.Invoke("Error:  seid: " + seid + ",  keyword: " + keyword + ",  jobid: " + jobid + "\r\n\t" + ex.Message + "^0^0.0^0.0^0");
+                    }//05-11-2024   
+                }
             }
 
             if (string.IsNullOrEmpty(ndText.Trim()) || orgLinks == 0)
@@ -214,7 +238,7 @@ namespace AIOLoopReceiving
                                 nc = node.SelectNodes(".//div[@class='TjcfIc eE3xqf B03h3d V14nKc ptcLIOszQJu__wholepage-card wp-ms']|.//div[@class='WvKfwe a3spGf']/div");//13-12-2022 //28-11-2022
                             if (nc == null)//28-11-2022
                                 nc = node.SelectNodes(".//div[@class='WvKfwe']/div|.//div[@class='WvKfwe a3spGf']/div" +
-                                "|.//div[@class='ChlgHf']|.//div[@class='a3spGf WvKfwe']/div|.//div[contains(@class,'TzHB6b mnr-c UBoxCb')]" + //17-11-2022
+                            "|.//div[@class='ChlgHf']|.//div[@class='a3spGf WvKfwe']/div|.//div[contains(@class,'TzHB6b mnr-c UBoxCb')]" + //17-11-2022
                                 "|.//div[@class='WvKfwe a3spGf']/g-card|.//div[@class='WvKfwe a3spGf']/block-component");//20-05-2022  
                             //if (nc == null || node.SelectNodes(".//div[@id='kp-wp-tab-overview']/div") != null)//07-10-2021 answer card and PAA blocks
                             if (nc == null)//02-09-2022
@@ -248,7 +272,13 @@ namespace AIOLoopReceiving
                             break;
                         }
                     }
-                    catch { }
+                    catch (Exception ex)//30-10-2024
+                    {
+                        if (ex.Message.Contains("answercard"))//05-11-2024
+                        {
+                            OnKeywordDone.Invoke("Error:  seid: " + seid + ",  keyword: " + keyword + ",  jobid: " + jobid + "\r\n\t" + ex.Message + "^0^0.0^0.0^0");
+                        }//05-11-2024   
+                    }
                 }
             }
            
@@ -268,9 +298,7 @@ namespace AIOLoopReceiving
                 return await Task.FromResult<(string, int)>((string.Empty, 0));//12-05-2025
             }
             return await Task.FromResult<(string, int)>((sb.ToString(), orgLinks));//12-05-2025
-
         }
-
 
         private string GetRightStuff(HtmlDocument doc)
         {

@@ -16,8 +16,8 @@ namespace AIOLoopReceiving
     public class Desktop
     {
         int orgLinks;
-        string html;
-        string seid = string.Empty;//23-06-2023
+        string html; string seid = string.Empty;//23-06-2023
+        public event KeywordDone OnKeywordDone; //30-10-2024
         public async Task<(string, int)> ProcessDocument(string seid, string keyword, string jobid, string htmlsource)//12-05-2025//30-10-2024
         {
             this.seid = seid;//23-06-2023
@@ -32,9 +32,9 @@ namespace AIOLoopReceiving
             HtmlNode htmlNode = doc.DocumentNode.SelectSingleNode("//table[@id='mn']");
             if (htmlNode != null)
             {
-                throw new Exception("Old page found.");
+                throw new Exception("AIO Old page found.");//14-04-2025
             }
-            bool isRso = false;//01-09-2025
+            bool isRso = false;//21-08-2025
             html = htmlsource;
             orgLinks = 0;
             StringBuilder sb = new StringBuilder();
@@ -63,10 +63,11 @@ namespace AIOLoopReceiving
                     nodeCol = rso.SelectNodes(".//div[contains(@class,'WvKfwe')]/div|.//div[@class='UDZeY OTFaAf']/div|.//div[@class='MjjYud']|.//div[contains(@class,'g Ww4FFb')]");
                     isRso = true;//21-08-2025
             }//08-02-2024
+            //11-08-2022 //end 01-11-2023
             string ndText = "";
-            if (nodeCol != null)  //11-08-2022 //end 01-11-2023
-                foreach (HtmlNode node in nodeCol)
-                {
+            if (nodeCol != null) //11-08-2022
+            foreach (HtmlNode node in nodeCol)
+            {
                     if (node.HasClass("kp-wholepage") || (node.HasClass("JCZQSb") && node.SelectSingleNode(".//g-section-with-header[contains(@class,'yG4QQe TBC9ub')]") != null))//12-08-2025
                     {
                         continue;
@@ -88,8 +89,14 @@ namespace AIOLoopReceiving
                                 sb.Append(s);
                         }
                     }
-                    catch { }
-            }
+                    catch (Exception ex)//30-10-2024
+                    {
+                        if (ex.Message.Contains("answercard"))//05-11-2024
+                        {
+                            OnKeywordDone.Invoke("Error:  seid: " + seid + ",  keyword: " + keyword + ",  jobid: " + jobid + "\r\n\t" + ex.Message + "^0^0.0^0.0^0");
+                        }//05-11-2024                    
+                    }
+             }
             // 23-03-2020
             if (string.IsNullOrEmpty(ndText) || orgLinks == 0)//08-04-2020
             {
@@ -111,8 +118,14 @@ namespace AIOLoopReceiving
                                 sb.Append(s);
                         }
                     }
-                    catch { }
-                }
+                        catch (Exception ex)//30-10-2024
+                        {
+                            if (ex.Message.Contains("answercard"))//05-11-2024
+                            {
+                                OnKeywordDone.Invoke("Error:  seid: " + seid + ",  keyword: " + keyword + ",  jobid: " + jobid + "\r\n\t" + ex.Message + "^0^0.0^0.0^0");
+                            }//05-11-2024
+                        }
+                    }
             }
             // 23-03-2020
 
@@ -131,7 +144,7 @@ namespace AIOLoopReceiving
 
             if (ndText.Length <= 0)
             {
-                return await Task.FromResult<(string, int)>((string.Empty, 0));
+                return await Task.FromResult<(string, int)>((string.Empty, 0));//12-05-2025
             }
             return await Task.FromResult<(string, int)>((sb.ToString(), orgLinks));//12-05-2025
         }

@@ -86,7 +86,7 @@ namespace RapidTrackingLoopSingleThread
                     try
                     {
                         var doc = new HtmlAgilityPack.HtmlDocument();
-                        Task<ArrayList> alresult = GetHTML(kw, Convert.ToInt32(seid));
+                        ArrayList alresult = GetHTML(kw, Convert.ToInt32(seid)).Result;
                         try
                         {
                             string keyword = "";
@@ -95,16 +95,16 @@ namespace RapidTrackingLoopSingleThread
                             string res = string.Empty;
                             ArrayList alXml = new ArrayList();
 
-                            foreach (ArrayList arList in alresult.Result)
-                                foreach (string[] src in arList)
+                            foreach (ResultObject r in alresult)
+                                foreach (string src in r.Result)
                                 {
                                     try //02-05-2022
                                     {
-                                        keyword = src[0];
-                                        JObject obj = JObject.Parse(src[1]);
+                                        keyword = r.Keyword;
+                                        JObject obj = JObject.Parse(src);
                                         string html = obj["results"][0]["content"].Value<string>();
-                                        jobid = src[2];
-                                        string device = src[3];
+                                        jobid = r.JobId;
+                                        string device = r.Device;
                                         //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
                                         //File.WriteAllText(@"C:\inetpub\wwwroot\"+jobid+"_withOut filter_"+".html", html, Encoding.UTF8);
                                         result = true;
@@ -343,9 +343,9 @@ namespace RapidTrackingLoopSingleThread
                 //lstKWs.Items.Add("312:kia sportage");
                 //lstKWs.Items.Add("102:note 8 specs");
                 //lstKWs.Items.Add("102:iphone 11 camera specs");
-                //lstKWs.Items.Add("106:what time is it in uk");
+                lstKWs.Items.Add("106:iphone");
             });
-            //return;
+            return;
 
             try
             {
@@ -542,7 +542,7 @@ namespace RapidTrackingLoopSingleThread
                 for (int i=1;i<=10;i++)
                 {
                     if (sp != null)
-                        alResult.Add(GetOxylabsWebDataSources(sp, i).Result);
+                        alResult = await GetOxylabsWebDataSources(sp);
                 }
             }
             catch (Exception ex)
@@ -553,7 +553,7 @@ namespace RapidTrackingLoopSingleThread
             return await Task.FromResult(alResult);
         }
 
-        async Task<ArrayList> GetOxylabsWebDataSources(SearchProperties sp,int i)
+        async Task<ArrayList> GetOxylabsWebDataSources(SearchProperties sp)
         {
             Uri queryUri = new Uri("http://data.oxylabs.io/v1/queries/batch");
             string username = string.Empty;//04-02-2025
@@ -577,9 +577,9 @@ namespace RapidTrackingLoopSingleThread
                 domain = sp.domain,
                 //query = sp.query.Split(','),
                 query = keyword,
-                limit = 10,
-                pages = 1,
-                start_page = i,
+                //limit = 10,
+                pages = 10,
+                //start_page = i,
                 locale = sp.locale,
                 geo_location = sp.geo_location,
                 //uule = uule,
@@ -644,8 +644,8 @@ namespace RapidTrackingLoopSingleThread
                 int cnt = 0;
                 foreach (string[] cbUrl in lst)
                 {
-                    string[] reslt = { "", "", "", "" };
-                    response = "";
+                    //string[] reslt = { "", "", "", "" };
+                    //response = "";
 
                     Uri uri = new Uri(cbUrl[1]);
                     //Uri uri = new Uri("http://data.oxylabs.io/v1/queries/6913998180291983361/results");
@@ -653,27 +653,37 @@ namespace RapidTrackingLoopSingleThread
                     {
                         try
                         {
-                            HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
-                            httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
-                            HttpWebResponse res = (HttpWebResponse)await httpWebRequest.GetResponseAsync();
-
-                            Stream resVal = res.GetResponseStream();
-                            StreamReader reader = new StreamReader(resVal, Encoding.UTF8);
-                            //** Store all the contents
-                            response = reader.ReadToEnd();
-                            resVal.Close();
-                            res.Close();
-
+                            var _links = jo["queries"]?[0]?["_links"];
+                            string[] urls = _links?
+                                .Where(link => (string)link["rel"] == "results-content")
+                                .SelectMany(link => (link["href_list"] as JArray ?? new JArray())
+                                    .Select(item => item.ToString()))
+                                .ToArray();
+                            List<string> source = new List<string>();
+                            foreach (string url in urls)
+                            {
+                                HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
+                                httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
+                                HttpWebResponse res = (HttpWebResponse)await httpWebRequest.GetResponseAsync();
+                                Stream resVal = res.GetResponseStream();
+                                StreamReader reader = new StreamReader(resVal, Encoding.UTF8);
+                                //** Store all the contents
+                                string response1 = reader.ReadToEnd();
+                                resVal.Close();
+                                res.Close();
+                                source.Add(response1);
+                            }
                             cbUrl[3] = "yes";
                             cnt++;
-
-                            if (!string.IsNullOrEmpty(response))
+                            if (source.Count > 0)
                             {
-                                reslt[0] = cbUrl[0];
-                                reslt[1] = response;
-                                reslt[2] = cbUrl[4];
-                                reslt[3] = cbUrl[5];
-                                alResult.Add(reslt);
+                                alResult.Add(new ResultObject 
+                                {
+                                    Keyword = cbUrl[0],
+                                    JobId = cbUrl[4],
+                                    Device = cbUrl[5],
+                                    Result = source
+                                });
                             }
                         }
                         catch (Exception ex)
@@ -720,7 +730,7 @@ namespace RapidTrackingLoopSingleThread
 
             } while (true);
 
-            return await Task.FromResult<ArrayList>(alResult);
+            return alResult;
 
         }
 

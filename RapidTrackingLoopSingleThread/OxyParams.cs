@@ -11,9 +11,9 @@ namespace RapidTrackingLoopSingleThread
         public string source { get; set; }
         public string domain { get; set; }
         public string[] query { get; set; }
-        public int limit { get; set; }
+        //public int limit { get; set; }
         public int pages { get; set; }
-        public int start_page { get; set; } 
+        //public int start_page { get; set; } 
         public string locale { get; set; }
         public string geo_location { get; set; }
         public string uule { get; set; }
@@ -31,5 +31,12 @@ namespace RapidTrackingLoopSingleThread
             this.key = key;
             this.value = value;
         }
+    }
+    public class ResultObject
+    {
+        public string Keyword { get; set; }
+        public List<string> Result { get; set; } = new List<string>();
+        public string JobId { get; set; }
+        public string Device { get; set; }
     }
 }

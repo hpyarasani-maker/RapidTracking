@@ -106,7 +106,7 @@ namespace RapidTrackingLoopSingleThread
                                         string html = src;
                                         jobid = r.JobId;
                                         string device = r.Device;
-                                        //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
+                                        File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
                                         //File.WriteAllText(@"C:\inetpub\wwwroot\"+jobid+"_withOut filter_"+".html", html, Encoding.UTF8);
                                         result = true;
                                         doc = new HtmlAgilityPack.HtmlDocument();

@@ -41,8 +41,8 @@ namespace TrendingLoopReceiving
         string password = "Pi*Soft74UBXi";
         private void StartProcess()
         {
-            string url = "https://seresults.azurewebsites.net/api/callbacktrendingdesktop/";       // Desktop
-          //  string url = "https://seresults.azurewebsites.net/api/callbacktrendingmobile/";       // Mobile
+           // string url = "https://seresults.azurewebsites.net/api/callbacktrendingdesktop/";       // Desktop
+           string url = "https://seresults.azurewebsites.net/api/callbacktrendingmobile/";       // Mobile
 
             Uri ul = new Uri(url);
             using (var client = new HttpClient())
@@ -197,7 +197,7 @@ namespace TrendingLoopReceiving
                     if (!string.IsNullOrEmpty(resx))
                     {
                        
-                        if (count > 0)
+                        if (count >= 0)
                         {
                             ProcessResults(resx, kw, seid, jobid, count);
                         }

@@ -101,13 +101,13 @@ namespace TrendingLoopSending
             {
                 worklist.Items.Clear();
                 
-                //worklist.Items.Add("145:kia sportage");
+                worklist.Items.Add("106:iphone,laptop,credit card,trading acount");
                 worklist.Refresh();
                 date_picker.Format = DateTimePickerFormat.Custom;
                 date_picker.CustomFormat = "yyyy-MM-dd";
             });
 
-           //return;
+           return;
 
             Cursor.Current = Cursors.WaitCursor;
             string myDate = date_picker.Text;
@@ -206,7 +206,7 @@ namespace TrendingLoopSending
                     progress_lbl.Refresh();
                     lblIP.Text = ts.TotalSeconds.ToString();
                });
-               Thread.Sleep(mseconds);
+               Thread.Sleep(1000);
                 //Thread.Sleep(50000); //if you want to send fast comment this line...
             }
         }

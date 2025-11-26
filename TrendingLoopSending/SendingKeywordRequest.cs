@@ -137,18 +137,18 @@ namespace TrendingLoopSending
             }//04-03-2025
             string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
 
-            string callbackURL = "https://seresults.azurewebsites.net/api/callbacktrendingdesktop/";       // Desktop
-           // string callbackURL = "https://seresults.azurewebsites.net/api/callbacktrendingmobile/";       // Mobile
+           // string callbackURL = "https://seresults.azurewebsites.net/api/callbacktrendingdesktop/";       // Desktop
+            string callbackURL = "https://seresults.azurewebsites.net/api/callbacktrendingmobile/";       // Mobile
 
-            string[] keyword = { sp.query };
+            //string[] keyword = { sp.query };
             OxyParams op = new OxyParams()
             {
                 source = "google_search",
                 domain = sp.domain,
-                query = keyword,
-                limit = 10,
+                query = sp.query.Split(','),
+                //limit = 10,
                 pages = 10,
-                start_page=1,
+                //start_page=1,
                 locale = sp.locale,
                 callback_url = callbackURL,  
                 geo_location = sp.geo_location,

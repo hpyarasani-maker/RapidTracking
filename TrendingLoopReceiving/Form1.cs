@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -35,11 +36,11 @@ namespace TrendingLoopReceiving
             Environment.Exit(Environment.ExitCode);
         }
 
-        public int GetOxyCount()
+        public async Task<int> GetOxyCount()
         {
             int ct = 0;
             string strQuery = "exec [dbo].[GetOxyCount]";
-            SqlConnection objCon = new SqlConnection(StrConn());
+            SqlConnection objCon = new SqlConnection(await StrConn());
             try
             {
                 objCon.Open();
@@ -64,7 +65,7 @@ namespace TrendingLoopReceiving
                     objCon.Close();
                 }
             }
-            return ct;
+            return await Task.FromResult<int>(ct);
         }
 
         int cntr = 1;
@@ -106,7 +107,7 @@ namespace TrendingLoopReceiving
             Environment.Exit(Environment.ExitCode);
         }
 
-        public string StrConn()
+        public async Task<string> StrConn()
         {
             try
             {
@@ -120,7 +121,7 @@ namespace TrendingLoopReceiving
                 // Get its value
                 string name = node.InnerText;
 
-                return name;
+                return await Task.FromResult<string>(name);
             }
             catch (Exception ex)
             {

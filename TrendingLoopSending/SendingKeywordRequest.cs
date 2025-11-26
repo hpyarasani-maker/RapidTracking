@@ -9,12 +9,13 @@ using Newtonsoft.Json;
 using System.Xml;
 using System.Data.SqlClient;
 using System.Data;
+using System.Threading.Tasks;
 
 namespace TrendingLoopSending
 {
     class SendingKeywordRequest
     {        
-        public string strConn()
+        public async Task<string> strConn()
         {
             try
             {
@@ -32,7 +33,7 @@ namespace TrendingLoopSending
                 // Get its value
                 string name = node.InnerText;
 
-                return name;
+                return await Task.FromResult<string>(name);
             }
             catch (Exception ex)
             {
@@ -40,7 +41,7 @@ namespace TrendingLoopSending
             }
         }
            
-        private void SendToDb(int seid, string response)
+        private async Task SendToDb(int seid, string response)
         {
             string date = DateTime.Today.ToString("yyyy-MM-dd");
             StringBuilder sb = new StringBuilder();
@@ -64,7 +65,7 @@ namespace TrendingLoopSending
             {
                 if (!string.IsNullOrEmpty(sb.ToString()))
                 {
-                    using (SqlConnection con = new SqlConnection(strConn()))
+                    using (SqlConnection con = new SqlConnection(await strConn()))
                     {
                         con.Open();
                         using (SqlCommand comm = new SqlCommand(sb.ToString(), con))
@@ -85,7 +86,7 @@ namespace TrendingLoopSending
         /// </summary>
         /// <param name="seid"></param>
         /// <param name="response"></param>
-        private void ProcessError(int seid, string response)
+        private async Task ProcessError(int seid, string response)
         {
             string date = DateTime.Today.ToString("yyyy-MM-dd");
             StringBuilder sb = new StringBuilder();
@@ -98,7 +99,7 @@ namespace TrendingLoopSending
             {
                 if (!string.IsNullOrEmpty(sb.ToString()))
                 {
-                    using (SqlConnection con = new SqlConnection(strConn()))
+                    using (SqlConnection con = new SqlConnection(await strConn()))
                     {
                         con.Open();
                         using (SqlCommand comm = new SqlCommand(sb.ToString(), con))
@@ -116,7 +117,7 @@ namespace TrendingLoopSending
         }
         ////03-08-2021 storing error messages end
 
-        private void GetOxylabsWebDataSources(SearchProperties sp)
+        private async Task GetOxylabsWebDataSources(SearchProperties sp)
         {
             //ServicePointManager.Expect100Continue = true;
             //ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
@@ -187,24 +188,24 @@ namespace TrendingLoopSending
                 }
                 res.Close();
 
-                SendToDb(sp.seid, response);
+                await SendToDb(sp.seid, response);
                 
             }
             catch(Exception ex)
             {
-                ProcessError(sp.seid, ex.Message.ToString()); //03-08-2021 storing error messages
+                await ProcessError(sp.seid, ex.Message.ToString()); //03-08-2021 storing error messages
                 throw ex;
             }
         }
         
-        public void getTop100(string keyword, int seid)
+        public async Task getTop100(string keyword, int seid)
         {
             try
             {
                 SearchProperties sp = SearchParams.searches.Where(s => s.seid == seid).SingleOrDefault();
                 sp.query = keyword;
                 if(sp != null)
-                    GetOxylabsWebDataSources(sp);
+                    await GetOxylabsWebDataSources(sp);
             }
             catch (Exception ex)
             {

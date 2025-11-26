@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -32,7 +33,7 @@ namespace TrendingLoopSending
             Environment.Exit(Environment.ExitCode);
         }
                
-        private void Form1_Load(object sender, EventArgs e)
+        private async void Form1_Load(object sender, EventArgs e)
         {
             
             //Text = "Sending Previous Date Keywords"; //sending previous date keywords
@@ -43,8 +44,8 @@ namespace TrendingLoopSending
             
 
             Thread t = new Thread(new ThreadStart(mainLoop));
-            generateWorklist();
-            if (getWorklistSize() > 0)
+            await generateWorklist();
+            if (await getWorklistSize() > 0)
             {
                 t.Start();                
             }
@@ -60,18 +61,18 @@ namespace TrendingLoopSending
             Environment.Exit(Environment.ExitCode);
         }
 
-        public void mainLoop()
+        public async void mainLoop()
         {            
-            while (getWorklistSize() > 0)
+            while (await getWorklistSize() > 0)
             {
-                processWorklist();
-                generateWorklist();
+                await processWorklist();
+                await generateWorklist();
             }
 
             Environment.Exit(Environment.ExitCode);
         }
 
-        public string strConn()
+        public async Task<string> strConn()
         {
             try
             {
@@ -87,7 +88,7 @@ namespace TrendingLoopSending
                 // Get its value
                 string name = node.InnerText;
 
-                return name;
+                return await Task.FromResult<string>(name);
             }
             catch(Exception ex)
             {
@@ -95,7 +96,7 @@ namespace TrendingLoopSending
             }
         }
                                                                                    
-        public void generateWorklist()
+        public async Task generateWorklist()
         {
             this.Invoke((MethodInvoker)delegate()
             {
@@ -114,14 +115,16 @@ namespace TrendingLoopSending
 
                       
             //string strQry = "exec [GetBulkTrendingMobile_Status=0_Loop] '" + myDate + "'"; //01-07-2022
-           string strQry = "exec [GetBulkTrendingDesktop_Status=0_Loop] '" + myDate + "'";
-
+           //string strQry = "exec [GetBulkTrendingDesktop_Status=0_Loop] '" + myDate + "'";
+            string strQry = "exec [dbo].[GetBulkTrendingDesktop_1] '" + myDate + "'";
+            //string strQry = "exec [dbo].[GetBulkTrendingMobile_1] '" + myDate + "'"; 
+            //string strQry = "[GetBulkTrendingMobile_Status=0] '" + myDate + "'";
             SqlConnection objCon = null;
             SqlDataReader objData = null;
 
             try
             {               
-                objCon = new SqlConnection(strConn());
+                objCon = new SqlConnection(await strConn());
                 objCon.Open();
                 SqlCommand objCmd = new SqlCommand(strQry, objCon);
                 objCmd.CommandTimeout = 0;
@@ -162,13 +165,13 @@ namespace TrendingLoopSending
             }
         }
 
-        public int getWorklistSize()
+        public async Task<int> getWorklistSize()
         {
             int worklistSize = worklist.Items.Count;
-            return worklistSize;
+            return await Task.FromResult<int>(worklistSize);
         }
 
-        public void processWorklist()
+        public async Task processWorklist()
         {
             string resultsString;
             char sep;
@@ -189,7 +192,7 @@ namespace TrendingLoopSending
                 DateTime dt = DateTime.Now;
                 try
                 {
-                    processResults(seid, kn);
+                    await processResults(seid, kn);
                 }
                 catch (Exception ex)
                 {
@@ -211,11 +214,11 @@ namespace TrendingLoopSending
             }
         }
         
-        public void processResults(string seid, string kn)
+        public async Task processResults(string seid, string kn)
         {
             try
             {
-                WOWS.getTop100(kn, Convert.ToInt32(seid));
+                await WOWS.getTop100(kn, Convert.ToInt32(seid));
             }
             catch(Exception ex)
             {

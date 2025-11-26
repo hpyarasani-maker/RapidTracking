@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Net.Http;
 using System.Collections;
+using System.Threading.Tasks;
 
 namespace TrendingLoopReceiving
 {
@@ -39,7 +40,7 @@ namespace TrendingLoopReceiving
         }
         string username = "pisoftware";
         string password = "Pi*Soft74UBXi";
-        private void StartProcess()
+        private async void StartProcess()
         {
            // string url = "https://seresults.azurewebsites.net/api/callbacktrendingdesktop/";       // Desktop
            string url = "https://seresults.azurewebsites.net/api/callbacktrendingmobile/";       // Mobile
@@ -74,7 +75,7 @@ namespace TrendingLoopReceiving
                         client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
                         response = client.GetStringAsync(ul).Result;
                         if (response != "null")
-                            DoProcess(response);
+                            await DoProcess(response);
                     }
 
                     catch (Exception ex)
@@ -87,7 +88,7 @@ namespace TrendingLoopReceiving
             }
         }
 
-        private void DoProcess(string resp)
+        private async Task DoProcess(string resp)
         {
             JObject job = JObject.Parse(resp);
             string status = job["status"].Value<string>();
@@ -199,7 +200,7 @@ namespace TrendingLoopReceiving
                        
                         if (count >= 0)
                         {
-                            ProcessResults(resx, kw, seid, jobid, count);
+                            await ProcessResults(resx, kw, seid, jobid, count);
                         }
                     }
                     //if (!string.IsNullOrEmpty(seid))
@@ -208,7 +209,7 @@ namespace TrendingLoopReceiving
                     //        ProcessResults(result[i].ToString(), kw, seid, jobid, orgUrls);
                     //    }
 
-                    OnKeywordDone.Invoke(seid + ":  " + kw + ",  " + orgUrls + "^" + statusCode + "^" + apitime + "^" + dbtime + "^" + totalTime);//08-11-2023 //31-03-2020
+                    OnKeywordDone.Invoke(seid + ":  " + kw + ",  " + count + "^" + statusCode + "^" + apitime + "^" + dbtime + "^" + totalTime);//08-11-2023 //31-03-2020
                 }
             }
             catch (Exception ex)
@@ -221,7 +222,7 @@ namespace TrendingLoopReceiving
                         bool isOldPage = false;
                         if (ex.Message == "Old page found.")
                             isOldPage = true;
-                        ProcessError(kw, seid, jobid, isOldPage);
+                        await ProcessError(kw, seid, jobid, isOldPage);
                     }
                     finally { }
                 }
@@ -229,7 +230,7 @@ namespace TrendingLoopReceiving
             }
         }
 
-        private void ProcessError(string kw, string seid, string jobid, bool isOldPage)
+        private async Task ProcessError(string kw, string seid, string jobid, bool isOldPage)
         {
             string qry = "insert into dashboard_dataerrors (date, name, seid, jobid) values(Convert(varchar(10),'" + myDate + "',103), N'" +
                   kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "' )";
@@ -237,7 +238,7 @@ namespace TrendingLoopReceiving
             string qryOld = "insert into dashboard_oldgooglepage (date, keyword, seid, jobid) values('" + DateTime.Now + "', N'" +
                  kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "' )";
 
-            using (SqlConnection con = new SqlConnection(StrConn()))
+            using (SqlConnection con = new SqlConnection(await StrConn()))
             {
                 try
                 {
@@ -276,7 +277,7 @@ namespace TrendingLoopReceiving
             }
         }
 
-        public string StrConn()
+        public async Task<string> StrConn()
         {
             try
             {
@@ -294,7 +295,7 @@ namespace TrendingLoopReceiving
                 // Get its value
                 string name = node.InnerText;
 
-                return name;
+                return await Task.FromResult<string>(name);
             }
             catch (Exception ex)
             {
@@ -302,7 +303,7 @@ namespace TrendingLoopReceiving
             }
         }
 
-        private void ProcessResults(string result, string kw, string seid, string jobid, int urlcount)
+        private async Task ProcessResults(string result, string kw, string seid, string jobid, int urlcount)
         {
             if (string.IsNullOrEmpty(result))
             {
@@ -315,12 +316,12 @@ namespace TrendingLoopReceiving
                 if (urlcount > 0)
                 {
                     DateTime st = DateTime.Now;
-                    SendXmlToAPI(seid, kw, result);
+                    await SendXmlToAPI(seid, kw, result);
                     DateTime ed = DateTime.Now;
                     apitime = (ed - st).TotalSeconds;
                 }
                 DateTime st1 = DateTime.Now;
-                SendToDB(seid, kw, result, jobid, urlcount);
+                await SendToDB(seid, kw, result, jobid, urlcount);
                 DateTime ed1 = DateTime.Now;
                 dbtime = (ed1 - st1).TotalSeconds;
                 //end of 31-03-2020
@@ -331,7 +332,7 @@ namespace TrendingLoopReceiving
             }
         }
 
-        private void SendXmlToAPI(string seid, string kw, string res)
+        private async Task SendXmlToAPI(string seid, string kw, string res)
         {
             string tname = Thread.CurrentThread.Name;
             string path = @"C:\Inetpub\wwwroot\oxycallback_" + tname + ".xml";
@@ -342,7 +343,7 @@ namespace TrendingLoopReceiving
             xd.Save(path);
 
 
-            string submitURL = ReadAPI();
+            string submitURL = await ReadAPI();
 
             string user = "pisoftware";
             string pwd = "r00t123456";
@@ -356,7 +357,7 @@ namespace TrendingLoopReceiving
                 httpWReq.CookieContainer = new CookieContainer();
 
                 Encoding encoding = new UTF8Encoding();
-                string postData = GetTextFromXMLFile(path);
+                string postData = await GetTextFromXMLFile(path);
                 byte[] data = encoding.GetBytes(postData);
 
                 httpWReq.ProtocolVersion = HttpVersion.Version11;
@@ -373,11 +374,11 @@ namespace TrendingLoopReceiving
                 httpWReq.ContentLength = data.Length;
                 //httpWReq.Timeout = 0;
 
-                Stream stream = httpWReq.GetRequestStream();
+                Stream stream = await httpWReq.GetRequestStreamAsync();
                 stream.Write(data, 0, data.Length);
                 stream.Close();
 
-                HttpWebResponse response = (HttpWebResponse)httpWReq.GetResponse();
+                HttpWebResponse response = (HttpWebResponse)await httpWReq.GetResponseAsync();
                 //statusCode = response.StatusCode.ToString();
                 StreamReader reader = new StreamReader(response.GetResponseStream());
                 if (response.StatusCode != HttpStatusCode.OK)
@@ -420,15 +421,15 @@ namespace TrendingLoopReceiving
             }
         }
 
-        private string GetTextFromXMLFile(string file)
+        private async Task<string> GetTextFromXMLFile(string file)
         {
             StreamReader reader = new StreamReader(file);
             string ret = reader.ReadToEnd();
             reader.Close();
-            return ret;
+            return await Task.FromResult<string>(ret);
         }
 
-        public string ReadAPI()
+        public async Task<string> ReadAPI()
         {
             try
             {
@@ -445,7 +446,7 @@ namespace TrendingLoopReceiving
                 // Get its value
                 string name = node.InnerText;
 
-                return name;
+                return await Task.FromResult<string>(name);
             }
             catch (Exception ex)
             {
@@ -453,11 +454,11 @@ namespace TrendingLoopReceiving
             }
         }
 
-        private void SendToDB(string seid, string keyword, string xml, string jobid, int urlcount)
+        private async Task SendToDB(string seid, string keyword, string xml, string jobid, int urlcount)
         {
             try
             {
-                using (SqlConnection con = new SqlConnection(StrConn()))
+                using (SqlConnection con = new SqlConnection(await StrConn()))
                 {
                     con.Open();
 

@@ -101,13 +101,13 @@ namespace TrendingLoopSending
             {
                 worklist.Items.Clear();
                 
-                worklist.Items.Add("106:iphone,laptop,credit card,trading acount");
+                //worklist.Items.Add("106:iphone,laptop,credit card,trading acount");
                 worklist.Refresh();
                 date_picker.Format = DateTimePickerFormat.Custom;
                 date_picker.CustomFormat = "yyyy-MM-dd";
             });
 
-           return;
+           //return;
 
             Cursor.Current = Cursors.WaitCursor;
             string myDate = date_picker.Text;

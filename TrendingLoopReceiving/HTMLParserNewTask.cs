@@ -211,6 +211,11 @@ namespace TrendingLoopReceiving
 
                     OnKeywordDone.Invoke(seid + ":  " + kw + ",  " + count + "^" + statusCode + "^" + apitime + "^" + dbtime + "^" + totalTime);//08-11-2023 //31-03-2020
                 }
+                if (status == "faulted")
+                {
+                    statusCode = status;//22-01-2025
+                    throw new Exception("Status is faulted");
+                }
             }
             catch (Exception ex)
             {

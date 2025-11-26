@@ -101,7 +101,7 @@ namespace RapidTrackingLoopSingleThread
                                     try //02-05-2022
                                     {
                                         keyword = r.Keyword;
-                                        JObject obj = JObject.Parse(src);
+                                        //JObject obj = JObject.Parse(src);
                                         //string html = obj["results"][0]["content"].Value<string>();
                                         string html = src;
                                         jobid = r.JobId;

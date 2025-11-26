@@ -18,6 +18,28 @@ namespace TrendingLoopSending
             InitializeComponent();
             //timerExit();
             //cnt = GetOxyCount();
+            //Comment below code for First sending file for fresh hour keyword for every 2 hours
+            //Uncomment below code for 2nd sending file for faulted keywords for every two hours
+            //DateTime dt = DateTime.Now;
+            //int hour = dt.Hour;
+            //string curDate = DateTime.Now.ToString("yyyy-MM-dd");
+            ////string delQuery = "delete from dashboard_dataerrors where convert(varchar(10),date,127)='"+curDate+"' and datepart(hh,date)=" + hour;
+            //string delQuery = "Exec [dbo].[Delete_Faulted_Keywords] '" + curDate + "'";
+            //DeleteFaulted(delQuery).Wait();
+        }
+        private async Task DeleteFaulted(string qry)
+        {
+            using (SqlConnection con = new SqlConnection(await strConn()))
+            {
+                con.Open();
+                using (SqlCommand comm = con.CreateCommand())
+                {
+                    comm.CommandType = CommandType.Text;
+                    comm.CommandText = qry;
+                    comm.CommandTimeout = 0;
+                    comm.ExecuteNonQuery();
+                }
+            }
         }
 
         void timerExit()

@@ -64,6 +64,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="HTMLParserNewTask.cs" />
+    <Compile Include="HTMLParserNewTaskAll.cs" />
     <Compile Include="iOS.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

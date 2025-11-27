@@ -655,6 +655,7 @@ namespace RapidTrackingLoopSingleThread
                         try
                         {
                             var _links = jo["queries"]?[0]?["_links"];
+                            //var _links = await GetJobLinks("http://data.oxylabs.io/v1/queries/7399611155490015233", authInfo);
                             string[] urls = _links?
                                 .Where(link => (string)link["rel"] == "results-content")
                                 .SelectMany(link => (link["href_list"] as JArray ?? new JArray())
@@ -734,6 +735,29 @@ namespace RapidTrackingLoopSingleThread
             return alResult;
 
         }
+        private async Task<JToken> GetJobLinks(string url, string authInfo)
+        {
+            try
+            {
+                HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+                httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
+                HttpWebResponse res = (HttpWebResponse)await httpWebRequest.GetResponseAsync();
+                string response = string.Empty;
+                using (StreamReader reader = new StreamReader(res.GetResponseStream(), Encoding.UTF8))
+                {
+                    response = reader.ReadToEnd();
+                }
+                res.Close();
+                var jo = JObject.Parse(response);
+                return jo["_links"];
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
 
     }
+    
 }

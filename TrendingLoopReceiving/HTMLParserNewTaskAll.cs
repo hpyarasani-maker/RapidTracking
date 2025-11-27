@@ -238,10 +238,7 @@ namespace TrendingLoopReceiving
                             if (aio && device == "mobile_android") // inserting true value//16-02-2025
                                 await InsertAIO_Keyword(kw, seid, aio);
                         }//16-02-2025
-                        if (count >= 0)
-                        {
-                            await ProcessResults(resx, kw, seid, jobid, count);
-                        }
+                        
                     }
                     //if (!string.IsNullOrEmpty(seid))
                     //    for (int i = 0; i < result.Count; i++)
@@ -331,14 +328,14 @@ namespace TrendingLoopReceiving
             try
             {
                 XmlDocument xml = new XmlDocument();
-                string fileName = @"C:\Inetpub\wwwroot\TrendingLiveAPI.xml";
+                string fileName = @"C:\Inetpub\wwwroot\Callback_TrackingTrending.xml";
                 //string fileName = @"C:\Inetpub\wwwroot\downloadKeywords.xml";
 
                 // You'll need to put the correct path to your xml file here
                 xml.Load(fileName);
 
                 // Select a specific node
-                XmlNode node = xml.SelectSingleNode("TrendingAPI/con");
+                XmlNode node = xml.SelectSingleNode("ConnectionString/con");
                 //XmlNode node = xml.SelectSingleNode("ConnectionString/con");
 
                 // Get its value

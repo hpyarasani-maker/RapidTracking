@@ -22,7 +22,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml;
 
-namespace WPFMultiThreadJobIDs
+namespace WPFLoopMultiThreadJobIDs
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -61,7 +61,6 @@ namespace WPFMultiThreadJobIDs
         {
             //this.Title = "WPF_RapidTracking_MissingKeywords_(1-2-3)";//changes
             this.Title = "RapidTracking_Errorkeywords_(1-2-3)"; //changes
-
             dtPicker1.SelectedDate = DateTime.Today;
             myDate = dtPicker1.SelectedDate.Value.Date.ToString("yyyy-MM-dd");//21-01-2025
             //myDate = DateTime.Now.ToString("yyyy-MM-dd");//21-01-2025 commented
@@ -151,51 +150,83 @@ namespace WPFMultiThreadJobIDs
                 try
                 {
                     var doc = new HtmlAgilityPack.HtmlDocument();
-                    Task<ArrayList> alresult = GetHTML(kw, Convert.ToInt32(seid), jobid);
-                    if (alresult.Status.ToString() == stats.Faulted.ToString() || alresult.Status.ToString() == stats.Pending.ToString() || alresult.Status.ToString() == stats.Empty.ToString() || alresult.Status.ToString() == stats.statuscode.ToString()) //07-02-2022//31-01-2022//04-01-2022
-                        throw alresult.Exception.InnerException;//04-01-2022
-                    foreach (string[] src in alresult.Result)
-                    {
-                        string keyword = src[0];
-                        JObject obj = JObject.Parse(src[1]);
-                        string html = obj["results"][0]["content"].Value<string>();
-                        string device = src[3];
-                        doc = new HtmlAgilityPack.HtmlDocument();
-                        doc.LoadHtml(html);
-                        //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
-                        string res = string.Empty;
+                        ArrayList alresult = GetHTML(kw, Convert.ToInt32(seid), jobid).Result;
+                    //if (alresult.Status.ToString() == stats.Faulted.ToString() || alresult.Status.ToString() == stats.Pending.ToString() || alresult.Status.ToString() == stats.Empty.ToString() || alresult.Status.ToString() == stats.statuscode.ToString()) //07-02-2022//31-01-2022//04-01-2022
+                        //throw alresult.Exception.InnerException;//04-01-2022
+                        ArrayList alXml = new ArrayList();
                         int count = 0;
+                        string device = string.Empty;
+                        string res = string.Empty;
+                        foreach (ResultObject r in alresult)
+                            foreach (string src in r.Result)
+                            {
+                                string keyword = r.Keyword;
+                                //JObject obj = JObject.Parse(src[1]);
+                                //string html = obj["results"][0]["content"].Value<string>();
+                                string html = src;
+                                device = r.Device;
+                                doc = new HtmlAgilityPack.HtmlDocument();
+                                doc.LoadHtml(html);
+                                //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
+                                
+                                int curCount = 0;
 
-                        if (device == "desktop_chrome")
-                        {
-                            Desktop clsDesktop = new Desktop();
-                           (res, count) = await clsDesktop.ProcessDocument(seid, keyword, doc);//08-05-2025
-                        }
-                        else
-                        {
-                            iOS clsiOS = new iOS();
-                            (res, count) = await clsiOS.ProcessDocument(seid, keyword, doc);//08-05-2025
-                        }
-                        doc = null;
-                        this.lblcount1.Dispatcher.Invoke((MethodInvoker)delegate () {
-                        lblcount1.Content = "Count: " + count;
-                        });
-                        if (!string.IsNullOrEmpty(res))
-                        {
+                                if (device == "desktop_chrome")
+                                {
+                                    Desktop clsDesktop = new Desktop();
+                                    alXml.Add(clsDesktop.ProcessDocument(seid, keyword, doc, out curCount));
+                                }
+                                else
+                                {
+                                    iOS clsiOS = new iOS();
+                                    alXml.Add(clsiOS.ProcessDocument(seid, keyword, doc, out curCount));
+                                }
+                                count += curCount;
+                                doc = null;
+                                this.lblcount1.Dispatcher.Invoke((MethodInvoker)delegate () {
+                                    lblcount1.Content = "Count: " + curCount;
+                                });
+                            }
+                                int x = 0;
+                                XmlDocument xmlDoc = new XmlDocument();
+                                foreach (string xml in alXml)
+                                {
+                                    if (string.IsNullOrEmpty(xml.Trim())) continue;//02-05-2022
+                                    if (x == 0)
+                                    {
+                                        x++;
+                                        xmlDoc.LoadXml(xml);
+                                        continue;
+                                    }
+                                    XmlDocument xmlDoc1 = new XmlDocument();
+                                    xmlDoc1.LoadXml(xml);
+
+                                    XmlNode node = xmlDoc.SelectSingleNode(".//section[@col='main']");
+                                    XmlNode node1 = xmlDoc1.SelectSingleNode(".//section[@col='main']");
+
+                                    foreach (XmlNode nd in node1.ChildNodes)
+                                    {
+                                        XmlNode imported = xmlDoc.ImportNode(nd, true);
+                                        node.AppendChild(imported);
+                                    }
+                                }
+                                res = xmlDoc.InnerXml;
+                             if (!string.IsNullOrEmpty(res))
+                             {
                             if (count > 20)
                             {
-                                await SendToAPI1(seid, keyword, res, jobid);
-                                await SendToDB(seid, keyword, res, jobid, count);
+                                await SendToAPI1(seid, kw, res, jobid);
+                                await SendToDB(seid, kw, res, jobid, count);
                             }
                             if (count < 21 && count==0)
                             {
-                                await SendToDB(seid, keyword, res, jobid, count);
+                                await SendToDB(seid, kw, res, jobid, count);
                             }
                                 bool aio = res.Contains("<block type=\"aiOverview\">");//16-02-2025
                                 if (aio && device == "mobile_android") // inserting true value //16-02-2025
-                                    await InsertAIO_Keyword(keyword, seid, aio);
+                                    await InsertAIO_Keyword(kw, seid, aio);
                         }
-                    }
+                    
 
                 }
                 catch (Exception ex)
@@ -239,10 +270,8 @@ namespace WPFMultiThreadJobIDs
                 string kwQry = " [GetMissingKeywords] '" + myDate + "',2"; //jobids procedure
                 //string kwQry = "[GetErrorKeywords] '" + myDate + "',2"; //changes error jobids procedure
                 await GetKeywords2(kwQry);
-
             if (lstKWs2.Items.Count <= 0)
                 break;
-
             int cnt = 0;
             foreach (string s in lstKWs2.Items)
             {
@@ -254,51 +283,83 @@ namespace WPFMultiThreadJobIDs
                 try
                 {
                     var doc = new HtmlAgilityPack.HtmlDocument();
-                    Task<ArrayList> alresult = GetHTML(kw, Convert.ToInt32(seid), jobid);
-                    if (alresult.Status.ToString() == stats.Faulted.ToString() || alresult.Status.ToString() == stats.Pending.ToString() || alresult.Status.ToString() == stats.Empty.ToString() || alresult.Status.ToString() == stats.statuscode.ToString()) //07-02-2022//31-01-2022//04-01-2022
-                        throw alresult.Exception.InnerException;//04-01-2022
-                    foreach (string[] src in alresult.Result)
-                    {
-                        string keyword = src[0];
-                        JObject obj = JObject.Parse(src[1]);
-                        string html = obj["results"][0]["content"].Value<string>();
-                        string device = src[3];
-                        doc = new HtmlAgilityPack.HtmlDocument();
-                        doc.LoadHtml(html);
-                        //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
+                        ArrayList alresult = GetHTML(kw, Convert.ToInt32(seid), jobid).Result;
+                        //if (alresult.Status.ToString() == stats.Faulted.ToString() || alresult.Status.ToString() == stats.Pending.ToString() || alresult.Status.ToString() == stats.Empty.ToString() || alresult.Status.ToString() == stats.statuscode.ToString()) //07-02-2022//31-01-2022//04-01-2022
+                        //throw alresult.Exception.InnerException;//04-01-2022
+                        ArrayList alXml = new ArrayList();
+                        int count = 0;                        
+                        string device = string.Empty;
                         string res = string.Empty;
-                        int count = 0;
+                        foreach (ResultObject r in alresult)
+                            foreach (string src in r.Result)
+                            {
+                                string keyword = r.Keyword;
+                                //JObject obj = JObject.Parse(src[1]);
+                                //string html = obj["results"][0]["content"].Value<string>();
+                                string html = src;
+                                device = r.Device;
+                                doc = new HtmlAgilityPack.HtmlDocument();
+                                doc.LoadHtml(html);
+                                //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);                                
+                                int curCount = 0;
 
-                        if (device == "desktop_chrome")
-                        {
-                            Desktop clsDesktop = new Desktop();
-                            (res, count) = await clsDesktop.ProcessDocument(seid, keyword, doc);//08-05-2025
-                        }
-                        else
-                        {
-                            iOS clsiOS = new iOS();
-                            (res, count) = await clsiOS.ProcessDocument(seid, keyword, doc);//08-05-2025
-                        }
-                            doc = null;
-                            this.lblcount2.Dispatcher.Invoke((MethodInvoker)delegate () {
-                            lblcount2.Content = "Count: " + count;
-                        });
+                                if (device == "desktop_chrome")
+                                {
+                                    Desktop clsDesktop = new Desktop();
+                                    alXml.Add(clsDesktop.ProcessDocument(seid, keyword, doc, out curCount));
+                                }
+                                else
+                                {
+                                    iOS clsiOS = new iOS();
+                                    alXml.Add(clsiOS.ProcessDocument(seid, keyword, doc, out curCount));
+                                }
+                                count += curCount;
+                               doc = null;
+                                 this.lblcount2.Dispatcher.Invoke((MethodInvoker)delegate () {
+                                    lblcount2.Content = "Count: " + count;
+                                 });
+                            }
+                                int x = 0;
+                                XmlDocument xmlDoc = new XmlDocument();
+                                foreach (string xml in alXml)
+                                {
+                                    if (string.IsNullOrEmpty(xml.Trim())) continue;//02-05-2022
+                                    if (x == 0)
+                                    {
+                                        x++;
+                                        xmlDoc.LoadXml(xml);
+                                        continue;
+                                    }
+                                    XmlDocument xmlDoc1 = new XmlDocument();
+                                    xmlDoc1.LoadXml(xml);
+
+                                    XmlNode node = xmlDoc.SelectSingleNode(".//section[@col='main']");
+                                    XmlNode node1 = xmlDoc1.SelectSingleNode(".//section[@col='main']");
+
+                                    foreach (XmlNode nd in node1.ChildNodes)
+                                    {
+                                        XmlNode imported = xmlDoc.ImportNode(nd, true);
+                                        node.AppendChild(imported);
+                                    }
+                                }
+                               
+                        
                         if (!string.IsNullOrEmpty(res))
                         {
                             if (count > 20)
                             {
-                                await SendToAPI2(seid, keyword, res, jobid);
-                                await SendToDB(seid, keyword, res, jobid, count);
+                                await SendToAPI2(seid, kw, res, jobid);
+                                await SendToDB(seid, kw, res, jobid, count);
                             }
                             if (count < 21 && count==0)
                             {
-                                await SendToDB(seid, keyword, res, jobid, count);
+                                await SendToDB(seid, kw, res, jobid, count);
                             }
                                 bool aio = res.Contains("<block type=\"aiOverview\">");//16-02-2025
                                 if (aio && device == "mobile_android") // inserting true value //16-02-2025
-                                    await InsertAIO_Keyword(keyword, seid, aio);
+                                    await InsertAIO_Keyword(kw, seid, aio);
                         }
-                    }
+                    
                 }
                 catch (Exception ex)
                 {
@@ -368,51 +429,82 @@ namespace WPFMultiThreadJobIDs
                 try
                 {
                     var doc = new HtmlAgilityPack.HtmlDocument();
-                    Task<ArrayList> alresult = GetHTML(kw, Convert.ToInt32(seid), jobid);
-                    if (alresult.Status.ToString() == stats.Faulted.ToString() || alresult.Status.ToString() == stats.Pending.ToString() || alresult.Status.ToString() == stats.Empty.ToString() || alresult.Status.ToString() == stats.statuscode.ToString()) //07-02-2022//31-01-2022//04-01-2022
-                        throw alresult.Exception.InnerException;//04-01-2022
-                    foreach (string[] src in alresult.Result)
-                    {
-                        string keyword = src[0];
-                        JObject obj = JObject.Parse(src[1]);
-                        string html = obj["results"][0]["content"].Value<string>();
-                        string device = src[3];
-                        doc = new HtmlAgilityPack.HtmlDocument();
-                        doc.LoadHtml(html);
-                        //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
-                        string res = string.Empty;
+                        ArrayList alresult = GetHTML(kw, Convert.ToInt32(seid), jobid).Result;
+                        //if (alresult.Status.ToString() == stats.Faulted.ToString() || alresult.Status.ToString() == stats.Pending.ToString() || alresult.Status.ToString() == stats.Empty.ToString() || alresult.Status.ToString() == stats.statuscode.ToString()) //07-02-2022//31-01-2022//04-01-2022
+                        //throw alresult.Exception.InnerException;//04-01-2022
+                        ArrayList alXml = new ArrayList();
                         int count = 0;
+                        string device = string.Empty;
+                        string res = string.Empty;
+                        foreach (ResultObject r in alresult)
+                            foreach (string src in r.Result)
+                            {
+                                string keyword = r.Keyword;
+                                //JObject obj = JObject.Parse(src[1]);
+                                //string html = obj["results"][0]["content"].Value<string>();
+                                string html = src;
+                                device = r.Device;
+                                doc = new HtmlAgilityPack.HtmlDocument();
+                                doc.LoadHtml(html);
+                                //File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);                                
+                                int curCount = 0;
 
-                        if (device == "desktop_chrome")
-                        {
-                            Desktop clsDesktop = new Desktop();
-                            (res, count) = await clsDesktop.ProcessDocument(seid, keyword, doc);//08-05-2025
-                        }
-                        else
-                        {
-                            iOS clsiOS = new iOS();
-                            (res, count) = await clsiOS.ProcessDocument(seid, keyword, doc);//08-05-2025
-                        }
-                            doc = null;
-                            this.lblcount3.Dispatcher.Invoke((MethodInvoker)delegate () {
-                            lblcount3.Content = "Count: " + count;
-                        });
+                                if (device == "desktop_chrome")
+                                {
+                                    Desktop clsDesktop = new Desktop();
+                                    alXml.Add(clsDesktop.ProcessDocument(seid, keyword, doc, out curCount));
+                                }
+                                else
+                                {
+                                    iOS clsiOS = new iOS();
+                                    alXml.Add(clsiOS.ProcessDocument(seid, keyword, doc, out curCount));
+                                }
+                                count += curCount;
+                                doc = null;
+                                this.lblcount3.Dispatcher.Invoke((MethodInvoker)delegate () {
+                                    lblcount3.Content = "Count: " + count;
+                                });
+                            }
+                                int x = 0;
+                                XmlDocument xmlDoc = new XmlDocument();
+                                foreach (string xml in alXml)
+                                {
+                                    if (string.IsNullOrEmpty(xml.Trim())) continue;//02-05-2022
+                                    if (x == 0)
+                                    {
+                                        x++;
+                                        xmlDoc.LoadXml(xml);
+                                        continue;
+                                    }
+                                    XmlDocument xmlDoc1 = new XmlDocument();
+                                    xmlDoc1.LoadXml(xml);
+
+                                    XmlNode node = xmlDoc.SelectSingleNode(".//section[@col='main']");
+                                    XmlNode node1 = xmlDoc1.SelectSingleNode(".//section[@col='main']");
+
+                                    foreach (XmlNode nd in node1.ChildNodes)
+                                    {
+                                        XmlNode imported = xmlDoc.ImportNode(nd, true);
+                                        node.AppendChild(imported);
+                                    }
+                                }
+                            
                         if (!string.IsNullOrEmpty(res))
                         {
                             if (count > 20)
                             {
-                                await SendToAPI3(seid, keyword, res, jobid);
-                                await SendToDB(seid, keyword, res, jobid, count);
+                                await SendToAPI3(seid, kw, res, jobid);
+                                await SendToDB(seid, kw, res, jobid, count);
                             }
                             if (count < 21 && count==0)
                             {
-                                await SendToDB(seid, keyword, res, jobid, count);
+                                await SendToDB(seid, kw, res, jobid, count);
                             }
                                 bool aio = res.Contains("<block type=\"aiOverview\">");//16-02-2025
                                 if (aio && device == "mobile_android") // inserting true value //16-02-2025
-                                    await InsertAIO_Keyword(keyword, seid, aio);
+                                    await InsertAIO_Keyword(kw, seid, aio);
                         }
-                    }
+                    
                 }
                 catch (Exception ex)
                 {
@@ -1056,64 +1148,68 @@ namespace WPFMultiThreadJobIDs
             {
                 string[] reslt = { "", "", "", "" };
                 response = "";
-                Uri uri = new Uri("http://data.oxylabs.io/v1/queries/" + jobid + "/results");
+                //Uri uri = new Uri("http://data.oxylabs.io/v1/queries/" + jobid + "/results");
                 if (cbUrl[2] == "done" && cbUrl[3] == "no")
                 {
                     try
                     {
-                        HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
-                        httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
-                        HttpWebResponse res = (HttpWebResponse)await httpWebRequest.GetResponseAsync();
-
-                        Stream resVal = res.GetResponseStream();
-                        StreamReader reader = new StreamReader(resVal, Encoding.UTF8);
-                        //** Store all the contents
-                        response = reader.ReadToEnd();
-                        resVal.Close();
-                        res.Close();
-
-                        cbUrl[3] = "yes";
-                        cnt++;
-                        if (response == "")//31-01-2022
-                        {
-                            throw new Exception("empty");
-                        }//31-01-2022
-                        obj = JObject.Parse(response);//07-02-2022
-                        string statuscode = obj["results"][0]["status_code"].Value<string>();//07-02-2022
-                        if (statuscode != "200")
-                        {
-                            throw new Exception("Status code : " + statuscode);
-                        }//07-02-2022 end
-
-                        if (!string.IsNullOrEmpty(response))
-                        {
-                            reslt[0] = cbUrl[0];
-                            reslt[1] = response;
-                            reslt[2] = cbUrl[4];
-                            reslt[3] = cbUrl[5];
-                            alResult.Add(reslt);
-                        }
-                        else//04-01-2022
-                        {
-                            string resURL = "http://data.oxylabs.io/v1/queries/" + jobid;
-                            httpWebRequest = (HttpWebRequest)WebRequest.Create(resURL);
-                            httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
-                            HttpWebResponse res1 = (HttpWebResponse)httpWebRequest.GetResponse();
-                            Stream resStream = res1.GetResponseStream();
-                            reader = new StreamReader(resStream, Encoding.UTF8);
-                            response = reader.ReadToEnd();
-                            resStream.Close();
-                            res1.Close();
-                            obj = JObject.Parse(response);
-                            status = obj["status"].Value<string>();
-                            if (status == "faulted")
+                            //var _links = jo["queries"]?[0]?["_links"];
+                            var _links = await GetJobLinks("http://data.oxylabs.io/v1/queries/" + jobid, authInfo);
+                            string[] urls = _links?
+                                .Where(link => (string)link["rel"] == "results-content")
+                                .SelectMany(link => (link["href_list"] as JArray ?? new JArray())
+                                    .Select(item => item.ToString()))
+                                .ToArray();
+                            List<string> source = new List<string>();
+                            foreach (string url in urls)
                             {
-                                throw new Exception("status is faulted");
+                                HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(new Uri(url));
+                                httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
+                                HttpWebResponse res = (HttpWebResponse)await httpWebRequest.GetResponseAsync();
+                                Stream resVal = res.GetResponseStream();
+                                StreamReader reader = new StreamReader(resVal, Encoding.UTF8);
+                                //** Store all the contents
+                                string response1 = reader.ReadToEnd();
+                                resVal.Close();
+                                res.Close();
+                                source.Add(response1);
                             }
-                            if (status == "pending") //31-01-2022
+                            cbUrl[3] = "yes";
+                            cnt++;
+                            if (source.Count > 0)
                             {
-                                throw new Exception("status is pending");
+                                alResult.Add(new ResultObject
+                                {
+                                    Keyword = cbUrl[0],
+                                    JobId = cbUrl[4],
+                                    Device = cbUrl[5],
+                                    Result = source
+                                });
                             }
+                            else//04-01-2022
+                            {
+                                foreach (string url in urls)
+                                {
+                                    HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+                                    httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
+                                    HttpWebResponse res1 = (HttpWebResponse)httpWebRequest.GetResponse();
+                                    Stream resStream = res1.GetResponseStream();
+                                    StreamReader reader = new StreamReader(resStream, Encoding.UTF8);
+                                    response = reader.ReadToEnd();
+                                    resStream.Close();
+                                    res1.Close();
+
+                                    obj = JObject.Parse(response);
+                                    status = obj["status"].Value<string>();
+                                    if (status == "faulted")
+                                    {
+                                        throw new Exception("status is faulted");
+                                    }
+                                    if (status == "pending") //31-01-2022
+                                    {
+                                        throw new Exception("status is pending");
+                                    }
+                                }
 
                         }//04-01-2022
                     }
@@ -1140,7 +1236,29 @@ namespace WPFMultiThreadJobIDs
         return await Task.FromResult<ArrayList>(alResult);
 
     }
-    private void LstKWs1_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
+        private async Task<JToken> GetJobLinks(string url, string authInfo)
+        {
+            try
+            {
+                HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+                httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
+                HttpWebResponse res = (HttpWebResponse)await httpWebRequest.GetResponseAsync();
+                string response = string.Empty;
+                using (StreamReader reader = new StreamReader(res.GetResponseStream(), Encoding.UTF8))
+                {
+                    response = reader.ReadToEnd();
+                }
+                res.Close();
+                var jo = JObject.Parse(response);
+                return jo["_links"];
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
+        private void LstKWs1_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
     {
 
     }

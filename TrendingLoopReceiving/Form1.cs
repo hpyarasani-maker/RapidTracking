@@ -25,7 +25,7 @@ namespace TrendingLoopReceiving
 
         void TimerExit()
         {
-            timer.Interval = 15 * 60000;
+            timer.Interval = 55 * 60000;
             timer.Tick += new EventHandler(Timer_Tick);
             timer.Start();
         }

@@ -344,8 +344,8 @@ namespace WPFLoopMultiThreadJobIDs
                                         node.AppendChild(imported);
                                     }
                                 }
-                               
-                        
+
+                        res = xmlDoc.InnerXml;
                         if (!string.IsNullOrEmpty(res))
                         {
                             if (count > 0)
@@ -491,7 +491,7 @@ namespace WPFLoopMultiThreadJobIDs
                                         node.AppendChild(imported);
                                     }
                                 }
-                            
+                        res = xmlDoc.InnerXml;
                         if (!string.IsNullOrEmpty(res))
                         {
                             if (count > 0)

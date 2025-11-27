@@ -215,7 +215,7 @@ namespace TrendingLoopReceiving
                 if (status == "faulted")
                 {
                     statusCode = status;//22-01-2025
-                    throw new Exception("Status is faulted");
+                    throw new Exception("Trending Status is faulted");
                 }
             }
             catch (Exception ex)

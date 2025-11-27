@@ -200,7 +200,7 @@ namespace AIOLoopReceiving
                 if (status == "faulted")
                 {
                     statusCode = status;//22-01-2025
-                    throw new Exception("Status is faulted");
+                    throw new Exception("AIO Status is faulted");
                 }
             }
             catch (Exception ex)

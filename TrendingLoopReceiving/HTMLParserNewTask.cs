@@ -101,6 +101,7 @@ namespace TrendingLoopReceiving
             string seid = "";
             int count = 0;
             string resx = string.Empty;
+            double totalTime = 0;
             ArrayList result = new ArrayList();
             try
             {
@@ -135,7 +136,7 @@ namespace TrendingLoopReceiving
                     resStream.Close();
                     res.Close();
                     startTime.Stop();//08-11-2023
-                    var totalTime = Convert.ToDouble(startTime.ElapsedMilliseconds) / 1000;//08-11-2023
+                    totalTime = Convert.ToDouble(startTime.ElapsedMilliseconds) / 1000;//08-11-2023
                                                                                            //string result = string.Empty;
 
                     int orgUrls = 0;
@@ -227,21 +228,23 @@ namespace TrendingLoopReceiving
                         bool isOldPage = false;
                         if (ex.Message == "Old page found.")
                             isOldPage = true;
-                        await ProcessError(kw, seid, jobid, isOldPage);
+                        if (ex.Message == "faulted")
+                            isOldPage = false;
+                        await ProcessError(kw, seid, jobid,ex.Message, isOldPage);
                     }
                     finally { }
                 }
-                OnKeywordDone.Invoke("Error:  seid: " + seid + ",  keyword: " + kw + ",  jobid: " + jobid + "\r\n\t" + ex.Message + "^" + statusCode + "^" + apitime + "^" + dbtime);    // 31-03-2020                
+                OnKeywordDone.Invoke("Error:  seid: " + seid + ",  keyword: " + kw + ",  jobid: " + jobid + "\r\n\t" + ex.Message + "^" + statusCode + "^" + apitime + "^" + dbtime + "^" + totalTime);    // 31-03-2020                
             }
         }
 
-        private async Task ProcessError(string kw, string seid, string jobid, bool isOldPage)
+        private async Task ProcessError(string kw, string seid, string jobid, string message, bool isOldPage)
         {
             string qry = "insert into dashboard_dataerrors (date, name, seid, jobid) values(Convert(varchar(10),'" + myDate + "',103), N'" +
-                  kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "' )";
+                  kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "',N'" + message.Replace("'", "''") + "' )";
 
             string qryOld = "insert into dashboard_oldgooglepage (date, keyword, seid, jobid) values('" + DateTime.Now + "', N'" +
-                 kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "' )";
+                 kw.Replace("'", "''") + "', " + seid + ", '" + jobid + "',N'" + message.Replace("'", "''") + "' )";
 
             using (SqlConnection con = new SqlConnection(await StrConn()))
             {
@@ -475,8 +478,9 @@ namespace TrendingLoopReceiving
                         comm.Parameters.Add("Date", SqlDbType.DateTime).Value = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ");
                         comm.Parameters.Add("Seid", SqlDbType.Int).Value = seid;
                         comm.Parameters.Add("Keyword", SqlDbType.NVarChar).Value = keyword;
+                        comm.Parameters.Add("Count", SqlDbType.Int).Value = urlcount;
                         comm.Parameters.Add("XmlData", SqlDbType.Xml).Value = xml.Replace("'", "''");
-
+                        comm.Parameters.Add("Received", SqlDbType.VarChar).Value = "Trending Loop Receive"; //14-04-2025
                         comm.ExecuteNonQuery();
                     }
                 }

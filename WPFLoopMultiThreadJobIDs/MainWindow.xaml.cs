@@ -183,11 +183,12 @@ namespace WPFLoopMultiThreadJobIDs
                                 }
                                 count += curCount;
                                 doc = null;
-                                this.lblcount1.Dispatcher.Invoke((MethodInvoker)delegate () {
-                                    lblcount1.Content = "Count: " + curCount;
-                                });
+                                
                             }
-                                int x = 0;
+                        this.lblcount1.Dispatcher.Invoke((MethodInvoker)delegate () {
+                            lblcount1.Content = "Count: " + count;
+                        });
+                        int x = 0;
                                 XmlDocument xmlDoc = new XmlDocument();
                                 foreach (string xml in alXml)
                                 {
@@ -213,15 +214,15 @@ namespace WPFLoopMultiThreadJobIDs
                                 res = xmlDoc.InnerXml;
                              if (!string.IsNullOrEmpty(res))
                              {
-                            if (count > 20)
+                            if (count > 0)
                             {
                                 await SendToAPI1(seid, kw, res, jobid);
                                 await SendToDB(seid, kw, res, jobid, count);
                             }
-                            if (count < 21 && count==0)
-                            {
-                                await SendToDB(seid, kw, res, jobid, count);
-                            }
+                            //if (count < 21 && count==0)
+                            //{
+                            //    await SendToDB(seid, kw, res, jobid, count);
+                            //}
                                 bool aio = res.Contains("<block type=\"aiOverview\">");//16-02-2025
                                 if (aio && device == "mobile_android") // inserting true value //16-02-2025
                                     await InsertAIO_Keyword(kw, seid, aio);
@@ -315,11 +316,12 @@ namespace WPFLoopMultiThreadJobIDs
                                 }
                                 count += curCount;
                                doc = null;
-                                 this.lblcount2.Dispatcher.Invoke((MethodInvoker)delegate () {
-                                    lblcount2.Content = "Count: " + count;
-                                 });
+                                
                             }
-                                int x = 0;
+                        this.lblcount2.Dispatcher.Invoke((MethodInvoker)delegate () {
+                            lblcount2.Content = "Count: " + count;
+                        });
+                        int x = 0;
                                 XmlDocument xmlDoc = new XmlDocument();
                                 foreach (string xml in alXml)
                                 {
@@ -346,15 +348,15 @@ namespace WPFLoopMultiThreadJobIDs
                         
                         if (!string.IsNullOrEmpty(res))
                         {
-                            if (count > 20)
+                            if (count > 0)
                             {
                                 await SendToAPI2(seid, kw, res, jobid);
                                 await SendToDB(seid, kw, res, jobid, count);
                             }
-                            if (count < 21 && count==0)
-                            {
-                                await SendToDB(seid, kw, res, jobid, count);
-                            }
+                            //if (count < 21 && count==0)
+                            //{
+                            //    await SendToDB(seid, kw, res, jobid, count);
+                            //}
                                 bool aio = res.Contains("<block type=\"aiOverview\">");//16-02-2025
                                 if (aio && device == "mobile_android") // inserting true value //16-02-2025
                                     await InsertAIO_Keyword(kw, seid, aio);
@@ -461,11 +463,12 @@ namespace WPFLoopMultiThreadJobIDs
                                 }
                                 count += curCount;
                                 doc = null;
-                                this.lblcount3.Dispatcher.Invoke((MethodInvoker)delegate () {
-                                    lblcount3.Content = "Count: " + count;
-                                });
+                                
                             }
-                                int x = 0;
+                        this.lblcount3.Dispatcher.Invoke((MethodInvoker)delegate () {
+                            lblcount3.Content = "Count: " + count;
+                        });
+                        int x = 0;
                                 XmlDocument xmlDoc = new XmlDocument();
                                 foreach (string xml in alXml)
                                 {
@@ -491,15 +494,15 @@ namespace WPFLoopMultiThreadJobIDs
                             
                         if (!string.IsNullOrEmpty(res))
                         {
-                            if (count > 20)
+                            if (count > 0)
                             {
                                 await SendToAPI3(seid, kw, res, jobid);
                                 await SendToDB(seid, kw, res, jobid, count);
                             }
-                            if (count < 21 && count==0)
-                            {
-                                await SendToDB(seid, kw, res, jobid, count);
-                            }
+                            //if (count < 21 && count==0)
+                            //{
+                            //    await SendToDB(seid, kw, res, jobid, count);
+                            //}
                                 bool aio = res.Contains("<block type=\"aiOverview\">");//16-02-2025
                                 if (aio && device == "mobile_android") // inserting true value //16-02-2025
                                     await InsertAIO_Keyword(kw, seid, aio);

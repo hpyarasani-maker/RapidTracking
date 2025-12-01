@@ -134,6 +134,8 @@ namespace RapidTrackingLoopSending
             Cursor.Current = Cursors.WaitCursor;
             string myDate = date_picker.Text;
             //Two Sending Apps for Loop SP_1 and SP_2
+            //string strQry = "exec [dbo].[GetCommaKeywords_Desktop] '" + myDate + "'"; // Desktop Comma keywords
+            //string strQry = "exec [dbo].[GetCommaKeywords_Mobile] '" + myDate + "'"; // Mobile Comma keywords
             string strQry = "exec [dbo].[GetBulkMobile_106_ALL] '" + myDate + "'";  // Seid=106 Normal Sending 
             //string strQry = "exec [dbo].[GetBulkDesktop_58_ALL] '" + myDate + "'"; // Seid=58 Normal Sending
             //string strQry = "exec [dbo].[GetBulkOtherMobile_ALL] '" + myDate + "'"; // OtherMobile Normal Sending

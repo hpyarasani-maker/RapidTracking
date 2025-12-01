@@ -149,8 +149,8 @@ namespace RapidTrackingLoopSending
 
             //string callbackURL = "https://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58
             //string callbackURL = "https://seresults.azurewebsites.net/api/callbackuk106mobile/";       // 106
-            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackus1desktop/";     // 1            
-            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackus102mobile/";     // 102
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackus1desktop/";     // 1 Desktop Comma Keywords        
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackus102mobile/";     // 102 Mobile Comma Keywords
             string callbackURL = "https://seresults.azurewebsites.net/api/callbackotherdesktop/";  // Loop other desktop
             //string callbackURL = "https://seresults.azurewebsites.net/api/callbackothermobile/";  // other mobile
 

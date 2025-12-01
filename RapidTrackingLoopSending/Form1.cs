@@ -134,26 +134,32 @@ namespace RapidTrackingLoopSending
             Cursor.Current = Cursors.WaitCursor;
             string myDate = date_picker.Text;
             //Two Sending Apps for Loop SP_1 and SP_2
+            string strQry = "exec [dbo].[GetBulkMobile_106_ALL] '" + myDate + "'";  // Seid=106 Normal Sending 
+            //string strQry = "exec [dbo].[GetBulkDesktop_58_ALL] '" + myDate + "'"; // Seid=58 Normal Sending
+            //string strQry = "exec [dbo].[GetBulkOtherMobile_ALL] '" + myDate + "'"; // OtherMobile Normal Sending
+            //string strQry = "exec [dbo].[GetBulkOtherDesktop_ALL] '" + myDate + "'"; // OtherDesktop Normal Sending
+            //string strQry = "exec [dbo].[GetBulkMobile_102_ALL] '" + myDate + "'";  // Seid=102 Normal Sending
+            //string strQry = "exec [dbo].[GetBulkDesktop_1_ALL] '" + myDate + "'";  // Seid=1 Normal Sending
+            //string strQry = "exec [dbo].[GetBulk_All_Desktop] '" + myDate + "'"; //Receive All Desktop Normal Sending
+            //string strQry = "exec [dbo].[GetBulk_All_Mobile] '" + myDate + "'"; //Receive All Mobile Normal Sending
+            //string strQry = "exec [dbo].[GetBulkDesktop_NewKeywords] '" + myDate + "'"; //New Keywords All Desktop Normal Sending
+            //string strQry = "exec [dbo].[GetBulkMobile_NewKeywords] '" + myDate + "'"; //New Keywords All Mobile Normal Sending
+            //string strQry = "exec [dbo].[GetCommaKeywords] '" + myDate + "'"; // CommaKeywords for Desktop and Mobile Normal Sending
+            //string strQry = "exec [dbo].[GetCommaKeywords_New] '" + myDate + "'"; // New CommaKeywords for Desktop and Mobile Normal Sending
+            //string strQry = "exec [dbo].[GetCommaKeywords_With_And_Without] '" + myDate + "'";  // Seid=106 Normal Sending 
+            //string strQry = "exec [dbo].[GetBulk_P] '" + myDate + "'";  //sending procedure previous date keywords
+            //string strQry = "exec [dbo].[Tracking_DB_Keywords_SEID_102_S] '" + myDate + "'";  //Without Condition WOC Single Keyword Desktop and Mobile Last keywords
+            //string strQry = "exec [dbo].[Tracking_DB_Keywords_SEID_102_SS] '" + myDate + "'";  //Without Condition WOC Single Keyword for special Characters Desktop and Mobile Last keywords
+            //string strQry = "exec [dbo].[GetKeywords_746] '" + myDate + "'";  //For seid's 746,747,770,771 single Keyword Desktop and Mobile keywords
+            //string strQry = "exec [dbo].[GetBulk_All] '" + myDate + "'";
+            //string strQry = "exec [dbo].[GetBulk_Desktop] '" + myDate + "'";
+            //string strQry = "exec [dbo].[GetBulk_Mobile] '" + myDate + "'";
+            //string strQry = "exec [dbo].[GetBulkMobile_106_1] '" + myDate + "'";
+            //string strQry = "exec [dbo].[GetBulkDesktop_58_2] '" + myDate + "'";
             //string strQry = "exec [Tracking_DB_Keywords_SEID_102_SP_1] '" + myDate + "'"; //Loop Sending 1st Thread Desktop and Mobile Normal Sending
             //string strQry = "exec [Tracking_DB_Keywords_SEID_102_SP_2] '" + myDate + "'"; //Loop Sending 2st Thread Desktop and Mobile Normal Sending
             //string strQry = "exec [dbo].[GetBulk_NewSeids] '" + myDate + "'";
-            //string strQry = "exec [dbo].[GetBulkUKDesktop_Temp_1] '" + myDate + "'";    // seid: 503
-            //string strQry = "exec [dbo].[GetBulk_All] '" + myDate + "'";
-            //string strQry = "exec [dbo].[GetBulkDesktop_NewKeywords] '" + myDate + "'";
-            //string strQry = "exec [dbo].[GetBulkDesktop_58_2] '" + myDate + "'";
-            //string strQry = "exec [dbo].[GetBulkMobile_102_1] '" + myDate + "'";
-            //string strQry = "exec [dbo].[GetBulkDesktop_2] '" + myDate + "'";
-            //string strQry = "exec [dbo].[GetBulkMobile_2] '" + myDate + "'";
-            //string strQry = "exec [dbo].[GetBulkDesktop_1_2] '" + myDate + "'";
-            //string strQry = "exec [dbo].[GetBulkMobile_Hotel] '" + myDate + "'";
-            //string strQry = "exec [dbo].[GetCommaKeywords_Hotel] '" + myDate + "'";
-            //string strQry = "exec [dbo].[GetBulkMobile_NotHotel] '" + myDate + "'";
-            //string strQry = "exec [dbo].[GetCommaKeywords] '" + myDate + "'";
-            //string strQry = "exec [dbo].[GetBulk_All] '" + myDate + "'";
-            //string strQry = "exec [dbo].[GetBulk_P] '" + myDate + "'";  //sending procedure previous date keywords
-            //string strQry = "exec [Tracking_DB_Keywords_SEID_102_SeeMore] '" + myDate + "'"; //30-06-2022
-            //string strQry = "exec [Tracking_DB_Keywords_SEID_102_TGBN] '" + myDate + "'"; //28-06-2022
-            string strQry = "exec [dbo].[GetCommaKeywords_With_And_Without] '" + myDate + "'";  // Seid=106 Normal Sending 
+            //string strQry = "exec [dbo].[GetCommaKeywords_With_And_Without] '" + myDate + "'";  // Seid=106 Normal Sending 
 
             SqlConnection objCon = null;
             SqlDataReader objData = null;
@@ -219,9 +225,15 @@ namespace RapidTrackingLoopSending
 
             for (int i = 0; i < worklist.Items.Count; i++)
             {
-                //mseconds = rd.Next(30, 50) * 1000; //First Sending app 29-06-2020    //Loop Sending 1st Thread
-                //mseconds = rd.Next(30, 70) * 1000; //First Sending app 29-06-2020    //Loop Sending 2nd Thread
-                //mseconds = rd.Next(30, 50) * 1000; //First Sending app 29-06-2020    //SEID=58-1 
+                mseconds = rd.Next(10, 20) * 1000; // Seid=106 single thread 500 batches
+                //mseconds = rd.Next(10, 30) * 1000; // Seid=58 single thread 500 batches
+                //mseconds = rd.Next(20, 30) * 1000; // OtherMobile single thread 500 batches And 20 Condition Sending
+                //mseconds = rd.Next(20, 35) * 1000; // OtherDesktop single thread 500 batches And 20 Condition Sending
+                //mseconds = rd.Next(20, 40) * 1000; // Seid=102 single thread 500 batches
+                //mseconds = rd.Next(20, 45) * 1000; // Seid=1 single thread 500 batches
+                //mseconds = rd.Next(10, 20) * 1000;//For seid's 746,747,770,771 single Keyword Desktop and Mobile keywords
+                //uncomment all for fast sending //22-03-2024
+                //mseconds = rd.Next(30, 50) * 1000; //First Sending app 29-06-2020    //SEID=58-1
                 //mseconds = rd.Next(30, 70) * 1000; //First Sending app 29-06-2020    //SEID=58-2
                 //mseconds = rd.Next(30, 80) * 1000; //Second Sending app 29-06-2020 //SEID=106-1
                 //mseconds = rd.Next(30, 100) * 1000; //Second Sending app 29-06-2020 //SEID=106-2
@@ -230,7 +242,7 @@ namespace RapidTrackingLoopSending
                 //mseconds = rd.Next(30, 140) * 1000; //Fourth Sending app 29-06-2020 //SEID=OtherMobile-1
                 //mseconds = rd.Next(30, 160) * 1000; //Fourth Sending app 29-06-2020 //SEID=OtherMobile-2
                 //mseconds = rd.Next(30, 170) * 1000; //Fifith Sending app 29-06-2020 //SEID=1-1
-                mseconds = rd.Next(30, 180) * 1000; //Fifith Sending app 29-06-2020 //SEID=1-2
+                //mseconds = rd.Next(30, 180) * 1000; //Fifith Sending app 29-06-2020 //SEID=1-2
                 //mseconds = rd.Next(30, 200) * 1000; //Sixth Sending app 29-06-2020 //SEID=102-1
                 //mseconds = rd.Next(30, 210) * 1000; //Sixth Sending app 29-06-2020 //SEID=102-2
                 resultsString = worklist.Items[i].ToString();

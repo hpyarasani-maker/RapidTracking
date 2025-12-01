@@ -57,8 +57,8 @@ namespace RapidTrackingLoopReceiving
             //string url = "https://seresults.azurewebsites.net/api/trackingtrending/";
             //string url = "https://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58
             //string url = "https://seresults.azurewebsites.net/api/callbackuk106mobile/";      // 106
-            //string url = "https://seresults.azurewebsites.net/api/callbackus1desktop/";     // 1
-            //string url = "https://seresults.azurewebsites.net/api/callbackus102mobile/";      // 102
+            //string url = "https://seresults.azurewebsites.net/api/callbackus1desktop/";     // 1 Desktop Comma Keywords
+            //string url = "https://seresults.azurewebsites.net/api/callbackus102mobile/";      // 102 Mobile Comma Keywords
             string url = "https://seresults.azurewebsites.net/api/callbackotherdesktop/";  // Loop Receiving other desktop
             //string url = "https://seresults.azurewebsites.net/api/callbackothermobile/";   // other mobiles
 

@@ -234,7 +234,7 @@ namespace TrendingLoopReceiving
                         if (!string.IsNullOrEmpty(seid))
                         {//16-02-2025
                             await ProcessResults(resx, kw, seid, jobid, count);
-                            bool aio = result.Contains("<block type=\"aiOverview\">");
+                            bool aio = resx.Contains("<block type=\"aiOverview\">");
                             if (aio && device == "mobile_android") // inserting true value//16-02-2025
                                 await InsertAIO_Keyword(kw, seid, aio);
                         }//16-02-2025

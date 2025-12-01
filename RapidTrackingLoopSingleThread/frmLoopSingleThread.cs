@@ -83,6 +83,7 @@ namespace RapidTrackingLoopSingleThread
                     string seid = s.Split(':')[0];
                     string kw = s.Split(':')[1];
                     bool result = false;
+                    string device = string.Empty;
                     try
                     {
                         var doc = new HtmlAgilityPack.HtmlDocument();
@@ -105,7 +106,7 @@ namespace RapidTrackingLoopSingleThread
                                         //string html = obj["results"][0]["content"].Value<string>();
                                         string html = src;
                                         jobid = r.JobId;
-                                        string device = r.Device;
+                                        device = r.Device;
                                         File.WriteAllText(@"C:\inetpub\wwwroot\html\" + jobid + "_" + keyword + ".html", html, Encoding.UTF8);
                                         //File.WriteAllText(@"C:\inetpub\wwwroot\"+jobid+"_withOut filter_"+".html", html, Encoding.UTF8);
                                         result = true;
@@ -169,6 +170,9 @@ namespace RapidTrackingLoopSingleThread
                             //    SendToAPI(seid, keyword, res, jobid);
                             //    SendToDB(seid, keyword, res, jobid, count);
                             //}
+                            bool aio = res.Contains("<block type=\"aiOverview\">");//16-02-2025
+                            if (aio && device == "mobile_android") // inserting true value //16-02-2025
+                                InsertAIO_Keyword(kw, seid, aio);
 
                         }
                         catch (Exception ex)
@@ -216,7 +220,35 @@ namespace RapidTrackingLoopSingleThread
 
             Environment.Exit(Environment.ExitCode);
         }
-
+        private void InsertAIO_Keyword(string kw, string seid, bool aio)//16-02-2025
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Common.ReadConnection()))
+                {
+                    con.Open();
+                    using (SqlCommand comm = con.CreateCommand())
+                    {
+                        comm.CommandTimeout = 0;
+                        comm.CommandType = CommandType.StoredProcedure;
+                        comm.CommandText = "Insert_AIO_Keywords";
+                        comm.Parameters.Add("Seid", SqlDbType.Int).Value = seid;
+                        comm.Parameters.Add("Name", SqlDbType.NVarChar).Value = kw;
+                        comm.Parameters.Add("AIO", SqlDbType.Bit).Value = aio;
+                        comm.ExecuteNonQueryAsync();
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                string errorMessage = $"Database Error in Insert_AIO_Keywords: \r\n{ex.Message}";
+                throw new Exception(errorMessage);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }//16-02-2025
 
         private void SendToAPI(string seid, string kw, string res, string jobid)
         {

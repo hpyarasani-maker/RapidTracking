@@ -185,7 +185,7 @@ namespace AIOLoopReceiving
                         //{
                         //    await SendToDB(seid, kw, resx, jobid, count);
                         //}
-                        bool aio = result.Contains("<block type=\"aiOverview\">");
+                        bool aio = resx.Contains("<block type=\"aiOverview\">");
                         if (!aio && device == "mobile_android") // inserting false value//16-02-2025                            
                             await InsertAIO_Keyword_False(kw, seid, aio);
                     }

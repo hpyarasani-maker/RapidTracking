@@ -234,7 +234,7 @@ namespace RapidTrackingLoopReceiving
                         //{
                         //    await SendToDB(seid, kw, resx, jobid, count);
                         //}
-                        bool aio = result.Contains("<block type=\"aiOverview\">");//16-02-2025
+                        bool aio = resx.Contains("<block type=\"aiOverview\">");//16-02-2025
                         if (aio && device == "mobile_android") // inserting true value//16-02-2025
                             await InsertAIO_Keyword(kw, seid, aio);//16-02-2025
                     }

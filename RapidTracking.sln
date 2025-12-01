@@ -109,6 +109,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIOLoopReceiving", "AIOLoop
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFLoopMultiThreadJobIDs", "WPFLoopMultiThreadJobIDs\WPFLoopMultiThreadJobIDs.csproj", "{1BC2E8FE-4406-4F1F-9F8E-83B0484AADE4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIOLoopMultiThreadJobIDs", "AIOLoopMultiThreadJobIDs\AIOLoopMultiThreadJobIDs.csproj", "{F6FCED3D-0056-4E3F-9ED5-10D02DE06A3C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -307,6 +309,10 @@ Global
 		{1BC2E8FE-4406-4F1F-9F8E-83B0484AADE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1BC2E8FE-4406-4F1F-9F8E-83B0484AADE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1BC2E8FE-4406-4F1F-9F8E-83B0484AADE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6FCED3D-0056-4E3F-9ED5-10D02DE06A3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6FCED3D-0056-4E3F-9ED5-10D02DE06A3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6FCED3D-0056-4E3F-9ED5-10D02DE06A3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6FCED3D-0056-4E3F-9ED5-10D02DE06A3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -339,6 +345,7 @@ Global
 		{2F2E8DF5-3B98-4455-99AB-C78C7F1D602B} = {43FDC851-9700-4C4B-997A-B4A9BC905A77}
 		{F2E0510E-4AB7-4071-8BA2-4C6570BED312} = {C8849A92-4B18-4D1E-9DAC-2ACAFB68D808}
 		{35C59C03-89BE-4C3C-8B90-624E3AE58D39} = {C8849A92-4B18-4D1E-9DAC-2ACAFB68D808}
+		{F6FCED3D-0056-4E3F-9ED5-10D02DE06A3C} = {C8849A92-4B18-4D1E-9DAC-2ACAFB68D808}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3CC0E919-BB8B-43E6-8485-F143616171A0}

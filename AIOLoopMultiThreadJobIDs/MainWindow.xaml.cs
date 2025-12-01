@@ -1108,116 +1108,152 @@ namespace AIOLoopMultiThreadJobIDs
         return await Task.FromResult(alResult);
     }
 
-    async Task<ArrayList> GetOxylabsWebDataSources(SearchProperties sp, string jobid)
-    {
-        JObject obj = null;//07-02-2022
-        string username = "piapp-aio";
-        string password = "4gvfnA+aBYpBNs37";
-        string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
-        string[] keyword = { sp.query };
-        string response;
-        ArrayList lst = new ArrayList();
-        string kw = sp.query;
-        string href = "";
-        string status = "done";
-        string device = sp.device;
-        string[] s = { kw, href, status, "no", jobid, device };    // keyword, url, status, isdownloaded, jobid, device.
-        lst.Add(s);
-
-        if (lst.Count <= 0) return lst;
-        ArrayList alResult = new ArrayList();
-        do
+        async Task<ArrayList> GetOxylabsWebDataSources(SearchProperties sp, string jobid)
         {
-            int cnt = 0;
-            foreach (string[] cbUrl in lst)
+            JObject obj = null;//07-02-2022
+            string username = string.Empty;//04-02-2025
+            string password = string.Empty;
+            if (sp.device == "mobile_android")
             {
-                string[] reslt = { "", "", "", "" };
-                response = "";
-                Uri uri = new Uri("http://data.oxylabs.io/v1/queries/" + jobid + "/results");
-                if (cbUrl[2] == "done" && cbUrl[3] == "no")
+                username = "piapp";
+                password = "b5FCvgkjxx";
+            }
+            else if (sp.device == "desktop_chrome")
+            {
+                username = "piapp-aio";
+                password = "4gvfnA+aBYpBNs37";
+            }//04-03-2025
+            string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
+            string[] keyword = { sp.query };
+            string response;
+            ArrayList lst = new ArrayList();
+            string kw = sp.query;
+            string href = "";
+            string status = "done";
+            string device = sp.device;
+            string[] s = { kw, href, status, "no", jobid, device };    // keyword, url, status, isdownloaded, jobid, device.
+            lst.Add(s);
+
+            if (lst.Count <= 0) return lst;
+            ArrayList alResult = new ArrayList();
+            do
+            {
+                int cnt = 0;
+                foreach (string[] cbUrl in lst)
                 {
-                    try
+                    string[] reslt = { "", "", "", "" };
+                    response = "";
+                    //Uri uri = new Uri("http://data.oxylabs.io/v1/queries/" + jobid + "/results");
+                    if (cbUrl[2] == "done" && cbUrl[3] == "no")
                     {
-                        HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
-                        httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
-                        HttpWebResponse res = (HttpWebResponse)await httpWebRequest.GetResponseAsync();
-
-                        Stream resVal = res.GetResponseStream();
-                        StreamReader reader = new StreamReader(resVal, Encoding.UTF8);
-                        //** Store all the contents
-                        response = reader.ReadToEnd();
-                        resVal.Close();
-                        res.Close();
-
-                        cbUrl[3] = "yes";
-                        cnt++;
-                        if (response == "")//31-01-2022
+                        try
                         {
-                            throw new Exception("AIO empty"); //14-04-2025
-                        }//31-01-2022
-                        obj = JObject.Parse(response);//07-02-2022
-                        string statuscode = obj["results"][0]["status_code"].Value<string>();//07-02-2022
-                        if (statuscode != "200")
-                        {
-                            throw new Exception("Status code : " + "AIO" + statuscode);//14-04-2025
-                        }//07-02-2022 end
+                            //var _links = jo["queries"]?[0]?["_links"];
+                            var _links = await GetJobLinks("http://data.oxylabs.io/v1/queries/" + jobid, authInfo);
+                            string[] urls = _links?
+                                .Where(link => (string)link["rel"] == "results-content")
+                                .SelectMany(link => (link["href_list"] as JArray ?? new JArray())
+                                    .Select(item => item.ToString()))
+                                .ToArray();
+                            List<string> source = new List<string>();
+                            foreach (string url in urls)
+                            {
+                                HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(new Uri(url));
+                                httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
+                                HttpWebResponse res = (HttpWebResponse)await httpWebRequest.GetResponseAsync();
+                                Stream resVal = res.GetResponseStream();
+                                StreamReader reader = new StreamReader(resVal, Encoding.UTF8);
+                                //** Store all the contents
+                                string response1 = reader.ReadToEnd();
+                                resVal.Close();
+                                res.Close();
+                                source.Add(response1);
+                            }
+                            cbUrl[3] = "yes";
+                            cnt++;
+                            if (source.Count > 0)
+                            {
+                                alResult.Add(new ResultObject
+                                {
+                                    Keyword = cbUrl[0],
+                                    JobId = cbUrl[4],
+                                    Device = cbUrl[5],
+                                    Result = source
+                                });
+                            }
+                            else//04-01-2022
+                            {
+                                foreach (string url in urls)
+                                {
+                                    HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+                                    httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
+                                    HttpWebResponse res1 = (HttpWebResponse)httpWebRequest.GetResponse();
+                                    Stream resStream = res1.GetResponseStream();
+                                    StreamReader reader = new StreamReader(resStream, Encoding.UTF8);
+                                    response = reader.ReadToEnd();
+                                    resStream.Close();
+                                    res1.Close();
 
-                        if (!string.IsNullOrEmpty(response))
-                        {
-                            reslt[0] = cbUrl[0];
-                            reslt[1] = response;
-                            reslt[2] = cbUrl[4];
-                            reslt[3] = cbUrl[5];
-                            alResult.Add(reslt);
+                                    obj = JObject.Parse(response);
+                                    status = obj["status"].Value<string>();
+                                    if (status == "faulted")
+                                    {
+                                        throw new Exception("status is faulted");
+                                    }
+                                    if (status == "pending") //31-01-2022
+                                    {
+                                        throw new Exception("status is pending");
+                                    }
+                                }
+
+                            }//04-01-2022
                         }
-                        else//04-01-2022
+
+                        catch (Exception ex)
                         {
-                            string resURL = "http://data.oxylabs.io/v1/queries/" + jobid;
-                            httpWebRequest = (HttpWebRequest)WebRequest.Create(resURL);
-                            httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
-                            HttpWebResponse res1 = (HttpWebResponse)httpWebRequest.GetResponse();
-                            Stream resStream = res1.GetResponseStream();
-                            reader = new StreamReader(resStream, Encoding.UTF8);
-                            response = reader.ReadToEnd();
-                            resStream.Close();
-                            res1.Close();
-                            obj = JObject.Parse(response);
-                            status = obj["status"].Value<string>();
-                            if (status == "faulted")
-                            {
-                                throw new Exception("AIO Status is Faulted");//14-04-2025
-                            }
-                            if (status == "pending") //31-01-2022
-                            {
-                                throw new Exception("AIO Status is Pending");//14-04-2025
-                            }
+                            // Console.WriteLine("Result Request: " + ex.Message);//03-01-2022
 
-                        }//04-01-2022
+                            throw new Exception(ex.Message);//31-01-2022//03-01-2022
+                        }
                     }
 
-                    catch (Exception ex)
-                    {
-                        // Console.WriteLine("Result Request: " + ex.Message);//03-01-2022
 
-                        throw new Exception(ex.Message);//31-01-2022//03-01-2022
-                    }
+                    else
+                        cnt++;
+                    Task.Delay(200).Wait();
                 }
 
 
-                else
-                    cnt++;
-                Task.Delay(200).Wait();
+                if (lst.Count == cnt) break;
+
+            } while (true);
+
+            return await Task.FromResult<ArrayList>(alResult);
+
+        }
+        private async Task<JToken> GetJobLinks(string url, string authInfo)
+        {
+            try
+            {
+                HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+                httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
+                HttpWebResponse res = (HttpWebResponse)await httpWebRequest.GetResponseAsync();
+                string response = string.Empty;
+                using (StreamReader reader = new StreamReader(res.GetResponseStream(), Encoding.UTF8))
+                {
+                    response = reader.ReadToEnd();
+                }
+                res.Close();
+                var jo = JObject.Parse(response);
+                return jo["_links"];
             }
-
-
-            if (lst.Count == cnt) break;
-
-        } while (true);
-
-        return await Task.FromResult<ArrayList>(alResult);
-
-    }
-    private void LstKWs1_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
+        private void LstKWs1_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
     {
 
     }

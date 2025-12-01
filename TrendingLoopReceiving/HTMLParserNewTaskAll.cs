@@ -481,14 +481,14 @@ namespace TrendingLoopReceiving
             try
             {
                 XmlDocument xml = new XmlDocument();
-                string fileName = @"C:\Inetpub\wwwroot\TrendingLiveAPI.xml";
+                string fileName = @"C:\Inetpub\wwwroot\Callback_TrackingTrending.xml";
                 //string fileName = @"C:\Inetpub\wwwroot\downloadKeywords.xml";
 
                 // You'll need to put the correct path to your xml file here
                 xml.Load(fileName);
 
                 // Select a specific node
-                XmlNode node = xml.SelectSingleNode("TrendingAPI/submitapi");
+                XmlNode node = xml.SelectSingleNode("ConnectionString/apiSubmit");
                 //XmlNode node = xml.SelectSingleNode("ConnectionString/apiNew");
                 // Get its value
                 string name = node.InnerText;

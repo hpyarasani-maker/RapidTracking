@@ -138,7 +138,7 @@ namespace RapidTrackingLoopSending
 
             //string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking other desktop
             //string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking other mobile SEID = 102 and 106
-            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking mobile comma keywords
             //string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidtrackingmobilehotel/"; //Other mobile searches Loop keywords
             //string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidTrackingnewdesktop/"; //Desktop new keywords
             //string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidTrackingnewmobile/"; //mobile new keywords
@@ -150,7 +150,7 @@ namespace RapidTrackingLoopSending
             //string callbackURL = "https://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58
             //string callbackURL = "https://seresults.azurewebsites.net/api/callbackuk106mobile/";       // 106
             //string callbackURL = "https://seresults.azurewebsites.net/api/callbackus1desktop/";     // 1 Desktop Comma Keywords        
-            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackus102mobile/";     // 102 Mobile Comma Keywords
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackus102mobile/";     // 102 Mobile AIO Comma Keywords
             string callbackURL = "https://seresults.azurewebsites.net/api/callbackotherdesktop/";  // Loop other desktop
             //string callbackURL = "https://seresults.azurewebsites.net/api/callbackothermobile/";  // other mobile
 

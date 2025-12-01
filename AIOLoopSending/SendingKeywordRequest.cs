@@ -129,8 +129,7 @@ namespace AIOLoopSending
             string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
 
 
-
-            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
+            //string url = "https://seresults.azurewebsites.net/api/callbackus102mobile/";// 102 Mobile AIO Comma Keywords
             //string callbackURL = "https://seresults.azurewebsites.net/api/callbackuk58desktop/";       //1026,1027,1028,1029 AIO Keyword Tracking Desktop and Mobile
             string callbackURL = "https://seresults.azurewebsites.net/api/callbackuk106mobile/"; //Same Controller for AIO Mobile keywords sending And Receive all And WOC 
 

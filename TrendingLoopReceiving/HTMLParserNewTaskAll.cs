@@ -53,7 +53,7 @@ namespace TrendingLoopReceiving
         {
               string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking desktop and all keywords
             //string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking mobile
-            //string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
+            //string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking mobile comma keywords
             //string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingmobilehotel/";  // rapid tracking mobile
             //string url = "https://seresults.azurewebsites.net/api/callbackrapidTrackingnewdesktop/"; //Desktop new keywords
             //string url = "https://seresults.azurewebsites.net/api/callbackrapidTrackingnewmobile/"; //mobile new keywords
@@ -62,8 +62,8 @@ namespace TrendingLoopReceiving
             //string url = "https://seresults.azurewebsites.net/api/trackingtrending/";
             //string url = "https://seresults.azurewebsites.net/api/callbackuk58desktop/";       // 58
             //string url = "https://seresults.azurewebsites.net/api/callbackuk106mobile/";      // 106
-            //string url = "https://seresults.azurewebsites.net/api/callbackus1desktop/";     // 1
-            //string url = "https://seresults.azurewebsites.net/api/callbackus102mobile/";      // 102
+            //string url = "https://seresults.azurewebsites.net/api/callbackus1desktop/";     // 1 Desktop comma Keywords
+            //string url = "https://seresults.azurewebsites.net/api/callbackus102mobile/";      // 102 Mobile AIO Comma Keywords
             //string url = "https://seresults.azurewebsites.net/api/callbackotherdesktop/";  // other desktop
             //string url = "https://seresults.azurewebsites.net/api/callbackothermobile/";   // other mobiles
             //string url = "https://seresults.azurewebsites.net/api/callbackimagesdesktop/";       // images desktop

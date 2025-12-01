@@ -48,7 +48,7 @@ namespace RapidTrackingLoopReceiving
             //string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking desktop and all keywords
             //string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking mobile
             // string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
-            //string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingmobilehotel/";  // rapid tracking mobile
+            //string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingmobilehotel/";  //Other mobile searches Loop keywords
             //string url = "https://seresults.azurewebsites.net/api/callbackrapidTrackingnewdesktop/"; //Desktop new keywords
             //string url = "https://seresults.azurewebsites.net/api/callbackrapidTrackingnewmobile/"; //mobile new keywords
             // string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingnewcommakeywords/";  // new comma keywords

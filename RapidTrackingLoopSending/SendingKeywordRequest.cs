@@ -137,7 +137,7 @@ namespace RapidTrackingLoopSending
             string authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
 
             //string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking other desktop
-            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking other mobile
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking other mobile SEID = 102 and 106
             //string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
             //string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidtrackingmobilehotel/"; //Other mobile searches Loop keywords
             //string callbackURL = "https://seresults.azurewebsites.net/api/callbackrapidTrackingnewdesktop/"; //Desktop new keywords

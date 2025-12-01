@@ -46,7 +46,7 @@ namespace RapidTrackingLoopReceiving
         private async void StartProcess()
         {
             //string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingdesktop/";  // rapid tracking desktop and all keywords
-            //string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking mobile
+            //string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingmobile/";  // rapid tracking mobile SEID = 102 and 106
             // string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingcommakeywords/";  // rapid tracking comma keywords
             //string url = "https://seresults.azurewebsites.net/api/callbackrapidtrackingmobilehotel/";  //Other mobile searches Loop keywords
             //string url = "https://seresults.azurewebsites.net/api/callbackrapidTrackingnewdesktop/"; //Desktop new keywords

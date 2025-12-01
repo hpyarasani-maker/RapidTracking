@@ -30,9 +30,9 @@ namespace AIOLoopMultiThreadJobIDs
     /// </summary>
     public partial class MainWindow : Window
     {
-        string xmlPath1 = @"C:\inetpub\wwwroot\MissingJobID_GT20_1.xml";
-        string xmlPath2 = @"C:\inetpub\wwwroot\MissingJobID_GT20_2.xml";
-        string xmlPath3 = @"C:\inetpub\wwwroot\MissingJobID_GT20_3.xml";//changes
+        string xmlPath1 = @"C:\inetpub\wwwroot\MissingLoopJobID_GT20_1.xml";
+        string xmlPath2 = @"C:\inetpub\wwwroot\MissingLoopJobID_GT20_2.xml";
+        string xmlPath3 = @"C:\inetpub\wwwroot\MissingLoopJobID_GT20_3.xml";//changes
 
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
@@ -60,7 +60,7 @@ namespace AIOLoopMultiThreadJobIDs
         }
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            this.Title = "WPF_AI_MissingKeywords_(1-2-3)";//changes
+            this.Title = "WPF_AI_Loop_MissingKeywords_(1-2-3)";//changes
             //this.Title = "RapidTracking_Errorkeywords_(1-2-3)"; //changes
 
             dtPicker1.SelectedDate = DateTime.Today;
@@ -215,7 +215,7 @@ namespace AIOLoopMultiThreadJobIDs
                             //    await SendToDB(seid, kw, res, jobid, count);
                             //}
                             bool aio = res.Contains("<block type=\"aiOverview\">");//16-02-2025
-                            if (aio && device == "mobile_android") // inserting true value //16-02-2025
+                            if (!aio && device == "mobile_android") // inserting true value //16-02-2025
                                 await InsertAIO_Keyword_False(kw, seid, aio);
                         }
 
@@ -349,7 +349,7 @@ namespace AIOLoopMultiThreadJobIDs
                             //    await SendToDB(seid, kw, res, jobid, count);
                             //}
                             bool aio = res.Contains("<block type=\"aiOverview\">");//16-02-2025
-                            if (aio && device == "mobile_android") // inserting true value //16-02-2025
+                            if (!aio && device == "mobile_android") // inserting true value //16-02-2025
                                 await InsertAIO_Keyword_False(kw, seid, aio);
                         }
 
@@ -495,7 +495,7 @@ namespace AIOLoopMultiThreadJobIDs
                             //    await SendToDB(seid, kw, res, jobid, count);
                             //}
                             bool aio = res.Contains("<block type=\"aiOverview\">");//16-02-2025
-                            if (aio && device == "mobile_android") // inserting true value //16-02-2025
+                            if (!aio && device == "mobile_android") // inserting true value //16-02-2025
                                 await InsertAIO_Keyword_False(kw, seid, aio);
                         }
 

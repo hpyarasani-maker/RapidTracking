@@ -150,14 +150,14 @@ namespace WPFLoopMultiThreadJobIDs
                 try
                 {
                     var doc = new HtmlAgilityPack.HtmlDocument();
-                        ArrayList alresult = GetHTML(kw, Convert.ToInt32(seid), jobid).Result;
-                    //if (alresult.Status.ToString() == stats.Faulted.ToString() || alresult.Status.ToString() == stats.Pending.ToString() || alresult.Status.ToString() == stats.Empty.ToString() || alresult.Status.ToString() == stats.statuscode.ToString()) //07-02-2022//31-01-2022//04-01-2022
-                        //throw alresult.Exception.InnerException;//04-01-2022
+                        Task<ArrayList> alresult = GetHTML(kw, Convert.ToInt32(seid), jobid);
+                        if (alresult.Status.ToString() == stats.Faulted.ToString() || alresult.Status.ToString() == stats.Pending.ToString() || alresult.Status.ToString() == stats.Empty.ToString() || alresult.Status.ToString() == stats.statuscode.ToString()) //07-02-2022//31-01-2022//04-01-2022
+                            throw alresult.Exception.InnerException;//04-01-2022
                         ArrayList alXml = new ArrayList();
                         int count = 0;
                         string device = string.Empty;
                         string res = string.Empty;
-                        foreach (ResultObject r in alresult)
+                        foreach (ResultObject r in alresult.Result)
                             foreach (string src in r.Result)
                             {
                                 string keyword = r.Keyword;
@@ -284,14 +284,14 @@ namespace WPFLoopMultiThreadJobIDs
                 try
                 {
                     var doc = new HtmlAgilityPack.HtmlDocument();
-                        ArrayList alresult = GetHTML(kw, Convert.ToInt32(seid), jobid).Result;
-                        //if (alresult.Status.ToString() == stats.Faulted.ToString() || alresult.Status.ToString() == stats.Pending.ToString() || alresult.Status.ToString() == stats.Empty.ToString() || alresult.Status.ToString() == stats.statuscode.ToString()) //07-02-2022//31-01-2022//04-01-2022
-                        //throw alresult.Exception.InnerException;//04-01-2022
+                        Task<ArrayList> alresult = GetHTML(kw, Convert.ToInt32(seid), jobid);
+                        if (alresult.Status.ToString() == stats.Faulted.ToString() || alresult.Status.ToString() == stats.Pending.ToString() || alresult.Status.ToString() == stats.Empty.ToString() || alresult.Status.ToString() == stats.statuscode.ToString()) //07-02-2022//31-01-2022//04-01-2022
+                        throw alresult.Exception.InnerException;//04-01-2022
                         ArrayList alXml = new ArrayList();
                         int count = 0;                        
                         string device = string.Empty;
                         string res = string.Empty;
-                        foreach (ResultObject r in alresult)
+                        foreach (ResultObject r in alresult.Result)
                             foreach (string src in r.Result)
                             {
                                 string keyword = r.Keyword;
@@ -431,14 +431,14 @@ namespace WPFLoopMultiThreadJobIDs
                 try
                 {
                     var doc = new HtmlAgilityPack.HtmlDocument();
-                        ArrayList alresult = GetHTML(kw, Convert.ToInt32(seid), jobid).Result;
-                        //if (alresult.Status.ToString() == stats.Faulted.ToString() || alresult.Status.ToString() == stats.Pending.ToString() || alresult.Status.ToString() == stats.Empty.ToString() || alresult.Status.ToString() == stats.statuscode.ToString()) //07-02-2022//31-01-2022//04-01-2022
-                        //throw alresult.Exception.InnerException;//04-01-2022
+                        Task<ArrayList> alresult = GetHTML(kw, Convert.ToInt32(seid), jobid);
+                        if (alresult.Status.ToString() == stats.Faulted.ToString() || alresult.Status.ToString() == stats.Pending.ToString() || alresult.Status.ToString() == stats.Empty.ToString() || alresult.Status.ToString() == stats.statuscode.ToString()) //07-02-2022//31-01-2022//04-01-2022
+                            throw alresult.Exception.InnerException;//04-01-2022
                         ArrayList alXml = new ArrayList();
                         int count = 0;
                         string device = string.Empty;
                         string res = string.Empty;
-                        foreach (ResultObject r in alresult)
+                        foreach (ResultObject r in alresult.Result)
                             foreach (string src in r.Result)
                             {
                                 string keyword = r.Keyword;
@@ -1188,34 +1188,54 @@ namespace WPFLoopMultiThreadJobIDs
                                     Device = cbUrl[5],
                                     Result = source
                                 });
-                            }
-                            else//04-01-2022
-                            {
-                                foreach (string url in urls)
+                                string url = "http://data.oxylabs.io/v1/queries/" + jobid;
+                                HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+                                httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
+                                HttpWebResponse res1 = (HttpWebResponse)httpWebRequest.GetResponse();
+                                Stream resStream = res1.GetResponseStream();
+                                StreamReader reader = new StreamReader(resStream, Encoding.UTF8);
+                                response = reader.ReadToEnd();
+                                resStream.Close();
+                                res1.Close();
+                                obj = JObject.Parse(response);
+                                status = obj["status"].Value<string>();
+                                if (status == "faulted")
                                 {
-                                    HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
-                                    httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
-                                    HttpWebResponse res1 = (HttpWebResponse)httpWebRequest.GetResponse();
-                                    Stream resStream = res1.GetResponseStream();
-                                    StreamReader reader = new StreamReader(resStream, Encoding.UTF8);
-                                    response = reader.ReadToEnd();
-                                    resStream.Close();
-                                    res1.Close();
-
-                                    obj = JObject.Parse(response);
-                                    status = obj["status"].Value<string>();
-                                    if (status == "faulted")
-                                    {
-                                        throw new Exception("status is faulted");
-                                    }
-                                    if (status == "pending") //31-01-2022
-                                    {
-                                        throw new Exception("status is pending");
-                                    }
+                                    throw new Exception("status is faulted");
                                 }
+                                if (status == "pending") //31-01-2022
+                                {
+                                    throw new Exception("status is pending");
+                                }
+                            }
+                            //    else//04-01-2022
+                            //    {
 
-                        }//04-01-2022
-                    }
+                            //        //foreach (string url in urls)
+                            //        //{
+                            //            HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+                            //            httpWebRequest.Headers["Authorization"] = "Basic " + authInfo;
+                            //            HttpWebResponse res1 = (HttpWebResponse)httpWebRequest.GetResponse();
+                            //            Stream resStream = res1.GetResponseStream();
+                            //            StreamReader reader = new StreamReader(resStream, Encoding.UTF8);
+                            //            response = reader.ReadToEnd();
+                            //            resStream.Close();
+                            //            res1.Close();
+
+                            //            obj = JObject.Parse(response);
+                            //            status = obj["status"].Value<string>();
+                            //            if (status == "faulted")
+                            //            {
+                            //                throw new Exception("status is faulted");
+                            //            }
+                            //            if (status == "pending") //31-01-2022
+                            //            {
+                            //                throw new Exception("status is pending");
+                            //            }
+                            //        //}
+
+                            //}//04-01-2022
+                        }
 
                     catch (Exception ex)
                     {

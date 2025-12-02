@@ -41,9 +41,9 @@ namespace AIOLoopReceiving
 
         private async void StartProcess()
         {
-            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackus102mobile/";      // 102 Mobile AIO Comma Keywords
-            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackuk58desktop/";       //1026,1027,1028,1029 AIO Keyword Tracking Desktop and Mobile
-            string callbackURL = "https://seresults.azurewebsites.net/api/callbackuk106mobile/"; //Same Controller for AIO Mobile keywords sending And Receive all And WOC 
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackus102mobile/";//AIO Mobile Comma Keywords Sending and Receiving > 0
+            //string callbackURL = "https://seresults.azurewebsites.net/api/callbackuk58desktop/";//AIO Other Mobile keywords Sending and Receiving > 0     //1026,1027,1028,1029 AIO Keyword Tracking Desktop and Mobile
+            string callbackURL = "https://seresults.azurewebsites.net/api/callbackuk106mobile/"; //AIO Mobile 102 and 106 Sending and Receiving > 20 and Receiving All >0 Apps
 
             Uri ul = new Uri(callbackURL);
             string username = "pisoftware";

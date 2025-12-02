@@ -138,6 +138,7 @@ namespace AIOLoopMultiThreadJobIDs
 
             if (ndText.Length > 0)
             {
+                count = orgLinks;
                 return sb.ToString();//08-05-2025
             }
             return string.Empty;//08-05-2025

@@ -1,0 +1,15 @@
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingMultiThreadJobIDs\bin\Debug\RapidTrackingMultiThreadJobIDs.exe.config
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingMultiThreadJobIDs\bin\Debug\RapidTrackingMultiThreadJobIDs.exe
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingMultiThreadJobIDs\bin\Debug\RapidTrackingMultiThreadJobIDs.pdb
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingMultiThreadJobIDs\bin\Debug\HtmlAgilityPack.dll
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingMultiThreadJobIDs\bin\Debug\Newtonsoft.Json.dll
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingMultiThreadJobIDs\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingMultiThreadJobIDs\bin\Debug\HtmlAgilityPack.xml
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingMultiThreadJobIDs\bin\Debug\Newtonsoft.Json.xml
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingMultiThreadJobIDs\obj\Debug\RapidTrackingMultiThreadJobIDs.csprojAssemblyReference.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingMultiThreadJobIDs\obj\Debug\RapidTrackingMultiThreadJobIDs.Properties.Resources.resources
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingMultiThreadJobIDs\obj\Debug\RapidTrackingMultiThreadJobIDs.csproj.GenerateResource.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingMultiThreadJobIDs\obj\Debug\RapidTrackingMultiThreadJobIDs.csproj.CoreCompileInputs.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingMultiThreadJobIDs\obj\Debug\RapidTrackingMultiThreadJobIDs.csproj.CopyComplete
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingMultiThreadJobIDs\obj\Debug\RapidTrackingMultiThreadJobIDs.exe
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingMultiThreadJobIDs\obj\Debug\RapidTrackingMultiThreadJobIDs.pdb

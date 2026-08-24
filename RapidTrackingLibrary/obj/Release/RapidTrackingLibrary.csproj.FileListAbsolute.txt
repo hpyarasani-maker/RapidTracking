@@ -1,0 +1,12 @@
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingLibrary\bin\Release\RapidTrackingLibrary.dll
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingLibrary\bin\Release\RapidTrackingLibrary.pdb
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingLibrary\bin\Release\HtmlAgilityPack.dll
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingLibrary\bin\Release\Newtonsoft.Json.dll
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingLibrary\bin\Release\HtmlAgilityPack.pdb
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingLibrary\bin\Release\HtmlAgilityPack.xml
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingLibrary\bin\Release\Newtonsoft.Json.xml
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingLibrary\obj\Release\RapidTrackingLibrary.csprojAssemblyReference.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingLibrary\obj\Release\RapidTrackingLibrary.csproj.CoreCompileInputs.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingLibrary\obj\Release\RapidTrackingLibrary.csproj.CopyComplete
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingLibrary\obj\Release\RapidTrackingLibrary.dll
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingLibrary\obj\Release\RapidTrackingLibrary.pdb

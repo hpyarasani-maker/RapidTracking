@@ -1,0 +1,15 @@
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\Bing_Sending\bin\Release\Bing_Sending.exe.config
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\Bing_Sending\bin\Release\Bing_Sending.exe
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\Bing_Sending\bin\Release\Bing_Sending.pdb
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\Bing_Sending\bin\Release\HtmlAgilityPack.dll
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\Bing_Sending\bin\Release\Newtonsoft.Json.dll
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\Bing_Sending\bin\Release\HtmlAgilityPack.pdb
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\Bing_Sending\bin\Release\HtmlAgilityPack.xml
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\Bing_Sending\bin\Release\Newtonsoft.Json.xml
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\Bing_Sending\obj\Release\Bing_Sending.Form1.resources
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\Bing_Sending\obj\Release\Bing_Sending.Properties.Resources.resources
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\Bing_Sending\obj\Release\Bing_Sending.csproj.GenerateResource.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\Bing_Sending\obj\Release\Bing_Sending.csproj.CoreCompileInputs.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\Bing_Sending\obj\Release\Bing_Sending.csproj.CopyComplete
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\Bing_Sending\obj\Release\Bing_Sending.exe
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\Bing_Sending\obj\Release\Bing_Sending.pdb

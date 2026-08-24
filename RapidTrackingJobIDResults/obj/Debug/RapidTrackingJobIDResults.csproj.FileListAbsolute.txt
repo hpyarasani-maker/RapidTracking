@@ -1,0 +1,16 @@
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingJobIDResults\bin\Debug\RapidTrackingJobIDResults.exe.config
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingJobIDResults\bin\Debug\RapidTrackingJobIDResults.exe
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingJobIDResults\bin\Debug\RapidTrackingJobIDResults.pdb
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingJobIDResults\bin\Debug\HtmlAgilityPack.dll
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingJobIDResults\bin\Debug\Newtonsoft.Json.dll
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingJobIDResults\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingJobIDResults\bin\Debug\HtmlAgilityPack.xml
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingJobIDResults\bin\Debug\Newtonsoft.Json.xml
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingJobIDResults\obj\Debug\RapidTrackingJobIDResults.csprojAssemblyReference.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingJobIDResults\obj\Debug\RapidTrackingJobIDResults.Form1.resources
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingJobIDResults\obj\Debug\RapidTrackingJobIDResults.Properties.Resources.resources
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingJobIDResults\obj\Debug\RapidTrackingJobIDResults.csproj.GenerateResource.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingJobIDResults\obj\Debug\RapidTrackingJobIDResults.csproj.CoreCompileInputs.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingJobIDResults\obj\Debug\RapidTrackingJobIDResults.csproj.CopyComplete
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingJobIDResults\obj\Debug\RapidTrackingJobIDResults.exe
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingJobIDResults\obj\Debug\RapidTrackingJobIDResults.pdb

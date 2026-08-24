@@ -1,0 +1,15 @@
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidMissingJobsReceiving\bin\Debug\RapidMissingJobsReceiving.exe.config
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidMissingJobsReceiving\bin\Debug\RapidMissingJobsReceiving.exe
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidMissingJobsReceiving\bin\Debug\RapidMissingJobsReceiving.pdb
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidMissingJobsReceiving\bin\Debug\HtmlAgilityPack.dll
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidMissingJobsReceiving\bin\Debug\Newtonsoft.Json.dll
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidMissingJobsReceiving\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidMissingJobsReceiving\bin\Debug\HtmlAgilityPack.xml
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidMissingJobsReceiving\bin\Debug\Newtonsoft.Json.xml
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidMissingJobsReceiving\obj\Debug\RapidMissingJobsReceiving.csprojAssemblyReference.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidMissingJobsReceiving\obj\Debug\RapidMissingJobsReceiving.Properties.Resources.resources
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidMissingJobsReceiving\obj\Debug\RapidMissingJobsReceiving.csproj.GenerateResource.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidMissingJobsReceiving\obj\Debug\RapidMissingJobsReceiving.csproj.CoreCompileInputs.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidMissingJobsReceiving\obj\Debug\RapidMissingJobsReceiving.csproj.CopyComplete
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidMissingJobsReceiving\obj\Debug\RapidMissingJobsReceiving.exe
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidMissingJobsReceiving\obj\Debug\RapidMissingJobsReceiving.pdb

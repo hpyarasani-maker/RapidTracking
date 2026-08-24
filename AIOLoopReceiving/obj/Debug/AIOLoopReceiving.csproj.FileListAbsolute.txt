@@ -1,0 +1,14 @@
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\AIOLoopReceiving\obj\Debug\AIOLoopReceiving.csprojAssemblyReference.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\AIOLoopReceiving\obj\Debug\AIOLoopReceiving.Properties.Resources.resources
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\AIOLoopReceiving\obj\Debug\AIOLoopReceiving.csproj.GenerateResource.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\AIOLoopReceiving\obj\Debug\AIOLoopReceiving.csproj.CoreCompileInputs.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\AIOLoopReceiving\bin\Debug\AIOLoopReceiving.exe.config
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\AIOLoopReceiving\bin\Debug\AIOLoopReceiving.exe
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\AIOLoopReceiving\bin\Debug\AIOLoopReceiving.pdb
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\AIOLoopReceiving\bin\Debug\HtmlAgilityPack.dll
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\AIOLoopReceiving\bin\Debug\Newtonsoft.Json.dll
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\AIOLoopReceiving\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\AIOLoopReceiving\bin\Debug\HtmlAgilityPack.xml
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\AIOLoopReceiving\obj\Debug\AIOLoopReceiving.csproj.CopyComplete
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\AIOLoopReceiving\obj\Debug\AIOLoopReceiving.exe
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\AIOLoopReceiving\obj\Debug\AIOLoopReceiving.pdb

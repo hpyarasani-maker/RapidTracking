@@ -1,0 +1,15 @@
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\BingSingleThread\bin\Debug\BingSingleThread.exe.config
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\BingSingleThread\bin\Debug\BingSingleThread.exe
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\BingSingleThread\bin\Debug\BingSingleThread.pdb
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\BingSingleThread\bin\Debug\HtmlAgilityPack.dll
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\BingSingleThread\bin\Debug\Newtonsoft.Json.dll
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\BingSingleThread\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\BingSingleThread\bin\Debug\HtmlAgilityPack.xml
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\BingSingleThread\bin\Debug\Newtonsoft.Json.xml
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\BingSingleThread\obj\Debug\BingSingleThread.frmSingleThread.resources
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\BingSingleThread\obj\Debug\BingSingleThread.Properties.Resources.resources
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\BingSingleThread\obj\Debug\BingSingleThread.csproj.GenerateResource.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\BingSingleThread\obj\Debug\BingSingleThread.csproj.CoreCompileInputs.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\BingSingleThread\obj\Debug\BingSingleThread.csproj.CopyComplete
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\BingSingleThread\obj\Debug\BingSingleThread.exe
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\BingSingleThread\obj\Debug\BingSingleThread.pdb

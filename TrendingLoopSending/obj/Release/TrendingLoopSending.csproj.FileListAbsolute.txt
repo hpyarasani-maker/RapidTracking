@@ -1,0 +1,14 @@
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingLoopSending\bin\Release\TrendingLoopSending.exe.config
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingLoopSending\bin\Release\TrendingLoopSending.exe
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingLoopSending\bin\Release\TrendingLoopSending.pdb
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingLoopSending\bin\Release\HtmlAgilityPack.dll
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingLoopSending\bin\Release\Newtonsoft.Json.dll
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingLoopSending\bin\Release\HtmlAgilityPack.pdb
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingLoopSending\bin\Release\HtmlAgilityPack.xml
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingLoopSending\bin\Release\Newtonsoft.Json.xml
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingLoopSending\obj\Release\TrendingLoopSending.Properties.Resources.resources
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingLoopSending\obj\Release\TrendingLoopSending.csproj.GenerateResource.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingLoopSending\obj\Release\TrendingLoopSending.csproj.CoreCompileInputs.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingLoopSending\obj\Release\TrendingLoopSending.csproj.CopyComplete
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingLoopSending\obj\Release\TrendingLoopSending.exe
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingLoopSending\obj\Release\TrendingLoopSending.pdb

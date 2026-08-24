@@ -1,0 +1,16 @@
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingLoopReceiving\bin\Debug\TrendingLoopReceiving.exe.config
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingLoopReceiving\bin\Debug\TrendingLoopReceiving.exe
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingLoopReceiving\bin\Debug\TrendingLoopReceiving.pdb
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingLoopReceiving\bin\Debug\HtmlAgilityPack.dll
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingLoopReceiving\bin\Debug\Newtonsoft.Json.dll
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingLoopReceiving\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingLoopReceiving\bin\Debug\HtmlAgilityPack.xml
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingLoopReceiving\bin\Debug\Newtonsoft.Json.xml
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingLoopReceiving\obj\Debug\TrendingLoopReceiving.csprojAssemblyReference.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingLoopReceiving\obj\Debug\TrendingLoopReceiving.Form1.resources
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingLoopReceiving\obj\Debug\TrendingLoopReceiving.Properties.Resources.resources
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingLoopReceiving\obj\Debug\TrendingLoopReceiving.csproj.GenerateResource.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingLoopReceiving\obj\Debug\TrendingLoopReceiving.csproj.CoreCompileInputs.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingLoopReceiving\obj\Debug\TrendingLoopReceiving.csproj.CopyComplete
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingLoopReceiving\obj\Debug\TrendingLoopReceiving.exe
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingLoopReceiving\obj\Debug\TrendingLoopReceiving.pdb

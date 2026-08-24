@@ -1,0 +1,60 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\phema\\Source\\Repos\\pi-software-solutions-pvt-ltd\\RapidTracking\\TrendingTwoHoursTracking\\TrendingReceiving\\TrendingReceiving\\TrendingReceiving.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\phema\\Source\\Repos\\pi-software-solutions-pvt-ltd\\RapidTracking\\TrendingTwoHoursTracking\\TrendingReceiving\\TrendingReceiving\\TrendingReceiving.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\phema\\Source\\Repos\\pi-software-solutions-pvt-ltd\\RapidTracking\\TrendingTwoHoursTracking\\TrendingReceiving\\TrendingReceiving\\TrendingReceiving.csproj",
+        "projectName": "TrendingReceiving",
+        "projectPath": "C:\\Users\\phema\\Source\\Repos\\pi-software-solutions-pvt-ltd\\RapidTracking\\TrendingTwoHoursTracking\\TrendingReceiving\\TrendingReceiving\\TrendingReceiving.csproj",
+        "packagesPath": "C:\\Users\\phema\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\phema\\Source\\Repos\\pi-software-solutions-pvt-ltd\\RapidTracking\\TrendingTwoHoursTracking\\TrendingReceiving\\TrendingReceiving\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "UsingMicrosoftNETSdk": false,
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\phema\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "dependencies": {
+            "HtmlAgilityPack": {
+              "target": "Package",
+              "version": "[1.11.21, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            }
+          }
+        }
+      }
+    }
+  }
+}

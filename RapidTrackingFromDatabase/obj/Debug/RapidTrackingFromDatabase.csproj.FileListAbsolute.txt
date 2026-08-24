@@ -1,0 +1,10 @@
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingFromDatabase\bin\Debug\RapidTrackingFromDatabase.exe.config
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingFromDatabase\bin\Debug\RapidTrackingFromDatabase.exe
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingFromDatabase\bin\Debug\RapidTrackingFromDatabase.pdb
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingFromDatabase\obj\Debug\RapidTrackingFromDatabase.csprojAssemblyReference.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingFromDatabase\obj\Debug\RapidTrackingFromDatabase.Form1.resources
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingFromDatabase\obj\Debug\RapidTrackingFromDatabase.Properties.Resources.resources
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingFromDatabase\obj\Debug\RapidTrackingFromDatabase.csproj.GenerateResource.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingFromDatabase\obj\Debug\RapidTrackingFromDatabase.csproj.CoreCompileInputs.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingFromDatabase\obj\Debug\RapidTrackingFromDatabase.exe
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingFromDatabase\obj\Debug\RapidTrackingFromDatabase.pdb

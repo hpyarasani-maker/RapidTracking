@@ -1,0 +1,16 @@
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\BingMultiThreadProxies\BingMultiThreadProxies\bin\Debug\BingMultiThreadProxies.exe.config
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\BingMultiThreadProxies\BingMultiThreadProxies\bin\Debug\BingMultiThreadProxies.exe
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\BingMultiThreadProxies\BingMultiThreadProxies\bin\Debug\BingMultiThreadProxies.pdb
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\BingMultiThreadProxies\BingMultiThreadProxies\bin\Debug\HtmlAgilityPack.dll
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\BingMultiThreadProxies\BingMultiThreadProxies\bin\Debug\Newtonsoft.Json.dll
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\BingMultiThreadProxies\BingMultiThreadProxies\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\BingMultiThreadProxies\BingMultiThreadProxies\bin\Debug\HtmlAgilityPack.xml
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\BingMultiThreadProxies\BingMultiThreadProxies\bin\Debug\Newtonsoft.Json.xml
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\BingMultiThreadProxies\BingMultiThreadProxies\obj\Debug\BingMultiThreadProxies.csprojAssemblyReference.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\BingMultiThreadProxies\BingMultiThreadProxies\obj\Debug\BingMultiThreadProxies.Form1.resources
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\BingMultiThreadProxies\BingMultiThreadProxies\obj\Debug\BingMultiThreadProxies.Properties.Resources.resources
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\BingMultiThreadProxies\BingMultiThreadProxies\obj\Debug\BingMultiThreadProxies.csproj.GenerateResource.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\BingMultiThreadProxies\BingMultiThreadProxies\obj\Debug\BingMultiThreadProxies.csproj.CoreCompileInputs.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\BingMultiThreadProxies\BingMultiThreadProxies\obj\Debug\BingMultiThreadProxies.csproj.CopyComplete
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\BingMultiThreadProxies\BingMultiThreadProxies\obj\Debug\BingMultiThreadProxies.exe
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\Bing\BingMultiThreadProxies\BingMultiThreadProxies\obj\Debug\BingMultiThreadProxies.pdb

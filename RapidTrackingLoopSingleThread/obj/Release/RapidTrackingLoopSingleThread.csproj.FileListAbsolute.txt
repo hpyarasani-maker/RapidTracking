@@ -1,0 +1,14 @@
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingLoopSingleThread\bin\Release\RapidTrackingLoopSingleThread.exe.config
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingLoopSingleThread\bin\Release\RapidTrackingLoopSingleThread.exe
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingLoopSingleThread\bin\Release\RapidTrackingLoopSingleThread.pdb
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingLoopSingleThread\bin\Release\HtmlAgilityPack.dll
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingLoopSingleThread\bin\Release\Newtonsoft.Json.dll
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingLoopSingleThread\bin\Release\HtmlAgilityPack.pdb
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingLoopSingleThread\bin\Release\HtmlAgilityPack.xml
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingLoopSingleThread\bin\Release\Newtonsoft.Json.xml
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingLoopSingleThread\obj\Release\RapidTrackingLoopSingleThread.Properties.Resources.resources
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingLoopSingleThread\obj\Release\RapidTrackingLoopSingleThread.csproj.GenerateResource.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingLoopSingleThread\obj\Release\RapidTrackingLoopSingleThread.csproj.CoreCompileInputs.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingLoopSingleThread\obj\Release\RapidTrackingLoopSingleThread.csproj.CopyComplete
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingLoopSingleThread\obj\Release\RapidTrackingLoopSingleThread.exe
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingLoopSingleThread\obj\Release\RapidTrackingLoopSingleThread.pdb

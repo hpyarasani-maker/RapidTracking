@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "dgSpecHash": "sJteLYKM6MY=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\phema\\Source\\Repos\\pi-software-solutions-pvt-ltd\\RapidTracking\\TrendingTwoHoursTracking\\TrendingReceiving\\TrendingReceiving\\TrendingReceiving.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\phema\\.nuget\\packages\\htmlagilitypack\\1.11.21\\htmlagilitypack.1.11.21.nupkg.sha512",
+    "C:\\Users\\phema\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "message": "Package 'Newtonsoft.Json' 12.0.3 has a known high severity vulnerability, https://github.com/advisories/GHSA-5crp-9r3c-p9vr",
+      "projectPath": "C:\\Users\\phema\\Source\\Repos\\pi-software-solutions-pvt-ltd\\RapidTracking\\TrendingTwoHoursTracking\\TrendingReceiving\\TrendingReceiving\\TrendingReceiving.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\phema\\Source\\Repos\\pi-software-solutions-pvt-ltd\\RapidTracking\\TrendingTwoHoursTracking\\TrendingReceiving\\TrendingReceiving\\TrendingReceiving.csproj",
+      "libraryId": "Newtonsoft.Json",
+      "targetGraphs": [
+        ".NETFramework,Version=v4.7.2"
+      ]
+    }
+  ]
+}

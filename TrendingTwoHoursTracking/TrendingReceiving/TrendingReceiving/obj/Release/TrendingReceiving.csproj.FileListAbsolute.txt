@@ -1,0 +1,14 @@
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingTwoHoursTracking\TrendingReceiving\TrendingReceiving\bin\Release\TrendingReceiving.exe.config
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingTwoHoursTracking\TrendingReceiving\TrendingReceiving\bin\Release\TrendingReceiving.exe
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingTwoHoursTracking\TrendingReceiving\TrendingReceiving\bin\Release\TrendingReceiving.pdb
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingTwoHoursTracking\TrendingReceiving\TrendingReceiving\bin\Release\HtmlAgilityPack.dll
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingTwoHoursTracking\TrendingReceiving\TrendingReceiving\bin\Release\HtmlAgilityPack.pdb
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingTwoHoursTracking\TrendingReceiving\TrendingReceiving\bin\Release\Newtonsoft.Json.dll
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingTwoHoursTracking\TrendingReceiving\TrendingReceiving\obj\Release\TrendingReceiving.csprojAssemblyReference.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingTwoHoursTracking\TrendingReceiving\TrendingReceiving\obj\Release\TrendingReceiving.Form1.resources
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingTwoHoursTracking\TrendingReceiving\TrendingReceiving\obj\Release\TrendingReceiving.Properties.Resources.resources
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingTwoHoursTracking\TrendingReceiving\TrendingReceiving\obj\Release\TrendingReceiving.csproj.GenerateResource.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingTwoHoursTracking\TrendingReceiving\TrendingReceiving\obj\Release\TrendingReceiving.csproj.CoreCompileInputs.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingTwoHoursTracking\TrendingReceiving\TrendingReceiving\obj\Release\TrendingReceiving.csproj.CopyComplete
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingTwoHoursTracking\TrendingReceiving\TrendingReceiving\obj\Release\TrendingReceiving.exe
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingTwoHoursTracking\TrendingReceiving\TrendingReceiving\obj\Release\TrendingReceiving.pdb

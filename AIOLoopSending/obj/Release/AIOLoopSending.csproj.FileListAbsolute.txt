@@ -1,0 +1,10 @@
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\AIOLoopSending\bin\Release\AIOLoopSending.exe.config
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\AIOLoopSending\bin\Release\AIOLoopSending.exe
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\AIOLoopSending\bin\Release\AIOLoopSending.pdb
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\AIOLoopSending\bin\Release\Newtonsoft.Json.dll
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\AIOLoopSending\obj\Release\AIOLoopSending.Properties.Resources.resources
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\AIOLoopSending\obj\Release\AIOLoopSending.csproj.GenerateResource.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\AIOLoopSending\obj\Release\AIOLoopSending.csproj.CoreCompileInputs.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\AIOLoopSending\obj\Release\AIOLoopSending.csproj.CopyComplete
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\AIOLoopSending\obj\Release\AIOLoopSending.exe
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\AIOLoopSending\obj\Release\AIOLoopSending.pdb

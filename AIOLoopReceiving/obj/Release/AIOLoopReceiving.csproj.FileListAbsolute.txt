@@ -1,0 +1,3 @@
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\AIOLoopReceiving\obj\Release\AIOLoopReceiving.Properties.Resources.resources
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\AIOLoopReceiving\obj\Release\AIOLoopReceiving.csproj.GenerateResource.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\AIOLoopReceiving\obj\Release\AIOLoopReceiving.csproj.CoreCompileInputs.cache

@@ -1,0 +1,14 @@
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingMultithreadFirstPageResIPs\bin\Release\RapidTrackingMultithreadFirstPageResIPs.exe.config
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingMultithreadFirstPageResIPs\bin\Release\RapidTrackingMultithreadFirstPageResIPs.exe
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingMultithreadFirstPageResIPs\bin\Release\RapidTrackingMultithreadFirstPageResIPs.pdb
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingMultithreadFirstPageResIPs\bin\Release\HtmlAgilityPack.dll
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingMultithreadFirstPageResIPs\bin\Release\Newtonsoft.Json.dll
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingMultithreadFirstPageResIPs\bin\Release\HtmlAgilityPack.pdb
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingMultithreadFirstPageResIPs\bin\Release\HtmlAgilityPack.xml
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingMultithreadFirstPageResIPs\obj\Release\RapidTrackingMultithreadFirstPageResIPs.csprojAssemblyReference.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingMultithreadFirstPageResIPs\obj\Release\RapidTrackingMultithreadFirstPageResIPs.Properties.Resources.resources
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingMultithreadFirstPageResIPs\obj\Release\RapidTrackingMultithreadFirstPageResIPs.csproj.GenerateResource.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingMultithreadFirstPageResIPs\obj\Release\RapidTrackingMultithreadFirstPageResIPs.csproj.CoreCompileInputs.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingMultithreadFirstPageResIPs\obj\Release\RapidTrackingMultithreadFirstPageResIPs.csproj.CopyComplete
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingMultithreadFirstPageResIPs\obj\Release\RapidTrackingMultithreadFirstPageResIPs.exe
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\RapidTrackingMultithreadFirstPageResIPs\obj\Release\RapidTrackingMultithreadFirstPageResIPs.pdb

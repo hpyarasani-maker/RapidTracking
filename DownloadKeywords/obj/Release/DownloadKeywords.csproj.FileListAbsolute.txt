@@ -1,0 +1,6 @@
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\DownloadKeywords\bin\Release\TrackingTrendingDownloadKeywords.exe.config
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\DownloadKeywords\bin\Release\TrackingTrendingDownloadKeywords.exe
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\DownloadKeywords\bin\Release\TrackingTrendingDownloadKeywords.pdb
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\DownloadKeywords\obj\Release\DownloadKeywords.csproj.CoreCompileInputs.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\DownloadKeywords\obj\Release\TrackingTrendingDownloadKeywords.exe
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\DownloadKeywords\obj\Release\TrackingTrendingDownloadKeywords.pdb

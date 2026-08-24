@@ -1,0 +1,16 @@
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingTwoHoursTracking\TrendingMobileSingleThread\TrendingMobileSingleThread\bin\Debug\TrendingMobileSingleThread.exe.config
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingTwoHoursTracking\TrendingMobileSingleThread\TrendingMobileSingleThread\bin\Debug\TrendingMobileSingleThread.exe
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingTwoHoursTracking\TrendingMobileSingleThread\TrendingMobileSingleThread\bin\Debug\TrendingMobileSingleThread.pdb
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingTwoHoursTracking\TrendingMobileSingleThread\TrendingMobileSingleThread\bin\Debug\HtmlAgilityPack.dll
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingTwoHoursTracking\TrendingMobileSingleThread\TrendingMobileSingleThread\bin\Debug\Newtonsoft.Json.dll
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingTwoHoursTracking\TrendingMobileSingleThread\TrendingMobileSingleThread\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingTwoHoursTracking\TrendingMobileSingleThread\TrendingMobileSingleThread\bin\Debug\HtmlAgilityPack.xml
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingTwoHoursTracking\TrendingMobileSingleThread\TrendingMobileSingleThread\bin\Debug\Newtonsoft.Json.xml
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingTwoHoursTracking\TrendingMobileSingleThread\TrendingMobileSingleThread\obj\Debug\TrendingMobileSingleThread.csprojAssemblyReference.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingTwoHoursTracking\TrendingMobileSingleThread\TrendingMobileSingleThread\obj\Debug\TrendingMobileSingleThread.Properties.Resources.resources
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingTwoHoursTracking\TrendingMobileSingleThread\TrendingMobileSingleThread\obj\Debug\TrendingMobileSingleThread.csproj.GenerateResource.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingTwoHoursTracking\TrendingMobileSingleThread\TrendingMobileSingleThread\obj\Debug\TrendingMobileSingleThread.csproj.CoreCompileInputs.cache
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingTwoHoursTracking\TrendingMobileSingleThread\TrendingMobileSingleThread\obj\Debug\TrendingMobileSingleThread.csproj.CopyComplete
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingTwoHoursTracking\TrendingMobileSingleThread\TrendingMobileSingleThread\obj\Debug\TrendingMobileSingleThread.exe
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingTwoHoursTracking\TrendingMobileSingleThread\TrendingMobileSingleThread\obj\Debug\TrendingMobileSingleThread.pdb
+C:\Users\phema\Source\Repos\pi-software-solutions-pvt-ltd\RapidTracking\TrendingTwoHoursTracking\TrendingMobileSingleThread\TrendingMobileSingleThread\obj\Debug\TrendingMobileSingleThread.frmMultiThread.resources

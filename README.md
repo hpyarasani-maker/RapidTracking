@@ -1,0 +1,1 @@
+Designed and implemented a high-scale keyword tracking and data processing platform capable of monitoring millions of keywords daily, collecting large volumes of search engine data, persisting the results efficiently, and publishing processed data to APIs from multiple search engine sources.
